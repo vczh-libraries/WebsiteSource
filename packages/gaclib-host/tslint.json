@@ -1,0 +1,10 @@
+{
+    "extends": [
+        "tslint-shared"
+    ],
+    "rules": {
+        "label-position": false,
+        "no-var-requires": false,
+        "prefer-object-spread": false
+    }
+}
