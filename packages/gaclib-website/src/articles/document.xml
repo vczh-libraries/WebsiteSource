@@ -11,7 +11,9 @@
             The <b>new document page</b> is being rebuilding.
             If you are interested in indexing C++ source code,
             please check out <a href="https://github.com/vczh-libraries/Document">this repo</a>,
-            and <a href="/CodeIndexDemo/Calculator/FileIndex.html">this demo</a>.
+            and these demo:
+            <a href="/CodeIndexDemo/Calculator/FileIndex.html">Calculator</a>,
+            <a href="/CodeIndexDemo/TypePrinter/FileIndex.html">TypePrinter</a>,
         </p>
     </topic>
 </article>
