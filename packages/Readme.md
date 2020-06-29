@@ -136,6 +136,28 @@
 </basetypes>
 ```
 
+## Reference
+
+### Reference.xml
+
+```xml
+<categories>
+  <category name="CATEGORY">
+</categories>
+```
+
+### References/Category.xml
+
+```xml
+<reference>
+  <namespace name="::A::B::C">
+    <document name="class MyClass" file="FILE-NAME">
+      <document .../>
+    </document>
+  </namespace>
+</reference>
+```
+
 ## XMl Document to Article Conversion
 
 - `<signature>` is converted to `<program language="C++">`
