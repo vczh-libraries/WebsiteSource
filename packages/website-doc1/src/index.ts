@@ -24,7 +24,11 @@ const rootTreeNode: DocTreeNode = {
     path: []
 };
 loadTree(rootTreeNode, path.join(__dirname, `../src/articles/reference.xml`), []);
-writeFileSync(path.join(__dirname, `../src/articles/reference.log`), JSON.stringify(rootTreeNode), { encoding: 'utf-8' });
+writeFileSync(
+    path.join(__dirname, `reference.json`),
+    JSON.stringify(rootTreeNode, undefined, 4),
+    { encoding: 'utf-8' }
+);
 
 router.register(
     [],
