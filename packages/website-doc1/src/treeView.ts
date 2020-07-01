@@ -5,7 +5,7 @@ import { Element, xml2js } from 'xml-js';
 export interface DocTreeNode {
     name: string;
     kind: 'root' | 'article' | 'namespace' | 'directory' | 'document';
-    path: string[];
+    path?: string[];
     file?: string;
     subNodes?: DocTreeNode[];
 }
@@ -47,8 +47,7 @@ function loadTreeFromElement(target: DocTreeNode, xmlNode: Element, wd: string, 
             if (file === undefined) {
                 child = {
                     name,
-                    kind: 'directory',
-                    path: url.concat([name])
+                    kind: 'directory'
                 };
             } else {
                 child = {

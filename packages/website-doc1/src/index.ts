@@ -20,8 +20,7 @@ registerFolder(router, path.join(__dirname, `./dist`));
 console.log('Loading references ...');
 const rootTreeNode: DocTreeNode = {
     name: '',
-    kind: 'root',
-    path: []
+    kind: 'root'
 };
 loadTree(rootTreeNode, path.join(__dirname, `../src/articles/reference.xml`), []);
 writeFileSync(
