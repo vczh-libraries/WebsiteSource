@@ -26,6 +26,7 @@
         "gaclib-mvc": "^0.0.1",
         "gaclib-render": "^0.0.1",
         "gaclib-host": "^0.0.1",
+        "gaclib-spider": "^0.0.1",
         "lit-html": "^1.1.2",
         "website-scraper": "4.0.1"
     }

@@ -1,6 +1,6 @@
 // tslint:disable:no-http-string
 
-import * as path from 'path';
+import { Router, RouterFragment, RouterFragmentKind, RouterPatternBase } from 'gaclib-mvc';
 import scrape = require('website-scraper');
 
 type RegisterAction = (
@@ -8,11 +8,35 @@ type RegisterAction = (
     callback: (value: { resource: scrape.Resource }) => { filename: string }
 ) => void;
 
-export function downloadWebsite(urls: string[]): void {
+export function collectStaticUrls<TResult>(router: Router<TResult>): string[] {
+    return router
+        .registered
+        .filter((value: RouterPatternBase) => {
+            return value
+                .fragments
+                .map((fragment: RouterFragment) => fragment.kind === RouterFragmentKind.Text)
+                .reduce((a: boolean, b: boolean) => a && b)
+                ;
+        })
+        .map((value: RouterPatternBase) => {
+            return `${router.pathPrefix}/${
+                value
+                    .fragments
+                    .map((fragment: RouterFragment) => {
+                        return fragment.kind === RouterFragmentKind.Text ? fragment.text : '';
+                    })
+                    .join('/')
+                }`;
+        })
+        .filter((url: string) => url !== '')
+        ;
+}
+
+export function downloadWebsite(urls: string[], directory: string): void {
 
     const options = {
-        urls: urls.map((url: string) => `http://127.0.0.1:8080/${url}`),
-        directory: path.join(__dirname, './website'),
+        urls: urls.map((url: string) => `http://127.0.0.1:8080${url}`),
+        directory,
         // filenameGenerator: 'bySiteStructure',
         recursive: true,
         plugins: [{

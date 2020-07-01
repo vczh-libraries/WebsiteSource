@@ -80,6 +80,7 @@ export type RouterCallback<TModel, TResult> = (method: HttpMethods, model: TMode
 
 export interface Router<TResult> {
     readonly registered: readonly RouterPatternBase[];
+    readonly pathPrefix: string;
     register<TModel>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void;
     match(method: HttpMethods, query: string): TResult | undefined;
 }

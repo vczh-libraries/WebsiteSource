@@ -9,7 +9,7 @@ interface RouterPackage<TResult> {
 class RouterImpl<TResult> implements Router<TResult> {
     private readonly patterns: RouterPackage<TResult>[] = [];
 
-    constructor(private readonly pathPrefix: string) { }
+    constructor(public readonly pathPrefix: string) { }
 
     public get registered(): readonly RouterPatternBase[] {
         return this.patterns.map((value: RouterPackage<TResult>) => value.pattern);
