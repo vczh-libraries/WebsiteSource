@@ -4,7 +4,7 @@ import { createMvcServer, hostUntilPressingEnter, litHtmlViewCallback, registerF
 import { createRouter, route } from 'gaclib-mvc';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { DocTreeNode, loadTree } from './treeView';
+import { loadDocTree } from './treeView';
 import { views } from './views';
 
 const pathPrefix = `/doc/current`;
@@ -18,14 +18,10 @@ const router = createRouter<[string, string | Buffer]>(pathPrefix);
 registerFolder(router, path.join(__dirname, `./dist`));
 
 console.log('Loading references ...');
-const rootTreeNode: DocTreeNode = {
-    name: '',
-    kind: 'root'
-};
-loadTree(rootTreeNode, path.join(__dirname, `../src/articles/reference.xml`), []);
+const docTree = loadDocTree(path.join(__dirname, `../src/articles/reference.xml`));
 writeFileSync(
     path.join(__dirname, `reference.json`),
-    JSON.stringify(rootTreeNode, undefined, 4),
+    JSON.stringify(docTree.root, undefined, 4),
     { encoding: 'utf-8' }
 );
 
