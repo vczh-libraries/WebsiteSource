@@ -2,6 +2,7 @@ import { EOL } from 'os';
 
 export interface HtmlInfo {
     title?: string;
+    pathPrefix?: string;
     shortcutIcon?: string;
     styleSheets?: string[];
     scripts?: string[];
@@ -20,6 +21,9 @@ export function mergeHtmlInfo(original: HtmlInfo, override: HtmlInfo): HtmlInfo 
     const info = { ...original };
     if (override.title !== undefined) {
         info.title = override.title;
+    }
+    if (override.pathPrefix !== undefined) {
+        info.pathPrefix = override.pathPrefix;
     }
     if (override.shortcutIcon !== undefined) {
         info.shortcutIcon = override.shortcutIcon;
@@ -101,9 +105,9 @@ export function generateHtml(htmlInfo: HtmlInfo, views: ViewMetadata[], viewName
 <html>
 <head>
 <title>${info.title === undefined ? 'UNTITLED' : info.title}</title>
-${info.shortcutIcon === undefined ? '' : `<link rel="shortcut icon" href="${info.shortcutIcon}" />`}
-${info.styleSheets === undefined ? '' : info.styleSheets.map((value: string) => `<link rel="stylesheet" type="text/css" href="${value}" />`).join(EOL)}
-${info.scripts === undefined ? '' : info.scripts.map((value: string) => `<script src="${value}"></script>`).join(EOL)}
+${info.shortcutIcon === undefined ? '' : `<link rel="shortcut icon" href="${info.pathPrefix ?? ''}${info.shortcutIcon}" />`}
+${info.styleSheets === undefined ? '' : info.styleSheets.map((value: string) => `<link rel="stylesheet" type="text/css" href="${info.pathPrefix ?? ''}${value}" />`).join(EOL)}
+${info.scripts === undefined ? '' : info.scripts.map((value: string) => `<script src="${info.pathPrefix ?? ''}${value}"></script>`).join(EOL)}
 ${extraHeadHtml}
 </head>
 <body>

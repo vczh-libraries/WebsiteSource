@@ -9,6 +9,8 @@ interface RouterPackage<TResult> {
 class RouterImpl<TResult> implements Router<TResult> {
     private readonly patterns: RouterPackage<TResult>[] = [];
 
+    constructor(private readonly pathPrefix: string) { }
+
     public get registered(): readonly RouterPatternBase[] {
         return this.patterns.map((value: RouterPackage<TResult>) => value.pattern);
     }
@@ -22,11 +24,18 @@ class RouterImpl<TResult> implements Router<TResult> {
     }
 
     public match(method: HttpMethods, query: string): TResult | undefined {
-        if (query[0] !== '/') {
+        let normalizedQuery = query;
+        if (normalizedQuery.startsWith(this.pathPrefix)) {
+            normalizedQuery = normalizedQuery.substr(this.pathPrefix.length);
+        } else {
+            return undefined;
+        }
+
+        if (normalizedQuery[0] !== '/') {
             throw new Error('Query should begin with "/".');
         }
 
-        const fragments = query.split('/');
+        const fragments = normalizedQuery.split('/');
         let result: TResult | undefined;
 
         PATTERN_LOOP: for (const pattern of this.patterns) {
@@ -42,7 +51,7 @@ class RouterImpl<TResult> implements Router<TResult> {
                 if (result === undefined) {
                     result = pattern.callback(method, model);
                 } else {
-                    throw new Error(`Multiple patterns match query: "${query}".`);
+                    throw new Error(`Multiple patterns match query: "${normalizedQuery}".`);
                 }
             }
         }
@@ -50,6 +59,6 @@ class RouterImpl<TResult> implements Router<TResult> {
     }
 }
 
-export function createRouter<TResult>(): Router<TResult> {
-    return new RouterImpl<TResult>();
+export function createRouter<TResult>(pathPrefix?: string): Router<TResult> {
+    return new RouterImpl<TResult>(pathPrefix === undefined ? '' : pathPrefix);
 }

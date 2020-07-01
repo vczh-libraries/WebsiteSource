@@ -53,3 +53,14 @@ test(`Query match parameters`, () => {
     assert.deepStrictEqual(router.match('GET', '/getting_started/vlpp.html'), { lib: 'vlpp' });
     assert.deepStrictEqual(router.match('GET', '/tutorial/HelloWorld/demo/CppXml.html'), { tutorial: 'HelloWorld', title: 'CppXml' });
 });
+
+test(`Query match parameters with prefix`, () => {
+    const router = createRouter<{}>(`/prefix`);
+    router.register([], route`/index.html`, (method: HttpMethods, model: {}) => 'index');
+    router.register([], route`/getting_started/${{ lib: '' }}.html`, (method: HttpMethods, model: {}) => model);
+    router.register([], route`/tutorial/${{ tutorial: '' }}/demo/${{ title: '' }}.html`, (method: HttpMethods, model: {}) => model);
+
+    assert.deepStrictEqual(router.match('GET', '/prefix/index.html'), 'index');
+    assert.deepStrictEqual(router.match('GET', '/prefix/getting_started/vlpp.html'), { lib: 'vlpp' });
+    assert.deepStrictEqual(router.match('GET', '/prefix/tutorial/HelloWorld/demo/CppXml.html'), { tutorial: 'HelloWorld', title: 'CppXml' });
+});

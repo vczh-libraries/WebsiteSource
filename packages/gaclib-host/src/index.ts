@@ -15,7 +15,7 @@ export interface ViewConfig {
     embeddedResources?: EmbeddedResources;
 }
 
-export function litHtmlViewCallback<TModel = {}>(views: ViewMetadata[], viewName: string, config?: ViewConfig): RouterCallback<TModel, MvcRouterResult> {
+export function litHtmlViewCallback<TModel = {}>(views: ViewMetadata[], viewName: string, config: ViewConfig): RouterCallback<TModel, MvcRouterResult> {
     const info = config !== undefined && config.info !== undefined ? config.info : {};
     const head = config !== undefined && config.extraHeadHtml !== undefined ? config.extraHeadHtml : '';
     const res = config !== undefined && config.embeddedResources !== undefined ? config.embeddedResources : {};
