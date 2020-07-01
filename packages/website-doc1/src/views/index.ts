@@ -11,12 +11,21 @@ const rootView: ViewMetadata = {
     }
 };
 
-const articleView: ViewMetadata = {
-    name: 'Gaclib-ArticleView',
-    source: `${__dirname}/articleView.js`,
-    path: '/scripts/articleView.js',
+const directoryView: ViewMetadata = {
+    name: 'Gaclib-DirectoryView',
+    source: `${__dirname}/directoryView.js`,
+    path: '/scripts/directoryView.js',
+    containerId: 'directoryViewContainer',
     parentView: 'Gaclib-RootView',
     htmlInfo: {}
 };
 
-export const views = [rootView, articleView];
+const articleView: ViewMetadata = {
+    name: 'Gaclib-ArticleView',
+    source: `${__dirname}/articleView.js`,
+    path: '/scripts/articleView.js',
+    parentView: 'Gaclib-DirectoryView',
+    htmlInfo: {}
+};
+
+export const views = [rootView, directoryView, articleView];
