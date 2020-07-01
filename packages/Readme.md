@@ -142,7 +142,7 @@
 
 ```xml
 <categories>
-  <category name="CATEGORY">
+  <category name="Category" file="FILE-NAME">
 </categories>
 ```
 
@@ -177,6 +177,19 @@
   - Text and paragraph cannot be mixed. If there are paragraphs, then all paragraphs could and should be direct children.
 
 ## TODO
+
+- [ ] consume input from Document project directly, instead of copying xml files, use relative path as a temporary solution.
+- [ ] no dynamic tree node for document pages, instead only hardcode indented parents and a list of children or sibiling (when no children) on the left panel.
+  - [ ] the left panel will be automatically added if this xml is read from a tree node xml file. (`directoryView.ts`)
+  - [ ] manually create articles for home and categories.
+  - [ ] directly paste xml content to XML to enable debugging directory view.
+  - [ ] render article instead of pasting xml conent.
+- [ ] must interpret: `<summary>`, `<typeparam>`, `<param>`, `<enumitem>`, `<returns>`, `<remarks>`, `<seealsos>`, `<signature>`, `<basetypes>`.
+- [ ] must process: `<symbol>`.
+- [ ] remove `<a anchor="ANCHOR">`.
+- [ ] `<article>` and `<topic>` are forbidden in XML documents
+- [ ] predefined `<topic>` will be generated according to top-level elements in XML document, `<p>` will be automatically inserted as the top element in `<topic>`.
+- [ ] generate a completed list of article pages to a text file for `npm run download`.
 
 - Valid inside `<p/>`
   - Implement `symbol` after document is ready
