@@ -19,16 +19,16 @@ export function collectStaticUrls<TResult>(router: Router<TResult>): string[] {
                 ;
         })
         .map((value: RouterPatternBase) => {
-            return `${router.pathPrefix}/${
-                value
-                    .fragments
-                    .map((fragment: RouterFragment) => {
-                        return fragment.kind === RouterFragmentKind.Text ? fragment.text : '';
-                    })
-                    .join('/')
-                }`;
+            return value
+                .fragments
+                .map((fragment: RouterFragment) => {
+                    return fragment.kind === RouterFragmentKind.Text ? fragment.text : '';
+                })
+                .join('/')
+                ;
         })
         .filter((url: string) => url !== '')
+        .map((url: string) => `${router.pathPrefix}/${url}`)
         ;
 }
 
@@ -42,6 +42,7 @@ export function downloadWebsite(urls: string[], directory: string): void {
         plugins: [{
             apply(registerAction: RegisterAction): void {
                 registerAction('generateFilename', (value: { resource: scrape.Resource }) => {
+                    console.log(value.resource.url);
                     const matches = /^http:\/\/[^\/]+(.*)$/g.exec(value.resource.url);
                     if (matches !== null) {
                         return { filename: matches[1] };
