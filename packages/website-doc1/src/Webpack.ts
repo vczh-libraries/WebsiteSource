@@ -1,5 +1,6 @@
 import { ViewMetadata } from 'gaclib-render';
 import * as path from 'path';
+import TerserPlugin = require('terser-webpack-plugin');
 import { views } from './views';
 
 const exportedArray = views.map((metadata: ViewMetadata) => {
@@ -12,7 +13,20 @@ const exportedArray = views.map((metadata: ViewMetadata) => {
             libraryTarget: 'window',
             libraryExport: 'viewExport'
         },
-        mode: 'production'
+        mode: 'production',
+        optimization: {
+            minimize: true,
+            minimizer: [
+                new TerserPlugin({
+                    terserOptions: {
+                        output: {
+                            comments: false
+                        }
+                    },
+                    extractComments: false
+                })
+            ]
+        }
     };
 });
 
