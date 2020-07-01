@@ -30,6 +30,7 @@
         "gaclib-spider": "^0.0.1",
         "lit-html": "^1.1.2",
         "terser-webpack-plugin": "^3.0.6",
-        "website-scraper": "^4.0.1"
+        "website-scraper": "^4.0.1",
+        "xml-js": "^1.6.11"
     }
 }
