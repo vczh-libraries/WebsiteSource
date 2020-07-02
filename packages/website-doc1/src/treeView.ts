@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
+import { DirectoryInfo, DirectoryNode } from './views';
 
 export interface DocTreeNode {
     name: string;
@@ -180,4 +181,77 @@ export function loadDocTree(entryPath: string): DocTree {
     fillParents(result.parents, result.root);
     fillIndex(result.index, result.root);
     return result;
+}
+
+function getDirectoryNode(node: DocTreeNode, selected: boolean): DirectoryNode {
+    const dnode: DirectoryNode = {
+        name: node.name,
+        selected
+    };
+    if (node.path !== undefined) {
+        dnode.path = node.path;
+    }
+    return dnode;
+}
+
+function getDirectoryNodeFromCurrent(current: DocTreeNode, node: DocTreeNode): DirectoryNode {
+    const dnode = getDirectoryNode(current, node === current);
+    if (node === current || node.kind === 'directory') {
+        if (node.subNodes !== undefined) {
+            dnode.subNodes = node.subNodes.map((subNode: DocTreeNode) => getDirectoryNodeFromCurrent(current, subNode));
+        }
+    }
+    return dnode;
+}
+
+function getDirectoryNodeSibilings(current: DocTreeNode, parent: DocTreeNode, dnode: DirectoryNode): DirectoryNode[] {
+    if (parent.subNodes === undefined) {
+        return [];
+    } else {
+        return parent.subNodes.map((subNode: DocTreeNode) => subNode === current ? dnode : getDirectoryNodeFromCurrent(current, subNode));
+    }
+}
+
+export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, url: string[]): DirectoryInfo | undefined {
+    let index = docTree.index;
+    for (const item of url) {
+        const next = stepIndex(index, item, false);
+        if (next === undefined) {
+            console.error(`ERROR: Reference page path does not exist: ${url.join('/')}`);
+            return undefined;
+        }
+        index = next;
+    }
+
+    if (index.node === undefined) {
+        console.error(`ERROR: Reference page path is not complete: ${url.join('/')}`);
+        return undefined;
+    }
+
+    const dnode = getDirectoryNodeFromCurrent(index.node, index.node);
+    const parentNode = docTree.parents.get(index.node);
+    if (parentNode === undefined || parentNode.kind === 'root') {
+        return {
+            pathPrefix,
+            subNodes: [dnode]
+        };
+    } else {
+        let dsiblings = getDirectoryNodeSibilings(index.node, parentNode, dnode);
+        let current: DocTreeNode | undefined = parentNode;
+        while (current !== undefined) {
+            const dcurrent = getDirectoryNode(current, false);
+            dcurrent.subNodes = dsiblings;
+            dsiblings = [dcurrent];
+
+            current = docTree.parents.get(current);
+            if (current?.kind === 'root') {
+                current = undefined;
+            }
+        }
+
+        return {
+            pathPrefix,
+            subNodes: dsiblings
+        };
+    }
 }

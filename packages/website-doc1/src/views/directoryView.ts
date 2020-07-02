@@ -1,5 +1,17 @@
 import { html, render } from 'lit-html';
 
+export interface DirectoryNode {
+    name: string;
+    selected: boolean;
+    path?: string[];
+    subNodes?: DirectoryNode[];
+}
+
+export interface DirectoryInfo {
+    pathPrefix: string;
+    subNodes: DirectoryNode[];
+}
+
 export const viewExport = {
     renderView(model: {}, target: Element): void {
         const htmlTemplate = html`

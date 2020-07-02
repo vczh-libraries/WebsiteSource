@@ -29,3 +29,4 @@ const articleView: ViewMetadata = {
 };
 
 export const views = [rootView, directoryView, articleView];
+export { DirectoryInfo, DirectoryNode } from './directoryView';

@@ -4,8 +4,8 @@ import { createMvcServer, hostUntilPressingEnter, litHtmlViewCallback, registerF
 import { createRouter, route } from 'gaclib-mvc';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { loadDocTree } from './treeView';
-import { views } from './views';
+import { getDirectoryInfoFromPath, loadDocTree } from './treeView';
+import { DirectoryInfo, views } from './views';
 
 const pathPrefix = `/doc/current`;
 
@@ -34,6 +34,7 @@ router.register(
         {
             info: { pathPrefix, title: 'Gaclib Document -- GPU Accelerated C++ User Interface (vczh)' },
             embeddedResources: {
+                directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, pathPrefix, ['home']),
                 article: loadArticle('home.xml')
             }
         }
