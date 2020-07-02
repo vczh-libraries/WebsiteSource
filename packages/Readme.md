@@ -180,6 +180,7 @@
 
 ## TODO
 
+- [ ] scroll does not appear separately in TreeView and DocumentView
 - [ ] no dynamic tree node for document pages, instead only hardcode indented parents and a list of children or sibiling (when no children) on the left panel.
 - [ ] render article instead of pasting xml conent.
 - [ ] must interpret: `<summary>`, `<typeparam>`, `<param>`, `<enumitem>`, `<returns>`, `<remarks>`, `<seealsos>`, `<signature>`, `<basetypes>`.
