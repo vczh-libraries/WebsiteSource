@@ -1,9 +1,9 @@
 import * as assert from 'assert';
-import { route, RouterFragmentKind, RouterPattern } from '../src';
+import { endsWithPatternArray, route, RouterFragmentKind, RouterPattern } from '../src';
 
 function assertWalk<T>(rp: RouterPattern<T>, url: string, expected: T): void {
     const fragments = url.split('/');
-    if (rp.fragments.length > 0 && rp.fragments[rp.fragments.length - 1].kind === RouterFragmentKind.PatternArray) {
+    if (endsWithPatternArray(rp)) {
         assert.strictEqual(true, fragments.length >= rp.fragments.length + 1);
     } else {
         assert.strictEqual(fragments.length, rp.fragments.length + 1);
