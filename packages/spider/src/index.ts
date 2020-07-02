@@ -37,8 +37,8 @@ export function downloadWebsite(urls: string[], directory: string): void {
     const options = {
         urls: urls.map((url: string) => `http://127.0.0.1:8080${url}`),
         directory,
-        // filenameGenerator: 'bySiteStructure',
         recursive: true,
+        requestConcurrency: 1,
         plugins: [{
             apply(registerAction: RegisterAction): void {
                 registerAction('generateFilename', (value: { resource: scrape.Resource }) => {

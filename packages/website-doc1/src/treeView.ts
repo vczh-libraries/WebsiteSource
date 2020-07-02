@@ -47,7 +47,7 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
             child = {
                 name,
                 kind: 'namespace',
-                path: url.concat([name])
+                path: url.concat([name.replace(/:/g, '_')])
             };
             if (target.subNodes === undefined) {
                 target.subNodes = [];
