@@ -82,7 +82,7 @@ router.register(
                         }
                         return {
                             kind: 'PageLink',
-                            href: `/CodeIndexDemo/Gaclib/${ds.declFile}.html#${ds.declId}`,
+                            href: `/CodeIndexDemo/Gaclib/SourceFiles/${ds.declFile}.html#${ds.declId}`,
                             content: [{
                                 kind: 'Text',
                                 text: ds.name
