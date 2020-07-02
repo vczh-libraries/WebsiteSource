@@ -9,12 +9,6 @@ export interface PageLink {
     content: Content[];
 }
 
-export interface AnchorLink {
-    kind: 'AnchorLink';
-    anchor: string;
-    content: Content[];
-}
-
 export interface Name {
     kind: 'Name';
     text: string;
@@ -63,7 +57,6 @@ export interface Program {
 export type Content =
     | Text
     | PageLink
-    | AnchorLink
     | Name
     | Image
     | List

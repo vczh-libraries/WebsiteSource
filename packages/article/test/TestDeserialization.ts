@@ -97,7 +97,6 @@ test(`Flat paragraph`, () => {
         <title>Article</title>
         <p>
             <a href="./index.html"><b>Hey</b>, this is <em>an article</em>.</a>
-            <a anchor="Anchor"/>
             <name>GuiControl</name>
             <img src="logo.png"/>
             <img src="logo.png">This is a logo</img>
@@ -136,11 +135,6 @@ test(`Flat paragraph`, () => {
                                     text: '.'
                                 }
                             ]
-                        },
-                        {
-                            kind: 'AnchorLink',
-                            anchor: 'Anchor',
-                            content: []
                         },
                         {
                             kind: 'Name',

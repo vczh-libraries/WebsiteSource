@@ -185,7 +185,6 @@
 - [ ] render article instead of pasting xml conent.
 - [ ] must interpret: `<summary>`, `<typeparam>`, `<param>`, `<enumitem>`, `<returns>`, `<remarks>`, `<seealsos>`, `<signature>`, `<basetypes>`.
 - [ ] must process: `<symbol>`.
-- [ ] remove `<a anchor="ANCHOR">`.
 - [ ] `<article>` and `<topic>` are forbidden in XML documents
 - [ ] predefined `<topic>` will be generated according to top-level elements in XML document, `<p>` will be automatically inserted as the top element in `<topic>`.
 - [ ] generate a completed list of article pages to a text file for `npm run download`.

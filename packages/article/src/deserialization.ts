@@ -184,36 +184,19 @@ function parseContent(container: Element, addParagraphToErrorMessage: boolean = 
                         case 'a': {
                             if (xmlChild.attributes !== undefined) {
                                 const atts = Object.keys(xmlChild.attributes);
-                                if (atts.length === 1) {
-                                    switch (atts[0]) {
-                                        case 'href':
-                                            if (typeof xmlChild.attributes.href !== 'string') {
-                                                throw new Error(`Attribute ${atts[0]} in <a> should be a string.`);
-                                            }
-                                            content.push({
-                                                kind: 'PageLink',
-                                                href: xmlChild.attributes.href,
-                                                content: parseContent(xmlChild)
-                                            });
-                                            continue CHILD_LOOP;
-                                        case 'anchor':
-                                            if (typeof xmlChild.attributes.anchor !== 'string') {
-                                                throw new Error(`Attribute ${atts[0]} in <a> should be a string.`);
-                                            }
-                                            content.push({
-                                                kind: 'AnchorLink',
-                                                anchor: xmlChild.attributes.anchor,
-                                                content: parseContent(xmlChild)
-                                            });
-                                            continue CHILD_LOOP;
-                                        default:
+                                if (atts.length === 1 && atts[0] === 'href') {
+                                    if (typeof xmlChild.attributes.href !== 'string') {
+                                        throw new Error(`Attribute ${atts[0]} in <a> should be a string.`);
                                     }
+                                    content.push({
+                                        kind: 'PageLink',
+                                        href: xmlChild.attributes.href,
+                                        content: parseContent(xmlChild)
+                                    });
+                                    continue CHILD_LOOP;
                                 }
                             }
-                            throw new Error('Exactly one "href" or "anchor" attribute is allowed in <a>.');
-                        }
-                        case 'symbol': {
-                            throw new Error('<symbol> is not supported yet.');
+                            throw new Error('Exactly only "href" attribute is allowed in <a>.');
                         }
                         case 'name': {
                             if (xmlChild.attributes !== undefined && xmlChild.attributes.length !== 0) {
