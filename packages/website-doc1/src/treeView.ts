@@ -76,9 +76,10 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
             break;
         }
         case 'link': {
-            const prefix = <string>xmlNode.attributes?.path;
+            const pathPrefix = <string>xmlNode.attributes?.pathPrefix;
+            const filePrefix = <string>xmlNode.attributes?.filePrefix;
             const file = <string>xmlNode.attributes?.file;
-            loadDocTreeNode(target, path.join(wd, file), url.concat(prefix.split('/')));
+            loadDocTreeNode(target, path.join(wd, file), filePrefix, url.concat(pathPrefix.split('/')));
             break;
         }
         default:
@@ -92,8 +93,11 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
     }
 }
 
-function loadDocTreeNode(target: DocTreeNode, entryPath: string, url: string[]): void {
-    const wd = path.dirname(entryPath);
+function loadDocTreeNode(target: DocTreeNode, entryPath: string, filePrefix: string, url: string[]): void {
+    let wd = path.dirname(entryPath);
+    if (filePrefix !== '') {
+        wd = path.join(wd, filePrefix);
+    }
     const xml = <Element>xml2js(
         readFileSync(entryPath, { encoding: 'utf-8' }),
         {
@@ -189,7 +193,7 @@ export function loadDocTree(entryPath: string): DocTree {
         parents: new Map<DocTreeNode, DocTreeNode>(),
         index: {}
     };
-    loadDocTreeNode(result.root, entryPath, []);
+    loadDocTreeNode(result.root, entryPath, '', []);
     fillParents(result.parents, result.root);
     fillIndex(result.index, result.root);
     return result;

@@ -151,7 +151,7 @@
 ```xml
 <reference>
   <article name="Title" file="FILE-NAME">...</article>
-  <link path="PATH/PREFIX/" file="FILE-NAME"/>
+  <link pathPrefix="PATH/PREFIX" filePrefix="FILE/PREFIX/" file="FILE-NAME"/>
   <namespace name="::A::B::C">
     <document name="class MyClass" file="FILE-NAME">
       <document .../>

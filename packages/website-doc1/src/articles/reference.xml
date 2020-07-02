@@ -2,37 +2,37 @@
   <article name="Gaclib Document" file="home"/>
   <article name="Vlpp" file="vlpp/home">
     <article name="References" file="vlpp/ref">
-      <link path="vlpp/ref" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPP.xml"/>
+      <link pathPrefix="vlpp/ref" filePrefix="VLPP/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPP.xml"/>
     </article>
   </article>
   <article name="Vlpp OS" file="vlppos/home">
     <article name="References" file="vlppos/ref">
-      <link path="vlppos/ref" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPOS.xml"/>
+      <link pathPrefix="vlppos/ref" filePrefix="VLPPOS/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPOS.xml"/>
     </article>
   </article>
   <article name="Vlpp Regex" file="vlppregex/home">
     <article name="References" file="vlppregex/ref">
-      <link path="vlppregex/ref" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREGEX.xml"/>
+      <link pathPrefix="vlppregex/ref" filePrefix="VLPPREGEX/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREGEX.xml"/>
     </article>
   </article>
   <article name="Vlpp Reflection" file="vlppreflection/home">
     <article name="References" file="vlppreflection/ref">
-      <link path="vlppreflection/ref" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREFLECTION.xml"/>
+      <link pathPrefix="vlppreflection/ref" filePrefix="VLPPREFLECTION/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREFLECTION.xml"/>
     </article>
   </article>
   <article name="Vlpp Parser" file="vlppparser/home">
     <article name="References" file="vlppparser/ref">
-      <link path="vlppparser/ref" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER.xml"/>
+      <link pathPrefix="vlppparser/ref" filePrefix="VLPPPARSER/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER.xml"/>
     </article>
   </article>
   <article name="Workflow Script" file="workflow/home">
     <article name="References" file="workflow/ref">
-      <link path="workflow/ref" file="../../../../../Document/Tools/Demos/Gaclib/References/WORKFLOW.xml"/>
+      <link pathPrefix="workflow/ref" filePrefix="WORKFLOW/" file="../../../../../Document/Tools/Demos/Gaclib/References/WORKFLOW.xml"/>
     </article>
   </article>
   <article name="GacUI" file="gacui/home">
     <article name="References" file="gacui/ref">
-      <link path="gacui/ref" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/>
+      <link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/>
     </article>
   </article>
 </reference>
