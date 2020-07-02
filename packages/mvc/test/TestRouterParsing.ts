@@ -120,3 +120,47 @@ test(`/{s}/{n}/{b}`, () => {
     }]);
     assertDefaultValue(rp, { s: '', n: 0, b: false });
 });
+
+test(`/{{x}}`, () => {
+    const rp = route`/${{ s: [''] }}`;
+    assertFragments(rp, [{
+        kind: RouterFragmentKind.PatternArray,
+        head: '',
+        tail: '',
+        parameter: ['s', RouterParameterKind.Array]
+    }]);
+    assertDefaultValue(rp, { s: [] });
+});
+
+test(`/Head{{x}}`, () => {
+    const rp = route`/Head${{ s: [''] }}`;
+    assertFragments(rp, [{
+        kind: RouterFragmentKind.PatternArray,
+        head: 'Head',
+        tail: '',
+        parameter: ['s', RouterParameterKind.Array]
+    }]);
+    assertDefaultValue(rp, { s: [] });
+});
+
+test(`/{{x}}Tail`, () => {
+    const rp = route`/${{ s: [''] }}Tail`;
+    assertFragments(rp, [{
+        kind: RouterFragmentKind.PatternArray,
+        head: '',
+        tail: 'Tail',
+        parameter: ['s', RouterParameterKind.Array]
+    }]);
+    assertDefaultValue(rp, { s: [] });
+});
+
+test(`/Head{{x}}Tail`, () => {
+    const rp = route`/Head${{ s: [''] }}Tail`;
+    assertFragments(rp, [{
+        kind: RouterFragmentKind.PatternArray,
+        head: 'Head',
+        tail: 'Tail',
+        parameter: ['s', RouterParameterKind.Array]
+    }]);
+    assertDefaultValue(rp, { s: [] });
+});

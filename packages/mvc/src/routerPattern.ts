@@ -156,6 +156,9 @@ function addParameter(value: {}, parameter: RouterParameter, text?: string): boo
                 case 'false': value[prop] = false; return true;
                 default: return false;
             }
+        case RouterParameterKind.Array:
+            value[prop] = text === undefined ? [] : text.split('/');
+            return true;
         default:
             return false;
     }
@@ -280,6 +283,7 @@ class RouterPatternImpl implements RouterPatternBase {
                 case RouterFragmentKind.Head:
                 case RouterFragmentKind.Tail:
                 case RouterFragmentKind.HeadTail:
+                case RouterFragmentKind.PatternArray:
                     addParameter(value, fragment.parameter);
                     break;
                 case RouterFragmentKind.MultiplePatterns:
