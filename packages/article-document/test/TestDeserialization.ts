@@ -3,8 +3,8 @@ import { DocArticle, parseDocArticle } from '../src';
 
 test(`Empty Document`, () => {
     const input = `
-<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
-</document>
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+</Document>
 `;
     const output: DocArticle = {
         symbolId: '::MyClass',
@@ -17,10 +17,10 @@ test(`Empty Document`, () => {
 
 test(`<signature> and <example>`, () => {
     const input = `
-<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
   <signature><![CDATA[this is a signature]]></signature>
   <example><![CDATA[this is an example]]></example>
-</document>
+</Document>
 `;
     const output: DocArticle = {
         symbolId: '::MyClass',
@@ -35,7 +35,7 @@ test(`<signature> and <example>`, () => {
 
 test(`<basetypes> and <seealsos>`, () => {
     const input = `
-<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
   <basetypes>
     <symbol name="x" docId="A" declFile="B" declId="C"/>
     <symbol name="y" docId="D" declFile="E" declId="F"/>
@@ -44,7 +44,7 @@ test(`<basetypes> and <seealsos>`, () => {
     <symbol name="z" declFile="B" declId="C"/>
     <symbol name="w" declFile="E" declId="F"/>
   </seealsos>
-</document>
+</Document>
 `;
     const output: DocArticle = {
         symbolId: '::MyClass',
@@ -65,13 +65,13 @@ test(`<basetypes> and <seealsos>`, () => {
 
 test(`<summary> with text`, () => {
     const input = `
-<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
   <summary>
     Line1
     Line2
     Line3
   </summary>
-</document>
+</Document>
 `;
     const output: DocArticle = {
         symbolId: '::MyClass',
@@ -93,7 +93,7 @@ test(`<summary> with text`, () => {
 
 test(`<summary> with links`, () => {
     const input = `
-<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
   <summary>
     Line1
     Line2<symbol name="a" declFile="F" declId="I"/>Line2
@@ -103,7 +103,7 @@ test(`<summary> with links`, () => {
     </symbols>Line3
     Line4
   </summary>
-</document>
+</Document>
 `;
     const output: DocArticle = {
         symbolId: '::MyClass',
@@ -127,7 +127,7 @@ test(`<summary> with links`, () => {
 
 test(`DocText with text in document`, () => {
     const input = `
-<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
   <summary>summary</summary>
   <remarks>remarks</remarks>
   <returns>returns</returns>
@@ -137,7 +137,7 @@ test(`DocText with text in document`, () => {
   <typeparam name="b">b</typeparam>
   <param name="a">a</param>
   <param name="b">b</param>
-</document>
+</Document>
 `;
     const output: DocArticle = {
         symbolId: '::MyClass',

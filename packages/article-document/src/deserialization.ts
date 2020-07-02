@@ -108,12 +108,12 @@ export function parseDocArticle(xml: string): d.DocArticle {
     );
 
     if (element.elements === undefined) {
-        throw new Error(`Root element of an article should be <document> instead of <${element.name}>.`);
+        throw new Error(`Root element of an article should be <document>.`);
     }
 
     const xmlArticle = element.elements[0];
-    if (xmlArticle.name !== 'document') {
-        throw new Error(`Root element of an article should be <document> instead of <${element.name}>.`);
+    if (xmlArticle.name !== 'Document') {
+        throw new Error(`Root element of an article should be <document> instead of <${xmlArticle.name}>.`);
     }
     if (xmlArticle.attributes === undefined) {
         throw new Error(`Missing attribute "symbolId", "accessor", "category" and "name" in <document>.`);
