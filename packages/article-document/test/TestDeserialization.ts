@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { DocArticle, parseDocument } from '../src';
+import { DocArticle, parseDocArticle } from '../src';
 
 test(`Empty Document`, () => {
     const input = `
@@ -12,7 +12,7 @@ test(`Empty Document`, () => {
         category: 'Class',
         name: 'MyClass'
     };
-    assert.deepStrictEqual(parseDocument(input), output);
+    assert.deepStrictEqual(parseDocArticle(input), output);
 });
 
 test(`<signature> and <example>`, () => {
@@ -30,7 +30,7 @@ test(`<signature> and <example>`, () => {
         signature: 'this is a signature',
         example: 'this is an example'
     };
-    assert.deepStrictEqual(parseDocument(input), output);
+    assert.deepStrictEqual(parseDocArticle(input), output);
 });
 
 test(`<basetypes> and <seealsos>`, () => {
@@ -60,5 +60,33 @@ test(`<basetypes> and <seealsos>`, () => {
             { declFile: 'E', declId: 'F' }
         ]
     };
-    assert.deepStrictEqual(parseDocument(input), output);
+    assert.deepStrictEqual(parseDocArticle(input), output);
+});
+
+test(`<summary> with text`, () => {
+    const input = `
+<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+  <summary>
+    Line1
+    Line2
+    Line3
+  </summary>
+</document>
+`;
+    const output: DocArticle = {
+        symbolId: '::MyClass',
+        accessor: '',
+        category: 'Class',
+        name: 'MyClass',
+        summary: {
+            paragraphs: [{
+                content: [{ kind: 'Text', text: 'Line1' }]
+            }, {
+                content: [{ kind: 'Text', text: 'Line2' }]
+            }, {
+                content: [{ kind: 'Text', text: 'Line3' }]
+            }]
+        }
+    };
+    assert.deepStrictEqual(parseDocArticle(input), output);
 });

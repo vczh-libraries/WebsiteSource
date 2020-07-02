@@ -1,7 +1,20 @@
 import { Element, xml2js } from 'xml-js';
 import * as d from './interfaces';
 
-export function parseDocument(xml: string): d.DocArticle {
+function parseDocText(xml: Element, requireName: boolean): d.DocText {
+    const dtext: d.DocText = {
+        paragraphs: []
+    };
+    if (xml.attributes !== undefined && xml.attributes.name !== undefined) {
+        dtext.name = `${xml.attributes.name}`;
+    }
+    if (dtext.name === undefined && requireName) {
+        throw new Error(`Missing attribute "name" in <${xml.name}>.`);
+    }
+    return dtext;
+}
+
+export function parseDocArticle(xml: string): d.DocArticle {
     const element = <Element>xml2js(
         xml,
         {
@@ -57,12 +70,19 @@ export function parseDocument(xml: string): d.DocArticle {
                 switch (subElement.name) {
                     case 'summary':
                     case 'remarks':
-                    case 'returns':
-                        throw new Error('Not implemented!');
+                    case 'returns': {
+                        darticle[subElement.name] = parseDocText(subElement, false);
+                        break;
+                    }
                     case 'typeparam':
                     case 'param':
-                    case 'enumitem':
-                        throw new Error('Not implemented!');
+                    case 'enumitem': {
+                        if (darticle[subElement.name] === undefined) {
+                            darticle[subElement.name] = [];
+                        }
+                        darticle[subElement.name]?.push(parseDocText(subElement, true));
+                        break;
+                    }
                     case 'signature': {
                         if (subElement.elements === undefined || subElement.elements.length !== 1 || subElement.elements[0].type !== 'cdata') {
                             throw new Error(`Only CData is allowed in <signature>.`);
