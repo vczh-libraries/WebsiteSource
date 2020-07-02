@@ -39,7 +39,7 @@
 
 ```xml
 <a href="./document.html">Text</a>
-<symbol docId="SYMBOL-ID" declFile="optional: HTML source file" declId="optional: id in HTML source file"/>
+<symbol docId="optional: SYMBOL-ID" declFile="optional: HTML source file" declId="id in HTML source file"/>
 <name>Just like `` in md</name>
 <img src="logo.png"/>Description</img>
 <ul><li>...</li></ul>

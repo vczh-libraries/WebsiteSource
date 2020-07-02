@@ -56,8 +56,12 @@ export function parseDocument(xml: string): d.DocArticle {
             if (subElement.type === 'element') {
                 switch (subElement.name) {
                     case 'summary':
+                    case 'remarks':
+                    case 'returns':
                         throw new Error('Not implemented!');
-                    case 'remakrs':
+                    case 'typeparam':
+                    case 'param':
+                    case 'enumitem':
                         throw new Error('Not implemented!');
                     case 'signature': {
                         if (subElement.elements === undefined || subElement.elements.length !== 1 || subElement.elements[0].type !== 'cdata') {
@@ -74,9 +78,40 @@ export function parseDocument(xml: string): d.DocArticle {
                         break;
                     }
                     case 'basetypes':
-                        throw new Error('Not implemented!');
-                    case 'seealsos':
-                        throw new Error('Not implemented!');
+                    case 'seealsos': {
+                        if (subElement.elements !== undefined) {
+                            for (const xmlSymbol of subElement.elements) {
+                                if (xmlSymbol.type === 'element') {
+                                    if (xmlSymbol.name !== 'symbol') {
+                                        throw new Error(`Only <symbol> is allowed in <${subElement.name}>`);
+                                    }
+                                    if (xmlSymbol.attributes === undefined) {
+                                        throw new Error(`Missing attribute "docId" (optional), "declFile", "declId" in <document>.`);
+                                    }
+                                    if (xmlSymbol.attributes.declFile === undefined) {
+                                        throw new Error(`Missing attribute "declFile" in <symbol>.`);
+                                    }
+                                    if (xmlSymbol.attributes.declId === undefined) {
+                                        throw new Error(`Missing attribute "declId" in <symbol>.`);
+                                    }
+
+                                    const dsymbol: d.DocSymbol = {
+                                        declFile: `${xmlSymbol.attributes.declFile}`,
+                                        declId: `${xmlSymbol.attributes.declId}`
+                                    };
+                                    if (xmlSymbol.attributes.docId !== undefined) {
+                                        dsymbol.docId = `${xmlSymbol.attributes.docId}`;
+                                    }
+
+                                    if (darticle[subElement.name] === undefined) {
+                                        darticle[subElement.name] = [];
+                                    }
+                                    darticle[subElement.name]?.push(dsymbol);
+                                }
+                            }
+                        }
+                        break;
+                    }
                     default:
                         throw new Error(`Unrecognizable top level element: <${subElement.name}>.`);
                 }
