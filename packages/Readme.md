@@ -180,12 +180,8 @@
 
 ## TODO
 
-- [ ] consume input from Document project directly, instead of copying xml files, use relative path as a temporary solution.
 - [ ] no dynamic tree node for document pages, instead only hardcode indented parents and a list of children or sibiling (when no children) on the left panel.
-  - [ ] the left panel will be automatically added if this xml is read from a tree node xml file. (`directoryView.ts`)
-  - [ ] manually create articles for home and categories.
-  - [ ] directly paste xml content to XML to enable debugging directory view.
-  - [ ] render article instead of pasting xml conent.
+- [ ] render article instead of pasting xml conent.
 - [ ] must interpret: `<summary>`, `<typeparam>`, `<param>`, `<enumitem>`, `<returns>`, `<remarks>`, `<seealsos>`, `<signature>`, `<basetypes>`.
 - [ ] must process: `<symbol>`.
 - [ ] remove `<a anchor="ANCHOR">`.
