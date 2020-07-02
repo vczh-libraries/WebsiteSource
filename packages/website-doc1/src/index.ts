@@ -49,8 +49,30 @@ router.register(
                 );
                 return ['text/html', generatedHtml];
             }
-            case 'namespace':
-            case 'document':
+            case 'namespace': {
+                res.namespaceName = dnode.name;
+                const generatedHtml = generateHtml(
+                    info,
+                    views,
+                    'Gaclib-NamespaceView',
+                    model,
+                    '',
+                    res
+                );
+                return ['text/html', generatedHtml];
+            }
+            case 'document': {
+                res.document = readFileSync(<string>dnode.file, { encoding: 'utf-8' });
+                const generatedHtml = generateHtml(
+                    info,
+                    views,
+                    'Gaclib-DocumentView',
+                    model,
+                    '',
+                    res
+                );
+                return ['text/html', generatedHtml];
+            }
             default:
                 return undefined;
         }

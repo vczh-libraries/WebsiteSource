@@ -28,5 +28,21 @@ const articleView: ViewMetadata = {
     htmlInfo: {}
 };
 
-export const views = [rootView, directoryView, articleView];
+const namespaceView: ViewMetadata = {
+    name: 'Gaclib-NamespaceView',
+    source: `${__dirname}/namespaceView.js`,
+    path: '/scripts/namespaceView.js',
+    parentView: 'Gaclib-DirectoryView',
+    htmlInfo: {}
+};
+
+const documentView: ViewMetadata = {
+    name: 'Gaclib-DocumentView',
+    source: `${__dirname}/documentView.js`,
+    path: '/scripts/documentView.js',
+    parentView: 'Gaclib-DirectoryView',
+    htmlInfo: {}
+};
+
+export const views = [rootView, directoryView, articleView, namespaceView, documentView];
 export { DirectoryInfo, DirectoryNode } from './directoryView';
