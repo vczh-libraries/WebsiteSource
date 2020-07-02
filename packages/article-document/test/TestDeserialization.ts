@@ -37,12 +37,12 @@ test(`<basetypes> and <seealsos>`, () => {
     const input = `
 <document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
   <basetypes>
-    <symbol docId="A" declFile="B" declId="C"/>
-    <symbol docId="D" declFile="E" declId="F"/>
+    <symbol name="x" docId="A" declFile="B" declId="C"/>
+    <symbol name="y" docId="D" declFile="E" declId="F"/>
   </basetypes>
   <seealsos>
-    <symbol declFile="B" declId="C"/>
-    <symbol declFile="E" declId="F"/>
+    <symbol name="z" declFile="B" declId="C"/>
+    <symbol name="w" declFile="E" declId="F"/>
   </seealsos>
 </document>
 `;
@@ -52,12 +52,12 @@ test(`<basetypes> and <seealsos>`, () => {
         category: 'Class',
         name: 'MyClass',
         basetypes: [
-            { kind: 'Symbol', docId: 'A', declFile: 'B', declId: 'C' },
-            { kind: 'Symbol', docId: 'D', declFile: 'E', declId: 'F' }
+            { name: 'x', docId: 'A', declFile: 'B', declId: 'C' },
+            { name: 'y', docId: 'D', declFile: 'E', declId: 'F' }
         ],
         seealsos: [
-            { kind: 'Symbol', declFile: 'B', declId: 'C' },
-            { kind: 'Symbol', declFile: 'E', declId: 'F' }
+            { name: 'z', declFile: 'B', declId: 'C' },
+            { name: 'w', declFile: 'E', declId: 'F' }
         ]
     };
     assert.deepStrictEqual(parseDocArticle(input), output);
@@ -85,6 +85,40 @@ test(`<summary> with text`, () => {
                 content: [{ kind: 'Text', text: 'Line2' }]
             }, {
                 content: [{ kind: 'Text', text: 'Line3' }]
+            }]
+        }
+    };
+    assert.deepStrictEqual(parseDocArticle(input), output);
+});
+
+test(`<summary> with links`, () => {
+    const input = `
+<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+  <summary>
+    Line1
+    Line2<symbol name="a" declFile="F" declId="I"/>Line2
+    Line3<symbols>
+        <symbol name="b" declFile="F" declId="I"/>
+        <symbol name="c" declFile="F" declId="I"/>
+    </symbols>Line3
+    Line4
+  </summary>
+</document>
+`;
+    const output: DocArticle = {
+        symbolId: '::MyClass',
+        accessor: '',
+        category: 'Class',
+        name: 'MyClass',
+        summary: {
+            paragraphs: [{
+                content: [{ kind: 'Text', text: 'Line1' }]
+            }, {
+                content: [{ kind: 'Text', text: 'Line2' }, { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] }, { kind: 'Text', text: 'Line2' }]
+            }, {
+                content: [{ kind: 'Text', text: 'Line3' }, { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] }, { kind: 'Text', text: 'Line3' }]
+            }, {
+                content: [{ kind: 'Text', text: 'Line4' }]
             }]
         }
     };

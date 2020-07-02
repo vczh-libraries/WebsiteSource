@@ -5,6 +5,9 @@ function parseDocSymbol(xml: Element): d.DocSymbol {
     if (xml.attributes === undefined) {
         throw new Error(`Missing attribute "docId" (optional), "declFile", "declId" in <document>.`);
     }
+    if (xml.attributes.name === undefined) {
+        throw new Error(`Missing attribute "name" in <symbol>.`);
+    }
     if (xml.attributes.declFile === undefined) {
         throw new Error(`Missing attribute "declFile" in <symbol>.`);
     }
@@ -13,7 +16,7 @@ function parseDocSymbol(xml: Element): d.DocSymbol {
     }
 
     const dsymbol: d.DocSymbol = {
-        kind: 'Symbol',
+        name: `${xml.attributes.name}`,
         declFile: `${xml.attributes.declFile}`,
         declId: `${xml.attributes.declId}`
     };
@@ -62,7 +65,24 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
                 }
                 case 'element': {
                     if (xmlContent.name === 'symbol') {
-                        lastp().content.push(parseDocSymbol(xmlContent));
+                        lastp().content.push({ kind: 'Symbols', symbols: [parseDocSymbol(xmlContent)] });
+                    } else if (xmlContent.name === 'symbols') {
+                        const dsymbols: d.DocSymbols = {
+                            kind: 'Symbols',
+                            symbols: []
+                        };
+                        if (xmlContent.elements === undefined) {
+                            throw new Error('<symbols> should contain at least 1 <symbol>.');
+                        }
+                        for (const xmlSymbol of xmlContent.elements) {
+                            if (xmlSymbol.type === 'element') {
+                                if (xmlSymbol.name !== 'symbol') {
+                                    throw new Error(`Only <symbol> is allowed in <symbols>`);
+                                }
+                                dsymbols.symbols.push(parseDocSymbol(xmlSymbol));
+                            }
+                        }
+                        lastp().content.push(dsymbols);
                     } else {
                         throw new Error(`Unrecognizable element <${xmlContent.name}> in <${xml.name}>.`);
                     }

@@ -9,14 +9,22 @@ function renderDocText(docText: d.DocText, title: string, dsc: DocSymbolConverte
         title,
         content: docText.paragraphs.map((p: d.DocParagraph) => ({
             kind: 'Paragraph',
-            content: p.content.map((c: a.Content | d.DocSymbol) => {
+            content: p.content.length === 0 ? [] : p.content.map((c: a.Content | d.DocSymbols) => {
                 switch (c.kind) {
-                    case 'Symbol':
-                        return dsc(c);
+                    case 'Symbols':
+                        if (c.symbols.length === 0) {
+                            throw new Error('DocSymbols should contain at least 1 DocSymbol.');
+                        } else if (c.symbols.length === 1) {
+                            return [dsc(c.symbols[0])];
+                        } else {
+                            return c.symbols
+                                .map((ds: d.DocSymbol) => [dsc(ds)])
+                                .reduce((x: a.Content[], y: a.Content[]) => x.concat([{ kind: 'Text', text: ', ' }]).concat(y));
+                        }
                     default:
-                        return c;
+                        return [c];
                 }
-            })
+            }).reduce((x: a.Content[], y: a.Content[]) => x.concat(y))
         }))
     };
 }

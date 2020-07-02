@@ -39,7 +39,8 @@
 
 ```xml
 <a href="./document.html">Text</a>
-<symbol docId="optional: SYMBOL-ID" declFile="optional: HTML source file" declId="id in HTML source file"/>
+<symbol name="class MyClass" docId="optional: SYMBOL-ID" declFile="optional: HTML source file" declId="id in HTML source file"/>
+<symbols><symbol/>...</symbols>
 <name>Just like `` in md</name>
 <img src="logo.png"/>Description</img>
 <ul><li>...</li></ul>
@@ -156,7 +157,7 @@
   <article name="Title" file="FILE-NAME">...</article>
   <link pathPrefix="PATH/PREFIX" filePrefix="FILE/PREFIX/" file="FILE-NAME"/>
   <namespace name="::A::B::C">
-    <document name="class MyClass" file="FILE-NAME">
+    <document name="class MyClass" docId="optional: SYMBOL-ID" file="FILE-NAME">
       <document .../>
     </document>
   </namespace>
