@@ -84,7 +84,7 @@ export interface RouterPattern<T> extends RouterPatternBase {
     walk(text: string, fragment: RouterFragment, value: T): boolean;
 }
 
-export type RouterCallback<TModel, TResult> = (method: HttpMethods, model: TModel) => TResult;
+export type RouterCallback<TModel, TResult> = (method: HttpMethods, model: TModel) => TResult | undefined;
 
 export interface Router<TResult> {
     readonly registered: readonly RouterPatternBase[];

@@ -3,7 +3,7 @@ import { HttpMethods, Router, RouterCallback, RouterFragmentKind, RouterPattern,
 interface RouterPackage<TResult> {
     methods: HttpMethods[];
     pattern: RouterPatternBase;
-    callback(method: HttpMethods, model: {}): TResult;
+    callback(method: HttpMethods, model: {}): TResult | undefined;
 }
 
 class RouterImpl<TResult> implements Router<TResult> {
