@@ -103,6 +103,9 @@
   <summary>...</summary>
   <remakrs>...</remarks>
   <example><![CDATA[code]]></example>
+  <basetypes>
+    <symbol/>
+  </basetypes>
   <seealsos>
     <symbol/>
   </seealsos>

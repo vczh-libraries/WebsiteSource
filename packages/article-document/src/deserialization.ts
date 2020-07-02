@@ -50,6 +50,39 @@ export function parseDocument(xml: string): d.DocArticle {
         category: <typeof d.acceptableCategories[number]>`${xmlArticle.attributes.category}`,
         name: `${xmlArticle.attributes.name}`
     };
-    darticle.name = darticle.name;
+
+    if (xmlArticle.elements !== undefined) {
+        for (const subElement of xmlArticle.elements) {
+            if (subElement.type === 'element') {
+                switch (subElement.name) {
+                    case 'summary':
+                        throw new Error('Not implemented!');
+                    case 'remakrs':
+                        throw new Error('Not implemented!');
+                    case 'signature': {
+                        if (subElement.elements === undefined || subElement.elements.length !== 1 || subElement.elements[0].type !== 'cdata') {
+                            throw new Error(`Only CData is allowed in <signature>.`);
+                        }
+                        darticle.signature = `${subElement.elements[0].cdata}`;
+                        break;
+                    }
+                    case 'example': {
+                        if (subElement.elements === undefined || subElement.elements.length !== 1 || subElement.elements[0].type !== 'cdata') {
+                            throw new Error(`Only CData is allowed in <example>.`);
+                        }
+                        darticle.example = `${subElement.elements[0].cdata}`;
+                        break;
+                    }
+                    case 'basetypes':
+                        throw new Error('Not implemented!');
+                    case 'seealsos':
+                        throw new Error('Not implemented!');
+                    default:
+                        throw new Error(`Unrecognizable top level element: <${subElement.name}>.`);
+                }
+            }
+        }
+    }
+
     return darticle;
 }

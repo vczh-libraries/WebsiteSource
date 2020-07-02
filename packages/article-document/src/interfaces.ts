@@ -6,4 +6,7 @@ export interface DocArticle {
     accessor: typeof acceptableAccessors[number];
     category: typeof acceptableCategories[number];
     name: string;
+
+    signature?: string;
+    example?: string;
 }
