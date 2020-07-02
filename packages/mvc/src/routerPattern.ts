@@ -330,6 +330,7 @@ class RouterPatternImpl implements RouterPatternBase {
                 }
                 return false;
             case RouterFragmentKind.HeadTail:
+            case RouterFragmentKind.PatternArray:
                 if (text.length > fragment.head.length + fragment.tail.length
                     && text.substr(0, fragment.head.length) === fragment.head
                     && text.substr(-fragment.tail.length) === fragment.tail

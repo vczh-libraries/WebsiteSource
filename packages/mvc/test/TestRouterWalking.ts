@@ -11,7 +11,13 @@ function assertWalk<T>(rp: RouterPattern<T>, url: string, expected: T): void {
 
     const value = rp.createDefaultValue();
     for (let i = 0; i < rp.fragments.length; i++) {
-        assert.strictEqual(rp.walk(fragments[i + 1], rp.fragments[i], value), true);
+        if (rp.fragments[i].kind === RouterFragmentKind.PatternArray) {
+            const joined = fragments.slice(i + 1).join('/');
+            assert.strictEqual(rp.walk(joined, rp.fragments[i], value), true);
+            break;
+        } else {
+            assert.strictEqual(rp.walk(fragments[i + 1], rp.fragments[i], value), true);
+        }
     }
     assert.deepStrictEqual(value, expected);
 }
