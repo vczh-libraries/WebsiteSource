@@ -22,7 +22,7 @@ test(`Multiple properties in one parameter`, () => {
     }).toThrow();
 });
 
-test(`Empty pattern bewteen "/"s`, () => {
+test(`Empty pattern between "/"s`, () => {
     expect(() => {
         return route`/first//second`;
     }).toThrow();
@@ -32,7 +32,7 @@ test(`Empty pattern bewteen "/"s`, () => {
     }).toThrow();
 });
 
-test(`Empty pattern bewteen parameters`, () => {
+test(`Empty pattern between parameters`, () => {
     expect(() => {
         return route`/${{ a: '' }}${{ b: '' }}`;
     }).toThrow();
