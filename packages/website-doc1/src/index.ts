@@ -1,18 +1,14 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { Article, parseArticle } from 'gaclib-article';
-import { createMvcServer, hostUntilPressingEnter, litHtmlViewCallback, registerFolder, untilPressEnter } from 'gaclib-host';
+import { parseArticle } from 'gaclib-article';
+import { createMvcServer, hostUntilPressingEnter, registerFolder, untilPressEnter } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
+import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
 import { getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
 
 const pathPrefix = `/doc/current`;
-
-function loadArticle(filename: string): Article {
-    const xml = readFileSync(path.join(__dirname, `../src/articles/${filename}`), { encoding: 'utf-8' });
-    return parseArticle(xml);
-}
 
 const router = createRouter<[string, string | Buffer]>(pathPrefix);
 registerFolder(router, path.join(__dirname, `./dist`));
@@ -25,27 +21,39 @@ writeFileSync(
     { encoding: 'utf-8' }
 );
 
-const homeNode = stepIndexByPath(docTree.index, ['home']);
 router.register(
     [],
-    route`/home.html`,
-    litHtmlViewCallback(
-        views,
-        'Gaclib-ArticleView',
-        {
-            info: { pathPrefix, title: `${homeNode?.node?.name} -- GPU Accelerated C++ User Interface (vczh)` },
-            embeddedResources: {
-                directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, pathPrefix, ['home'], homeNode),
-                article: loadArticle('home.xml')
-            }
+    route`/${{ path: [''] }}.html`,
+    (method: {}, model: { path: string[] }): [string, string] | undefined => {
+        const dindex = stepIndexByPath(docTree.index, model.path);
+        if (dindex === undefined || dindex.node === undefined) {
+            return undefined;
         }
-    )
-);
 
-router.register(
-    [],
-    route`${{ path: [''] }}.html`,
-    (method: HttpMethods, model: { path: string[] }): [string, string] | undefined => {
+        const dnode = dindex.node;
+        const info: HtmlInfo = { pathPrefix, title: `${dnode.name} -- GPU Accelerated C++ User Interface (vczh)` };
+        const res: EmbeddedResources = {
+            directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, pathPrefix, model.path, dindex)
+        };
+
+        switch (dnode.kind) {
+            case 'article': {
+                res.article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }));
+                const generatedHtml = generateHtml(
+                    info,
+                    views,
+                    'Gaclib-ArticleView',
+                    model,
+                    '',
+                    res
+                );
+                return ['text/html', generatedHtml];
+            }
+            case 'namespace':
+            case 'document':
+            default:
+                return undefined;
+        }
     }
 );
 
