@@ -21,7 +21,7 @@ function renderDocText(docText: d.DocText, title: string, dsc: DocSymbolConverte
     };
 }
 
-export function renderDocument(docArticle: d.DocArticle, title: string, dsc: DocSymbolConverter): a.Article {
+export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: DocSymbolConverter): a.Article {
     const article: a.Article = {
         index: false,
         numberBeforeTitle: false,

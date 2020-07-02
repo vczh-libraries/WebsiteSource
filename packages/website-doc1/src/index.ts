@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { parseArticle } from 'gaclib-article';
+import { DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
 import { createMvcServer, hostUntilPressingEnter, registerFolder, untilPressEnter } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
@@ -62,7 +63,16 @@ router.register(
                 return ['text/html', generatedHtml];
             }
             case 'document': {
-                res.documentArticle = readFileSync(<string>dnode.file, { encoding: 'utf-8' });
+                res.documentArticle = renderDocArticle(
+                    parseDocArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' })),
+                    dnode.name,
+                    (ds: DocSymbol) => {
+                        if (ds.docId === undefined) {
+
+                        } else {
+                            return { kind: 'Text', text: `${JSON.stringify(ds)} (source link)` };
+                        }
+                    });
                 const generatedHtml = generateHtml(
                     info,
                     views,
