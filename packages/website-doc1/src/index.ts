@@ -72,7 +72,7 @@ router.register(
                             if (dsTarget !== undefined && dsTarget.path !== undefined) {
                                 return {
                                     kind: 'PageLink',
-                                    href: pathPrefix + dsTarget.path.join('/'),
+                                    href: `${pathPrefix}/${dsTarget.path.join('/')}.html`,
                                     content: [{
                                         kind: 'Text',
                                         text: ds.name
@@ -81,8 +81,12 @@ router.register(
                             }
                         }
                         return {
-                            kind: 'Text',
-                            text: `${JSON.stringify(ds)} (source link)`
+                            kind: 'PageLink',
+                            href: `/CodeIndexDemo/Gaclib/${ds.declFile}.html#${ds.declId}`,
+                            content: [{
+                                kind: 'Text',
+                                text: ds.name
+                            }]
                         };
                     });
                 const generatedHtml = generateHtml(

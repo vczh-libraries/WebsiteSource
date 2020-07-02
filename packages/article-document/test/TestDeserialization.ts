@@ -3,21 +3,23 @@ import { DocArticle, parseDocArticle } from '../src';
 
 test(`Empty Document`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
 </Document>
 `;
     const output: DocArticle = {
         symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
-        name: 'MyClass'
+        name: 'MyClass',
+        declFile: 'F',
+        declId: 'I'
     };
     assert.deepStrictEqual(parseDocArticle(input), output);
 });
 
 test(`<signature> and <example>`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <signature><![CDATA[this is a signature]]></signature>
   <example><![CDATA[this is an example]]></example>
 </Document>
@@ -27,6 +29,8 @@ test(`<signature> and <example>`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
         signature: 'this is a signature',
         example: 'this is an example'
     };
@@ -35,7 +39,7 @@ test(`<signature> and <example>`, () => {
 
 test(`<basetypes> and <seealsos>`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <basetypes>
     <symbol name="x" docId="A" declFile="B" declId="C"/>
     <symbol name="y" docId="D" declFile="E" declId="F"/>
@@ -51,6 +55,8 @@ test(`<basetypes> and <seealsos>`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
         basetypes: [
             { name: 'x', docId: 'A', declFile: 'B', declId: 'C' },
             { name: 'y', docId: 'D', declFile: 'E', declId: 'F' }
@@ -65,7 +71,7 @@ test(`<basetypes> and <seealsos>`, () => {
 
 test(`<summary> with text`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     Line1
     Line2
@@ -78,6 +84,8 @@ test(`<summary> with text`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
         summary: {
             paragraphs: [{
                 content: [{ kind: 'Text', text: 'Line1' }]
@@ -93,7 +101,7 @@ test(`<summary> with text`, () => {
 
 test(`<summary> with links`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     Line1
     Line2<symbol name="a" declFile="F" declId="I"/>Line2
@@ -110,6 +118,8 @@ test(`<summary> with links`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
         summary: {
             paragraphs: [{
                 content: [{ kind: 'Text', text: 'Line1' }]
@@ -127,7 +137,7 @@ test(`<summary> with links`, () => {
 
 test(`DocText with text in document`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>summary</summary>
   <remarks>remarks</remarks>
   <returns>returns</returns>
@@ -144,6 +154,8 @@ test(`DocText with text in document`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
         summary: { paragraphs: [{ content: [{ kind: 'Text', text: 'summary' }] }] },
         remarks: { paragraphs: [{ content: [{ kind: 'Text', text: 'remarks' }] }] },
         returns: { paragraphs: [{ content: [{ kind: 'Text', text: 'returns' }] }] },

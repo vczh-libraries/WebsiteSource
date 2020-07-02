@@ -47,6 +47,19 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             content: [{
                 kind: 'Paragraph',
                 content: [{
+                    kind: 'Strong',
+                    content: [{
+                        kind: 'Text',
+                        text: 'Jump to '
+                    }, dsc({
+                        name: 'source code',
+                        declFile: docArticle.declFile,
+                        declId: docArticle.declId
+                    })]
+                }]
+            }, {
+                kind: 'Paragraph',
+                content: [{
                     kind: 'Program',
                     code: docArticle.signature
                 }]

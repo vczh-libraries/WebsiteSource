@@ -97,6 +97,8 @@
   accessor="public|protected|private"
   category="Enum|Class|Struct|Union|TypeAlias|Variable|ValueAlias|Namespace|Function"
   name="display name (decorated for functions and partial specialized declarations)"
+  declFile="optional: HTML source file"
+  declId="id in HTML source file"
   >
   <signature>
     <![CDATA[ code printed in the first topic ]]>

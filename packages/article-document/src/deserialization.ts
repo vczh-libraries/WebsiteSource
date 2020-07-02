@@ -130,6 +130,12 @@ export function parseDocArticle(xml: string): d.DocArticle {
     if (xmlArticle.attributes.name === undefined) {
         throw new Error(`Missing attribute "name" in <document>.`);
     }
+    if (xmlArticle.attributes.declFile === undefined) {
+        throw new Error(`Missing attribute "declFile" in <document>.`);
+    }
+    if (xmlArticle.attributes.declId === undefined) {
+        throw new Error(`Missing attribute "declId" in <document>.`);
+    }
 
     if (!(<readonly string[]>d.acceptableAccessors).includes(`${xmlArticle.attributes.accessor}`)) {
         throw new Error(`Attribute "accessor" in <document> can only be one of ${JSON.stringify(d.acceptableAccessors)}.`);
@@ -142,7 +148,9 @@ export function parseDocArticle(xml: string): d.DocArticle {
         symbolId: `${xmlArticle.attributes.symbolId}`,
         accessor: <typeof d.acceptableAccessors[number]>`${xmlArticle.attributes.accessor}`,
         category: <typeof d.acceptableCategories[number]>`${xmlArticle.attributes.category}`,
-        name: `${xmlArticle.attributes.name}`
+        name: `${xmlArticle.attributes.name}`,
+        declFile: `${xmlArticle.attributes.declFile}`,
+        declId: `${xmlArticle.attributes.declId}`
     };
 
     if (xmlArticle.elements !== undefined) {
