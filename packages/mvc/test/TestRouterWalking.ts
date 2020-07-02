@@ -59,3 +59,15 @@ test(`/Tutorial/{tutorial}/Demo/{title}.html`, () => {
     const url = '/Tutorial/false/Demo/true.html';
     assertWalk(rp, url, { tutorial: false, title: true });
 });
+
+test(`/Document/1.0-{{path}}.html :1`, () => {
+    const rp = route`/Document/1.0-${{ path: [''] }}.html`;
+    const url = '/Document/1.0-home.html';
+    assertWalk(rp, url, { path: ['home'] });
+});
+
+test(`/Document/1.0-{{path}}.html :2`, () => {
+    const rp = route`/Document/1.0-${{ path: [''] }}.html`;
+    const url = '/Document/1.0-gacui/controls/introduction.html';
+    assertWalk(rp, url, { path: ['gacui', 'controls', 'introduction'] });
+});
