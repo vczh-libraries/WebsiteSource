@@ -1,7 +1,6 @@
 // tslint:disable:no-http-string
 
 import { Router, RouterFragment, RouterFragmentKind, RouterPatternBase } from 'gaclib-mvc';
-import * as path from 'path';
 import scrape = require('website-scraper');
 
 type RegisterAction = (
