@@ -195,7 +195,7 @@ function getDirectoryNode(node: DocTreeNode, selected: boolean): DirectoryNode {
 }
 
 function getDirectoryNodeFromCurrent(current: DocTreeNode, node: DocTreeNode): DirectoryNode {
-    const dnode = getDirectoryNode(current, node === current);
+    const dnode = getDirectoryNode(node, node === current);
     if (node === current || node.kind === 'directory') {
         if (node.subNodes !== undefined) {
             dnode.subNodes = node.subNodes.map((subNode: DocTreeNode) => getDirectoryNodeFromCurrent(current, subNode));
@@ -230,7 +230,7 @@ export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, u
 
     const dnode = getDirectoryNodeFromCurrent(index.node, index.node);
     const parentNode = docTree.parents.get(index.node);
-    if (parentNode === undefined || parentNode.kind === 'root') {
+    if (parentNode === undefined) {
         return {
             pathPrefix,
             subNodes: [dnode]
