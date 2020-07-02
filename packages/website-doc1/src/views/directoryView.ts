@@ -34,6 +34,7 @@ export const viewExport = {
 <table class="DirectoryTable">
     <tr>
         <td class="TreeView" valign="top">
+            <h1>Index</h1>
             ${renderDirectory(dinfo, dinfo.subNodes)}
         </td>
         <td class="ContentView" valign="top">

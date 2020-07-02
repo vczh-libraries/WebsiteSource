@@ -4,7 +4,7 @@ import { createMvcServer, hostUntilPressingEnter, litHtmlViewCallback, registerF
 import { createRouter, route } from 'gaclib-mvc';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { getDirectoryInfoFromPath, loadDocTree } from './treeView';
+import { getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
 
 const pathPrefix = `/doc/current`;
@@ -25,16 +25,17 @@ writeFileSync(
     { encoding: 'utf-8' }
 );
 
+const homeNode = stepIndexByPath(docTree.index, ['home']);
 router.register(
     [],
-    route`/index.html`,
+    route`/home.html`,
     litHtmlViewCallback(
         views,
         'Gaclib-ArticleView',
         {
-            info: { pathPrefix, title: 'Gaclib Document -- GPU Accelerated C++ User Interface (vczh)' },
+            info: { pathPrefix, title: `${homeNode?.node?.name} -- GPU Accelerated C++ User Interface (vczh)` },
             embeddedResources: {
-                directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, pathPrefix, ['home']),
+                directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, pathPrefix, ['home'], homeNode),
                 article: loadArticle('home.xml')
             }
         }

@@ -126,9 +126,9 @@ function fillParents(parents: Map<DocTreeNode, DocTreeNode>, node: DocTreeNode):
     }
 }
 
-export function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: false): DocTreeIndex | undefined;
-export function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: true): DocTreeIndex;
-export function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: boolean): DocTreeIndex | undefined {
+function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: false): DocTreeIndex | undefined;
+function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: true): DocTreeIndex;
+function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: boolean): DocTreeIndex | undefined {
     if (index.subNodes === undefined) {
         if (!createIfNotExists) {
             return undefined;
@@ -146,6 +146,18 @@ export function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: 
     }
 
     return next;
+}
+
+export function stepIndexByPath(index: DocTreeIndex, url: string[]): DocTreeIndex | undefined {
+    let current = index;
+    for (const item of url) {
+        const next = stepIndex(current, item, false);
+        if (next === undefined) {
+            return undefined;
+        }
+        current = next;
+    }
+    return current;
 }
 
 function fillIndex(index: DocTreeIndex, node: DocTreeNode): void {
@@ -212,17 +224,11 @@ function getDirectoryNodeSibilings(current: DocTreeNode, parent: DocTreeNode, dn
     }
 }
 
-export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, url: string[]): DirectoryInfo | undefined {
-    let index = docTree.index;
-    for (const item of url) {
-        const next = stepIndex(index, item, false);
-        if (next === undefined) {
-            console.error(`ERROR: Reference page path does not exist: ${url.join('/')}`);
-            return undefined;
-        }
-        index = next;
+export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, url: string[], index: DocTreeIndex | undefined): DirectoryInfo | undefined {
+    if (index === undefined) {
+        console.error(`ERROR: Reference page path does not exist: ${url.join('/')}`);
+        return undefined;
     }
-
     if (index.node === undefined) {
         console.error(`ERROR: Reference page path is not complete: ${url.join('/')}`);
         return undefined;
@@ -237,18 +243,19 @@ export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, u
         };
     } else {
         let dsiblings = getDirectoryNodeSibilings(index.node, parentNode, dnode);
-        let current: DocTreeNode | undefined = parentNode;
-        while (current !== undefined) {
-            const dcurrent = getDirectoryNode(current, false);
-            dcurrent.subNodes = dsiblings;
-            dsiblings = [dcurrent];
+        if (parentNode.kind !== 'root') {
+            let current: DocTreeNode | undefined = parentNode;
+            while (current !== undefined) {
+                const dcurrent = getDirectoryNode(current, false);
+                dcurrent.subNodes = dsiblings;
+                dsiblings = [dcurrent];
 
-            current = docTree.parents.get(current);
-            if (current?.kind === 'root') {
-                current = undefined;
+                current = docTree.parents.get(current);
+                if (current?.kind === 'root') {
+                    current = undefined;
+                }
             }
         }
-
         return {
             pathPrefix,
             subNodes: dsiblings
