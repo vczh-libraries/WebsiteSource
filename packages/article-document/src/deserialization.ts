@@ -1,6 +1,27 @@
 import { Element, xml2js } from 'xml-js';
 import * as d from './interfaces';
 
+function parseDocSymbol(xml: Element): d.DocSymbol {
+    if (xml.attributes === undefined) {
+        throw new Error(`Missing attribute "docId" (optional), "declFile", "declId" in <document>.`);
+    }
+    if (xml.attributes.declFile === undefined) {
+        throw new Error(`Missing attribute "declFile" in <symbol>.`);
+    }
+    if (xml.attributes.declId === undefined) {
+        throw new Error(`Missing attribute "declId" in <symbol>.`);
+    }
+
+    const dsymbol: d.DocSymbol = {
+        declFile: `${xml.attributes.declFile}`,
+        declId: `${xml.attributes.declId}`
+    };
+    if (xml.attributes.docId !== undefined) {
+        dsymbol.docId = `${xml.attributes.docId}`;
+    }
+    return dsymbol;
+}
+
 function parseDocText(xml: Element, requireName: boolean): d.DocText {
     const dtext: d.DocText = {
         paragraphs: []
@@ -10,6 +31,45 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
     }
     if (dtext.name === undefined && requireName) {
         throw new Error(`Missing attribute "name" in <${xml.name}>.`);
+    }
+
+    function insertp(): void {
+        dtext.paragraphs.push({ content: [] });
+    }
+
+    function lastp(): d.DocParagraph {
+        if (dtext.paragraphs.length === 0) {
+            insertp();
+        }
+        return dtext.paragraphs[dtext.paragraphs.length - 1];
+    }
+
+    if (xml.elements !== undefined) {
+        for (const xmlContent of xml.elements) {
+            switch (xmlContent.type) {
+                case 'text':
+                case 'cdata': {
+                    const text = `${xmlContent[xmlContent.type]}`;
+                    const lines = text.split('\n').map((s: string) => s.trim()).filter((s: string) => s !== '');
+                    for (let i = 0; i < lines.length; i++) {
+                        if (i > 0) {
+                            insertp();
+                        }
+                        lastp().content.push({ kind: 'Text', text: lines[i] });
+                    }
+                    break;
+                }
+                case 'element': {
+                    if (xmlContent.name === 'symbol') {
+                        lastp().content.push(parseDocSymbol(xmlContent));
+                    } else {
+                        throw new Error(`Unrecognizable element <${xmlContent.name}> in <${xml.name}>.`);
+                    }
+                    break;
+                }
+                default:
+            }
+        }
     }
     return dtext;
 }
@@ -105,24 +165,8 @@ export function parseDocArticle(xml: string): d.DocArticle {
                                     if (xmlSymbol.name !== 'symbol') {
                                         throw new Error(`Only <symbol> is allowed in <${subElement.name}>`);
                                     }
-                                    if (xmlSymbol.attributes === undefined) {
-                                        throw new Error(`Missing attribute "docId" (optional), "declFile", "declId" in <document>.`);
-                                    }
-                                    if (xmlSymbol.attributes.declFile === undefined) {
-                                        throw new Error(`Missing attribute "declFile" in <symbol>.`);
-                                    }
-                                    if (xmlSymbol.attributes.declId === undefined) {
-                                        throw new Error(`Missing attribute "declId" in <symbol>.`);
-                                    }
 
-                                    const dsymbol: d.DocSymbol = {
-                                        declFile: `${xmlSymbol.attributes.declFile}`,
-                                        declId: `${xmlSymbol.attributes.declId}`
-                                    };
-                                    if (xmlSymbol.attributes.docId !== undefined) {
-                                        dsymbol.docId = `${xmlSymbol.attributes.docId}`;
-                                    }
-
+                                    const dsymbol = parseDocSymbol(xmlSymbol);
                                     if (darticle[subElement.name] === undefined) {
                                         darticle[subElement.name] = [];
                                     }
