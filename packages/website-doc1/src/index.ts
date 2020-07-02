@@ -62,7 +62,7 @@ router.register(
                 return ['text/html', generatedHtml];
             }
             case 'document': {
-                res.document = readFileSync(<string>dnode.file, { encoding: 'utf-8' });
+                res.documentArticle = readFileSync(<string>dnode.file, { encoding: 'utf-8' });
                 const generatedHtml = generateHtml(
                     info,
                     views,

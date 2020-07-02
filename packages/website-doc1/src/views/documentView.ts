@@ -3,10 +3,10 @@ import { html, render } from 'lit-html';
 
 export const viewExport = {
     renderView(model: {}, target: Element): void {
-        const document = <string>window['MVC-Resources.document'];
+        const documentArticle = <string>window['MVC-Resources.documentArticle'];
         const htmlTemplate = html`
 <h1>XML Document</h1>
-${document}
+${documentArticle}
 `;
         render(htmlTemplate, target);
     }
