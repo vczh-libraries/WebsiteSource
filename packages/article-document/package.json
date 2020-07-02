@@ -1,7 +1,7 @@
 {
-    "name": "gaclib-article",
+    "name": "gaclib-article-document",
     "version": "0.0.1",
-    "description": "Gaclib article XML to HTML converter",
+    "description": "Gaclib document XML to article XML converter",
     "main": "./lib/src/index.js",
     "scripts": {
         "build": "rimraf ./lib && tslint --project tsconfig.json && tsc",
@@ -19,7 +19,7 @@
         "typescript": "^3.6.3"
     },
     "dependencies": {
-        "lit-html": "^1.1.2",
+        "gaclib-article": "^0.0.1",
         "xml-js": "^1.6.11"
     },
     "jest": {
