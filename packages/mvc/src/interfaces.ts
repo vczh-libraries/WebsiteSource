@@ -22,13 +22,15 @@ export enum RouterFragmentKind {
     Head,
     Tail,
     HeadTail,
-    MultiplePatterns
+    MultiplePatterns,
+    PatternArray
 }
 
 export enum RouterParameterKind {
     String,
     Number,
-    Boolean
+    Boolean,
+    Array
 }
 
 export type RouterParameter = [string, RouterParameterKind];
@@ -63,6 +65,12 @@ export type RouterFragment =
         pattern: string;
         parameters: RouterParameter[];
         cachedRegExp?: RegExp;
+    }
+    | {
+        kind: RouterFragmentKind.PatternArray;
+        head: string;
+        tail: string;
+        parameter: RouterParameter;
     };
 
 export interface RouterPatternBase {

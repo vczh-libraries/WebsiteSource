@@ -41,3 +41,25 @@ test(`Empty pattern between parameters`, () => {
         return route`/first${{ a: '' }}${{ b: '' }}second`;
     }).toThrow();
 });
+
+test(`Pattern array must be in the last pattern`, () => {
+    expect(() => {
+        return route`/${{ a: [''] }}/last`;
+    }).toThrow();
+
+    expect(() => {
+        return route`/first${{ a: [''] }}/last`;
+    }).toThrow();
+
+    expect(() => {
+        return route`/${{ a: [''] }}second/last`;
+    }).toThrow();
+
+    expect(() => {
+        return route`/first${{ a: [''] }}second/last`;
+    }).toThrow();
+
+    expect(() => {
+        return route`/first${{ a: '' }}second${{ b: [''] }}/last`;
+    }).toThrow();
+});

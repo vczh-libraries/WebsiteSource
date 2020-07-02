@@ -21,7 +21,8 @@ function getParameterName(fragment: {}): [true, RouterParameter] | [false, strin
 
     const keys = Object.keys(fragment);
     if (keys.length === 1) {
-        switch (typeof fragment[keys[0]]) {
+        const value = fragment[keys[0]];
+        switch (typeof value) {
             case 'string':
                 return [true, [keys[0], RouterParameterKind.String]];
             case 'number':
@@ -30,7 +31,15 @@ function getParameterName(fragment: {}): [true, RouterParameter] | [false, strin
                 return [true, [keys[0], RouterParameterKind.Boolean]];
             }
             default:
-                throw new Error(`The property of the parameter object "${JSON.stringify(fragment)}" can only be string, number or boolean.`);
+                if (Array.isArray(value)) {
+                    if (value.length === 1 && typeof value[0] === 'string') {
+                        return [true, [keys[0], RouterParameterKind.Array]];
+                    } else {
+                        throw new Error(`The property of the parameter object "${JSON.stringify(fragment)}" can only be string, number, boolean or array of string.`);
+                    }
+                } else {
+                    throw new Error(`The property of the parameter object "${JSON.stringify(fragment)}" can only be string, number or boolean or array of string.`);
+                }
         }
     }
     throw new Error(`Parameter object "${JSON.stringify(fragment)}" should have exactly one property.`);
@@ -152,6 +161,81 @@ function addParameter(value: {}, parameter: RouterParameter, text?: string): boo
     }
 }
 
+function processPatternArray(fragments: RouterFragment[]): void {
+    if (fragments.length > 0) {
+        for (let i = 0; i < fragments.length; i++) {
+            const fragment = fragments[i];
+            switch (fragment.kind) {
+                case RouterFragmentKind.Free: {
+                    if (fragment.parameter[1] === RouterParameterKind.Array) {
+                        if (i !== fragments.length - 1) {
+                            throw new Error('Pattern array must be in the last pattern!');
+                        }
+                        fragments[i] = {
+                            kind: RouterFragmentKind.PatternArray,
+                            head: '',
+                            tail: '',
+                            parameter: fragment.parameter
+                        };
+                    }
+                    break;
+                }
+                case RouterFragmentKind.Head: {
+                    if (fragment.parameter[1] === RouterParameterKind.Array) {
+                        if (i !== fragments.length - 1) {
+                            throw new Error('Pattern array must be in the last pattern!');
+                        }
+                        fragments[i] = {
+                            kind: RouterFragmentKind.PatternArray,
+                            head: fragment.head,
+                            tail: '',
+                            parameter: fragment.parameter
+                        };
+                    }
+                    break;
+                }
+                case RouterFragmentKind.Tail: {
+                    if (fragment.parameter[1] === RouterParameterKind.Array) {
+                        if (i !== fragments.length - 1) {
+                            throw new Error('Pattern array must be in the last pattern!');
+                        }
+                        fragments[i] = {
+                            kind: RouterFragmentKind.PatternArray,
+                            head: '',
+                            tail: fragment.tail,
+                            parameter: fragment.parameter
+                        };
+                    }
+                    break;
+                }
+                case RouterFragmentKind.HeadTail: {
+                    if (fragment.parameter[1] === RouterParameterKind.Array) {
+                        if (i !== fragments.length - 1) {
+                            throw new Error('Pattern array must be in the last pattern!');
+                        }
+                        fragments[i] = {
+                            kind: RouterFragmentKind.PatternArray,
+                            head: fragment.head,
+                            tail: fragment.tail,
+                            parameter: fragment.parameter
+                        };
+                    }
+                    break;
+                }
+                case RouterFragmentKind.MultiplePatterns: {
+                    for (const parameter of fragment.parameters) {
+                        if (parameter[1] === RouterParameterKind.Array) {
+                            throw new Error('Pattern array must be the only parameter in the pattern!');
+                        }
+                    }
+                    break;
+                }
+                default:
+            }
+        }
+    }
+}
+
 class RouterPatternImpl implements RouterPatternBase {
     public fragments: RouterFragment[] = [];
 
@@ -185,6 +269,7 @@ class RouterPatternImpl implements RouterPatternBase {
             }
         }
         submitFragment(this.fragments, fragmentBuilders);
+        processPatternArray(this.fragments);
     }
 
     public createDefaultValue(): {} {
