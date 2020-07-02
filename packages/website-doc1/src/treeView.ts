@@ -6,6 +6,7 @@ import { DirectoryInfo, DirectoryNode } from './views';
 export interface DocTreeNode {
     name: string;
     kind: 'root' | 'article' | 'namespace' | 'directory' | 'document';
+    docId?: string;
     path?: string[];
     file?: string;
     subNodes?: DocTreeNode[];
@@ -19,6 +20,7 @@ export interface DocTreeIndex {
 export interface DocTree {
     root: DocTreeNode;
     parents: Map<DocTreeNode, DocTreeNode>;
+    ids: { [key: string]: DocTreeNode };
     index: DocTreeIndex;
 }
 
@@ -56,6 +58,7 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
         case 'document': {
             const name = <string>xmlNode.attributes?.name;
             const file = <string | undefined>xmlNode.attributes?.file;
+            const docId = <string | undefined>xmlNode.attributes?.docId;
             if (file === undefined) {
                 child = {
                     name,
@@ -65,6 +68,7 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
                 child = {
                     name,
                     kind: 'document',
+                    docId: `${docId}`,
                     path: url.concat([file]),
                     file: path.join(wd, `${file}.xml`)
                 };
@@ -130,6 +134,21 @@ function fillParents(parents: Map<DocTreeNode, DocTreeNode>, node: DocTreeNode):
     }
 }
 
+function fillIds(ids: { [key: string]: DocTreeNode }, node: DocTreeNode): void {
+    if (node.docId !== undefined) {
+        if (ids[node.docId] === undefined) {
+            ids[node.docId] = node;
+        } else {
+            console.error(`ERROR: Duplicated reference symbol id found: ${node.docId}`);
+        }
+    }
+    if (node.subNodes !== undefined) {
+        for (const subNode of node.subNodes) {
+            fillIds(ids, subNode);
+        }
+    }
+}
+
 function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: false): DocTreeIndex | undefined;
 function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: true): DocTreeIndex;
 function stepIndex(index: DocTreeIndex, item: string, createIfNotExists: boolean): DocTreeIndex | undefined {
@@ -191,10 +210,12 @@ export function loadDocTree(entryPath: string): DocTree {
             kind: 'root'
         },
         parents: new Map<DocTreeNode, DocTreeNode>(),
+        ids: {},
         index: {}
     };
     loadDocTreeNode(result.root, entryPath, '', []);
     fillParents(result.parents, result.root);
+    fillIds(result.ids, result.root);
     fillIndex(result.index, result.root);
     return result;
 }

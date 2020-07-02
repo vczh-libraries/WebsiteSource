@@ -67,11 +67,23 @@ router.register(
                     parseDocArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' })),
                     dnode.name,
                     (ds: DocSymbol) => {
-                        if (ds.docId === undefined) {
-
-                        } else {
-                            return { kind: 'Text', text: `${JSON.stringify(ds)} (source link)` };
+                        if (ds.docId !== undefined) {
+                            const dsTarget = docTree.ids[ds.docId];
+                            if (dsTarget !== undefined && dsTarget.path !== undefined) {
+                                return {
+                                    kind: 'PageLink',
+                                    href: pathPrefix + dsTarget.path.join('/'),
+                                    content: [{
+                                        kind: 'Text',
+                                        text: ds.name
+                                    }]
+                                };
+                            }
                         }
+                        return {
+                            kind: 'Text',
+                            text: `${JSON.stringify(ds)} (source link)`
+                        };
                     });
                 const generatedHtml = generateHtml(
                     info,

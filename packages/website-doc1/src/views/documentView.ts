@@ -1,12 +1,13 @@
 // tslint:disable:no-submodule-imports
+import { Article } from 'gaclib-article/lib/src/interfaces';
+import { renderArticle } from 'gaclib-article/lib/src/rendering';
 import { html, render } from 'lit-html';
 
 export const viewExport = {
     renderView(model: {}, target: Element): void {
-        const documentArticle = <string>window['MVC-Resources.documentArticle'];
+        const article = <Article>window['MVC-Resources.documentArticle'];
         const htmlTemplate = html`
-<h1>XML Document</h1>
-${documentArticle}
+${renderArticle(article)}
 `;
         render(htmlTemplate, target);
     }
