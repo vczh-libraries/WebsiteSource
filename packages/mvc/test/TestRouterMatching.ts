@@ -47,11 +47,14 @@ test(`Query match parameters`, () => {
     router.register([], route`/index.html`, (method: HttpMethods, model: {}) => 'index');
     router.register([], route`/getting_started/${{ lib: '' }}.html`, (method: HttpMethods, model: {}) => model);
     router.register([], route`/tutorial/${{ tutorial: '' }}/demo/${{ title: '' }}.html`, (method: HttpMethods, model: {}) => model);
+    router.register([], route`/document/1.0-${{ path: [''] }}.html`, (method: HttpMethods, model: {}) => model);
 
     assert.deepStrictEqual(router.match('GET', '/'), 'root');
     assert.deepStrictEqual(router.match('GET', '/index.html'), 'index');
     assert.deepStrictEqual(router.match('GET', '/getting_started/vlpp.html'), { lib: 'vlpp' });
     assert.deepStrictEqual(router.match('GET', '/tutorial/HelloWorld/demo/CppXml.html'), { tutorial: 'HelloWorld', title: 'CppXml' });
+    assert.deepStrictEqual(router.match('GET', '/document/1.0-home.html'), { path: ['home'] });
+    assert.deepStrictEqual(router.match('GET', '/document/1.0-gacui/controls/introduction.html'), { path: ['gacui', 'controls', 'introduction'] });
 });
 
 test(`Query match parameters with prefix`, () => {
@@ -59,8 +62,11 @@ test(`Query match parameters with prefix`, () => {
     router.register([], route`/index.html`, (method: HttpMethods, model: {}) => 'index');
     router.register([], route`/getting_started/${{ lib: '' }}.html`, (method: HttpMethods, model: {}) => model);
     router.register([], route`/tutorial/${{ tutorial: '' }}/demo/${{ title: '' }}.html`, (method: HttpMethods, model: {}) => model);
+    router.register([], route`/document/1.0-${{ path: [''] }}.html`, (method: HttpMethods, model: {}) => model);
 
     assert.deepStrictEqual(router.match('GET', '/prefix/index.html'), 'index');
     assert.deepStrictEqual(router.match('GET', '/prefix/getting_started/vlpp.html'), { lib: 'vlpp' });
     assert.deepStrictEqual(router.match('GET', '/prefix/tutorial/HelloWorld/demo/CppXml.html'), { tutorial: 'HelloWorld', title: 'CppXml' });
+    assert.deepStrictEqual(router.match('GET', '/prefix/document/1.0-home.html'), { path: ['home'] });
+    assert.deepStrictEqual(router.match('GET', '/prefix/document/1.0-gacui/controls/introduction.html'), { path: ['gacui', 'controls', 'introduction'] });
 });
