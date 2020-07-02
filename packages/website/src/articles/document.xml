@@ -1,18 +1,22 @@
 <article>
     <topic>
-        <title>Document</title>
+        <title>Document for Gaclib 1.0</title>
         <p>
-            This page is under construction. Documents for all libraries is being written.
+            I am writing tutorials and API references for this project.
+            I hope everything could be done at the end of this year.
         </p>
         <p>
-            The <b>old document page</b> can be found <a href="./CodeIndex.html">here</a>, which lists all functions and classes you are going to use for this library.
+            Now both <b>document page</b> and <b>code index</b> are available,
+            but here is no tutorial yet, and descriptions to APIs are quite simple.
+            This will be improved in this year.
         </p>
         <p>
-            I am building a <a href="/CodeIndexDemo/Gaclib/FileIndex.html">new code index page</a>, which is part of the <b>new document page</b>.
-            Once all source files are indexed, I will begin to build the <b>new document page</b>.
+            <b>Document page: </b><a href="/doc/current/home.html">/doc/current/home.html</a>.
         </p>
         <p>
-            The <b>new document page</b> is being rebuilding.
+            <b>Code index page: </b><a href="/CodeIndexDemo/Gaclib/FileIndex.html">/CodeIndexDemo/Gaclib/FileIndex.html</a>.
+        </p>
+        <p>
             If you are interested in indexing C++ source code,
             please check out <a href="https://github.com/vczh-libraries/Document">this repo</a>,
             and these demo:
