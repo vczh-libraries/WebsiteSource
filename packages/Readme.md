@@ -188,7 +188,6 @@
 ## TODO
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
-- [ ] generate a completed list of article pages to a text file for `npm run download`.
 
 - Valid inside `<p/>`
   - Implement `symbol` after document is ready

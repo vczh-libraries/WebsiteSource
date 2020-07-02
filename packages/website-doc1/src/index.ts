@@ -6,7 +6,7 @@ import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
+import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
 
 const pathPrefix = `/doc/current`;
@@ -108,9 +108,24 @@ router.register(
 console.log(JSON.stringify(process.argv, undefined, 4));
 const server = createMvcServer(router);
 
+function collectDocUrls(dnode: DocTreeNode, docUrls: string[]): void {
+    if (dnode.path !== undefined) {
+        docUrls.push(`${pathPrefix}/${dnode.path.join('/')}.html`);
+    }
+    if (dnode.subNodes !== undefined) {
+        for (const subNode of dnode.subNodes) {
+            collectDocUrls(subNode, docUrls);
+        }
+    }
+}
+
 if (process.argv[2] === '-d') {
     server.listen(8080, 'localhost');
-    downloadWebsite(collectStaticUrls(router), path.join(__dirname, './website'));
+
+    const docUrls: string[] = [];
+    collectDocUrls(docTree.root, docUrls);
+
+    downloadWebsite(collectStaticUrls(router).concat(docUrls), path.join(__dirname, './website'));
     untilPressEnter();
 } else {
     hostUntilPressingEnter(server, 8080);

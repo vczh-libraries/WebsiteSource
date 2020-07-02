@@ -1,6 +1,7 @@
 // tslint:disable:no-http-string
 
 import { Router, RouterFragment, RouterFragmentKind, RouterPatternBase } from 'gaclib-mvc';
+import * as path from 'path';
 import scrape = require('website-scraper');
 
 type RegisterAction = (
@@ -42,7 +43,6 @@ export function downloadWebsite(urls: string[], directory: string): void {
         plugins: [{
             apply(registerAction: RegisterAction): void {
                 registerAction('generateFilename', (value: { resource: scrape.Resource }) => {
-                    console.log(value.resource.url);
                     const matches = /^http:\/\/[^\/]+(.*)$/g.exec(value.resource.url);
                     if (matches !== null) {
                         return { filename: matches[1] };
