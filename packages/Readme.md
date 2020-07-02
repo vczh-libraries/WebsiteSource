@@ -176,6 +176,7 @@
   - Function Arguments
   - Return Value
   - Remarks
+  - Example
   - Base Types
   - See Also
 - Wherever text is available, it could also be multiple `<p>...</p>`.

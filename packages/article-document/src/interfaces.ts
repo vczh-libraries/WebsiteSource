@@ -4,6 +4,7 @@ export const acceptableAccessors = (<const>['', 'public', 'protected', 'private'
 export const acceptableCategories = (<const>['Enum', 'Class', 'Struct', 'Union', 'TypeAlias', 'Variable', 'ValueAlias', 'Namespace', 'Function']);
 
 export interface DocSymbol {
+    kind: 'Symbol';
     docId?: string;
     declFile: string;
     declId: string;

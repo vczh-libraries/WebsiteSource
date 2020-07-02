@@ -13,6 +13,7 @@ function parseDocSymbol(xml: Element): d.DocSymbol {
     }
 
     const dsymbol: d.DocSymbol = {
+        kind: 'Symbol',
         declFile: `${xml.attributes.declFile}`,
         declId: `${xml.attributes.declId}`
     };

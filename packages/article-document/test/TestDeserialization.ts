@@ -52,12 +52,12 @@ test(`<basetypes> and <seealsos>`, () => {
         category: 'Class',
         name: 'MyClass',
         basetypes: [
-            { docId: 'A', declFile: 'B', declId: 'C' },
-            { docId: 'D', declFile: 'E', declId: 'F' }
+            { kind: 'Symbol', docId: 'A', declFile: 'B', declId: 'C' },
+            { kind: 'Symbol', docId: 'D', declFile: 'E', declId: 'F' }
         ],
         seealsos: [
-            { declFile: 'B', declId: 'C' },
-            { declFile: 'E', declId: 'F' }
+            { kind: 'Symbol', declFile: 'B', declId: 'C' },
+            { kind: 'Symbol', declFile: 'E', declId: 'F' }
         ]
     };
     assert.deepStrictEqual(parseDocArticle(input), output);
