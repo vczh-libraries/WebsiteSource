@@ -42,6 +42,13 @@ router.register(
     )
 );
 
+router.register(
+    [],
+    route`${{ path: [''] }}.html`,
+    (method: HttpMethods, model: { path: string[] }): [string, string] | undefined => {
+    }
+);
+
 console.log(JSON.stringify(process.argv, undefined, 4));
 const server = createMvcServer(router);
 
