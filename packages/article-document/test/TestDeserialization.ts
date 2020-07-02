@@ -90,3 +90,41 @@ test(`<summary> with text`, () => {
     };
     assert.deepStrictEqual(parseDocArticle(input), output);
 });
+
+test(`DocText with text in document`, () => {
+    const input = `
+<document symbolId="::MyClass" accessor="" category="Class" name="MyClass">
+  <summary>summary</summary>
+  <remarks>remarks</remarks>
+  <returns>returns</returns>
+  <enumitem name="a">a</enumitem>
+  <enumitem name="b">b</enumitem>
+  <typeparam name="a">a</typeparam>
+  <typeparam name="b">b</typeparam>
+  <param name="a">a</param>
+  <param name="b">b</param>
+</document>
+`;
+    const output: DocArticle = {
+        symbolId: '::MyClass',
+        accessor: '',
+        category: 'Class',
+        name: 'MyClass',
+        summary: { paragraphs: [{ content: [{ kind: 'Text', text: 'summary' }] }] },
+        remarks: { paragraphs: [{ content: [{ kind: 'Text', text: 'remarks' }] }] },
+        returns: { paragraphs: [{ content: [{ kind: 'Text', text: 'returns' }] }] },
+        enumitem: [
+            { name: 'a', paragraphs: [{ content: [{ kind: 'Text', text: 'a' }] }] },
+            { name: 'b', paragraphs: [{ content: [{ kind: 'Text', text: 'b' }] }] }
+        ],
+        typeparam: [
+            { name: 'a', paragraphs: [{ content: [{ kind: 'Text', text: 'a' }] }] },
+            { name: 'b', paragraphs: [{ content: [{ kind: 'Text', text: 'b' }] }] }
+        ],
+        param: [
+            { name: 'a', paragraphs: [{ content: [{ kind: 'Text', text: 'a' }] }] },
+            { name: 'b', paragraphs: [{ content: [{ kind: 'Text', text: 'b' }] }] }
+        ]
+    };
+    assert.deepStrictEqual(parseDocArticle(input), output);
+});

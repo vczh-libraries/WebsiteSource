@@ -185,7 +185,6 @@
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
 - [ ] render article instead of pasting xml conent.
-- [ ] must interpret: `<summary>`, `<typeparam>`, `<param>`, `<enumitem>`, `<returns>`, `<remarks>`, `<seealsos>`, `<signature>`, `<basetypes>`.
 - [ ] must process: `<symbol>`.
 - [ ] `<article>` and `<topic>` are forbidden in XML documents
 - [ ] predefined `<topic>` will be generated according to top-level elements in XML document, `<p>` will be automatically inserted as the top element in `<topic>`.
