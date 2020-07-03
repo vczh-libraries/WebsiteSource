@@ -188,6 +188,13 @@
 ## TODO
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
+- [ ] support `<example>` in the middle of `DocText`
+  - [ ] extend `Article` to support plugin objects
+  - [ ] extend `parseArticle` to process plugin objects
+  - [ ] extend `renderArticle` to process plugin objects
+  - [ ] enable article XML inside `DocText`
+- [ ] do not remove spaces around hyperlinks.
+- [ ] add hyperlink to home page at the top logo.
 
 - Valid inside `<p/>`
   - Implement `symbol` after document is ready
