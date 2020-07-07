@@ -188,12 +188,14 @@
 ## TODO
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
-- [ ] support `<example>` in the middle of `DocText`
+- [ ] enable article XML inside `DocText`
   - [ ] extend `Article` to support plugin objects
   - [ ] extend `parseArticle` to process plugin objects
   - [ ] extend `renderArticle` to process plugin objects
-  - [ ] enable article XML inside `DocText`
+  - [ ] plugin `<symbol>` and `<symbols>`
+- [ ] make `<symbols>` more beautiful
 - [ ] do not remove spaces around hyperlinks.
+- [ ] CRLF not correctly inserted if a `<see/>` appears as the first or last component of a line.
 - [ ] add hyperlink to home page at the top logo.
 
 - Valid inside `<p/>`
