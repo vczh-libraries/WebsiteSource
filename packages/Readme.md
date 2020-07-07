@@ -188,13 +188,6 @@
 ## TODO
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
-- [ ] enable article XML inside `DocText`
-  - [x] extend `Article` to support plugin objects
-  - [x] extend `parseArticle` to process plugin objects
-    - [x] test plugin
-  - [x] extend `renderArticle` to process plugin objects
-  - [x] plugin `<symbol>` and `<symbols>`
-  - render plugin
 - [ ] make `<symbols>` more beautiful
 - [ ] do not remove spaces around hyperlinks.
 - [ ] CRLF not correctly inserted if a `<see/>` appears as the first or last component of a line.
