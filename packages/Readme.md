@@ -193,7 +193,8 @@
   - [x] extend `parseArticle` to process plugin objects
     - [x] test plugin
   - [x] extend `renderArticle` to process plugin objects
-  - [ ] plugin `<symbol>` and `<symbols>`
+  - [x] plugin `<symbol>` and `<symbols>`
+  - render plugin
 - [ ] make `<symbols>` more beautiful
 - [ ] do not remove spaces around hyperlinks.
 - [ ] CRLF not correctly inserted if a `<see/>` appears as the first or last component of a line.

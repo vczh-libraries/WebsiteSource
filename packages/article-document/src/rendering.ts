@@ -3,29 +3,11 @@ import * as d from './interfaces';
 
 type DocSymbolConverter = (docSymbol: d.DocSymbol) => a.Content;
 
-function renderDocText(docText: d.DocText, title: string, dsc: DocSymbolConverter): a.Topic {
+function renderDocText(docText: d.DocText, title: string): a.Topic {
     return {
         kind: 'Topic',
         title,
-        content: docText.paragraphs.map((p: d.DocParagraph) => ({
-            kind: 'Paragraph',
-            content: p.content.length === 0 ? [] : p.content.map((c: a.Content | d.DocSymbols) => {
-                switch (c.kind) {
-                    case 'Symbols':
-                        if (c.symbols.length === 0) {
-                            throw new Error('DocSymbols should contain at least 1 DocSymbol.');
-                        } else if (c.symbols.length === 1) {
-                            return [dsc(c.symbols[0])];
-                        } else {
-                            return c.symbols
-                                .map((ds: d.DocSymbol) => [dsc(ds)])
-                                .reduce((x: a.Content[], y: a.Content[]) => x.concat([{ kind: 'Text', text: ', ' }]).concat(y));
-                        }
-                    default:
-                        return [c];
-                }
-            }).reduce((x: a.Content[], y: a.Content[]) => x.concat(y))
-        }))
+        content: docText.paragraphs
     };
 }
 
@@ -67,35 +49,35 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
         });
     }
     if (docArticle.summary !== undefined) {
-        article.topic.content.push(renderDocText(docArticle.summary, 'Summary', dsc));
+        article.topic.content.push(renderDocText(docArticle.summary, 'Summary'));
     }
     if (docArticle.enumitem !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
             title: 'Enum Items',
-            content: docArticle.enumitem.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`, dsc))
+            content: docArticle.enumitem.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`))
         });
     }
     if (docArticle.typeparam !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
             title: 'Type Parameters',
-            content: docArticle.typeparam.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`, dsc))
+            content: docArticle.typeparam.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`))
         });
     }
     if (docArticle.param !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
             title: 'Parameters',
-            content: docArticle.param.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`, dsc))
+            content: docArticle.param.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`))
         });
     }
     if (docArticle.returns !== undefined) {
-        article.topic.content.push(renderDocText(docArticle.returns, 'Return Value', dsc));
+        article.topic.content.push(renderDocText(docArticle.returns, 'Return Value'));
 
     }
     if (docArticle.remarks !== undefined) {
-        article.topic.content.push(renderDocText(docArticle.remarks, 'Remarks', dsc));
+        article.topic.content.push(renderDocText(docArticle.remarks, 'Remarks'));
 
     }
     if (docArticle.example !== undefined) {

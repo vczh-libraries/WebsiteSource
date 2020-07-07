@@ -88,10 +88,13 @@ test(`<summary> with text`, () => {
         declId: 'I',
         summary: {
             paragraphs: [{
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line2' }]
             }, {
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line3' }]
             }]
         }
@@ -122,12 +125,16 @@ test(`<summary> with links`, () => {
         declId: 'I',
         summary: {
             paragraphs: [{
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
-                content: [{ kind: 'Text', text: 'Line2' }, { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] }, { kind: 'Text', text: 'Line2' }]
+                kind: 'Paragraph',
+                content: [{ kind: 'Text', text: 'Line2' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line2' }]
             }, {
-                content: [{ kind: 'Text', text: 'Line3' }, { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] }, { kind: 'Text', text: 'Line3' }]
+                kind: 'Paragraph',
+                content: [{ kind: 'Text', text: 'Line3' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line3' }]
             }, {
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line4' }]
             }]
         }
@@ -158,12 +165,16 @@ test(`<summary> with article paragraphs`, () => {
         declId: 'I',
         summary: {
             paragraphs: [{
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line2' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line2' }]
             }, {
+                kind: 'Paragraph',
                 content: [{ kind: 'Strong', content: [{ kind: 'Text', text: 'Line3' }] }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line3' }]
             }, {
+                kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line4' }]
             }]
         }
@@ -192,20 +203,20 @@ test(`DocText with text in document`, () => {
         name: 'MyClass',
         declFile: 'F',
         declId: 'I',
-        summary: { paragraphs: [{ content: [{ kind: 'Text', text: 'summary' }] }] },
-        remarks: { paragraphs: [{ content: [{ kind: 'Text', text: 'remarks' }] }] },
-        returns: { paragraphs: [{ content: [{ kind: 'Text', text: 'returns' }] }] },
+        summary: { paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'summary' }] }] },
+        remarks: { paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'remarks' }] }] },
+        returns: { paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'returns' }] }] },
         enumitem: [
-            { name: 'a', paragraphs: [{ content: [{ kind: 'Text', text: 'a' }] }] },
-            { name: 'b', paragraphs: [{ content: [{ kind: 'Text', text: 'b' }] }] }
+            { name: 'a', paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'a' }] }] },
+            { name: 'b', paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'b' }] }] }
         ],
         typeparam: [
-            { name: 'a', paragraphs: [{ content: [{ kind: 'Text', text: 'a' }] }] },
-            { name: 'b', paragraphs: [{ content: [{ kind: 'Text', text: 'b' }] }] }
+            { name: 'a', paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'a' }] }] },
+            { name: 'b', paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'b' }] }] }
         ],
         param: [
-            { name: 'a', paragraphs: [{ content: [{ kind: 'Text', text: 'a' }] }] },
-            { name: 'b', paragraphs: [{ content: [{ kind: 'Text', text: 'b' }] }] }
+            { name: 'a', paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'a' }] }] },
+            { name: 'b', paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'b' }] }] }
         ]
     };
     assert.deepStrictEqual(parseDocArticle(input), output);

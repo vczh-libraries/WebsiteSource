@@ -27,13 +27,13 @@ function parseDocSymbol(xml: Element): d.DocSymbol {
     return dsymbol;
 }
 
-function parseDocSymbols(xml: Element): d.DocSymbols {
+function parseDocSymbolsPluginObject(xml: Element): d.DocSymbolsPluginObject {
     switch (xml.name) {
         case 'symbol': {
             return { kind: 'Symbols', symbols: [parseDocSymbol(xml)] };
         }
         case 'symbols': {
-            const dsymbols: d.DocSymbols = {
+            const dsymbols: d.DocSymbolsPluginObject = {
                 kind: 'Symbols',
                 symbols: []
             };
@@ -55,6 +55,10 @@ function parseDocSymbols(xml: Element): d.DocSymbols {
     }
 }
 
+function parseDocSymbolsPlugin(xml: Element): a.Plugin {
+    return { kind: 'Plugin', plugin: parseDocSymbolsPluginObject(xml) };
+}
+
 function parseDocText(xml: Element, requireName: boolean): d.DocText {
     const dtext: d.DocText = {
         paragraphs: []
@@ -66,11 +70,11 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
         throw new Error(`Missing attribute "name" in <${xml.name}>.`);
     }
 
-    function insertp(content?: (a.Content | d.DocSymbols)[]): void {
-        dtext.paragraphs.push({ content: content === undefined ? [] : content });
+    function insertp(p?: a.Paragraph): void {
+        dtext.paragraphs.push(p ?? { kind: 'Paragraph', content: [] });
     }
 
-    function lastp(): d.DocParagraph {
+    function lastp(): a.Paragraph {
         if (dtext.paragraphs.length === 0) {
             insertp();
         }
@@ -125,7 +129,7 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
                         break;
                     }
                     case 'element': {
-                        lastp().content.push(parseDocSymbols(xmlContent));
+                        lastp().content.push(parseDocSymbolsPlugin(xmlContent));
                         break;
                     }
                     default:
@@ -137,11 +141,11 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
                     switch (e.name) {
                         case 'symbol':
                         case 'symbols':
-                            return { kind: 'Plugin', plugin: parseDocSymbols(e) };
+                            return parseDocSymbolsPlugin(e);
                         default:
                             return undefined;
                     }
-                }).content);
+                }));
             }
         }
     }

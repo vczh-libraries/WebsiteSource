@@ -10,18 +10,14 @@ export interface DocSymbol {
     declId: string;
 }
 
-export interface DocSymbols {
+export interface DocSymbolsPluginObject {
     kind: 'Symbols';
     symbols: DocSymbol[];
 }
 
-export interface DocParagraph {
-    content: (a.Content | DocSymbols)[];
-}
-
 export interface DocText {
     name?: string;
-    paragraphs: DocParagraph[];
+    paragraphs: a.Paragraph[];
 }
 
 export interface DocArticle {
