@@ -48,9 +48,11 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             }]
         });
     }
+
     if (docArticle.summary !== undefined) {
         article.topic.content.push(renderDocText(docArticle.summary, 'Summary'));
     }
+
     if (docArticle.enumitem !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
@@ -58,6 +60,7 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             content: docArticle.enumitem.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`))
         });
     }
+
     if (docArticle.typeparam !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
@@ -65,6 +68,7 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             content: docArticle.typeparam.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`))
         });
     }
+
     if (docArticle.param !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
@@ -72,14 +76,17 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             content: docArticle.param.map((dt: d.DocText) => renderDocText(dt, `${dt.name}`))
         });
     }
+
     if (docArticle.returns !== undefined) {
         article.topic.content.push(renderDocText(docArticle.returns, 'Return Value'));
 
     }
+
     if (docArticle.remarks !== undefined) {
         article.topic.content.push(renderDocText(docArticle.remarks, 'Remarks'));
 
     }
+
     if (docArticle.example !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
@@ -93,6 +100,7 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             }]
         });
     }
+
     if (docArticle.basetypes !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
@@ -110,6 +118,7 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             }]
         });
     }
+
     if (docArticle.seealsos !== undefined) {
         article.topic.content.push({
             kind: 'Topic',
