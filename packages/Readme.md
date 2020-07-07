@@ -188,13 +188,12 @@
 ## TODO
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
-- [ ] make `<symbols>` more beautiful
+- [ ] make `<symbols>` more beautiful for multiple targets hyperlink
 - [ ] do not remove spaces around hyperlinks.
 - [ ] CRLF not correctly inserted if a `<see/>` appears as the first or last component of a line.
 - [ ] add hyperlink to home page at the top logo.
 
 - Valid inside `<p/>`
-  - Implement `symbol` after document is ready
   - Implement `program`'s after document is ready
     - For now only convert to HTML but no colorize and validate
 
