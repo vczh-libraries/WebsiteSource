@@ -290,7 +290,7 @@ function parseContent(container: Element, pluginParser: PluginParser, addParagra
     return content;
 }
 
-function parseParagraph(xmlParagraph: Element, pluginParser: PluginParser): a.Paragraph {
+export function parseParagraph(xmlParagraph: Element, pluginParser: PluginParser): a.Paragraph {
     return {
         kind: 'Paragraph',
         content: parseContent(xmlParagraph, pluginParser)

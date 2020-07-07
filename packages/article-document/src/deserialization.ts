@@ -1,3 +1,4 @@
+import * as a from 'gaclib-article';
 import { Element, xml2js } from 'xml-js';
 import * as d from './interfaces';
 
@@ -26,6 +27,34 @@ function parseDocSymbol(xml: Element): d.DocSymbol {
     return dsymbol;
 }
 
+function parseDocSymbols(xml: Element): d.DocSymbols {
+    switch (xml.name) {
+        case 'symbol': {
+            return { kind: 'Symbols', symbols: [parseDocSymbol(xml)] };
+        }
+        case 'symbols': {
+            const dsymbols: d.DocSymbols = {
+                kind: 'Symbols',
+                symbols: []
+            };
+            if (xml.elements === undefined) {
+                throw new Error('<symbols> should contain at least 1 <symbol>.');
+            }
+            for (const xmlSymbol of xml.elements) {
+                if (xmlSymbol.type === 'element') {
+                    if (xmlSymbol.name !== 'symbol') {
+                        throw new Error(`Only <symbol> is allowed in <symbols>`);
+                    }
+                    dsymbols.symbols.push(parseDocSymbol(xmlSymbol));
+                }
+            }
+            return dsymbols;
+        }
+        default:
+            throw new Error('Only <symbol> or <symbols> is allowed for hyperlinks.');
+    }
+}
+
 function parseDocText(xml: Element, requireName: boolean): d.DocText {
     const dtext: d.DocText = {
         paragraphs: []
@@ -37,8 +66,8 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
         throw new Error(`Missing attribute "name" in <${xml.name}>.`);
     }
 
-    function insertp(): void {
-        dtext.paragraphs.push({ content: [] });
+    function insertp(content?: (a.Content | d.DocSymbols)[]): void {
+        dtext.paragraphs.push({ content: content === undefined ? [] : content });
     }
 
     function lastp(): d.DocParagraph {
@@ -49,46 +78,70 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
     }
 
     if (xml.elements !== undefined) {
+        let hasTextContent = false;
+        let hasArticleContent = false;
+
         for (const xmlContent of xml.elements) {
             switch (xmlContent.type) {
                 case 'text':
                 case 'cdata': {
-                    const text = `${xmlContent[xmlContent.type]}`;
-                    const lines = text.split('\n').map((s: string) => s.trim()).filter((s: string) => s !== '');
-                    for (let i = 0; i < lines.length; i++) {
-                        if (i > 0) {
-                            insertp();
-                        }
-                        lastp().content.push({ kind: 'Text', text: lines[i] });
-                    }
+                    hasTextContent = true;
                     break;
                 }
                 case 'element': {
-                    if (xmlContent.name === 'symbol') {
-                        lastp().content.push({ kind: 'Symbols', symbols: [parseDocSymbol(xmlContent)] });
-                    } else if (xmlContent.name === 'symbols') {
-                        const dsymbols: d.DocSymbols = {
-                            kind: 'Symbols',
-                            symbols: []
-                        };
-                        if (xmlContent.elements === undefined) {
-                            throw new Error('<symbols> should contain at least 1 <symbol>.');
+                    switch (xmlContent.name) {
+                        case 'symbol':
+                        case 'symbols': {
+                            hasTextContent = true;
+                            break;
                         }
-                        for (const xmlSymbol of xmlContent.elements) {
-                            if (xmlSymbol.type === 'element') {
-                                if (xmlSymbol.name !== 'symbol') {
-                                    throw new Error(`Only <symbol> is allowed in <symbols>`);
-                                }
-                                dsymbols.symbols.push(parseDocSymbol(xmlSymbol));
-                            }
+                        case 'p': {
+                            hasArticleContent = true;
+                            break;
                         }
-                        lastp().content.push(dsymbols);
-                    } else {
-                        throw new Error(`Unrecognizable element <${xmlContent.name}> in <${xml.name}>.`);
+                        default:
+                            throw new Error(`Unrecognizable element <${xmlContent.name}> in <${xml.name}>.`);
                     }
-                    break;
                 }
                 default:
+            }
+        }
+
+        if (hasTextContent && hasArticleContent) {
+            throw new Error(`A document content should either contain only multiple <p>, or contain only multiple plain text, cdata, <symbol> and <symbols>.`);
+        } else if (hasTextContent) {
+            for (const xmlContent of xml.elements) {
+                switch (xmlContent.type) {
+                    case 'text':
+                    case 'cdata': {
+                        const text = `${xmlContent[xmlContent.type]}`;
+                        const lines = text.split('\n').map((s: string) => s.trim()).filter((s: string) => s !== '');
+                        for (let i = 0; i < lines.length; i++) {
+                            if (i > 0) {
+                                insertp();
+                            }
+                            lastp().content.push({ kind: 'Text', text: lines[i] });
+                        }
+                        break;
+                    }
+                    case 'element': {
+                        lastp().content.push(parseDocSymbols(xmlContent));
+                        break;
+                    }
+                    default:
+                }
+            }
+        } else if (hasArticleContent) {
+            for (const xmlContent of xml.elements) {
+                insertp(a.parseParagraph(xmlContent, (e: Element): a.Plugin | undefined => {
+                    switch (e.name) {
+                        case 'symbol':
+                        case 'symbols':
+                            return { kind: 'Plugin', plugin: parseDocSymbols(e) };
+                        default:
+                            return undefined;
+                    }
+                }).content);
             }
         }
     }
