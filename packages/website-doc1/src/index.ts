@@ -104,7 +104,7 @@ router.register(
                     return undefined;
             }
         } catch (err) {
-            console.error(`ERROR<${model.path.join('/')}>: ${(<Error>err).message}\r\n${(<Error>err).stack}`);
+            console.error(`<${model.path.join('/')}>:\r\n${(<Error>err).stack}`);
             return undefined;
         }
     }
