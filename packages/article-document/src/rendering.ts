@@ -128,5 +128,18 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
         });
     }
 
+    a.consumePlugin(article, (p: {}): a.Content[] => {
+        const dsymbols = <d.DocSymbolsPluginObject>(p);
+        if (dsymbols.symbols.length === 0) {
+            throw new Error('DocSymbols should contain at least 1 DocSymbol.');
+        } else if (dsymbols.symbols.length === 1) {
+            return [dsc(dsymbols.symbols[0])];
+        } else {
+            return dsymbols.symbols
+                .map((ds: d.DocSymbol) => [dsc(ds)])
+                .reduce((x: a.Content[], y: a.Content[]) => x.concat([{ kind: 'Text', text: ', ' }]).concat(y));
+        }
+    });
+
     return article;
 }

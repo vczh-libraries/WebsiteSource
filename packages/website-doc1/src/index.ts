@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { parseArticle } from 'gaclib-article';
+import { Content, parseArticle } from 'gaclib-article';
 import { DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
 import { createMvcServer, hostUntilPressingEnter, registerFolder, untilPressEnter } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
@@ -21,6 +21,30 @@ writeFileSync(
     JSON.stringify(docTree.root, undefined, 4),
     { encoding: 'utf-8' }
 );
+
+function convertDocSymbolToHyperlink(ds: DocSymbol): Content {
+    if (ds.docId !== undefined) {
+        const dsTarget = docTree.ids[ds.docId];
+        if (dsTarget !== undefined && dsTarget.path !== undefined) {
+            return {
+                kind: 'PageLink',
+                href: `${pathPrefix}/${dsTarget.path.join('/')}.html`,
+                content: [{
+                    kind: 'Text',
+                    text: ds.name
+                }]
+            };
+        }
+    }
+    return {
+        kind: 'PageLink',
+        href: `/CodeIndexDemo/Gaclib/SourceFiles/${ds.declFile}.html#${ds.declId}`,
+        content: [{
+            kind: 'Text',
+            text: ds.name
+        }]
+    };
+}
 
 router.register(
     [],
@@ -67,29 +91,7 @@ router.register(
                     res.documentArticle = renderDocArticle(
                         parseDocArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' })),
                         dnode.name,
-                        (ds: DocSymbol) => {
-                            if (ds.docId !== undefined) {
-                                const dsTarget = docTree.ids[ds.docId];
-                                if (dsTarget !== undefined && dsTarget.path !== undefined) {
-                                    return {
-                                        kind: 'PageLink',
-                                        href: `${pathPrefix}/${dsTarget.path.join('/')}.html`,
-                                        content: [{
-                                            kind: 'Text',
-                                            text: ds.name
-                                        }]
-                                    };
-                                }
-                            }
-                            return {
-                                kind: 'PageLink',
-                                href: `/CodeIndexDemo/Gaclib/SourceFiles/${ds.declFile}.html#${ds.declId}`,
-                                content: [{
-                                    kind: 'Text',
-                                    text: ds.name
-                                }]
-                            };
-                        });
+                        convertDocSymbolToHyperlink);
                     const generatedHtml = generateHtml(
                         info,
                         views,
