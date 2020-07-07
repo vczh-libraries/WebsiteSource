@@ -2,6 +2,8 @@ import { EOL } from 'os';
 import { Element, xml2js } from 'xml-js';
 import * as a from './interfaces';
 
+type PluginParser = (e: Element) => a.Plugin | undefined;
+
 function parseTextContent(container: Element, allowEmpty: boolean): string {
     if (container.elements !== undefined) {
         if (container.elements.length === 1) {
@@ -20,7 +22,7 @@ function parseTextContent(container: Element, allowEmpty: boolean): string {
     }
 }
 
-function parseListItem(container: Element): a.ContentListItem | a.ParagraphListItem {
+function parseListItem(container: Element, pluginParser: PluginParser): a.ContentListItem | a.ParagraphListItem {
     if (container.attributes !== undefined && container.attributes.length !== 0) {
         throw new Error(`No attribute is allowed in <${container.name}>.`);
     }
@@ -36,7 +38,7 @@ function parseListItem(container: Element): a.ContentListItem | a.ParagraphListI
         };
         for (const xmlChild of container.elements) {
             if (xmlChild.type === 'element' && xmlChild.name === 'p') {
-                item.paragraphs.push(parseParagraph(xmlChild));
+                item.paragraphs.push(parseParagraph(xmlChild, pluginParser));
             } else {
                 throw new Error(`<p> should not mix with other content in <${container.name}>.`);
             }
@@ -45,12 +47,12 @@ function parseListItem(container: Element): a.ContentListItem | a.ParagraphListI
     } else {
         return {
             kind: 'ContentListItem',
-            content: parseContent(container)
+            content: parseContent(container, pluginParser)
         };
     }
 }
 
-function parseList(container: Element, ordered: boolean): a.List {
+function parseList(container: Element, ordered: boolean, pluginParser: PluginParser): a.List {
     const l: a.List = {
         kind: 'List',
         ordered,
@@ -67,7 +69,7 @@ function parseList(container: Element, ordered: boolean): a.List {
             if (xmlChild.type === 'element') {
                 switch (xmlChild.name) {
                     case 'li': {
-                        l.items.push(parseListItem(xmlChild));
+                        l.items.push(parseListItem(xmlChild, pluginParser));
                         continue CHILD_LOOP;
                     }
                     default:
@@ -165,7 +167,7 @@ function parseProgram(container: Element): a.Program {
     return p;
 }
 
-function parseContent(container: Element, addParagraphToErrorMessage: boolean = false): a.Content[] {
+function parseContent(container: Element, pluginParser: PluginParser, addParagraphToErrorMessage: boolean = false): a.Content[] {
     const content: a.Content[] = [];
     if (container.elements !== undefined) {
         CHILD_LOOP:
@@ -191,7 +193,7 @@ function parseContent(container: Element, addParagraphToErrorMessage: boolean = 
                                     content.push({
                                         kind: 'PageLink',
                                         href: xmlChild.attributes.href,
-                                        content: parseContent(xmlChild)
+                                        content: parseContent(xmlChild, pluginParser)
                                     });
                                     continue CHILD_LOOP;
                                 }
@@ -239,7 +241,7 @@ function parseContent(container: Element, addParagraphToErrorMessage: boolean = 
                             continue CHILD_LOOP;
                         }
                         case 'ul': case 'ol': {
-                            content.push(parseList(xmlChild, xmlChild.name === 'ol'));
+                            content.push(parseList(xmlChild, xmlChild.name === 'ol', pluginParser));
                             continue CHILD_LOOP;
                         }
                         case 'b': {
@@ -248,7 +250,7 @@ function parseContent(container: Element, addParagraphToErrorMessage: boolean = 
                             }
                             content.push({
                                 kind: 'Strong',
-                                content: parseContent(xmlChild)
+                                content: parseContent(xmlChild, pluginParser)
                             });
                             continue CHILD_LOOP;
                         }
@@ -258,7 +260,7 @@ function parseContent(container: Element, addParagraphToErrorMessage: boolean = 
                             }
                             content.push({
                                 kind: 'Emphasise',
-                                content: parseContent(xmlChild)
+                                content: parseContent(xmlChild, pluginParser)
                             });
                             continue CHILD_LOOP;
                         }
@@ -270,8 +272,15 @@ function parseContent(container: Element, addParagraphToErrorMessage: boolean = 
                             if (addParagraphToErrorMessage) {
                                 throw new Error(`<p> should not mix with other content in <${container.name}>.`);
                             }
-                        default:
-                            throw new Error(`Only text, <a>, <symbol>, <name>, <img>, <ul>, <ol>, <b>, <em>, <program>${addParagraphToErrorMessage ? ', <p>' : ''} are allowed in <${container.name}> instead of <${xmlChild.name}>.`);
+                        default: {
+                            const plugin = pluginParser(xmlChild);
+                            if (plugin === undefined) {
+                                throw new Error(`Only text, <a>, <symbol>, <name>, <img>, <ul>, <ol>, <b>, <em>, <program>${addParagraphToErrorMessage ? ', <p>' : ''} are allowed in <${container.name}> instead of <${xmlChild.name}>.`);
+                            } else {
+                                content.push(plugin);
+                                continue CHILD_LOOP;
+                            }
+                        }
                     }
                 default:
                     throw new Error(`Only text and elements are allowed in <${container.name}> instead of ${xmlChild.type}.`);
@@ -281,14 +290,14 @@ function parseContent(container: Element, addParagraphToErrorMessage: boolean = 
     return content;
 }
 
-function parseParagraph(xmlParagraph: Element): a.Paragraph {
+function parseParagraph(xmlParagraph: Element, pluginParser: PluginParser): a.Paragraph {
     return {
         kind: 'Paragraph',
-        content: parseContent(xmlParagraph)
+        content: parseContent(xmlParagraph, pluginParser)
     };
 }
 
-function parseTopic(xmlTopic: Element): a.Topic {
+function parseTopic(xmlTopic: Element, pluginParser: PluginParser): a.Topic {
     let anchor: string | undefined;
     let title: string | undefined;
     const content: (a.Paragraph | a.Topic)[] = [];
@@ -321,10 +330,10 @@ function parseTopic(xmlTopic: Element): a.Topic {
                         continue CHILD_LOOP;
                     }
                     case 'p':
-                        content.push(parseParagraph(xmlChild));
+                        content.push(parseParagraph(xmlChild, pluginParser));
                         continue CHILD_LOOP;
                     case 'topic':
-                        content.push(parseTopic(xmlChild));
+                        content.push(parseTopic(xmlChild, pluginParser));
                         continue CHILD_LOOP;
                     default:
                 }
@@ -348,7 +357,9 @@ function parseTopic(xmlTopic: Element): a.Topic {
     return topic;
 }
 
-export function parseArticle(xml: string): a.Article {
+export function parseArticle(xml: string, pluginParser?: PluginParser): a.Article {
+    const pp = pluginParser === undefined ? (e: Element): a.Plugin | undefined => { return undefined; } : pluginParser;
+
     const element = <Element>xml2js(
         xml,
         {
@@ -396,7 +407,7 @@ export function parseArticle(xml: string): a.Article {
                     return {
                         index: articleIndex,
                         numberBeforeTitle: articleNumberBeforeTitle,
-                        topic: parseTopic(xmlTopic)
+                        topic: parseTopic(xmlTopic, pp)
                     };
                 }
             }

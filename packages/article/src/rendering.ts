@@ -1,27 +1,29 @@
 import { html, TemplateResult } from 'lit-html';
 import * as a from './interfaces';
 
-function renderListContent(list: a.List): TemplateResult {
+type PluginConverter = (plugin: {}) => a.Content[];
+
+function renderListContent(list: a.List, pluginConverter: PluginConverter): TemplateResult {
     return html`${
         list
             .items
             .map((value: a.ContentListItem | a.ParagraphListItem) => {
                 if (value.kind === 'ContentListItem') {
-                    return html`<li>${renderContent(value.content)}</li>`;
+                    return html`<li>${renderContent(value.content, pluginConverter)}</li>`;
                 } else {
-                    return html`<li>${value.paragraphs.map(renderParagraph)}</li>`;
+                    return html`<li>${value.paragraphs.map((p: a.Paragraph) => renderParagraph(p, pluginConverter))}</li>`;
                 }
             })
         }`;
 }
 
-function renderContent(content: a.Content[]): TemplateResult {
+function renderContent(content: a.Content[], pluginConverter: PluginConverter): TemplateResult {
     return html`${
         content
             .map((value: a.Content) => {
                 switch (value.kind) {
                     case 'PageLink':
-                        return html`<a href="${value.href}" target="${value.href.startsWith('.') ? '_self' : '_blank'}">${renderContent(value.content)}</a>`;
+                        return html`<a href="${value.href}" target="${value.href.startsWith('.') ? '_self' : '_blank'}">${renderContent(value.content, pluginConverter)}</a>`;
                     case 'Name':
                         return html`<span class="name">${value.text}</span>`;
                     case 'Image':
@@ -32,19 +34,21 @@ function renderContent(content: a.Content[]): TemplateResult {
                         }
                     case 'List':
                         if (value.ordered) {
-                            return html`<ol>${renderListContent(value)}</ol>`;
+                            return html`<ol>${renderListContent(value, pluginConverter)}</ol>`;
                         } else {
-                            return html`<ul>${renderListContent(value)}</ul>`;
+                            return html`<ul>${renderListContent(value, pluginConverter)}</ul>`;
                         }
                     case 'Strong':
-                        return html`<strong>${renderContent(value.content)}</strong>`;
+                        return html`<strong>${renderContent(value.content, pluginConverter)}</strong>`;
                     case 'Emphasise':
-                        return html`<em>${renderContent(value.content)}<em>`;
+                        return html`<em>${renderContent(value.content, pluginConverter)}<em>`;
                     case 'Program':
                         if (value.output !== undefined) {
                             throw new Error('Program with output is not supported yet.');
                         }
                         return html`<pre class="code"><code data-project="${value.project === undefined ? '' : value.project}" data-language="${value.language === undefined ? '' : value.language}">${value.code}</code></pre>`;
+                    case 'Plugin':
+                        return renderContent(pluginConverter(value.plugin), pluginConverter);
                     default:
                         return value.text;
                 }
@@ -52,8 +56,8 @@ function renderContent(content: a.Content[]): TemplateResult {
         }`;
 }
 
-function renderParagraph(paragraph: a.Paragraph): TemplateResult {
-    return html`<p>${renderContent(paragraph.content)}</p>`;
+function renderParagraph(paragraph: a.Paragraph, pluginConverter: PluginConverter): TemplateResult {
+    return html`<p>${renderContent(paragraph.content, pluginConverter)}</p>`;
 }
 
 function renderHeader(level: number, content: TemplateResult): TemplateResult {
@@ -76,7 +80,7 @@ function renderIndex(topic: a.Topic): TemplateResult | string {
     }
 }
 
-function renderTopic(topic: a.Topic, level: number, prefix: string | undefined, buildIndex: boolean): TemplateResult {
+function renderTopic(topic: a.Topic, level: number, prefix: string | undefined, buildIndex: boolean, pluginConverter: PluginConverter): TemplateResult {
     let topicIndex = 0;
     return html`
 ${
@@ -97,9 +101,9 @@ ${
                     if (newPrefix !== undefined) {
                         newPrefix += `${++topicIndex}.`;
                     }
-                    return renderTopic(value, level + 1, newPrefix, false);
+                    return renderTopic(value, level + 1, newPrefix, false, pluginConverter);
                 } else {
-                    return renderParagraph(value);
+                    return renderParagraph(value, pluginConverter);
                 }
             })
         }
@@ -114,6 +118,7 @@ function getAnchorOfTopic(topic: a.Topic): string {
     }
 }
 
-export function renderArticle(article: a.Article): TemplateResult {
-    return html`<div class="article">${renderTopic(article.topic, 1, (article.numberBeforeTitle ? '' : undefined), article.index)}<div>`;
+export function renderArticle(article: a.Article, pluginConverter?: PluginConverter): TemplateResult {
+    const pc = pluginConverter === undefined ? (plugin: {}): a.Content[] => { throw new Error('A plugin converter is not provided.'); } : pluginConverter;
+    return html`<div class="article">${renderTopic(article.topic, 1, (article.numberBeforeTitle ? '' : undefined), article.index, pc)}<div>`;
 }

@@ -1,6 +1,7 @@
 import * as assert from 'assert';
 import { EOL } from 'os';
-import { Article, parseArticle } from '../src';
+import { Element } from 'xml-js';
+import { Article, parseArticle, Plugin } from '../src';
 
 test(`Empty Article`, () => {
     const input = `
@@ -381,4 +382,76 @@ test(`List`, () => {
         }
     };
     assert.deepStrictEqual(parseArticle(input), output);
+});
+
+test(`Plugin`, () => {
+    const input = `
+<article>
+    <topic>
+        <title>Article</title>
+        <p>This is a <b><plugin value="1"/></b>.</p>
+        <p>This is another <b><plugin value="2"/></b>.</p>
+    </topic>
+</article>
+`;
+    const output: Article = {
+        index: false,
+        numberBeforeTitle: false,
+        topic: {
+            kind: 'Topic',
+            title: 'Article',
+            content: [{
+                kind: 'Paragraph',
+                content: [
+                    {
+                        kind: 'Text',
+                        text: 'This is a '
+                    },
+                    {
+                        kind: 'Strong',
+                        content: [{
+                            kind: 'Plugin',
+                            plugin: 1
+                        }]
+                    },
+                    {
+                        kind: 'Text',
+                        text: '.'
+                    }
+                ]
+            }, {
+                kind: 'Paragraph',
+                content: [
+                    {
+                        kind: 'Text',
+                        text: 'This is another '
+                    },
+                    {
+                        kind: 'Strong',
+                        content: [{
+                            kind: 'Plugin',
+                            plugin: 2
+                        }]
+                    },
+                    {
+                        kind: 'Text',
+                        text: '.'
+                    }
+                ]
+            }]
+        }
+    };
+
+    function pluginParser(e: Element): Plugin | undefined {
+        if (e.name === 'plugin') {
+            return {
+                kind: 'Plugin',
+                plugin: +<string>(e.attributes?.value)
+            };
+        } else {
+            return undefined;
+        }
+    }
+
+    assert.deepStrictEqual(parseArticle(input, pluginParser), output);
 });

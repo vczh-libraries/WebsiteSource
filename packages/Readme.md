@@ -189,9 +189,10 @@
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
 - [ ] enable article XML inside `DocText`
-  - [ ] extend `Article` to support plugin objects
-  - [ ] extend `parseArticle` to process plugin objects
-  - [ ] extend `renderArticle` to process plugin objects
+  - [x] extend `Article` to support plugin objects
+  - [x] extend `parseArticle` to process plugin objects
+    - [x] test plugin
+  - [x] extend `renderArticle` to process plugin objects
   - [ ] plugin `<symbol>` and `<symbols>`
 - [ ] make `<symbols>` more beautiful
 - [ ] do not remove spaces around hyperlinks.

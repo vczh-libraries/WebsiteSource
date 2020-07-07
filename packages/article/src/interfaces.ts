@@ -54,6 +54,11 @@ export interface Program {
     output?: string[];
 }
 
+export interface Plugin {
+    kind: 'Plugin';
+    plugin: {};
+}
+
 export type Content =
     | Text
     | PageLink
@@ -63,6 +68,7 @@ export type Content =
     | Strong
     | Emphasise
     | Program
+    | Plugin
     ;
 
 export interface Paragraph {
