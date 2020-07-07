@@ -37,70 +37,75 @@ router.register(
             directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, pathPrefix, model.path, dindex)
         };
 
-        switch (dnode.kind) {
-            case 'article': {
-                res.article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }));
-                const generatedHtml = generateHtml(
-                    info,
-                    views,
-                    'Gaclib-ArticleView',
-                    model,
-                    '',
-                    res
-                );
-                return ['text/html', generatedHtml];
-            }
-            case 'namespace': {
-                res.namespaceName = dnode.name;
-                const generatedHtml = generateHtml(
-                    info,
-                    views,
-                    'Gaclib-NamespaceView',
-                    model,
-                    '',
-                    res
-                );
-                return ['text/html', generatedHtml];
-            }
-            case 'document': {
-                res.documentArticle = renderDocArticle(
-                    parseDocArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' })),
-                    dnode.name,
-                    (ds: DocSymbol) => {
-                        if (ds.docId !== undefined) {
-                            const dsTarget = docTree.ids[ds.docId];
-                            if (dsTarget !== undefined && dsTarget.path !== undefined) {
-                                return {
-                                    kind: 'PageLink',
-                                    href: `${pathPrefix}/${dsTarget.path.join('/')}.html`,
-                                    content: [{
-                                        kind: 'Text',
-                                        text: ds.name
-                                    }]
-                                };
+        try {
+            switch (dnode.kind) {
+                case 'article': {
+                    res.article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }));
+                    const generatedHtml = generateHtml(
+                        info,
+                        views,
+                        'Gaclib-ArticleView',
+                        model,
+                        '',
+                        res
+                    );
+                    return ['text/html', generatedHtml];
+                }
+                case 'namespace': {
+                    res.namespaceName = dnode.name;
+                    const generatedHtml = generateHtml(
+                        info,
+                        views,
+                        'Gaclib-NamespaceView',
+                        model,
+                        '',
+                        res
+                    );
+                    return ['text/html', generatedHtml];
+                }
+                case 'document': {
+                    res.documentArticle = renderDocArticle(
+                        parseDocArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' })),
+                        dnode.name,
+                        (ds: DocSymbol) => {
+                            if (ds.docId !== undefined) {
+                                const dsTarget = docTree.ids[ds.docId];
+                                if (dsTarget !== undefined && dsTarget.path !== undefined) {
+                                    return {
+                                        kind: 'PageLink',
+                                        href: `${pathPrefix}/${dsTarget.path.join('/')}.html`,
+                                        content: [{
+                                            kind: 'Text',
+                                            text: ds.name
+                                        }]
+                                    };
+                                }
                             }
-                        }
-                        return {
-                            kind: 'PageLink',
-                            href: `/CodeIndexDemo/Gaclib/SourceFiles/${ds.declFile}.html#${ds.declId}`,
-                            content: [{
-                                kind: 'Text',
-                                text: ds.name
-                            }]
-                        };
-                    });
-                const generatedHtml = generateHtml(
-                    info,
-                    views,
-                    'Gaclib-DocumentView',
-                    model,
-                    '',
-                    res
-                );
-                return ['text/html', generatedHtml];
+                            return {
+                                kind: 'PageLink',
+                                href: `/CodeIndexDemo/Gaclib/SourceFiles/${ds.declFile}.html#${ds.declId}`,
+                                content: [{
+                                    kind: 'Text',
+                                    text: ds.name
+                                }]
+                            };
+                        });
+                    const generatedHtml = generateHtml(
+                        info,
+                        views,
+                        'Gaclib-DocumentView',
+                        model,
+                        '',
+                        res
+                    );
+                    return ['text/html', generatedHtml];
+                }
+                default:
+                    return undefined;
             }
-            default:
-                return undefined;
+        } catch (err) {
+            console.error(`ERROR<${model.path.join('/')}>: ${(<Error>err).message}\r\n${(<Error>err).stack}`);
+            return undefined;
         }
     }
 );
