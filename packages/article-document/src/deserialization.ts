@@ -115,20 +115,34 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
             throw new Error(`A document content should either contain only multiple <p>, or contain only multiple plain text, cdata, <symbol> and <symbols>.`);
         } else if (hasTextContent) {
             for (const xmlContent of xml.elements) {
+                let needInsertParagraph = false;
                 switch (xmlContent.type) {
                     case 'text':
                     case 'cdata': {
                         const text = `${xmlContent[xmlContent.type]}`;
-                        const lines = text.split('\n').filter((s: string) => s.trim() !== '');
+                        const lines = text.split('\n');
+
                         for (let i = 0; i < lines.length; i++) {
-                            if (i > 0) {
-                                insertp();
+                            const line = lines[i];
+                            if (i > 0 && dtext.paragraphs.length > 0 && lastp().content.length > 0) {
+                                needInsertParagraph = true;
                             }
-                            lastp().content.push({ kind: 'Text', text: lines[i] });
+
+                            if (line.trim() !== '') {
+                                if (needInsertParagraph) {
+                                    insertp();
+                                    needInsertParagraph = false;
+                                }
+                                lastp().content.push({ kind: 'Text', text: line });
+                            }
                         }
                         break;
                     }
                     case 'element': {
+                        if (needInsertParagraph) {
+                            insertp();
+                            needInsertParagraph = false;
+                        }
                         lastp().content.push(parseDocSymbolsPlugin(xmlContent));
                         break;
                     }

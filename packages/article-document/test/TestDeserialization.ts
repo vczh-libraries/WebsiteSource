@@ -185,6 +185,47 @@ test(`<summary> with links`, () => {
     assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
+test(`<summary> with links surrounded by CRLF`, () => {
+    const input = `
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+  <summary>
+    Line1
+    <symbol name="a" declFile="F" declId="I"/> Line2
+    Line3
+    Line4 <symbol name="b" declFile="F" declId="I"/>
+    Line5
+  </summary>
+</Document>
+`;
+    const output: DocArticle = {
+        symbolId: '::MyClass',
+        accessor: '',
+        category: 'Class',
+        name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
+        summary: {
+            paragraphs: [{
+                kind: 'Paragraph',
+                content: [{ kind: 'Text', text: 'Line1' }]
+            }, {
+                kind: 'Paragraph',
+                content: [{ kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line2' }]
+            }, {
+                kind: 'Paragraph',
+                content: [{ kind: 'Text', text: 'Line3' }]
+            }, {
+                kind: 'Paragraph',
+                content: [{ kind: 'Text', text: 'Line4 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }] } }]
+            }, {
+                kind: 'Paragraph',
+                content: [{ kind: 'Text', text: 'Line5' }]
+            }]
+        }
+    };
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
+});
+
 test(`<summary> with article paragraphs`, () => {
     const input = `
 <Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
