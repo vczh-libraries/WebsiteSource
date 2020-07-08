@@ -152,7 +152,9 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
     return dtext;
 }
 
-export function parseDocArticle(xml: string): d.DocArticle {
+type ExampleRetriver = (index: number) => d.DocExample;
+
+export function parseDocArticle(xml: string, exampleRetriver: ExampleRetriver): d.DocArticle {
     const element = <Element>xml2js(
         xml,
         {
@@ -237,10 +239,14 @@ export function parseDocArticle(xml: string): d.DocArticle {
                         break;
                     }
                     case 'example': {
-                        if (subElement.elements === undefined || subElement.elements.length !== 1 || subElement.elements[0].type !== 'cdata') {
-                            throw new Error(`Only CData is allowed in <example>.`);
+                        if (subElement.attributes !== undefined && subElement.attributes.index !== undefined) {
+                            darticle.example = exampleRetriver(<number>subElement.attributes.index);
+                        } else {
+                            if (subElement.elements === undefined || subElement.elements.length !== 1 || subElement.elements[0].type !== 'cdata') {
+                                throw new Error(`Only CData is allowed in <example>.`);
+                            }
+                            darticle.example = { code: `${subElement.elements[0].cdata}` };
                         }
-                        darticle.example = `${subElement.elements[0].cdata}`;
                         break;
                     }
                     case 'basetypes':

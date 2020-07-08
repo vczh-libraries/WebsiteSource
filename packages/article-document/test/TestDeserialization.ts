@@ -1,5 +1,12 @@
 import * as assert from 'assert';
-import { DocArticle, parseDocArticle } from '../src';
+import { DocArticle, DocExample, parseDocArticle } from '../src';
+
+function exampleRetriver(index: number): DocExample {
+    return {
+        code: `code<${index}>`,
+        output: `output<${index}>`
+    };
+}
 
 test(`Empty Document`, () => {
     const input = `
@@ -14,13 +21,30 @@ test(`Empty Document`, () => {
         declFile: 'F',
         declId: 'I'
     };
-    assert.deepStrictEqual(parseDocArticle(input), output);
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
-test(`<signature> and <example>`, () => {
+test(`<signature>`, () => {
     const input = `
 <Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <signature><![CDATA[this is a signature]]></signature>
+</Document>
+`;
+    const output: DocArticle = {
+        symbolId: '::MyClass',
+        accessor: '',
+        category: 'Class',
+        name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
+        signature: 'this is a signature'
+    };
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
+});
+
+test(`<example> 1`, () => {
+    const input = `
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <example><![CDATA[this is an example]]></example>
 </Document>
 `;
@@ -31,10 +55,29 @@ test(`<signature> and <example>`, () => {
         name: 'MyClass',
         declFile: 'F',
         declId: 'I',
-        signature: 'this is a signature',
-        example: 'this is an example'
+        example: { code: 'this is an example' }
     };
-    assert.deepStrictEqual(parseDocArticle(input), output);
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
+});
+
+test(`<example> 2`, () => {
+    const input = `
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+  <signature><![CDATA[this is a signature]]></signature>
+  <example index="5"/>
+</Document>
+`;
+    const output: DocArticle = {
+        symbolId: '::MyClass',
+        accessor: '',
+        category: 'Class',
+        name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
+        signature: 'this is a signature',
+        example: { code: 'code<5>', output: 'output<5>' }
+    };
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
 test(`<basetypes> and <seealsos>`, () => {
@@ -66,7 +109,7 @@ test(`<basetypes> and <seealsos>`, () => {
             { name: 'w', declFile: 'E', declId: 'F' }
         ]
     };
-    assert.deepStrictEqual(parseDocArticle(input), output);
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
 test(`<summary> with text`, () => {
@@ -99,7 +142,7 @@ test(`<summary> with text`, () => {
             }]
         }
     };
-    assert.deepStrictEqual(parseDocArticle(input), output);
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
 test(`<summary> with links`, () => {
@@ -139,7 +182,7 @@ test(`<summary> with links`, () => {
             }]
         }
     };
-    assert.deepStrictEqual(parseDocArticle(input), output);
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
 test(`<summary> with article paragraphs`, () => {
@@ -179,7 +222,7 @@ test(`<summary> with article paragraphs`, () => {
             }]
         }
     };
-    assert.deepStrictEqual(parseDocArticle(input), output);
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
 test(`DocText with text in document`, () => {
@@ -219,5 +262,5 @@ test(`DocText with text in document`, () => {
             { name: 'b', paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'b' }] }] }
         ]
     };
-    assert.deepStrictEqual(parseDocArticle(input), output);
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });

@@ -93,10 +93,18 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             title: 'Example',
             content: [{
                 kind: 'Paragraph',
-                content: [{
-                    kind: 'Program',
-                    code: docArticle.example
-                }]
+                content: [
+                    docArticle.example.output === undefined
+                        ? {
+                            kind: 'Program',
+                            code: docArticle.example.code
+                        }
+                        : {
+                            kind: 'Program',
+                            code: docArticle.example.code,
+                            output: docArticle.example.output.split('\n')
+                        }
+                ]
             }]
         });
     }

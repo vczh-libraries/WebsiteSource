@@ -20,6 +20,11 @@ export interface DocText {
     paragraphs: a.Paragraph[];
 }
 
+export interface DocExample {
+    code: string;
+    output?: string;
+}
+
 export interface DocArticle {
     symbolId: string;
     accessor: typeof acceptableAccessors[number];
@@ -35,7 +40,7 @@ export interface DocArticle {
     param?: DocText[];
     returns?: DocText;
     remarks?: DocText;
-    example?: string;
+    example?: DocExample;
     basetypes?: DocSymbol[];
     seealsos?: DocSymbol[];
 }
