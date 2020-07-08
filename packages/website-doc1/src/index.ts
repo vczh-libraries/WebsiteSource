@@ -6,9 +6,10 @@ import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { Element, xml2js } from 'xml-js';
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
+import { convertDocSymbolToHyperlink } from './xmlDocSymbol';
+import { exampleRetriver } from './xmlExample';
 
 const pathPrefix = `/doc/current`;
 
@@ -22,60 +23,6 @@ writeFileSync(
     JSON.stringify(docTree.root, undefined, 4),
     { encoding: 'utf-8' }
 );
-
-function convertDocSymbolToHyperlink(ds: DocSymbol): Content {
-    if (ds.docId !== undefined) {
-        const dsTarget = docTree.ids[ds.docId];
-        if (dsTarget !== undefined && dsTarget.path !== undefined) {
-            return {
-                kind: 'PageLink',
-                href: `${pathPrefix}/${dsTarget.path.join('/')}.html`,
-                content: [{
-                    kind: 'Text',
-                    text: ds.name
-                }]
-            };
-        }
-    }
-    return {
-        kind: 'PageLink',
-        href: `/CodeIndexDemo/Gaclib/SourceFiles/${ds.declFile}.html#${ds.declId}`,
-        content: [{
-            kind: 'Text',
-            text: ds.name
-        }]
-    };
-}
-
-function exampleRetriver(documentFile: string, index: number): DocExample {
-    const fragments = documentFile.split('\\');
-    const category = fragments[fragments.length - 2];
-    const fileName = documentFile.slice(0, -4);
-    console.log(JSON.stringify({ path: documentFile, fragments }, undefined, 4));
-
-    const codeXml = <Element>xml2js(
-        readFileSync(`${fileName}.ein.${index}.xml`, { encoding: 'utf-8' }),
-        {
-            compact: false,
-            ignoreDeclaration: true,
-            ignoreInstruction: true,
-            ignoreComment: true,
-            ignoreDoctype: true
-        }
-    );
-    const code = <string>((codeXml.elements ?? [])[0].elements ?? [])[0].cdata;
-    const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
-
-    const templateCodeMapping: { [key: string]: string } = {
-        VLPP: path.join(__dirname, '../../../../Document/Tools/Examples/Vlpp/Main.cpp')
-    };
-    const templateCode = readFileSync(templateCodeMapping[category], { encoding: 'utf-8' });
-
-    return {
-        code: templateCode.replace(`#include "Example.h"`, code),
-        output
-    };
-}
 
 router.register(
     [],
@@ -124,7 +71,7 @@ router.register(
                             readFileSync(<string>dnode.file, { encoding: 'utf-8' }),
                             (index: number): DocExample => exampleRetriver(<string>dnode.file, index)),
                         dnode.name,
-                        convertDocSymbolToHyperlink);
+                        (ds: DocSymbol): Content => convertDocSymbolToHyperlink(ds, docTree, pathPrefix));
                     const generatedHtml = generateHtml(
                         info,
                         views,
