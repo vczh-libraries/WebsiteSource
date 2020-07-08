@@ -137,7 +137,7 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
             }
         } else if (hasArticleContent) {
             for (const xmlContent of xml.elements) {
-                insertp(a.parseParagraph(xmlContent, (e: Element): a.Plugin | undefined => {
+                insertp(a.parseParagraph(xmlContent, (e: Element) => {
                     switch (e.name) {
                         case 'symbol':
                         case 'symbols':

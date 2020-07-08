@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { Content, parseArticle } from 'gaclib-article';
-import { DocExample, DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
+import { parseArticle } from 'gaclib-article';
+import { DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
 import { createMvcServer, hostUntilPressingEnter, registerFolder, untilPressEnter } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
@@ -27,7 +27,7 @@ writeFileSync(
 router.register(
     [],
     route`/${{ path: [''] }}.html`,
-    (method: {}, model: { path: string[] }): [string, string] | undefined => {
+    (method: {}, model: { path: string[] }) => {
         const dindex = stepIndexByPath(docTree.index, model.path);
         if (dindex === undefined || dindex.node === undefined) {
             return undefined;
@@ -69,9 +69,9 @@ router.register(
                     res.documentArticle = renderDocArticle(
                         parseDocArticle(
                             readFileSync(<string>dnode.file, { encoding: 'utf-8' }),
-                            (index: number): DocExample => exampleRetriver(<string>dnode.file, index)),
+                            (index: number) => exampleRetriver(<string>dnode.file, index)),
                         dnode.name,
-                        (ds: DocSymbol): Content => convertDocSymbolToHyperlink(ds, docTree, pathPrefix));
+                        (ds: DocSymbol) => convertDocSymbolToHyperlink(ds, docTree, pathPrefix));
                     const generatedHtml = generateHtml(
                         info,
                         views,

@@ -35,7 +35,23 @@ export function exampleRetriver(documentFile: string, index: number): DocExample
             ignoreDoctype: true
         }
     );
-    const code = trimEmptyLines((codeXml.elements ?? [])[0]);
+    let code = trimEmptyLines((codeXml.elements ?? [])[0]);
+
+    let codeLines = code.split('\n');
+    let indent = -1;
+    for (const line of codeLines) {
+        if (line.trim() !== '') {
+            const lineIndent = line.length - line.trimLeft().length;
+            if (indent === -1 || indent > lineIndent) {
+                indent = lineIndent;
+            }
+        }
+    }
+    if (indent !== -1) {
+        codeLines = codeLines.map((line: string) => line.substr(indent));
+    }
+    code = codeLines.join('\n');
+
     const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
 
     return {
