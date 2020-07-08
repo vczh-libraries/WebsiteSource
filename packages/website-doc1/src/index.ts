@@ -66,8 +66,13 @@ function exampleRetriver(documentFile: string, index: number): DocExample {
     const code = <string>((codeXml.elements ?? [])[0].elements ?? [])[0].cdata;
     const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
 
+    const templateCodeMapping: { [key: string]: string } = {
+        VLPP: path.join(__dirname, '../../../../Document/Tools/Examples/Vlpp/Main.cpp')
+    };
+    const templateCode = readFileSync(templateCodeMapping[category], { encoding: 'utf-8' });
+
     return {
-        code: `// ${category}\n${code}`,
+        code: templateCode.replace(`#include "Example.h"`, code),
         output
     };
 }
