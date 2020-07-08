@@ -48,9 +48,9 @@ function convertDocSymbolToHyperlink(ds: DocSymbol): Content {
 }
 
 function exampleRetriver(documentFile: string, index: number): DocExample {
-    const fragments = documentFile.split('/');
+    const fragments = documentFile.split('\\');
     const category = fragments[fragments.length - 2];
-    const fileName = fragments[fragments.length - 1].slice(0, -4);
+    const fileName = documentFile.slice(0, -4);
     console.log(JSON.stringify({ path: documentFile, fragments }, undefined, 4));
 
     const codeXml = <Element>xml2js(
