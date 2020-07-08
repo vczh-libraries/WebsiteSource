@@ -114,8 +114,8 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
         if (hasTextContent && hasArticleContent) {
             throw new Error(`A document content should either contain only multiple <p>, or contain only multiple plain text, cdata, <symbol> and <symbols>.`);
         } else if (hasTextContent) {
+            let needInsertParagraph = false;
             for (const xmlContent of xml.elements) {
-                let needInsertParagraph = false;
                 switch (xmlContent.type) {
                     case 'text':
                     case 'cdata': {
@@ -124,7 +124,7 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
 
                         for (let i = 0; i < lines.length; i++) {
                             const line = lines[i];
-                            if (i > 0 && dtext.paragraphs.length > 0 && lastp().content.length > 0) {
+                            if (i > 0) {
                                 needInsertParagraph = true;
                             }
 

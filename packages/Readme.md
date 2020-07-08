@@ -189,7 +189,6 @@
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
 - [ ] make `<symbols>` more beautiful for multiple targets hyperlink
-- [ ] CRLF not correctly inserted if a `<see/>` appears as the first or last component of a line.
 
 - Valid inside `<p/>`
   - Implement `program`'s after document is ready
