@@ -36,7 +36,7 @@
                     There are 2 ways to run Workflow script:
                     <ul>
                         <li>Generate C++ code from Workflow script, and add them to your project. This is recommended especially for running GacUI applications.</li>
-                        <li>Load compiled binaries from Workflow script and run on-the-fly.</li>
+                        <li>Load compiled binaries from Workflow script and run classes at runtime.</li>
                     </ul>
                 </p>
             </topic>
@@ -64,7 +64,7 @@
             </topic>
         </topic>
         <topic>
-            <title>Dependences</title>
+            <title>Dependencies</title>
             <p>
                 <ul>
                     <li><b>Vlpp.h</b> and <b>Vlpp.cpp</b></li>
