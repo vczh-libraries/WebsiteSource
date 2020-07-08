@@ -187,12 +187,5 @@
 
 ## TODO
 
-- [ ] scroll does not appear separately in TreeView and DocumentView
-
-- Valid inside `<p/>`
-  - Implement `program`'s after document is ready
-    - For now only convert to HTML but no colorize and validate
-
-- `litHtmlViewCallback` is not strongly typed
-  - Make it strongly typed
-  - Allow calculating some embedded resources from mvcModel's value
+- [ ] Colorize `<program>`
+- [ ] Add links to `<program>`
