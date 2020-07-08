@@ -18,9 +18,9 @@
         <topic>
             <title>Source Files for Workflow</title>
             <topic>
-                <title><b>VlppWorkflowLibrary.h</b> and <b>VlppWorkflowLibrary.cpp</b></title>
+                <title>VlppWorkflowLibrary.h and VlppWorkflowLibrary.cpp</title>
                 <p>
-                    They are needed for using Workflow.
+                    They are needed for using Workflow. They contain.
                     <ul>
                         <li>Predefined libraries for Workflow script.</li>
                         <li>Helper functions for C++ code that generated from Workflow script.</li>
@@ -28,20 +28,20 @@
                 </p>
             </topic>
             <topic>
-                <title><b>VlppWorkflowRuntime.h</b> and <b>VlppWorkflowRuntime.cpp</b></title>
+                <title>VlppWorkflowRuntime.h and VlppWorkflowRuntime.cpp</title>
                 <p>
                     They are needed for executing compiled binaries from Workflow script.
                 </p>
                 <p>
                     There are 2 ways to run Workflow script:
                     <ul>
-                        <li>Generate C++ code from Workflow script, and add them to your project. This is recommended especially for running GacUI applications.</li>
+                        <li>Generate C++ code from Workflow script, and add them to your project. This is highly recommended especially for running GacUI applications.</li>
                         <li>Load compiled binaries from Workflow script and run classes at runtime.</li>
                     </ul>
                 </p>
             </topic>
             <topic>
-                <title><b>VlppWorkflowCompiler.h</b> and <b>VlppWorkflowCompiler.cpp</b></title>
+                <title>VlppWorkflowCompiler.h and VlppWorkflowCompiler.cpp</title>
                 <p>
                     They are needed for compiling Workflow script.
                 </p>
@@ -55,7 +55,7 @@
                     loading type information and then running the compiler in the same process.
                     And then you get a binary from compiled scripts,
                     all classes defined in scripts are accessible.
-                    You can use VlppReflection to run classes in scripts.
+                    You can use <b>VlppReflection</b> to run classes in scripts.
                 </p>
                 <p>
                     The Workflow compiler can also generate C++ code.

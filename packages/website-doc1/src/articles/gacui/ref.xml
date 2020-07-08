@@ -27,12 +27,12 @@
                     </ul>
                 </p>
                 <p>
-                    It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <li><a href="/tutorial.html">tutorial</a>).
+                    It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <a href="/tutorial.html">tutorial</a>).
                     By not using reflection, it reduces about 90% of the execution size, which significantly improves the performance.
                 </p>
             </topic>
             <topic>
-                <title>for loading compiled GacUI XML resource without C++ code generation</title>
+                <title>for loading compiled GacUI XML resource without using generated C++ code</title>
                 <p>
                     <ul>
                         <li>(all source files above)</li>
@@ -42,9 +42,8 @@
                 </p>
                 <p>
                     If you need to dynamically load UI from other sources,
-                    reflection is then needed,
-                    because classes for windows and controls is generated using Workflow script,
-                    and stores in multiple binary files for different platforms.
+                    reflection is always needed because classes for windows and controls are generated using Workflow script.
+                    After compiling, they are stores in multiple binary files (or in memory) for different platforms.
                 </p>
             </topic>
             <topic>
@@ -73,7 +72,7 @@
                 </p>
             </topic>
             <topic>
-                <title>for loading compiled GacUI XML resource without C++ code generation</title>
+                <title>for loading compiled GacUI XML resource without using generated C++ code</title>
                 <p>
                     <ul>
                         <li>(all source files above)</li>
