@@ -1,11 +1,12 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { Content, parseArticle } from 'gaclib-article';
-import { DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
+import { DocExample, DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
 import { createMvcServer, hostUntilPressingEnter, registerFolder, untilPressEnter } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
+import { Element, xml2js } from 'xml-js';
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
 
@@ -43,6 +44,30 @@ function convertDocSymbolToHyperlink(ds: DocSymbol): Content {
             kind: 'Text',
             text: ds.name
         }]
+    };
+}
+
+function exampleRetriver(documentFile: string, index: number): DocExample {
+    const fragments = documentFile.split('/');
+    const category = fragments[fragments.length - 2];
+    const fileName = fragments[fragments.length - 1].slice(0, -4);
+
+    const codeXml = <Element>xml2js(
+        readFileSync(`${fileName}.ein.${index}.xml`, { encoding: 'utf-8' }),
+        {
+            compact: false,
+            ignoreDeclaration: true,
+            ignoreInstruction: true,
+            ignoreComment: true,
+            ignoreDoctype: true
+        }
+    );
+    const code = <string>((codeXml.elements ?? [])[0].elements ?? [])[0].cdata;
+    const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
+
+    return {
+        code: `// ${category}\n${code}`,
+        output
     };
 }
 
@@ -89,7 +114,9 @@ router.register(
                 }
                 case 'document': {
                     res.documentArticle = renderDocArticle(
-                        parseDocArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' })),
+                        parseDocArticle(
+                            readFileSync(<string>dnode.file, { encoding: 'utf-8' }),
+                            (index: number): DocExample => exampleRetriver(<string>dnode.file, index)),
                         dnode.name,
                         convertDocSymbolToHyperlink);
                     const generatedHtml = generateHtml(
