@@ -22,11 +22,16 @@ function renderContent(content: a.Content[]): TemplateResult {
                 switch (value.kind) {
                     case 'PageLink':
                         return html`<a href="${value.href}" target="${value.href.startsWith('.') ? '_self' : '_blank'}">${renderContent(value.content)}</a>`;
-                    case 'MultiPageLink':
+                    case 'MultiPageLink': {
                         if (value.href.length < 2) {
                             throw new Error('There must be at least two <a> in <as>.');
                         }
-                        return html`<a href="${value.href[0]}" target="${value.href[0].startsWith('.') ? '_self' : '_blank'}">${renderContent(value.content)}</a>`;
+                        const header = html`<a href="${value.href[0]}" target="${value.href[0].startsWith('.') ? '_self' : '_blank'}">${renderContent(value.content)}</a>`;
+                        const tails = value.href.slice(1).map((href: string, index: number) =>
+                            html`<a href="${href}" target="${href.startsWith('.') ? '_self' : '_blank'}">[${index + 2}]</a>`
+                        );
+                        return html`${header}<sub>(... and ${tails})</sub>`;
+                    }
                     case 'Name':
                         return html`<span class="name">${value.text}</span>`;
                     case 'Image':

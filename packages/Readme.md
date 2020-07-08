@@ -188,7 +188,6 @@
 ## TODO
 
 - [ ] scroll does not appear separately in TreeView and DocumentView
-- [ ] make `<symbols>` more beautiful for multiple targets hyperlink
 
 - Valid inside `<p/>`
   - Implement `program`'s after document is ready
