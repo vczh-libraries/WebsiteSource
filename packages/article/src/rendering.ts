@@ -43,7 +43,7 @@ function renderContent(content: a.Content[]): TemplateResult {
                     case 'Program': {
                         const htmlCode = html`<pre class="code"><code data-project="${value.project === undefined ? '' : value.project}" data-language="${value.language === undefined ? '' : value.language}">${value.code}</code></pre>`;
                         if (value.output !== undefined) {
-                            return html`${htmlCode}<div>Output:</div><pre class="code"><code>${value.output}</code></pre>`;
+                            return html`${htmlCode}<div>Output:</div><pre class="code"><code>${value.output.join('\n')}</code></pre>`;
                         } else {
                             return htmlCode;
                         }
