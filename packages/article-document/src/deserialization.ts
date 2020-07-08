@@ -119,7 +119,7 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
                     case 'text':
                     case 'cdata': {
                         const text = `${xmlContent[xmlContent.type]}`;
-                        const lines = text.split('\n').map((s: string) => s.trim()).filter((s: string) => s !== '');
+                        const lines = text.split('\n').filter((s: string) => s.trim() !== '');
                         for (let i = 0; i < lines.length; i++) {
                             if (i > 0) {
                                 insertp();
@@ -133,6 +133,20 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
                         break;
                     }
                     default:
+                }
+            }
+
+            for (const p of dtext.paragraphs) {
+                for (let i = 0; i < p.content.length; i++) {
+                    const text = p.content[i];
+                    if (text.kind === 'Text') {
+                        if (i === 0 || p.content[i - 1].kind === 'Text') {
+                            text.text = text.text.trimLeft();
+                        }
+                        if (i === p.content.length - 1 || p.content[i + 1].kind === 'Text') {
+                            text.text = text.text.trimRight();
+                        }
+                    }
                 }
             }
         } else if (hasArticleContent) {

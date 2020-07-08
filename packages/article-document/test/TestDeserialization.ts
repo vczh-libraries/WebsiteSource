@@ -150,11 +150,11 @@ test(`<summary> with links`, () => {
 <Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     Line1
-    Line2<symbol name="a" declFile="F" declId="I"/>Line2
-    Line3<symbols>
+    Line2 <symbol name="a" declFile="F" declId="I"/> Line2
+    Line3 <symbols>
         <symbol name="b" declFile="F" declId="I"/>
         <symbol name="c" declFile="F" declId="I"/>
-    </symbols>Line3
+    </symbols> Line3
     Line4
   </summary>
 </Document>
@@ -172,10 +172,10 @@ test(`<summary> with links`, () => {
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Text', text: 'Line2' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line2' }]
+                content: [{ kind: 'Text', text: 'Line2 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line2' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Text', text: 'Line3' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line3' }]
+                content: [{ kind: 'Text', text: 'Line3 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line3' }]
             }, {
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line4' }]
@@ -190,11 +190,11 @@ test(`<summary> with article paragraphs`, () => {
 <Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     <p>Line1</p>
-    <p>Line2<symbol name="a" declFile="F" declId="I"/>Line2</p>
-    <p><b>Line3</b><symbols>
+    <p>Line2 <symbol name="a" declFile="F" declId="I"/> Line2</p>
+    <p><b>Line3 </b><symbols>
         <symbol name="b" declFile="F" declId="I"/>
         <symbol name="c" declFile="F" declId="I"/>
-    </symbols>Line3</p>
+    </symbols> Line3</p>
     <p>Line4</p>
   </summary>
 </Document>
@@ -212,10 +212,10 @@ test(`<summary> with article paragraphs`, () => {
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Text', text: 'Line2' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line2' }]
+                content: [{ kind: 'Text', text: 'Line2 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line2' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Strong', content: [{ kind: 'Text', text: 'Line3' }] }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: 'Line3' }]
+                content: [{ kind: 'Strong', content: [{ kind: 'Text', text: 'Line3 ' }] }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line3' }]
             }, {
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line4' }]
