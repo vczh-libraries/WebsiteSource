@@ -1,8 +1,8 @@
-import { Content } from 'gaclib-article';
+import { PageLink } from 'gaclib-article';
 import { DocSymbol } from 'gaclib-article-document';
 import { DocTree } from './treeView';
 
-export function convertDocSymbolToHyperlink(ds: DocSymbol, docTree: DocTree, pathPrefix: string): Content {
+export function convertDocSymbolToHyperlink(ds: DocSymbol, docTree: DocTree, pathPrefix: string): PageLink {
     if (ds.docId !== undefined) {
         const dsTarget = docTree.ids[ds.docId];
         if (dsTarget !== undefined && dsTarget.path !== undefined) {

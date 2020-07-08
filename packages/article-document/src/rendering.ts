@@ -1,7 +1,7 @@
 import * as a from 'gaclib-article';
 import * as d from './interfaces';
 
-type DocSymbolConverter = (docSymbol: d.DocSymbol) => a.Content;
+type DocSymbolConverter = (docSymbol: d.DocSymbol) => a.PageLink;
 
 function renderDocText(docText: d.DocText, title: string): a.Topic {
     return {
@@ -153,7 +153,7 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             return [dsc(dsymbols.symbols[0])];
         } else {
             return dsymbols.symbols
-                .map((ds: d.DocSymbol) => [dsc(ds)])
+                .map((ds: d.DocSymbol) => [<a.Content>dsc(ds)])
                 .reduce((x: a.Content[], y: a.Content[]) => x.concat([{ kind: 'Text', text: ', ' }]).concat(y));
         }
     });
