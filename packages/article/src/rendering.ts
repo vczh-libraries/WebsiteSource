@@ -40,11 +40,14 @@ function renderContent(content: a.Content[]): TemplateResult {
                         return html`<strong>${renderContent(value.content)}</strong>`;
                     case 'Emphasise':
                         return html`<em>${renderContent(value.content)}<em>`;
-                    case 'Program':
+                    case 'Program': {
+                        const htmlCode = html`<pre class="code"><code data-project="${value.project === undefined ? '' : value.project}" data-language="${value.language === undefined ? '' : value.language}">${value.code}</code></pre>`;
                         if (value.output !== undefined) {
-                            throw new Error('Program with output is not supported yet.');
+                            return html`${htmlCode}<div>Output:</div><pre class="code"><code>${value.output}</code></pre>`;
+                        } else {
+                            return htmlCode;
                         }
-                        return html`<pre class="code"><code data-project="${value.project === undefined ? '' : value.project}" data-language="${value.language === undefined ? '' : value.language}">${value.code}</code></pre>`;
+                    }
                     case 'Plugin':
                         throw new Error('Plugin must be processed by calling "consumePlugin" before calling "renderArticle".');
                     default:
