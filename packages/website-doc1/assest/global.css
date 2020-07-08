@@ -48,6 +48,7 @@ a.DirectoryNode:hover {
 
 .DirectoryTable .ContentView {
     overflow-y: auto;
+    overflow-x: auto;
     width: 800px;
 }
 

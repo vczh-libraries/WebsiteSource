@@ -33,12 +33,16 @@ export const viewExport = {
         const htmlTemplate = html`
 <table class="DirectoryTable">
     <tr>
-        <td class="TreeView" valign="top">
-            <h1>Index</h1>
-            ${renderDirectory(dinfo, dinfo.subNodes)}
+        <td valign="top">
+            <div class="TreeView">
+                <h1>Index</h1>
+                ${renderDirectory(dinfo, dinfo.subNodes)}
+            </div>
         </td>
-        <td class="ContentView" valign="top">
-            <div id="directoryViewContainer"/>
+        <td valign="top">
+            <div class="ContentView">
+                <div id="directoryViewContainer"/>
+            </div>
         </td>
     </tr>
 </table>
