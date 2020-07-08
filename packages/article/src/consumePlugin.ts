@@ -30,6 +30,8 @@ function processContents(contents: a.Content[], pluginConverter: PluginConverter
                 }
                 break;
             }
+            case 'PageLink':
+            case 'MultiPageLink':
             case 'Strong':
             case 'Emphasise': {
                 processContents(c.content, pluginConverter);

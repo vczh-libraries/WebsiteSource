@@ -98,6 +98,11 @@ test(`Flat paragraph`, () => {
         <title>Article</title>
         <p>
             <a href="./index.html"><b>Hey</b>, this is <em>an article</em>.</a>
+            <as>
+                <a href="./index1.html"><b>Hey</b>, this is <em>an article</em>.</a>
+                <a href="./index2.html"/>
+                <a href="./index3.html"/>
+            </as>
             <name>GuiControl</name>
             <img src="logo.png"/>
             <img src="logo.png">This is a logo</img>
@@ -118,6 +123,27 @@ test(`Flat paragraph`, () => {
                         {
                             kind: 'PageLink',
                             href: './index.html',
+                            content: [
+                                {
+                                    kind: 'Strong',
+                                    content: [{ kind: 'Text', text: 'Hey' }]
+                                },
+                                {
+                                    kind: 'Text',
+                                    text: ', this is '
+                                },
+                                {
+                                    kind: 'Emphasise',
+                                    content: [{ kind: 'Text', text: 'an article' }]
+                                },
+                                {
+                                    kind: 'Text',
+                                    text: '.'
+                                }
+                            ]
+                        }, {
+                            kind: 'MultiPageLink',
+                            href: ['./index1.html', './index2.html', './index3.html'],
                             content: [
                                 {
                                     kind: 'Strong',

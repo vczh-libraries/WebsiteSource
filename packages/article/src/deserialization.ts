@@ -200,6 +200,28 @@ function parseContent(container: Element, pluginParser: PluginParser, addParagra
                             }
                             throw new Error('Exactly only "href" attribute is allowed in <a>.');
                         }
+                        case 'as': {
+                            const links = <a.PageLink[]>parseContent(xmlChild, pluginParser);
+                            if (links.length < 2) {
+                                throw new Error('There must be at least two <a> in <as>.');
+                            }
+                            for (const link of links) {
+                                if (link.kind !== 'PageLink') {
+                                    throw new Error('Only <a> is allowed in <as>.');
+                                }
+                            }
+                            for (const link of links.slice(1)) {
+                                if (link.content.length !== 0) {
+                                    throw new Error('Only the first <a> in <as> is allowed to have content.');
+                                }
+                            }
+                            content.push({
+                                kind: 'MultiPageLink',
+                                href: links.map((link: a.PageLink) => link.href),
+                                content: links[0].content
+                            });
+                            continue CHILD_LOOP;
+                        }
                         case 'name': {
                             if (xmlChild.attributes !== undefined && xmlChild.attributes.length !== 0) {
                                 throw new Error('No attribute is allowed in <name>.');
@@ -275,7 +297,7 @@ function parseContent(container: Element, pluginParser: PluginParser, addParagra
                         default: {
                             const plugin = pluginParser(xmlChild);
                             if (plugin === undefined) {
-                                throw new Error(`Only text, <a>, <symbol>, <name>, <img>, <ul>, <ol>, <b>, <em>, <program>${addParagraphToErrorMessage ? ', <p>' : ''} are allowed in <${container.name}> instead of <${xmlChild.name}>.`);
+                                throw new Error(`Only text, <a>, <as>, <symbol>, <name>, <img>, <ul>, <ol>, <b>, <em>, <program>${addParagraphToErrorMessage ? ', <p>' : ''} are allowed in <${container.name}> instead of <${xmlChild.name}>.`);
                             } else {
                                 content.push(plugin);
                                 continue CHILD_LOOP;

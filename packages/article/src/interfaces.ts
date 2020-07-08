@@ -9,6 +9,12 @@ export interface PageLink {
     content: Content[];
 }
 
+export interface MultiPageLink {
+    kind: 'MultiPageLink';
+    href: string[];
+    content: Content[];
+}
+
 export interface Name {
     kind: 'Name';
     text: string;
@@ -62,6 +68,7 @@ export interface Plugin {
 export type Content =
     | Text
     | PageLink
+    | MultiPageLink
     | Name
     | Image
     | List

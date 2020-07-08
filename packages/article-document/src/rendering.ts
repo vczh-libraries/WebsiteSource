@@ -152,9 +152,12 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
         } else if (dsymbols.symbols.length === 1) {
             return [dsc(dsymbols.symbols[0])];
         } else {
-            return dsymbols.symbols
-                .map((ds: d.DocSymbol) => [<a.Content>dsc(ds)])
-                .reduce((x: a.Content[], y: a.Content[]) => x.concat([{ kind: 'Text', text: ', ' }]).concat(y));
+            const links = dsymbols.symbols.map(dsc);
+            return [{
+                kind: 'MultiPageLink',
+                href: links.map((link: a.PageLink) => link.href),
+                content: links[0].content
+            }];
         }
     });
 
