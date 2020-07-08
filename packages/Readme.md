@@ -191,7 +191,6 @@
 - [ ] make `<symbols>` more beautiful for multiple targets hyperlink
 - [ ] do not remove spaces around hyperlinks.
 - [ ] CRLF not correctly inserted if a `<see/>` appears as the first or last component of a line.
-- [ ] add hyperlink to home page at the top logo.
 
 - Valid inside `<p/>`
   - Implement `program`'s after document is ready

@@ -19,22 +19,34 @@ yarn test
 
 Try building `http://gaclib.net` in a new way.
 
-### gaclib-mvc
+### mvc
 
 Gaclib Website MVC url router library.
 
-### gaclib-render
+### render
 
 Gaclib Website front-end rendering using lit-html.
 
-### gaclib-host
+### host
 
 Gaclib Website http server.
 
-### gaclib-article
+### article
 
-Gaclib Website XML to HTML article converter.
+Gaclib article XML to HTML converter.
 
-### gaclib-website
+### article-document
 
-Gaclib Website content.
+Gaclib document XML to article XML converter.
+
+### spider
+
+Gaclib Website Spider
+
+### website
+
+Gaclib Website content: http://gaclib.net.
+
+### website-doc1
+
+Gaclib Website Document for GacUI 1.0: http://gaclib.net/doc/current/home.html.

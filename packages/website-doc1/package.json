@@ -1,7 +1,7 @@
 {
     "name": "gaclib-website-doc1",
     "version": "0.0.1",
-    "description": "Gaclib Website Document for GacUI 1.0",
+    "description": "Gaclib Website Document for GacUI 1.0: http://gaclib.net/doc/current/home.html",
     "main": "./lib/index.js",
     "scripts": {
         "build": "rimraf ./lib && tslint --project tsconfig.json && tsc && copyfiles -u 1 assest/* lib/dist/ && webpack --config ./lib/Webpack.js",

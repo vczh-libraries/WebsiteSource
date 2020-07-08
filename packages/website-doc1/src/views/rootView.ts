@@ -9,7 +9,7 @@ export const viewExport = {
             <table class="ArticleTable" cellpadding="0" cellspacing="0">
                 <tr>
                     <td class="NavigateHeader" colspan="6" align="left">
-                        <img src="/doc/current/logo.gif" />
+                        <a href="/"><img src="/doc/current/logo.gif" /></a>
                     </td>
                 </tr>
                 <tr>
