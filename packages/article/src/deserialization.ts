@@ -83,7 +83,7 @@ function parseList(container: Element, ordered: boolean, pluginParser: PluginPar
     return l;
 }
 
-function trimEmptyLines(cdataContainer: Element): string {
+export function trimEmptyLines(cdataContainer: Element): string {
     if (cdataContainer.elements === undefined) {
         throw new Error(`<${cdataContainer.name}> should not be empty.`);
     }

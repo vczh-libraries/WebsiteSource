@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import { trimEmptyLines } from 'gaclib-article';
 import { DocExample } from 'gaclib-article-document';
 import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
@@ -34,7 +35,7 @@ export function exampleRetriver(documentFile: string, index: number): DocExample
             ignoreDoctype: true
         }
     );
-    const code = <string>((codeXml.elements ?? [])[0].elements ?? [])[0].cdata;
+    const code = trimEmptyLines((codeXml.elements ?? [])[0]);
     const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
 
     return {
