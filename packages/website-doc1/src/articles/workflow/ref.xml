@@ -39,6 +39,9 @@
                         <li>Load compiled binaries from Workflow script and run classes at runtime.</li>
                     </ul>
                 </p>
+                <p>
+                    An in-process debugger interface is also included.
+                </p>
             </topic>
             <topic>
                 <title>VlppWorkflowCompiler.h and VlppWorkflowCompiler.cpp</title>
