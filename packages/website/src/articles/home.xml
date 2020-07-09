@@ -15,7 +15,8 @@
             Scroll to the end to see screenshots!
         </p>
         <topic>
-            <title>Insert something!</title>
+            <title>Hello, world!</title>
+            <p><img src="/resources/home/xml_HelloWorld.png"/></p>
         </topic>
     </topic>
 </article>
