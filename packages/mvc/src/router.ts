@@ -63,10 +63,13 @@ class RouterImpl<TResult> implements Router<TResult> {
                     }
                 }
 
-                if (result === undefined) {
-                    result = pattern.callback(method, model);
-                } else {
-                    throw new Error(`Multiple patterns match query: "${normalizedQuery}".`);
+                const patternResult = pattern.callback(method, model);
+                if (patternResult !== undefined) {
+                    if (result === undefined) {
+                        result = pattern.callback(method, model);
+                    } else {
+                        throw new Error(`Multiple patterns match query: "${normalizedQuery}".`);
+                    }
                 }
             }
         }

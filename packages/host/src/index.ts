@@ -15,21 +15,35 @@ export interface ViewConfig {
     embeddedResources?: EmbeddedResources;
 }
 
-export function litHtmlViewCallback<TModel = {}>(views: ViewMetadata[], viewName: string, config: ViewConfig): RouterCallback<TModel, MvcRouterResult> {
+export function litHtmlViewRouterCallback<TModel = {}>(
+    method: HttpMethods,
+    model: TModel,
+    views: ViewMetadata[],
+    viewName: string,
+    config: ViewConfig
+): [string, string] {
     const info = config.info !== undefined ? config.info : {};
     const head = config.extraHeadHtml !== undefined ? config.extraHeadHtml : '';
     const res = config.embeddedResources !== undefined ? config.embeddedResources : {};
 
+    const generatedHtml = generateHtml(
+        info,
+        views,
+        viewName,
+        model,
+        head,
+        res
+    );
+    return ['text/html', generatedHtml];
+}
+
+export function litHtmlViewCallback<TModel = {}>(
+    views: ViewMetadata[],
+    viewName: string,
+    config: ViewConfig
+): RouterCallback<TModel, MvcRouterResult> {
     return (method: HttpMethods, model: TModel): [string, string] => {
-        const generatedHtml = generateHtml(
-            info,
-            views,
-            viewName,
-            model,
-            head,
-            res
-        );
-        return ['text/html', generatedHtml];
+        return litHtmlViewRouterCallback<TModel>(method, model, views, viewName, config);
     };
 }
 
