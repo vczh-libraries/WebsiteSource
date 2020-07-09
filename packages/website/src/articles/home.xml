@@ -1,4 +1,4 @@
-<article>
+<article index="true">
     <topic>
         <title>Welcome to Gaclib!</title>
         <p>
@@ -14,5 +14,53 @@
             which is a very impressive example.
             Scroll to the end to see screenshots!
         </p>
+        <topic>
+            <title>Data processing</title>
+            <topic>
+                <title>Containers</title>
+            </topic>
+            <topic>
+                <title>Collection operations</title>
+            </topic>
+            <topic>
+                <title>Files and streams</title>
+            </topic>
+            <topic>
+                <title>Http client</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>String processing</title>
+            <topic>
+                <title>Regular expression</title>
+            </topic>
+            <topic>
+                <title>GLR parser generation</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>C++ reflection</title>
+            <topic>
+                <title>Easy registration</title>
+            </topic>
+            <topic>
+                <title>Dynamic invoking</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>Scripting with native code</title>
+            <topic>
+                <title>Easy syntax</title>
+            </topic>
+            <topic>
+                <title>Native code interoperability</title>
+            </topic>
+            <topic>
+                <title>C++ code generation</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>... and GacUI!</title>
+        </topic>
     </topic>
 </article>
