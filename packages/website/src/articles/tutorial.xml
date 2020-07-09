@@ -49,7 +49,7 @@
                 <p>
                     <program language="xml">
                         <code><![CDATA[
-    <GacUI/>
+<GacUI/>
                         ]]></code>
                     </program>
                 </p>
@@ -69,29 +69,29 @@
                 <p>
                     <program language="xml">
                         <code><![CDATA[
-    <?xml version="1.0" encoding="utf-8"?>
-    <Resource>
-    <Folder name="GacGenConfig">
-        <Folder name="Cpp">
-        <Text name="SourceFolder">Source</Text>
-        <Text name="Resource">..\HelloWorld.bin</Text>
-        <Text name="NormalInclude">GacUI.h</Text>
-        <Text name="Name">HelloWorld</Text>
-        </Folder>
+<?xml version="1.0" encoding="utf-8"?>
+<Resource>
+<Folder name="GacGenConfig">
+    <Folder name="Cpp">
+    <Text name="SourceFolder">Source</Text>
+    <Text name="Resource">..\HelloWorld.bin</Text>
+    <Text name="NormalInclude">GacUI.h</Text>
+    <Text name="Name">HelloWorld</Text>
     </Folder>
-    <Folder name="MainWindow">
-        <Instance name="MainWindowResource">
-        <Instance ref.CodeBehind="false" ref.Class="helloworld::MainWindow">
-            <Window Text="Hello, world!" ClientSize="x:480 y:320">
-            <att.BoundsComposition-set PreferredMinSize="x:480 y:320"/>
-            <Label Text="Welcome to GacUI Library!">
-                <att.Font>fontFamily:"Segoe UI" size:32 antialias:true</att.Font>
-            </Label>
-            </Window>
-        </Instance>
-        </Instance>
-    </Folder>
-    </Resource>
+</Folder>
+<Folder name="MainWindow">
+    <Instance name="MainWindowResource">
+    <Instance ref.CodeBehind="false" ref.Class="helloworld::MainWindow">
+        <Window Text="Hello, world!" ClientSize="x:480 y:320">
+        <att.BoundsComposition-set PreferredMinSize="x:480 y:320"/>
+        <Label Text="Welcome to GacUI Library!">
+            <att.Font>fontFamily:"Segoe UI" size:32 antialias:true</att.Font>
+        </Label>
+        </Window>
+    </Instance>
+    </Instance>
+</Folder>
+</Resource>
                         ]]></code>
                     </program>
                 </p>
@@ -153,22 +153,22 @@
             <p>
                 <program language="c++">
                     <code><![CDATA[
-    #define GAC_HEADER_USE_NAMESPACE
-    #include "UI/Source/HelloWorld.h"
+#define GAC_HEADER_USE_NAMESPACE
+#include "UI/Source/HelloWorld.h"
 
-    using namespace vl::collections;
-    using namespace vl::stream;
+using namespace vl::collections;
+using namespace vl::stream;
 
-    void GuiMain()
+void GuiMain()
+{
     {
-        {
-            FileStream fileStream(L"HelloWorld.bin", FileStream::ReadOnly);
-            GetResourceManager()->LoadResourceOrPending(fileStream);
-        }
-        helloworld::MainWindow window;
-        window.MoveToScreenCenter();
-        GetApplication()->Run(&window);
+        FileStream fileStream(L"HelloWorld.bin", FileStream::ReadOnly);
+        GetResourceManager()->LoadResourceOrPending(fileStream);
     }
+    helloworld::MainWindow window;
+    window.MoveToScreenCenter();
+    GetApplication()->Run(&window);
+}
                     ]]></code>
                 </program>
             </p>
