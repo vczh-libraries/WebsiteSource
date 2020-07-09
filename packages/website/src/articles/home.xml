@@ -203,12 +203,50 @@ Ptr<CalExpression> expr = CalParse(L"max(1, 2) * 3 - 4", table);
             </topic>
         </topic>
         <topic>
-            <title>C++ reflection</title>
+            <title>C++ reflection and scripting</title>
             <topic>
                 <title>Easy registration</title>
                 <p>
                     <program language="C++"><code><![CDATA[
-// something
+namespace myapi
+{
+    class App : public Object, public Description<App>
+    {
+    public:
+        void Print(const WString& text) { Console::WriteLine(text); }
+        WString Get() { return Console::Read(); }
+    };
+}
+
+using namespace myapi;
+
+#define TYPE_LIST(F) F(myapi::App)
+
+BEGIN_TYPE_INFO_NAMESPACE
+
+	TYPE_LIST(DECL_TYPE_INFO)
+	TYPE_LIST(IMPL_CPP_TYPE_INFO)
+
+    BEGIN_CLASS_MEMBER(App)
+        CLASS_MEMBER_CONSTRUCTOR(Ptr<App>(), NO_PARAMETER)
+        CLASS_MEMBER_METHOD(Print, {L"text"})
+        CLASS_MEMBER_METHOD(Get, NO_PARAMETER)
+    END_CLASS_MEMBER(App)
+
+	class MyTypeLoader : public Object, public ITypeLoader
+	{
+	public:
+		void Load(ITypeManager* manager)override
+		{
+			TYPE_LIST(ADD_TYPE_INFO)
+		}
+		
+		void Unload(ITypeManager* manager)override
+		{
+		}
+	};
+
+END_TYPE_INFO_NAMESPACE
                     ]]></code></program>
                 </p>
             </topic>
@@ -216,34 +254,59 @@ Ptr<CalExpression> expr = CalParse(L"max(1, 2) * 3 - 4", table);
                 <title>Dynamic invoking</title>
                 <p>
                     <program language="C++"><code><![CDATA[
-// something
+LoadPredefinedTypes();
+
+auto tm = GetGlobalTypeManager();
+tm->AddTypeLoader(new MyTypeLoader);
+tm->Load();
+
+auto td = tm->GetTypeDescriptor(L"myapi::App");
+auto ctor = td->GetConstructorGroup()->GetMethod(0);
+auto print = td->GetMethodGroupByName(L"Print");
+
+Value app = ctor->Invoke(Value(), Value_xs());
+
+arguments.Add(BoxValue<WString>(L"Hello, world!"));
+print->Invoke(app, (Value_xs(), WString(L"Hello, world!")));
+
+ResetGlobalTypeManager();
                     ]]></code></program>
                 </p>
             </topic>
-        </topic>
-        <topic>
-            <title>Scripting with native code</title>
             <topic>
-                <title>Easy syntax</title>
+                <title>Scripting and native code interoperability</title>
                 <p>
-                    <program language="C++"><code><![CDATA[
-// something
-                    ]]></code></program>
-                </p>
-            </topic>
-            <topic>
-                <title>Native code interoperability</title>
-                <p>
-                    <program language="C++"><code><![CDATA[
-// something
+                    <program language="Workflow"><code><![CDATA[
+module myscript;
+using myapp::*;
+
+class MyScript
+{
+    new()
+    {
+    }
+
+    func Main() : void
+    {
+        var app = new App^();
+        var name = app.Get();
+        app.Print($"Hello, $(name)!");
+    }
+}
                     ]]></code></program>
                 </p>
             </topic>
             <topic>
                 <title>C++ code generation</title>
+                <p>Compile the script and generate C++ code, call it in C++!</p>
                 <p>
                     <program language="C++"><code><![CDATA[
-// something
+#include "MyScript.h"
+
+int main()
+{
+    MakePtr<MyScript>()->Main();
+}
                     ]]></code></program>
                 </p>
             </topic>
