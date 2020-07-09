@@ -40,30 +40,94 @@
                 <p>Script:</p>
                 <p>
                     <program language="Xml"><code><![CDATA[
-<Workflow><![CDATA[
-    module script;
+module script;
 
-    namespace demo
+namespace helloworld
+{
+    interface IViewModel
     {
-        interface IViewModel
-        {
-            prop Title : string {GetTitle, SetTitle : TitleChanged}
-        }
+        prop Title : string {GetTitle, SetTitle : TitleChanged}
+        func Submit() : void;
     }
-]]></Workflow>
-        ]]>
+}
                     ]]></code></program>
                 </p>
                 <p>UI:</p>
                 <p>
                     <program language="Xml"><code><![CDATA[
-// something
+<Instance ref.Class="helloworld::MainWindow">
+    <ref.Parameter Name="ViewModel" Class="helloworld::IViewModel"/>
+    <Window ref.Name="self" Text="Hello, world!">
+        <Table CellPadding="5" AlignmentToParent="left:0 top:0 right:0 bottom:0">
+            <att.Rows>
+                <CellOption>composeType:MinSize</CellOption>
+                <CellOption>composeType:Percentage percentage:1.0</CellOption>
+                <CellOption>composeType:MinSize</CellOption>
+            </att.Rows>
+            <att.Columns>
+                <CellOption>composeType:MinSize</CellOption>
+                <CellOption>composeType:Percentage percentage:1.0</CellOption>
+            </att.Columns>
+
+            <Cell Site="row:0 column:0">
+                <SolidLabel Text="Title: " Font-bind="self.Font"/>
+            </Cell>
+            <Cell Site="row:0 column:1">
+                <SinglelineTextBox Text-bind="ViewModel.Title">
+                    <att.BoundsComposition-set
+                        AlignmentToParent="left:0 top:0 right:0 bottom:0"
+                        PreferredMinSize="x:0 y:24"/>
+                </SinglelineTextBox>
+            </Cell>
+            <Cell Site="row:2 column:0 columnSpan:2">
+                <Button Text="Submit" ev.Clicked-eval="ViewModel.Submit()">
+                    <att.BoundsComposition-set AlignmentToParent="left:-1 top:0 right:0 bottom:0"/>
+                </Button>
+            </Cell>
+        </Table>
+    </Window>
+</Instance>
                     ]]></code></program>
                 </p>
                 <p>Application:</p>
                 <p>
                     <program language="Xml"><code><![CDATA[
-// something
+class ViewModel : public Object, public virtual helloworld::IViewModel
+{
+private:
+    WString title;
+
+public:
+
+    WString GetTitle()override
+    {
+        return title;
+    }
+
+    void SetTitle(const WString& value)override
+    {
+        title = value;
+        TitleChanged();
+    }
+
+    void Submit()override
+    {
+        // do something
+    }
+};
+
+void GuiMain()
+{
+    {
+        FileStream fileStream(L"MVVM.bin", FileStream::ReadOnly);
+        GetResourceManager()->LoadResourceOrPending(fileStream);
+    }
+    auto viewModel = MakePtr<ViewModel>();
+    auto window = new helloworld::MainWindow(viewModel);
+    window->MoveToScreenCenter();
+    GetApplication()->Run(window);
+    delete window;
+}
                     ]]></code></program>
                 </p>
             </topic>
