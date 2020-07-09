@@ -32,7 +32,7 @@ ${
                     ;
             })()}
 </h2>
-<div id="homeViewContainer"/>
+<div id="homeViewContainer"></div>
 <script lang="javascript">
 document.getElementById("cat" + activeCategory).classList.remove("Unselected");
 document.getElementById("cat" + activeCategory).classList.add("Selected");

@@ -111,7 +111,7 @@ ${info.scripts === undefined ? '' : info.scripts.map((value: string) => `<script
 ${extraHeadHtml}
 </head>
 <body>
-<div id="MVC-ViewContainer"/>
+<div id="MVC-ViewContainer"></div>
 <script lang="javascript">
 {
 ${Object.keys(resources).map((resourceKey: string) => `  const ${resourceKey} = ${JSON.stringify(resources[resourceKey], undefined, 2)};`).join(EOL)}

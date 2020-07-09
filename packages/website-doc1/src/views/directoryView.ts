@@ -41,7 +41,7 @@ export const viewExport = {
         </td>
         <td valign="top">
             <div class="ContentView">
-                <div id="directoryViewContainer"/>
+                <div id="directoryViewContainer"></div>
             </div>
         </td>
     </tr>

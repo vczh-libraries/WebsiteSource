@@ -14,7 +14,7 @@ export const viewExport = {
                 </tr>
                 <tr>
                     <td align="left" valign="top" colspan="6">
-                        <div id="rootViewContainer"/>
+                        <div id="rootViewContainer"></div>
                     </td>
                 </tr>
             </table>
