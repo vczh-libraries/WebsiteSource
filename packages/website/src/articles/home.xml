@@ -224,8 +224,8 @@ using namespace myapi;
 
 BEGIN_TYPE_INFO_NAMESPACE
 
-	TYPE_LIST(DECL_TYPE_INFO)
-	TYPE_LIST(IMPL_CPP_TYPE_INFO)
+    TYPE_LIST(DECL_TYPE_INFO)
+    TYPE_LIST(IMPL_CPP_TYPE_INFO)
 
     BEGIN_CLASS_MEMBER(App)
         CLASS_MEMBER_CONSTRUCTOR(Ptr<App>(), NO_PARAMETER)
@@ -233,18 +233,18 @@ BEGIN_TYPE_INFO_NAMESPACE
         CLASS_MEMBER_METHOD(Get, NO_PARAMETER)
     END_CLASS_MEMBER(App)
 
-	class MyTypeLoader : public Object, public ITypeLoader
-	{
-	public:
-		void Load(ITypeManager* manager)override
-		{
-			TYPE_LIST(ADD_TYPE_INFO)
-		}
-		
-		void Unload(ITypeManager* manager)override
-		{
-		}
-	};
+    class MyTypeLoader : public Object, public ITypeLoader
+    {
+    public:
+        void Load(ITypeManager* manager)override
+        {
+            TYPE_LIST(ADD_TYPE_INFO)
+        }
+        
+        void Unload(ITypeManager* manager)override
+        {
+        }
+    };
 
 END_TYPE_INFO_NAMESPACE
                     ]]></code></program>
