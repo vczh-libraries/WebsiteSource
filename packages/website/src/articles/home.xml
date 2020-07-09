@@ -15,6 +15,76 @@
             Scroll to the end to see screenshots!
         </p>
         <topic>
+            <title>GacUI!</title>
+            <topic>
+                <title>Easy syntax</title>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+<Instance ref.Class="helloworld::MainWindow">
+    <Window Text="Hello, world!">
+        <Label Text="Welcome to GacUI Library!">
+            <att.Font>fontFamily:"Segoe UI" size:32 antialias:true</att.Font>
+        </Label>
+    </Window>
+</Instance>
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Rich controls and flexible layout</title>
+                <p><img src="/demo_AB.png">List controls</img></p>
+                <p><img src="/demo_DER.png">Ribbon and editor controls</img></p>
+            </topic>
+            <topic>
+                <title>MVVM and Data binding</title>
+                <p>Script:</p>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+<Workflow><![CDATA[
+    module script;
+
+    namespace demo
+    {
+        interface IViewModel
+        {
+            prop Title : string {GetTitle, SetTitle : TitleChanged}
+        }
+    }
+]]></Workflow>
+        ]]>
+                    ]]></code></program>
+                </p>
+                <p>UI:</p>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
+                <p>Application:</p>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Styling</title>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Languages</title>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
+            </topic>
+        </topic>
+        <topic>
             <title>Data processing</title>
             <topic>
                 <title>Containers</title>
@@ -310,9 +380,6 @@ int main()
                     ]]></code></program>
                 </p>
             </topic>
-        </topic>
-        <topic>
-            <title>... and GacUI!</title>
         </topic>
     </topic>
 </article>
