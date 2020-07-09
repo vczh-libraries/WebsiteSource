@@ -2,7 +2,53 @@
     <topic>
         <title>Introduction to Vlpp</title>
         <p>
-            The page is under construction.
+            Vlpp provides basic constructions for writing C++ programs. Here is what you can get from this library:
         </p>
+        <topic>
+            <title>Data types</title>
+            <p>In namespace <b>::vl</b>,</p>
+            <p>
+                <ul>
+                    <li><b>Object</b> and <b>Interface</b>, which are base classes for reference types and interfaces. Almost everything inherit from one or both of them.</li>
+                    <li><b>Nullable&lt;T&gt;</b>, <b>Ptr&lt;T&gt;</b>, <b>Lazy&lt;T&gt;</b>: data containers.</li>
+                    <li><b>AString</b>, <b>WString</b>, <b>DateTime</b>: basic primitive types.</li>
+                    <li><b>Error</b>, <b>Exception</b>: basic exception types.</li>
+                    <li><b>Func&lt;T&gt;</b>, <b>Event&lt;T&gt;</b>: strongly-typed functor that can contain function pointers, method pointers or lambda expressions.</li>
+                    <li>Data type conversions functions.</li>
+                    <li>And more ...</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Containers and collections operations</title>
+            <p>In namespace <b>::vl::collections</b>,</p>
+            <p>
+                <ul>
+                    <li><b>Array&lt;T&gt;</b>, <b>List&lt;T&gt;</b>, <b>SortedList&lt;T&gt;</b>, <b>Dictionary&lt;K, V&gt;</b>, <b>Group&lt;K, V&gt;</b>: linear containers.</li>
+                    <li><b>LazyList&lt;T&gt;</b>: Lazy evaluated read-only containers with rich operations, similar to Linq.</li>
+                    <li><b>PartialOrderingProcessor</b>: Partial ordering and strong connected component discovering.</li>
+                    <li>Inner join algorithm.</li>
+                    <li>And more ...</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Console I/O</title>
+            <p>In namespace <b>::vl::console</b>,</p>
+            <p>
+                Simple string reading and writing for command-line applications.
+                Character encodings are correctly handled for stream redirections.
+            </p>
+        </topic>
+        <topic>
+            <title>Unit test framework</title>
+            <p>In namespace <b>::vl::unittest</b>,</p>
+            <p>
+                An easy-to-use unit test framework.
+                You are able to organize test cases in nested categories,
+                and either run all the way to the end,
+                or tell the IDE to stop at the first failed test assertion.
+            </p>
+        </topic>
     </topic>
 </article>
