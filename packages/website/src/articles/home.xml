@@ -97,30 +97,65 @@ event.Wait();
             <title>String processing</title>
             <topic>
                 <title>Regular expression</title>
+                <p>
+                    <program language="C++"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
             </topic>
             <topic>
                 <title>GLR parser generation</title>
+                <p>
+                    <program language="C++"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
             </topic>
         </topic>
         <topic>
             <title>C++ reflection</title>
             <topic>
                 <title>Easy registration</title>
+                <p>
+                    <program language="C++"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
             </topic>
             <topic>
                 <title>Dynamic invoking</title>
+                <p>
+                    <program language="C++"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
             </topic>
         </topic>
         <topic>
             <title>Scripting with native code</title>
             <topic>
                 <title>Easy syntax</title>
+                <p>
+                    <program language="C++"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
             </topic>
             <topic>
                 <title>Native code interoperability</title>
+                <p>
+                    <program language="C++"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
             </topic>
             <topic>
                 <title>C++ code generation</title>
+                <p>
+                    <program language="C++"><code><![CDATA[
+// something
+                    ]]></code></program>
+                </p>
             </topic>
         </topic>
         <topic>
