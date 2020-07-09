@@ -17,27 +17,95 @@
         <topic>
             <title>GacUI!</title>
             <topic>
+                <title>Rich controls and flexible layout</title>
+                <p><img src="/demo_AB.png">List controls</img></p>
+                <p><img src="/demo_DER.png">Ribbon and editor controls</img></p>
+            </topic>
+            <topic>
                 <title>Easy syntax</title>
                 <p>
                     <program language="Xml"><code><![CDATA[
 <Instance ref.Class="helloworld::MainWindow">
     <Window Text="Hello, world!">
-        <Label Text="Welcome to GacUI Library!">
-            <att.Font>fontFamily:"Segoe UI" size:32 antialias:true</att.Font>
-        </Label>
+        <Label Text="Welcome to GacUI Library!"/>
     </Window>
 </Instance>
                     ]]></code></program>
                 </p>
             </topic>
             <topic>
-                <title>Rich controls and flexible layout</title>
-                <p><img src="/demo_AB.png">List controls</img></p>
-                <p><img src="/demo_DER.png">Ribbon and editor controls</img></p>
+                <title>Localization</title>
+                <p>Resource: stores strings and their translations</p>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+<LocalizedStrings ref.Class="helloworld::StringResource" DefaultLocale="en-US">
+    <Strings Locales="en-US">
+        <String Name="Title" Text="Hello, world!"/>
+        <String Name="Button" Text="Good morning!"/>
+    </Strings>
+    <Strings Locales="zh-CN">
+        <String Name="Title" Text="你好，世界！"/>
+        <String Name="Button" Text="早上好！"/>
+    </Strings>
+</LocalizedStrings>
+                    ]]></code></program>
+                </p>
+                <p>UI: use strings from resource</p>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+<Instance ref.Class="helloworld::MainWindow">
+    <ref.LocalizedStrings Name="Strings" helloworld="demo::StringResource" Default="true"/>
+    <Window Text-str="Title()">
+        <Button Text-str="Button()">
+    </Window>
+</Instance>
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Styling</title>
+                <p>Styles: set properties by selector</p>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+<Styles>
+    <Style ref.Path="//Cell/Button" Font="fontFamily:'Segoe UI' size: 24 antialias:true">
+        <att.BoundsComposition-set AlignmentToParent="left:0 top:0 right:0 bottom:0"/>
+    </Style>
+</Styles>
+                    ]]></code></program>
+                </p>
+                <p>UI: applies styles on multiple controls</p>
+                <p>
+                    <program language="Xml"><code><![CDATA[
+<Instance ref.Class="helloworld::MainWindow">
+    <Window Text="Hello, world!">
+        <Table CellPadding="5" AlignmentToParent="left:0 top:0 right:0 bottom:0">
+            <att.Rows>
+                <CellOption>composeType:Percentage percentage:1.0</CellOption>
+                <CellOption>composeType:MinSize</CellOption>
+            </att.Rows>
+            <att.Columns>
+                <CellOption>composeType:Percentage percentage:1.0</CellOption>
+                <CellOption>composeType:MinSize</CellOption>
+                <CellOption>composeType:MinSize</CellOption>
+            </att.Columns>
+
+            <Cell Site="row:1 column:1 columnSpan:2">
+                <Button Text="OK"/>
+            </Cell>
+
+            <Cell Site="row:1 column:2 columnSpan:2">
+                <Button Text="Cancel"/>
+            </Cell>
+        </Table>
+    </Window>
+</Instance>
+                    ]]></code></program>
+                </p>
             </topic>
             <topic>
                 <title>MVVM and Data binding</title>
-                <p>Script:</p>
+                <p>Script: defines the interface for view model</p>
                 <p>
                     <program language="Xml"><code><![CDATA[
 module script;
@@ -52,7 +120,7 @@ namespace helloworld
 }
                     ]]></code></program>
                 </p>
-                <p>UI:</p>
+                <p>UI: binds view model to text box and button</p>
                 <p>
                     <program language="Xml"><code><![CDATA[
 <Instance ref.Class="helloworld::MainWindow">
@@ -89,7 +157,7 @@ namespace helloworld
 </Instance>
                     ]]></code></program>
                 </p>
-                <p>Application:</p>
+                <p>Application: implement the view model</p>
                 <p>
                     <program language="Xml"><code><![CDATA[
 class ViewModel : public Object, public virtual helloworld::IViewModel
@@ -128,22 +196,6 @@ void GuiMain()
     GetApplication()->Run(window);
     delete window;
 }
-                    ]]></code></program>
-                </p>
-            </topic>
-            <topic>
-                <title>Styling</title>
-                <p>
-                    <program language="Xml"><code><![CDATA[
-// something
-                    ]]></code></program>
-                </p>
-            </topic>
-            <topic>
-                <title>Languages</title>
-                <p>
-                    <program language="Xml"><code><![CDATA[
-// something
                     ]]></code></program>
                 </p>
             </topic>
