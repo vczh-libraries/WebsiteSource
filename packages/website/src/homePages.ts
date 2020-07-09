@@ -28,7 +28,7 @@ const categoryPages: { [key: string]: { category: string; article: string } } = 
     },
     'reflection-scripting': {
         category: 'Scripting',
-        article: 'home/reflection-processing.xml'
+        article: 'home/reflection-scripting.xml'
     }
 };
 
@@ -54,7 +54,7 @@ export function registerHomePages(router: MvcRouter): void {
                 method,
                 model,
                 views,
-                'Gaclib-ArticleView',
+                'Gaclib-HomeCategoryView',
                 {
                     info: { title: 'Gaclib -- GPU Accelerated C++ User Interface (vczh)' },
                     embeddedResources: {

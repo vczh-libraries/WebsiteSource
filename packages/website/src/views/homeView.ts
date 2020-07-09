@@ -5,10 +5,10 @@ import { html, render, TemplateResult } from 'lit-html';
 
 const buttons: [string, string, string][] = [
     ['Hello', 'index', 'Hello'],
-    ['GacUI', '/home/gacui', 'GacUI!'],
-    ['Data', '/home/data-processing', 'Data'],
-    ['String', '/home/string-processing', 'Text'],
-    ['Scripting', '/home/reflection-scripting', 'Reflection and Scripting']
+    ['GacUI', 'home/gacui', 'GacUI!'],
+    ['Data', 'home/data-processing', 'Data'],
+    ['String', 'home/string-processing', 'Text'],
+    ['Scripting', 'home/reflection-scripting', 'Reflection and Scripting']
 ];
 
 export const viewExport = {
