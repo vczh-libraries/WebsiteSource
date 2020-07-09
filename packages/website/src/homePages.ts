@@ -7,13 +7,14 @@ const homePageConfig: ViewConfig = {
     info: { title: 'Gaclib -- GPU Accelerated C++ User Interface (vczh)' },
     embeddedResources: {
         activeButton: 'Home',
-        article: loadArticle('home.xml')
+        homeArticle: loadArticle('home.xml'),
+        categoryArticle: loadArticle('home/hello.xml')
     }
 };
 
 export const homePageDynamicUrls: string[] = [];
 
 export function registerHomePages(router: MvcRouter): void {
-    router.register([], route`/`, litHtmlViewCallback(views, 'Gaclib-ArticleView', homePageConfig));
-    router.register([], route`/index.html`, litHtmlViewCallback(views, 'Gaclib-ArticleView', homePageConfig));
+    router.register([], route`/`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryView', homePageConfig));
+    router.register([], route`/index.html`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryView', homePageConfig));
 }

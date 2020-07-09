@@ -19,4 +19,21 @@ const articleView: ViewMetadata = {
     htmlInfo: {}
 };
 
-export const views = [rootView, articleView];
+const homeView: ViewMetadata = {
+    name: 'Gaclib-HomeView',
+    source: `${__dirname}/homeView.js`,
+    path: '/scripts/homeView.js',
+    parentView: 'Gaclib-RootView',
+    containerId: 'homeViewContainer',
+    htmlInfo: {}
+};
+
+const homeCategoryView: ViewMetadata = {
+    name: 'Gaclib-HomeCategoryView',
+    source: `${__dirname}/homeCategoryView.js`,
+    path: '/scripts/homeCategoryView.js',
+    parentView: 'Gaclib-HomeView',
+    htmlInfo: {}
+};
+
+export const views = [rootView, articleView, homeView, homeCategoryView];
