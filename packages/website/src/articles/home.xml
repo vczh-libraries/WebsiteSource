@@ -498,6 +498,44 @@ int main()
                     ]]></code></program>
                 </p>
             </topic>
+            <topic>
+                <title>Or run the script directly</title>
+                <p>Compile, serialize and run the script on-the-fly!</p>
+                <p>
+                    <program language="C++"><code><![CDATA[
+List<Ptr<ParsingError>> errors;
+List<WString> codes;
+codes.Add(THE_WORKFLOW_SCRIPT);
+
+auto table = WfLoadTable();
+auto assembly = Compile(table, codes, errors);
+
+// saving the compiled assembly to a file is optional
+{
+    FileStream stream(L"C:/script.bin", FileStream::WriteOnly);
+    assembly->Serialize(stream);
+}
+{
+    WfAssemblyLoadErrors loadErrors;
+    FileStream stream(L"C:/script.bin", FileStream::ReadOnly);
+    assembly = WfAssembly::Deserialize(stream, loadErrors);
+}
+
+// initialize
+globalContext = MakePtr<WfRuntimeGlobalContext>(assembly);
+LoadFunction<void()>(globalContext, L"<initialize>")();
+
+// load and run MyScript::Main
+auto td = tm->GetTypeDescriptor(L"MyScript");
+auto ctor = td->GetConstructorGroup()->GetMethod(0);
+auto main = td->GetMethodGroupByName(L"Main");
+
+Value myScript = ctor->Invoke(Value(), Value_xs());
+main->Invoke(myScript, Value_xs());
+
+                    ]]></code></program>
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>
