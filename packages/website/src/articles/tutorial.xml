@@ -186,7 +186,7 @@ void GuiMain()
         <topic>
             <title>Build and run your program!</title>
             <p>
-                <img src="/HelloWorld.png"/>
+                <img src="/resources/tutorial/HelloWorld.png"/>
             </p>
         </topic>
     </topic>

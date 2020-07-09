@@ -18,8 +18,8 @@
             <title>GacUI!</title>
             <topic>
                 <title>Rich controls and flexible layout</title>
-                <p><img src="/demo_AB.png">List controls</img></p>
-                <p><img src="/demo_DER.png">Ribbon and editor controls</img></p>
+                <p><img src="/resources/home/demo_AB.png">List controls</img></p>
+                <p><img src="/resources/home/demo_DER.png">Ribbon and editor controls</img></p>
             </topic>
             <topic>
                 <title>Easy syntax</title>
