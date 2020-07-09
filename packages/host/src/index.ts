@@ -6,8 +6,8 @@ import * as mime from 'mime-types';
 import * as path from 'path';
 import * as url from 'url';
 
-type MvcRouterResult = [string, string | Buffer];
-type MvcRouter = Router<MvcRouterResult>;
+export type MvcRouterResult = [string, string | Buffer];
+export type MvcRouter = Router<MvcRouterResult>;
 
 export interface ViewConfig {
     info?: HtmlInfo;
@@ -21,7 +21,7 @@ export function litHtmlViewRouterCallback<TModel = {}>(
     views: ViewMetadata[],
     viewName: string,
     config: ViewConfig
-): [string, string] {
+): MvcRouterResult {
     const info = config.info !== undefined ? config.info : {};
     const head = config.extraHeadHtml !== undefined ? config.extraHeadHtml : '';
     const res = config.embeddedResources !== undefined ? config.embeddedResources : {};
@@ -42,7 +42,7 @@ export function litHtmlViewCallback<TModel = {}>(
     viewName: string,
     config: ViewConfig
 ): RouterCallback<TModel, MvcRouterResult> {
-    return (method: HttpMethods, model: TModel): [string, string] => {
+    return (method: HttpMethods, model: TModel): MvcRouterResult => {
         return litHtmlViewRouterCallback<TModel>(method, model, views, viewName, config);
     };
 }

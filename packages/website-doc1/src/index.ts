@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { parseArticle } from 'gaclib-article';
 import { DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
-import { createMvcServer, hostUntilPressingEnter, registerFolder, untilPressEnter } from 'gaclib-host';
+import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolder, untilPressEnter } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
@@ -13,7 +13,7 @@ import { exampleRetriver } from './xmlExample';
 
 const pathPrefix = `/doc/current`;
 
-const router = createRouter<[string, string | Buffer]>(pathPrefix);
+const router = createRouter<MvcRouterResult>(pathPrefix);
 registerFolder(router, path.join(__dirname, `./dist`));
 
 console.log('Loading references ...');
