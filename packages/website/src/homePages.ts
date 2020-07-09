@@ -7,6 +7,7 @@ const homePageConfig: ViewConfig = {
     info: { title: 'Gaclib -- GPU Accelerated C++ User Interface (vczh)' },
     embeddedResources: {
         activeButton: 'Home',
+        activeCategory: 'Hello',
         homeArticle: loadArticle('home.xml'),
         categoryArticle: loadArticle('home/hello.xml')
     }

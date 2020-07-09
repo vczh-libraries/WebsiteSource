@@ -25,7 +25,9 @@ const homeView: ViewMetadata = {
     path: '/scripts/homeView.js',
     parentView: 'Gaclib-RootView',
     containerId: 'homeViewContainer',
-    htmlInfo: {}
+    htmlInfo: {
+        styleSheets: ['/category.css']
+    }
 };
 
 const homeCategoryView: ViewMetadata = {
