@@ -15,20 +15,24 @@ function renderListContent(list: a.List): TemplateResult {
         }`;
 }
 
+function renderLink(href: string, content: TemplateResult): TemplateResult {
+    return html`<a href="${href}" target="${href.startsWith('.') || href.startsWith('/') ? '_self' : '_blank'}">${content}</a>`;
+}
+
 function renderContent(content: a.Content[]): TemplateResult {
     return html`${
         content
             .map((value: a.Content) => {
                 switch (value.kind) {
                     case 'PageLink':
-                        return html`<a href="${value.href}" target="${value.href.startsWith('.') ? '_self' : '_blank'}">${renderContent(value.content)}</a>`;
+                        return renderLink(value.href, renderContent(value.content));
                     case 'MultiPageLink': {
                         if (value.href.length < 2) {
                             throw new Error('There must be at least two <a> in <as>.');
                         }
-                        const header = html`<a href="${value.href[0]}" target="${value.href[0].startsWith('.') ? '_self' : '_blank'}">${renderContent(value.content)}</a>`;
+                        const header = renderLink(value.href[0], renderContent(value.content));
                         const tails = value.href.slice(1).map((href: string, index: number) =>
-                            html`<a href="${href}" target="${href.startsWith('.') ? '_self' : '_blank'}">[${index + 2}]</a>`
+                            renderLink(href, html`[${index + 2}]`)
                         );
                         return html`${header}<sub>(... and ${tails})</sub>`;
                     }
