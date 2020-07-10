@@ -12,7 +12,7 @@
             <p>
                 If you don't need runtime reflection on C++ classes,
                 it is recommended to add <b>VCZH_DEBUG_NO_REFLECTION</b> to <a href="https://docs.microsoft.com/en-us/cpp/build/reference/d-preprocessor-definitions">preprocessor definitions</a>.
-                By doing this, unnecessary code are eliminated, which significantly reduces both executable size and object sizes.
+                By doing this, unnecessary code are eliminated, which significantly reduces both executable size and object sizes, and improves performance.
             </p>
         </topic>
         <topic>
@@ -28,7 +28,7 @@
                 </p>
                 <p>
                     It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <a href="/tutorial.html">tutorial</a>).
-                    By not using reflection, it reduces about 90% of the execution size, which significantly improves the performance.
+                    By not using reflection, it reduces about 90% of the execution size, which significantly improves performance.
                 </p>
             </topic>
             <topic>
