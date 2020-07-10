@@ -5,9 +5,9 @@ import { html, render } from 'lit-html';
 
 export const viewExport = {
     renderView(model: {}, target: Element): void {
-        const categoryArticle = <Article>window['MVC-Resources.categoryArticle'];
+        const featureArticle = <Article>window['MVC-Resources.featureArticle'];
         const htmlTemplate = html`
-${renderArticle(categoryArticle)}
+${renderArticle(featureArticle)}
 `;
         render(htmlTemplate, target);
     }
