@@ -104,6 +104,7 @@ export function generateHtml(htmlInfo: HtmlInfo, views: ViewMetadata[], viewName
     return `<!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8"/>
 <title>${info.title === undefined ? 'UNTITLED' : info.title}</title>
 ${info.shortcutIcon === undefined ? '' : `<link rel="shortcut icon" href="${info.pathPrefix ?? ''}${info.shortcutIcon}" />`}
 ${info.styleSheets === undefined ? '' : info.styleSheets.map((value: string) => `<link rel="stylesheet" type="text/css" href="${info.pathPrefix ?? ''}${value}" />`).join(EOL)}
