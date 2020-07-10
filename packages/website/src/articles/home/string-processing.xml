@@ -3,10 +3,10 @@
     <topic>
         <title>String processing</title>
         <p>
-            <img src="/resources/home/cat_gacui_rich.png">string-processing/regex.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">string-processing/lexer-cf.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">string-processing/lexer-cs.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">string-processing/parser.html</img>
+            <img src="/resources/home/cat_str_regex.png">string-processing/regex.html</img>
+            <img src="/resources/home/cat_str_lexercf.png">string-processing/lexer-cf.html</img>
+            <img src="/resources/home/cat_str_lexercs.png">string-processing/lexer-cs.html</img>
+            <img src="/resources/home/cat_str_parser.png">string-processing/parser.html</img>
         </p>
         <topic>
             <title>Regular expression</title>
