@@ -30,6 +30,22 @@ const homePageConfig: ViewConfig = {
 };
 
 const categoryArticlePages: { [key: string]: { category: string; article: Article } } = {
+    'gacui/rich': {
+        category: 'GacUI',
+        article: loadArticle('home/gacui/rich.xml')
+    },
+    'gacui/localization': {
+        category: 'GacUI',
+        article: loadArticle('home/gacui/localization.xml')
+    },
+    'gacui/styling': {
+        category: 'GacUI',
+        article: loadArticle('home/gacui/styling.xml')
+    },
+    'gacui/mvvm': {
+        category: 'GacUI',
+        article: loadArticle('home/gacui/mvvm.xml')
+    },
     'data-processing': {
         category: 'Data',
         article: loadArticle('home/data-processing.xml')
@@ -41,6 +57,10 @@ const categoryArticlePages: { [key: string]: { category: string; article: Articl
     'reflection-scripting': {
         category: 'Scripting',
         article: loadArticle('home/reflection-scripting.xml')
+    },
+    showcase: {
+        category: 'Showcase',
+        article: loadArticle('home/showcase.xml')
     }
 };
 
@@ -51,8 +71,12 @@ const categoryFeaturePages: { [key: string]: { category: string; featureList: Fe
     }
 };
 
-interface CategoryPageModel {
-    page: string;
+interface ArticlePageModel {
+    path: string[];
+}
+
+interface FeaturePageModel {
+    path: string;
 }
 
 const categoryArticleUrls = Object.keys(categoryArticlePages).map((name: string) => `/home/${name}.html`);
@@ -67,9 +91,9 @@ export function registerHomePages(router: MvcRouter): void {
 
     router.register(
         [],
-        route`/home/${{ page: '' }}.html`,
-        (method: HttpMethods, model: CategoryPageModel): MvcRouterResult | undefined => {
-            const page = categoryArticlePages[model.page];
+        route`/home/${{ path: [''] }}.html`,
+        (method: HttpMethods, model: ArticlePageModel): MvcRouterResult | undefined => {
+            const page = categoryArticlePages[model.path.join('/')];
             if (page === undefined) {
                 return undefined;
             }
@@ -94,9 +118,9 @@ export function registerHomePages(router: MvcRouter): void {
 
     router.register(
         [],
-        route`/home/${{ page: '' }}.html`,
-        (method: HttpMethods, model: CategoryPageModel): MvcRouterResult | undefined => {
-            const page = categoryFeaturePages[model.page];
+        route`/home/${{ path: '' }}.html`,
+        (method: HttpMethods, model: FeaturePageModel): MvcRouterResult | undefined => {
+            const page = categoryFeaturePages[model.path];
             if (page === undefined) {
                 return undefined;
             }

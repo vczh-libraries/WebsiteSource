@@ -8,7 +8,8 @@ const buttons: [string, string, string][] = [
     ['GacUI', 'home/gacui', 'GacUI !'],
     ['Data', 'home/data-processing', 'Data'],
     ['String', 'home/string-processing', 'Text'],
-    ['Scripting', 'home/reflection-scripting', 'Scripting']
+    ['Scripting', 'home/reflection-scripting', 'Scripting'],
+    ['Showcase', 'home/showcase', 'Showcase']
 ];
 
 export const viewExport = {
