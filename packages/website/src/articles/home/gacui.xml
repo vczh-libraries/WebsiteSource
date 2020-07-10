@@ -3,10 +3,10 @@
     <topic>
         <title>GacUI!</title>
         <p>
-            <img src="/resources/home/cat_gacui_rich.png">/home/gacui/rich.html</img>
-            <img src="/resources/home/cat_gacui_localization.png">/home/gacui/localization.html</img>
-            <img src="/resources/home/cat_gacui_styling.png">/home/gacui/styling.html</img>
-            <img src="/resources/home/cat_gacui_mvvm.png">/home/gacui/mvvm.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">gacui/rich.html</img>
+            <img src="/resources/home/cat_gacui_localization.png">gacui/localization.html</img>
+            <img src="/resources/home/cat_gacui_styling.png">gacui/styling.html</img>
+            <img src="/resources/home/cat_gacui_mvvm.png">gacui/mvvm.html</img>
         </p>
         <topic>
             <title>Rich controls and flexible layout</title>

@@ -5,10 +5,10 @@ import { html, render, TemplateResult } from 'lit-html';
 
 const buttons: [string, string, string][] = [
     ['Hello', 'index', 'Hello'],
-    ['GacUI', 'home/gacui', 'GacUI!'],
+    ['GacUI', 'home/gacui', 'GacUI !'],
     ['Data', 'home/data-processing', 'Data'],
     ['String', 'home/string-processing', 'Text'],
-    ['Scripting', 'home/reflection-scripting', 'Reflection and Scripting']
+    ['Scripting', 'home/reflection-scripting', 'Scripting']
 ];
 
 export const viewExport = {
@@ -16,8 +16,8 @@ export const viewExport = {
         const homeArticle = <Article>window['MVC-Resources.homeArticle'];
         const htmlTemplate = html`
 ${renderArticle(homeArticle)}
-<h2 class="HomeCategoryHeaders">
-${
+<table class="CategoryTable"><tr><td align="center">
+<h2 class="CategoryHeaders">${
             ((): TemplateResult[] => {
                 const buttonHtmls = buttons.map((button: [string, string, string]) => {
                     const [htmlClass, htmlLink, htmlText] = button;
@@ -32,6 +32,7 @@ ${
                     ;
             })()}
 </h2>
+</td></tr></table>
 <div id="homeViewContainer"></div>
 <script lang="javascript">
 document.getElementById("cat" + activeCategory).classList.remove("Unselected");
