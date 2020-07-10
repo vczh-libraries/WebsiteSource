@@ -1,7 +1,23 @@
+import { Article, Image, Paragraph, Topic } from 'gaclib-article';
 import { litHtmlViewCallback, litHtmlViewRouterCallback, MvcRouter, MvcRouterResult, ViewConfig } from 'gaclib-host';
 import { HttpMethods, route } from 'gaclib-mvc';
 import { loadArticle } from './topLevelPages';
 import { views } from './views';
+import { FeatureItem, FeatureList } from './views/homeCategoryFeatureView';
+
+function getFeatureListFromArticle(article: Article): FeatureList {
+    return {
+        title: article.topic.title,
+        features: (<Topic[]>article.topic.content.slice(1)).map((t: Topic, index: number): FeatureItem => {
+            const image = (<Image>(<Paragraph>article.topic.content[0]).content[index]);
+            return {
+                image: image.src,
+                href: <string>image.caption,
+                article: { index: false, numberBeforeTitle: false, topic: t }
+            };
+        })
+    };
+}
 
 const homePageConfig: ViewConfig = {
     info: { title: 'Gaclib -- GPU Accelerated C++ User Interface (vczh)' },
@@ -13,25 +29,25 @@ const homePageConfig: ViewConfig = {
     }
 };
 
-const categoryArticlePages: { [key: string]: { category: string; article: string } } = {
+const categoryArticlePages: { [key: string]: { category: string; article: Article } } = {
     'data-processing': {
         category: 'Data',
-        article: 'home/data-processing.xml'
+        article: loadArticle('home/data-processing.xml')
     },
     'string-processing': {
         category: 'String',
-        article: 'home/string-processing.xml'
+        article: loadArticle('home/string-processing.xml')
     },
     'reflection-scripting': {
         category: 'Scripting',
-        article: 'home/reflection-scripting.xml'
+        article: loadArticle('home/reflection-scripting.xml')
     }
 };
 
-const categoryFeaturePages: { [key: string]: { category: string; article: string } } = {
+const categoryFeaturePages: { [key: string]: { category: string; featureList: FeatureList } } = {
     gacui: {
         category: 'GacUI',
-        article: 'home/gacui.xml'
+        featureList: getFeatureListFromArticle(loadArticle('home/gacui.xml'))
     }
 };
 
@@ -42,6 +58,8 @@ interface CategoryPageModel {
 const categoryArticleUrls = Object.keys(categoryArticlePages).map((name: string) => `/home/${name}.html`);
 const categoryFeatureUrls = Object.keys(categoryFeaturePages).map((name: string) => `/home/${name}.html`);
 export const homePageDynamicUrls = categoryArticleUrls.concat(categoryFeatureUrls);
+
+const homeArticle = loadArticle('home.xml');
 
 export function registerHomePages(router: MvcRouter): void {
     router.register([], route`/`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryArticleView', homePageConfig));
@@ -56,20 +74,18 @@ export function registerHomePages(router: MvcRouter): void {
                 return undefined;
             }
 
-            const homeArticle = loadArticle('home.xml');
-            const categoryArticle = loadArticle(page.article);
             return litHtmlViewRouterCallback(
                 method,
                 model,
                 views,
                 'Gaclib-HomeCategoryArticleView',
                 {
-                    info: { title: `Gaclib -- Home -- ${categoryArticle.topic.title}` },
+                    info: { title: `Gaclib -- Home -- ${page.article.topic.title}` },
                     embeddedResources: {
                         activeButton: 'Home',
                         activeCategory: page.category,
                         homeArticle: homeArticle,
-                        categoryArticle: categoryArticle
+                        categoryArticle: page.article
                     }
                 }
             );
@@ -85,20 +101,18 @@ export function registerHomePages(router: MvcRouter): void {
                 return undefined;
             }
 
-            const homeArticle = loadArticle('home.xml');
-            const featureArticle = loadArticle(page.article);
             return litHtmlViewRouterCallback(
                 method,
                 model,
                 views,
                 'Gaclib-HomeCategoryFeatureView',
                 {
-                    info: { title: `Gaclib -- Home -- ${featureArticle.topic.title}` },
+                    info: { title: `Gaclib -- Home -- ${page.featureList.title}` },
                     embeddedResources: {
                         activeButton: 'Home',
                         activeCategory: page.category,
                         homeArticle: homeArticle,
-                        featureArticle: featureArticle
+                        featureList: page.featureList
                     }
                 }
             );
