@@ -30,12 +30,20 @@ const homeView: ViewMetadata = {
     }
 };
 
-const homeCategoryView: ViewMetadata = {
-    name: 'Gaclib-HomeCategoryView',
-    source: `${__dirname}/homeCategoryView.js`,
-    path: '/scripts/homeCategoryView.js',
+const homeCategoryArticleView: ViewMetadata = {
+    name: 'Gaclib-HomeCategoryArticleView',
+    source: `${__dirname}/homeCategoryArticleView.js`,
+    path: '/scripts/homeCategoryArticleView.js',
     parentView: 'Gaclib-HomeView',
     htmlInfo: {}
 };
 
-export const views = [rootView, articleView, homeView, homeCategoryView];
+const homeCategoryFeatureView: ViewMetadata = {
+    name: 'Gaclib-HomeCategoryFeatureView',
+    source: `${__dirname}/homeCategoryFeatureView.js`,
+    path: '/scripts/homeCategoryFeatureView.js',
+    parentView: 'Gaclib-HomeView',
+    htmlInfo: {}
+};
+
+export const views = [rootView, articleView, homeView, homeCategoryArticleView, homeCategoryFeatureView];

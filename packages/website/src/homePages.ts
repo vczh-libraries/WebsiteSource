@@ -39,8 +39,8 @@ interface CategoryPageModel {
 export const homePageDynamicUrls: string[] = Object.keys(categoryPages).map((name: string) => `/home/${name}.html`);
 
 export function registerHomePages(router: MvcRouter): void {
-    router.register([], route`/`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryView', homePageConfig));
-    router.register([], route`/index.html`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryView', homePageConfig));
+    router.register([], route`/`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryArticleView', homePageConfig));
+    router.register([], route`/index.html`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryArticleView', homePageConfig));
 
     router.register(
         [],
@@ -54,7 +54,7 @@ export function registerHomePages(router: MvcRouter): void {
                 method,
                 model,
                 views,
-                'Gaclib-HomeCategoryView',
+                'Gaclib-HomeCategoryArticleView',
                 {
                     info: { title: 'Gaclib -- GPU Accelerated C++ User Interface (vczh)' },
                     embeddedResources: {
