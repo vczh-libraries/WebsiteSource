@@ -30,6 +30,7 @@ const homePageConfig: ViewConfig = {
 };
 
 const categoryArticlePages: { [key: string]: { category: string; article: Article } } = {
+    // GacUI!
     'gacui/rich': {
         category: 'GacUI',
         article: loadArticle('home/gacui/rich.xml')
@@ -46,6 +47,7 @@ const categoryArticlePages: { [key: string]: { category: string; article: Articl
         category: 'GacUI',
         article: loadArticle('home/gacui/mvvm.xml')
     },
+    // Data
     'data-processing/containers': {
         category: 'Data',
         article: loadArticle('home/data-processing/containers.xml')
@@ -66,6 +68,7 @@ const categoryArticlePages: { [key: string]: { category: string; article: Articl
         category: 'Data',
         article: loadArticle('home/data-processing/threading.xml')
     },
+    // Text
     'string-processing/regex': {
         category: 'String',
         article: loadArticle('home/string-processing/regex.xml')
@@ -82,10 +85,28 @@ const categoryArticlePages: { [key: string]: { category: string; article: Articl
         category: 'String',
         article: loadArticle('home/string-processing/parser.xml')
     },
-    'reflection-scripting': {
+    // Scripting
+    'reflection-scripting/registration': {
         category: 'Scripting',
-        article: loadArticle('home/reflection-scripting.xml')
+        article: loadArticle('home/reflection-scripting/registration.xml')
     },
+    'reflection-scripting/invoking': {
+        category: 'Scripting',
+        article: loadArticle('home/reflection-scripting/invoking.xml')
+    },
+    'reflection-scripting/scripting': {
+        category: 'Scripting',
+        article: loadArticle('home/reflection-scripting/scripting.xml')
+    },
+    'reflection-scripting/executing': {
+        category: 'Scripting',
+        article: loadArticle('home/reflection-scripting/executing.xml')
+    },
+    'reflection-scripting/codegen': {
+        category: 'Scripting',
+        article: loadArticle('home/reflection-scripting/codegen.xml')
+    },
+    // Showcase
     showcase: {
         category: 'Showcase',
         article: loadArticle('home/showcase.xml')
@@ -104,6 +125,10 @@ const categoryFeaturePages: { [key: string]: { category: string; featureList: Fe
     'string-processing': {
         category: 'String',
         featureList: getFeatureListFromArticle(loadArticle('home/string-processing.xml'))
+    },
+    'reflection-scripting': {
+        category: 'Scripting',
+        featureList: getFeatureListFromArticle(loadArticle('home/reflection-scripting.xml'))
     }
 };
 

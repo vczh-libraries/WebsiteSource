@@ -1,0 +1,26 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Dynamic invoking</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+LoadPredefinedTypes();
+
+auto tm = GetGlobalTypeManager();
+tm->AddTypeLoader(new MyTypeLoader);
+tm->Load();
+
+auto td = tm->GetTypeDescriptor(L"myapi::App");
+auto ctor = td->GetConstructorGroup()->GetMethod(0);
+auto print = td->GetMethodGroupByName(L"Print");
+
+Value app = ctor->Invoke(Value(), Value_xs());
+
+arguments.Add(BoxValue<WString>(L"Hello, world!"));
+print->Invoke(app, (Value_xs(), WString(L"Hello, world!")));
+
+ResetGlobalTypeManager();
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

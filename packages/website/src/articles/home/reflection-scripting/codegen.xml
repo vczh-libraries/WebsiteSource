@@ -1,0 +1,17 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+            <title>Run the generated C++ code</title>
+        <p>Compile the script and generate C++ code, call it in C++!</p>
+        <p>
+            <program language="C++"><code><![CDATA[
+#include "MyScript.h"
+
+int main()
+{
+    MakePtr<MyScript>()->Main();
+}
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

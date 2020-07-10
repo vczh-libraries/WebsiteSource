@@ -2,148 +2,37 @@
 <article>
     <topic>
         <title>C++ reflection and scripting</title>
+        <p>
+            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/registration.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/invoking.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/scripting.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/executing.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/codegen.html</img>
+        </p>
         <topic>
             <title>Easy registration</title>
-            <p>
-                <program language="C++"><code><![CDATA[
-namespace myapi
-{
-    class App : public Object, public Description<App>
-    {
-    public:
-        void Print(const WString& text) { Console::WriteLine(text); }
-        WString Get() { return Console::Read(); }
-    };
-}
-
-using namespace myapi;
-
-#define TYPE_LIST(F) F(myapi::App)
-
-BEGIN_TYPE_INFO_NAMESPACE
-
-    TYPE_LIST(DECL_TYPE_INFO)
-    TYPE_LIST(IMPL_CPP_TYPE_INFO)
-
-    BEGIN_CLASS_MEMBER(App)
-        CLASS_MEMBER_CONSTRUCTOR(Ptr<App>(), NO_PARAMETER)
-        CLASS_MEMBER_METHOD(Print, {L"text"})
-        CLASS_MEMBER_METHOD(Get, NO_PARAMETER)
-    END_CLASS_MEMBER(App)
-
-    class MyTypeLoader : public Object, public ITypeLoader
-    {
-    public:
-        void Load(ITypeManager* manager)override
-        {
-            TYPE_LIST(ADD_TYPE_INFO)
-        }
-        
-        void Unload(ITypeManager* manager)override
-        {
-        }
-    };
-
-END_TYPE_INFO_NAMESPACE
-                ]]></code></program>
-            </p>
+            <p>Write your C++ class and register for reflection API.</p>
         </topic>
         <topic>
             <title>Dynamic invoking</title>
-            <p>
-                <program language="C++"><code><![CDATA[
-LoadPredefinedTypes();
-
-auto tm = GetGlobalTypeManager();
-tm->AddTypeLoader(new MyTypeLoader);
-tm->Load();
-
-auto td = tm->GetTypeDescriptor(L"myapi::App");
-auto ctor = td->GetConstructorGroup()->GetMethod(0);
-auto print = td->GetMethodGroupByName(L"Print");
-
-Value app = ctor->Invoke(Value(), Value_xs());
-
-arguments.Add(BoxValue<WString>(L"Hello, world!"));
-print->Invoke(app, (Value_xs(), WString(L"Hello, world!")));
-
-ResetGlobalTypeManager();
-                ]]></code></program>
-            </p>
+            <p>Call you C++ class via reflection API.</p>
         </topic>
         <topic>
             <title>Scripting and native code interoperability</title>
+            <p>Call your C++ class in Workflow script.</p>
+        </topic>
+        <topic>
+            <title>Run the script directly</title>
             <p>
-                <program language="Workflow"><code><![CDATA[
-module myscript;
-using myapp::*;
-
-class MyScript
-{
-    new()
-    {
-    }
-
-    func Main() : void
-    {
-        var app = new App^();
-        var name = app.Get();
-        app.Print($"Hello, $(name)!");
-    }
-}
-                ]]></code></program>
+                Compile and execute your workflow script on-the-fly.
+                Compiled workflow script could be serialized to a file.
             </p>
         </topic>
         <topic>
-            <title>C++ code generation</title>
-            <p>Compile the script and generate C++ code, call it in C++!</p>
+            <title>Run the generated C++ code</title>
             <p>
-                <program language="C++"><code><![CDATA[
-#include "MyScript.h"
-
-int main()
-{
-    MakePtr<MyScript>()->Main();
-}
-                ]]></code></program>
-            </p>
-        </topic>
-        <topic>
-            <title>Or run the script directly</title>
-            <p>Compile, serialize and run the script on-the-fly!</p>
-            <p>
-                <program language="C++"><code><![CDATA[
-List<Ptr<ParsingError>> errors;
-List<WString> codes;
-codes.Add(THE_WORKFLOW_SCRIPT);
-
-auto table = WfLoadTable();
-auto assembly = Compile(table, codes, errors);
-
-// saving the compiled assembly to a file is optional
-{
-    FileStream stream(L"C:/script.bin", FileStream::WriteOnly);
-    assembly->Serialize(stream);
-}
-{
-    WfAssemblyLoadErrors loadErrors;
-    FileStream stream(L"C:/script.bin", FileStream::ReadOnly);
-    assembly = WfAssembly::Deserialize(stream, loadErrors);
-}
-
-// initialize
-globalContext = MakePtr<WfRuntimeGlobalContext>(assembly);
-LoadFunction<void()>(globalContext, L"<initialize>")();
-
-// load and run MyScript::Main
-auto td = tm->GetTypeDescriptor(L"MyScript");
-auto ctor = td->GetConstructorGroup()->GetMethod(0);
-auto main = td->GetMethodGroupByName(L"Main");
-
-Value myScript = ctor->Invoke(Value(), Value_xs());
-main->Invoke(myScript, Value_xs());
-
-                ]]></code></program>
+                Compile and output your workflow script as C++ code.
+                Link the C++ code and just call!
             </p>
         </topic>
     </topic>
