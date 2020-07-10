@@ -3,11 +3,11 @@
     <topic>
         <title>Data processing</title>
         <p>
-            <img src="/resources/home/cat_gacui_rich.png">data-processing/containers.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">data-processing/linq.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">data-processing/filesystem.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">data-processing/http.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">data-processing/threading.html</img>
+            <img src="/resources/home/cat_data_containers.png">data-processing/containers.html</img>
+            <img src="/resources/home/cat_data_linq.png">data-processing/linq.html</img>
+            <img src="/resources/home/cat_data_filesystem.png">data-processing/filesystem.html</img>
+            <img src="/resources/home/cat_data_http.png">data-processing/http.html</img>
+            <img src="/resources/home/cat_data_threading.png">data-processing/threading.html</img>
         </p>
         <topic>
             <title>Containers</title>
