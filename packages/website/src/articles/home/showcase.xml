@@ -1,7 +1,25 @@
 <?xml encoding="utf-8" ?>
-<article>
+<article numberBeforeTitle="true">
     <topic>
         <title>Showcase!</title>
-        <p>This page is under construction.</p>
+        <p>
+            More and more developers are using this library to create their applications!
+            You could check out <a href="http://www.majorav.com">majorav.com</a>,
+            which is a very impressive example.
+        </p>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_001.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_002.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_003.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_004.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_005.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_006.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_007.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_008.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_009.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_010.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_011.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_012.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_013.png"/></p></topic>
+        <topic><title>Screenshot</title><p><img src="/resources/majorav/image_014.png"/></p></topic>
     </topic>
 </article>

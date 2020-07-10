@@ -17,11 +17,14 @@ export const viewExport = {
         <td align="center" valign="top">
             <table class="NavigateTable" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td class="NavigateHeader" colspan="6" align="left">
-                        <img src="/logo.gif" />
-                    </td>
-                </tr>
-                <tr>${
+                    <td align="center">
+                        <table class="NavigateButtonTable">
+                            <tr>
+                                <td colspan="6" align="left">
+                                    <img src="/logo.gif" />
+                                </td>
+                            </tr>
+                            <tr>${
             buttons.map((button: [string, string, string]) => {
                 const [htmlClass, htmlLink, htmlText] = button;
                 return html`
@@ -32,6 +35,9 @@ export const viewExport = {
                 </td>
                 `;
             })}
+                            </td>
+                        </tr>
+                    </table>
                 </tr>
                 <tr>
                     <td align="left" valign="top" colspan="6">

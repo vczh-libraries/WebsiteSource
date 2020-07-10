@@ -16,7 +16,9 @@ export const viewExport = {
     renderView(model: {}, target: Element): void {
         const homeArticle = <Article>window['MVC-Resources.homeArticle'];
         const htmlTemplate = html`
-${renderArticle(homeArticle)}
+<table class="HomeArticleContainer"><tr><td align="center">
+    <div class="HomeArticle">${renderArticle(homeArticle)}</div></div>
+</td></tr></table>
 <table class="CategoryTable"><tr><td align="center">
 <h2 class="CategoryHeaders">${
             ((): TemplateResult[] => {
