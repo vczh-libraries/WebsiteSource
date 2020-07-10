@@ -12,18 +12,6 @@
             <p><img src="/resources/home/demo_L.gif">Flow layout</img></p>
         </topic>
         <topic>
-            <title>Easy syntax</title>
-            <p>
-                <program language="Xml"><code><![CDATA[
-<Instance ref.Class="helloworld::MainWindow">
-    <Window Text="Hello, world!">
-        <Label Text="Welcome to GacUI Library!"/>
-    </Window>
-</Instance>
-                ]]></code></program>
-            </p>
-        </topic>
-        <topic>
             <title>Localization</title>
             <p>Resource: stores strings and their translations</p>
             <p>
