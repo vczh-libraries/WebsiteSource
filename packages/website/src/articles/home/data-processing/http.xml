@@ -1,0 +1,18 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Http client</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+HttpRequest request;
+request.SetHost(L"http://gaclib.net");
+
+HttpResponse response;
+HttpQuery(request, response);
+
+Console::WriteLine(itow(response.statusCode));
+Console::WriteLine(response.GetBodyUtf8());
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

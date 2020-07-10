@@ -1,0 +1,23 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Files and streams</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+Folder folder(L"C:/MyProjects/");
+List<File> files;
+folder.GetFiles(files);
+
+WString fileNames = GenerateToStream([&](const TextWriter& writer)
+{
+    FOREACH(File, file, files)
+    {
+        writer.WriteLine(file.GetFilePath().GetName());
+    }
+});
+File(L"C:/MyProjects/index.txt")
+    .WriteAllText(fileNames, false, BomEncoder::Utf8);
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

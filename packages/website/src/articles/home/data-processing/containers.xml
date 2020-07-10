@@ -1,0 +1,16 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Containers</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+Group<vint, WString> xs;
+xs.Add(1, L"C++");
+xs.Add(1, L"C#");
+xs.Add(1, L"TypeScript");
+xs.Add(2, L"Java");
+const List<WString>& ones = xs.Get[1];
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

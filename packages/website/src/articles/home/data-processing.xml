@@ -2,81 +2,32 @@
 <article>
     <topic>
         <title>Data processing</title>
+        <p>
+            <img src="/resources/home/cat_gacui_rich.png">data-processing/containers.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">data-processing/linq.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">data-processing/filesystem.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">data-processing/http.html</img>
+            <img src="/resources/home/cat_gacui_rich.png">data-processing/threading.html</img>
+        </p>
         <topic>
             <title>Containers</title>
-            <p>
-                <program language="C++"><code><![CDATA[
-Group<vint, WString> xs;
-xs.Add(1, L"C++");
-xs.Add(1, L"C#");
-xs.Add(1, L"TypeScript");
-xs.Add(2, L"Java");
-const List<WString>& ones = xs.Get[1];
-                ]]></code></program>
-            </p>
+            <p>Array, List, SortedList, Dictionary, Group, and more...</p>
         </topic>
         <topic>
             <title>Rich collection operations</title>
-            <p>
-                <program language="C++"><code><![CDATA[
-vint numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-vint sumOfSquares = From(numbers)
-    .Select([](vint i) { return i * i; })
-    .Aggregate([](vint a, vint b) { return a + b; });
-                ]]></code></program>
-            </p>
+            <p>All collection operations you need have already been built in.</p>
         </topic>
         <topic>
             <title>Files and streams</title>
-            <p>
-                <program language="C++"><code><![CDATA[
-Folder folder(L"C:/MyProjects/");
-List<File> files;
-folder.GetFiles(files);
-
-WString fileNames = GenerateToStream([&](const TextWriter& writer)
-{
-    FOREACH(File, file, files)
-    {
-        writer.WriteLine(file.GetFilePath().GetName());
-    }
-});
-File(L"C:/MyProjects/index.txt")
-    .WriteAllText(fileNames, false, BomEncoder::Utf8);
-                ]]></code></program>
-            </p>
+            <p>Basic access from file system, file IO and streaming.</p>
         </topic>
         <topic>
             <title>Http client</title>
-            <p>
-                <program language="C++"><code><![CDATA[
-HttpRequest request;
-request.SetHost(L"http://gaclib.net");
-
-HttpResponse response;
-HttpQuery(request, response);
-
-Console::WriteLine(itow(response.statusCode));
-Console::WriteLine(response.GetBodyUtf8());
-                ]]></code></program>
-            </p>
+            <p>Query data from the internet by one function call.</p>
         </topic>
         <topic>
             <title>Threading and synchronozation</title>
-            <p>
-                <program language="C++"><code><![CDATA[
-EventObject event;
-event.CreateAutoUnsignal(false);
-
-Thread::CreateAndStart([&]()
-{
-    DoSomething();
-    event.Signal();
-});
-
-event.Wait();
-                ]]></code></program>
-            </p>
+            <p>Thread, thread pool, locks, and syntax sugar.</p>
         </topic>
     </topic>
 </article>

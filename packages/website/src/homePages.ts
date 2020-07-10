@@ -46,9 +46,25 @@ const categoryArticlePages: { [key: string]: { category: string; article: Articl
         category: 'GacUI',
         article: loadArticle('home/gacui/mvvm.xml')
     },
-    'data-processing': {
+    'data-processing/containers': {
         category: 'Data',
-        article: loadArticle('home/data-processing.xml')
+        article: loadArticle('home/data-processing/containers.xml')
+    },
+    'data-processing/linq': {
+        category: 'Data',
+        article: loadArticle('home/data-processing/linq.xml')
+    },
+    'data-processing/filesystem': {
+        category: 'Data',
+        article: loadArticle('home/data-processing/filesystem.xml')
+    },
+    'data-processing/http': {
+        category: 'Data',
+        article: loadArticle('home/data-processing/http.xml')
+    },
+    'data-processing/threading': {
+        category: 'Data',
+        article: loadArticle('home/data-processing/threading.xml')
     },
     'string-processing': {
         category: 'String',
@@ -68,6 +84,10 @@ const categoryFeaturePages: { [key: string]: { category: string; featureList: Fe
     gacui: {
         category: 'GacUI',
         featureList: getFeatureListFromArticle(loadArticle('home/gacui.xml'))
+    },
+    'data-processing': {
+        category: 'Data',
+        featureList: getFeatureListFromArticle(loadArticle('home/data-processing.xml'))
     }
 };
 

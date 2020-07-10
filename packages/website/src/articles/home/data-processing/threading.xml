@@ -1,0 +1,20 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Threading and synchronozation</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+EventObject event;
+event.CreateAutoUnsignal(false);
+
+Thread::CreateAndStart([&]()
+{
+    DoSomething();
+    event.Signal();
+});
+
+event.Wait();
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

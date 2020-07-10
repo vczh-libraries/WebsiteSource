@@ -1,0 +1,14 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Rich collection operations</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+vint numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+vint sumOfSquares = From(numbers)
+    .Select([](vint i) { return i * i; })
+    .Aggregate([](vint a, vint b) { return a + b; });
+            ]]></code></program>
+        </p>
+    </topic>
+</article>
