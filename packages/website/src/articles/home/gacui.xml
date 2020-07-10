@@ -3,10 +3,12 @@
         <title>GacUI!</title>
         <topic>
             <title>Rich controls and flexible layout</title>
-            <p>List controls:</p>
-            <p><img src="/resources/home/demo_AB.png"/></p>
-            <p>Ribbon and editor controls:</p>
-            <p><img src="/resources/home/demo_DER.png"/></p>
+            <p><img src="/resources/home/demo_AB.png">List controls</img></p>
+            <p><img src="/resources/home/demo_DG.png">Customizable data grid and combo box</img></p>
+            <p><img src="/resources/home/demo_DER.png">Ribbon and editor controls</img></p>
+            <p><img src="/resources/home/demo_DET.png">Toolstrip and editor controls</img></p>
+            <p><img src="/resources/home/demo_A.gif">Animation</img></p>
+            <p><img src="/resources/home/demo_L.gif">Flow layout</img></p>
         </topic>
         <topic>
             <title>Easy syntax</title>
