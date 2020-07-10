@@ -2,6 +2,7 @@
 <article>
     <topic>
         <title>Rich collection operations</title>
+        <p>Calculate the sum of squares of numbers in a method chain.</p>
         <p>
             <program language="C++"><code><![CDATA[
 vint numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};

@@ -3,8 +3,24 @@
     <topic>
         <title>Lexical analyzer</title>
         <p>
+            A lexical analyer can be easily built by defining each token using a regular expression.
+            If there are too many tokens,
+            instead of copying all of them to a list,
+            you can read them one by one and save memory.
+        </p>
+        <p>
+            Context sensitive colorization is also a very powerful feature provided by <b>RegexLexer</b>.
+        </p>
+        <p>
             <program language="C++"><code><![CDATA[
-// something
+List<WString> codes;
+codes.Add(L"/d+");
+codes.Add(L"/s+");
+codes.Add(L"[a-zA-Z_]/w*");
+RegexLexer lexer(codes, {});
+
+List<RegexToken> tokens;
+CopyFrom(tokens, lexer.Parse(L"Here is 100 books"));
             ]]></code></program>
         </p>
     </topic>

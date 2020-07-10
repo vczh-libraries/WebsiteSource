@@ -2,6 +2,7 @@
 <article>
     <topic>
         <title>Regular expression</title>
+        <p>Extract information from a string using regular expression.</p>
         <p>
             <program language="C++"><code><![CDATA[
 Regex regex(L"^(<name>\w+):(<adj>\w+)");

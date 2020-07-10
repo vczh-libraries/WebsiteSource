@@ -2,6 +2,7 @@
 <article>
     <topic>
         <title>Scripting and native code interoperability</title>
+        <p>Call the registered C++ class in Workflow script.</p>
         <p>
             <program language="Workflow"><code><![CDATA[
 module myscript;

@@ -3,8 +3,90 @@
     <topic>
         <title>Lexical analyzer with non-regex tokens</title>
         <p>
+            When regular expression is not enough to define a token,
+            you can register a callback to modify the token,
+            it is called on every recognized token.
+            For colorization, a token could be provided in multiple line buffers,
+            the callback is also given the information to handle such case.
+        </p>
+        <p>
+            Context sensitive colorization is also a very powerful feature provided by <b>RegexLexer</b>.
+        </p>
+        <p>
             <program language="C++"><code><![CDATA[
-// something
+struct InterTokenState
+{
+    WString postfix;
+};
+
+void Deleter(void* interStateDeleter)
+{
+    delete (InterTokenState*)interStateDeleter;
+}
+
+void ExtendProc(void* argument, const wchar_t* reading, vint length, bool completeText, RegexProcessingToken& processingToken)
+{
+    WString readingBuffer = length == -1 ? WString(reading, false) : WString(reading, length);
+    reading = readingBuffer.Buffer();
+
+    if (processingToken.token == 2 || processingToken.token == 3)
+    {
+        WString postfix;
+        if (processingToken.interTokenState)
+        {
+            postfix = ((InterTokenState*)processingToken.interTokenState)->postfix;
+        }
+        else
+        {
+            postfix = L")" + WString(reading + 2, processingToken.length - 3) + L"\"";
+        }
+
+        auto find = wcsstr(reading, postfix.Buffer());
+        if (find)
+        {
+            processingToken.length = (vint)(find - reading) + postfix.Length();
+            processingToken.completeToken = true;
+            processingToken.interTokenState = nullptr;
+        }
+        else
+        {
+            processingToken.length = readingBuffer.Length();
+            processingToken.token = 3;
+            processingToken.completeToken = false;
+
+            if (!completeText && !processingToken.interTokenState)
+            {
+                auto state = new InterTokenState;
+                state->postfix = postfix;
+                processingToken.interTokenState = state;
+            }
+        }
+    }
+}
+
+int main()
+{
+List<WString> codes;
+codes.Add(L"/d+");
+codes.Add(L"\"[^\"]*\"");
+codes.Add(L"/$\"=*/(");
+
+RegexProc proc;
+proc.deleter = Deleter;
+proc.extendProc = ExtendProc;
+RegexLexer lexer(codes, proc);
+
+WString input = LR"test_input(
+    123 456
+    "simple text"
+    $"===(
+    abcde
+    )==="
+)test_input";
+
+List<RegexToken> tokens;
+CopyFrom(tokens, lexer.Parse(input));
+}
             ]]></code></program>
         </p>
     </topic>

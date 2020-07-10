@@ -1,8 +1,11 @@
 <?xml encoding="utf-8" ?>
 <article>
     <topic>
-            <title>Run the generated C++ code</title>
-        <p>Compile the script and generate C++ code, call it in C++!</p>
+        <title>Run the generated C++ code</title>
+        <p>
+            You can also use the Workflow compiler to print C++ code for your workflow script.
+            Link the generated C++ code, and you don't need either the Workflow runtime code, or the compiled script.
+        </p>
         <p>
             <program language="C++"><code><![CDATA[
 #include "MyScript.h"

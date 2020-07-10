@@ -2,7 +2,7 @@
 <article>
     <topic>
         <title>GLR parser generation</title>
-        <p>Grammar:</p>
+        <p>Grammar: an expression parser for numbers, binary operators and function calls</p>
         <p>
             <program language="C++"><code><![CDATA[
 include:<VlppParser.h>
@@ -82,7 +82,11 @@ rule Expression Exp
         ;
             ]]></code></program>
         </p>
-        <p>And what you get from generated C++ code:</p>
+        <p>
+            And what you get from generated C++ code.
+            The GLR parser generator also generate visitors for each root AST types.
+            Different kinds of AST visitors with boilerplate code are also available.
+        </p>
         <p>
             <program language="C++"><code><![CDATA[
 auto table = CalLoadTable();

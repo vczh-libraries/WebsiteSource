@@ -2,6 +2,7 @@
 <article>
     <topic>
         <title>Files and streams</title>
+        <p>Write file names in a folder to a text file.</p>
         <p>
             <program language="C++"><code><![CDATA[
 Folder folder(L"C:/MyProjects/");

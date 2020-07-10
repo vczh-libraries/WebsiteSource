@@ -2,6 +2,7 @@
 <article>
     <topic>
         <title>Threading and synchronozation</title>
+        <p>Wait for a thread to exit using a signal.</p>
         <p>
             <program language="C++"><code><![CDATA[
 EventObject event;

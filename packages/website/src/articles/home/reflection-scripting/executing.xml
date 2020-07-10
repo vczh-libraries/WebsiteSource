@@ -2,7 +2,11 @@
 <article>
     <topic>
         <title>Run the script directly</title>
-        <p>Compile, serialize and run the script on-the-fly!</p>
+        <p>
+            Compile, serialize and run the script on-the-fly!
+            You can also save the compiled Workflow script as a binary file.
+            By doing this, you don't need to link the compiler code for running the script.
+        </p>
         <p>
             <program language="C++"><code><![CDATA[
 List<Ptr<ParsingError>> errors;
