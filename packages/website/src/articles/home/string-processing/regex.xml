@@ -1,0 +1,19 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Regular expression</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+Regex regex(L"^(<name>\w+):(<adj>\w+)");
+Ptr<RegexMatch> match = regex.Match(L"GacUI:great");
+Console::WriteLine(
+    L"Hey, " +
+    match->Groups()[L"name"][0].Value() +
+    L" is " +
+    match->Groups()[L"adj"][0].Value() +
+    L"!"
+);
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

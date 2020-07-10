@@ -1,0 +1,11 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Lexical analyzer with non-regex tokens</title>
+        <p>
+            <program language="C++"><code><![CDATA[
+// something
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

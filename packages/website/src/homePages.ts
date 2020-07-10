@@ -66,9 +66,21 @@ const categoryArticlePages: { [key: string]: { category: string; article: Articl
         category: 'Data',
         article: loadArticle('home/data-processing/threading.xml')
     },
-    'string-processing': {
+    'string-processing/regex': {
         category: 'String',
-        article: loadArticle('home/string-processing.xml')
+        article: loadArticle('home/string-processing/regex.xml')
+    },
+    'string-processing/lexer-cf': {
+        category: 'String',
+        article: loadArticle('home/string-processing/lexer-cf.xml')
+    },
+    'string-processing/lexer-cs': {
+        category: 'String',
+        article: loadArticle('home/string-processing/lexer-cs.xml')
+    },
+    'string-processing/parser': {
+        category: 'String',
+        article: loadArticle('home/string-processing/parser.xml')
     },
     'reflection-scripting': {
         category: 'Scripting',
@@ -88,6 +100,10 @@ const categoryFeaturePages: { [key: string]: { category: string; featureList: Fe
     'data-processing': {
         category: 'Data',
         featureList: getFeatureListFromArticle(loadArticle('home/data-processing.xml'))
+    },
+    'string-processing': {
+        category: 'String',
+        featureList: getFeatureListFromArticle(loadArticle('home/string-processing.xml'))
     }
 };
 
