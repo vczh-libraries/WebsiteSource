@@ -1,0 +1,13 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <title>GacUI!</title>
+    <topic>
+        <title>Rich controls and flexible layout</title>
+        <p><img src="/resources/home/demo_AB.png">List controls</img></p>
+        <p><img src="/resources/home/demo_DG.png">Customizable data grid and combo box</img></p>
+        <p><img src="/resources/home/demo_DER.png">Ribbon and editor controls</img></p>
+        <p><img src="/resources/home/demo_DET.png">Toolstrip and editor controls</img></p>
+        <p><img src="/resources/home/demo_A.gif">Animation</img></p>
+        <p><img src="/resources/home/demo_L.gif">Flow layout</img></p>
+    </topic>
+</article>

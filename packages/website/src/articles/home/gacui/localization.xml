@@ -1,0 +1,32 @@
+<?xml encoding="utf-8" ?>
+<article>
+    <topic>
+        <title>Localization</title>
+        <p>Resource: stores strings and their translations</p>
+        <p>
+            <program language="Xml"><code><![CDATA[
+<LocalizedStrings ref.Class="helloworld::StringResource" DefaultLocale="en-US">
+    <Strings Locales="en-US">
+        <String Name="Title" Text="Hello, world!"/>
+        <String Name="Button" Text="Good morning!"/>
+    </Strings>
+    <Strings Locales="zh-CN">
+        <String Name="Title" Text="你好，世界！"/>
+        <String Name="Button" Text="早上好！"/>
+    </Strings>
+</LocalizedStrings>
+            ]]></code></program>
+        </p>
+        <p>UI: use strings from resource</p>
+        <p>
+            <program language="Xml"><code><![CDATA[
+<Instance ref.Class="helloworld::MainWindow">
+    <ref.LocalizedStrings Name="Strings" helloworld="demo::StringResource" Default="true"/>
+    <Window Text-str="Title()">
+        <Button Text-str="Button()">
+    </Window>
+</Instance>
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

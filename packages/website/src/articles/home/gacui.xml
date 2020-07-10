@@ -1,181 +1,28 @@
 <?xml encoding="utf-8" ?>
 <article>
     <topic>
-        <title>GacUI!</title>
+        <title>FeatureList</title>
+        <p>
+            <img src="/resources/home/cat_gacui_rich.png">/home/gacui/rich.html</img>
+            <img src="/resources/home/cat_gacui_localization.png">/home/gacui/localization.html</img>
+            <img src="/resources/home/cat_gacui_styling.png">/home/gacui/styling.html</img>
+            <img src="/resources/home/cat_gacui_mvvm.png">/home/gacui/mvvm.html</img>
+        </p>
         <topic>
             <title>Rich controls and flexible layout</title>
-            <p><img src="/resources/home/demo_AB.png">List controls</img></p>
-            <p><img src="/resources/home/demo_DG.png">Customizable data grid and combo box</img></p>
-            <p><img src="/resources/home/demo_DER.png">Ribbon and editor controls</img></p>
-            <p><img src="/resources/home/demo_DET.png">Toolstrip and editor controls</img></p>
-            <p><img src="/resources/home/demo_A.gif">Animation</img></p>
-            <p><img src="/resources/home/demo_L.gif">Flow layout</img></p>
+            <p>Built-in layouts, controls and templates.</p>
         </topic>
         <topic>
             <title>Localization</title>
-            <p>Resource: stores strings and their translations</p>
-            <p>
-                <program language="Xml"><code><![CDATA[
-<LocalizedStrings ref.Class="helloworld::StringResource" DefaultLocale="en-US">
-    <Strings Locales="en-US">
-        <String Name="Title" Text="Hello, world!"/>
-        <String Name="Button" Text="Good morning!"/>
-    </Strings>
-    <Strings Locales="zh-CN">
-        <String Name="Title" Text="你好，世界！"/>
-        <String Name="Button" Text="早上好！"/>
-    </Strings>
-</LocalizedStrings>
-                ]]></code></program>
-            </p>
-            <p>UI: use strings from resource</p>
-            <p>
-                <program language="Xml"><code><![CDATA[
-<Instance ref.Class="helloworld::MainWindow">
-    <ref.LocalizedStrings Name="Strings" helloworld="demo::StringResource" Default="true"/>
-    <Window Text-str="Title()">
-        <Button Text-str="Button()">
-    </Window>
-</Instance>
-                ]]></code></program>
-            </p>
+            <p>Display text in different languages with the ability to switch language at runtime.</p>
         </topic>
         <topic>
             <title>Styling</title>
-            <p>Styles: set properties by selector</p>
-            <p>
-                <program language="Xml"><code><![CDATA[
-<Styles>
-    <Style ref.Path="//Cell/Button" Font="fontFamily:'Segoe UI' size: 24 antialias:true">
-        <att.BoundsComposition-set AlignmentToParent="left:0 top:0 right:0 bottom:0"/>
-    </Style>
-</Styles>
-                ]]></code></program>
-            </p>
-            <p>UI: applies styles on multiple controls</p>
-            <p>
-                <program language="Xml"><code><![CDATA[
-<Instance ref.Class="helloworld::MainWindow">
-    <Window Text="Hello, world!">
-        <Table CellPadding="5" AlignmentToParent="left:0 top:0 right:0 bottom:0">
-            <att.Rows>
-                <CellOption>composeType:Percentage percentage:1.0</CellOption>
-                <CellOption>composeType:MinSize</CellOption>
-            </att.Rows>
-            <att.Columns>
-                <CellOption>composeType:Percentage percentage:1.0</CellOption>
-                <CellOption>composeType:MinSize</CellOption>
-                <CellOption>composeType:MinSize</CellOption>
-            </att.Columns>
-
-            <Cell Site="row:1 column:1 columnSpan:2">
-                <Button Text="OK"/>
-            </Cell>
-
-            <Cell Site="row:1 column:2 columnSpan:2">
-                <Button Text="Cancel"/>
-            </Cell>
-        </Table>
-    </Window>
-</Instance>
-                ]]></code></program>
-            </p>
+            <p>Control any properties of multiple controls centrally using XPath selector.</p>
         </topic>
         <topic>
             <title>MVVM and Data binding</title>
-            <p>Script: defines the interface for view model</p>
-            <p>
-                <program language="Xml"><code><![CDATA[
-module script;
-
-namespace helloworld
-{
-    interface IViewModel
-    {
-        prop Title : string {GetTitle, SetTitle : TitleChanged}
-        func Submit() : void;
-    }
-}
-                ]]></code></program>
-            </p>
-            <p>UI: binds view model to text box and button</p>
-            <p>
-                <program language="Xml"><code><![CDATA[
-<Instance ref.Class="helloworld::MainWindow">
-    <ref.Parameter Name="ViewModel" Class="helloworld::IViewModel"/>
-    <Window ref.Name="self" Text="Hello, world!">
-        <Table CellPadding="5" AlignmentToParent="left:0 top:0 right:0 bottom:0">
-            <att.Rows>
-                <CellOption>composeType:MinSize</CellOption>
-                <CellOption>composeType:Percentage percentage:1.0</CellOption>
-                <CellOption>composeType:MinSize</CellOption>
-            </att.Rows>
-            <att.Columns>
-                <CellOption>composeType:MinSize</CellOption>
-                <CellOption>composeType:Percentage percentage:1.0</CellOption>
-            </att.Columns>
-
-            <Cell Site="row:0 column:0">
-                <SolidLabel Text="Title: " Font-bind="self.Font"/>
-            </Cell>
-            <Cell Site="row:0 column:1">
-                <SinglelineTextBox Text-bind="ViewModel.Title">
-                    <att.BoundsComposition-set
-                        AlignmentToParent="left:0 top:0 right:0 bottom:0"
-                        PreferredMinSize="x:0 y:24"/>
-                </SinglelineTextBox>
-            </Cell>
-            <Cell Site="row:2 column:0 columnSpan:2">
-                <Button Text="Submit" ev.Clicked-eval="ViewModel.Submit()">
-                    <att.BoundsComposition-set AlignmentToParent="left:-1 top:0 right:0 bottom:0"/>
-                </Button>
-            </Cell>
-        </Table>
-    </Window>
-</Instance>
-                ]]></code></program>
-            </p>
-            <p>Application: implement the view model</p>
-            <p>
-                <program language="Xml"><code><![CDATA[
-class ViewModel : public Object, public virtual helloworld::IViewModel
-{
-private:
-    WString title;
-
-public:
-
-    WString GetTitle()override
-    {
-        return title;
-    }
-
-    void SetTitle(const WString& value)override
-    {
-        title = value;
-        TitleChanged();
-    }
-
-    void Submit()override
-    {
-        // do something
-    }
-};
-
-void GuiMain()
-{
-    {
-        FileStream fileStream(L"MVVM.bin", FileStream::ReadOnly);
-        GetResourceManager()->LoadResourceOrPending(fileStream);
-    }
-    auto viewModel = MakePtr<ViewModel>();
-    auto window = new helloworld::MainWindow(viewModel);
-    window->MoveToScreenCenter();
-    GetApplication()->Run(window);
-    delete window;
-}
-                ]]></code></program>
-            </p>
+            <p>Model-View-ViewModel with virtual mode in controls makes UI be easily updated, testable and scalable.</p>
         </topic>
     </topic>
 </article>
