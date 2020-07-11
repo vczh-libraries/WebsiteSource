@@ -3,11 +3,11 @@
     <topic>
         <title>C++ reflection and scripting</title>
         <p>
-            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/registration.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/invoking.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/scripting.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/executing.html</img>
-            <img src="/resources/home/cat_gacui_rich.png">reflection-scripting/codegen.html</img>
+            <img src="/resources/home/cat_scripting_registration.png">reflection-scripting/registration.html</img>
+            <img src="/resources/home/cat_scripting_invoking.png">reflection-scripting/invoking.html</img>
+            <img src="/resources/home/cat_scripting_scripting.png">reflection-scripting/scripting.html</img>
+            <img src="/resources/home/cat_scripting_executing.png">reflection-scripting/executing.html</img>
+            <img src="/resources/home/cat_scripting_codegen.png">reflection-scripting/codegen.html</img>
         </p>
         <topic>
             <title>Easy registration</title>
