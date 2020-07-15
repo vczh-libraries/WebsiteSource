@@ -83,6 +83,7 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
 
     if (xml.elements !== undefined) {
         let hasTextContent = false;
+        let hasImplicitParagraphContent = false;
         let hasArticleContent = false;
 
         for (const xmlContent of xml.elements) {
@@ -103,16 +104,27 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
                             hasArticleContent = true;
                             break;
                         }
-                        default:
-                            throw new Error(`Unrecognizable element <${xmlContent.name}> in <${xml.name}>.`);
+                        default: {
+                            hasImplicitParagraphContent = true;
+                        }
                     }
                 }
                 default:
             }
         }
 
-        if (hasTextContent && hasArticleContent) {
-            throw new Error(`A document content should either contain only multiple <p>, or contain only multiple plain text, cdata, <symbol> and <symbols>.`);
+        if ((hasTextContent || hasImplicitParagraphContent) && hasArticleContent) {
+            throw new Error(`A document content should either contain only multiple <p>, one paragraph without <p>, or only multiple plain text, cdata, <symbol> and <symbols>.`);
+        } else if (hasImplicitParagraphContent) {
+            insertp(a.parseParagraph(xml, (e: Element) => {
+                switch (e.name) {
+                    case 'symbol':
+                    case 'symbols':
+                        return parseDocSymbolsPlugin(e);
+                    default:
+                        return undefined;
+                }
+            }));
         } else if (hasTextContent) {
             let needInsertParagraph = false;
             for (const xmlContent of xml.elements) {
