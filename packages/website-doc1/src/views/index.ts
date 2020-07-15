@@ -7,7 +7,7 @@ const rootView: ViewMetadata = {
     containerId: 'rootViewContainer',
     htmlInfo: {
         shortcutIcon: '/favicon.ico',
-        styleSheets: ['/global.css']
+        styleSheets: ['/global.css', '/article.css']
     }
 };
 
