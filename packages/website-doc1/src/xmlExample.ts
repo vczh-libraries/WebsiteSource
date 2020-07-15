@@ -52,10 +52,22 @@ export function exampleRetriver(documentFile: string, index: number): DocExample
     }
     code = codeLines.join('\n');
 
-    const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
-
-    return {
-        code: mergeCodeWithTemplate(category, code),
-        output
-    };
+    let outputExists = true;
+    if (codeXml.attributes !== undefined) {
+        if (`${codeXml.attributes.output}` === 'false') {
+            outputExists = false;
+        }
+    }
+    
+    if (outputExists) {
+        const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
+        return {
+            code: mergeCodeWithTemplate(category, code),
+            output
+        };
+    } else {
+        return {
+            code: mergeCodeWithTemplate(category, code)
+        };
+    }
 }
