@@ -66,7 +66,7 @@
   <see cref="A::B`2"/> <!-- a link to another declaration -->
 </summary>
 <remarks>extra information that is related to this declaration</remakrs>
-<example><![CDATA[code]]></example>
+<example output="optional:true|false"><![CDATA[code]]></example>
 <seealso cref="A::B`2"/> <!-- a link to added to the "See Also" list -->
 ```
 
@@ -170,7 +170,7 @@
 
 - `<signature>` is converted to `<program language="C++">`
 - `<example>` is converted to `<program project="Auto-Inferred" language="C++ by default">`
-  - `<output>` are automatically calculated for non-GacUI projects
+  - `<output>` are automatically calculated for non-GacUI projects, except for `<example output="false">`
 - generate topics in order if available:
   - Signature
   - Summary
