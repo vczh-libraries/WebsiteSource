@@ -266,6 +266,29 @@ test(`<summary> with article paragraphs`, () => {
     assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
+test(`<summary> with implicit article paragraphs`, () => {
+    const input = `
+<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+  <summary>This is a <b>book</b>.</summary>
+</Document>
+`;
+    const output: DocArticle = {
+        symbolId: '::MyClass',
+        accessor: '',
+        category: 'Class',
+        name: 'MyClass',
+        declFile: 'F',
+        declId: 'I',
+        summary: {
+            paragraphs: [{
+                kind: 'Paragraph',
+                content: [{ kind: 'Text', text: 'This is a ' }, { kind: 'Strong', content: [{ kind: 'Text', text: 'book' }] }, { kind: 'Text', text: '.' }]
+            }]
+        }
+    };
+    assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
+});
+
 test(`DocText with text in document`, () => {
     const input = `
 <Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">

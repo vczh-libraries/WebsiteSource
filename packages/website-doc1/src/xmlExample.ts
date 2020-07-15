@@ -58,7 +58,7 @@ export function exampleRetriver(documentFile: string, index: number): DocExample
             outputExists = false;
         }
     }
-    
+
     if (outputExists) {
         const output = readFileSync(`${fileName}.eout.${index}.txt`, { encoding: 'utf-8' });
         return {
