@@ -5,7 +5,8 @@ import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
 
 const templateCodeMapping: { [key: string]: string } = {
-    VLPP: path.join(__dirname, '../../../../Document/Tools/Examples/Vlpp/Main.cpp')
+    VLPP: path.join(__dirname, '../../../../Document/Tools/Examples/Vlpp/Main.cpp'),
+    VLPPOS: path.join(__dirname, '../../../../Document/Tools/Examples/VlppOS/Main.cpp')
 };
 
 const templateCodeContent: { [key: string]: string } = {};
@@ -35,7 +36,8 @@ export function exampleRetriver(documentFile: string, index: number): DocExample
             ignoreDoctype: true
         }
     );
-    let code = trimEmptyLines((codeXml.elements ?? [])[0]);
+    const exampleXml = (codeXml.elements ?? [])[0];
+    let code = trimEmptyLines(exampleXml);
 
     let codeLines = code.split('\n');
     let indent = -1;
@@ -53,8 +55,8 @@ export function exampleRetriver(documentFile: string, index: number): DocExample
     code = codeLines.join('\n');
 
     let outputExists = true;
-    if (codeXml.attributes !== undefined) {
-        if (`${codeXml.attributes.output}` === 'false') {
+    if (exampleXml.attributes !== undefined) {
+        if (`${exampleXml.attributes.output}` === 'false') {
             outputExists = false;
         }
     }
