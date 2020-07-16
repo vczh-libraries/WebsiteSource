@@ -2,6 +2,9 @@
     <topic>
         <title>Using Threads and Locks</title>
         <p>
+            <b>Lock protects resources, lock does not protect code.</b>
+        </p>
+        <p>
             <a href="https://docs.microsoft.com/en-us/windows/win32/sync/synchronization">The synchronization topic in MSDN</a> is recommended for learning how to write concurrent programs correctly in details.
         </p>
         <topic>
@@ -52,6 +55,185 @@ ThreadPoolLite::Queue([&]()
 
 stopEvent.Wait();
                 ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Thread local variables</title>
+            <p>
+                By using <b>ThreadVariable&lt;T&gt;</b> as a global variable,
+                a thread local variable is created.
+                <program><code><![CDATA[
+ThreadVariable<int> v;
+
+ThreadPoolLite::Queue([&]()
+{
+    // this thread has a copy of v
+    v.Set(1);
+});
+
+ThreadPoolLite::Queue([&]()
+{
+    // this thread has another copy of v too
+    v.Set(2);
+});
+
+// the main thread also has a different copy of v
+v.Set(3);
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Mutex, CriticalSection and SpinLock</title>
+            <p>
+                <b>Mutex</b>, <b>CriticalSection</b> and <b>SpinLock</b> is very similar.
+                When multiple threads are waiting for a <b>Mutex</b>, a <b>CriticalSection</b> or a <b>SpinLock</b>,
+                only one thread could pick it up at the same time.
+            </p>
+            <p>
+                <b>Mutex</b> uses system resource. It is recommended when:
+                <ul>
+                    <li>Owning a mutex for a long time could happen.</li>
+                    <li>Synchronize multiple operations across processes. A global mutex requires a name to create.</li>
+                </ul>
+            </p>
+            <p>
+                <b>CriticalSection</b> is a bit faster than <b>Mutex</b>. It is recommended when:
+                <ul>
+                    <li>Owning a critical section for a long time could happen.</li>
+                    <li><b>(Windows only)</b> You need a composable lock. When a critical section is owned by a thread, this particular thread can pick up the critical section again without result in a deadlock.</li>
+                </ul>
+            </p>
+            <p>
+                <b>CS_LOCK</b> macro is a convenient way to wait for a critical section:
+                <program><code><![CDATA[
+CriticalSection cs;
+
+CS_LOCK(cs)
+{
+    // do something when owning the lock
+}
+                ]]></code></program>
+            </p>
+            <p>
+                <b>SpinLock</b> is recommended when.
+                <ul>
+                    <li>Always owning a spin lock for a very short time.</li>
+                </ul>
+            </p>
+            <p>
+                <b>SPIN_LOCK</b> macro is a convenient way to wait for a spin lock:
+                <program><code><![CDATA[
+SpinLock lock;
+
+SPIN_LOCK(lock)
+{
+    // do something when owning the lock
+}
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Semaphore</title>
+            <p>
+                <b>Semaphore</b> is simlar to <b>Mutex</b>,
+                the main difference is that,
+                multiple threads can pick up the same semaphore at the same time.
+                You can set a maximum number of owning threads.
+            </p>
+            <p>
+                A semaphore could be created as a global object to use across processes, it requires a name to create.
+            </p>
+        </topic>
+        <topic>
+            <title>EventObject</title>
+            <p>
+                <b>EventObject</b> cannot be owned by a thread. Instead, it is used to notify that something happens.
+            </p>
+            <p>
+                <b>(Windows only)</b> An event object could be created as a global object to use across processes, it requires a name to create.
+            </p>
+            <p>
+                A auto-unsignal event is initialized using <b>CreateAutoUnsignal</b>.
+                When multiple threads is waiting on an auto-unsignal event,
+                if this event is signaled, only one thread get noticed, and the event is automatically unsignaled.
+            </p>
+            <p>
+                A manual-unsignal event is initialized using <b>CreateManualUnsignal</b>.
+                When multiple threads is waiting on an auto-unsignal event,
+                if this event is signaled, all threads get noticed.
+            </p>
+        </topic>
+        <topic>
+            <title>ReaderWriterLock</title>
+            <p>
+                <b>ReaderWriterLock</b> can be owned by multiple thread in <b>reader mode</b>.
+                If any thread owns a <b>ReaderWriterLock</b> in <b>reader mode</b>, no thread can own it in <b>writer mode</b>.
+            </p>
+            <p>
+                <b>ReaderWriterLock</b> can be owned by only one thread in <b>writer mode</b>.
+                If any thread owns a <b>ReaderWriterLock</b> in <b>writer mode</b>, no thread can own it in <b>reader mode</b>.
+            </p>
+            <p>
+                It is recommended to use <b>ReaderWriterLock</b> in this way:
+                <program><code><![CDATA[
+ReaderWriterLock lock;
+
+READER_LOCK(lock)
+{
+    // do something when owning the lock in reader mode
+}
+
+WRITER_LOCK(lock)
+{
+    // do something when owning the lock in writer mode
+}
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>ConditionVariable</title>
+            <p>
+                <b>ReaderWriterLock</b> is used when you need to temporarily give up a <b>CriticalSection</b> or a <b>ReaderWriterLock</b> to wait for a signal.
+            </p>
+            <p>
+                You are not recommended to use <b>EventObject</b> in such scenario,
+                because it is very easy to run into a deadlock.
+            </p>
+            <p>
+                The <b>SleepWith</b> method is used to termporarily give up a <b>CriticalSeciont</b>.
+                <b>(Windows only)</b> There are also <b>SleepWithReader</b> and <b>SleepWithWriter</b> for <b>ReaderWriterLock</b>.
+                Functions above are only allowed to call when a thread actually owns the lock to give up.
+            </p>
+            <p>
+                For example:
+                <program><code><![CDATA[
+CriticalSection lock;
+ConditionVariable cv;
+
+CS_LOCK(lock)
+{
+    // do something before sleeping.
+    DoSomething();
+
+    // give up the lock and become pending on the condition variable,
+    // so that another thread could own this lock.
+    // cv.WaitOnePending(); or cv.WaitAllPendings(); could wake up this thread.
+    // but the lock need to be owned by this thread again in order to actually wake up.
+    cv.SleepWith(lock);
+
+    // do something after sleeping, lock is owned by this thread again.
+    DoSomething();
+}
+
+WRITER_LOCK(lock)
+{
+    // do something when owning the lock in writer mode
+}
+                ]]></code></program>
+            </p>
+            <p>
+                You can wake one pending thread by calling the <b>WaitOnePending</b> method,
+                or <b>WakeAllPendings</b> for all threads.
             </p>
         </topic>
     </topic>
