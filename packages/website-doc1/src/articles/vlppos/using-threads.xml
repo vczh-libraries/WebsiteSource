@@ -1,0 +1,58 @@
+<article index="true">
+    <topic>
+        <title>Using Threads and Locks</title>
+        <p>
+            <a href="https://docs.microsoft.com/en-us/windows/win32/sync/synchronization">The synchronization topic in MSDN</a> is recommended for learning how to write concurrent programs correctly in details.
+        </p>
+        <topic>
+            <title>Thread and thread pool</title>
+            <p>
+                <b>ThreadPoolLite</b> is always recommended to use whenever possible, instead of using <b>Thread</b>.
+                Waiting for a thread to exit is a little bit tricky,
+                it is much safer to use <b>EventObject</b> for this purpose.
+                This is why you are not recommended to use <b>Thread</b> directly.
+            </p>
+            <p>
+                To start a background task, this is the easiest way:
+                <program><code><![CDATA[
+ThreadPoolLite::Queue([]()
+{
+    // do something
+});
+                ]]></code></program>
+            </p>
+            <p>
+                An auto-delete thread is also able to do the same job:
+                <program><code><![CDATA[
+Thread::CreateAndStart([]()
+{
+    // do something
+}, true);
+                ]]></code></program>
+                By passing <b>true</b> as the second argument,
+                the <b>Thread</b> object will be deleted after the function finishes.
+                It is very important to notice that,
+                when you get the returned <b>Thread</b> object from the <b>CreateAndStart</b> function,
+                the thread could have finished and then the object was deleted.
+            </p>
+            <p>
+                To wait for a task to complete,
+                A manual-unsignal <b>EventObject</b> is always recommended.
+                Manual-unsignal means that, when the event object is signaled and something pick up the event,
+                the event object will not be automatically unsignaled.
+                <program><code><![CDATA[
+EventObject stopEvent;
+stopEvent.CreateManualUnsignal(false);
+
+ThreadPoolLite::Queue([&]()
+{
+    // do something
+    stopEvent.Signal();
+});
+
+stopEvent.Wait();
+                ]]></code></program>
+            </p>
+        </topic>
+    </topic>
+</article>
