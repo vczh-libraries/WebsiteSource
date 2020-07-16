@@ -11,7 +11,7 @@
                 <ul>
                     <li><b>FileStream</b> for reading and writing files.</li>
                     <li><b>MemoryStream</b>, <b>MemoryWrapperStream</b> for reading and writing memories.</li>
-                    <li><b>CacheStream</b> for speedup IO performance.</li>
+                    <li><b>CacheStream</b> for speeding up IO performance.</li>
                     <li><b>StringReader</b>, <b>StreamReader</b>, <b>StreamWriter</b> for reading and writing text against a stream.</li>
                     <li><b>CompressTream</b> and <b>DecompressStream</b> functions for handling compressed data using LZW compression algorithm.</li>
                     <li>And more ...</li>
@@ -25,7 +25,8 @@
                 <ul>
                     <li><b>EncoderStream</b> and <b>DecoderStream</b> for translating content in streams.</li>
                     <li><b>BomEncoder</b>, <b>BomDecoder</b>  and others for converting text between a certain encoding and <b>wchar_t</b>.</li>
-                    <li><b>TestEncoding</b> functions for guessting text encoding in a piece of memory.</li>
+                    <li><b>TestEncoding</b> function for guessting text encoding in a piece of memory.</li>
+                    <li><b>GenerateToStream</b> function for speeding up large string building.</li>
                 </ul>
             </p>
         </topic>

@@ -6,6 +6,7 @@
     </article>
   </article>
   <article name="Vlpp OS" file="vlppos/home">
+    <article name="Using Streams" file="vlppos/using-streams"/>
     <article name="References" file="vlppos/ref">
       <link pathPrefix="vlppos/ref" filePrefix="VLPPOS/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPOS.xml"/>
     </article>
