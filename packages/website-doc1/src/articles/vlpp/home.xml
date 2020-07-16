@@ -27,7 +27,8 @@
                     <li><b>Array&lt;T&gt;</b>, <b>List&lt;T&gt;</b>, <b>SortedList&lt;T&gt;</b>, <b>Dictionary&lt;K, V&gt;</b>, <b>Group&lt;K, V&gt;</b>: linear containers.</li>
                     <li><b>LazyList&lt;T&gt;</b>: Lazy evaluated read-only containers with rich operations, similar to Linq.</li>
                     <li><b>PartialOrderingProcessor</b>: Partial ordering and strong connected component discovering.</li>
-                    <li>Inner join algorithm.</li>
+                    <li><b>GroupInnerJoin</b> function for doing inner join on two <b>Group</b> containers.</li>
+                    <li><b>FOREACH</b> and <b>FOREACH_INDEXER</b> macros for iterating containers.</li>
                     <li>And more ...</li>
                 </ul>
             </p>
