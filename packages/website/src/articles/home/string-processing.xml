@@ -17,7 +17,7 @@
             <p>Build lexical analyzer from regular expressions.</p>
         </topic>
         <topic>
-            <title>Lexical analyzer with non-regex tokens</title>
+            <title>Lexical colorizer with context-sensitive tokens</title>
             <p>Custom token processor for complex token rule.</p>
         </topic>
         <topic>
