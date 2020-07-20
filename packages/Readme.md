@@ -187,5 +187,6 @@
 
 ## TODO
 
+- [ ] Move `/doc/current` to command-line argument
 - [ ] Colorize `<program>`
 - [ ] Add links to `<program>`
