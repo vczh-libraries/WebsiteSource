@@ -32,12 +32,8 @@ globalContext = MakePtr<WfRuntimeGlobalContext>(assembly);
 LoadFunction<void()>(globalContext, L"<initialize>")();
 
 // load and run MyScript::Main
-auto td = tm->GetTypeDescriptor(L"MyScript");
-auto ctor = td->GetConstructorGroup()->GetMethod(0);
-auto main = td->GetMethodGroupByName(L"Main");
-
-Value myScript = ctor->Invoke(Value(), Value_xs());
-main->Invoke(myScript, Value_xs());
+Value myScript = Value::Create(GetTypeDescriptor(L"MyScript));
+myScript.Invoke(myScript);
 
             ]]></code></program>
         </p>
