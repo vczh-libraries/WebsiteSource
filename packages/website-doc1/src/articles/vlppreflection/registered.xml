@@ -2,7 +2,88 @@
     <topic>
         <title>Registered Types</title>
         <p>
-            The page is under construction.
+            Reflectable C++ types under some C++ namespaces are usually registered with other names in other namespaces.
+            Here are all types in this library that are registered.
+        </p>
+        <p>
+            When <b>VCZH_DEBUG_NO_REFLECTION</b> is off, types will not be registered.
+        </p>
+        <p>
+            <ul>
+                <li>
+                    From <b>::</b> to <b>::system</b>
+                    <ul>
+                        <li><b>void</b> -> <b>Void</b></li>
+                        <li><b>float</b> -> <b>Single</b></li>
+                        <li><b>double</b> -> <b>Double</b></li>
+                        <li><b>bool</b> -> <b>Boolean</b></li>
+                        <li><b>wchar_t</b> -> <b>Char</b></li>
+                    </ul>
+                </li>
+                <li>
+                    From <b>::vl</b> to <b>::system</b>
+                    <ul>
+                        <li><b>vuint8_t</b> -> <b>UInt8</b></li>
+                        <li><b>vuint16_t</b> -> <b>UInt16</b></li>
+                        <li><b>vuint32_t</b> -> <b>UInt32</b></li>
+                        <li><b>vuint64_t</b> -> <b>UInt64</b></li>
+                        <li><b>vint8_t</b> -> <b>Int8</b></li>
+                        <li><b>vint16_t</b> -> <b>Int16</b></li>
+                        <li><b>vint32_t</b> -> <b>Int32</b></li>
+                        <li><b>vint64_t</b> -> <b>Int64</b></li>
+                        <li><b>WString</b> -> <b>String</b></li>
+                        <li><b>DateTime</b></li>
+                        <li><b>Locale</b></li>
+                    </ul>
+                </li>
+                <li>
+                    From <b>::vl::reflection</b> to <b>::system</b>
+                    <ul>
+                        <li><b>IDescriptable</b> -> <b>Interface</b></li>
+                        <li><b>DescriptableObject</b> -> <b>ReferenceType</b></li>
+                    </ul>
+                </li>
+                <li>
+                    From <b>::vl::reflection::description</b> to <b>::system</b>
+                    <ul>
+                        <li><b>VoidValue</b> -> <b>Void</b></li>
+                        <li><b>Value</b> -> <b>Object</b></li>
+                        <li><b>IValueEnumerator</b> -> <b>Enumerator</b></li>
+                        <li><b>IValueEnumerable</b> -> <b>Enumerable</b></li>
+                        <li><b>IValueReadonlyList</b> -> <b>ReadonlyList</b></li>
+                        <li><b>IValueList</b> -> <b>List</b></li>
+                        <li><b>IValueObservableList</b> -> <b>ObservableList</b></li>
+                        <li><b>IValueReadonlyDictionary</b> -> <b>ReadonlyDictionary</b></li>
+                        <li><b>IValueDictionary</b> -> <b>Dictionary</b></li>
+                        <li><b>IValueInterfaceProxy</b> -> <b>InterfaceProxy</b></li>
+                        <li><b>IValueFunctionProxy</b> -> <b>Function</b></li>
+                        <li><b>IValueSubscription</b> -> <b>Subscription</b></li>
+                        <li><b>IValueCallStack</b> -> <b>CallStack</b></li>
+                        <li><b>IValueException</b> -> <b>Exception</b></li>
+                    </ul>
+                </li>
+                <li>
+                    From <b>::vl::reflection::description</b> to <b>::system::reflection</b>
+                    <ul>
+                        <li><b>IBoxedValue</b> -> <b>BoxedValue</b></li>
+                        <li><b>IBoxedValue::CompareResult</b> -> <b>CompareResult</b></li>
+                        <li><b>IValueType</b> -> <b>ValueType</b></li>
+                        <li><b>IEnumType</b> -> <b>EnumType</b></li>
+                        <li><b>ISerializableType</b> -> <b>SerializableType</b></li>
+                        <li><b>ITypeInfo</b> -> <b>TypeInfo</b></li>
+                        <li><b>ITypeInfo::Decorator</b> -> <b>Decorator</b></li>
+                        <li><b>IMemberInfo</b> -> <b>MemberInfo</b></li>
+                        <li><b>IEventHandler</b> -> <b>EventHandler</b></li>
+                        <li><b>IEventInfo</b> -> <b>EventInfo</b></li>
+                        <li><b>IPropertyInfo</b> -> <b>PropertyInfo</b></li>
+                        <li><b>IParameterInfo</b> -> <b>ParameterInfo</b></li>
+                        <li><b>IMethodInfo</b> -> <b>MethodInfo</b></li>
+                        <li><b>IMethodGroupInfo</b> -> <b>MethodGroupInfo</b></li>
+                        <li><b>TypeDescriptorFlags</b></li>
+                        <li><b>ITypeDescriptor</b> -> <b>TypeDescriptor</b></li>
+                    </ul>
+                </li>
+            </ul>
         </p>
     </topic>
 </article>

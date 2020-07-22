@@ -2,7 +2,11 @@
     <topic>
         <title>Registered Types</title>
         <p>
-            The page is under construction.
+            Reflectable C++ types under some C++ namespaces are usually registered with other names in other namespaces.
+            Here are all types in this library that are registered.
+        </p>
+        <p>
+            When <b>VCZH_DEBUG_NO_REFLECTION</b> is off, types will not be registered.
         </p>
     </topic>
 </article>
