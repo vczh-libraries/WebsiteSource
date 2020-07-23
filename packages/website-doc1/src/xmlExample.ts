@@ -42,22 +42,7 @@ export function exampleRetriver(documentFile: string, index: number): DocExample
         }
     );
     const exampleXml = (codeXml.elements ?? [])[0];
-    let code = trimEmptyLines(exampleXml);
-
-    let codeLines = code.split('\n');
-    let indent = -1;
-    for (const line of codeLines) {
-        if (line.trim() !== '') {
-            const lineIndent = line.length - line.trimLeft().length;
-            if (indent === -1 || indent > lineIndent) {
-                indent = lineIndent;
-            }
-        }
-    }
-    if (indent !== -1) {
-        codeLines = codeLines.map((line: string) => line.substr(indent));
-    }
-    code = codeLines.join('\n');
+    const code = trimEmptyLines(exampleXml);
 
     let outputExists = true;
     if (exampleXml.attributes !== undefined) {

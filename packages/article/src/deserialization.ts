@@ -109,7 +109,20 @@ export function trimEmptyLines(cdataContainer: Element): string {
         }
     }
 
-    return lines.join(EOL);
+    let indent = -1;
+    for (const line of lines) {
+        if (line.trim() !== '') {
+            const lineIndent = line.length - line.trimLeft().length;
+            if (indent === -1 || indent > lineIndent) {
+                indent = lineIndent;
+            }
+        }
+    }
+    if (indent === -1) {
+        return lines.join(EOL);
+    } else {
+        return lines.map((line: string) => line.substr(indent)).join(EOL);
+    }
 }
 
 function parseProgram(container: Element): a.Program {

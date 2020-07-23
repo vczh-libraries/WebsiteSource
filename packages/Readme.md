@@ -187,7 +187,6 @@
 
 ## TODO
 
-- [ ] Remove common prefix of spaces in `<program>`.
 - [ ] Move `/doc/current` to command-line argument
 - [ ] Colorize `<program>`
 - [ ] Add links to `<program>`
