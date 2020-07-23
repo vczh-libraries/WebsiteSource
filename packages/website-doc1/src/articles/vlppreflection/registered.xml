@@ -6,7 +6,7 @@
             Here are all types in this library that are registered.
         </p>
         <p>
-            When <b>VCZH_DEBUG_NO_REFLECTION</b> is off, types will not be registered.
+            When <b>VCZH_DEBUG_NO_REFLECTION</b> is on, types will not be registered.
         </p>
         <p>
             <ul>
