@@ -6,8 +6,9 @@ import { html, render } from 'lit-html';
 export const viewExport = {
     renderView(model: {}, target: Element): void {
         const article = <Article>window['MVC-Resources.article'];
+        const hrefPrefix = <string>window['MVC-Resources.hrefPrefix'];
         const htmlTemplate = html`
-${renderArticle(article)}
+${renderArticle(article, { hrefPrefix, buildIndex: article.index })}
 `;
         render(htmlTemplate, target);
     }

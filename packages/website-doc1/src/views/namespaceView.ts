@@ -6,7 +6,7 @@ export const viewExport = {
         const namespaceName = <string>window['MVC-Resources.namespaceName'];
         const htmlTemplate = html`
 <h1>namespace ${namespaceName}</h1>
-<p>Please checkout members of this namespace in <string>Index</string>.</p>
+<p>Please checkout members of this namespace in <strong>Index</strong>.</p>
 `;
         render(htmlTemplate, target);
     }

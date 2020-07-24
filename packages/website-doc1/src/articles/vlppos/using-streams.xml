@@ -18,7 +18,7 @@
                 <li><b>EncoderStream</b> and <b>DecoderStream</b> for handling text encoding.</li>
             </ul>
             We compose these streams in this way:
-            <img src="/doc/current/vlppos/using-streams.png"/>
+            <img src="/vlppos/using-streams.png"/>
         </p>
         <p>
             When we read text from the <b>StreamReader</b>,

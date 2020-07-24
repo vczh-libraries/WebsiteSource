@@ -1,38 +1,55 @@
 import { html, TemplateResult } from 'lit-html';
 import * as a from './interfaces';
 
-function renderListContent(list: a.List): TemplateResult {
+export interface RenderArticleOptions {
+    hrefPrefix: string | undefined;
+    buildIndex: boolean;
+}
+
+function renderListContent(list: a.List, options: RenderArticleOptions): TemplateResult {
     return html`${
         list
             .items
             .map((value: a.ContentListItem | a.ParagraphListItem) => {
                 if (value.kind === 'ContentListItem') {
-                    return html`<li>${renderContent(value.content)}</li>`;
+                    return html`<li>${renderContent(value.content, options)}</li>`;
                 } else {
-                    return html`<li>${value.paragraphs.map(renderParagraph)}</li>`;
+                    return html`<li>${value.paragraphs.map((r: a.Paragraph) => renderParagraph(r, options))}</li>`;
                 }
             })
         }`;
 }
 
-function renderLink(href: string, content: TemplateResult): TemplateResult {
-    return html`<a href="${href}" target="${href.startsWith('.') || href.startsWith('/') ? '_self' : '_blank'}">${content}</a>`;
+function rewriteLink(href: string, options: RenderArticleOptions): string {
+    if (href.startsWith('//')) {
+        return href.substr(1);
+    } else if (href.startsWith('/')) {
+        return (options.hrefPrefix === undefined ? '' : options.hrefPrefix) + href;
+    } else {
+        return href;
+    }
 }
 
-function renderContent(content: a.Content[]): TemplateResult {
+function renderLink(href: string, options: RenderArticleOptions, content: TemplateResult): TemplateResult {
+    const targetAttr = href.startsWith('.') || href.startsWith('/') ? '_self' : '_blank';
+    const hrefAttr = rewriteLink(href, options);
+    return html`<a href="${hrefAttr}" target="${targetAttr}">${content}</a>`;
+}
+
+function renderContent(content: a.Content[], options: RenderArticleOptions): TemplateResult {
     return html`${
         content
             .map((value: a.Content) => {
                 switch (value.kind) {
                     case 'PageLink':
-                        return renderLink(value.href, renderContent(value.content));
+                        return renderLink(value.href, options, renderContent(value.content, options));
                     case 'MultiPageLink': {
                         if (value.href.length < 2) {
                             throw new Error('There must be at least two <a> in <as>.');
                         }
-                        const header = renderLink(value.href[0], renderContent(value.content));
+                        const header = renderLink(value.href[0], options, renderContent(value.content, options));
                         const tails = value.href.slice(1).map((href: string, index: number) =>
-                            renderLink(href, html`[${index + 2}]`)
+                            renderLink(href, options, html`[${index + 2}]`)
                         );
                         return html`${header}<sub>(... and ${tails})</sub>`;
                     }
@@ -40,20 +57,20 @@ function renderContent(content: a.Content[]): TemplateResult {
                         return html`<span class="name">${value.text}</span>`;
                     case 'Image':
                         if (value.caption === undefined) {
-                            return html`<img src="${value.src}">`;
+                            return html`<img src="${rewriteLink(value.src, options)}">`;
                         } else {
-                            return html`<figure><img src="${value.src}"><figcaption>${value.caption}</figcaption></figure>`;
+                            return html`<figure><img src="${rewriteLink(value.src, options)}"><figcaption>${value.caption}</figcaption></figure>`;
                         }
                     case 'List':
                         if (value.ordered) {
-                            return html`<ol>${renderListContent(value)}</ol>`;
+                            return html`<ol>${renderListContent(value, options)}</ol>`;
                         } else {
-                            return html`<ul>${renderListContent(value)}</ul>`;
+                            return html`<ul>${renderListContent(value, options)}</ul>`;
                         }
                     case 'Strong':
-                        return html`<strong>${renderContent(value.content)}</strong>`;
+                        return html`<strong>${renderContent(value.content, options)}</strong>`;
                     case 'Emphasise':
-                        return html`<em>${renderContent(value.content)}<em>`;
+                        return html`<em>${renderContent(value.content, options)}<em>`;
                     case 'Program': {
                         const htmlCode = html`<pre class="code"><code data-project="${value.project === undefined ? '' : value.project}" data-language="${value.language === undefined ? '' : value.language}">${value.code}</code></pre>`;
                         if (value.output !== undefined) {
@@ -71,8 +88,8 @@ function renderContent(content: a.Content[]): TemplateResult {
         }`;
 }
 
-function renderParagraph(paragraph: a.Paragraph): TemplateResult {
-    return html`<p>${renderContent(paragraph.content)}</p>`;
+function renderParagraph(paragraph: a.Paragraph, options: RenderArticleOptions): TemplateResult {
+    return html`<p>${renderContent(paragraph.content, options)}</p>`;
 }
 
 function renderHeader(level: number, content: TemplateResult): TemplateResult {
@@ -95,7 +112,7 @@ function renderIndex(topic: a.Topic): TemplateResult | string {
     }
 }
 
-function renderTopic(topic: a.Topic, level: number, prefix: string | undefined, buildIndex: boolean): TemplateResult {
+function renderTopic(topic: a.Topic, level: number, prefix: string | undefined, topTopic: boolean, options: RenderArticleOptions): TemplateResult {
     let topicIndex = 0;
     return html`
 ${
@@ -106,7 +123,7 @@ ${
 ${prefix === undefined ? '' : `${prefix} `}${topic.title}
         `)
         }
-${buildIndex ? html`<div class="index">${renderIndex(topic)}</div>` : ''}
+${options.buildIndex && topTopic ? html`<div class="index">${renderIndex(topic)}</div>` : ''}
 ${
         topic
             .content
@@ -116,9 +133,9 @@ ${
                     if (newPrefix !== undefined) {
                         newPrefix += `${++topicIndex}.`;
                     }
-                    return renderTopic(value, level + 1, newPrefix, false);
+                    return renderTopic(value, level + 1, newPrefix, topTopic, options);
                 } else {
-                    return renderParagraph(value);
+                    return renderParagraph(value, options);
                 }
             })
         }
@@ -133,6 +150,10 @@ function getAnchorOfTopic(topic: a.Topic): string {
     }
 }
 
-export function renderArticle(article: a.Article): TemplateResult {
-    return html`<div class="article">${renderTopic(article.topic, 1, (article.numberBeforeTitle ? '' : undefined), article.index)}<div>`;
+export function renderArticle(article: a.Article, options?: RenderArticleOptions): TemplateResult {
+    const renderArticleOptions: RenderArticleOptions = {
+        hrefPrefix: options?.hrefPrefix,
+        buildIndex: article.index
+    };
+    return html`<div class="article">${renderTopic(article.topic, 1, (article.numberBeforeTitle ? '' : undefined), true, renderArticleOptions)}<div>`;
 }

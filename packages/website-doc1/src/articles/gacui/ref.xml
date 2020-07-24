@@ -5,8 +5,8 @@
             <title>Resources</title>
             <p>
                 <ul>
-                    <li><a href="/tutorial.html">Tutorial</a>: build your first GacUI application.</li>
-                    <li><a href="/download.html">Download</a>: download this library.</li>
+                    <li><a href="//tutorial.html">Tutorial</a>: build your first GacUI application.</li>
+                    <li><a href="//download.html">Download</a>: download this library.</li>
                 </ul>
             </p>
             <p>
@@ -27,7 +27,7 @@
                     </ul>
                 </p>
                 <p>
-                    It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <a href="/tutorial.html">tutorial</a>).
+                    It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <a href="//tutorial.html">tutorial</a>).
                     By not using reflection, it reduces about 90% of the execution size, which significantly improves performance.
                 </p>
             </topic>

@@ -7,7 +7,7 @@
         <topic>
             <title>Vlpp: Much more easier to deal with data</title>
             <p>
-                Click <a href="/doc/current/vlpp/ref.html">here</a> for API references.
+                Click <a href="/vlpp/ref.html">here</a> for API references.
             </p>
             <p>
                 <ul>
@@ -23,7 +23,7 @@
         <topic>
             <title>VlppOS: Access basic OS features easily</title>
             <p>
-                Click <a href="/doc/current/vlppos/ref.html">here</a> for API references.
+                Click <a href="/vlppos/ref.html">here</a> for API references.
             </p>
             <p>
                 <ul>
@@ -39,7 +39,7 @@
         <topic>
             <title>VlppRegex: A fast C++ regular expression implementation</title>
             <p>
-                Click <a href="/doc/current/vlppregex/ref.html">here</a> for API references.
+                Click <a href="/vlppregex/ref.html">here</a> for API references.
             </p>
             <p>
                 <ul>
@@ -68,7 +68,7 @@
         <topic>
             <title>VlppReflection: Reflection utilities for C++ Classes</title>
             <p>
-                Click <a href="/doc/current/vlppreflection/ref.html">here</a> for API references.
+                Click <a href="/vlppreflection/ref.html">here</a> for API references.
             </p>
             <p>
                 <ul>
@@ -92,7 +92,7 @@
         <topic>
             <title>VlppParser: GLR Parser Generator</title>
             <p>
-                Click <a href="/doc/current/vlppparser/ref.html">here</a> for API references.
+                Click <a href="/vlppparser/ref.html">here</a> for API references.
             </p>
             <p>
                 This library will be re-shaped in GacUI 2.0.
@@ -106,7 +106,7 @@
         <topic>
             <title>Workflow: A script language and runtime for interop with C++ classes</title>
             <p>
-                Click <a href="/doc/current/workflow/ref.html">here</a> for API references.
+                Click <a href="/workflow/ref.html">here</a> for API references.
             </p>
             <p>
                 After compiling the script, you are able to:
@@ -124,7 +124,7 @@
         <topic>
             <title>GacUI: Cross platform GPU Accelerated UI Library</title>
             <p>
-                Click <a href="/doc/current/gacui/ref.html">here</a> for API references.
+                Click <a href="/gacui/ref.html">here</a> for API references.
             </p>
             <p>
                 GacUI has a high performance and extensible framework,
@@ -206,10 +206,10 @@
                             </ul>
                         </p>
                         <p>
-                            <img src="/doc/current/demo_DET.png"/>
+                            <img src="/demo_DET.png"/>
                         </p>
                         <p>
-                            <img src="/doc/current/demo_DER.png"/>
+                            <img src="/demo_DER.png"/>
                         </p>
                     </li>
                     <li>
@@ -233,7 +233,7 @@
                             to create a new control: triple-phase image button.
                         </p>
                         <p>
-                            <img src="/doc/current/demo_TPIB.png"/>
+                            <img src="/demo_TPIB.png"/>
                         </p>
                     </li>
                     <li>
@@ -266,7 +266,7 @@
                             how to bind a object model to a tree view control, a list view control with customized items.
                         </p>
                         <p>
-                            <img src="/doc/current/demo_AB.png"/>
+                            <img src="/demo_AB.png"/>
                         </p>
                     </li>
                 </ul>

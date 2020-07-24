@@ -249,7 +249,7 @@ function getDirectoryNodeSibilings(current: DocTreeNode, parent: DocTreeNode, dn
     }
 }
 
-export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, url: string[], index: DocTreeIndex | undefined): DirectoryInfo | undefined {
+export function getDirectoryInfoFromPath(docTree: DocTree, url: string[], index: DocTreeIndex | undefined): DirectoryInfo | undefined {
     if (index === undefined) {
         console.error(`ERROR: Reference page path does not exist: ${url.join('/')}`);
         return undefined;
@@ -263,7 +263,6 @@ export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, u
     const parentNode = docTree.parents.get(index.node);
     if (parentNode === undefined) {
         return {
-            pathPrefix,
             subNodes: [dnode]
         };
     } else {
@@ -282,7 +281,6 @@ export function getDirectoryInfoFromPath(docTree: DocTree, pathPrefix: string, u
             }
         }
         return {
-            pathPrefix,
             subNodes: dsiblings
         };
     }

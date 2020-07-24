@@ -36,7 +36,8 @@ router.register(
         const dnode = dindex.node;
         const info: HtmlInfo = { pathPrefix, title: `${dnode.name} -- GPU Accelerated C++ User Interface (vczh)` };
         const res: EmbeddedResources = {
-            directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, pathPrefix, model.path, dindex)
+            hrefPrefix: pathPrefix,
+            directoryInfo: <DirectoryInfo>getDirectoryInfoFromPath(docTree, model.path, dindex)
         };
 
         try {
@@ -71,7 +72,7 @@ router.register(
                             readFileSync(<string>dnode.file, { encoding: 'utf-8' }),
                             (index: number) => exampleRetriver(<string>dnode.file, index)),
                         dnode.name,
-                        (ds: DocSymbol) => convertDocSymbolToHyperlink(ds, docTree, pathPrefix));
+                        (ds: DocSymbol) => convertDocSymbolToHyperlink(ds, docTree));
                     const generatedHtml = generateHtml(
                         info,
                         views,

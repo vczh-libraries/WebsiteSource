@@ -58,6 +58,11 @@
 </program>
 ```
 
+### Links
+
+- A prefix will be added before the link if it starts with `//`
+- A link will open a new page if it doesn not start with '/' or '.'
+
 ## XML Document
 
 ```xml
@@ -187,6 +192,5 @@
 
 ## TODO
 
-- [ ] Move `/doc/current` to command-line argument
 - [ ] Colorize `<program>`
 - [ ] Add links to `<program>`
