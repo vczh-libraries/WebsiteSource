@@ -1,5 +1,6 @@
 <reference>
   <article name="Gaclib Document" file="home">
+  <article name="Domain Specific Languages" file="home/dsl"/>
     <article name="Registered Types" file="home/registered">
       <registeredTypes name="VlppReflection" file="home/registered/vlppreflection"/>
       <registeredTypes name="VlppParser" file="home/registered/vlppparser"/>

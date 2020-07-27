@@ -1,0 +1,18 @@
+<article>
+    <topic>
+        <title>Domain Specific Languages</title>
+        <p>
+            Domain specific languages are widely used in this library.
+            Here is a complete list of them.
+        </p>
+        <p>
+            <ul>
+                <li><a href="/vlpp/ref/VL__COLLECTIONS__LAZYLIST.html">Collection Operations</a></li>
+                <li><a href="/vlpp/ref/VL__UNITTEST__UNITTEST.html">Unit Test Framework</a></li>
+                <li><a href="/vlppregex/ref/VL__REGEX__REGEX.html">Regular Expression</a></li>
+                <li><a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">Reflectable Type Registrations.</a></li>
+                <li><a href="/vlppparser/ref/VL__PARSING__TABLING__PARSINGTABLE.html">Parser Grammar File Format</a></li>
+            </ul>
+        </p>
+    </topic>
+</article>
