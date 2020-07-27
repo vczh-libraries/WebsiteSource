@@ -1,5 +1,8 @@
 <reference>
-  <article name="Gaclib Document" file="home"/>
+  <article name="Gaclib Document" file="home">
+    <article name="Registered Types" file="home/registered">
+    </article>
+  </article>
   <article name="Vlpp" file="vlpp/home">
     <article name="References" file="vlpp/ref">
       <link pathPrefix="vlpp/ref" filePrefix="VLPP/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPP.xml"/>

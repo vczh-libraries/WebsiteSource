@@ -1,0 +1,40 @@
+<article>
+    <topic>
+        <title>Registered Types</title>
+        <p>
+            Reflectable C++ types under some C++ namespaces are usually registered with other names in other namespaces.
+            Here are all types in this library that are registered.
+        </p>
+        <p>
+            When <b>VCZH_DEBUG_NO_REFLECTION</b> is on, types will not be registered.
+        </p>
+        <p>
+            In this topic, you can find all reflectable types that are registered by the following functions in <b>::vl::reflection::description</b> namespace.
+            <ul>
+                <li><b>VlppReflection</b>:
+                    <ul><li>LoadPredefinedTypes</li></ul>
+                </li>
+                <li><b>VlppParser</b>:
+                    <ul><li>LoadParsingTypes</li><li>XmlLoadTypes</li><li>JsonLoadTypes</li></ul>
+                </li>
+                <li><b>Workflow-Runtime</b>:
+                    <ul><li>WfLoadLibraryTypes</li></ul>
+                </li>
+                <li><b>Workflow-Compiler</b>:
+                    <ul><li>WfLoadTypes</li></ul>
+                </li>
+                <li><b>GacUI</b>:
+                    <ul><li>
+                        By linking <b>GacUIReflection.cpp</b> to your C++ project
+                        and set <b>VCZH_DEBUG_NO_REFLECTION</b> to off,
+                        all types will be automatically registered,
+                        except <b>Workflow-Compiler</b> and <b>GacUI-Compiler</b>.
+                    </li></ul>
+                </li>
+                <li><b>GacUI-Compiler</b>:
+                    <ul><li>GuiIqLoadTypes</li></ul>
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>
