@@ -44,6 +44,7 @@ router.register(
         try {
             switch (dnode.kind) {
                 case 'registeredTypes': {
+                    res.projectName = dnode.name;
                     res.registeredTypesInfo = getRegisteredTypes(dnode.name);
                     const generatedHtml = generateHtml(
                         info,

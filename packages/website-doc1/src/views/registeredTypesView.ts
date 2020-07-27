@@ -31,14 +31,21 @@ interface TypeTdNs {
     items: TypeCppNs[];
 }
 
+function splitTypeName(name: string): [string, string] {
+    const index = name.lastIndexOf('::');
+    const ns = index === -1 ? '' : name.substr(0, index);
+    const n = index === -1 ? name : name.substr(index + 2);
+    return [ns.startsWith('::') ? ns : `::${ns}`, n];
+}
+
 function sortTypeCategory(rts: RegisteredType[]): TypeCategory[] {
     const byCategory: { [key: string]: TypeItem[] } = {};
     for (const rt of rts) {
-        const nameIndex = rt.name.lastIndexOf('::');
-        const cppIndex = rt.cpp.lastIndexOf('::');
+        const [, tn] = splitTypeName(rt.name);
+        const [, cn] = splitTypeName(rt.cpp);
         const item: TypeItem = {
-            name: nameIndex === -1 ? rt.name : rt.name.substr(nameIndex + 2),
-            cpp: cppIndex === -1 ? rt.cpp : rt.cpp.substr(cppIndex + 2)
+            name: tn,
+            cpp: cn
         };
         if (byCategory[rt.kind] === undefined) {
             byCategory[rt.kind] = [];
@@ -54,8 +61,7 @@ function sortTypeCategory(rts: RegisteredType[]): TypeCategory[] {
 function sortTypeCppNs(rts: RegisteredType[]): TypeCppNs[] {
     const byCppNs: { [key: string]: RegisteredType[] } = {};
     for (const rt of rts) {
-        const index = rt.cpp.lastIndexOf('::');
-        const ns = index === -1 ? '' : rt.cpp.substr(0, index);
+        const [ns] = splitTypeName(rt.cpp);
         if (byCppNs[ns] === undefined) {
             byCppNs[ns] = [];
         }
@@ -70,8 +76,7 @@ function sortTypeCppNs(rts: RegisteredType[]): TypeCppNs[] {
 function sortTypeTdNs(rts: RegisteredType[]): TypeTdNs[] {
     const byTdNs: { [key: string]: RegisteredType[] } = {};
     for (const rt of rts) {
-        const index = rt.name.lastIndexOf('::');
-        const ns = index === -1 ? '' : rt.name.substr(0, index);
+        const [ns] = splitTypeName(rt.name);
         if (byTdNs[ns] === undefined) {
             byTdNs[ns] = [];
         }
@@ -85,6 +90,7 @@ function sortTypeTdNs(rts: RegisteredType[]): TypeTdNs[] {
 
 export const viewExport = {
     renderView(model: {}, target: Element): void {
+        const projectName = <RegisteredTypesInfo>window['MVC-Resources.projectName'];
         const info = <RegisteredTypesInfo>window['MVC-Resources.registeredTypesInfo'];
         const tdnss = sortTypeTdNs(info.types);
 
@@ -102,6 +108,8 @@ export const viewExport = {
         }
 
         const htmlTemplate = html`
+<h1>Registered Types: ${projectName}</h1>
+<p>Here is the list of all registered type under this category, from <b>registered name</b> to <b>C++ name</b>.</p>
 <ul>${
             tdnss.map((tdns: TypeTdNs) =>
                 tdns.items.map((cppns: TypeCppNs) => html`
