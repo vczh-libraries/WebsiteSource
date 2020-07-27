@@ -8,7 +8,7 @@ export function convertDocSymbolToHyperlink(ds: DocSymbol, docTree: DocTree): Pa
         if (dsTarget !== undefined && dsTarget.path !== undefined) {
             return {
                 kind: 'PageLink',
-                href: `${dsTarget.path.join('/')}.html`,
+                href: `/${dsTarget.path.join('/')}.html`,
                 content: [{
                     kind: 'Text',
                     text: ds.name
