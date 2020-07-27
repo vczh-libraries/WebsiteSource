@@ -86,11 +86,40 @@ function sortTypeTdNs(rts: RegisteredType[]): TypeTdNs[] {
 export const viewExport = {
     renderView(model: {}, target: Element): void {
         const info = <RegisteredTypesInfo>window['MVC-Resources.registeredTypesInfo'];
-        const tdns = sortTypeTdNs(info.types);
+        const tdnss = sortTypeTdNs(info.types);
+
+        let nameLength = 0;
+        for (const tdns of tdnss) {
+            for (const cppns of tdns.items) {
+                for (const cat of cppns.items) {
+                    for (const item of cat.items) {
+                        if (nameLength < item.name.length) {
+                            nameLength = item.name.length;
+                        }
+                    }
+                }
+            }
+        }
+
         const htmlTemplate = html`
-<pre>
-${JSON.stringify(tdns, undefined, 4).split('\n').map((s: string) => html`${s}<br>`)}
-</pre>
+<ul>${
+            tdnss.map((tdns: TypeTdNs) =>
+                tdns.items.map((cppns: TypeCppNs) => html`
+    <li>
+        in <b>${tdns.name}</b> from <b>${cppns.name}</b>
+        <ul>${
+                    cppns.items.map((cat: TypeCategory) => html`
+            <li>
+                <b>${cat.name}</b>
+                <ul>${
+                        cat.items.map((item: TypeItem) => html`
+                    <li><pre class="RegisteredType"><code><b>${item.name.padEnd(nameLength, ' ')}</b> -> <b>${item.cpp}</b></code></pre></li>
+                    `)}
+                </ul>
+            </li>`)}
+        </ul>
+    </li>`))}
+</ul>
 `;
         render(htmlTemplate, target);
     }

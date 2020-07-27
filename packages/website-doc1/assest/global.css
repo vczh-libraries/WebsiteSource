@@ -3,6 +3,10 @@ body {
     background-color: #FFFFFF;
 }
 
+pre.RegisteredType {
+    margin: 0;
+}
+
 .RootTable {
     border: 0px;
     width: 100%;
