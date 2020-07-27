@@ -27,25 +27,21 @@
     </article>
   </article>
   <article name="Vlpp Reflection" file="vlppreflection/home">
-    <article name="Registered Types" file="vlppreflection/registered"/>
     <article name="References" file="vlppreflection/ref">
       <link pathPrefix="vlppreflection/ref" filePrefix="VLPPREFLECTION/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREFLECTION.xml"/>
     </article>
   </article>
   <article name="Vlpp Parser" file="vlppparser/home">
-    <article name="Registered Types" file="vlppparser/registered"/>
     <article name="References" file="vlppparser/ref">
       <link pathPrefix="vlppparser/ref" filePrefix="VLPPPARSER/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER.xml"/>
     </article>
   </article>
   <article name="Workflow Script" file="workflow/home">
-    <article name="Registered Types" file="workflow/registered"/>
     <article name="References" file="workflow/ref">
       <link pathPrefix="workflow/ref" filePrefix="WORKFLOW/" file="../../../../../Document/Tools/Demos/Gaclib/References/WORKFLOW.xml"/>
     </article>
   </article>
   <article name="GacUI" file="gacui/home">
-    <article name="Registered Types" file="gacui/registered"/>
     <article name="References" file="gacui/ref">
       <link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/>
     </article>

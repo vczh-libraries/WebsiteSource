@@ -137,7 +137,7 @@ export const viewExport = {
                 <b>${cat.name}</b>
                 <ul>${
                         cat.items.map((item: TypeItem) => html`
-                    <li><pre class="RegisteredType"><code><b>${item.name.padEnd(nameLength, ' ')}</b> -> <b>${item.cpp}</b></code></pre></li>
+                    <li><pre class="RegisteredType"><code><span class="TdName">${item.name.padEnd(nameLength, ' ')}</span> -> <span class="${item.name === item.cpp ? 'Unrenamed' : 'CppName'}">${item.cpp}</span></code></pre></li>
                     `)}
                 </ul>
             </li>`)}
