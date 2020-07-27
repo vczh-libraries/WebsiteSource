@@ -10,6 +10,7 @@ import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } f
 import { DirectoryInfo, views } from './views';
 import { convertDocSymbolToHyperlink } from './xmlDocSymbol';
 import { exampleRetriver } from './xmlExample';
+import { getRegisteredTypes } from './xmlRegisteredTypes';
 
 const pathPrefix = `/doc/current`;
 
@@ -43,6 +44,7 @@ router.register(
         try {
             switch (dnode.kind) {
                 case 'registeredTypes': {
+                    res.registeredTypesInfo = getRegisteredTypes(dnode.name);
                     const generatedHtml = generateHtml(
                         info,
                         views,
