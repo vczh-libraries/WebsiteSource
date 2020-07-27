@@ -32,10 +32,26 @@ interface TypeTdNs {
 }
 
 function splitTypeName(name: string): [string, string] {
-    const index = name.lastIndexOf('::');
-    const ns = index === -1 ? '' : name.substr(0, index);
-    const n = index === -1 ? name : name.substr(index + 2);
-    return [ns.startsWith('::') ? ns : `::${ns}`, n];
+    const fragments = name.split('::');
+    if (fragments[0] === '') {
+        fragments.splice(0, 1);
+    }
+    if (fragments.length === 1) {
+        return ['::', fragments[0]];
+    }
+
+    let ns = 0;
+    for (let i = fragments.length - 2; i >= 0; i--) {
+        ns = i + 1;
+        if (fragments[i][0].toLowerCase() === fragments[i][0]) {
+            break;
+        }
+    }
+
+    return [
+        `::${fragments.slice(0, ns).join('::')}`,
+        fragments.slice(ns).join('::')
+    ];
 }
 
 function sortTypeCategory(rts: RegisteredType[]): TypeCategory[] {
@@ -68,7 +84,7 @@ function sortTypeCppNs(rts: RegisteredType[]): TypeCppNs[] {
         byCppNs[ns].push(rt);
     }
     return Object.keys(byCppNs).sort().map((key: string): TypeCppNs => ({
-        name: key.startsWith('::') ? key : `::${key}`,
+        name: key,
         items: sortTypeCategory(byCppNs[key])
     }));
 }
@@ -83,7 +99,7 @@ function sortTypeTdNs(rts: RegisteredType[]): TypeTdNs[] {
         byTdNs[ns].push(rt);
     }
     return Object.keys(byTdNs).sort().map((key: string): TypeTdNs => ({
-        name: key.startsWith('::') ? key : `::${key}`,
+        name: key,
         items: sortTypeCppNs(byTdNs[key])
     }));
 }
