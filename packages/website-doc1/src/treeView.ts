@@ -5,7 +5,7 @@ import { DirectoryInfo, DirectoryNode } from './views';
 
 export interface DocTreeNode {
     name: string;
-    kind: 'root' | 'article' | 'namespace' | 'directory' | 'document';
+    kind: 'root' | 'registeredTypes' | 'article' | 'namespace' | 'directory' | 'document';
     docId?: string;
     path?: string[];
     file?: string;
@@ -27,6 +27,20 @@ export interface DocTree {
 function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: string, url: string[]): void {
     let child: DocTreeNode | undefined;
     switch (xmlNode.name) {
+        case 'registeredTypes': {
+            const name = <string>xmlNode.attributes?.name;
+            const file = <string>xmlNode.attributes?.file;
+            child = {
+                name,
+                kind: 'registeredTypes',
+                path: url.concat(file.split('/'))
+            };
+            if (target.subNodes === undefined) {
+                target.subNodes = [];
+            }
+            target.subNodes.push(child);
+            break;
+        }
         case 'article': {
             const name = <string>xmlNode.attributes?.name;
             const file = <string>xmlNode.attributes?.file;

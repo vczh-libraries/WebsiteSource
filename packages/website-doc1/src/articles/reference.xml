@@ -1,6 +1,12 @@
 <reference>
   <article name="Gaclib Document" file="home">
     <article name="Registered Types" file="home/registered">
+      <registeredTypes name="VlppReflection" file="home/registered/vlppreflection"/>
+      <registeredTypes name="VlppParser" file="home/registered/vlppparser"/>
+      <registeredTypes name="Workflow-Runtime" file="home/registered/workflow-runtime"/>
+      <registeredTypes name="Workflow-Compiler" file="home/registered/workflow-compiler"/>
+      <registeredTypes name="GacUI" file="home/registered/gacui"/>
+      <registeredTypes name="GacUI-Compiler" file="home/registered/gacui-compiler"/>
     </article>
   </article>
   <article name="Vlpp" file="vlpp/home">

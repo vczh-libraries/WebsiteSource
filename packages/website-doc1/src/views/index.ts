@@ -20,6 +20,14 @@ const directoryView: ViewMetadata = {
     htmlInfo: {}
 };
 
+const registeredTypesView: ViewMetadata = {
+    name: 'Gaclib-RegisteredTypesView',
+    source: `${__dirname}/registeredTypesView.js`,
+    path: '/scripts/registeredTypesView.js',
+    parentView: 'Gaclib-DirectoryView',
+    htmlInfo: {}
+};
+
 const articleView: ViewMetadata = {
     name: 'Gaclib-ArticleView',
     source: `${__dirname}/articleView.js`,
@@ -44,5 +52,5 @@ const documentView: ViewMetadata = {
     htmlInfo: {}
 };
 
-export const views = [rootView, directoryView, articleView, namespaceView, documentView];
+export const views = [rootView, directoryView, registeredTypesView, articleView, namespaceView, documentView];
 export { DirectoryInfo, DirectoryNode } from './directoryView';

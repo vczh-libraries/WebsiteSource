@@ -42,6 +42,17 @@ router.register(
 
         try {
             switch (dnode.kind) {
+                case 'registeredTypes': {
+                    const generatedHtml = generateHtml(
+                        info,
+                        views,
+                        'Gaclib-RegisteredTypesView',
+                        model,
+                        '',
+                        res
+                    );
+                    return ['text/html', generatedHtml];
+                }
                 case 'article': {
                     res.article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }));
                     const generatedHtml = generateHtml(
