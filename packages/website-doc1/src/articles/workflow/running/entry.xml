@@ -1,0 +1,7 @@
+<reference>
+    <article name="Running Workflow Scripts" file="running"/>
+    <article name="Invoking C++ Classes" file="invoking"/>
+    <article name="Serializing and Loading Assemblies" file="serializing"/>
+    <article name="Debugging" file="debugging"/>
+    <article name="Generating C++ Code" file="generating"/>
+</reference>
