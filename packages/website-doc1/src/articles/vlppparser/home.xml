@@ -45,6 +45,15 @@
                     </li>
                 </ul>
             </p>
+            <p>
+                <b>IMPORTANT</b>: The XML parser only accept a subset of the XML standard:
+                <ul>
+                    <li>Prologue nodes only accept instructions and comments.</li>
+                    <li>Elements only accept elements, text nodes, cdata nodes and comments as sub nodes.</li>
+                    <li><b>&lt;</b>(&amp;lt;), <b>&gt;</b>(&amp;gt;), <b>&amp;</b>(&amp;amp;), <b>&apos;</b>(&amp;apos;), <b>&quot;</b>(&amp;quot;) must be escaped in attribute values and text nodes.</li>
+                    <li>The <b>xml:space</b> attribute is ignored during parsing.</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Writing your own parsers.</title>
