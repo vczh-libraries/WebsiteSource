@@ -1,6 +1,9 @@
 <reference>
     <article name="Running Workflow Scripts" file="running"/>
-    <article name="Invoking C++ Classes" file="invoking"/>
+    <article name="Invoking C++ Classes" file="invoking1"/>
+    <article name="Inheriting C++ Interfaces" file="invoking2"/>
+    <article name="Inheriting C++ Classes" file="invoking3"/>
+    <article name="Reflecting Workflow Classes" file="invoking4"/>
     <article name="Serializing and Loading Assemblies" file="serializing"/>
     <article name="Debugging" file="debugging"/>
     <article name="Generating C++ Code" file="generating"/>
