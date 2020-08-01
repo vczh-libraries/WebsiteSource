@@ -41,6 +41,7 @@
     <article name="Running a Script" file="workflow/running">
       <link pathPrefix="workflow/running" filePrefix="" file="workflow/running/entry.xml"/>
     </article>
+    <article name="Multi-threading" file="workflow/mt"/>
     <article name="Syntax" file="workflow/lang">
       <link pathPrefix="workflow/lang" filePrefix="" file="workflow/lang/entry.xml"/>
     </article>

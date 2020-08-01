@@ -2,7 +2,32 @@
     <topic>
         <title>Running Workflow Scripts</title>
         <p>
-            The page is under construction.
+            A workflow script can be executed in 3 ways:
+            <ul>
+                <li>
+                    Compile and run directly.
+                </li>
+                <li>
+                    Compile to a binary file, and load it in another process.
+                    If the script need to be executed multiple times,
+                    this is the recommended way to do it.
+                    Because by not having to run the compiler,
+                    the launch time is significantly improved.
+                </li>
+                <li>
+                    Compile and generate C++ files from the script.
+                    If the script does not change at all,
+                    this is the recommended way to do it.
+                    GacUI is one of the example,
+                    it compiles different types of XML to Workflow scripts,
+                    merges with manually written scripts and generate all of them to multiple C++ files.
+                </li>
+            </ul>
+        </p>
+        <p>
+            In order to show all kinds of interop between Workflow and C++,
+            <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/Console_Workflow">A example solution</a> is prepared.
+            Projects in this solution are explained in this section.
         </p>
     </topic>
 </article>
