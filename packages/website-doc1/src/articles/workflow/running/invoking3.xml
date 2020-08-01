@@ -88,7 +88,7 @@
             Constructors and destructors are allowed in Workflow classes.
         </p>
         <p>
-            Data binding will not be explained in detailed here,
+            Data binding will not be explained in detail here,
             basically the code is tracking the changing of <b>$"Hello, $(self.Name)"</b>.
             When <b>Name</b> property is changed,
             it is obviously that the result of this expression is also changed.

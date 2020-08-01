@@ -87,7 +87,7 @@
         <p>
             Details of Workflow runtime API will not be explained here.
             Basically what this function does is that,
-            we first get thread context that we are currently debugging against,
+            we first get the thread context that we are currently debugging against,
             and then use the metadata in the assembly to know how to change the <b>name</b> variable.
             After it is done,
             continue running the script.
@@ -99,11 +99,12 @@
         <p>
             Here is what we need to know when debugging Workflow scripts:
             <ul>
-                <li>A debugger is activated when it is set to a specific thread.</li>
-                <li>Same debugger can be set to multiple thread.</li>
+                <li>Threads are by default not assigned with any debugger.</li>
+                <li>A debugger is activated when it is assigned to a specific thread.</li>
+                <li>The same debugger can be assigned to multiple threads.</li>
                 <li>
                     Each call to a function returned from <b>LoadFunction</b> creates a separate <b>WfRuntimeThreadContext</b> object.
-                    Do not assume you will always get the same <b>WfRuntimeThreadContext</b> object per thread.
+                    Do not assume that you will always get the same <b>WfRuntimeThreadContext</b> object per thread.
                 </li>
             </ul>
         </p>

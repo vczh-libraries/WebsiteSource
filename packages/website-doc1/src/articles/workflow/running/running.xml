@@ -69,8 +69,8 @@
         </p>
         <p>
             The next step is to initialize global variables.
-            In a Workflow script, global variables should be initialize with default values,
-            but by loading the assembly these variables are not initialize.
+            In a Workflow script, global variables should be initialized with default values,
+            but by loading the assembly these variables are not initialized.
             So you always need to run the exported function <b>&lt;initialize&gt;</b> to do it.
         </p>
         <p>

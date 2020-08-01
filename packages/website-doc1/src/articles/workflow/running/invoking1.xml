@@ -10,7 +10,7 @@
         <p>
             It is allowed to use reflectable types in Workflow script.
             Here we define a type to read and write from a console window.
-            <a href="http://localhost:8080/doc/current/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">Registering</a> this class is required,
+            <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">Registering</a> this class is required,
             but the code will not be pasted here.
         </p>
         <p>
