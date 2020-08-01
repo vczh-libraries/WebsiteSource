@@ -2,7 +2,85 @@
     <topic>
         <title>Running Workflow Scripts</title>
         <p>
-            The page is under construction.
+            Involved files:
+            <ul>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W01_RunningWorkflowScripts/Main.cpp">Main.cpp</a></li>
+            </ul>
+        </p>
+        <p>
+            Running a Workflow script is quite simple,
+            just start the reflection,
+            compile the code,
+            and call the function you need.
+        </p>
+        <p>
+            A typical Workflow script needs to use primitive types and a very simple predefined Workflow library.
+            Both compiling and running a Workflow script needs type information from above types.
+            In order to load these types,
+            two functions need to be called:
+            <program><code><![CDATA[
+                LoadPredefinedTypes();
+                WfLoadLibraryTypes();
+                GetGlobalTypeManager()->Load();
+            ]]></code></program>
+        </p>
+        <p>
+            Now, we begin to run this Workflow script:
+            <program><code><![CDATA[
+                module sampleModule;
+
+                func main(): string
+                {
+                    return "Hello, world!";
+                }
+            ]]></code></program>
+        </p>
+        <p>
+            <b>WfLoadTable</b> function creates the parser table for parsing Workflow scripts.
+            Loading this table takes times, and it takes a few seconds when debugging your host C++ application.
+            So it is recommended to cache the table.
+        </p>
+        <p>
+            Firstly we need to compile the code and get the assembly:
+            <program><code><![CDATA[
+                List<WString> codes;
+                codes.Add(WString(ScriptCode, false))
+
+                List<Ptr<ParsingError>> errors;
+                auto table = WfLoadTable();
+                auto assembly = Compile(table, codes, errors);
+            ]]></code></program>
+            If it fails to compile, you will get a null assembly,
+            and the <b>errors</b> variable stores all mistakes that are found in the script.
+            Note that the compiler stops at the first syntax error.
+        </p>
+        <p>
+            Secondly we need to create the runtime environment for executing the script:
+            <program><code><![CDATA[
+                auto globalContext = MakePtr<WfRuntimeGlobalContext>(assembly);
+                auto initializeFunction = LoadFunction<void()>(globalContext, L"<initialize>");
+                initializeFunction();
+            ]]></code></program>
+            Only one <b>WfRuntimeGlobalContext</b> is allowed to create per assembly.
+            In most cases you cannot load the assembly from file twice in order to get two assembilies and two context for separate execution environment.
+            Because Workflow scripts could create classes and interfaces,
+            all of them will also be registered to the global type manager, just like C++ reflection.
+            Loading them twice will result in an error.
+        </p>
+        <p>
+            The next step is to initialize global variables.
+            In a Workflow script, global variables should be initialize with default values,
+            but by loading the assembly these variables are not initialize.
+            So you always need to run the exported function <b>&lt;initialize&gt;</b> to do it.
+        </p>
+        <p>
+            Now everything is prepared, we can call the <b>main</b> function to get the result:
+            <program><code><![CDATA[
+                auto mainFunction = LoadFunction<WString()>(globalContext, L"main");
+                Console::WriteLine(mainFunction());
+            ]]></code></program>
+            Unlike C++, an Workflow script is not required to have a <b>main</b> function.
+            Here <b>main</b> is just a trivial name.
         </p>
     </topic>
 </article>

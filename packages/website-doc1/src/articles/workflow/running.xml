@@ -29,5 +29,9 @@
             <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/Console_Workflow">A example solution</a> is prepared.
             Projects in this solution are explained in this section.
         </p>
+        <p>
+            <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">Reflection</a> is very important in Workflow script,
+            you are recommended to read the document before using Workflow.
+        </p>
     </topic>
 </article>
