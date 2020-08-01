@@ -2,7 +2,50 @@
     <topic>
         <title>Serializing and Loading Assemblies</title>
         <p>
-            The page is under construction.
+            Involved files:
+            <ul>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_Lib/W05_Lib.h">W05_Lib/W05_Lib.h</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_Lib/W05_Lib.cpp">W05_Lib/W05_Lib.cpp</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_Compile/Main.cpp">W05_Compile/Main.cpp</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_DynamicRun/Main.cpp">W05_DynamicRun/Main.cpp</a></li>
+            </ul>
+        </p>
+        <p>
+            Saving an assembly to a file is very simple:
+            <program><code><![CDATA[
+                FilePath assemblyPath = FilePath(argv[0]).GetFolder() / L"WorkflowAssembly.bin";
+                Console::WriteLine(L"Writing the assembly to: " + assemblyPath.GetFullPath());
+                FileStream fileStream(assemblyPath.GetFullPath(), FileStream::WriteOnly);
+                assembly->Serialize(fileStream);
+            ]]></code></program>
+            In this piece of code,
+            the compiled Workflow binary is put in the same folder that containing the executable file.
+        </p>
+        <p>
+            Loading an assembly from a file is as simple as saving:
+            <program><code><![CDATA[
+                FilePath assemblyPath = FilePath(argv[0]).GetFolder() / L"WorkflowAssembly.bin";
+                FileStream fileStream(assemblyPath.GetFullPath(), FileStream::ReadOnly);
+
+                WfAssemblyLoadErrors errors;
+                auto assembly = WfAssembly::Deserialize(fileStream, errors);
+            ]]></code></program>
+            After you get the assembly,
+            you can load and call functions or classes in the script as usual.
+        </p>
+        <p>
+            You don't need to call <b>WfLoadTable</b> before loading an assembly,
+            so the launch time is very fast.
+        </p>
+        <p>
+            And by not having to run the compiler,
+            you can get rid of the following files:
+            <ul>
+                <li><b>VlppParser.h</b></li>
+                <li><b>VlppParser.cpp</b></li>
+                <li><b>VlppWorkflowCompiler.h</b></li>
+                <li><b>VlppWorkflowCompiler.cpp</b></li>
+            </ul>
         </p>
     </topic>
 </article>
