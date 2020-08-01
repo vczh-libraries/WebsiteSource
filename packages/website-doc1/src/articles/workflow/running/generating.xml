@@ -2,7 +2,41 @@
     <topic>
         <title>Generating C++ Code</title>
         <p>
-            The page is under construction.
+            Involved files:
+            <ul>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_Lib/W05_Lib.h">W05_Lib/W05_Lib.h</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_Lib/W05_Lib.cpp">W05_Lib/W05_Lib.cpp</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_Compile/Main.cpp">W05_Compile/Main.cpp</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_StaticRun/Main.cpp">W05_StaticRun/Main.cpp</a></li>
+            </ul>
+            Generated files:
+            <ul>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_StaticRun/Generated/W05ScriptIncludes.h">W05_StaticRun/Generated/W05ScriptIncludes.h</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_StaticRun/Generated/W05Script.h">W05_StaticRun/Generated/W05Script.h</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_StaticRun/Generated/W05Script.cpp">W05_StaticRun/Generated/W05Script.cpp</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_StaticRun/Generated/W05ScriptReflection.h">W05_StaticRun/Generated/W05ScriptReflection.h</a></li>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W05_StaticRun/Generated/W05ScriptReflection.cpp">W05_StaticRun/Generated/W05ScriptReflection.cpp</a></li>
+            </ul>
+        </p>
+        <p>
+            Workflow script can be converted to C++ and save to files.
+            If you don't want reflection,
+            you still need to link <b>VlppReflection.cpp</b>,
+            but by adding <b>VCZH_DEBUG_NO_REFLECTION</b> to the precompile definitions list,
+            many reflection related code are removed in C++ files.
+        </p>
+        <p>
+            In this case,
+            you can either link or not link to <b>W05ScriptReflection.cpp</b>.
+            When <b>VCZH_DEBUG_NO_REFLECTION</b> is on,
+            you get an empty <b>LoadW05ScriptTypes</b> function.
+            This helps you to write code that can be compiled regardless whether <b>VCZH_DEBUG_NO_REFLECTION</b> is on or off.
+        </p>
+        <p>
+            <b>W05_Lib/W05_Lib.h</b> and <b>W05_Lib/W05_Lib.cpp</b> is a good example.
+            When <b>VCZH_DEBUG_NO_REFLECTION</b> is on,
+            reflection related codes are removed.
+            This makes them be able to use in both <b>W05_DynamicRun</b> and <b>W05_StaticRun</b>.
         </p>
     </topic>
 </article>
