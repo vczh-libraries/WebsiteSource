@@ -35,7 +35,7 @@
         </p>
         <p>
             You don't need to call <b>WfLoadTable</b> before loading an assembly,
-            so the launch time is very fast.
+            so the launching is very fast.
         </p>
         <p>
             And by not having to run the compiler,
@@ -46,6 +46,7 @@
                 <li><b>VlppWorkflowCompiler.h</b></li>
                 <li><b>VlppWorkflowCompiler.cpp</b></li>
             </ul>
+            which makes the executable file even smaller.
         </p>
     </topic>
 </article>
