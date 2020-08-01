@@ -58,7 +58,7 @@
             In fact, you can use it to use part of a name.
             For example, in GacUI we have <b>vl::presentation::controls::GuiWindow</b>,
             it is registered using <b>presentation::controls::GuiWindow</b>.
-            You are able to use <b>Window</b> in the script by <b>using presentation::controls::Window</b>.
+            You are able to use <b>Window</b> in the script by <b>using presentation::controls::Gui*;</b>.
         </p>
         <p>
             <b>IMPORTANT</b>:
