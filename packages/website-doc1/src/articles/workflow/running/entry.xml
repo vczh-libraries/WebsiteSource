@@ -5,6 +5,6 @@
     <article name="Inheriting C++ Classes" file="invoking3"/>
     <article name="Reflecting Workflow Classes" file="invoking4"/>
     <article name="Serializing and Loading Assemblies" file="serializing"/>
-    <article name="Debugging" file="debugging"/>
     <article name="Generating C++ Code" file="generating"/>
+    <article name="Debugging" file="debugging"/>
 </reference>
