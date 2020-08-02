@@ -2,7 +2,7 @@
     <topic>
         <title>Functions and Variables</title>
         <p>
-            Functions and variables can be used in <b>modules</b>, <b>namespaces</b> and <b>classes</b>.
+            Functions and variables can be defined in <b>modules</b>, <b>namespaces</b> and <b>classes</b>.
         </p>
         <topic>
             <title>Variable</title>

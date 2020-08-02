@@ -3,9 +3,16 @@
         <title>Index of Keywords</title>
         <p>
             <ul>
+                <li><b>class</b>: <a href="/workflow/lang/class.html">Classes</a></li>
+                <li><b>enum</b>: <a href="/workflow/lang/enum.html">Enums</a></li>
+                <li><b>flagenum</b>: <a href="/workflow/lang/enum.html">Enums</a></li>
+                <li><b>func</b>: <a href="/workflow/lang/funcvar.html">Functions and Variables</a></li>
+                <li><b>interface</b>: <a href="/workflow/lang/interface.html">Interfaces</a></li>
                 <li><b>module</b>: <a href="/workflow/lang/module.html">Module</a></li>
                 <li><b>namespace</b>: <a href="/workflow/lang/module.html">Module</a></li>
+                <li><b>struct</b>: <a href="/workflow/lang/struct.html">Structs</a></li>
                 <li><b>using</b>: <a href="/workflow/lang/module.html">Module</a></li>
+                <li><b>var</b>: <a href="/workflow/lang/funcvar.html">Functions and Variables</a></li>
             </ul>
         </p>
     </topic>
