@@ -4,6 +4,11 @@
     <article name="Enums" file="enum"/>
     <article name="Structs" file="struct"/>
     <article name="Interfaces" file="interface"/>
+    <article name="Statements" file="stat"/>
+    <article name="Expressions" file="expr"/>
     <article name="Classes" file="class"/>
+    <article name="Data Bindings" file="bind"/>
+    <article name="Coroutines" file="coroutine"/>
+    <article name="State Machines" file="state"/>
     <article name="Index of Keywords" file="index"/>
 </reference>
