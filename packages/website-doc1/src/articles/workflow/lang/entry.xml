@@ -11,4 +11,5 @@
     <article name="Coroutines" file="coroutine"/>
     <article name="State Machines" file="state"/>
     <article name="Index of Keywords" file="index"/>
+    <article name="Index of Errors" file="error"/>
 </reference>
