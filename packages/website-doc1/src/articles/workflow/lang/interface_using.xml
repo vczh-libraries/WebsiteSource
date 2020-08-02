@@ -1,0 +1,12 @@
+<article>
+    <topic>
+        <title>Generic (interface)</title>
+        <p>
+            <!--
+                This is for
+                declaration: $interface A: B<string>;
+                expression: new A^(using b)
+            -->
+        </p>
+    </topic>
+</article>
