@@ -1,22 +1,23 @@
 <reference>
     <article name="Module" file="module"/>
     <article name="Functions and Variables" file="funcvar"/>
-    <article name="Enums" file="enum"/>
-    <article name="Structs" file="struct"/>
-    <article name="Interfaces" file="interface">
-        <article name="Properties and Events" file="interface_prop"/>
-        <article name="Inheritance" file="interface_inherit"/>
-        <article name="Implementing" file="interface_new"/>
-        <article name="Generic" file="interface_using"/>
+    <article name="Types" file="type">
+        <article name="Enums" file="enum"/>
+        <article name="Structs" file="struct"/>
+        <article name="Interfaces" file="interface">
+            <article name="Properties and Events" file="interface_prop"/>
+            <article name="Inheritance" file="interface_inherit"/>
+            <article name="Implementing" file="interface_new"/>
+            <article name="Generic" file="interface_using"/>
+        </article>
+        <article name="Classes" file="class">
+            <article name="Properties and Events" file="class_prop"/>
+            <article name="Inheritance" file="class_inherit"/>
+            <article name="Allocating" file="class_new"/>
+        </article>
     </article>
-    <article name="Types" file="type"/>
     <article name="Expressions" file="expr"/>
     <article name="Statements" file="stat"/>
-    <article name="Classes" file="class">
-        <article name="Properties and Events" file="class_prop"/>
-        <article name="Inheritance" file="class_inherit"/>
-        <article name="Allocating" file="class_new"/>
-    </article>
     <article name="Data Bindings" file="bind"/>
     <article name="Coroutines" file="coroutine"/>
     <article name="State Machines" file="state"/>
