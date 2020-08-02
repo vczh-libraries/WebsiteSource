@@ -1,4 +1,5 @@
 <reference>
     <article name="Module" file="module"/>
+    <article name="Functions and Variables" file="funcvar"/>
     <article name="Index of Keywords" file="index"/>
 </reference>
