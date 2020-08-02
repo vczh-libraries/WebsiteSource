@@ -2,7 +2,13 @@
     <topic>
         <title>Syntax</title>
         <p>
-            The page is under construction.
+            In this section, syntax of Workflow script is explained in detail.
+            You are recommended to read the content in order to understand the script.
+        </p>
+        <p>
+            In <a href="/workflow/lang/index.html">Index of Keywords</a>,
+            all keywords are listed in alphabetical order,
+            with hyperlinks to document pages that involve them.
         </p>
     </topic>
 </article>
