@@ -4,5 +4,127 @@
         <p>
             Enums can be defined in <b>modules</b>, <b>namespaces</b>, <b>classes</b> and <b>interfaces</b>.
         </p>
+        <p>
+            There are two kinds of enums: enumerations and flags.
+            The main difference between them is that,
+            the "<b>&amp;</b>" and "<b>|</b>" operator is not defined for enumerations.
+        </p>
+        <p>
+            A value of any enum can be explicitly converted to <b>system::UInt8</b>.
+            A value of <b>system::UInt8</b> can also be explicitly converted to any enum type,
+            but the runtime does not check if the conversion result is a valid enum value or not.
+        </p>
+        <topic>
+            <title>Enumerations</title>
+            <p>
+                An enumeration is a type that has finite values.
+                <program><code><![CDATA[
+                    enum Seasons
+                    {
+                        Spring = 0,
+                        Summer = 1,
+                        Autumn = 2,
+                        Winter = 3,
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>Each item should be assigned an integer.</li>
+                    <li>The first item must be assigned with 0.</li>
+                    <li>Any other item must be 1 greater than the previous item.</li>
+                    <li>The last comma "<b>,</b>" must not be omitted.</li>
+                </ul>
+            </p>
+            <p>
+                There is 4 ways to use an enum item:
+                <program><code><![CDATA[
+                    func use(s: Seasons):Seasons
+                    {
+                        return s;
+                    }
+
+                    var a: Seasons = Spring;
+                    var b = Seasons::Summer;
+                    var c = Autumn of Seasons;
+                    var d = use(Winter);
+                ]]></code></program>
+            </p>
+            <p>
+                <b>var a: Seasons = Spring;</b> and <b>var d = use(Winter);</b>:
+            </p>
+            <p>
+                When the place accepting an enum item expression has a known type,
+                the name of the enum item is enough.
+                Variable <b>a</b> has its type explicitly declared.
+                The parameter type of function <b>use</b> is also explicitly declared.
+                So <b>Seasons::</b> is not needed.
+            </p>
+            <p>
+                <b>var b = Seasons::Summer;</b>:
+            </p>
+            <p>
+                Another way is to explicitly say the name of the enum.
+            </p>
+            <p>
+                <b>var c = Autumn of Seasons;</b>:
+            </p>
+            <p>
+                The third way is to explicitly declare the type of the expression.
+                This usage is similar to <b>a</b> and <b>d</b>,
+                by explicitly declared that <b>Autumn</b> is <b>Seasons</b>,
+                the place accepting an enum item is "<b>&lt;HERE&gt; of Seasons</b>"",
+                so this place has a known type.
+            </p>
+        </topic>
+        <topic>
+            <title>Flags</title>
+            <p>
+                A flag is a type that has finite values and their combinations.
+                <program><code><![CDATA[
+                    flagenum Seasons
+                    {
+                        None = 0,
+                        Spring = 1,
+                        Summer = 2,
+                        Autumn = 4,
+                        Winter = 8,
+                        GoodSeasons = Spring | Autumn,
+                        BadSeasons = Summer | Winter,
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>Each item should be assigned an integer.</li>
+                    <li>The first item must be assigned with 0. Usually the first item is <b>None</b>, you are free to use any name.</li>
+                    <li>Any other item must be twice as much as the previous item.</li>
+                    <li>Aliases of item combinations must be placed after all items.</li>
+                    <li>The last comma "<b>,</b>" must not be omitted.</li>
+                </ul>
+            </p>
+            <p>
+                Just like enums, flags also have type inferencing:
+                <program><code><![CDATA[
+                    func use(s: Seasons):Seasons
+                    {
+                        return s;
+                    }
+
+                    var a: Seasons = Spring | Summer;
+                    var b = Seasons::Summer | Seasons::Autumn;
+                    var c = (Autumn | Winter) of Seasons;
+                    var d = use(Winter | Spring);
+                ]]></code></program>
+            </p>
+            <p>
+                As you can see,
+                the operator "<b>&amp;</b>" and "<b>|</b>" are automatically defined for flags.
+                When it is used on flags,
+                it requires that both operands must be the same type.
+                The type of the result is the same to its operands.
+                <ul>
+                    <li>"<b>|</b>" returns the union of two operands.</li>
+                    <li>"<b>&amp;</b>" returns the intersection of two operands.</li>
+                </ul>
+                These two operators are also defined for integers.
+            </p>
+        </topic>
     </topic>
 </article>

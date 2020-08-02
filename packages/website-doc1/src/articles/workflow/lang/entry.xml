@@ -4,8 +4,9 @@
     <article name="Enums" file="enum"/>
     <article name="Structs" file="struct"/>
     <article name="Interfaces" file="interface"/>
-    <article name="Statements" file="stat"/>
+    <article name="Types" file="type"/>
     <article name="Expressions" file="expr"/>
+    <article name="Statements" file="stat"/>
     <article name="Classes" file="class"/>
     <article name="Data Bindings" file="bind"/>
     <article name="Coroutines" file="coroutine"/>
