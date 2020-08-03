@@ -1,4 +1,4 @@
-<article>
+<article index="true">
     <topic>
         <title>Types</title>
         <p>
@@ -203,9 +203,253 @@
         </topic>
         <topic>
             <title>Function types</title>
+            <p>
+                A boxed function type is <b>Ptr&lt;IValueFunctionProxy&gt;</b>,
+                but it can also be unboxed to <b>Func&lt;T&gt;</b>.
+            </p>
+            <p>
+                Both function and member can be pack in a function type:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    func A(): string
+                    {
+                        return "A";
+                    }
+
+                    class B
+                    {
+                        func M(): string
+                        {
+                            return "B";
+                        }
+                    }
+
+                    interface IC
+                    {
+                        func M(): string;
+                    }
+
+                    var c = new IC^
+                    {
+                        override func M(): string
+                        {
+                            return "C";
+                        }
+                    }.M;
+
+                    func main(): string
+                    {
+                        var fs /* : (func(): string){} */ = {
+                            A;
+                            new B^().M;
+                            c;
+                            ["D"];
+                            func():string {return "E";};
+                        };
+
+                        var r = "";
+                        for (f in fs)
+                        {
+                            r = r & f();
+                        }
+                        return r;
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>
+                        Function <b>A</b> can be stored in a variable of functions type.
+                    </li>
+                    <li>
+                        A class method can be stored in a variable of function type.
+                        We allocate <b>B</b> as a shared pointer.
+                        Even we have lost the pointer holding a <b>B</b>,
+                        but another pointer is in the function type,
+                        the reference count is maintained.
+                    </li>
+                    <li>
+                        An interface method can also be stored in a variable of function type.
+                    </li>
+                    <li>
+                        An ordered lambda expression can be stored in a variable of function type.
+                    </li>
+                    <li>
+                        A lambda expression can be stored in a variable of function type.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                A function is allowed to have parameters,
+                so as a function type.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    func main(): string
+                    {
+                        var add: func(int, int):int = [$1 + $2];
+                        var mul = func(x:int, y:int):int {return x * y;};
+                        return mul(add(1, 2), add(3, 4));
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                An ordered lambda expression does not have an explicit type,
+                because type of parameters is not specified,
+                so the place receiving it must have an explicit type.
+            </p>
+            <p>
+                A lambda expression has an explicit type,
+                so the type of variable <b>mul</b> can be inferred.
+            </p>
         </topic>
         <topic>
             <title>Collection types</title>
+            <p>
+                Here are all supported collection types:
+                <ul>
+                    <li>
+                        <p><b>TValue {}</b></p>
+                        <p>This is an readonly collection, it can be iterated, it has no random access.</p>
+                        <p>non-generic version: <b>system::Enumerable^</b></p>
+                        <p>reflectable type: <b>system::IValueEnumerable</b></p>
+                    </li>
+                    <li>
+                        <p><b>TValue []</b></p>
+                        <p>This is a list, it has random access.</p>
+                        <p>non-generic version: <b>system::List^</b></p>
+                        <p>reflectable type: <b>system::IValueList</b></p>
+                    </li>
+                    <li>
+                        <p><b>const TValue []</b></p>
+                        <p>This is a read-only list, it has random access.</p>
+                        <p>non-generic version: <b>system::ReadonlyList^</b></p>
+                        <p>reflectable type: <b>system::IValueReadonlyList</b></p>
+                    </li>
+                    <li>
+                        <p><b>observe TValue []</b></p>
+                        <p>This is an observable list, it has random access, changing the list triggers events.</p>
+                        <p>non-generic version: <b>system::ObservableList^</b></p>
+                        <p>reflectable type: <b>system::IValueObservableList</b></p>
+                    </li>
+                    <li>
+                        <p><b>TValue [TKey]</b></p>
+                        <p>This is a dictionary, it maps from a key to a value, it has random access on keys and values.</p>
+                        <p>non-generic version: <b>system::Dictionary^</b></p>
+                        <p>reflectable type: <b>system::IValueDictionary</b></p>
+                    </li>
+                    <li>
+                        <p><b>const TValue [TKey]</b></p>
+                        <p>This is a readonly dictionary, it maps from a key to a value, it has random access on keys and values.</p>
+                        <p>non-generic version: <b>system::ReadonlyDictionary^</b></p>
+                        <p>reflectable type: <b>system::IValueReadonlyDictionary</b></p>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                When calling methods of collection types,
+                all keys and values are <b>object</b>,
+                because Workflow doesn't support generic interface.
+            </p>
+            <p>
+                When using the "<b>[]</b>" operator,
+                or using <b>for</b> statement,
+                keys and values are strong-typed.
+            </p>
+            <topic>
+                <title>Allocating lists</title>
+                <p>
+                    Collections and lists can be allocated by constructor expressions:
+                    <program><code><![CDATA[
+                        var a: int{} = {1 2 3 4 5};
+                        var b: int[] = {1 2 3 4 5};
+                        var c: const int[] = {1 2 3 4 5};
+                        var d: observe int[] = {1 2 3 4 5};
+                        var e /* : int[] */ = {1 2 3 4 5};
+                    ]]></code></program>
+                    We can also use <b>{1; 2; 3; 4; 5;}</b>.
+                </p>
+                <p>
+                    If we don't specify variable types,
+                    a constructor expression that making a list becomes <b>T []</b>.
+                </p>
+                <p>
+                    Range expressions are very useful to create collections:
+                    <program><code><![CDATA[
+                        var a = range (1, 5); /* {2 3 4} of int{}       */
+                        var b = range [1, 5); /* {1 2 3 4} of int{}     */
+                        var c = range (1, 5]; /* {2 3 4 5} of int{}     */
+                        var d = range [1, 5]; /* {1 2 3 4 5} of int{}   */
+                    ]]></code></program>
+                    <ul>
+                        <li>Round parenthesis means the value on that side is included.</li>
+                        <li>Square parenthesis means the value on that side is not included.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>Iterating over lists</title>
+                <p>
+                    <b>TValue {}</b>, <b>TValue []</b>, <b>const TValue []</b>, <b>observe TValue []</b>
+                    can be used in <b>for</b> statements:
+                    <program><code><![CDATA[
+                        func main(): string
+                        {
+                            var xs = {1 2 3 4 5};
+                            var sum = 0;
+                            for (x in xs)
+                            {
+                                sum = sum + x;
+                            }
+                            return sum;
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>For</b> statements can iterate over a list in an opposite direction:
+                    <program><code><![CDATA[
+                        func main(): string
+                        {
+                            var xs = {1 2 3 4 5};
+                            var sum = 0;
+                            for (x in revsersed xs)
+                            {
+                                sum = sum + x;
+                            }
+                            return sum;
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    Range expressions works with <b>for</b> statements very well:
+                    <program><code><![CDATA[
+                        func main(): string
+                        {
+                            var sum = 0;
+                            for (x in range[1, 5])
+                            {
+                                sum = sum + x;
+                            }
+                            return sum;
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Allocating dictionaries</title>
+                <p>
+                    Dictionaries can be allocated by constructor expressions:
+                    <program><code><![CDATA[
+                        var a: string[int] = {1:"one" 2:"two" 3:"three"};
+                        var b: const string[int] = {1:"one" 2:"two" 3:"three"};
+                        var c /* : string[int] */ = {1:"one" 2:"two" 3:"three"};
+                    ]]></code></program>
+                    We can also use <b>{1:"one"; 2:"two"; 3:"three";}</b>.
+                </p>
+                <p>
+                    If we don't specify variable types,
+                    a constructor expression that making a dictionary becomes <b>TValue [TKey]</b>.
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>
