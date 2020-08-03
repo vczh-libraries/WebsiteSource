@@ -93,21 +93,33 @@
                     </li>
                     <li>
                         <b>string</b>: <b>system::String</b>.
+                        You can either use <b>'</b> or <b>"</b> to create a value of <b>string</b>.
+                        The following strings equal to each other:
+                        <program><code><![CDATA[
+                            var a = "a'\"";
+                            var b = 'a\'"';
+                            var c = "a" & "'" & '"';
+                        ]]></code></program>
+                        Unlike other programming languages,
+                        the "<b>&amp;</b>" operator joins two strings to one,
+                        instead of "<b>+</b>".
                     </li>
                     <li>
                         <b>char</b>: <b>system::Char</b>.
+                        Workflow does not support <b>char</b> operations,
+                        you are not able to create any value of <b>char</b>,
+                        you are not able read <b>char</b> from <b>string</b>,
+                        unless it is returned from a C++ function.
                     </li>
                     <li>
                         <b>bool</b>: <b>system::Boolean</b>.
+                        It could be <b>true</b> or <b>false</b>.
                     </li>
                 </ul>
             </p>
             <p>
                 You could check out how <a href="/home/registered/vlppreflection.html">predefined types</a> are mapped to C++ types.
             </p>
-        </topic>
-        <topic>
-            <title>Strings and Chars</title>
         </topic>
         <topic>
             <title>Reference types and Pointers</title>
