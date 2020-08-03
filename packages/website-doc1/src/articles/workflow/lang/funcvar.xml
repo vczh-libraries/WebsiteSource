@@ -82,6 +82,24 @@
                 There is no default value for any parameter.
                 Function overloading is recommended to simulate default values for parameters.
             </p>
+            <p>
+                When the return type of a function is <b>void</b>,
+                any <b>return</b> statement in this function is not allowed to have an expression.
+                When the return type is not <b>void</b>,
+                any <b>return</b> statement in this function must have an expression.
+            </p>
+            <p>
+                The compiler does not check if any exit point of a function is missing a return value.
+                If a function exits without a return value,
+                it returns <b>null</b>.
+                If the return type is not compatible with <b>null</b>,
+                no error will be generated during compiling,
+                it is an undefined behavior.
+            </p>
+            <p>
+                When such code is generated to C++,
+                the C++ compiler will tell you that it is wrong.
+            </p>
         </topic>
         <topic>
             <title>Overloading Resolution</title>

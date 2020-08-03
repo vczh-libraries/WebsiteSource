@@ -2,7 +2,124 @@
     <topic>
         <title>Types</title>
         <p>
-            The page is under construction.
+            <a href="/home/registered.html">This type list</a> shows all types that you can use in a Workflow script.
+            You can use <a href="/workflow/lang/module.html">using declaration</a> to import names so that to make a type name shorter.
         </p>
+        <topic>
+            <title>Identifier</title>
+            <p>
+                <ul>
+                    <li>
+                        <b>NAME</b>: use a name that is imported by <b>using declarations</b>.
+                    </li>
+                    <li>
+                        <b>::NAME</b>: use a name that is in the global namespace.
+                        If you define anything directly in a module,
+                        instead of putting it in a namespace,
+                        you are defining a concept in the global namespace.
+                    </li>
+                    <li>
+                        <b>IDENTIFIER::NAME</b>: use a name that is declared in <b>IDENTIFIER</b>.
+                        <b>IDENTIFIER</b> could be
+                        a <a href="/workflow/lang/module.html">namespace</a>,
+                        a <a href="/workflow/lang/class.html">class</a>,
+                        or an <a href="/workflow/lang/interface.html">interface</a>.
+                        Note that you are not allowed to define a new type in a <a href="/workflow/lang/struct.html">struct</a>.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Types in parentheses</title>
+            <p>
+                Parentheses can change associations in a type,
+                it is useful when there is ambiguity.
+                For example:
+                <program><code><![CDATA[
+                    var x: func():string{} = null;
+                ]]></code></program>
+                This is ambiguous,
+                <b>x</b> could be a function returning an enumerable of string,
+                it could also be an enumerable of functions that returns a string.
+                In order to tell the difference,
+                we could use parentheses like this:
+                <program><code><![CDATA[
+                    var x: func():(string{}) = null;
+                    var y: (func():string){} = null;
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Primitive types</title>
+            <p>
+                Here is all keyword for primitive types supported by Workflow script.
+                Not all primitive types have a keyword, like <b>system::DateTime</b>,
+                the only way to use it is to write <b>system::DateTime</b>,
+                or shorten the name using a <b>using declaration</b>.
+                <ul>
+                    <li>
+                        <b>void</b>: <b>system::Void</b>.
+                        It can only appear at the function return type,
+                        indicating that this function do not have a return value.
+                    </li>
+                    <li>
+                        <b>object</b>: <b>system::Object</b>.
+                        Values of all types can be implicitly converted to <b>object</b>.
+                        A value of <b>object</b> can be explicitly converted to any type,
+                        conversion failure results in throwing an exception.
+                    </li>
+                    <li>
+                        <b>interface</b>: <b>system::Interface</b>.
+                        This is a reference type,
+                        the base type for all interfaces.
+                        it means that <b>interface*</b> and <b>interface^</b> are valid types,
+                        but <b>interface</b> itself is not.
+                    </li>
+                    <li>
+                        <b>int</b>:
+                        When the compiler is running in an x86 process, it is <b>system::Int32</b>.
+                        When the compiler is running in an x64 process, it is <b>system::Int64</b>.
+                    </li>
+                    <li>
+                        <b>uint</b>:
+                        When the compiler is running in an x86 process, it is <b>system::UInt32</b>.
+                        When the compiler is running in an x64 process, it is <b>system::UInt64</b>.
+                    </li>
+                    <li>
+                        <b>float</b>: <b>system::Float</b>.
+                    </li>
+                    <li>
+                        <b>double</b>: <b>system::Double</b>.
+                    </li>
+                    <li>
+                        <b>string</b>: <b>system::String</b>.
+                    </li>
+                    <li>
+                        <b>char</b>: <b>system::Char</b>.
+                    </li>
+                    <li>
+                        <b>bool</b>: <b>system::Boolean</b>.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                You could check out how <a href="/home/registered/vlppreflection.html">predefined types</a> are mapped to C++ types.
+            </p>
+        </topic>
+        <topic>
+            <title>Strings and Chars</title>
+        </topic>
+        <topic>
+            <title>Reference types and Pointers</title>
+        </topic>
+        <topic>
+            <title>Optional types</title>
+        </topic>
+        <topic>
+            <title>Function types</title>
+        </topic>
+        <topic>
+            <title>Collection types</title>
+        </topic>
     </topic>
 </article>
