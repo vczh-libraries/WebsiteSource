@@ -170,6 +170,11 @@
                     but in Workflow script,
                     pointers could only point to reference types.
                 </p>
+                <p>
+                    You can <b>delete</b> a raw pointer value as in C++.
+                    But it could result in throwing an exception,
+                    when there are shared pointers that holding this object.
+                </p>
             </topic>
         </topic>
         <topic>

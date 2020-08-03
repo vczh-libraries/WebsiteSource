@@ -234,10 +234,14 @@ export function loadDocTree(entryPath: string): DocTree {
     return result;
 }
 
-function getDirectoryNode(node: DocTreeNode, selected: boolean): DirectoryNode {
+function getDirectoryNode(node: DocTreeNode, kind: 'parent' | 'selected' | 'child'): DirectoryNode {
     const dnode: DirectoryNode = {
+        icon:
+            node.path === undefined || node.subNodes === undefined || node.subNodes.length === 0
+                ? ' '
+                : kind !== 'child' ? '-' : '+',
         name: node.name,
-        selected
+        selected: kind === 'selected'
     };
     if (node.path !== undefined) {
         dnode.path = node.path;
@@ -246,7 +250,7 @@ function getDirectoryNode(node: DocTreeNode, selected: boolean): DirectoryNode {
 }
 
 function getDirectoryNodeFromCurrent(current: DocTreeNode, node: DocTreeNode): DirectoryNode {
-    const dnode = getDirectoryNode(node, node === current);
+    const dnode = getDirectoryNode(node, node === current ? 'selected' : 'child');
     if (node === current || node.kind === 'directory') {
         if (node.subNodes !== undefined) {
             dnode.subNodes = node.subNodes.map((subNode: DocTreeNode) => getDirectoryNodeFromCurrent(current, subNode));
@@ -284,7 +288,7 @@ export function getDirectoryInfoFromPath(docTree: DocTree, url: string[], index:
         if (parentNode.kind !== 'root') {
             let current: DocTreeNode | undefined = parentNode;
             while (current !== undefined) {
-                const dcurrent = getDirectoryNode(current, false);
+                const dcurrent = getDirectoryNode(current, 'parent');
                 dcurrent.subNodes = dsiblings;
                 dsiblings = [dcurrent];
 
