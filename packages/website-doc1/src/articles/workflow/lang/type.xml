@@ -10,16 +10,16 @@
             <p>
                 <ul>
                     <li>
-                        <b>NAME</b>: use a name that is imported by <b>using declarations</b>.
+                        <b>NAME</b>: uses a name that is imported by <b>using declarations</b>.
                     </li>
                     <li>
-                        <b>::NAME</b>: use a name that is in the global namespace.
+                        <b>::NAME</b>: uses a name that is in the global namespace.
                         If you define anything directly in a module,
                         instead of putting it in a namespace,
                         you are defining a concept in the global namespace.
                     </li>
                     <li>
-                        <b>IDENTIFIER::NAME</b>: use a name that is declared in <b>IDENTIFIER</b>.
+                        <b>IDENTIFIER::NAME</b>: uses a name that is declared in <b>IDENTIFIER</b>.
                         <b>IDENTIFIER</b> could be
                         a <a href="/workflow/lang/module.html">namespace</a>,
                         a <a href="/workflow/lang/class.html">class</a>,
@@ -67,6 +67,9 @@
                         Values of all types can be implicitly converted to <b>object</b>.
                         A value of <b>object</b> can be explicitly converted to any type,
                         conversion failure results in throwing an exception.
+                        <b>null</b> is also a valid value for <b>object</b>,
+                        casting <b>null</b> to an optional type results in <b>null</b>,
+                        casting <b>null</b> to any other type results in throwing an exception.
                     </li>
                     <li>
                         <b>interface</b>: <b>system::Interface</b>.
@@ -120,12 +123,78 @@
             <p>
                 You could check out how <a href="/home/registered/vlppreflection.html">predefined types</a> are mapped to C++ types.
             </p>
+            <topic>
+                <title>Type Conversions</title>
+                <p>
+                    <ul>
+                        <li>All primitive types could be implicitly converted to <b>string</b>.</li>
+                        <li><b>string</b> could be explicitly converted to any primitive type.</li>
+                        <li><b>float</b> could be implicitly converted to <b>double</b>.</li>
+                        <li>Signed integer types could be implicitly converted to any larger signed integer types.</li>
+                        <li>Unsigned integer types could be implicitly converted to any larger unsigned integer types.</li>
+                        <li>8-bits and 16-bits integer types could be implicitly converted to <b>float</b>.</li>
+                        <li>32-bits and 64-bits integer types could be implicitly converted to <b>double</b>.</li>
+                        <li>All numeric types could be explicitly converted to each other.</li>
+                        <li>Enum types could be explicitly converted to <b>system::UInt64</b>.</li>
+                        <li><b>system::UInt64</b> could be explicitly converted to enum types.</li>
+                    </ul>
+                </p>
+            </topic>
         </topic>
         <topic>
             <title>Reference types and Pointers</title>
+            <p>
+                Any class types, interface types, or the type "<b>interface</b>", are all reference types.
+                Optional types are not reference types.
+                A reference type itself is not a valid type,
+                pointers to a reference type are valid types.
+            </p>
+            <topic>
+                <title>Shared pointers</title>
+                <p>
+                    Type <b>T^</b> means <b>Ptr&lt;T&gt;</b> in C++.
+                </p>
+                <p>
+                    Althought <b>T</b> could be any type in C++,
+                    but in Workflow script,
+                    pointers could only point to reference types.
+                </p>
+            </topic>
+            <topic>
+                <title>Raw pointers</title>
+                <p>
+                    Type <b>T*</b> means <b>T*</b> in C++.
+                </p>
+                <p>
+                    Althought <b>T</b> could be any type in C++,
+                    but in Workflow script,
+                    pointers could only point to reference types.
+                </p>
+            </topic>
         </topic>
         <topic>
             <title>Optional types</title>
+            <p>
+                Type <b>T?</b> means <b>Nullable&lt;T&gt;</b> in C++.
+            </p>
+            <p>
+                Althought <b>T</b> could be any type in C++,
+                but in Workflow script,
+                optional types could only point to primitive types, structs and enums.
+            </p>
+            <p>
+                <b>null</b> is a valid value for optional types.
+            </p>
+            <p>
+                Value of any valid type could be implicitly converted to its optional type.
+            </p>
+            <p>
+                Value of an optional types could be explicitly converted to its containing type.
+            </p>
+            <p>
+                An optional type <b>A?</b> can be implicitly or explicitly converted to <b>B?</b>,
+                when <b>A</b> can be implicitly or explicitly converted to <b>B</b>.
+            </p>
         </topic>
         <topic>
             <title>Function types</title>
