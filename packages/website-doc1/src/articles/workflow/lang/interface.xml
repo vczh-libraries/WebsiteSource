@@ -25,10 +25,15 @@
             </ul>
         </p>
         <p>
-            Methods, properties and events are allowed to be in both interface declaration and new interface expressions.
+            Methods, properties and events are allowed in both interface declaration and new interface expressions.
         </p>
         <p>
-            Variables are allowed to be in new interface expressions.
+            Static methods are allowed in interfaces.
+            Static methods must have a body,
+            and they cannot be implemented in new interface expressions.
+        </p>
+        <p>
+            Variables are allowed in new interface expressions.
             Variables are only accessible to methods in this new interface expression.
         </p>
         <p>
