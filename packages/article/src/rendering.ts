@@ -133,7 +133,7 @@ ${
                     if (newPrefix !== undefined) {
                         newPrefix += `${++topicIndex}.`;
                     }
-                    return renderTopic(value, level + 1, newPrefix, topTopic, options);
+                    return renderTopic(value, level + 1, newPrefix, false, options);
                 } else {
                     return renderParagraph(value, options);
                 }
