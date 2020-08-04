@@ -2,7 +2,166 @@
     <topic>
         <title>Properties and Events (interface)</title>
         <p>
-            The page is under construction.
+            Properties and events are allowed in interfaces.
         </p>
+        <topic>
+            <title>Defining properties and events</title>
+            <p>
+                When property <b>Name</b> is associated with event <b>NameChanged</b>,
+                magic doesn't happen automatically,
+                the implementation of <b>SetName</b> should trigger <b>NameChanged</b> approppriately.
+            </p>
+            <p>
+                The property could also be readonly, or not associated with an event.
+            </p>
+            <topic>
+                <title>Full-featured property</title>
+                <p>
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            prop Name: string {}
+                        }
+                    ]]></code></program>
+                    which means:
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            event NameChanged();
+                            func GetName(): string;
+                            func SetName(value: string): void;
+                            prop Name: string {GetName, SetName : NameChanged}
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Readonly property</title>
+                <p>
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            prop Name: string {const}
+                        }
+                    ]]></code></program>
+                    which means:
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            event NameChanged();
+                            func GetName(): string;
+                            prop Name: string {GetName : NameChanged}
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Without event</title>
+                <p>
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            prop Name: string {not observe}
+                        }
+                    ]]></code></program>
+                    which means:
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            func GetName(): string;
+                            func SetName(value: string): void;
+                            prop Name: string {GetName, SetName}
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Readonly property without event</title>
+                <p>
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            prop Name: string {const, not observe}
+                        }
+                    ]]></code></program>
+                    which means:
+                    <program><code><![CDATA[
+                        interface IWithProp
+                        {
+                            func GetName(): string;
+                            prop Name: string {GetName}
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Implementing properties</title>
+            <p>
+                Auto-properties are also allowed in new interface expressions
+                to create default implementation for properties:
+                <program><code><![CDATA[
+                    var withProp = new IWithProp^
+                    {
+                        override prop Name: string = "an-initialized-value" {}
+                    };
+                ]]></code></program>
+                <ul>
+                    <li>The <b>override</b> keyword is required.</li>
+                    <li>Auto-properties in new interface expressions must be initialized.</li>
+                    <li>It doesn't matter whether the property in the interface is auto-property or not.</li>
+                </ul>
+                It is almost equivalent to:
+                <program><code><![CDATA[
+                    var withProp = new IWithProp^
+                    {
+                        var name: string = "an-initialized-value";
+
+                        override func GetName(): string
+                        {
+                            return name;
+                        }
+
+                        override func SetName(value: string): void
+                        {
+                            if (name != value)
+                            {
+                                name = value;
+                                NameChanged();
+                            }
+                        }
+                    };
+                ]]></code></program>
+                but the <b>name</b> variable is not accessible.
+            </p>
+            <p>
+                You don't need to <b>override</b> an event in an interface.
+            </p>
+            <p>
+                When an auto-property is used in an new interface expression,
+                the configuration of <b>const</b> and <b>not observe</b> must be exactly the same
+                to the property that is overrided in the interface,
+                semantically (because it could be declared using a normal property, not using an auto-property).
+            </p>
+            <p>
+                Even if you use <b>const</b> for an auto-property in an new interface expression,
+                the <b>SetName</b> function is always there.
+                In this case,
+                the only way to change the value of the property is to call <b>SetName</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Using events</title>
+            <p>
+                Events don't have to be associated with properties.
+                You can define events in interfaces and trigger them in new interface expressions:
+            </p>
+            <topic>
+                <title>Attaching events</title>
+            </topic>
+            <topic>
+                <title>Detaching events</title>
+            </topic>
+        </topic>
     </topic>
 </article>
