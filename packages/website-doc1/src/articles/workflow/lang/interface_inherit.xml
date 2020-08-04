@@ -2,7 +2,56 @@
     <topic>
         <title>Inheritance (interface)</title>
         <p>
-            The page is under construction.
+            An interface can inherit multiple interfaces.
+        </p>
+        <p>
+            When IDerived inherits from IBase,
+            <ul>
+                <li>Interfaces cannot inherit classes in Workflow script (this could happen in C++).</li>
+                <li>Classes cannot inherit interfaces in Workflow script (this could happen in C++).</li>
+                <li><b>IDerived</b> inherits all members from <b>IBase</b>.</li>
+                <li>If the same method signature appears in multiple base interfaces (including the derived one), they will have the same implementation in the new interface expression.</li>
+                <li>An object must implement all members of <b>IBase</b> in order to implement <b>IDerived</b>.</li>
+                <li>An object of type <b>IDerived</b> can be implicitly converted to <b>IBase</b>.</li>
+                <li>An object of type <b>IBase</b> can be explicitly converted to <b>IDerived</b>, if the object doesn't implement <b>IDerived</b>, the conversion fails at runtime.</li>
+                <li>You cannot call members of <b>IDerived</b> on an object of type <b>IBase</b>, even if it implements <b>IDerived</b>.</li>
+                <li>Interfaces are not structural typing, even of an object has all required members, but if it doesn't explicitly declare that it implements an interface, it does not.</li>
+            </ul>
+        </p>
+        <p>
+            <program><code><![CDATA[
+                interface IBase
+                {
+                    func Say(): string;
+                }
+
+                interface IDerived : IBase
+                {
+                    /* other members */
+                }
+
+                var base = new IBase^
+                {
+                    override func Say(): string
+                    {
+                        return "I implements IBase!";
+                    }
+                };
+
+                var derived: IBase^ = new IDerived^
+                {
+                    override func Say(): string
+                    {
+                        return "I implements IDerived!";
+                    }
+                };
+            ]]></code></program>
+            <ul>
+                <li>Types of <b>base</b> and <b>derived</b> are <b>IBase^</b>. If an explicit type does not given to <b>derived</b>, it will be <b>IDerived^</b>.</li>
+                <li><b>base as IDerived^</b> returns <b>null</b>.</li>
+                <li><b>(cast IDerived^ base)</b> throws and exception.</li>
+                <li>Both above conversion will succeed for <b>derived</b>.</li>
+            </ul>
         </p>
     </topic>
 </article>

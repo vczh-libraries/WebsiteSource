@@ -3,8 +3,10 @@
         <title>Index of Keywords</title>
         <p>
             <ul>
+                <li><b>as</b>: <a href="/workflow/lang/interface_inherit.html">Inheritance (interface)</a>, <a href="/workflow/lang/class_inherit.html">Inheritance (class)</a></li>
                 <li><b>attach</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
                 <li><b>bool</b>: <a href="/workflow/lang/type.html">Types</a></li>
+                <li><b>cast</b>: <a href="/workflow/lang/interface_inherit.html">Inheritance (interface)</a>, <a href="/workflow/lang/class_inherit.html">Inheritance (class)</a></li>
                 <li><b>char</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>class</b>: <a href="/workflow/lang/class.html">Classes</a></li>
                 <li><b>const</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
