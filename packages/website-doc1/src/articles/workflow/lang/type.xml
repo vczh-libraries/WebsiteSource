@@ -194,7 +194,7 @@
                 Value of any valid type could be implicitly converted to its optional type.
             </p>
             <p>
-                Value of an optional types could be explicitly converted to its containing type.
+                Value of an optional types could be implicitly converted to its containing type.
             </p>
             <p>
                 An optional type <b>A?</b> can be implicitly or explicitly converted to <b>B?</b>,
