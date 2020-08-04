@@ -11,13 +11,13 @@
             An interface usually begins with:
             <ul>
                 <li>
-                    <b>interface</b>:
+                    <b>interface IMyInterface</b>:
                     it means the new interface expression creates an object that implements this interface
                     and returns a shared pointer holding this object.
                     Such expression should look like: <b>new IMyInterface^ { ... }</b>.
                 </li>
                 <li>
-                    <b>interface*</b>:
+                    <b>interface IMyInterface*</b>:
                     it means the new interface expression creates an object that implements this interface
                     and returns a raw pointer holding this object.
                     Such expression should look like: <b>new IMyInterface* { ... }</b>.
@@ -70,7 +70,7 @@
         <p>
             In this example,
             we define an interface <b>ICounter</b>.
-            Note that we didn't use <b>interface* ICounter</b> here,
+            Note that we didn't use <b>interface ICounter*</b> here,
             it means that <b>new ICounter^ { ... }</b> is legal, but <b>new ICounter* { ... }</b> is not.
             So the type of <b>counter</b> is <b>ICounter^</b>.
         </p>

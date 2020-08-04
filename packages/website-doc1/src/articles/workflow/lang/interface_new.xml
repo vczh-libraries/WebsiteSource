@@ -2,7 +2,146 @@
     <topic>
         <title>Implementing (interface)</title>
         <p>
-            The page is under construction.
+            New interface expressions are the only way to implement interfaces.
         </p>
+        <p>
+            An new interface expression implements one interface,
+            but this interface can inherit from multiple other interfaces.
+        </p>
+        <p>
+            If the interface is  <b>interface IThatInterface { ... }</b>,
+            the new interface expressions should use <b>new IThatInterface^ { ... }</b>,
+            to create an object that hold by a shared pointer.
+        </p>
+        <p>
+            If the interface is  <b>interface IThatInterface* { ... }</b>,
+            the new interface expressions should use <b>new IThatInterface* { ... }</b>,
+            to create an object that hold by a raw pointer.
+            If such object is not deleted, it cause memory leaks.
+        </p>
+        <p>
+            Besides of members in the interface,
+            the new interface expressions could also contain:
+            <ul>
+                <li>variables</li>
+                <li>functions not starting with <b>override</b></li>
+            </ul>
+            All of them are only accessible by name inside the new interface expressions.
+        </p>
+        <topic>
+            <title>New and delete objects implementing shared interfaces</title>
+            <p>
+                <program><code><![CDATA[
+                    interface IMyInterface
+                    {
+                        func Do():void;
+                    }
+
+                    var my = new IMyInterface^
+                    {
+                        override func Do():void {}
+                    };
+                ]]></code></program>
+            </p>
+            <p>
+                You are not allowed to write <b>new IMyInterface*</b>
+                because the interface is not <b>interface IMyInterface*</b>.
+            </p>
+            <p>
+                The type of <b>my</b> is <b>IMyInterface^</b>,
+                but you can still get a <b>IMyInterface*</b> by doing an explicit cast:
+                <b>var my2 = cast IMyInterface* my;</b>.
+            </p>
+            <p>
+                When the object that <b>my2</b> points to is still alive,
+                <b>cast IMyInterface^ my2</b> is safe.
+            </p>
+            <p>
+                When all <b>IMyInterface^</b> values end their life cycles,
+                the object will be deleted,
+                even if there are still <b>IMyInterface*</b> values.
+            </p>
+            <p>
+                It crashes if you call a member on a deleted object.
+            </p>
+            <p>
+                It crashes if you <b>delete</b> an object that hold by shared pointers.
+            </p>
+        </topic>
+        <topic>
+            <title>New and delete objects implementing raw interfaces</title>
+            <p>
+                <program><code><![CDATA[
+                    interface IMyInterface*
+                    {
+                        func Do():void;
+                    }
+
+                    var my = new IMyInterface*
+                    {
+                        override func Do():void {}
+                    };
+                ]]></code></program>
+            </p>
+            <p>
+                You are not allowed to write <b>new IMyInterface^</b>
+                because the interface is <b>interface IMyInterface*</b>.
+            </p>
+            <p>
+                The type of <b>my</b> is <b>IMyInterface*</b>,
+                but you can still get a <b>IMyInterface^</b> by doing an explicit cast:
+                <b>var my2 = cast IMyInterface^ my;</b>.
+            </p>
+            <p>
+                When the object that <b>my</b> points to is still alive,
+                <b>cast IMyInterface^ my</b> is safe.
+            </p>
+            <p>
+                When all <b>IMyInterface^</b> values end their life cycles,
+                the object will be deleted,
+                even if there are still <b>IMyInterface*</b> values.
+            </p>
+            <p>
+                It crashes if you call a member on a deleted object.
+            </p>
+            <p>
+                It crashes if you <b>delete</b> an object that hold by shared pointers.
+            </p>
+            <p>
+                In order to delete <b>my</b>,
+                you either call <b>delete my;</b>,
+                or <b>cast IMyInterface^ my</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Memory leaks</title>
+            <p>
+                If two objects hold each other by shared points,
+                it causes memory leaks:
+                <program><code><![CDATA[
+                    interface IMyInterface
+                    {
+                        prop Next: IMyInterface^ {not observe}
+                    }
+
+                    func main(): void
+                    {
+                        var a = new IMyInterface^
+                        {
+                            override prop Next: IMyInterface^ = null {not observe}
+                        };
+
+                        var b = new IMyInterface^
+                        {
+                            override prop Next: IMyInterface^ = null {not observe}
+                        };
+                        
+                        a.Next = b;
+                        b.Next = a;
+                    }
+                ]]></code></program>
+                Until you break the connection manually.
+            </p>
+        </topic>
     </topic>
 </article>

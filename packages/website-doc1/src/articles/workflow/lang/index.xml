@@ -10,6 +10,7 @@
                 <li><b>char</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>class</b>: <a href="/workflow/lang/class.html">Classes</a></li>
                 <li><b>const</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
+                <li><b>delete</b>: <a href="/workflow/lang/interface_new.html">Implementing (interface)</a>, <a href="/workflow/lang/class_new.html">Allocating (class)</a></li>
                 <li><b>detach</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
                 <li><b>double</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>enum</b>: <a href="/workflow/lang/enum.html">Enums</a></li>
