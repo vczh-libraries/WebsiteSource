@@ -2,11 +2,11 @@
     <topic>
         <title>Generic (interface)</title>
         <p>
-            <!--
-                This is for
-                declaration: $interface A: B<string>;
-                expression: new A^(using b)
-            -->
+            Interfaces do not actually support generic,
+            but sometimes it works like generic in <a href="/workflow/lang/coroutine.html">coroutines</a>.
+        </p>
+        <p>
+            Here is an example of a coroutine that created by Workflow:
         </p>
     </topic>
 </article>
