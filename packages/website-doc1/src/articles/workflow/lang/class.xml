@@ -13,6 +13,7 @@
             A class can inherit from other classes,
             but it cannot override virtual members in base classes.
             A class cannot define virtual members in Workflow script.
+            So <b>override</b> is not allowed for all members in classes.
         </p>
         <p>
             Unlike C++, all members in classes are public.

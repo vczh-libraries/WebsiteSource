@@ -15,7 +15,7 @@
                 The property could also be readonly, or not associated with an event.
             </p>
             <topic>
-                <title>Full-featured property</title>
+                <title>Full-featured auto-property</title>
                 <p>
                     <program><code><![CDATA[
                         interface IWithProp
@@ -36,7 +36,7 @@
                 </p>
             </topic>
             <topic>
-                <title>Readonly property</title>
+                <title>Readonly auto-property</title>
                 <p>
                     <program><code><![CDATA[
                         interface IWithProp
@@ -56,7 +56,7 @@
                 </p>
             </topic>
             <topic>
-                <title>Without event</title>
+                <title>Auto-property Without event</title>
                 <p>
                     <program><code><![CDATA[
                         interface IWithProp
@@ -76,7 +76,7 @@
                 </p>
             </topic>
             <topic>
-                <title>Readonly property without event</title>
+                <title>Readonly auto-property without event</title>
                 <p>
                     <program><code><![CDATA[
                         interface IWithProp
