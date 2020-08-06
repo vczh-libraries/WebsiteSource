@@ -204,6 +204,7 @@
                     <li>The only way to access an event is to trigger it, you are not allowed to copy the event object.</li>
                     <li><b>attach</b> is used to subscribe an event with a value of a function type that is compatible with the event (exactly same argument types and returning <b>void</b>).</li>
                     <li>The result from <b>attach</b> is used to unsubscribe an event in <b>detach</b>.</li>
+                    <li><b>detach</b> expression returns a <b>bool</b> value, it returns null when this event handler is not a subscription for this event, or this event handler has been unsubscribed.</li>
                 </ul>
             </p>
             <p>
