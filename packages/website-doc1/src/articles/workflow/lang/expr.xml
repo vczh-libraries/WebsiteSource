@@ -166,17 +166,5 @@
                 See <b>Using events</b> in <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a>.
             </p>
         </topic>
-        <topic>
-            <title>Binding expression: bind(EXPR)</title>
-            <p>
-                See <a href="/workflow/lang/bind.html">Data Bindings</a>.
-            </p>
-        </topic>
-        <topic>
-            <title>Coroutine-awared expression: $coroutine{ ... }, $.NAME</title>
-            <p>
-                See <a href="/workflow/lang/coroutine.html">Coroutines</a>.
-            </p>
-        </topic>
     </topic>
 </article>
