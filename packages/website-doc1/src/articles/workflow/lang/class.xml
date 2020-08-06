@@ -23,6 +23,10 @@
             Variables, methods, properties, events, constructors and destructors are allowed in classes.
         </p>
         <p>
+            Static methods, classes, interfaces, enums are allowed in classes,
+            they are accessed by <b>TYPE::MEMBER</b> outside of the class.
+        </p>
+        <p>
             Unlike interfaces,
             a class does not control whether it should be created and held by a shared pointer or a raw pointer,
             this is controlled by individual constructors.

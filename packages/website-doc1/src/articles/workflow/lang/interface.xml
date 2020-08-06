@@ -28,7 +28,8 @@
             Methods, properties and events are allowed in both interface declaration and new interface expressions.
         </p>
         <p>
-            Static methods are allowed in interfaces.
+            Static methods, classes, interfaces, enums are allowed in interfaces,
+            they are accessed by <b>TYPE::MEMBER</b> outside of the interface.
             Static methods must have a body,
             and they cannot be implemented in new interface expressions.
         </p>
