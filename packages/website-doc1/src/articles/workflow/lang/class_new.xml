@@ -2,7 +2,68 @@
     <topic>
         <title>Allocating (class)</title>
         <p>
-            The page is under construction.
+            New class expressions are the only way to allocate classes.
+        </p>
+        <p>
+            A new class expression could allocate a class by calling the a class constructor,
+            the constructor decides to return a shared pointer or a raw pointer.
+            <program><code><![CDATA[
+                class MyClass
+                {
+                    new(x:int){}
+                    new*(x:string){}
+                    delete{}
+                }
+
+                func main(): void
+                {
+                    var a = new MyClass^(0);
+                    var b = new MyClass*("");
+                    delete b;
+                }
+            ]]></code></program>
+            <ul>
+                <li>
+                    The first constructor accepts an integer and returns a shared pointer,
+                    <b>new MyClass^(0)</b> allocate <b>MyClass</b> and execute this constructor,
+                    <b>new MyClass*(0)</b> is illegal.
+                </li>
+                <li>
+                    The second constructor accepts an string and returns a raw pointer,
+                    <b>new MyClass*("")</b> allocate <b>MyClass</b> and execute this constructor,
+                    <b>new MyClass^("")</b> is illegal.
+                </li>
+                <li>
+                    <b>a</b> is held by a shared pointer,
+                    <b>delete (cast MyClass* a);</b> will throw an exception.
+                </li>
+                <li>
+                    <b>b</b>is not held by any shared pointer,
+                    so <b>delete b;</b> is necessary to prevent from memory leaks.
+                </li>
+                <li>
+                    The destructor <b>delete{}</b> will be executed for both <b>a</b>,
+                    when <b>a</b> is out of scope.
+                </li>
+                <li>
+                    The destructor <b>delete{}</b> will be executed for both <b>b</b>,
+                    when <b>delete b;</b>.
+                </li>
+            </ul>
+        </p>
+        <p>
+            It crashes if you call a member on a deleted object.
+        </p>
+        <p>
+            It crashes if you <b>delete</b> an object that hold by shared pointers.
+        </p>
+        <p>
+            Where there is no constructor in a class,
+            <b>new(){}</b> will be automatically added to this class,
+            which takes no argument and returns a shared pointer.
+        </p>
+        <p>
+            There cannot be more than one destructor in a class.
         </p>
     </topic>
 </article>
