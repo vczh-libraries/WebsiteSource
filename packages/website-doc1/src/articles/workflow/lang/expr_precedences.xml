@@ -45,6 +45,16 @@
             <title>4</title>
             <p>
                 <ul>
+                    <li><b>*</b></li>
+                    <li><b>/</b></li>
+                    <li><b>%</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>5</title>
+            <p>
+                <ul>
                     <li><b>+</b></li>
                     <li><b>-</b></li>
                     <li><b>&amp;</b></li>
@@ -53,7 +63,7 @@
             </p>
         </topic>
         <topic>
-            <title>5</title>
+            <title>6</title>
             <p>
                 <ul>
                     <li><b>shl</b></li>
@@ -62,7 +72,7 @@
             </p>
         </topic>
         <topic>
-            <title>6</title>
+            <title>7</title>
             <p>
                 <ul>
                     <li><b>&lt;</b></li>
@@ -75,7 +85,7 @@
             </p>
         </topic>
         <topic>
-            <title>7</title>
+            <title>8</title>
             <p>
                 <ul>
                     <li><b>xor</b></li>
@@ -83,7 +93,7 @@
             </p>
         </topic>
         <topic>
-            <title>8</title>
+            <title>9</title>
             <p>
                 <ul>
                     <li><b>and</b></li>
@@ -91,7 +101,7 @@
             </p>
         </topic>
         <topic>
-            <title>9</title>
+            <title>10</title>
             <p>
                 <ul>
                     <li><b>or</b></li>
@@ -99,7 +109,7 @@
             </p>
         </topic>
         <topic>
-            <title>10</title>
+            <title>11</title>
             <p>
                 <ul>
                     <li><b>??</b></li>
@@ -107,7 +117,7 @@
             </p>
         </topic>
         <topic>
-            <title>11 (if expression)</title>
+            <title>12 (if expression)</title>
             <p>
                 <ul>
                     <li><b>? :</b></li>
@@ -115,7 +125,7 @@
             </p>
         </topic>
         <topic>
-            <title>12 (assignment expression)</title>
+            <title>13 (assignment expression)</title>
             <p>
                 <ul>
                     <li><b>=</b></li>

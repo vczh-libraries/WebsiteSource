@@ -1,8 +1,186 @@
 <article index="true">
     <topic>
         <title>Binary Operators</title>
-        <p>
-            All supported operators are listed below.
-        </p>
+        <topic>
+            <title>Type inferences</title>
+            <p>
+                Here assume <b>A</b> is the left operand, and <b>B</b> is the right operand.
+            </p>
+            <topic>
+                <title>&amp;</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>|</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>^</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>+, -, *, /</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>%, shl, shr</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;, &gt;, &lt;=, &gt;=</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>==, !=</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>and, or, xor</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Definitions</title>
+            <topic>
+                <title>A &amp; B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A | B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A ^ B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A + B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A - B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A * B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A / B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A % B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A (&lt;, &gt;, &lt;=, &gt;=, ==, !=) B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A xor B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A and B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A or B</title>
+                <p>
+                    <ul>
+                        <li>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
