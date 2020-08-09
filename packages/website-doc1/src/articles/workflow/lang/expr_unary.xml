@@ -1,8 +1,43 @@
 <article index="true">
     <topic>
         <title>Unary Operators</title>
-        <p>
-            All supported operators are listed below.
-        </p>
+        <topic>
+            <title>Type inferences</title>
+            <p>
+                The type of <b>op VALUE</b> is exactly the same as <b>VALUE</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Definitions</title>
+            <topic>
+                <title>+ VALUE</title>
+                <p>
+                    <ul>
+                        <li>For numbers, returns <b>VALUE</b>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>- VALUE</title>
+                <p>
+                    <ul>
+                        <li>For signed integers, returns -1 * <b>VALUE</b>.</li>
+                        <li>For floating-point numbers, returns -1 * <b>VALUE</b>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>not VALUE</title>
+                <p>
+                    <ul>
+                        <li>For integers, returns the bit-wise reversed value of <b>VALUE</b>.</li>
+                        <li>For <b>bool</b>, switch <b>true</b> and <b>false</b>.</li>
+                        <li>It is not allowed on other types.</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
