@@ -7,55 +7,121 @@
         <topic>
             <title>null, true, false</title>
             <p>
-                This section is under construction.
+                <ul>
+                    <li><b>null</b> could be <b>T*</b>, <b>T^</b> or <b>T?</b>.</li>
+                    <li><b>true</b> is <b>bool</b>.</li>
+                    <li><b>false</b> is <b>bool</b>.</li>
+                </ul>
             </p>
         </topic>
         <topic>
             <title>1024, 10.24</title>
             <p>
-                This section is under construction.
+                For <b>/d+</b>, if the place receiving an interger does not have an explicit type,
+                it is <b>int</b>,
+                which is <b>Int32</b> when the Workflow compiler is running in a 32-bits process,
+                which is <b>Int64</b> when the Workflow compiler is running in a 64-bits process.
+                An error is generated if the number exceeds the range supported by the expected type.
+            </p>
+            <p>
+                It is very easy to specify an expected integer type like: <b>0 of UInt64</b>.
+            </p>
+            <p>
+                For <b>/d+./d+</b>, if the place receiving an interger does not have an explicit type,
+                it is <b>double</b> when the Workflow compiler is running in a 64-bits process.
+                An error is generated if the number exceeds the range supported by the expected type.
             </p>
         </topic>
         <topic>
             <title>"string"</title>
             <p>
-                This section is under construction.
+                A string can be contained in a pair of <b>'</b> or <b>"</b>.
+            </p>
+            <p>
+                If a string is contained in <b>'</b>, <b>\'</b> represents the <b>'</b> character.
+            </p>
+            <p>
+                If a string is contained in <b>"</b>, <b>\"</b> represents the <b>"</b> character.
+            </p>
+            <p>
+                Character escaping only accepts <b>\r</b>, <b>\n</b> and <b>\t</b> for 3 different space characters just like in C++.
+            </p>
+            <p>
+                For other characters that is following <b>\</b>, it escapes to itself without the <b>\</b> prefix.
+                For example, <b>\\</b> becomes <b>\</b>, <b>\X</b> becomes <b>X</b>.
             </p>
         </topic>
         <topic>
-            <title>$"formatted string"</title>
+            <title>$"$(formatted) string"</title>
             <p>
-                This section is under construction.
+                If <b>$</b> is put before a string,
+                then multiple <b>$(EXPRESSION)</b> could be used inside the string.
+            </p>
+            <p>
+                All these expressions must return a value of types that can be implicitly cast to <b>string</b>.
+            </p>
+            <p>
+                After casting all of them to strings,
+                these strings will be put inside the specified position to form a string.
+                For example, <b>$"1 + 1 = $(1 + 1)"</b> becomse <b>"1 + 1 = 2"</b>.
             </p>
         </topic>
         <topic>
             <title>Unary operator expression: op VALUE</title>
             <p>
-                This section is under construction.
+                See <a href="/workflow/lang/expr_unary.html">Unary Operators</a>.
             </p>
         </topic>
         <topic>
             <title>Binary operator expression: VALUE op VALUE</title>
             <p>
-                This section is under construction.
+                See <a href="/workflow/lang/expr_binary.html">Binary Operators</a>.
             </p>
         </topic>
         <topic>
             <title>If expression: CONDITION ? VALUE : VALUE</title>
             <p>
-                This section is under construction.
+                <b>C ? A : B</b> returns <b>A</b> when <b>C</b> is <b>true</b>.
+            </p>
+            <p>
+                <b>C ? A : B</b> returns <b>B</b> when <b>A</b> is <b>true</b>.
+            </p>
+            <p>
+                Only one of <b>A</b> or <b>B</b> will be evaluated according to the value of <b>C</b>.
+            </p>
+            <p>
+                But if this is used in <a href="/workflow/lang/bind.html">bind</a> expression,
+                both <b>A</b> and <b>B</b> will be evaluated,
+                and one of them will be discarded.
+            </p>
+            <p>
+                If <b>A</b> and <b>B</b> are not in the same type,
+                then it requires that one must be able to be implicitly cast to another.
             </p>
         </topic>
         <topic>
             <title>Try expression: VALUE ?? DEFAULT</title>
             <p>
-                This section is under construction.
+                <b>A ?? B</b> returns <b>A</b>.
+                If evaluating <b>A</b> results in throwing an exception,
+                <b>B</b> is returned instead.
+            </p>
+            <p>
+                If <b>A</b> and <b>B</b> are not in the same type,
+                then it requires that one must be able to be implicitly cast to another.
             </p>
         </topic>
         <topic>
-            <title>Assignment expression: VALUE = VALUE</title>
+            <title>Assignment expression: DESTINATION = VALUE</title>
             <p>
-                This section is under construction.
+                <b>A = B</b> assigns <b>B</b> to <b>A</b>.
+            </p>
+            <p>
+                If <b>A</b> is a property,
+                then the setter function will be called.
+            </p>
+            <p>
+                The result of this expresison is from the evaluation of <b>B</b>.
             </p>
         </topic>
         <topic>

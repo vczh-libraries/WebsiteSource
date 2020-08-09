@@ -16,7 +16,10 @@
             <article name="Allocating" file="class_new"/>
         </article>
     </article>
-    <article name="Expressions" file="expr"/>
+    <article name="Expressions" file="expr">
+        <article name="Unary Operators" file="expr_unary"/>
+        <article name="Binary Operators" file="expr_binary"/>
+    </article>
     <article name="Statements" file="stat"/>
     <article name="Data Bindings" file="bind"/>
     <article name="Coroutines" file="coroutine"/>
