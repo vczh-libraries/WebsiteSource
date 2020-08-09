@@ -1,0 +1,126 @@
+<article>
+    <topic>
+        <title>Precedences</title>
+        <p>
+            Precedences of all kinds of expressions are listed below in descending precedence.
+        </p>
+        <topic>
+            <title>1</title>
+            <p>
+                <ul>
+                    <li>All expressions that does not starts with another expression as a prefix.</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>.observe ( ... )</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>.observe as NAME ( ... )</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>( ... )</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>[ ... ]</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> in ...</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> not in ...</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is TYPE</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is not TYPE</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is null</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is not null</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>2 (unary operators)</title>
+            <p>
+                <ul>
+                    <li><b>+</b></li>
+                    <li><b>-</b></li>
+                    <li><b>not</b></li>
+                    <li><b>cast</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>3</title>
+            <p>
+                <ul>
+                    <li><b>^</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>4</title>
+            <p>
+                <ul>
+                    <li><b>+</b></li>
+                    <li><b>-</b></li>
+                    <li><b>&amp;</b></li>
+                    <li><b>|</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>5</title>
+            <p>
+                <ul>
+                    <li><b>shl</b></li>
+                    <li><b>shr</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>6</title>
+            <p>
+                <ul>
+                    <li><b>&lt;</b></li>
+                    <li><b>&gt;</b></li>
+                    <li><b>&lt;=</b></li>
+                    <li><b>&gt;=</b></li>
+                    <li><b>==</b></li>
+                    <li><b>!=</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>7</title>
+            <p>
+                <ul>
+                    <li><b>xor</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>8</title>
+            <p>
+                <ul>
+                    <li><b>and</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>9</title>
+            <p>
+                <ul>
+                    <li><b>or</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>10</title>
+            <p>
+                <ul>
+                    <li><b>??</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>11 (if expression)</title>
+            <p>
+                <ul>
+                    <li><b>? :</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>12 (assignment expression)</title>
+            <p>
+                <ul>
+                    <li><b>=</b></li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>

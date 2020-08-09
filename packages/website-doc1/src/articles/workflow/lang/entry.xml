@@ -17,6 +17,7 @@
         </article>
     </article>
     <article name="Expressions" file="expr">
+        <article name="Precedences" file="expr_precedences"/>
         <article name="Unary Operators" file="expr_unary"/>
         <article name="Binary Operators" file="expr_binary"/>
     </article>

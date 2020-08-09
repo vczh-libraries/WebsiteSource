@@ -149,6 +149,12 @@
             </p>
         </topic>
         <topic>
+            <title>Set testing expression: VALUE in OBJECT, VALUE not in OBJECT</title>
+            <p>
+                See <b>Collection types</b> in <a href="/workflow/lang/type.html">Types</a>.
+            </p>
+        </topic>
+        <topic>
             <title>Constructor expression: {a b c}, {a:x b:y c:z}</title>
             <p>
                 See <b>Collection types</b> in <a href="/workflow/lang/type.html">Types</a>.
@@ -201,6 +207,12 @@
         </topic>
         <topic>
             <title>Null testing expression: OBJECT is null, OBJECT is not null</title>
+            <p>
+                This section is under construction.
+            </p>
+        </topic>
+        <topic>
+            <title>Type testing expression: OBJECT is TYPE, OBJECT is not TYPE</title>
             <p>
                 This section is under construction.
             </p>
