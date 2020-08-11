@@ -10,9 +10,6 @@
                 The condition must be contained in round parentheses.
             </p>
             <p>
-                The true branch or the false branch must be contained in braces.
-            </p>
-            <p>
                 <b>if (condition) { ... }</b> only executes statements in braces when <b>condition</b> is <b>true</b>.
             </p>
             <p>
@@ -21,11 +18,31 @@
             <p>
                 <b>if (condition) { ... } else {... } </b> executes statements in the second braces when <b>condition</b> is <b>false</b>.
             </p>
+            <p>
+                When <b>condition</b> is a readonly variable instead of an expression: <b>var VAR: TYPE = EXPR</b>,
+                <b>TYPE</b> must be any pointer type or optional type,
+                and the condition is evaluated to <b>true</b> when <b>VAR</b> is not null.
+            </p>
         </topic>
         <topic>
             <title>switch-case</title>
             <p>
-                This section is under construction.
+                For any statement like: <b>switch (expression) { case VALUE1: { S1 } case VALUE1: { S1 } ... default: { S } }</b>:
+            </p>
+            <p>
+                When <b>expression == VALUE1</b> is <b>true</b>, it executes <b>S1</b>.
+            </p>
+            <p>
+                When <b>expression == VALUE2</b> is <b>true</b>, it executes <b>S2</b>.
+            </p>
+            <p>
+                When any values fail, it executes <b>S</b>.
+            </p>
+            <p>
+                There can be any number of <b>case</b> branches.
+            </p>
+            <p>
+                The <b>default</b> branch is optional.
             </p>
         </topic>
         <topic>
