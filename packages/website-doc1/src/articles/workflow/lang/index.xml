@@ -22,6 +22,7 @@
                 <li><b>enum</b>: <a href="/workflow/lang/enum.html">Enums</a></li>
                 <li><b>event</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
                 <li><b>false</b>: <a href="/workflow/lang/type.html">Types</a></li>
+                <li><b>finally</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
                 <li><b>flagenum</b>: <a href="/workflow/lang/enum.html">Enums</a></li>
                 <li><b>float</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>for</b>: <a href="/workflow/lang/type.html">Types</a></li>

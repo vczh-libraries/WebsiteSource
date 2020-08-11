@@ -86,13 +86,31 @@
         <topic>
             <title>raise</title>
             <p>
-                This section is under construction.
+                <b>raise OBJECT;</b> raises an expression.
+            </p>
+            <p>
+                <b>OBJECT</b> must be <b>string</b> or <b>::system::Exception^</b>.
             </p>
         </topic>
         <topic>
-            <title>try-catch</title>
+            <title>try-catch-finally</title>
             <p>
-                This section is under construction.
+                <b>try { A } catch(ex) { B }</b> executes <b>A</b>.
+                When an exception is thrown during excuting <b>A</b>,
+                <b>A</b> stops immediately,
+                the exception stores in <b>ex</b> and executes <b>B</b>.
+            </p>
+            <p>
+                <b>try { A } catch(ex) { B } finally { C }</b> executes <b>A</b>.
+                When an exception is thrown during excuting <b>A</b>,
+                <b>A</b> stops immediately,
+                the exception stores in <b>ex</b> and executes <b>B</b>.
+                After <b>A</b> or <b>B</b> is executed,
+                whether an exception is thrown or not,
+                <b>C</b> will be executed.
+            </p>
+            <p>
+                The type of <b>ex</b> is <b>::system::Exception^</b>.
             </p>
         </topic>
     </topic>
