@@ -7,7 +7,19 @@
         <topic>
             <title>if-else</title>
             <p>
-                This section is under construction.
+                The condition must be contained in round parentheses.
+            </p>
+            <p>
+                The true branch or the false branch must be contained in braces.
+            </p>
+            <p>
+                <b>if (condition) { ... }</b> only executes statements in braces when <b>condition</b> is <b>true</b>.
+            </p>
+            <p>
+                <b>if (condition) { ... } else {... } </b> executes statements in the first braces when <b>condition</b> is <b>true</b>.
+            </p>
+            <p>
+                <b>if (condition) { ... } else {... } </b> executes statements in the second braces when <b>condition</b> is <b>false</b>.
             </p>
         </topic>
         <topic>
@@ -19,25 +31,47 @@
         <topic>
             <title>for-in</title>
             <p>
-                See <b>Collection types</b> in <a href="/workflow/lang/type.html">Types</a>.
+                See <b>Collection types</b> in <a href="/workflow/lang/type.html#Collection-types">Types</a>.
             </p>
         </topic>
         <topic>
             <title>while</title>
             <p>
-                This section is under construction.
+                <b>while (condition) {...}</b> evaluates <b>condition</b>.
+            </p>
+            <p>
+                When it is true, executes statements and do the whole thing again.
+            </p>
+            <p>
+                When it is false, it stops.
             </p>
         </topic>
         <topic>
             <title>goto</title>
             <p>
-                This section is under construction.
+                <b>goto LABEL;</b> jumps to the <b>LABEL:;</b> statement.
+            </p>
+            <p>
+                <b>goto LABEL;</b> is only allowed to jump to a label in the current function,
+                it cannot jump across the boundary of lambda expressions.
+            </p>
+            <p>
+                <b>LABEL:;</b> must be the last statement in any braces.
+                The name <b>LABEL</b> must be unique in the current function.
             </p>
         </topic>
         <topic>
             <title>break, continue, return</title>
             <p>
-                This section is under construction.
+                <b>break;</b> stops the most inner <b>for</b> or <b>while</b> statement.
+            </p>
+            <p>
+                <b>break;</b> stops the current iteration of the most inner <b>for</b> or <b>while</b> statement and starts a new iteration.
+            </p>
+            <p>
+                <b>return;</b> stops the current function.
+                If the function returns anything other than <b>void</b>,
+                an expression is needed before <b>;</b> to be the return value.
             </p>
         </topic>
         <topic>
