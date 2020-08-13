@@ -50,7 +50,7 @@
             </p>
         </topic>
         <topic>
-            <title>Listen to a data binding</title>
+            <title>Listening to a data binding</title>
             <p>
                 A <b>bind</b> expression returns <b>system::Subscription^</b>.
             </p>
@@ -416,6 +416,140 @@
         </topic>
         <topic>
             <title>A ? B : C</title>
+            <p>
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Cond
+                    {
+                        prop Value: bool = false {}
+                    }
+
+                    class Int
+                    {
+                        prop Value: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var c = new Cond^();
+                        var a = new Int^();
+                        var b = new Int^();
+                        var sub = bind(c.Value ? a.Value : b.Value);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        c.Value = true;
+                        a.Value = 100;
+                        b.Value = 200;
+                        c.Value = false;
+                        a.Value = 300;
+                        b.Value = 400;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"0; 100; 100; 200; 200; 400; "</b>.
+            </p>
+            <p>
+                Even if <b>a</b> and <b>b</b> are in different branches of the if-expression,
+                their events are all attached.
+                When <b>a.Value</b> or <b>b.Value</b> is changed,
+                even if it is not involved in evaluation,
+                it still triggers the callback.
+            </p>
+            <p>
+                If there are property chains in branches of an if-expression,
+                all <b>attach</b> and <b>detach</b> will happen when up-stream properties are changed,
+                caching of objects that own observable properties are evaluated,
+                related property getters will are called,
+                regardless of what is evaluated from the condition expression.
+            </p>
+            <p>
+                Let's see a more complex example:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Cond
+                    {
+                        prop Value: bool = false {}
+                    }
+
+                    class Holder
+                    {
+                        prop Value: Int^ = new Int^() {}
+                    }
+
+                    class Int
+                    {
+                        prop Value: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var c = new Cond^();
+                        var a = new Holder^();
+                        var b = new Holder^();
+                        var sub = bind((c.Value ? a.Value : b.Value).Value);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        c.Value = true;
+                        a.Value.Value = 100;
+                        b.Value.Value = 200;
+                        c.Value = false;
+                        a.Value.Value = 300;
+                        b.Value.Value = 400;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"0; 100; 200; 400; "</b>.
+            </p>
+            <p>
+                When <b>c.Value = true;</b> is executed,
+                <b>0;</b> is printed.
+                <b>(c.Value ? a.Value : b.Value)</b> becomes <b>a.Value</b>,
+                so <b>a.Value.ValueChanged</b> is attached,
+                <b>b.Value.ValueChanged</b> is detached.
+            </p>
+            <p>
+                When <b>a.Value.Value = 100;</b> is executed,
+                <b>100;</b> is printed, obviously.
+            </p>
+            <p>
+                When <b>b.Value.Value = 200;</b> is executed,
+                nothing happens,
+                because <b>b.Value.ValueChanged</b> has already been detached.
+            </p>
+            <p>
+                When <b>c.Value = false;</b> is executed,
+                <b>200;</b> is printed.
+                <b>(c.Value ? a.Value : b.Value)</b> becomes <b>b.Value</b>,
+                so <b>a.Value.ValueChanged</b> is detached,
+                <b>b.Value.ValueChanged</b> is attached.
+            </p>
+            <p>
+                When <b>a.Value.Value = 300;</b> is executed,
+                nothing happens,
+                because <b>a.Value.ValueChanged</b> has already been detached.
+            </p>
+            <p>
+                When <b>b.Value.Value = 400;</b> is executed,
+                <b>400;</b> is printed, obviously.
+            </p>
         </topic>
     </topic>
 </article>
