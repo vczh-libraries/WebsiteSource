@@ -191,6 +191,13 @@
                         <li>bit-wise <b>and</b> on integers.</li>
                     </ul>
                 </p>
+                <p>
+                    For any <b>A and B</b> that is performed on two <b>bool</b> expressions:
+                    <ul>
+                        <li>When running Workflow script directly, B will be executed when A is <b>false</b>.</li>
+                        <li>When running generated C++ code, B not will be executed when A is <b>false</b>.</li>
+                    </ul>
+                </p>
             </topic>
             <topic>
                 <title>A or B</title>
@@ -198,6 +205,13 @@
                     <ul>
                         <li><b>or</b> on <b>bool</b>.</li>
                         <li>bit-wise <b>or</b> on integers.</li>
+                    </ul>
+                </p>
+                <p>
+                    For any <b>A or B</b> that is performed on two <b>bool</b> expressions:
+                    <ul>
+                        <li>When running Workflow script directly, B will be executed when A is <b>true</b>.</li>
+                        <li>When running generated C++ code, B not will be executed when A is <b>true</b>.</li>
                     </ul>
                 </p>
             </topic>

@@ -90,11 +90,6 @@
                 Only one of <b>A</b> or <b>B</b> will be evaluated according to the value of <b>C</b>.
             </p>
             <p>
-                But if this is used in <a href="/workflow/lang/bind.html">bind</a> expression,
-                both <b>A</b> and <b>B</b> will be evaluated,
-                and one of them will be discarded.
-            </p>
-            <p>
                 If <b>A</b> and <b>B</b> are not in the same type,
                 then it requires that one must be able to be implicitly cast to another.
             </p>
