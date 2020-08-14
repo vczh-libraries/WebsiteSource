@@ -32,6 +32,7 @@
                         <b>Lib</b> folder: copy files to this folder from <a href="https://github.com/vczh-libraries/Release/tree/master/Import">here</a>. Choose all files in "Files you need for a typical GacUI application" from the <a href="./download.html">Download</a> page.
                     </li>
                     <li><b>Main.cpp</b></li>
+                    <li><b>WinMain.cpp</b></li>
                 </ul>
             </p>
             <topic>
@@ -181,6 +182,57 @@ void GuiMain()
                 When you double click the executable file, the working directory is where the executable file is in.
                 You are recommended to <b>Calculate a absolute path based on the full path of the executable file</b>.
                 <a href="https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulefilenamew">GetModuleFileName</a> is useful here.
+            </p>
+        </topic>
+        <topic>
+            <title>WinMain.cpp</title>
+            <p>
+                <b>WinMain</b> function is the entry of a Windows GUI program.
+            </p>
+            <p>
+                <program language="c++">
+                    <code><![CDATA[
+#define GAC_HEADER_USE_NAMESPACE
+#include <GacUI.h>
+#include <Skins\DarkSkin\DarkSkin.h>
+#include <Windows.h>
+
+class DefaultSkinPlugin : public Object, public IGuiPlugin
+{
+public:
+
+    GUI_PLUGIN_NAME(Custom_DefaultSkinPlugin)
+    {
+        GUI_PLUGIN_DEPEND(GacGen_DarkSkinResourceLoader);
+    }
+
+    void Load()override
+    {
+        RegisterTheme(MakePtr<darkskin::Theme>());
+    }
+
+    void Unload()override
+    {
+    }
+};
+GUI_REGISTER_PLUGIN(DefaultSkinPlugin)
+
+int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int CmdShow)
+{
+    return SetupWindowsDirect2DRenderer();
+}
+                    ]]></code>
+                </program>
+            </p>
+            <p>
+                The <b>DefaultSkinPlugin</b> class uses the predefined <b>DarkSkin</b> as the default control template.
+            </p>
+            <p>
+                You can write your own control template to override default ones for some controls.
+                You can also write control template for all controls and get rid of the <b>DarkSkin</b>.
+            </p>
+            <p>
+                Every control needs a default control template assigned in order to launch a GacUI program.
             </p>
         </topic>
         <topic>
