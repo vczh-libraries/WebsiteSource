@@ -2,7 +2,97 @@
     <topic>
         <title>Enumerable Coroutine</title>
         <p>
-            The page is under construction.
+            This coroutine provider is <b>system::EnumerableCoroutine</b>.
+            <ul>
+                <li>
+                    It has a <b>Create</b> method,
+                    so this coroutine function declaration is <b>legal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): int{}
+                        ${
+                            /* legal */
+                        }
+                    ]]></code></program>
+                    Note that <b>int{}</b> is the generic version of <b>system::Enumerable^</b>,
+                    so it uses <b>system::EnumerableCoroutine</b> as the coroutine provider.
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It does not have a <b>CreateAndRun</b> method,
+                    so this coroutine function declaration is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): void
+                        $Enumerable {
+                            /* illegal */
+                        }
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>YieldAndPause</b> method,
+                    so this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $Yield EXPR; /* legal */
+                    ]]></code></program>
+                    It does not have a <b>YieldAndRead</b> method,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        var NAME = $Yield EXPR; /* illegal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>JoinAndPause</b> method,
+                    so this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $Join EXPR; /* legal */
+                    ]]></code></program>
+                    It does not have a <b>JoinAndRead</b> method,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        var NAME = $Join EXPR; /* illegal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>ReturnAndExit</b> method,
+                    which has no parameter,
+                    so this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $return; /* legal */
+                    ]]></code></program>
+                    but this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        $return EXPR; /* illegal */
+                    ]]></code></program>
+                </li>
+            </ul>
         </p>
+        <topic>
+            <title>Using return</title>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
+        <topic>
+            <title>Using $Yield</title>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
+        <topic>
+            <title>Using $Join</title>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
     </topic>
 </article>

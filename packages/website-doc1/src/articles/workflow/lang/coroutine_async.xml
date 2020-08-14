@@ -2,7 +2,88 @@
     <topic>
         <title>Async Coroutine</title>
         <p>
-            The page is under construction.
+            This coroutine provider is <b>system::AsyncCoroutine</b>.
+            <ul>
+                <li>
+                    It has a <b>Create</b> method,
+                    so this coroutine function declaration is <b>legal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): Async^
+                        ${
+                            /* legal */
+                        }
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>CreateAndRun</b> method,
+                    so this coroutine function declaration is <b>legal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): void
+                        $Async{
+                            /* legal */
+                        }
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It does not have a <b>AwaitAndPause</b> method,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        $Await EXPR; /* illegal */
+                    ]]></code></program>
+                    It has a <b>AwaitAndRead</b> method,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        var NAME = $YieAwaitld EXPR; /* legal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>ReturnAndExit</b> method,
+                    which has a parameter,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        $return; /* illegal */
+                    ]]></code></program>
+                    but this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $return EXPR; /* legal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>QueryContext</b> method,
+                    which has no parameter,
+                    so the <b>$</b> expression is available in the coroutine.
+                </li>
+            </ul>
         </p>
+        <topic>
+            <title>Using return</title>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
+        <topic>
+            <title>Using $Await</title>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
+        <topic>
+            <title>Using the $ expression</title>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
     </topic>
 </article>
