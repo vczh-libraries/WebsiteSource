@@ -82,6 +82,9 @@
         <topic>
             <title>Using the $ expression</title>
             <p>
+                The <b>$</b> expression in a <b>$Async</b> coroutine returns <b>system::AsyncContext^</b>.
+            </p>
+            <p>
                 The page is under construction.
             </p>
         </topic>
