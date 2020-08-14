@@ -61,9 +61,116 @@
             </p>
         </topic>
         <topic>
-            <title>Determine which enumerable is used in a coroutine function</title>
+            <title>Determine the coroutine provider for a coroutine function</title>
             <p>
+                Consider the following coroutine function:
+                <program><code><![CDATA[
+                    func ... : TYPE
+                    $NAME {
+                        ...
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>
+                        When <b>$NAME</b> has a name,
+                        the coroutine provider is determined by the coroutine name <b>That</b>.
+                    </li>
+                    <li>
+                        When <b>$NAME</b> does not has a name (written as <b>$</b>),
+                        the coroutine provider is determined by the return type <b>TYPE</b>.
+                        It generates an error when <b>TYPE</b> is <b>void</b>.
+                    </li>
+                </ul>
             </p>
+            <topic>
+                <title>Searching by return type</title>
+                <p>
+                    Consider the following coroutine:
+                    <program><code><![CDATA[
+                        module sampleModule;
+
+                        using system::*;
+
+                        $interface StringAsync : Async<string>;
+
+                        func DoAsync(): StringAsync
+                        $ {
+                            ...
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    The coroutine provider to use is determined like this:
+                    <ul>
+                        <li>
+                            The coroutine does not have a name,
+                            because the function body starts with <b>${</b>,
+                            so the coroutine is searched by return type.
+                        </li>
+                        <li>
+                            The return type is <b>StringAsync^</b>,
+                            list this type with all parent types in the breadth-first order.
+                            <ul>
+                                <li><b>::StringAsync</b></li>
+                                <li><b>::system::Async</b></li>
+                                <li><b>::system::Interface</b></li>
+                            </ul>
+                        </li>
+                        <li>
+                            Append <b>"Coroutine"</b> after the type name:
+                            <ul>
+                                <li><b>::StringAsyncCoroutine</b></li>
+                                <li><b>::system::AsyncCoroutine</b></li>
+                                <li><b>::system::InterfaceCoroutine</b></li>
+                            </ul>
+                        </li>
+                        <li>
+                            The first existing type is <b>::system::AsyncCoroutine</b>,
+                            pick this one.
+                        </li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>Searching by coroutine name</title>
+                <p>
+                    Consider the following coroutine:
+                    <program><code><![CDATA[
+                        module sampleModule;
+
+                        using system::*;
+
+                        func DoAsync(): void
+                        $Async {
+                            ...
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    The coroutine provider to use is determined like this:
+                    <ul>
+                        <li>
+                            The coroutine has a name,
+                            it is <b>Async</b>.
+                        </li>
+                        <li>
+                            Search for <b>Async</b> in the context,
+                            we get <b>::system::Async</b>.
+                        </li>
+                        <li>
+                            Append <b>"Coroutine"</b> after the type name:
+                            <b>::system::AsyncCoroutine</b>.
+                        </li>
+                        <li>
+                            It exists, pick this one.
+                        </li>
+                        <li>
+                            If the previous step fails,
+                            search for <b>AsyncCoroutine</b> in the context.
+                        </li>
+                    </ul>
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>
