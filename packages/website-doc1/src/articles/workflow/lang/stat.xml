@@ -106,7 +106,7 @@
                 <b>raise OBJECT;</b> raises an expression.
             </p>
             <p>
-                <b>OBJECT</b> must be <b>string</b> or <b>::system::Exception^</b>.
+                <b>OBJECT</b> must be <b>string</b> or <b>system::Exception^</b>.
             </p>
         </topic>
         <topic>
@@ -127,7 +127,7 @@
                 <b>C</b> will be executed.
             </p>
             <p>
-                The type of <b>ex</b> is <b>::system::Exception^</b>.
+                The type of <b>ex</b> is <b>system::Exception^</b>.
             </p>
         </topic>
     </topic>

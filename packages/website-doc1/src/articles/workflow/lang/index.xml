@@ -60,8 +60,8 @@
                 <li><b>void</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>while</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
                 <li><b>xor</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
-                <li><b>$</b>: <a href="/working/lang/bind.html">Data Bindings</a></li>
-                <li><b>$coroutine</b>: <a href="/working/lang/bind.html">Data Bindings</a></li>
+                <li><b>$</b>: <a href="/workflow/lang/expr.html">Expressions</a>, <a href="/workflow/lang/coroutine.html">Coroutine</a></li>
+                <li><b>$coroutine</b>: <a href="/workflow/lang/coroutine_raw.html">Raw Coroutine</a></li>
                 <li><b>$goto_state</b>: <a href="/workflow/lang/state.html">State Machines</a></li>
                 <li><b>$interface</b>: <a href="/workflow/lang/interface_using.html">Generic (interface)</a></li>
                 <li><b>$switch</b>: <a href="/workflow/lang/state.html">State Machines</a></li>

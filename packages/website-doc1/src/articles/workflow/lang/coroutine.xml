@@ -2,7 +2,68 @@
     <topic>
         <title>Coroutines</title>
         <p>
-            The page is under construction.
+            There are two kinds of coroutines:
+            <ul>
+                <li>Raw Coroutine</li>
+                <li>Coroutine Function</li>
+            </ul>
         </p>
+        <p>
+            Coroutine creates a piece of code
+            that can be paused and resumed as expected,
+            so that this piece of code could receive multiple inputs
+            and produce multiple outputs.
+        </p>
+        <topic>
+            <title>Raw Coroutine</title>
+            <p>
+                Raw coroutine is an expression which looks like:
+                <program><code><![CDATA[
+                    $coroutine{ ... }
+                ]]></code></program>
+                This expression returns <b>system::Coroutine^</b>.
+            </p>
+            <p>
+                See <a href="/workflow/lang/coroutine_raw.html">Raw Coroutine</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Coroutine function</title>
+            <p>
+                Coroutine function (including lambda expressions) is written in these forms:
+                <program><code><![CDATA[
+                    func ... : void
+                    $NAME {
+                        ...
+                    }
+                ]]></code></program>
+                or
+                <program><code><![CDATA[
+                    func ... : Something
+                    $NAME {
+                        ...
+                    }
+                ]]></code></program>
+                or
+                <program><code><![CDATA[
+                    func ... : Something
+                    ${
+                        ...
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                There are two predefines coroutine in Workflow:
+                <ul>
+                    <li><a href="/workflow/lang/coroutine_async.html">$Async</a></li>
+                    <li><a href="/workflow/lang/coroutine_enumerable.html">$Enumerable</a></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Determine which enumerable is used in a coroutine function</title>
+            <p>
+            </p>
+        </topic>
     </topic>
 </article>

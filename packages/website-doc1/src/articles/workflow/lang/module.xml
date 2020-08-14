@@ -23,7 +23,7 @@
                 A <b>using</b> declaration imports names in this module.
             </p>
             <p>
-                <b>using system::*;</b> means that names under the namespace <b>::system</b> can be used directly.
+                <b>using system::*;</b> means that names under the namespace <b>system</b> can be used directly.
                 For example, you can use <b>system::DateTime</b> in a module.
                 But writing the namespace everywhere is annoying,
                 so when <b>using system::*</b> appears in a module,
