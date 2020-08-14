@@ -67,13 +67,79 @@
         <topic>
             <title>Using return</title>
             <p>
-                The page is under construction.
+                <b>return EXPR;</b> stops a <b>$Async</b> coroutine and generates a return value.
+            </p>
+            <p>
+                If there is a <b>static func StoreResult</b> in the return type of the function,
+                the return value becomes <b>TYPE::StoreResult(EXPR)</b>.
+            </p>
+            <p>
+                If this <b>$Async</b> does not have a meaningful return value,
+                like when the coroutine function returns <b>void</b> or <b>system::Async^</b>,
+                it should return <b>null</b>.
+            </p>
+            <p>
+                Since a function exists without a <b>return</b> statement also returns <b>null</b>,
+                so the <b>return</b> statement is not always necessary.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    using system::*;
+
+                    func Do1(): void
+                    $Async {
+                        return null;
+                    }
+
+                    func Do2(): Async^
+                    ${
+                        return null;
+                    }
+
+                    $interface StringAsync : Async<string>;
+
+                    func Do3(): StringAsync^
+                    ${
+                        return "Text";
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>
+                        <b>Do1</b> creates an <b>system::Async^</b> that will eventually generates <b>null</b>,
+                        because this function returns <b>void</b>.
+                        Calling <b>Do1</b> results in executing the created <b>system::Async^</b> immediately,
+                        but since it returns <b>void</b>,
+                        so the created <b>system::Async^</b> cannot be retrived.
+                    </li>
+                    <li>
+                        <b>Do2</b> creates an <b>system::Async^</b> that will eventually generates <b>null</b>,
+                        because this function returns <b>system::Async^</b>.
+                        Calling <b>Do1</b> gets the created <b>system::Async^</b>,
+                        but it is not automatically executed.
+                    </li>
+                    <li>
+                        <b>Do3</b> creates an <b>StringAsync^</b> that will eventually generates <b>"Text"</b>.
+                        The return type <b>StringAsync^</b> has a <b>static func StoreResult</b>,
+                        having one argument of <b>string</b>.
+                        This cause the compiler to generate an error when the return value cannot be implicitly converted to <b>string</b>.
+                    </li>
+                </ul>
             </p>
         </topic>
         <topic>
             <title>Using $Await</title>
             <p>
-                The page is under construction.
+                <b>$Await AnotherTask;</b> executes <b>AnotherTask</b>
+                and pauses the current <b>$Async</b> coroutine.
+                It will be resumed when <b>AnotherTask</b> finishes.
+            </p>
+            <p>
+                <b>var NAME = $Await AnotherTask;</b> executes <b>AnotherTask</b>
+                and pauses the current <b>$Async</b> coroutine.
+                It will be resumed when <b>AnotherTask</b> finishes,
+                and the return value from <b>AnotherTask</b> will be stored in <b>NAME</b>.
             </p>
         </topic>
         <topic>
@@ -82,11 +148,40 @@
                 The <b>$</b> expression in a <b>$Async</b> coroutine returns <b>system::AsyncContext^</b>.
             </p>
             <p>
-                The page is under construction.
+                When an <b>system::Async^</b> is executed outside from a <b>$Async</b> coroutine,
+                an <b>system::AsyncContext^</b> is required to be passed to the <b>Async::Execute</b> method.
+            </p>
+            <p>
+                It could be null, which is also the default value for this parameter.
+            </p>
+            <p>
+                <b>$Await</b> will pass this <b>system::AsyncContext^</b> object to all nested <b>system::Async^</b> values.
+            </p>
+            <p>
+                The <b>$</b> expression returns this particular <b>system::AsyncContext^</b> object,
+                which has two members:
+                <ul>
+                    <li>
+                        <b>func Cancel(): bool</b>, makes <b>$.IsCancelled()</b> returns <b>true</b>.
+                    </li>
+                    <li>
+                        <b>func IsCancelled(): bool</b> is designed to be called in any <b>$Async</b> coroutine.
+                        If a <b>$Async</b> coroutine has many steps,
+                        it could check <b>$.IsCancelled()</b> frequently and stops the coroutine when it is required.
+                        This does not happen automatically,
+                        a <b>$Async</b> can ignore <b>$.IsCancelled()</b>.
+                    </li>
+                </ul>
             </p>
         </topic>
         <topic>
             <title>Executing system::Async^</title>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
+        <topic>
+            <title>Hosting system::Async^</title>
             <p>
                 The page is under construction.
             </p>

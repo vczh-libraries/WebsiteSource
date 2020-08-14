@@ -26,8 +26,8 @@
     <article name="Coroutines" file="coroutine">
         <article name="Enumerable Coroutine" file="coroutine_enumerable"/>
         <article name="Async Coroutine" file="coroutine_async"/>
-        <article name="Design Your Own Coroutine" file="coroutine_custom"/>
         <article name="Raw Coroutine" file="coroutine_raw"/>
+        <article name="Design Your Own Coroutine" file="coroutine_custom"/>
     </article>
     <article name="State Machines" file="state"/>
     <article name="Index of Keywords" file="index"/>
