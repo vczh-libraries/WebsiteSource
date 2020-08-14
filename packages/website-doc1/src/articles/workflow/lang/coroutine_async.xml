@@ -34,13 +34,10 @@
             <ul>
                 <li>
                     It does not have a <b>AwaitAndPause</b> method,
-                    so this statement in the coroutine is <b>illegal</b>:
+                    but it has a <b>AwaitAndRead</b> method,
+                    so both statements in the coroutine are <b>legal</b>:
                     <program><code><![CDATA[
-                        $Await EXPR; /* illegal */
-                    ]]></code></program>
-                    It has a <b>AwaitAndRead</b> method,
-                    so this statement in the coroutine is <b>illegal</b>:
-                    <program><code><![CDATA[
+                        $Await EXPR; /* legal */
                         var NAME = $YieAwaitld EXPR; /* legal */
                     ]]></code></program>
                 </li>
@@ -84,6 +81,12 @@
             <p>
                 The <b>$</b> expression in a <b>$Async</b> coroutine returns <b>system::AsyncContext^</b>.
             </p>
+            <p>
+                The page is under construction.
+            </p>
+        </topic>
+        <topic>
+            <title>Executing system::Async^</title>
             <p>
                 The page is under construction.
             </p>

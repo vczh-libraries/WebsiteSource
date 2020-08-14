@@ -77,21 +77,48 @@
             </ul>
         </p>
         <topic>
-            <title>Using return</title>
+            <title>Using return and $Yield</title>
             <p>
-                The page is under construction.
+                <b>return;</b> stops a <b>$Enumerable</b> coroutine.
             </p>
-        </topic>
-        <topic>
-            <title>Using $Yield</title>
             <p>
-                The page is under construction.
+                <b>$Yield EXPR;</b> pauses a <b>$Enumerable</b> coroutine,
+                and generates a new number for the returned <b>system::Enumerable^</b>.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    func GetNumbers(): int{}
+                    ${
+                        for (i in range [1, 10])
+                        {
+                            $Yield i;
+                            if (i == 5)
+                            {
+                                return;
+                            }
+                        }
+                    }
+                ]]></code></program>
+                This function returns <b>{1 2 3 4 5}</b>.
             </p>
         </topic>
         <topic>
             <title>Using $Join</title>
             <p>
-                The page is under construction.
+                <b>$Join EXPR;</b> works like <b>$Yield</b>,
+                but it generates a series of numbers from the given <b>system::Enumerable^</b>.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    func GetNumbers(): int{}
+                    ${
+                        for (i in range [1, 3])
+                        {
+                            $Join range [i, i + 2];
+                        }
+                    }
+                ]]></code></program>
+                This function returns <b>{1 2 3 2 3 4 3 4 5}</b>.
             </p>
         </topic>
     </topic>
