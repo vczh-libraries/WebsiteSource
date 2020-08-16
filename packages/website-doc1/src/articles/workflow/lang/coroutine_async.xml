@@ -278,5 +278,133 @@
                 <b>$Async</b> coroutine fails.
             </p>
         </topic>
+        <topic>
+            <title>Example</title>
+            <p>
+                Let's see an example of a scheduler.
+                <b>$Async</b> doesn't necessary mean multi-threading,
+                everything could be synchronized.
+                The following scheduler queued all tasks
+                that will be executed on by one when it is required.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    class SyncScheduler : public Object, public IAsyncScheduler, public Description<SyncScheduler>
+                    {
+                    public:
+                        List<Func<void()>>		tasks;
+
+                        void Run(const Func<void()>& callback)
+                        {
+                            auto scheduler = MakePtr<SyncScheduler>();
+                            IAsyncScheduler::RegisterDefaultScheduler(scheduler);
+                            callback();
+                            while (scheduler->tasks.Count() > 0)
+                            {
+                                auto firstTask = scheduler->tasks[0];
+                                scheduler->tasks.RemoveAt(0);
+                                firstTask();
+                            }
+                            IAsyncScheduler::UnregisterDefaultScheduler();
+                        }
+
+                        void Execute(const Func<void()>& callback) override
+                        {
+                            tasks.Add(callback);
+                        }
+
+                        void ExecuteInBackground(const Func<void()>& callback) override
+                        {
+                            tasks.Add(callback);
+                        }
+
+                        void DelayExecute(const Func<void()>& callback, vint milliseconds) override
+                        {
+                            // the required waiting time is ignored
+                            tasks.Add(callback);
+                        }
+                    };
+                ]]></code></program>
+                Assume that this class is registered using this name: <b>test::SyncScheduler</b>.
+            </p>
+            <p>
+                By calling <b>SyncScheduler::Run</b>,
+                the scheduler registers itself as a global task scheduler,
+                executes the callback in the caller's thread,
+                executes all generated new tasks in the caller's thread until they are all cleared,
+                unregisters itself.
+            </p>
+            <p>
+                The following Workflow script creates some <b>Async</b> objects
+                by using coroutines or implementing the interface,
+                and then call <b>SyncScheduler::Run</b> to run all code.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    using system::*;
+                    using test::*;
+
+                    var s = "";
+
+                    $interface IStringAsync : Async<string>;
+
+                    func GetStringAsync(x : int) : IStringAsync^
+                    ${
+                        s = $"$(s)[$(x)]";
+                        return cast string x;
+                    }
+
+                    func GetStringAsync2(x : int) : IStringAsync^
+                    {
+                        var future = Future::Create();
+                        AsyncScheduler::GetSchedulerForCurrentThread().ExecuteInBackground(func():void
+                        {
+                            s = $"$(s)[$(x)]";
+                            future.Promise.SendResult(cast string x);
+                        });
+                        
+                        return new IStringAsync^(using future of Async^);
+                    }
+
+                    func GetMultipleStrings() : void
+                    $Async{
+                        for(i in range[0, 1])
+                        {
+                            var x = $Await GetStringAsync(i);
+                            s = $"$(s)[+$(x)]";
+                            var y = $Await GetStringAsync2(i);
+                            s = $"$(s)[-$(y)]";
+                            $Await Async::Delay(0);
+                            s = $"$(s)!";
+                        }
+                    }
+
+                    func main():string
+                    {
+                        SyncScheduler::Run(GetMultipleStrings);
+                        return s;
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>
+                        The <b>main</b> main function starts the task scheduler,
+                        asking it to call <b>GetMultipleStrings</b>.
+                    </li>
+                    <li>
+                        <b>GetMultipleStrings</b> calls both <b>GetStringAsync</b> and <b>GetStringAsync2</b> for twice.
+                    </li>
+                    <li>
+                        <b>GetStringAsync</b> implements <b>Async</b> using coroutine.
+                    </li>
+                    <li>
+                        <b>GetStringAsync2</b> implements <b>Async</b> using <b>Future</b> and <b>Promise</b>.
+                    </li>
+                    <li>
+                        Eventually <b>"[0][+0][0][-0]![1][+1][1][-1]!"</b> is written to <b>s</b>,
+                        which is also the return value from <b>main</b>.
+                    </li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>
