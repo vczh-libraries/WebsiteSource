@@ -404,6 +404,10 @@
                         which is also the return value from <b>main</b>.
                     </li>
                 </ul>
+                The difference between <b>GetStringAsync</b> and <b>GetStringAsync2</b> is that,
+                <b>GetStringAsync</b> starts the task by calling <b>AsyncScheduler::Execute</b>,
+                while <b>GetStringAsync2</b> starts the task by calling <b>AsyncScheduler::ExecuteInBackground</b>.
+                Both scheduler functions are the same in this example.
             </p>
         </topic>
     </topic>
