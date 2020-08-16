@@ -2,7 +2,181 @@
     <topic>
         <title>Raw Coroutine</title>
         <p>
-            The page is under construction.
+            A raw coroutine expression doesn't involve any coroutine provider,
+            it creates a <b>system::Coroutine^</b>.
+            In a raw coroutine,
+            you can pause itself whenever you want,
+            and exchange data with the caller.
         </p>
+        <topic>
+            <title>Create a raw coroutine</title>
+            <p>
+                Here is an example:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    using system::*;
+
+                    func main(): string
+                    {
+                        var r = {""};
+                        var c = $coroutine(arg)
+                        {
+                            for (i in range [1, 3])
+                            {
+                                r[0] = $"$(r[0])$(cast string arg.Result);";
+                                $pause;
+                            }
+                            raise "Something happened!";
+                        };
+
+                        var counter = 0;
+                        while (c.Status != CoroutineStatus::Stopped)
+                        {
+                            counter = counter + 1;
+                            var cr = new CoroutineResult^();
+                            cr.Result = counter;
+                            c.Resume(false, cr);
+                        }
+
+                        if (c.Failure is not null)
+                        {
+                            r[0] = $"$(r[0])$(c.Failure.Message)";
+                        }
+                        return r[0];
+                    }
+                ]]></code></program>
+                The variable <b>r</b> is captured by shallow copying,
+                so we use <b>string[]</b> instead of <b>string</b> to make it modifiable.
+            </p>
+            <p>
+                In the <b>main</b> function,
+                a raw coroutine is created.
+                It exchanges data with the caller 3 times by calling <b>$pause;</b>,
+                and eventually throws an exception.
+            </p>
+            <p>
+                When the raw coroutine is created,
+                nothing is executed.
+                <b>system::Coroutine::Resume</b> needs to be called to start or continue the coroutine.
+                <ul>
+                    <li>
+                        The first argument controls whether <b>Resume</b> throws exceptions.
+                        If an exception is thrown while executing a coroutine,
+                        the <b>Status</b> of the coroutine becomes <b>Stopped</b>,
+                        and <b>Failure</b> stores the exception.
+                        If the first argument is <b>true</b>,
+                        the exception will also be thrown.
+                    </li>
+                    <li>
+                        The second argument becomes <b>arg</b> in the raw coroutine,
+                        which is declared here: <b>$coroutine(arg)</b>.
+                        The name is trivial.
+                        The type of <b>arg</b> is always <b>system::CoroutineResult^</b>.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                The coroutine calls <b>$pause</b> 3 times,
+                it means that <b>Resume</b> needs to be called for 4 times to finish the execution.
+            </p>
+            <p>
+                At the end,
+                the coroutine throws an exception,
+                causing <b>Status</b> to become <b>Stopped</b>,
+                which stops the <b>while</b> loop in the caller.
+            </p>
+            <p>
+                The exception and then retrived using the <b>Failure</b> property.
+            </p>
+            <p>
+                Since the first argument given to <b>Resume</b> is <b>false</b>,
+                so the exception is not actually thrown.
+            </p>
+            <p>
+                The <b>main</b> function returns <b>"1;2;3;Something happened!"</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Calling coroutine providers in raw coroutines</title>
+            <p>
+                Let's see another example.
+                Previous we creates <b>system::Enumerable^</b> using a <b>$Enumerable</b> coroutine like this:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    using system::*;
+
+                    func GetNumbers() : int{}
+                    ${
+                        for (i in range [1, 10])
+                        {
+                            $Yield i;
+                        }
+                    }
+
+                    func main(): string
+                    {
+                        var r = "";
+                        for (i in GetNumbers())
+                        {
+                            r = $"$(r)$(i); ";
+                        }
+                        return r;
+                    }
+                ]]></code></program>
+                The <b>main</b> function returns <b>"1; 2; 3; 4; 5; 6; 7; 8; 9; 10; "</b>.
+            </p>
+            <p>
+                By calling <b>system::EnumerableCoroutine</b> directly,
+                we are able to do the same thing using a raw coroutine:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    using system::*;
+
+                    func GetNumbers() : int{}
+                    {
+                        return EnumerableCoroutine::Create(
+                            [$coroutine{
+                                for (i in range [1, 10])
+                                {
+                                    EnumerableCoroutine::YieldAndPause($1, i);
+                                    $pause;
+                                }
+                            }]
+                        ) as int{};
+                    }
+
+                    func main(): string
+                    {
+                        var r = "";
+                        for (i in GetNumbers())
+                        {
+                            r = $"$(r)$(i); ";
+                        }
+                        return r;
+                    }
+                ]]></code></program>
+                The <b>main</b> function returns <b>"1; 2; 3; 4; 5; 6; 7; 8; 9; 10; "</b>.
+            </p>
+            <p>
+                The argument to <b>Create</b> is an ordered lambda expression.
+                It has one argument,
+                which is the first argument for every coroutine operator functions.
+            </p>
+            <p>
+                The type of this argument veries in different coroutine providers.
+            </p>
+            <p>
+                For <b>$Async</b>, <b>$</b> becomes <b>system::AsyncCoroutine::QueryContext($1)</b> here.
+            </p>
+            <p>
+                In this coroutine,
+                we don't need the <b>arg</b> argument as in the previous example,
+                because no data is comming in,
+                data only going out.
+            </p>
+        </topic>
     </topic>
 </article>
