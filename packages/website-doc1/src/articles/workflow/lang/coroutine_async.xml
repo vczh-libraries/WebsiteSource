@@ -177,13 +177,105 @@
         <topic>
             <title>Executing system::Async^</title>
             <p>
-                The page is under construction.
+                <b>system::Async::Delay</b> function creates a task that ends after a specific period of time.
+            </p>
+            <p>
+                <b>system::Async::Execute</b> executes an task in a background thread.
+                The first argument is a callback that will be triggered when the task is end.
+                The second argument is an optional object that becomes <b>$</b> in a <b>$Async</b> coroutine.
+            </p>
+            <p>
+                If <b>system::Async::Execute</b> is not called for the first time for that particular object,
+                it fails and returns <b>false</b>.
+            </p>
+            <p>
+                Calling a <b>$Async</b> function which returning <b>void</b>,
+                result in starting the task immediately.
             </p>
         </topic>
         <topic>
             <title>Hosting system::Async^</title>
             <p>
-                The page is under construction.
+                Calling <b>system::AsyncScheduler::RegisterDefaultScheduler</b> or
+                <b>system::AsyncScheduler::RegisterSchedulerForCurrentThread</b>
+                are required before executing a task in a particular thread.
+            </p>
+            <p>
+                You are recommended to call
+                <b>system::AsyncScheduler::UnregisterDefaultScheduler</b> or
+                <b>system::AsyncScheduler::UnregisterSchedulerForCurrentThread</b>
+                when no task is needed to run in a particular thread.
+            </p>
+            <p>
+                <b>system::Async::Execute</b> use the caller thread's scheduler to run itself.
+                If <b>RegisterSchedulerForCurrentThread</b> is called for this thread,
+                it will not use the scheduler that is registered by <b>RegisterDefaultScheduler</b>.
+            </p>
+            <p>
+                Usually this interface is implemented in C++,
+                which should use <b>vl::reflection::description::IAsyncScheduler</b> as the name of the interface.
+            </p>
+            <p>
+                There are 3 methods that need to be implemented:
+                <ul>
+                    <li>
+                        <p>
+                            <b>Execute</b>:
+                            This function runs a callback in any thread it likes.
+                        </p>
+                        <p>
+                            This function is called after <b>$Await</b> finishes waiting.
+                        </p>
+                        <p>
+                            For GacUI, the scheduler for the UI thread is different from other thread,
+                            because <b>Execute</b> of the UI thread's scheduler runs callbacks in the UI thread.
+                        </p>
+                        <p>
+                            This means that,
+                            for any <b>$Async</b> that is called from the UI thread,
+                            all code will eventually be executed in the UI thread,
+                            including tasks that are awaited using <b>$Await</b>.
+                        </p>
+                        <p>
+                            If a task don't want to be executed in the UI thread even when it is scheculed by the UI thread,
+                            it needs to explicitly call <b>AsyncScheduler::ExecuteInBackground</b>,
+                            which means thiat task cannot be implemented using coroutine.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>ExecuteInBackground</b>:
+                            This function runs a callback in any thread it likes.
+                        </p>
+                        <p>
+                            It will not be called by generated code from <b>$Async</b> coroutines.
+                        </p>
+                        <p>
+                            For GacUI, <b>ExecuteInBackground</b> runs callbacks in a random non-UI thread.
+                            It doesn't matter whether this scheduler is for the UI thread or not.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>DelayExecute</b>:
+                            This function runs a callback in any thread it likes
+                            after a specified period of time.
+                        </p>
+                        <p>
+                            It will not be called by generated code from <b>$Async</b> coroutines.
+                        </p>
+                        <p>
+                            For GacUI, the scheduler for the UI thread is different from other thread,
+                            because <b>DelayExecute</b> of the UI thread's scheduler runs callbacks in the UI thread.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                There is no default scheduler provided by Workflow script.
+                If you don't implement any scheduler,
+                <b>$Async</b> coroutine fails.
             </p>
         </topic>
     </topic>
