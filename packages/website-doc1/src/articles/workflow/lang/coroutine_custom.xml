@@ -4,6 +4,9 @@
         <p>
             A coroutine provider is a class with methods that following a naming convention.
         </p>
+        <p>
+            A coroutine provider could be written in either C++ with reflection, or just Workflow.
+        </p>
         <topic>
             <title>Naming your coroutine</title>
             <p>
@@ -113,6 +116,70 @@
         </topic>
         <topic>
             <title>Define coroutine operations</title>
+            <p>
+                If you want to support
+                <program><code><![CDATA[
+                    $Do1;
+                    $Do2 something;
+                    $Do3 something, otherthings;
+                ]]></code></program>
+                you are required to add the following methods to your coroutine provider:
+                <program><code><![CDATA[
+                    static Do1AndPause(internalState: InternalState*): void { /* ... */ }
+                    static Do2AndPause(internalState: InternalState*, something: Something): void { /* ... */ }
+                    static Do3AndPause(internalState: InternalState*, something: Something, otherthings: Otherthings): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                If you want to support both
+                <program><code><![CDATA[
+                    $Do1;
+                    $Do2 something;
+                    $Do3 something, otherthings;
+                ]]></code></program>
+                and
+                <program><code><![CDATA[
+                    var x = $Do1;
+                    var y = $Do2 something;
+                    var z = $Do3 something, otherthings;
+                ]]></code></program>
+                you are required to add the following methods to your coroutine provider:
+                <program><code><![CDATA[
+                    static Do1AndRead(internalState: InternalState*): void { /* ... */ }
+                    static Do2AndRead(internalState: InternalState*, something: Something): void { /* ... */ }
+                    static Do3AndRead(internalState: InternalState*, something: Something, otherthings: Otherthings): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                Overloading is allowed.
+            </p>
+            <p>
+                When a coroutine operation is called,
+                one of these methods will be called,
+                and the created <b>Coroutine^</b> will pause right after that.
+            </p>
+            <p>
+                All methods for coroutine operations must return <b>void</b>.
+                After the coroutine is resumed,
+                the return value from the coroutine operation comes from the second argument in <b>Coroutine::Resume</b>.
+            </p>
+            <p>
+                This argument is a <b>CoroutineResult^</b>.
+                <ul>
+                    <li>If the coroutine operation succeeds, the return value is stored in the <b>Result</b> property.</li>
+                    <li>If the coroutine operation succeeds, the exception is stored in the <b>Failure</b> property.</li>
+                    <li>
+                        If <b>Failure</b> is not null,
+                        <b>Result</b> will be ignored.
+                        and an exception is thrown.
+                        If there is no <b>try-catch</b> in this coroutine function,
+                        the coroutine stops immediately with this exception.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Define return statement</title>
         </topic>
         <topic>
             <title>Define $ expression</title>
