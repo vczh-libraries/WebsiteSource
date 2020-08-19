@@ -2,7 +2,123 @@
     <topic>
         <title>Design Your Own Coroutine</title>
         <p>
-            The page is under construction.
+            A coroutine provider is a class with methods that following a naming convention.
         </p>
+        <topic>
+            <title>Naming your coroutine</title>
+            <p>
+                If you want a coroutine to be written in this way:
+                <program><code><![CDATA[
+                    func MyCoroutine(): void
+                    $Foo {
+                        /* ... */
+                    }
+                ]]></code></program>
+                you need to define the coroutine provider like this:
+                <program><code><![CDATA[
+                    using system::*;
+
+                    class FooCoroutine
+                    {
+                        class InternalState
+                        {
+                            /* ... */
+                        }
+
+                        static CreateAndRun(creator: func(InternalState*): (Coroutine^)): void
+                        {
+                            /* ... */
+                        }
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                If you want a coroutine to be written in this way:
+                <program><code><![CDATA[
+                    func MyCoroutine(): Foo^
+                    ${
+                        /* ... */
+                    }
+                ]]></code></program>
+                or
+                <program><code><![CDATA[
+                    $interface StringFoo : Foo<string>;
+                    func MyCoroutine(): StringFoo^
+                    ${
+                        /* ... */
+                    }
+                ]]></code></program>
+                you need to define the coroutine provider like this:
+                <program><code><![CDATA[
+                    using system::*;
+
+                    interface Foo
+                    {
+                        /* ... */
+                    }
+
+                    class FooCoroutine
+                    {
+                        class InternalState
+                        {
+                            /* ... */
+                        }
+
+                        static Create(creator: func(InternalState*): (Coroutine^)): Foo^
+                        {
+                            /* ... */
+                        }
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        <b>FooCoroutine::InternalState</b> could be a class or an interface.
+                    </li>
+                    <li>
+                        <b>Create</b> and <b>CreateAndRun</b> could both appear.
+                        This makes coroutine functions being able to return both <b>void</b> and <b>Foo^</b>.
+                    </li>
+                    <li>
+                        The return type of <b>Create</b> must be compatible with the return type of coroutine functions:
+                        <ul>
+                            <li>If <b>Create</b> returns <b>Foo^</b>, then coroutine functions could return <b>Foo^</b> or any of its base type.</li>
+                            <li>If <b>Create</b> returns <b>Foo^</b>, then coroutine functions could return a generic version of <b>Foo^</b>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        The only argument of <b>Create</b> or <b>CreateAndRun</b> should be a function:
+                        <ul>
+                            <li>It takes a raw pointer of an object for storing internal states.</li>
+                            <li>It must return <b>Coroutine^</b>.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                When a coroutine function is called,
+                either <b>Create</b> or <b>CreateAndRun</b> will be called.
+                You are responsible to create the object for storing internal states,
+                and then a <b>Coroutine^</b> will be given to you.
+            </p>
+            <p>
+                Nothing in the coroutine function is executed before the first call to <b>Coroutine::Resume</b>.
+            </p>
+            <p>
+                Whenever a coroutine operation is called,
+                the coroutine pauses,
+                and another call to <b>Coroutine::Resume</b> is required to continue the coroutine function.
+            </p>
+        </topic>
+        <topic>
+            <title>Define coroutine operations</title>
+        </topic>
+        <topic>
+            <title>Define $ expression</title>
+        </topic>
+        <topic>
+            <title>Example</title>
+        </topic>
     </topic>
 </article>
