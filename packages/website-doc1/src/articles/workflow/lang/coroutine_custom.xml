@@ -113,6 +113,10 @@
                 the coroutine pauses,
                 and another call to <b>Coroutine::Resume</b> is required to continue the coroutine function.
             </p>
+            <p>
+                After <b>Coroutine::Resume</b> is called,
+                <b>Coroutine::Failure</b> and <b>Coroutine::Status</b> must be read in order to correctly handle coroutine operations.
+            </p>
         </topic>
         <topic>
             <title>Define coroutine operations</title>
@@ -179,10 +183,46 @@
             </p>
         </topic>
         <topic>
-            <title>Define return statement</title>
+            <title>Define the return statement</title>
+            <p>
+                If you want to support
+                <program><code><![CDATA[
+                    return;
+                ]]></code></program>
+                you are required to add this method to your coroutine provider:
+                <program><code><![CDATA[
+                    static ReturnAndExit(internalState: InternalState*): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                If you want to support
+                <program><code><![CDATA[
+                    return something;
+                ]]></code></program>
+                you are required to add this method to your coroutine provider:
+                <program><code><![CDATA[
+                    static ReturnAndExit(internalState: InternalState*, something: Something): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                Both methods could appear together.
+            </p>
+            <p>
+                When <b>return</b> is called,
+                <b>ReturnAndExit</b> will be called,
+                and the coroutine stops immediately.
+            </p>
         </topic>
         <topic>
-            <title>Define $ expression</title>
+            <title>Define the $ expression</title>
+            <p>
+                If you want to suppor the <b>$</b> expression,
+                you are required to add this method to your coroutine provider:
+                <program><code><![CDATA[
+                    static QueryContext(internalState: InternalState*): Something { /* ... */ }
+                ]]></code></program>
+                and the return value from <b>$</b> becomes <b>Something</b>.
+            </p>
         </topic>
         <topic>
             <title>Example</title>
