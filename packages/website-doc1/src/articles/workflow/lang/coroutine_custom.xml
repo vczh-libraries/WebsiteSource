@@ -106,6 +106,12 @@
                 and then a <b>Coroutine^</b> will be given to you.
             </p>
             <p>
+                The coroutine function takes and stores the internal state object.
+                When any method in the coroutine provider is called because of
+                coroutine providers, <b>return</b> or <b>$</b>,
+                this object will be used as the first argument.
+            </p>
+            <p>
                 Nothing in the coroutine function is executed before the first call to <b>Coroutine::Resume</b>.
             </p>
             <p>
@@ -226,6 +232,70 @@
         </topic>
         <topic>
             <title>Example</title>
+            <p>
+                Let's see the example <a href="/workflow/lang/interface_using.html">here</a>.
+            </p>
+            <p>
+                The <b>ReaderCoroutine</b> defines:
+                <ul>
+                    <li><b>$Set values;</b>: Stores a collection of values.</li>
+                    <li><b>var x = $Get;</b>: Read a value from the stored collection, returns <b>null</b> after all values are read.</li>
+                    <li><b>return value;</b>: Finish the coroutine with a result.</li>
+                </ul>
+            </p>
+            <p>
+                After the coroutine pauses,
+                you need to know which coroutine operation is called.
+                In this example,
+                the <b>readObject</b> field in <b>ReaderCoroutine::Executer</b> is used for this purpose.
+            </p>
+            <p>
+                In <b>ReaderCoroutine::Executor::Continue</b>,
+                when <b>readObject</b> is <b>true</b>,
+                it means <b>$Get</b> is called.
+                The default value of <b>cr.Result</b> is <b>null</b>.
+                If all values are read,
+                the assignment is not executed,
+                so <b>$Get</b> returns <b>null</b>.
+            </p>
+            <p>
+                If <b>$Get</b> is called before <b>$Set</b>,
+                it crashes because the <b>enumerator</b> field is <b>null</b>.
+            </p>
+            <p>
+                After that, <b>co.Resume(false, cr);</b> is called,
+                this is how the return value from <b>$Get</b> is specified.
+            </p>
+            <p>
+                Finally <b>Sum</b> is called,
+                it first stores 10 numbers,
+                and then read them out one by one,
+                and add them together.
+            </p>
+            <p>
+                In the <b>main</b> function,
+                it keeps calling <b>ReaderCoroutine::Executor::Continue</b> until the whole coroutine function finishes.
+                The return value is read from the <b>result</b> field,
+                because <b>ReturnAndExit</b> use this field to store the value given to the return statement.
+            </p>
+            <p>
+                By executing <b>main</b>,
+                methods in <b>ReaderCoroutine</b> is called in the following order:
+                <ul>
+                    <li><b>Create</b></li>
+                    <li><b>Executor::Continue</b></li>
+                    <li><b>SetAndPause</b></li>
+                    <li>
+                        Call 10 times:
+                        <ul>
+                            <li><b>Executor::Continue</b></li>
+                            <li><b>GetAndRead</b></li>
+                        </ul>
+                    </li>
+                    <li><b>Executor::Continue</b></li>
+                    <li><b>ReturnAndExit</b></li>
+                </ul>
+            </p>
         </topic>
     </topic>
 </article>
