@@ -65,6 +65,10 @@
                 <li><b>$goto_state</b>: <a href="/workflow/lang/state.html">State Machines</a></li>
                 <li><b>$interface</b>: <a href="/workflow/lang/interface_using.html">Generic (interface)</a></li>
                 <li><b>$pause</b>: <a href="/workflow/lang/coroutine_raw.html">Raw Coroutine</a></li>
+                <li><b>$push_state</b>: <a href="/workflow/lang/state.html">State Machines</a></li>
+                <li><b>$state</b>: <a href="/workflow/lang/state.html">State Machines</a></li>
+                <li><b>$state_input</b>: <a href="/workflow/lang/state.html">State Machines</a></li>
+                <li><b>$state_machine</b>: <a href="/workflow/lang/state.html">State Machines</a></li>
                 <li><b>$switch</b>: <a href="/workflow/lang/state.html">State Machines</a></li>
             </ul>
         </p>

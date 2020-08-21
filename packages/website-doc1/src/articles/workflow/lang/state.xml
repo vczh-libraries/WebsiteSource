@@ -2,7 +2,29 @@
     <topic>
         <title>State Machines</title>
         <p>
-            The page is under construction.
+            A state machine works like a coroutine,
+            but unlike coroutine which only has <b>Resume</b>,
+            a state machine could have multiple strong-typed inputs.
+        </p>
+        <p>
+            A state machine is a class.
+            It must inherit from <b>system::StateMachine</b>
+            The last member must be <b>$state_machine { ... }</b>.
+        </p>
+        <p>
+            A state machine defines multiple states with arguments.
+            The entry state is called <b>default</b>.
+            <b>$goto_state</b> and <b>$push_state</b> could be use for jump between states.
+        </p>
+        <p>
+            A state machine defines multiple strong-typed inputs.
+            The state machine is driven by input.
+            When a <b>$switch</b> state is executed,
+            it waits for selected inputs.
+            A required input method must be called to resume the state machine.
+        </p>
+        <p>
+            Let's start with an example:
         </p>
     </topic>
 </article>
