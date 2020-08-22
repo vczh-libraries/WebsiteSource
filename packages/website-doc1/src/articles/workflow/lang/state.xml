@@ -25,6 +25,108 @@
         </p>
         <p>
             Let's start with an example:
+            <program><code><![CDATA[
+                module sampleModule;
+
+                using system::*;
+
+                class MySM : StateMachine
+                {
+                    prop Output: string = "" {not observe}
+
+                    func Append(text: string): void
+                    {
+                        Output = $"$(Output)$(text); ";
+                    }
+
+                    $state_machine
+                    {
+                        $state_input A(name: string);
+                        $state_input B(name: string);
+
+                        $state WaitForName()
+                        {
+                            $switch ()
+                            {
+                            case A(name):
+                                {
+                                    Append($"A($(name))");
+                                }
+                            case B(name):
+                                {
+                                    Append($"B($(name))");
+                                }
+                            }
+                        }
+
+                        $state default()
+                        {
+                            Append("First line");
+                            $push_state WaitForName();
+                            Append("Last line");
+                        }
+                    }
+                }
+
+                func main(): string
+                {
+                    var sm = new MySM^();
+                    try
+                    {
+                        sm.A("John");
+                        sm.B("Smith");
+                    }
+                    catch (ex)
+                    {
+                        sm.Append(ex.Message);
+                    }
+                    return sm.Output;
+                }
+            ]]></code></program>
+            The <b>main</b> function returns <b>"First line; A(John); Last line; The state machine has been stopped.; "</b>.
+        </p>
+        <p>
+            <ul>
+                <li>
+                    The entry state of a state machine is <b>default</b>,
+                    so when <b>new MySM^()</b> is executed,
+                    it immediately enters <b>$state default()</b>.
+                    <b>"First line; "</b> is printed.
+                </li>
+                <li>
+                    <b>$push_state WaitForName()</b> is executed,
+                    it jumps to <b>$satet WaitForName()</b>.
+                </li>
+                <li>
+                    It stops at <b>$switch</b>,
+                    now the constructor of <b>MySM</b> finishes.
+                </li>
+                <li>
+                    <b>sm.A("John");</b> is executed,
+                    the state machine continues from <b>$switch</b>,
+                    and choose <b>case A(name):</b>.
+                    <b>"A(John)"</b> is printed.
+                </li>
+                <li>
+                    Now <b>$state WaitForName()</b> finishes.
+                    Because the state machine jumps to this state via <b>$push_state</b>,
+                    so it still needs to go back to <b>$state default</b>.
+                    <b>"Last line;"</b> is printed.
+                </li>
+                <li>
+                    The state machine stops.
+                </li>
+                <li>
+                    <b>sm.B("Smith");</b> is executed,
+                    because the state machines has stopped,
+                    it throws an exception.
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>$state</b> defines states.
+            <b>$state_input</b> defines inputs from outside.
+            State machines have more freedom in exchanging data comparing to coroutines.
         </p>
     </topic>
 </article>
