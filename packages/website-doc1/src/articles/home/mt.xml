@@ -1,0 +1,81 @@
+<article>
+    <topic>
+        <title>Thread Safety</title>
+        <p>
+            There are only a few classes whose instances can be shared between threads.
+        </p>
+        <p>
+            For <b>GacUI</b>,
+            since <b>WinMain</b> starts the UI,
+            so every UI related stuff (except what are listed below) can only be used in the UI thread.
+            <b>GacUI</b> doesn't check for that.
+            Calling <b>GacUI</b> stuff concurrently results in racing condition,
+            which could cause memory leaks or crashing.
+        </p>
+        <topic>
+            <title>Vlpp</title>
+            <p>
+                <ul>
+                    <li><b>vl::AString</b></li>
+                    <li><b>vl::WString</b></li>
+                    <li><b>vl::Func</b>: calling the function is safe only when the function itself is self.</li>
+                    <li><b>vl::Ptr</b>: using the referenced object is safe only when the object itself is safe.</li>
+                    <li><b>vl::console::Console</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>VlppOS</title>
+            <p>
+                <ul>
+                    <li><b>vl::ConditionVariable</b></li>
+                    <li><b>vl::CriticalSection</b></li>
+                    <li><b>vl::EventObject</b></li>
+                    <li><b>vl::Mutex</b></li>
+                    <li><b>vl::ReaderWriterLock</b></li>
+                    <li><b>vl::RepeatingTaskExecutor</b></li>
+                    <li><b>vl::Semaphore</b></li>
+                    <li><b>vl::SpinLock</b></li>
+                    <li><b>vl::Thread</b></li>
+                    <li><b>vl::ThreadLocalStorage</b></li>
+                    <li><b>vl::ThreadPoolLite</b></li>
+                    <li><b>vl::ThreadVariable</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>VlppRegex</title>
+            <p>
+                <ul>
+                    <li><b>vl::regex::Regex</b></li>
+                    <li><b>vl::regex::RegexLexer</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>VlppParser</title>
+            <p>
+                <ul>
+                    <li><b>vl::tabling::ParsingTable</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>GacUI</title>
+            <p>
+                <ul>
+                    <li><b>vl::presentation::INativeAsyncService</b></li>
+                    <li>
+                        <b>vl::presentation::controls::GuiApplication</b>: only the following methods can be used concurrently
+                        <ul>
+                            <li>InvokeAsync</li>
+                            <li>InvokeInMainThread</li>
+                            <li>InvokeInMainThreadAndWait</li>
+                            <li>RunGuiTask</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>
