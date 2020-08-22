@@ -2,7 +2,119 @@
     <topic>
         <title>Using Input Methods</title>
         <p>
-            The page is under construction.
+            Like any function,
+            <b>$state_input</b> is allowed to have zero, one or multiple parameters.
+            But since it always returns <b>void</b>,
+            so you don't need to specify the return value.
+        </p>
+        <p>
+            When <b>$switch()</b> happens,
+            it waits for selected inputs.
+            If unexpected inputs are called,
+            you can specify what should happen <a href="/workflow/lang/state_switch.html">in the parentheses</a>.
+        </p>
+        <p>
+            You don't have to keep the same parameter names in <b>case</b>.
+            For example:
+            <program><code><![CDATA[
+                module sampleModule;
+
+                using system::*;
+
+                class MySM : StateMachine
+                {
+                    prop Output: string = "" {not observe}
+
+                    $state_machine
+                    {
+                        $state_input A(name: string);
+                        $state_input B(name: string);
+
+                        $state default()
+                        {
+                            $switch ()
+                            {
+                            case A(foo):
+                                {
+                                    Output = $"A($(foo))";
+                                }
+                            case B(bar):
+                                {
+                                    Output = $"B($(bar))";
+                                }
+                            }
+                        }
+                    }
+                }
+
+                func main(): string
+                {
+                    var sm = new MySM^();
+                    sm.A("John");
+                    return sm.Output;
+                }
+            ]]></code></program>
+            The <b>main</b> function returns <b>"A(John)"</b>.
+        </p>
+        <p>
+            Although it defines <b>A</b> using <b>$state_input A(name: string);</b>,
+            but you can still use <b>case A(foo):</b>.
+            <b>name</b> is not accessible here,
+            because the parameter name is <b>foo</b>.
+        </p>
+        <p>
+            You don't need to keep the parameter name consistent in all <b>case</b> statements:
+            <program><code><![CDATA[
+                module sampleModule;
+
+                using system::*;
+
+                class MySM : StateMachine
+                {
+                    prop Output: string = "" {not observe}
+
+                    $state_machine
+                    {
+                        $state_input A(name: string);
+                        $state_input B(name: string);
+
+                        $state default()
+                        {
+                            $switch ()
+                            {
+                            case A(foo):
+                                {
+                                    Output = $"A($(foo))";
+                                }
+                            case B(bar):
+                                {
+                                    Output = $"B($(bar))";
+                                }
+                            }
+                            $switch ()
+                            {
+                            case A(cat):
+                                {
+                                    Output = $"$(Output) A($(cat))";
+                                }
+                            case B(dog):
+                                {
+                                    Output = $"$(Output) B($(dog))";
+                                }
+                            }
+                        }
+                    }
+                }
+
+                func main(): string
+                {
+                    var sm = new MySM^();
+                    sm.A("John");
+                    sm.B("Smith");
+                    return sm.Output;
+                }
+            ]]></code></program>
+            The <b>main</b> function returns <b>"A(John) B(Smith) "</b>.
         </p>
     </topic>
 </article>

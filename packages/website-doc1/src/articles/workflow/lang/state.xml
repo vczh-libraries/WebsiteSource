@@ -88,23 +88,27 @@
         <p>
             <ul>
                 <li>
+                    <b>new MySM^()</b> is executed,
+                    the state machine is not started.
+                </li>
+                <li>
+                    <b>sm.A("John");</b> is executed.
+                    Because this is the first time a <b>$state_input</b> is called,
+                    the state machine starts.
+                </li>
+                <li>
                     The entry state of a state machine is <b>default</b>,
-                    so when <b>new MySM^()</b> is executed,
                     it immediately enters <b>$state default()</b>.
                     <b>"First line; "</b> is printed.
                 </li>
                 <li>
                     <b>$push_state WaitForName()</b> is executed,
-                    it jumps to <b>$satet WaitForName()</b>.
+                    it jumps to <b>$state WaitForName()</b>.
                 </li>
                 <li>
-                    It stops at <b>$switch</b>,
-                    now the constructor of <b>MySM</b> finishes.
-                </li>
-                <li>
-                    <b>sm.A("John");</b> is executed,
-                    the state machine continues from <b>$switch</b>,
-                    and choose <b>case A(name):</b>.
+                    It is supposed to stop at <b>$switch</b>.
+                    But because <b>A</b> has not been consumed,
+                    the state machine continues and choose <b>case A(name):</b>.
                     <b>"A(John)"</b> is printed.
                 </li>
                 <li>
