@@ -33,6 +33,7 @@
         <article name="Using Input Methods" file="state_input"/>
         <article name="Handling Unexpected Inputs" file="state_switch"/>
         <article name="Jumping Between States" file="state_jump"/>
+        <article name="Example: Calculator" file="state_calculator"/>
     </article>
     <article name="Index of Keywords" file="index"/>
     <article name="Index of Errors" file="error"/>
