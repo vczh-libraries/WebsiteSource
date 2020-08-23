@@ -22,7 +22,9 @@
         <article name="Binary Operators" file="expr_binary"/>
     </article>
     <article name="Statements" file="stat"/>
-    <article name="Data Bindings" file="bind"/>
+    <article name="Data Bindings" file="bind">
+        <article name="Observe events explicitly" file="bind_observe"/>
+    </article>
     <article name="Coroutines" file="coroutine">
         <article name="Enumerable Coroutine" file="coroutine_enumerable"/>
         <article name="Async Coroutine" file="coroutine_async"/>

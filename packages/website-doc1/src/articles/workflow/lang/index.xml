@@ -4,7 +4,7 @@
         <p>
             <ul>
                 <li><b>and</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
-                <li><b>as</b>: <a href="/workflow/lang/interface_inherit.html">Inheritance (interface)</a>, <a href="/workflow/lang/class_inherit.html">Inheritance (class)</a>, <a href="/workflow/lang/expr.html">Expressions</a></li>
+                <li><b>as</b>: <a href="/workflow/lang/interface_inherit.html">Inheritance (interface)</a>, <a href="/workflow/lang/class_inherit.html">Inheritance (class)</a>, <a href="/workflow/lang/expr.html">Expressions</a>, <a href="/workflow/lang/bind_observe.html">Observe events explicitly (data binding)</a></li>
                 <li><b>attach</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
                 <li><b>bind</b>: <a href="/working/lang/bind.html">Data Bindings</a></li>
                 <li><b>bool</b>: <a href="/workflow/lang/type.html">Types</a></li>
@@ -14,7 +14,7 @@
                 <li><b>char</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>class</b>: <a href="/workflow/lang/class.html">Classes</a></li>
                 <li><b>const</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
-                <li><b>continue</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
+                <li><b>continue</b>: <a href="/workflow/lang/stat.html">Statements</a>, <a href="/workflow/lang/state_switch.html">Handling Unexpected Inputs (state machine)</a></li>
                 <li><b>delete</b>: <a href="/workflow/lang/interface_new.html">Implementing (interface)</a>, <a href="/workflow/lang/class.html">Classes</a>, <a href="/workflow/lang/class_new.html">Allocating (class)</a></li>
                 <li><b>detach</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
                 <li><b>double</b>: <a href="/workflow/lang/type.html">Types</a></li>
@@ -40,13 +40,13 @@
                 <li><b>not</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a>, <a href="/workflow/lang/expr.html">Expressions</a>, <a href="/workflow/lang/expr_unary.html">Unary Operators</a></li>
                 <li><b>null</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/expr.html">Expressions</a></li>
                 <li><b>object</b>: <a href="/workflow/lang/type.html">Types</a></li>
-                <li><b>observe</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
+                <li><b>observe</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a>, <a href="/workflow/lang/bind_observe.html">Observe events explicitly (data binding)</a></li>
                 <li><b>or</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
                 <li><b>override</b>: <a href="/workflow/lang/interface.html">Interfaces</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a></li>
                 <li><b>prop</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
-                <li><b>raise</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
+                <li><b>raise</b>: <a href="/workflow/lang/stat.html">Statements</a>, <a href="/workflow/lang/state_switch.html">Handling Unexpected Inputs (state machine)</a></li>
                 <li><b>range</b>: <a href="/workflow/lang/type.html">Types</a></li>
-                <li><b>return</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
+                <li><b>return</b>: <a href="/workflow/lang/stat.html">Statements</a>, <a href="/workflow/lang/state_switch.html">Handling Unexpected Inputs (state machine)</a></li>
                 <li><b>reversed</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>shl</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
                 <li><b>shr</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
