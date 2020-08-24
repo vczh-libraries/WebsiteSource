@@ -2,7 +2,35 @@
     <topic>
         <title>Observe events explicitly</title>
         <p>
-            This page is under construction.
+            Sometimes an expression may not have proper observable properties.
+            In this case,
+            you can explicitly specify which events are needed in order to track an expression.
+            Here comes the <b>observe</b> expression.
+            <ul>
+                <li>an <b>observe</b> expression must be in a <b>bind</b> expression.</li>
+                <li>an <b>observe</b> expression must not be in another <b>observe</b> expression.</li>
+            </ul>
         </p>
+        <topic>
+            <title>O.observe</title>
+            <p>
+                <b>O.observe(Prop on EventA, EventB, ...)</b> means
+                <b>O.observe as o(o.Prop on o.EventA, o.EventB ...)</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>O.observe as o</title>
+            <p>
+                For <b>O.observe as o(EXPR on E1, E2, ...)</b>:
+                <ul>
+                    <li><b>O</b> could be any expression.</li>
+                    <li><b>o</b> is an expression alias of <b>O</b>.</li>
+                    <li><b>EXPR</b> is the expression being tracked, you can use <b>o</b> in <b>EXPR</b>.</li>
+                    <li><b>E1</b>, <b>E2</b> ... can be any expression that are referencing events.</li>
+                    <li>There must be at least one event after <b>on</b>.</li>
+                    <li>Involved events in <b>EXPR</b> are all ignored, only <b>E1</b>, <b>E2</b> ... will be subscribed.</li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>

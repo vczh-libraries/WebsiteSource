@@ -41,6 +41,7 @@
                 <li><b>null</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/expr.html">Expressions</a></li>
                 <li><b>object</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>observe</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a>, <a href="/workflow/lang/bind_observe.html">Observe events explicitly (data binding)</a></li>
+                <li><b>on</b>: <a href="/workflow/lang/bind_observe.html">Observe events explicitly (data binding)</a></li>
                 <li><b>or</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
                 <li><b>override</b>: <a href="/workflow/lang/interface.html">Interfaces</a>, <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a></li>
                 <li><b>prop</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
