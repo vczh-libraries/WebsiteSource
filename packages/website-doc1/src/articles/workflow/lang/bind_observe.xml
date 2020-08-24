@@ -6,10 +6,9 @@
             In this case,
             you can explicitly specify which events are needed in order to track an expression.
             Here comes the <b>observe</b> expression.
-            <ul>
-                <li>an <b>observe</b> expression must be in a <b>bind</b> expression.</li>
-                <li>an <b>observe</b> expression must not be in another <b>observe</b> expression.</li>
-            </ul>
+        </p>
+        <p>
+            An <b>observe</b> expression must be in a <b>bind</b> expression.
         </p>
         <topic>
             <title>O.observe</title>
@@ -31,6 +30,57 @@
                     <li>Involved events in <b>EXPR</b> are all ignored, only <b>E1</b>, <b>E2</b> ... will be subscribed.</li>
                 </ul>
             </p>
+            <p>
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Numbers
+                    {
+                        prop A: int = 0 {}
+                        prop B: int = 0 {}
+
+                        func GetC(): int
+                        {
+                            return A + B;
+                        }
+
+                        prop C: int {GetC}
+                    }
+
+                    func main(): string
+                    {
+                        var numbers = new Numbers^();
+                        var sub = bind(numbers.observe as x(x.C on x.AChanged, x.BChanged));
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        numbers.A = 1;
+                        numbers.B = 2;
+                        numbers.A = 3;
+                        numbers.B = 4;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                The <b>main</b> function returns <b>"1; 3; 5; 7; "</b>.
+            </p>
+            <p>
+                In this example,
+                we want to observe <b>numbers.C</b>.
+                Unfortunately this property is not associated with an event.
+                But we know that,
+                either <b>AChanged</b> or <b>BChanged</b> happens means <b>C</b> is changed.
+                So we use the <b>observe</b> expression to specify it.
+            </p>
+        </topic>
+        <topic>
+            <title>Cached objects</title>
         </topic>
     </topic>
 </article>
