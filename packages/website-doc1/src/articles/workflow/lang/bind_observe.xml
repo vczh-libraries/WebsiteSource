@@ -13,6 +13,10 @@
         <topic>
             <title>O.observe</title>
             <p>
+                <b>O.observe(Prop)</b> means
+                <b>O.observe as o(o.Prop on o.PropChanged)</b>.
+            </p>
+            <p>
                 <b>O.observe(Prop on EventA, EventB, ...)</b> means
                 <b>O.observe as o(o.Prop on o.EventA, o.EventB ...)</b>.
             </p>
@@ -78,6 +82,12 @@
                 either <b>AChanged</b> or <b>BChanged</b> happens means <b>C</b> is changed.
                 So we use the <b>observe</b> expression to specify it.
             </p>
+        </topic>
+        <topic>
+            <title>Nested observe expressions</title>
+        </topic>
+        <topic>
+            <title>Observe expression as part of another expression</title>
         </topic>
         <topic>
             <title>Cached objects</title>
