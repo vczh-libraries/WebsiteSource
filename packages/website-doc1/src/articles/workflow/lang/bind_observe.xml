@@ -215,13 +215,35 @@
             </p>
             <p>
                 This example tracks <b>s.C</b> by subscribing <b>s.AB.AChanged</b> and <b>s.AB.BChanged</b>.
-                After <b>sub.Open()</b> is called,
-                <b>s.AB</b> is changed.
             </p>
             <p>
+                After <b>sub.Open()</b> is called,
+                <b>s.AB</b> is changed.
                 But this subscription does not track <b>s.AB</b>,
                 so it is still waiting for <b>AChanged</b> and <b>BChanged</b> from the old <b>s.AB</b>,
-                which cause the callback not being triggered.
+                which causes the callback not being triggered.
+            </p>
+            <p>
+                In order to track <b>s.AB</b>,
+                we could change the <b>bind</b> expression to:
+                <ul>
+                    <li><b>bind(s.AB.observe as x(s.C on x.AChanged, x.BChanged))</b></li>
+                </ul>
+                Now the <b>main</b> function returns <b>"0; 0; 0; 1; 3; 5; 7; "</b>.
+            </p>
+            <p>
+                There are three <b>"0; "</b> being printed,
+                which are caused by the changing of <b>s.AB</b> and resubscription on events.
+            </p>
+            <p>
+                Because <b>s.AB</b> is not in <b>observe</b>,
+                <b>s.ABChanged</b> is used to track <b>s.AB</b>.
+                Once it is changed,
+                <b>s.AB.AChanged</b> and <b>s.AB.BChanged</b> will be resubscribed.
+            </p>
+            <p>
+                And we see that <b>s.C</b> does not contain <b>x</b>,
+                which is fine.
             </p>
         </topic>
     </topic>
