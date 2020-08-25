@@ -163,6 +163,66 @@
         </topic>
         <topic>
             <title>Cached objects</title>
+            <p>
+                For any <b>O.observe as o(EXPR on E1, E2, ...)</b> expression,
+                <b>E1</b>, <b>E2</b> ... are not tracked.
+                Changing related properties do not trigger anything,
+                and it may cause <b>bind</b> to work improperly.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Pair
+                    {
+                        prop A: int = 0 {}
+                        prop B: int = 0 {}
+                    }
+
+                    class Sum
+                    {
+                        prop AB: Pair^ = new Pair^() {}
+
+                        func GetC(): int
+                        {
+                            return AB.A + AB.B;
+                        }
+
+                        prop C: int {GetC}
+                    }
+
+                    func main(): string
+                    {
+                        var s = new Sum^();
+                        var sub = bind(s.observe as x(x.C on x.AB.AChanged, x.AB.BChanged));
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        s.AB = new Pair^();
+                        s.AB.A = 1;
+                        s.AB.B = 2;
+                        s.AB.A = 3;
+                        s.AB.B = 4;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                The <b>main</b> function returns <b>""</b>.
+            </p>
+            <p>
+                This example tracks <b>s.C</b> by subscribing <b>s.AB.AChanged</b> and <b>s.AB.BChanged</b>.
+                After <b>sub.Open()</b> is called,
+                <b>s.AB</b> is changed.
+            </p>
+            <p>
+                But this subscription does not track <b>s.AB</b>,
+                so it is still waiting for <b>AChanged</b> and <b>BChanged</b> from the old <b>s.AB</b>,
+                which cause the callback not being triggered.
+            </p>
         </topic>
     </topic>
 </article>
