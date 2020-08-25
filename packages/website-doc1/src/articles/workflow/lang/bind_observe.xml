@@ -9,6 +9,7 @@
         </p>
         <p>
             An <b>observe</b> expression must be in a <b>bind</b> expression.
+            A <b>bind</b> expression must not be in an <b>observe</b> expression.
         </p>
         <topic>
             <title>O.observe</title>
@@ -85,9 +86,80 @@
         </topic>
         <topic>
             <title>Nested observe expressions</title>
-        </topic>
-        <topic>
-            <title>Observe expression as part of another expression</title>
+            <p>
+                For any <b>O.observe as o(EXPR on ...)</b> expression,
+                since <b>EXPR</b> could be any expression except <b>bind</b>,
+                <b>EXPR</b> could contain another <b>observe</b> expression.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Numbers
+                    {
+                        prop A: int = 0 {}
+                        prop B: int = 0 {}
+
+                        func GetC(): int
+                        {
+                            return A + B;
+                        }
+
+                        prop C: int {GetC}
+                    }
+
+                    func main(): string
+                    {
+                        var n1 = new Numbers^();
+                        var n2 = new Numbers^();
+                        var sub = bind(
+                            n1.observe as x(
+                                x.C + n2.observe as y(
+                                    y.C
+                                    on y.AChanged, y.BChanged
+                                )
+                                on x.AChanged, x.BChanged
+                            )
+                        );
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        n1.A = 1;
+                        n1.B = 2;
+                        n2.A = 3;
+                        n2.B = 4;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                The <b>main</b> function returns <b>"1; 3; 6; 10 "</b>.
+            </p>
+            <p>
+                This example track the expression <b>n1.C + n2.C</b>.
+                But the <b>C</b> property is not observable, so
+                <b>n1.observe as x(x.C on x.AChanged, x.BChanged)</b> and
+                <b>n2.observe as y(y.C on y.AChanged, y.BChanged)</b> is necessary.
+            </p>
+            <p>
+                In order to express <b>n1.C + n2.C</b>,
+                one of the following could be used:
+                <ul>
+                    <li><b>n1.observe as x(x.C on x.AChanged, x.BChanged) + n2.observe as y(y.C on y.AChanged, y.BChanged)</b></li>
+                    <li><b>n1.observe as x(x.C + n2.observe as y(y.C on y.AChanged, y.BChanged) on x.AChanged, x.BChanged)</b></li>
+                </ul>
+            </p>
+            <p>
+                In a <b>bind</b> expression,
+                the difference between
+                <b>O.observe as o(EXPR on ...)</b> and
+                <b>let o = O in (EXPR)</b>
+                is which events are going to be subscribed.
+                Obviously the above two choices are equivalent.
+            </p>
         </topic>
         <topic>
             <title>Cached objects</title>
