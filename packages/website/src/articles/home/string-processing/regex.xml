@@ -5,7 +5,7 @@
         <p>Extract information from a string using regular expression.</p>
         <p>
             <program language="C++"><code><![CDATA[
-Regex regex(L"^(<name>\w+):(<adj>\w+)");
+Regex regex(L"^(<name>/w+):(<adj>/w+)");
 Ptr<RegexMatch> match = regex.Match(L"GacUI:great");
 Console::WriteLine(
     L"Hey, " +

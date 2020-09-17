@@ -45,7 +45,7 @@
     <article name="Syntax" file="workflow/lang">
       <link pathPrefix="workflow/lang" filePrefix="" file="workflow/lang/entry.xml"/>
     </article>
-    <article name="Predefined Library" file="workflow/library"/>
+    <article name="Runtime Instructions" file="workflow/ins"/>
     <article name="C++ Code Generation" file="workflow/codegen"/>
     <article name="References" file="workflow/ref">
       <link pathPrefix="workflow/ref" filePrefix="WORKFLOW/" file="../../../../../Document/Tools/Demos/Gaclib/References/WORKFLOW.xml"/>
