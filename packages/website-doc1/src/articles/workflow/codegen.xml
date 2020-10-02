@@ -2,20 +2,93 @@
     <topic>
         <title>C++ Code Generation</title>
         <p>
-            The page is under construction.
-            <!--
-                This is for introducing predefined attributes on Workflow classes and members that control how C++ code is generated
-
-                WfLexicalScopeManager::WfLexicalScopeManager(Ptr<parsing::tabling::ParsingTable> _parsingTable)
-                    :parsingTable(_parsingTable)
-                {
-                    attributes.Add({ L"cpp", L"File" }, TypeInfoRetriver<WString>::CreateTypeInfo());
-                    attributes.Add({ L"cpp", L"UserImpl" }, TypeInfoRetriver<void>::CreateTypeInfo());
-                    attributes.Add({ L"cpp", L"Private" }, TypeInfoRetriver<void>::CreateTypeInfo());
-                    attributes.Add({ L"cpp", L"Protected" }, TypeInfoRetriver<void>::CreateTypeInfo());
-                    attributes.Add({ L"cpp", L"Friend" }, TypeInfoRetriver<ITypeDescriptor*>::CreateTypeInfo());
-                }
-            -->
+            Attributies can be applied to Workflow classes, functions and members to control the result of C++ code generation.
         </p>
+        <topic>
+            <title>@cpp:File("YourFile")</title>
+            <p>
+                This attribute applies to <b>classes</b>.
+                It creates a new pair of file <b>YourFile.h</b> and <b>YourFile.cpp</b> to 
+            </p>
+            <p>
+                Since internal classes in Workflow get translated to internal classes in C++,
+                if you assign different file name to class A and B when B is defined inside A,
+                it causes an error.
+            </p>
+            <p>
+                This attribute is useful when the class has methods with <b>@cpp:UserImpl</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>@cpp:UserImpl</title>
+            <p>
+                This attribute applies to <b>constructors, destructors and functions</b> in classes.
+            </p>
+            <p>
+                Bodies of functions with <b>@cpp:UserImpl</b> are ignored,
+                they are left blank in the generated file,
+                and it allows users to modify <b>code only in these function bodies</b>.
+            </p>
+            <p>
+                When the Workflow script is modified and re-generated,
+                new generated code and modified function bodies will be merged together,
+                so your work doesn't lost.
+            </p>
+            <p>
+                <b>NOTE</b>: it is not possible to add any other content to such classes,
+                including fields and functions.
+                Only code in <b>@cpp:UserImpl</b> annotated function bodies will be kept.
+            </p>
+        </topic>
+        <topic>
+            <title>@cpp:Protected and @cpp:Private</title>
+            <p>
+                These attributes apply to <b>any members</b> in classes, except non-auto properties.
+            </p>
+            <p>
+                When a class member is annotated by <b>@cpp:Protected</b>,
+                this part of the C++ code will be generated with <b>protected:</b>.
+                So as <b>@cpp:Private</b>.
+            </p>
+            <p>
+                <b>NOTE</b>: these attributes don't affect the Workflow compiler,
+                Workflow script treats all members as public members.
+            </p>
+        </topic>
+        <topic>
+            <title>@cpp:Friend(typeof(YourType))</title>
+            <p>
+                This attribute applies to <b>classes</b>.
+                It generates <b>friend</b> declaration in C++ code,
+                allowing <b>YourType</b> to access protected or private members of the current class. 
+            </p>
+        </topic>
+        <topic>
+            <title>Example</title>
+            <p>
+                Example:
+                <program><code><![CDATA[
+                    class DummyClass
+                    {
+                        func CallPrivateMethod(my: MyClass^): void
+                        {
+                            my.Method();
+                        }
+                    }
+
+                    @cpp:File("MyClass")
+                    @cpp:Friend(typeof(DummyClass))
+                    class MyClass
+                    {
+                        @cpp:UserImpl
+                        @cpp:Private
+                        func Method(): void
+                        {
+                            raise "Not Implemented!";
+                        }
+                    }
+                ]]></code></program>
+            </p>
+        </topic>
     </topic>
 </article>
