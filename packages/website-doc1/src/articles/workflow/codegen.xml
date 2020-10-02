@@ -27,17 +27,41 @@
             <p>
                 Bodies of functions with <b>@cpp:UserImpl</b> are ignored,
                 they are left blank in the generated file,
-                and it allows users to modify <b>code only in these function bodies</b>.
+                allowing users to add custom code lines
+                between:
+                <ul>
+                    <li><b>/* USER_CONTENT_BEGIN(CLASS-NAME) */</b></li>
+                    <li><b>/* USER_CONTENT_END() */</b></li>
+                </ul>
+            </p>
+            <p>
+                When a class contains methods with <b>@cpp:UserImpl</b>,
+                custom members can also be added to the generated header file for this class
+                between:
+                <ul>
+                    <li><b>/* USER_CONTENT_BEGIN(custom members of CLASS-NAME) */</b></li>
+                    <li><b>/* USER_CONTENT_END() */</b></li>
+                </ul>
+            </p>
+            <p>
+                When a file contains methods with <b>@cpp:UserImpl</b>,
+                custom global declarations can also be added to the generated header file for this class
+                between:
+                <ul>
+                    <li><b>/* USER_CONTENT_BEGIN(custom global declarations) */</b></li>
+                    <li><b>/* USER_CONTENT_END() */</b></li>
+                </ul>
             </p>
             <p>
                 When the Workflow script is modified and re-generated,
-                new generated code and modified function bodies will be merged together,
+                new generated code and custom code lines in specific locations will be merged together,
                 so your work doesn't lost.
             </p>
             <p>
-                <b>NOTE</b>: it is not possible to add any other content to such classes,
-                including fields and functions.
-                Only code in <b>@cpp:UserImpl</b> annotated function bodies will be kept.
+                <b>IMPORTANT</b>:
+                If there are braces (<b>{</b> and <b>}</b>) in custom code lines,
+                they must take the whole line,
+                or the code merging will report errors.
             </p>
         </topic>
         <topic>
@@ -65,30 +89,175 @@
         </topic>
         <topic>
             <title>Example</title>
-            <p>
-                Example:
-                <program><code><![CDATA[
-                    class DummyClass
-                    {
-                        func CallPrivateMethod(my: MyClass^): void
-                        {
-                            my.Method();
-                        }
-                    }
+            <topic>
+                <title>Workflow Script</title>
+                <p>
+                    <program><code><![CDATA[
+                        module SampleModule;
 
-                    @cpp:File("MyClass")
-                    @cpp:Friend(typeof(DummyClass))
-                    class MyClass
-                    {
-                        @cpp:UserImpl
-                        @cpp:Private
-                        func Method(): void
+                        class DummyClass
                         {
-                            raise "Not Implemented!";
+                            func CallPrivateMethod(my: MyClass^): void
+                            {
+                                my.Method();
+                            }
                         }
-                    }
-                ]]></code></program>
-            </p>
+
+                        @cpp:File("MyClass")
+                        @cpp:Friend(typeof(DummyClass))
+                        class MyClass
+                        {
+                            @cpp:UserImpl
+                            @cpp:Private
+                            func Method(): void
+                            {
+                                raise "Not Implemented!";
+                            }
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Generated C++ Files</title>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <ul>
+                        <li>
+                            The default file name is configurable,
+                            here we assume that it is <b>SampleModule</b>.
+                        </li>
+                        <li>
+                            This is not the full content of generated files.
+                            By following <a href="/workflow/running/generating.html">Generating C++ Code</a> you will see everything.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    <b>SampleModule.h</b>
+                    <program><code><![CDATA[
+                        class DummyClass;
+                        class MyClass;
+
+                        class DummyClass : public ::vl::Object, public ::vl::reflection::Description<DummyClass>
+                        {
+                        #ifndef VCZH_DEBUG_NO_REFLECTION
+                            friend struct ::vl::reflection::description::CustomTypeDescriptorSelector<DummyClass>;
+                        #endif
+                        public:
+                            void CallPrivateMethod(::vl::Ptr<::MyClass> my);
+                            DummyClass();
+                        };
+
+                        /***********************************************************************
+                        Global Variables and Functions
+                        ***********************************************************************/
+
+                        namespace vl_workflow_global
+                        {
+                            class W05Script
+                            {
+                            public:
+
+                                static W05Script& Instance();
+                            };
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>SampleModule.cpp</b>
+                    <program><code><![CDATA[
+                        #define GLOBAL_SYMBOL ::vl_workflow_global::W05Script::
+                        #define GLOBAL_NAME ::vl_workflow_global::W05Script::Instance().
+                        #define GLOBAL_OBJ &::vl_workflow_global::W05Script::Instance()
+
+                        /***********************************************************************
+                        Global Variables
+                        ***********************************************************************/
+
+                        BEGIN_GLOBAL_STORAGE_CLASS(vl_workflow_global_W05Script)
+                            vl_workflow_global::W05Script instance;
+                            INITIALIZE_GLOBAL_STORAGE_CLASS
+                            FINALIZE_GLOBAL_STORAGE_CLASS
+                        END_GLOBAL_STORAGE_CLASS(vl_workflow_global_W05Script)
+
+                        namespace vl_workflow_global
+                        {
+                        /***********************************************************************
+                        Global Functions
+                        ***********************************************************************/
+
+                            W05Script& W05Script::Instance()
+                            {
+                                return Getvl_workflow_global_W05Script().instance;
+                            }
+                        }
+
+                        /***********************************************************************
+                        Class (::DummyClass)
+                        ***********************************************************************/
+
+                        void DummyClass::CallPrivateMethod(::vl::Ptr<::MyClass> my)
+                        {
+                            ::vl::__vwsn::This(my.Obj())->Method();
+                        }
+
+                        DummyClass::DummyClass()
+                        {
+                        }
+
+                        #undef GLOBAL_SYMBOL
+                        #undef GLOBAL_NAME
+                        #undef GLOBAL_OBJ
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>MyClass.h</b>
+                    <program><code><![CDATA[
+                        class MyClass : public ::vl::Object, public ::vl::reflection::Description<MyClass>
+                        {
+                            friend class ::DummyClass;
+                        #ifndef VCZH_DEBUG_NO_REFLECTION
+                            friend struct ::vl::reflection::description::CustomTypeDescriptorSelector<MyClass>;
+                        #endif
+                        private:
+                            void Method();
+                        public:
+                            MyClass();
+
+                        /* USER_CONTENT_BEGIN(custom members of ::MyClass) */
+                        /* USER_CONTENT_END() */
+                        };
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>MyClass.cpp</b>
+                    <program><code><![CDATA[
+                        #define GLOBAL_SYMBOL ::vl_workflow_global::W05Script::
+                        #define GLOBAL_NAME ::vl_workflow_global::W05Script::Instance().
+                        #define GLOBAL_OBJ &::vl_workflow_global::W05Script::Instance()
+
+                        /* USER_CONTENT_BEGIN(custom global declarations) */
+                        /* USER_CONTENT_END() */
+
+                        /***********************************************************************
+                        Class (::MyClass)
+                        ***********************************************************************/
+
+                        void MyClass::Method()
+                        {/* USER_CONTENT_BEGIN(::MyClass) */
+                            throw ::vl::Exception(L"You should implement this function.");
+                        }/* USER_CONTENT_END() */
+
+                        MyClass::MyClass()
+                        {
+                        }
+
+                        #undef GLOBAL_SYMBOL
+                        #undef GLOBAL_NAME
+                        #undef GLOBAL_OBJ
+                    ]]></code></program>
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>
