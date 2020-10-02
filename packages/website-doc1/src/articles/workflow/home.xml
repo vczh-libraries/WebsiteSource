@@ -2,7 +2,37 @@
     <topic>
         <title>Introduction to Workflow</title>
         <p>
-            The page is under construction.
+            Workflow is an embedded script language that allows you to interop with registered C++ classes using reflection.
         </p>
+        <p>
+            Workflow is able to be executed in these ways:
+            <ul>
+                <li>Dynamically compile and run scripts.</li>
+                <li>Compile the script to a binary assembly and load it later at runtime.</li>
+                <li>Compile scripts to multiple C++ files and add them to your project.</li>
+            </ul>
+        </p>
+        <p>
+            Workflow has rich features in languages that allows you to:
+            <ul>
+                <li>Basic types and control flow features.</li>
+                <li>Using registered C++ classes directly.</li>
+                <li>Create objects that inherits from registered C++ interfaces. In C++ it is very easy to get a script created object as a pointer to a C++ interface, which significantly reduces the complexity of interop between C++ and Workflow.</li>
+                <li>Create coroutines and state machines.</li>
+                <li>Create data binding to observe changing of expressions' values.</li>
+                <li>Control the details about how C++ code is generated from scripts.</li>
+            </ul>
+        </p>
+        <topic>
+            <title>In this topic ...</title>
+            <p>
+                <ul>
+                    <li><a href="/workflow/running.html">Running a Script</a>: Launching Workflow scripts in different ways.</li>
+                    <li><a href="/workflow/lang.html">Syntax</a>: Language references of Workflow.</li>
+                    <li><a href="/workflow/codegen.html">C++ Code Generation</a>: Controlling the details about how Workflow scripts generate C++ code files.</li>
+                    <li><a href="/workflow/ref.html">Running a Script</a>: API references of predefined library, runtime and compiler of Workflow.</li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>
