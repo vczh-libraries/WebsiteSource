@@ -90,6 +90,27 @@
                 </p>
             </topic>
             <topic>
+                <title>LoadException</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the exception
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the exception object of the current thread context to the stack.
+                </p>
+            </topic>
+            <topic>
                 <title>LoadLocalVar(index)</title>
                 <p>
                     Stack pattern before:
@@ -285,7 +306,7 @@
                 </p>
             </topic>
             <topic>
-                <title>Duplicate(index)</title>
+                <title>Duplicate</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -308,7 +329,7 @@
                 </p>
             </topic>
             <topic>
-                <title>Pop(index)</title>
+                <title>Pop</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -331,21 +352,168 @@
         </topic>
         <topic>
             <title>Jumping Operations</title>
+            <topic>
+                <title>Return</title>
+            </topic>
+            <topic>
+                <title>Jump(index)</title>
+            </topic>
+            <topic>
+                <title>JumpIf(index)</title>
+            </topic>
+            <topic>
+                <title>Invoke(index, count)</title>
+            </topic>
+            <topic>
+                <title>InvokeWithContext(index, count)</title>
+            </topic>
+            <topic>
+                <title>InstallTry(index)</title>
+            </topic>
+            <topic>
+                <title>UninstallTry(index)</title>
+            </topic>
+            <topic>
+                <title>RaiseException</title>
+            </topic>
         </topic>
         <topic>
             <title>Object Creating Operations</title>
+            <topic>
+                <title>CreateArray(count)</title>
+            </topic>
+            <topic>
+                <title>CreateObservableList(count)</title>
+            </topic>
+            <topic>
+                <title>CreateMap(count)</title>
+            </topic>
+            <topic>
+                <title>CreateClosureContext(count)</title>
+            </topic>
+            <topic>
+                <title>CreateClosure</title>
+            </topic>
+            <topic>
+                <title>CreateInterface(method, count)</title>
+            </topic>
+            <topic>
+                <title>CreateStruct(flag, type)</title>
+            </topic>
+            <topic>
+                <title>DeleteRawPtr</title>
+            </topic>
         </topic>
         <topic>
             <title>Type Operations</title>
-        </topic>
-        <topic>
-            <title>Value Operations</title>
+            <topic>
+                <title>ConvertToType(flag, type)</title>
+            </topic>
+            <topic>
+                <title>TryConvertToType(flag, type)</title>
+            </topic>
+            <topic>
+                <title>TestType(flag, type)</title>
+            </topic>
+            <topic>
+                <title>GetType</title>
+            </topic>
         </topic>
         <topic>
             <title>Reflection Operations</title>
+            <topic>
+                <title>GetProperty(property)</title>
+            </topic>
+            <topic>
+                <title>SetProperty(property)</title>
+            </topic>
+            <topic>
+                <title>UpdateProperty(property)</title>
+            </topic>
+            <topic>
+                <title>InvokeProxy(count)</title>
+            </topic>
+            <topic>
+                <title>InvokeMethod(method, count)</title>
+            </topic>
+            <topic>
+                <title>InvokeEvent(event, count)</title>
+            </topic>
+            <topic>
+                <title>InvokeBaseCtor(method, count)</title>
+            </topic>
+            <topic>
+                <title>AttachEvent(event)</title>
+            </topic>
+            <topic>
+                <title>DetachEvent(event)</title>
+            </topic>
         </topic>
         <topic>
-            <title>Algebra Operations</title>
+            <title>Testing Operations</title>
+            <topic>
+                <title>TestElementInSet</title>
+            </topic>
+            <topic>
+                <title>CompareLiteral(type)</title>
+            </topic>
+            <topic>
+                <title>CompareReference</title>
+            </topic>
+            <topic>
+                <title>CompareValue</title>
+            </topic>
+            <topic>
+                <title>OpLT, OpGT, OpLE, OpGE, OpEQ, OpNE</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>Unary Operations</title>
+            <topic>
+                <title>OpNot(type)</title>
+            </topic>
+            <topic>
+                <title>OpPositive(type)</title>
+            </topic>
+            <topic>
+                <title>OpNegative(type)</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>Binary Operations</title>
+            <topic>
+                <title>OpConcat</title>
+            </topic>
+            <topic>
+                <title>OpExp(type)</title>
+            </topic>
+            <topic>
+                <title>OpAdd(type)</title>
+            </topic>
+            <topic>
+                <title>OpSub(type)</title>
+            </topic>
+            <topic>
+                <title>OpMul(type)</title>
+            </topic>
+            <topic>
+                <title>OpDiv(type)</title>
+            </topic>
+            <topic>
+                <title>OpShl(type)</title>
+            </topic>
+            <topic>
+                <title>OpShr(type)</title>
+            </topic>
+            <topic>
+                <title>OpXor(type)</title>
+            </topic>
+            <topic>
+                <title>OpAnd(type)</title>
+            </topic>
+            <topic>
+                <title>OpOr(type)</title>
+            </topic>
         </topic>
     </topic>
 </article>
