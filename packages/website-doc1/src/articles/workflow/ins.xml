@@ -1,4 +1,4 @@
-<article>
+<article index="true">
     <topic>
         <title>Runtime Instructions</title>
         <p>
@@ -23,45 +23,329 @@
             and embedded arguments are stored in field <b>flagParameter</b> and <b>typeParameter</b>.
         </p>
         <topic>
-            <title>Nop</title>
-            <p>
-                Stack pattern before:
-                <program><code><![CDATA[
-                    --> top
-                    --> bottom
-                ]]></code></program>
-            </p>
-            <p>
-                Stack pattern after:
-                <program><code><![CDATA[
-                    --> top
-                    --> bottom
-                ]]></code></program>
-            </p>
-            <p>
-                This instruction does nothing.
-            </p>
+            <title>Stack Operations</title>
+            <topic>
+                <title>Nop</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    This instruction does nothing.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadValue(value)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push a value to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadFunction(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        index
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the function index to the stack.
+                    This instruction load functions for creating closures.
+                    To push a function value to the stack,
+                    use <b>CreateClosure</b> instead.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadLocalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (int) value of the variable
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the value of the local variable of the specified index to the stack.
+                    Local variables are stored in the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadCapturedVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the variable
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the value of the captured variable of the specified index to the stack.
+                    Captured variables are stored in the closure context that is assigned to the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadGlobalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the variable
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the value of the global variable of the specified index to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadMethodInfo(method)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (IMethodInfo*)
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the <b>IMethodInfo*</b> object to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadMethodClosure(method)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        closure of the IMethodInfo* object
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the closure of the <b>IMethodInfo*</b> object to the stack.
+                    It is created by calling <b>IMethodInfo::CreateFunctionProxy</b>,
+                    this function returns a function object that can be invoked.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadClosureContext</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<WfRuntimeVariableContext>)
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the closure context of the current stack frame to the stack.
+                    Local variables are stored in the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>StoreLocalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack to update a specified local variable.
+                </p>
+            </topic>
+            <topic>
+                <title>StoreCapturedVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack to update a specified captured variable.
+                    Captured variables are stored in the closure context that is assigned to the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>StoreGlobalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack to update a specified global variable.
+                </p>
+            </topic>
+            <topic>
+                <title>Duplicate(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Duplicate the top value in the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>Pop(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack.
+                </p>
+            </topic>
         </topic>
         <topic>
-            <title>LoadValue(value)</title>
-            <p>
-                Stack pattern before:
-                <program><code><![CDATA[
-                    --> top
-                    --> bottom
-                ]]></code></program>
-            </p>
-            <p>
-                Stack pattern after:
-                <program><code><![CDATA[
-                    --> top
-                    value
-                    --> bottom
-                ]]></code></program>
-            </p>
-            <p>
-                Push a value to the stack.
-            </p>
+            <title>Jumping Operations</title>
+        </topic>
+        <topic>
+            <title>Object Creating Operations</title>
+        </topic>
+        <topic>
+            <title>Type Operations</title>
+        </topic>
+        <topic>
+            <title>Value Operations</title>
+        </topic>
+        <topic>
+            <title>Reflection Operations</title>
+        </topic>
+        <topic>
+            <title>Algebra Operations</title>
         </topic>
     </topic>
 </article>
