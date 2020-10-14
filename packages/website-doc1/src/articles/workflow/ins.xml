@@ -354,27 +354,133 @@
             <title>Jumping Operations</title>
             <topic>
                 <title>Return</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> stack frame 1 (top)
+                        value
+                        ... others
+                        --> stack frame 2
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> stack frame 2 (top)
+                        value
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value as a function return value,
+                    pop the current stack frame so that all remaining values of this stack frame is removed,
+                    push the return value to the next stack frame,
+                    and the function ends, jumping to the next instruction from one that calling into the current function.
+                    If there is not stack frame after running this instruction,
+                    the return value will be the only value in the stack,
+                    and the script ends.
+                </p>
             </topic>
             <topic>
                 <title>Jump(index)</title>
+                <p>
+                    Jump to the specified instruction.
+                </p>
             </topic>
             <topic>
                 <title>JumpIf(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        --> bottom
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack.
+                    If it is <b>true</b>, jump to the specified instruction.
+                    If it is <b>false</b>, continue to execute the next instruction.
+                    If it is not a boolean value, exception occurs.
+                </p>
             </topic>
             <topic>
                 <title>Invoke(index, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> stack frame 2 (top)
+                        arg-n
+                        ...
+                        arg-1
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> stack frame 1 (top)
+                        ... local variables
+                        arg-n
+                        ...
+                        arg-1
+                        --> stack frame 2 (top)
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Jump to the specified function, taking a specified number of stack values as arguments.
+                    Arguments are transferred to the new stack frame,
+                    so after the function ends,
+                    they are all gone.
+                </p>
             </topic>
             <topic>
                 <title>InvokeWithContext(index, count)</title>
+                <p>
+                    Works like <b>Invoke(index, count)</b>,
+                    but the target function shares captured values of the current function.
+                    This happens when methods of the same interface implementation are calling each other,
+                    because all of these methods share the same captured values.
+                </p>
             </topic>
             <topic>
                 <title>InstallTry(index)</title>
+                <p>
+                    Push a new trap frame with the entry instruction to the <b>catch</b> handler.
+                    <b>UninstallTry(count)</b> must be called pairing with <b>InstallTry(index)</b>.
+                </p>
             </topic>
             <topic>
-                <title>UninstallTry(index)</title>
+                <title>UninstallTry(count)</title>
+                <p>
+                    Pop a new trap frame.
+                    Keep the specified number of stack values right after this trap frame.
+                    This happens when no exception occurs while evaluating the left operand of the <b>??</b> operator,
+                    the value of the left operand becomes the value of the whole expression,
+                    which should be kept in the stack.
+                </p>
             </topic>
             <topic>
                 <title>RaiseException</title>
+                <p>
+                    Raise an exception.
+                </p>
+                <p>
+                    When an exception occurs,
+                    all stack frames and stack values that are pushed after the top trap frame will be removed,
+                    and jump to the specified instruction of the top trap frame.
+                    If there is no trap frame,
+                    the script ends with this exception.
+                </p>
             </topic>
         </topic>
         <topic>
