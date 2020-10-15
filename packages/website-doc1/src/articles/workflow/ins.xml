@@ -813,50 +813,145 @@
         </topic>
         <topic>
             <title>Unary Operations</title>
+            <p>
+                Stack pattern before:
+                <program><code><![CDATA[
+                    --> top
+                    operand
+                ]]></code></program>
+            </p>
+            <p>
+                Stack pattern after:
+                <program><code><![CDATA[
+                    --> top
+                    value of the result
+                ]]></code></program>
+            </p>
+            <p>
+                Pop the operand, push the result of a specified unary operator.
+                Instructions in this category apply <a href="http://localhost:8080/doc/current/workflow/lang/expr_unary.html">unary operators</a> on the operand.
+            </p>
             <topic>
                 <title>OpNot(type)</title>
+                <p>
+                    This instruction executes <b>not operand</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpPositive(type)</title>
+                <p>
+                    This instruction executes <b>+ operand</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpNegative(type)</title>
+                <p>
+                    This instruction executes <b>- operand</b>.
+                </p>
             </topic>
         </topic>
         <topic>
             <title>Binary Operations</title>
+            <p>
+                Stack pattern before:
+                <program><code><![CDATA[
+                    --> top
+                    right-operand
+                    left-operand
+                ]]></code></program>
+            </p>
+            <p>
+                Stack pattern after:
+                <program><code><![CDATA[
+                    --> top
+                    value of the result
+                ]]></code></program>
+            </p>
+            <p>
+                Pop the right and left operands in order, push the result of a specified binary operator.
+                Instructions in this category apply <a href="http://localhost:8080/doc/current/workflow/lang/expr_binary.html">binary operators</a> on operands.
+            </p>
             <topic>
                 <title>OpConcat</title>
+                <p>
+                    This instruction executes <b>left &amp; right</b> on strings.
+                </p>
             </topic>
             <topic>
                 <title>OpExp(type)</title>
+                <p>
+                    This instruction executes <b>left ^ right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpAdd(type)</title>
+                <p>
+                    This instruction executes <b>left + right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpSub(type)</title>
+                <p>
+                    This instruction executes <b>left - right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpMul(type)</title>
+                <p>
+                    This instruction executes <b>left * right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpMod(type)</title>
+                <p>
+                    This instruction executes <b>left % right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpDiv(type)</title>
+                <p>
+                    This instruction executes <b>left / right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpShl(type)</title>
+                <p>
+                    This instruction executes <b>left shl right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpShr(type)</title>
+                <p>
+                    This instruction executes <b>left shr right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpXor(type)</title>
+                <p>
+                    This instruction executes <b>left xor right</b>.
+                </p>
             </topic>
             <topic>
                 <title>OpAnd(type)</title>
+                <p>
+                    This instruction executes <b>left and right</b>.
+                </p>
+                <p>
+                    For flags,
+                    values are converted to <b>UInt64</b>,
+                    and then converted back after running this instruction.
+                </p>
             </topic>
             <topic>
                 <title>OpOr(type)</title>
+                <p>
+                    This instruction executes <b>left or right</b>.
+                </p>
+                <p>
+                    For flags,
+                    values are converted to <b>UInt64</b>,
+                    and then converted back after running this instruction.
+                </p>
             </topic>
         </topic>
     </topic>
