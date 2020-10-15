@@ -677,15 +677,90 @@
             <title>Type Operations</title>
             <topic>
                 <title>ConvertToType(flag, type)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to convert
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of converted
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and push the converted value to the stack.
+                    This instruction performs a <a href="/workflow/lang/expr.html#Strong-casting-expression-cast-TYPE-OBJECT-cast-OBJECT">strong casting</a> on a value.
+                    Exception occurs if the conversion fails.
+                </p>
             </topic>
             <topic>
                 <title>TryConvertToType(flag, type)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to convert
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of converted
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and push the converted value to the stack.
+                    This instruction performs a <a href="/workflow/lang/expr.html#Strong-casting-expression-cast-TYPE-OBJECT-cast-OBJECT">strong casting</a> on a value.
+                    <b>null</b> will be pushed to the stack if the conversion fails.
+                </p>
             </topic>
             <topic>
                 <title>TestType(flag, type)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to test
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (bool) value of testing result
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and perform a <a href="/workflow/lang/expr.html#Type-testing-expression-OBJECT-is-TYPE-OBJECT-is-not-TYPE">type testing</a>.
+                    <b>true</b> will be pushed to the stack if the testing succeeds.
+                    Otherwise <b>false</b>.
+                </p>
             </topic>
             <topic>
                 <title>GetType</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to test
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (ITypeDescriptor*) type of the value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and get its type descriptor.
+                    For <b>null</b>, its type descriptor is also <b>null</b>.
+                </p>
             </topic>
         </topic>
         <topic>
