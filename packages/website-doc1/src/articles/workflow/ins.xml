@@ -1009,21 +1009,114 @@
             </topic>
         </topic>
         <topic>
-            <title>Testing Operations</title>
+            <title>Set Operations</title>
             <topic>
                 <title>TestElementInSet</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the set
+                        value of the element
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (bool) value of testing result
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the set and the value from the stack,
+                    test if the element is in the set.
+                    <b>true</b> will be pushed to the stack if the testing succeeds.
+                </p>
             </topic>
+        </topic>
+        <topic>
+            <title>Comparison Operations</title>
+            <p>
+                Stack pattern before:
+                <program><code><![CDATA[
+                    --> top
+                    right-operand
+                    left-operand
+                ]]></code></program>
+            </p>
+            <p>
+                Stack pattern after:
+                <program><code><![CDATA[
+                    --> top
+                    (int or bool) value of the result
+                ]]></code></program>
+            </p>
             <topic>
                 <title>CompareLiteral(type)</title>
+                <p>
+                    Compare booleans, numbers or strings.
+                </p>
+                <p>
+                    Push <b>-1</b> to the stack if the left operand is smaller.
+                    Push <b>1</b> to the stack if the left operand is larger.
+                    Push <b>0</b> to the stack if operands are equal to each other.
+                </p>
             </topic>
             <topic>
                 <title>CompareReference</title>
+                <p>
+                    Compare two pointers.
+                </p>
+                <p>
+                    Push <b>true</b> to the stack if operands are equal to each other.
+                    Push <b>false</b> to the stack if operands are not equal to each other, or any of them is not a pointer.
+                </p>
             </topic>
             <topic>
                 <title>CompareValue</title>
+                <p>
+                    Compare two values.
+                </p>
+                <p>
+                    Push <b>true</b> to the stack if operands are equal to each other.
+                    Push <b>true</b> to the stack if operands are not equal to each other.
+                </p>
             </topic>
             <topic>
-                <title>OpLT, OpGT, OpLE, OpGE, OpEQ, OpNE</title>
+                <title>OpLT</title>
+                <p>
+                    This instruction executes <b>left &lt; right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpGT</title>
+                <p>
+                    This instruction executes <b>left &gt; right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpLE</title>
+                <p>
+                    This instruction executes <b>left &lt;= right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpGE</title>
+                <p>
+                    This instruction executes <b>left &gt;= right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpEQ</title>
+                <p>
+                    This instruction executes <b>left == right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpNE</title>
+                <p>
+                    This instruction executes <b>left != right</b>.
+                </p>
             </topic>
         </topic>
         <topic>
