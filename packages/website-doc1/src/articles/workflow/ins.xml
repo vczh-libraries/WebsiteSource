@@ -767,30 +767,245 @@
             <title>Reflection Operations</title>
             <topic>
                 <title>GetProperty(property)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the property
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack as the object,
+                    push the value of the specified property of this object.
+                </p>
             </topic>
             <topic>
                 <title>SetProperty(property)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        value of the property
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack as the object,
+                    pop a value as the new value of the property
+                    update the value of the specified property of this object.
+                </p>
             </topic>
             <topic>
                 <title>UpdateProperty(property)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        value of the property
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack as the object,
+                    pop a value as the new value of the property
+                    update the value of the specified property of this object.
+                    Unlike <b>SetProperty(property)</b>,
+                    the value of the object will be pushed back to the stack after executing this instruction.
+                </p>
             </topic>
             <topic>
                 <title>InvokeProxy(count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueFunctionProxy>) value of the function
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the function along with a specified number of stack values as arguments from the stack,
+                    run the function with arguments,
+                    push the return value to the stack.
+                </p>
+                <p>
+                    If the function is a global function or a lambda expression in the same assembly,
+                    instead of creating a new thread context,
+                    the current stack will be use to store the new stack frame for this function.
+                </p>
             </topic>
             <topic>
                 <title>InvokeMethod(method, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the object along with a specified number of stack values as arguments from the stack,
+                    run the specified method on that object with arguments,
+                    push the return value to the stack.
+                </p>
+                <p>
+                    If the method is implemented by another piece of Workflow script in the same assembly,
+                    instead of creating a new thread context,
+                    the current stack will be use to store the new stack frame for this function.
+                    For non-static method,
+                    the object will becomes the only captured value.
+                </p>
             </topic>
             <topic>
                 <title>InvokeEvent(event, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the object along with a specified number of stack values as arguments from the stack,
+                    run the specified event on that object with arguments,
+                    push <b>null</b> as the return value to the stack.
+                </p>
             </topic>
             <topic>
                 <title>InvokeBaseCtor(method, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the object along with a specified number of stack values as arguments from the stack,
+                    run the specified method on that object with arguments,
+                    push <b>null</b> as the return value to the stack.
+                </p>
+                <p>
+                    This instruction is used in classes that defined using Workflow script.
+                </p>
+                <p>
+                    If the base constructor is implemented by another piece of Workflow script in the same assembly,
+                    instead of creating a new thread context,
+                    the current stack will be use to store the new stack frame for this function.
+                </p>
+                <p>
+                    If the base constructor is implemented by another piece of Workflow script in another assembly,
+                    the base constructor will be applied to the object directly.
+                </p>
+                <p>
+                    If the base constructor is implemented by C++,
+                    aggregation will be used to bind the object and the created C++ instance.
+                </p>
             </topic>
             <topic>
                 <title>AttachEvent(event)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the function
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IEventHandler>) value of the event handler
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the callback function and the object from the stack,
+                    attach the callback function to the specified event of the object,
+                    push the event handler to the stack.
+                </p>
             </topic>
             <topic>
                 <title>DetachEvent(event)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IEventHandler>) value of the event handler
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (bool) value of detaching result
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the event handler and the object from the stack,
+                    detach the event handler from the specified event of the object.
+                    <b>true</b> will be pushed to the stack if the detaching succeeds.
+                </p>
             </topic>
         </topic>
         <topic>
