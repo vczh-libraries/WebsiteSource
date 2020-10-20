@@ -1,2 +1,26 @@
 <reference>
+  <article name="Code Generation Configuration" file="cgc"/>
+  <article name="Cross XML Resource References" file="cxrr"/>
+  <article name="Folders and Resources" file="dom"/>
+  <article name="<Text>" file="tag_text"/>
+  <article name="<Image>" file="tag_image"/>
+  <article name="<Xml>" file="tag_xml"/>
+  <article name="<Doc>" file="tag_doc"/>
+  <article name="<Script>" file="tag_script"/>
+  <article name="<Instance>" file="tag_instance">
+    <article name="Root Instance" file="instance/root_instance"/>
+      <article name="<Window>" file="instance/root_windows">
+      <article name="<CustomControl>" file="instance/root_custom_controls">
+      <article name="Templates" file="instance/root_templates">
+      <article name="<ThemeTemplates>" file="instance/root_dtemplates">
+    </article>
+    <article name="Child Instances" file="instance/child_instances"/>
+    <article name="Properties" file="instance/properties"/>
+    <article name="Events" file="instance/events"/>
+    <article name="Using Instances in Default Namespaces" file="instance/instance_default"/>
+    <article name="Using Instances in Non-Default Namespaces" file="instance/instance_non_default"/>
+  </article>
+  <article name="<InstanceStyle>" file="tag_instancestyle"/>
+  <article name="<Animation>" file="tag_animation"/>
+  <article name="<LocalizedStrings>" file="tag_localizedstrings"/>
 </reference>
