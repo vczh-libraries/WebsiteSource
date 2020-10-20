@@ -62,6 +62,9 @@
     <article name="GacUI Components" file="gacui/components/home">
       <link pathPrefix="gacui/components" filePrefix="" file="gacui/components/entry.xml"/>
     </article>
+    <article name="Advanced Topics" file="gacui/advanced/home">
+      <link pathPrefix="gacui/advanced" filePrefix="" file="gacui/advanced/entry.xml"/>
+    </article>
     <article name="References" file="gacui/ref">
       <link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/>
     </article>

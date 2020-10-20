@@ -1,2 +1,7 @@
 <reference>
+  <article name="Elements" file="elements"/>
+  <article name="Compositions" file="compositions"/>
+  <article name="Controls" file="controls"/>
+  <article name="Control Templates" file="ctemplates"/>
+  <article name="Item Templates" file="itemplates"/>
 </reference>
