@@ -8,11 +8,11 @@
   <article name="<Doc>" file="tag_doc"/>
   <article name="<Script>" file="tag_script"/>
   <article name="<Instance>" file="tag_instance">
-    <article name="Root Instance" file="instance/root_instance"/>
-      <article name="<Window>" file="instance/root_windows">
-      <article name="<CustomControl>" file="instance/root_custom_controls">
-      <article name="Templates" file="instance/root_templates">
-      <article name="<ThemeTemplates>" file="instance/root_dtemplates">
+    <article name="Root Instance" file="instance/root_instance">
+      <article name="<Window>" file="instance/root_windows"/>
+      <article name="<CustomControl>" file="instance/root_custom_controls"/>
+      <article name="Templates" file="instance/root_templates"/>
+      <article name="<ThemeTemplates>" file="instance/root_dtemplates"/>
     </article>
     <article name="Child Instances" file="instance/child_instances"/>
     <article name="Properties" file="instance/properties"/>
