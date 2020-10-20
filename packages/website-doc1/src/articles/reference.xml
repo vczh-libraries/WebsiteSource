@@ -52,6 +52,16 @@
     </article>
   </article>
   <article name="GacUI" file="gacui/home">
+    <article name="Running a GacUI Application" file="gacui/running"/>
+    <article name="Knowledge Base" file="gacui/kb/home">
+      <link pathPrefix="gacui/kb" filePrefix="" file="gacui/kb/entry.xml"/>
+    </article>
+    <article name="GacUI XML Resource" file="gacui/xmlres/home">
+      <link pathPrefix="gacui/xmlres" filePrefix="" file="gacui/xmlres/entry.xml"/>
+    </article>
+    <article name="GacUI Components" file="gacui/components/home">
+      <link pathPrefix="gacui/components" filePrefix="" file="gacui/components/entry.xml"/>
+    </article>
     <article name="References" file="gacui/ref">
       <link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/>
     </article>

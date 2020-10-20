@@ -1,5 +1,3 @@
 code .;
-..\..\..\Document\Tools\CppDoc\CppDoc.sln;
-..\..\..\Workflow\Test\UnitTest\UnitTest.sln;
-Start-Process http://localhost:8080/doc/current/workflow/lang.html;
+Start-Process http://localhost:8080/doc/current/gacui/home.html;
 npm run start;
