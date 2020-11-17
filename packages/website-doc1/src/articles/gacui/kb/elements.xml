@@ -2,7 +2,68 @@
     <topic>
         <title>Elements</title>
         <p>
-            The page is under construction.
+            GacUI offer a rich set of predefined elements including:
+            <ul>
+			    <li><b>SolidBorder</b></li>
+			    <li><b>SolidBackground</b></li>
+			    <li><b>GradientBackground</b></li>
+			    <li><b>FocusRectangle</b></li>
+			    <li><b>Gui3DBorderElement</b></li>
+			    <li><b>Gui3DSplitterElement</b></li>
+			    <li><b>InnerShadow</b></li>
+			    <li><b>SolidLabel</b></li>
+			    <li><b>ImageFrame</b></li>
+			    <li><b>Polygon</b></li>
+            </ul>
+        </p>
+        <p>
+            Before placing an element,
+            a composition is required to be placed at the expected location,
+            and the element will fill the whole area of that composition.
+            When a composition moves,
+            the element is also going to move.
+            The element is also able to set a minimum size constraint to the composition.
+            If every compositions are configured correctly,
+            eventually it sets a calculated constraint to the whole window.
+        </p>
+        <p>
+            Usually when decorations are needed,
+            control templates are always highly recommended if decorations respond to user interactions.
+            If existing controls do not satisfy the requirement,
+            custom controls with control templates are also recommended,
+            especially when the application is expected to have multiple skin.
+            Control templates are easy to maintain.
+        </p>
+        <p>
+            The <b>SolidLabel</b> element is also very similar to the <b>Label</b> control.
+            But as what is mentioned above,
+            a typical scenario to use <b>Label</b> controls instead of <b>SolidLabel</b> elements is making hyperlinks.
+            Hyperlink reacts to user interactions,
+            the decoration (usually underscores or colors) also reacts to user interactions.
+            So this is better to be made as a control template for <b>Label</b> controls.
+        </p>
+        <p>
+            Another advantages for control templates is that,
+            the same control template can be shared with multiple instances of controls.
+        </p>
+        <p>
+            Only when control templates do not fit your need,
+            you are recommended to use elements directly.
+        </p>
+        <p>
+            <img src="/gacui/kb_elements.gif"/>
+        </p>
+        <p>
+            There are also <b>GuiColorizedTextElement</b> and <b>DocumentElement</b>.
+            These two elements offer full featured text rendering for code and document.
+            But they are not designed to be used directly,
+            instead you are expected to use the follow controls:
+            <ul>
+			    <li><b>SinglelineTextBox</b></li>
+			    <li><b>MultilineTextBox</b></li>
+			    <li><b>DocumentLabel</b></li>
+			    <li><b>DocumentViewer</b></li>
+            </ul>
         </p>
     </topic>
 </article>
