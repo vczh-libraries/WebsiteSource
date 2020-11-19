@@ -9,7 +9,7 @@
                 <li><b>Flow</b> + <b>FlowItem</b>: Locale children from one side to another, and create a new line when the space is not enough.</li>
                 <li><b>Table</b> + <b>Cell</b> + <b>RowSplitter</b> + <b>ColumnSplitter</b>: Local children inside a table with sizing configuration of rows and columns.</li>
                 <li><b>SharedSizeRoot</b> + <b>SharedSizeItem</b>: Categorize items inside a root, and keep items in the same size if they are in the same category</li>
-                <li><b>Responsive</b> series: Locale children in different ways according to the size of the parent.</li>
+                <li><b>ResponsiveView</b> series: Locale children in different ways according to the size of the parent.</li>
             </ul>
         </p>
         <topic>
@@ -28,10 +28,7 @@
             <title>SharedSize</title>
         </topic>
         <topic>
-            <title>Responsive</title>
-            <topic>
-                <title>ResponsiveView</title>
-            </topic>
+            <title>ResponsiveView</title>
             <topic>
                 <title>ResponsiveShared</title>
             </topic>

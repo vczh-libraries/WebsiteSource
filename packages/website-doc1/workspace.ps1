@@ -1,6 +1,8 @@
 code .;
 ..\..\..\GacUI\Test\GacUISrc\GacUISrc.sln
-pushd ..\..\..\Release\SampleForDoc\GacUI
+pushd ..\..\..\Release
+code .
+cd SampleForDoc\GacUI
 .\GacUI.sln
 code .
 popd
