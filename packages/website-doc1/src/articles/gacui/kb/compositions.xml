@@ -1,8 +1,52 @@
-<article>
+<article index="true">
     <topic>
         <title>Compositions</title>
         <p>
-            The page is under construction.
+            GacUI offer a rich set of predefined compositions including:
+            <ul>
+                <li><b>Bounds</b>: Allow specifying absolute or relation location to the parent.</li>
+                <li><b>Stack</b> + <b>StackItem</b>: Locate children from one side to another.</li>
+                <li><b>Flow</b> + <b>FlowItem</b>: Locale children from one side to another, and create a new line when the space is not enough.</li>
+                <li><b>Table</b> + <b>Cell</b> + <b>RowSplitter</b> + <b>ColumnSplitter</b>: Local children inside a table with sizing configuration of rows and columns.</li>
+                <li><b>SharedSizeRoot</b> + <b>SharedSizeItem</b>: Categorize items inside a root, and keep items in the same size if they are in the same category</li>
+                <li><b>Responsive</b> series: Locale children in different ways according to the size of the parent.</li>
+            </ul>
         </p>
+        <topic>
+            <title>Bounds</title>
+        </topic>
+        <topic>
+            <title>Stack</title>
+        </topic>
+        <topic>
+            <title>Flow</title>
+        </topic>
+        <topic>
+            <title>Table</title>
+        </topic>
+        <topic>
+            <title>SharedSize</title>
+        </topic>
+        <topic>
+            <title>Responsive</title>
+            <topic>
+                <title>ResponsiveView</title>
+            </topic>
+            <topic>
+                <title>ResponsiveShared</title>
+            </topic>
+            <topic>
+                <title>ResponsiveFixed</title>
+            </topic>
+            <topic>
+                <title>ResponsiveStack</title>
+            </topic>
+            <topic>
+                <title>ResponsiveGroup</title>
+            </topic>
+            <topic>
+                <title>ResponsiveContainer</title>
+            </topic>
+        </topic>
     </topic>
 </article>
