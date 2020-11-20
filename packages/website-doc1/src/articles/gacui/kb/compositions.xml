@@ -15,15 +15,27 @@
         </p>
         <topic>
             <title>Bounds</title>
+            <p>
+                <img src="/gacui/kb_compositions_bounds.gif"/>
+            </p>
         </topic>
         <topic>
             <title>Stack</title>
+            <p>
+                <img src="/gacui/kb_compositions_stack.gif"/>
+            </p>
         </topic>
         <topic>
             <title>Flow</title>
+            <p>
+                <img src="/gacui/kb_compositions_flow.gif"/>
+            </p>
         </topic>
         <topic>
             <title>Table</title>
+            <p>
+                <img src="/gacui/kb_compositions_table.gif"/>
+            </p>
         </topic>
         <topic>
             <title>SharedSize</title>
