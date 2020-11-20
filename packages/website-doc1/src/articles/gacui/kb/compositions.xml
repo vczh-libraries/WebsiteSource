@@ -7,10 +7,10 @@
                 <li><b>Bounds</b>: Allow specifying absolute or relation location to the parent.</li>
                 <li><b>Stack</b> + <b>StackItem</b>: Locate children from one side to another.</li>
                 <li><b>Flow</b> + <b>FlowItem</b>: Locale children from one side to another, and create a new line when the space is not enough.</li>
-                <li><b>RepeatStack</b> and <b>RepeatFlow</b>: <b>Stack</b> and <b>Flow</b> with data binding, which create <b>StackItem</b> and <b>FlowItem</b> by observing the changing of a collection.</li>
+                <li><b>RepeatStack</b> and <b>RepeatFlow</b>: <b>Stack</b> and <b>Flow</b> with data binding, which maintain <b>StackItem</b> and <b>FlowItem</b> in real-time by observing a collection.</li>
                 <li><b>Table</b> + <b>Cell</b> + <b>RowSplitter</b> + <b>ColumnSplitter</b>: Local children inside a table with sizing configuration of rows and columns.</li>
                 <li><b>SharedSizeRoot</b> + <b>SharedSizeItem</b>: Categorize items inside a root, and keep items in the same size if they are in the same category</li>
-                <li><b>ResponsiveView</b> series: Locale children in different ways according to the size of the parent.</li>
+                <li><b>Responsive</b> series: Locale children in different ways according to the size of the parent.</li>
             </ul>
         </p>
         <topic>
@@ -29,22 +29,7 @@
             <title>SharedSize</title>
         </topic>
         <topic>
-            <title>ResponsiveView</title>
-            <topic>
-                <title>ResponsiveShared</title>
-            </topic>
-            <topic>
-                <title>ResponsiveFixed</title>
-            </topic>
-            <topic>
-                <title>ResponsiveStack</title>
-            </topic>
-            <topic>
-                <title>ResponsiveGroup</title>
-            </topic>
-            <topic>
-                <title>ResponsiveContainer</title>
-            </topic>
+            <title>Responsive series</title>
         </topic>
     </topic>
 </article>
