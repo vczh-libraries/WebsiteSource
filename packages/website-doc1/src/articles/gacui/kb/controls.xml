@@ -163,5 +163,23 @@
                 </li>
             </ul>
         </p>
+        <topic>
+            <title>Toolstrip Controls</title>
+            <p>
+                <img src="/gacui/kb_controls_toolstrip.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Ribbon Controls</title>
+            <p>
+                <img src="/gacui/kb_controls_ribbon.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>DataGrid</title>
+            <p>
+                <img src="/gacui/kb_controls_datagrid.gif"/>
+            </p>
+        </topic>
     </topic>
 </article>
