@@ -88,11 +88,19 @@ export function trimEmptyLines(cdataContainer: Element): string {
         throw new Error(`<${cdataContainer.name}> should not be empty.`);
     }
 
-    if (cdataContainer.elements.length !== 1 || cdataContainer.elements[0].type !== 'cdata') {
-        throw new Error(`Exactly one cdata should exist in <${cdataContainer.name}>.`);
+    if (cdataContainer.elements.length === 0) {
+        throw new Error(`There should be at least one cdata in <${cdataContainer.name}>.`);
     }
 
-    const lines = (<string>cdataContainer.elements[0].cdata).split(/\r?\n/);
+    let cdataText = '';
+    for (const cdata of cdataContainer.elements) {
+        if (cdata.type !== 'cdata') {
+            throw new Error(`Only cdata could exist in <${cdataContainer.name}>.`);
+        }
+        cdataText += cdata.cdata;
+    }
+
+    const lines = cdataText.split(/\r?\n/);
     while (lines.length > 0) {
         if (/^\s*$/.test(lines[0])) {
             lines.shift();

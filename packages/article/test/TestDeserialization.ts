@@ -237,6 +237,59 @@ int main()
     assert.deepStrictEqual(parseArticle(input), output);
 });
 
+test(`Multiple cdata program`, () => {
+    const input = `
+<article>
+    <topic>
+        <title>Article</title>
+        <p>
+            <program>
+                <code>
+                    <![CDATA[
+#include <iostream>
+using namespace std;
+]]><![CDATA[
+int main()
+{
+    cout << "Hello, world!";
+    return 0;
+}
+                    ]]>
+                </code>
+            </program>
+        </p>
+    </topic>
+</article>
+`;
+    const output: Article = {
+        index: false,
+        numberBeforeTitle: false,
+        topic: {
+            kind: 'Topic',
+            title: 'Article',
+            content: [
+                {
+                    kind: 'Paragraph',
+                    content: [
+                        {
+                            kind: 'Program',
+                            code: `#include <iostream>
+using namespace std;
+
+int main()
+{
+    cout << "Hello, world!";
+    return 0;
+}`.split(/\r?\n/).join(EOL)
+                        }
+                    ]
+                }
+            ]
+        }
+    };
+    assert.deepStrictEqual(parseArticle(input), output);
+});
+
 test(`Complex program`, () => {
     const input = `
 <article>

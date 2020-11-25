@@ -2,7 +2,101 @@
     <topic>
         <title>Control Templates</title>
         <p>
-            The page is under construction.
+            Control templates change controls' outfit,
+            and they are working based on data bindings.
+        </p>
+        <p>
+            Controls have their own control template types.
+            For example, <b>SelectableButton</b> needs <b>SelectableButtonTemplate</b>.
+            Any derived classes of <b>SelectableButtonTemplate</b> is acceptable,
+            but extra members will be ignored.
+        </p>
+        <p>
+            A control template has input properties and output properties.
+            Input properties are for data binding,
+            when the control's state is changed,
+            these properties will be changed,
+            and the control template reacts to these properties and changes how it looks,
+            for example, some colors.
+            Output properties are configuration to the control's outfit related behavior,
+            almost all of them will only be read once,
+            so changing them in runtime takes no effect.
+        </p>
+        <p>
+            Here we demo how to write a control template for <b>SelectableButton</b>.
+            When the mouse is hovering on the button,
+            it becomes brighter.
+            When the button is selected,
+            it becomes less brighter.
+        </p>
+        <p>
+            These are properties in <b>ControlTemplate</b>:
+            <ul>
+                <li>
+                    <b>Input Properties:</b>
+                    <ul>
+                        <li><b>Focused</b>: True when the control is focused.</li>
+                        <li><b>VisuallyEnabled</b>: Trhe when the control is enabled. It requires all parent controls to be enabled.</li>
+                        <li><b>Font</b>: The control's font. If a font is not associated to the control, it will be the font from a parent control.</li>
+                        <li><b>Context</b>: The control's <b>Context</b> property.</li>
+                        <li><b>Text</b>: The control's <b>Text</b> property.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Output Properties:</b>
+                    <ul>
+                        <li><b>ContainerComposition</b>: A composition for control's children, anything put in &lt;SelectableButton&gt;&lt;/SelectableButton&gt; will be in this composition.</li>
+                        <li><b>FocusableComposition</b>: A composition for receiving keyboard events. It works only when the control is focusable.</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            These are properties in <b>ButtonTemplate</b> and <b>SelectableButtonTemplate</b>:
+            <ul>
+                <li>
+                    <b>Input Properties:</b>
+                    <ul>
+                        <li><b>State</b>: The button's state, can be <b>Normal</b>, <b>Active</b> or <b>Pressed</b>.</li>
+                        <li><b>Selected</b>: True when the button is selected.</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            We can use all of them to create a control template for <b>SelectableButton</b>:
+            <program><code><![CDATA[
+                <Instance ref.Class="sample::TabHeaderButtonTemplate">
+                  <SelectableButtonTemplate ref.Name="self" MinSizeLimitation="LimitToElementAndChildren">
+                    <Bounds AlignmentToParent="left:0 top:0 right:0 bottom:0">
+                      <SolidBackground>
+                        <att.Color-bind><![CDATA[
+                          cast Color (
+                            not self.VisuallyEnabled ? "#00000000" :
+                            self.State == ButtonState::Pressed ? "#3D3D3D" :
+                            self.State == ButtonState::Active ? "#808080" :
+                            self.Selected ? "#3D3D3D" :
+                            "#00000000"
+                          )
+                        ]]]]><![CDATA[>]]><![CDATA[</att.Color-bind>
+                      </SolidBackground>
+                    </Bounds>
+                    <Bounds AlignmentToParent="left:0 top:0 right:0 bottom:0">
+                      <att.Visible-bind>self.Focused</att.Visible-bind>
+                      <FocusRectangle/>
+                    </Bounds>
+                    <Bounds AlignmentToParent="left:1 top:1 right:1 bottom:1" MinSizeLimitation="LimitToElement">
+                      <SolidLabel Text-bind="self.Text" Font-bind="self.Font">
+                        <att.Color-bind><![CDATA[
+                          cast Color (
+                            self.VisuallyEnabled ? "#FFFFFF" : "808080"
+                          )
+                        ]]]]><![CDATA[>]]><![CDATA[</att.Color-bind>
+                      </SolidLabel>
+                    </Bounds>
+                  </SelectableButtonTemplate>
+                </Instance>
+            ]]></code></program>
         </p>
     </topic>
 </article>
