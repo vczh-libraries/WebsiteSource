@@ -98,5 +98,54 @@
                 </Instance>
             ]]></code></program>
         </p>
+        <p>
+            And then a window containing three check boxes with this control template:
+            <program><code><![CDATA[
+                <Instance ref.Class="sample::MainWindow" ref.Styles="res://MainWindow/SharedStyle">
+                  <Window Text="kb_ctemplates" IconVisible="true" ClientSize="x:640 y:480">
+                    <att.BoundsComposition-set PreferredMinSize="x:480 y:320"/>
+                      <Stack Direction="Vertical" MinSizeLimitation="LimitToElementAndChildren" AlignmentToParent="left:5 top:5 right:-1 bottom:-1" Padding="5">
+                        <StackItem><CheckBox Text="Button 1"/></StackItem>
+                        <StackItem><CheckBox Text="Button 2"/></StackItem>
+                        <StackItem><CheckBox Text="Button 3"/></StackItem>
+                      </Stack>
+                  </Window>
+                </Instance>
+            ]]></code></program>
+        </p>
+        <p>
+            With a style to assign control templates to all check boxes:
+            <program><code><![CDATA[
+                <Styles>
+                  <Style ref.Path="//CheckBox">
+                    <att.ControlTemplate>sample::TabHeaderButtonTemplate</att.ControlTemplate>
+                    <att.BoundsComposition-set AlignmentToParent="left:0 top:0 right:0 bottom:0"/>
+                  </Style>
+                </Styles>
+            ]]></code></program>
+        </p>
+        <p>
+            Finally we get:
+        </p>
+        <p>
+            <img src="/gacui/kb_ctemplates_button.gif"/>
+        </p>
+        <p>
+            With this new control template,
+            we can create a more complex control template for tab control.
+        </p>
+        <p>
+            <b>Tab</b> needs <b>TabTemplate</b>,
+            and it has two important properties: <b>Commands</b> and <b>TabPages</b>.
+            These are all input properties.
+            <b>Commands</b> is an interface with a method <b>ShowTab</b> for activate a tab page.
+            <b>TabPages</b> is an observable collection for all tab pages in runtime.
+        </p>
+        <p>
+            By binding <b>TabPages</b> to a <b>RepeatStack</b>,
+            we can easily create a list of buttons for each tab pages.
+            When tab pages are inserted to or removed from the tab control,
+            the list of buttons will be automatically refreshed.
+        </p>
     </topic>
 </article>
