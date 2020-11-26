@@ -78,6 +78,7 @@
                             <li><b>TextList</b>, <b>ListView</b>, <b>TreeView</b>: Organize data into some predefined list structure.</li>
                             <li><b>BindableTextList</b>, <b>BindableListView</b>, <b>BindableTreeView</b>: Bindable version of list controls, which change content automatically when data in a collection is changed.</li>
                             <li><b>BindableDataGrid</b>: Organizes data into a table, in which different cells could have different views and editors.</li>
+                            <li><b>ComboBox</b>: A control with a dropdown that containing a list control.</li>
                         </ul>
                     </p>
                 </li>
