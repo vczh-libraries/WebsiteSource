@@ -2,7 +2,128 @@
     <topic>
         <title>OS Provider</title>
         <p>
-            The page is under construction.
+            OS provider is the key to make GacUI cross-platform.
         </p>
+        <p>
+            If you want to port GacUI to a new platform,
+            this is what you should do:
+        </p>
+        <topic>
+            <title>Implement INativeWindowService and INativeWindow</title>
+            <p>
+                These two interfaces is the key of any OS provider.
+            </p>
+            <p>
+                Typically,
+                an instance of <b>INativeWindow</b> controls a window in the target OS.
+                If multiple graphics API is usable (like GDI and Direct2D on Windows),
+                they usually share the same <b>INativeWindow</b> implementation.
+            </p>
+        </topic>
+        <topic>
+            <title>Implement Element Renderers in Your Favorite Graphics API</title>
+            <p>
+                All elements have their own renderer object.
+                When an element is put in a window,
+                a renderer object will be associated to this element.
+                Instances of the same element type have their own renderer object,
+                they don't share renderer objects.
+                So it is very easy to cache necessary system resources in the renderer.
+            </p>
+            <p>
+                By using <b>DEFINE_GUI_GRAPHICS_RENDERER</b> in your renderer class,
+                all boilerplate code will be ready,
+                and you just need to call the static <b>Register</b> function.
+            </p>
+            <p>
+                When an element needs to be renderered,
+                it will find the registered renderer class,
+                create an instance and associate it to the element itself.
+            </p>
+        </topic>
+        <topic>
+            <title>Implement GuiGraphicsResourceManager and IGuiGraphicsRenderTarget</title>
+            <p>
+                <b>GuiGraphicsResourceManager</b> is the core object for rendering.
+                It is a class, but it has a few abstract functions to override.
+                <b>SetGuiGraphicsResourceManager</b> is required to register your implementation of <b>GuiGraphicsResourceManager</b>.
+            </p>
+            <p>
+                <b>IGuiGraphicsRenderTarget</b> is part of the element interfaces
+                to give all renderer objects access to a window's system resource.
+            </p>
+            <p>
+                Usually you will also need to create an instance of <b>INativeControllerListener</b>,
+                it is a convenient way to track the creating and destroying of <b>INativeWindow</b> instances and keep your code decoupled.
+                When a <b>INativeWindow</b> is created,
+                usually an implementation of <b>IGuiGraphicsRenderTarget</b> will also be created and associated to the window.
+            </p>
+            <p>
+                <b>IGuiGraphicsRenderTarget* GuiGraphicsResourceManager::GetRenderTarget(INativeWindow*)</b>
+                is one of the important function to implement.
+                When a window needs to refresh it self,
+                this function will be called to retrive an implementation of <b>IGuiGraphicsRenderTarget</b> from an <b>INativeWindow</b>.
+                And the render target will be send to all instances of renderer objects for all elements.
+            </p>
+            <p>
+                Since in <b>DEFINE_GUI_GRAPHICS_RENDERER</b> you have already specify
+                the underlying type that is also created by you to implement <b>IGuiGraphicsRenderTarget</b>,
+                whenever a render target is offered to a element renderers,
+                <b>RenderTargetChangedInternal</b> will be called with the real render target type.
+                This is a good chance to recreate system resources that depend on this particular render target.
+                After that,
+                the render target will be stored in the protected <b>renderTarget</b> field.
+            </p>
+            <p>
+                For graphics API like DirectX,
+                sometimes the device context will be invalid and the whole thing must be restarted.
+                In this case,
+                a new render target will be created and set to all renderer objects
+                by calling <b>RenderTargetChangedInternal</b> again.
+            </p>
+        </topic>
+        <topic>
+            <title>Implement INativeController</title>
+            <p>
+                <b>INativeController</b> consists of multiple services:
+                <ul>
+                    <li><b>INativeCallbackService</b>: Managing <b>INativeControllerListener</b> objects so that different components can receive system messages and keep the code decoupled.</li>
+                    <li><b>INativeAsyncService</b>: Managing and executing task queues in multiple threads.</li>
+                    <li><b>INativeResourceService</b>: Accessing cursors and fonts from the OS.</li>
+                    <li><b>INativeClipboardService</b>: Accessing clipboard from the OS.</li>
+                    <li><b>INativeScreenService</b>: Accessing physical monitors from the OS.</li>
+                    <li><b>INativeDialogService</b>: Accessing default dialogs from the OS.</li>
+                    <li><b>INativeImageService</b>: Loading image from files or memories.</li>
+                    <li><b>INativeWindowService</b>: Managing windows using OS's window manager.</li>
+                    <li><b>INativeInputService</b>: Accessing keyboard and global hooks.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Development Note</title>
+            <p>
+                Depending on mouse hooks to control menus is actually not the best idea.
+                <b>INativeInputService::StartHookMouse</b> will be called when the first menu is opened,
+                and <b>INativeInputService::StopHookMouse</b> will be called when the last menu is closed,
+            </p>
+            <p>
+                In Windows,
+                when the hook is running and a break point is hit,
+                the cursor will move so slow so that you are not able to control the mouse.
+                It is highly recommended to comment out code in <b>WindowsInputService::StartHookMouse</b>
+                temporarily when you need to debug something while a menu is opened.
+            </p>
+            <p>
+                I am trying to get rid of mouse hooks but it will not happen in GacUI 1.0.
+            </p>
+            <p>
+                Implementing <b>INativeController</b> is a super complex topic.
+                In order to port GacUI to a new platform,
+                you must know everything in GacUI.
+                It is highly recommended to read the Windows and macOS implementation for <b>INativeController</b> before creating yours.
+                Especially there are GDI and Direct2D support in Windows,
+                it is a good example to know how to allow multiple rendering techniques in one OS.
+            </p>
+        </topic>
     </topic>
 </article>
