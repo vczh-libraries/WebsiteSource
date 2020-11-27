@@ -181,7 +181,7 @@ void GuiMain()
                 When you press F5 in Visual Studio, the working directory is the folder containing the ".vcxproj" file.
                 When you double click the executable file, the working directory is where the executable file is in.
                 You are recommended to <b>Calculate a absolute path based on the full path of the executable file</b>.
-                <a href="https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getmodulefilenamew">GetModuleFileName</a> is useful here.
+                <b>GetApplication()->GetExecutableFolder()</b> is useful here.
             </p>
         </topic>
         <topic>

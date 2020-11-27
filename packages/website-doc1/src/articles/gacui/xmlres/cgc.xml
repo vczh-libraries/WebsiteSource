@@ -10,6 +10,7 @@
                       <Text name="SourceFolder">Source</Text>
                       <Text name="NormalInclude">GacUI.h</Text>
                       <Text name="Name">MyApp</Text>
+                      <Text name="Resource">..\MyApp.bin</Text>
                       ...
                     </Folder>
                     <Folder name="ResX86">...</Folder>
@@ -25,42 +26,23 @@
                 <li>
                     <b>Cpp</b>
                     <ul>
-                        <li>
-                            Basic options:
-                            <ul>
-                                <li><b>Name</b>: Base name of C++ files and contents, could be any valid C++ identifier.</li>
-                                <li><b>SourceFolder</b>: Relative folder to this resource file to store generated C++ files.</li>
-                                <li><b>NormalInclude</b>: Files to include in headers, typically <b>GacUI.h</b>. Multiple files are separated in ";".</li>
-                                <li><b>ReflectionInclude</b> (optional): Files to include in headers when reflection is turned on, typically <b>GacUIReflection.h</b>. Multiple files are separated in ";".</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Others that are not recommended:
-                            <ul>
-                                <li><b>Resource</b> (optional): Output path for a neutral resource binary.</li>
-                                <li><b>Compressed</b> (optional): Like <b>Resource</b> but it is compressed.</li>
-                                <li><b>CppResource</b> (optional): A C++ file to get rid of loading the resource binary at runtime.</li>
-                                <li><b>CppCompressed</b> (optional): Like <b>CppResource</b> but the binary is compressed to reduce file size.</li>
-                            </ul>
-                        </li>
+                        <li><b>Name</b>: Base name of C++ files and contents, could be any valid C++ identifier.</li>
+                        <li><b>SourceFolder</b>: Relative folder to this resource file to store generated C++ files.</li>
+                        <li><b>NormalInclude</b>: Files to include in headers, typically <b>GacUI.h</b>. Multiple files are separated in ";".</li>
+                        <li><b>ReflectionInclude</b> (optional): Files to include in headers when reflection is turned on, typically <b>GacUIReflection.h</b>. Multiple files are separated in ";".</li>
+                        <li><b>Resource</b> (optional): Output path for a neutral resource binary.</li>
+                        <li><b>Compressed</b> (optional, <b>not recommended</b>): Like <b>Resource</b> but it is compressed.</li>
+                        <li><b>CppResource</b> (optional): A C++ file to get rid of loading the resource binary at runtime.</li>
+                        <li><b>CppCompressed</b> (optional): Like <b>CppResource</b> but the binary is compressed to reduce file size.</li>
                     </ul>
                 </li>
                 <li>
                     <b>ResX86</b> or <b>ResX64</b> (optional): Control output paths for x86 or x64 resource binary.
+                    These options are necessary only when you don't want generated C++ code and decide to load resource binaries at runtime with reflection enabled.
                     <ul>
-                        <li>
-                            Basic options:
-                            <ul>
-                                <li><b>Assembly</b>: Resource binary without any Workflow scripts. <b>Reflection</b> is not required but you need to generate C++ code.</li>
-                                <li><b>Resource</b> (optional): Resource binary with UI as Workflow scripts. <b>Reflection</b> is required to load this binary file.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Others that are not recommended:
-                            <ul>
-                                <li><b>Compressed</b> (optional): Like <b>Resource</b> but it is compressed.</li>
-                            </ul>
-                        </li>
+                        <li><b>Assembly</b>: Resource binary without any Workflow scripts. <b>Reflection</b> is not required but you need to generate C++ code.</li>
+                        <li><b>Resource</b> (optional): Resource binary with UI as Workflow scripts. <b>Reflection</b> is required to load this binary file.</li>
+                        <li><b>Compressed</b> (optional): Like <b>Resource</b> but it is compressed.</li>
                     </ul>
                 </li>
                 <li>
@@ -132,8 +114,35 @@
             and it will handle the rest for you.
         </p>
         <p>
-            In order to load a resource binary file,
-            usually
+            Otherwise, use the following code to load a resource binary before creating any windows:
+            <program><code><![CDATA[
+                void GuiMain()
+                {
+                    {
+                        FileStream fileStream(L"MyApp.bin", FileStream::ReadOnly);
+                        GetResourceManager()->LoadResourceOrPending(fileStream);
+                    }
+                    // create the main window and launch ...
+                }
+            ]]></code></program>
+            <b>GetApplication()->GetExecutableFolder()</b>
+            is highly recommended to calculate an absolute path to the resource binary,
+            instead of specifying a relative path in C++.
+        </p>
+        <p>
+            When the resource binary is compressed:
+            <program><code><![CDATA[
+                void GuiMain()
+                {
+                    {
+                        FileStream fileStream(L"MyApp.bin", FileStream::ReadOnly);
+                        LzwDecoder decoder;
+                        DecoderStream decoderStream(fileStream, decoder);
+                        GetResourceManager()->LoadResourceOrPending(decoderStream);
+                    }
+                    // create the main window and launch ...
+                }
+            ]]></code></program>
         </p>
     </topic>
 </article>

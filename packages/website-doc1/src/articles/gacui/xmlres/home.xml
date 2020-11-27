@@ -51,7 +51,8 @@
             </ul>
         </p>
         <p>
-            <b>GacBuild.ps1</b> will generate different resource binaries for x86 and x64 platforms.
+            <b>If you decide to include Workflow script in resource binaries instead of generating C++ files</b>,
+            <a href="https://github.com/vczh-libraries/Release/tree/master/Tools">GacBuild.ps1</a> will generate different resource binaries for x86 and x64 platforms.
             Please be careful to load the correct one.
         </p>
         <p>
