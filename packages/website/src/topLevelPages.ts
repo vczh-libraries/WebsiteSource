@@ -11,11 +11,6 @@ export function loadArticle(filename: string): Article {
 }
 
 const topLevelPages: { [key: string]: { title: string; button: string; article: string } } = {
-    tutorial: {
-        title: 'Tutorial',
-        button: 'Tutorial',
-        article: 'tutorial.xml'
-    },
     demo: {
         title: 'Demos',
         button: 'Demo',

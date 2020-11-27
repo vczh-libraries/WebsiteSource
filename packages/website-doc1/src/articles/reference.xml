@@ -52,7 +52,7 @@
     </article>
   </article>
   <article name="GacUI" file="gacui/home">
-    <article name="Running a GacUI Application" file="gacui/running"/>
+    <article name="Build your first GacUI Application!" file="gacui/running"/>
     <article name="Knowledge Base" file="gacui/kb/home">
       <link pathPrefix="gacui/kb" filePrefix="" file="gacui/kb/entry.xml"/>
     </article>

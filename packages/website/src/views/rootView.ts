@@ -2,7 +2,7 @@ import { html, render } from 'lit-html';
 
 const buttons: [string, string, string][] = [
     ['Home', 'index', 'HOME'],
-    ['Tutorial', 'tutorial', 'TUTORIAL'],
+    ['Tutorial', 'doc/current/gacui/running', 'TUTORIAL'],
     ['Demo', 'demo', 'DEMOS'],
     ['Download', 'download', 'DOWNLOAD'],
     ['Document', 'document', 'DOCUMENT'],
