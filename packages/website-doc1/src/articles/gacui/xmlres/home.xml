@@ -2,7 +2,64 @@
     <topic>
         <title>GacUI XML Resource</title>
         <p>
-            The page is under construction.
+            <b>GacUI XML Resource</b> is a very convenient way to create GacUI application.
+        </p>
+        <p>
+            <b>GacBuild.ps1</b> will perform increment building
+            on multiple GacUI resource files that are depending on each other.
+            There are two options in general to use the compiled resource files:
+            <ul>
+                <li>
+                    <p>
+                        Compile everything in a binary file,
+                        <ul>
+                            <li>
+                                pros:
+                                It offers a huge flexibility of developing UI,
+                                UI can be loaded in runtime dynamically.
+                            </li>
+                            <li>
+                                cons:
+                                The UI is running on a script engine,
+                                it is significantly slower that C++.
+                                and it also requires the application to enable <a href="/vlppreflection/home.html">reflection</a>,
+                                which usually cause the executable file to grow by 20MB.
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Compile only resource in a binary file and generate C++ files for UI,
+                        <ul>
+                            <li>
+                                pros:
+                                All UI are converted to C++ code,
+                                the application can statically link to them and keep a high performance in runtime.
+                                And it offers an option to disable <a href="/vlppreflection/home.html">reflection</a>,
+                                which significantly reduces the size of the executable file.
+                            </li>
+                            <li>
+                                cons:
+                                By disabling reflection,
+                                Workflow script is able to control UI,
+                                everything should be known at compile time and be in C++.
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>GacBuild.ps1</b> will generate different resource binaries for x86 and x64 platforms.
+            Please be careful to load the correct one.
+        </p>
+        <p>
+            If you want to keep your executable file stand-alone,
+            there is an extra option to generate the resource binary into the C++ code.
+            In this case,
+            you don't have to load the resource binary from file,
+            the generated C++ code will take care it for you.
         </p>
     </topic>
 </article>
