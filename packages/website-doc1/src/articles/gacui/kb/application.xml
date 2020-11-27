@@ -2,7 +2,131 @@
     <topic>
         <title>Application</title>
         <p>
-            The page is under construction.
+            A GacUI application requires a user defined function <b>void GuiMain(void)</b>.
+            In order to start a GacUI application,
+            one of the following functions must be called in entry function.
+        </p>
+        <p>
+            For Windows,
+            <b>SetupWindowsDirect2DRenderer</b> or <b>SetupWindowsGDIRenderer</b> must be called in <b>WinMain</b>,
+            which initialize necessary objects and call <b>GuiMain</b> with different rendering techniques.
+        </p>
+        <p>
+            For macOS,
+            <b>SetupOSXCoreGraphicsRenderer</b> must be called in <b>main</b>.
+            Porting to macOS is not completed yet.
+        </p>
+        <p>
+            When <b>GuiMain</b> is called,
+            the <b>GuiApplication</b> object is ready,
+            which can be accessed by the <b>GetApplication</b> function.
+            A typical <b>GuiMain</b> function looks like:
+            <program><code><![CDATA[
+                void GuiMain()
+                {
+                    // 1. create a window, anything that inherits from GuiWindow works
+                    MyWindow myWindow;
+
+                    // 2. decide where to show the window, it could be any location in any monitor you like
+                    myWindow.MoveToScreenCenter()
+
+                    // 3. show the window as a main window of the application
+                    GetApplication()->Run(&myWindow);
+
+                    // 4. when the main window is closed, it gets here
+                }
+            ]]></code></program>
+        </p>
+        <p>
+            <b>RegisterTheme</b> must be called before creating any UI object to
+            <a href="/gacui/kb/dtemplates.html">register a set of default control templates</a>
+            for all controls.
+            <b>RegisterTheme</b> and <b>UnregisterTheme</b> can be used to manage all registered themes.
+            A single theme object is not required to provide control templates for all controls,
+            but all registered themes must cover all controls.
+            The latest registered theme has the top priority.
+        </p>
+        <p>
+            When a theme is created using <b>GacUI XML Resource</b>,
+            <b>RegisterTheme</b> for this theme is required to call after the associated resource file is loaded.
+            It is difficult to know the exact timing,
+            so GacUI provideds an efficient plugin system to solve this problem.
+            You can create a plugin to register this theme and declare that this theme is depended on its resource like this:
+            <program><code><![CDATA[
+                class DefaultSkinPlugin : public Object, public IGuiPlugin
+                {
+                public:
+
+                	GUI_PLUGIN_NAME(Custom_DefaultSkinPlugin)
+                	{
+                		GUI_PLUGIN_DEPEND(GacGen_DarkSkinResourceLoader);
+                	}
+
+                	void Load()override
+                	{
+                		RegisterTheme(MakePtr<darkskin::Theme>());
+                	}
+
+                	void Unload()override
+                	{
+                	}
+                };
+                GUI_REGISTER_PLUGIN(DefaultSkinPlugin)
+            ]]></code></program>
+        </p>
+        <p>
+            When the default control templates and <b>GuiMain</b> are ready,
+            it is time to create a very simple <b>WinMain</b> to start the application:
+            <program><code><![CDATA[
+                int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int CmdShow)
+                {
+                    return SetupWindowsDirect2DRenderer();
+                }
+            ]]></code></program>
+        </p>
+        <p>
+            All GacUI objects must only be used in the UI thread.
+            In order to make communications between threads possible,
+            <b>GuiApplication</b> provides all following functions to run tasks:
+            <ul>
+                <li><b>IsInMainThread</b>: Check if the current thread is the UI thread or not.</li>
+                <li><b>InvokeAsync</b>: Execute a task in a random background thread.</li>
+                <li><b>InvokeInMainThread</b>: Execute a task in the UI thread.</li>
+                <li><b>InvokeInMainThreadAndWait</b>: Execute a task in the UI thread and wait for its completion.</li>
+                <li><b>DelayExecute</b>: Execute a task in a random background thread after a specified amount of time.</li>
+                <li><b>DelayExecuteInMainThread</b>: Execute a task in the UI thread after a specified amount of time.</li>
+                <li><b>RunGuiTask</b>: Execute a task in the UI thread and wait for its completion.</li>
+            </ul>
+        </p>
+        <p>
+            <b>InvokeInMainThread</b> can be called in any thread.
+            This function queues a task,
+            which will be executed later.
+            It is OK to call this function in the UI thread,
+            which is a very common pattern to trigger something immediately but not exactly "now".
+        </p>
+        <p>
+            For example,
+            when you put a button in a tab header to remove the tab page,
+            you cannot just remove and delete the tab page in the button's <b>Click</b> event,
+            because there are still other events to trigger after this <b>Click</b> event,
+            which requires the button and all ancestors to be alive.
+            In this case,
+            you can ask <b>InvokeInMainThread</b> to delete the tab header,
+            it will happen after all required things is done for this particular click,
+            and <b>SafeDeleteControl</b> will just work.
+        </p>
+        <p>
+            <b>InvokeInMainThreadAndWait</b> cannot be called in the UI thread.
+            If you do this,
+            it will complain by throwing an exception.
+            You can also ask this function to return if the task does not complete in the specified amount of time.
+            In this case, the task will not be canceled.
+        </p>
+        <p>
+            <b>RunGuiTask</b> works like <b>InvokeInMainThreadAndWait</b>,
+            but it is OK to call in the UI thread.
+            It will return only after the task is completed.
         </p>
     </topic>
 </article>
