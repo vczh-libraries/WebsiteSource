@@ -2,7 +2,176 @@
     <topic>
         <title>Folders and Resources</title>
         <p>
-            The page is under construction.
+            A <b>GacUI XML Resource</b> begins with a <b>&lt;Resource/&gt;</b> tag as a root folder.
+            In this root folder,
+            there can be multiple folders and resource items.
+        </p>
+        <p>
+            Folders and resource items can be stored in other files.
+        </p>
+        <p>
+            The <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/TextEditor/UI">TextEditor</a> tutorial
+            is an exmaple of how to create folders in different files:
+            <program><code><![CDATA[
+                <?xml version="1.0" encoding="utf-8"?>
+                <Resource>
+                  <Folder name="GacGenConfig">
+                    <Folder name="Cpp">
+                      <Text name="SourceFolder">Source</Text>
+                      <Text name="Resource">..\..\UIRes\TextEditor.bin</Text>
+                      <Text name="NormalInclude">..\..\Utilities.h</Text>
+                      <Text name="Name">Demo</Text>
+                    </Folder>
+                  </Folder>
+                  <Folder name="Images" content="Link">Images\Folder.xml</Folder>
+                  <Folder name="AboutWindow" content="Link">AboutWindow.xml</Folder>
+                  <Folder name="FindWindow" content="Link">FindWindow.xml</Folder>
+                  <Folder name="MainWindow" content="Link">MainWindow.xml</Folder>
+                </Resource>
+            ]]></code></program>
+        </p>
+        <p>
+            For creating a folder,
+            use <b>&lt;Folder name="NAME-OF-FOLDER"&gt;&lt;/Folder&gt;</b> and put everything inside the tag.
+        </p>
+        <p>
+            For creating a folder but you want to put the content in another file,
+            use <b>&lt;Folder name="NAME-OF-FOLDER" content="Link"&gt;FOLDER-XML-FILE&lt;/Folder&gt;</b>.
+            In this <b>FOLDER-XML-FILE</b>,
+            use <b>&lt;Folder/&gt;</b> as the root element and put everything in it:
+            <program><code><![CDATA[
+                <?xml version="1.0" encoding="utf-8"?>
+                <Folder>
+                  <Image content="File">New.png</Image>
+                  <Image content="File">NewText.png</Image>
+                  <Image content="File">NewXml.png</Image>
+                  <Image content="File">Open.png</Image>
+                  <Image content="File">Save.png</Image>
+                  <Image content="File">SaveAs.png</Image>
+                  <Image content="File">EditCopy.png</Image>
+                  <Image content="File">EditCut.png</Image>
+                  <Image content="File">EditDelete.png</Image>
+                  <Image content="File">EditFind.png</Image>
+                  <Image content="File">EditPaste.png</Image>
+                  <Image content="File">EditRedo.png</Image>
+                  <Image content="File">EditUndo.png</Image>
+                </Folder>
+            ]]></code></program>
+        </p>
+        <p>
+            Writing a resource item in another file is just like folders,
+            but you need <b>content="File"</b> instead of <b>content="Link"</b>.
+        </p>
+        <p>
+            The <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/ListControls/UI">ListControls</a> tutorial
+            is another exmaple of how to create resource items in different files:
+            <program><code><![CDATA[
+                <Resource>
+                  ...
+
+                  <Instance name="MainWindowResource">
+                    <Instance ref.CodeBehind="false" ref.Class="demo::MainWindow" xmlns:demo="demo::*">
+                      <Window ref.Name="self" Text="ListControls" ClientSize="x:640 y:480">
+                        <att.BoundsComposition-set PreferredMinSize="x:640 y:480"/>
+                        <Tab>
+                          <att.BoundsComposition-set AlignmentToParent="left:5 top:5 right:5 bottom:5"/>
+                          <att.Pages>
+                            <demo:TextListTabPage Alt="T"/>
+                            <demo:ListViewTabPage Alt="L"/>
+                            <demo:TreeViewTabPage Alt="R"/>
+                          </att.Pages>
+                        </Tab>
+                      </Window>
+                    </Instance>
+                  </Instance>
+
+                  <Instance name="TextListTabPageResource" content="File">TextListTabPage.xml</Instance>
+                  <Instance name="ListViewTabPageResource" content="File">ListViewTabPage.xml</Instance>
+                  <Instance name="TreeViewTabPageResource" content="File">TreeViewTabPage.xml</Instance>
+
+                  ...
+                </Resource>
+            ]]></code></program>
+        </p>
+        <p>
+            There is one important thing,
+            to create an <b>&lt;Instance/&gt;</b>,
+            there are two nested <b>&lt;Instance/&gt;</b> tags.
+        </p>
+        <p>
+            The outside one is to declare a resource item.
+            The <b>name</b> attribute is required,
+            and the <b>content</b> attribute is optional.
+            When you just want to write everything in the same file,
+            you don't need to <b>content</b> attribute.
+            When you want to write <b>&lt;Instance/&gt;</b> in another file,
+            you must specify <b>content="File"</b>.
+        </p>
+        <p>
+            The inside one is the content of the resource item.
+            When you want to write <b>&lt;Instance/&gt;</b> in another file,
+            you only need to have to inside <b>&lt;Instance/&gt;</b> in that file.
+            For example,
+            the content of <b>TextListTabPage.xml</b> is:
+            <program><code><![CDATA[
+                <Instance ref.CodeBehind="false" ref.Class="demo::TextListTabPage">
+                  <ref.Members>
+                    <![CDATA[
+                      var counter : int = 0;
+                      var itemsToBind : observe MyTextItem^[] = {};
+                    ]]]]><![CDATA[>]]><![CDATA[
+                  </ref.Members>
+                  <TabPage ref.Name="self" Text="TextList">
+                    ...
+                  </TabPage>
+                </Instance>
+            ]]></code></program>
+        </p>
+        <p>
+            <b>&lt;Image/&gt;</b> is required to write the content in another file,
+            because they are binary files.
+        </p>
+        <p>
+            <b>&lt;Text/&gt;</b> supports both,
+            but since the content of <b>&lt;Text/&gt;</b> is plain text,
+            so when you specify <b>content="File"</b>,
+            the external file will be treated as a text file and everything in that file will become the content.
+        </p>
+        <p>
+            <b>&lt;Xml/&gt;</b> supports both,
+            but since the content of <b>&lt;Xml/&gt;</b> is also Xml,
+            so when you specify <b>content="File"</b>,
+            the external file will be treated as an Xml file and everything in that file will become the content.
+        </p>
+        <p>
+            For any other kinds of resource items,
+            they all have a <b>resource item tag</b> and a <b>resource content tag</b>.
+            These two tags may or may not have the same name:
+            <program><code><![CDATA[
+                <Doc name="NAME">
+                    <Doc">...</Doc>
+                </Doc>
+
+                <Script name="NAME">
+                    <Workflow">...</Workflow>
+                </Script>
+
+                <Instance name="NAME">
+                    <Instance>...</Instance>
+                </Instance>
+
+                <InstanceStyle name="NAME">
+                    <Styles>...</Styles>
+                </InstanceStyle>
+
+                <Animation name="NAME">
+                    <Gradient>...</Gradient>
+                </Animation>
+
+                <LocalizedStrings name="NAME">
+                    <LocalizedStrings>...</LocalizedStrings>
+                </LocalizedStrings>
+            ]]></code></program>
         </p>
     </topic>
 </article>
