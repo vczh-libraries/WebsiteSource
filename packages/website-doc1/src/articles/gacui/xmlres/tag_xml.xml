@@ -26,7 +26,7 @@
             so this piece of code will be much simpler in C++.
         </p>
         <p>
-            First we defne an XML resource item in <b>res://MainWindow/XmlPage/IDE</b>:
+            First we define an XML resource item in <b>res://MainWindow/XmlPage/IDE</b>:
             <program><code><![CDATA[
               <Xml name="IDE">
                 <IDEs>
