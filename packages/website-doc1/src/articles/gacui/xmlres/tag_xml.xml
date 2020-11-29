@@ -6,7 +6,7 @@
             is the sample used in this topic.
         </p>
         <p>
-            <b>&lt;Image/&gt;</b> works like <b>&lt;Text/&gt;</b>,
+            <b>&lt;Xml/&gt;</b> works like <b>&lt;Text/&gt;</b>,
             but there are a few differences:
             <ul>
                 <li><b>content="File"</b> is always required.</li>
