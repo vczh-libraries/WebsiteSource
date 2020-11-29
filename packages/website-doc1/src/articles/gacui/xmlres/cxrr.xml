@@ -11,19 +11,18 @@
             </ul>
         </p>
         <p>
-            Many resource items are compiled to pure Workflow script.
-            Only new types in Workflow scripts can be imported to other resource files.
-        </p>
-        <p>
-            So these items cannot be imported:
+            These items will be removed from the resource binary and cannot be imported:
+            <ul>
+                <li>&lt;InstanceStyle/&gt;</li>
+            </ul>
+            These items can be imported by URI like <b>import-res://RESOURCE-NAME/path/to/the/resource/item</b>:
             <ul>
                 <li>&lt;Text/&gt;</li>
                 <li>&lt;Image/&gt;</li>
                 <li>&lt;Xml/&gt;</li>
                 <li>&lt;Doc/&gt;</li>
-                <li>&lt;InstanceStyle/&gt;</li>
             </ul>
-            But these items can be imported:
+            These items will be removed from the resource binary, but their generated types can be used in resource files that import them:
             <ul>
                 <li>&lt;Script/&gt;</li>
                 <li>&lt;Instance/&gt;</li>
