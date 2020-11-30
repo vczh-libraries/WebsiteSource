@@ -2,6 +2,18 @@
     <topic>
         <title>&lt;LocalizedStrings&gt;</title>
         <p>
+            After a <b>GacUI XML Resource</b> is converted to a resource binary:
+            <ul>
+                <li>This resource does not exist in the resource binary.</li>
+                <li>The equivalent Workflow script will be included in the Workflow assembly part in the resource binary.</li>
+                <li>
+                    If you use the one specified in <b>GacGenConfig/Cpp</b>,
+                    the Workflow assembly is also not included in the resource binary,
+                    because you are supposed to use the generated C++ code.
+                </li>
+            </ul>
+        </p>
+        <p>
             The page is under construction.
         </p>
     </topic>
