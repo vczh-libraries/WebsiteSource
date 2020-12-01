@@ -1,4 +1,4 @@
-<article>
+<article index="true">
     <topic>
         <title>&lt;Doc&gt;</title>
         <p>
@@ -124,74 +124,176 @@
                     ]]></code></program>
                     Overridings only work for predefined styles.
                 </p>
-                <p>
-                    Control templates for <b>DocumentLabel</b> and <b>DocumentViewer</b> can also specify a default style.
-                    For example, here is <b>DarkSkin</b>'s default style for these two controls:
-                    <program><code><![CDATA[
-                        <Style name="#Default-Override">
-                          <color>#FFFFFF</color>
-                        </Style>
-                        <Style name="#Selection-Override">
-                          <color>#FFFFFF</color>
-                          <bkcolor>#007ACC</bkcolor>
-                        </Style>
-                    ]]></code></program>
-                </p>
-                <p>
-                    When a document is loaded to <b>DocumentLabel</b> or <b>DocumentViewer</b>,
-                    all fource default styles (font of the control, default styles of the control template, predefined and overriding) are merged together in the following way.
-                </p>
-                <p>
-                    When we say <b>A + B</b>,
-                    it means we first use the style <b>A</b>,
-                    and then use all properties in <b>B</b> to override the previous result,
-                    and finally get a merged style.
-                </p>
-                <p>
-                    Obviously, there is no difference between left-to-right or right-to-left association.
-                </p>
-                <p>
-                    <b>C</b>, <b>T</b>, <b>D</b> stands for <b>control's Font property</b>, <b>control template</b> and <b>the document</b>.
-                    For example,
-                    <b>#Default[C]</b> means the <b>Font</b> property of the control,
-                    which contains everything except <b>color</b> and <b>bkcolor</b>.
-                </p>
-                <p>
-                    <b>First round</b>: when a document is assigned to a control
-                    <ul>
-                        <li><b>#Default</b> = #Default[D] + #Default-override[D] + #Default[C] + #Default-override[T]</li>
-                        <li><b>#Selection</b> = #Selection[D] + #Selection-override[D] + #Selection-override[T]</li>
-                        <li><b>#Context</b> = #Context[D] + #Context-override[D] + #Context-override[T]</li>
-                        <li><b>#NormalLink</b> = #NormalLink[D] + #NormalLink-override[D] + #NormalLink-override[T]</li>
-                        <li><b>#ActiveLink</b> = #ActiveLink[D] + #ActiveLink-override[D] + #ActiveLink-override[T]</li>
-                    </ul>
-                    We will see that,
-                    the configuration in the control and the control template has a higher priority.
-                    If a document want to apply styles in some text,
-                    it should specify it explicitly (see <b>&lt;Content&gt;</b> for details) instead of trying to override predefined styles.
-                </p>
-                <p>
-                    <b>Second round</b>: when a document is displayed:
-                    <ul>
-                        <li><b>normal text</b>: #Default</li>
-                        <li><b>hyperlink</b>: #Default + #NormalLink</li>
-                        <li><b>active hyperlink</b>: #Default + #ActiveLink</li>
-                        <li><b>selected normal text</b>: #Default + #Selection</li>
-                        <li><b>selected hyperlink</b>: #Default + #NormalLink + #Selection</li>
-                        <li><b>selected active hyperlink</b>: #Default + #ActiveLink + #Selection</li>
-                    </ul>
-                    Active hyperlink is a hyperlink that is under the mouse cursor.
-                    A hyperlink can specify its own normal style and active style,
-                    but if they are not specified,
-                    they become <b>#NormalLink</b> and <b>#ActiveLink</b>
-                </p>
             </topic>
             <topic>
                 <title>&lt;Content&gt;</title>
                 <p>
-                    There are two part of a document: styles and content.
+                    <b>&lt;Content/&gt;</b> consists of zero to multiple <b>&lt;p/&gt;</b> tags.
+                    <b>&lt;p/&gt;</b> has an optional attribute <b>align</b>,
+                    the value of which is one of <b>Left</b>, <b>Center</b> or <b>Right</b>.
+                    This property specify the alignment of the whole paragraph,
+                    the default alignment is <b>Left</b>.
+                </p>
+                <p>
+                    <b>&lt;p/&gt;</b> consists of text.
+                    The syntax of text is:
+                    <program><code><![CDATA[
+                        TEXT ::= ELEMENT
+                             ::= TEXT ELEMENT
+
+                        ELEMENT ::= Character                       // any valid XML character
+                                ::= <br/>                           // \r\n
+                                ::= <sp/>                           // a space character
+                                ::= <tab>                           // a tab character
+                                ::= <object name="NAME"/>           // embed a GacUI object here, will explain later
+                                ::= <img .../>                      // embed an image here, attributes are listed below
+                                ::= <font ...>TEXT</font>           // apply font to text, attributes are listed below
+                                ::= <a ...>TEXT</a>                 // make text to be a hyperlink, attributes are listed below
+                                ::= <b>TEXT</b>                     // bold
+                                ::= <i>TEXT</i>                     // italic
+                                ::= <u>TEXT</u>                     // underline
+                                ::= <s>TEXT</s>                     // strikeline
+                                ::= <ha>TEXT</ha>                   // horizontal antialias
+                                ::= <va>TEXT</va>                   // vertical antialias
+                                ::= <na>TEXT</na>                   // no antialias
+                                ::= <div style="STYLE">TEXT</div>   // apply style to text
+                                ::= <nop/>                          // nothing, use it when it makes your XML looks clean to control spaces
+                                ::= <p>TEXT</p>                     // paragraph that is not in the top level will be ignored, here it becomes TEXT
+                    ]]></code></program>
+                </p>
+                <p>
+                    Attributes of <b>&lt;img/&gt;</b>:
+                    <ul>
+                        <li><b>source</b>: URL of an image resource item, begins with <b>res://</b> or <b>import-res://</b>.</li>
+                        <li><b>width</b>: (optional) override the width of the image.</li>
+                        <li><b>height</b>: (optional) override the height of the image.</li>
+                        <li><b>baseline</b>: (optional) override the baseline of the image.</li>
+                        <li><b>frameIndex</b>: (optional) the frame index of the image, default to 0. Sometimes an image contains multiple frames.</li>
+                    </ul>
+                </p>
+                <p>
+                    Attributes of <b>&lt;font/&gt;</b>:
+                    <ul>
+                        <li><b>face</b>: (optional) name of the font.</li>
+                        <li><b>size</b>: (optional) size of the font in pixel for 96 dpi.</li>
+                        <li><b>color</b>: (optional) color of the text.</li>
+                        <li><b>bkcolor</b>: (optional) background color of the text.</li>
+                    </ul>
+                </p>
+                <p>
+                    Attributes of <b>&lt;a/&gt;</b>:
+                    <ul>
+                        <li><b>href</b>: A hint of the hyperlink. When the hyperlink is clicked, this property will be passed to the control. </li>
+                        <li><b>normal</b>: (optional) The normal style, default to <b>#NormalLink</b>.</li>
+                        <li><b>active</b>: (optional) The active style, default to <b>#ActiveLink</b>.</li>
+                    </ul>
                 </p>
             </topic>
+        </topic>
+        <topic>
+            <title>Applying Styles to Text</title>
+            <p>
+                Control templates for <b>DocumentLabel</b> and <b>DocumentViewer</b> can also specify a default style.
+                For example, here is <b>DarkSkin</b>'s default style for these two controls:
+                <program><code><![CDATA[
+                    <Style name="#Default-Override">
+                        <color>#FFFFFF</color>
+                    </Style>
+                    <Style name="#Selection-Override">
+                        <color>#FFFFFF</color>
+                        <bkcolor>#007ACC</bkcolor>
+                    </Style>
+                ]]></code></program>
+            </p>
+            <p>
+                When a document is loaded to <b>DocumentLabel</b> or <b>DocumentViewer</b>,
+                all fource default styles (font of the control, default styles of the control template, predefined and overriding) are merged together in the following way.
+            </p>
+            <p>
+                When we say <b>A + B</b>,
+                it means we first use the style <b>A</b>,
+                and then use all properties in <b>B</b> to override the previous result,
+                and finally get a merged style.
+            </p>
+            <p>
+                Obviously, there is no difference between left-to-right or right-to-left association.
+            </p>
+            <p>
+                <b>C</b>, <b>T</b>, <b>D</b> stands for <b>control's Font property</b>, <b>control template</b> and <b>the document</b>.
+                For example,
+                <b>#Default[C]</b> means the <b>Font</b> property of the control,
+                which contains everything except <b>color</b> and <b>bkcolor</b>.
+            </p>
+            <p>
+                <b>First round</b>: when a document is assigned to a control
+                <ul>
+                    <li><b>#Default</b> = #Default[D] + #Default-override[D] + #Default[C] + #Default-override[T]</li>
+                    <li><b>#Selection</b> = #Selection[D] + #Selection-override[D] + #Selection-override[T]</li>
+                    <li><b>#Context</b> = #Context[D] + #Context-override[D] + #Context-override[T]</li>
+                    <li><b>#NormalLink</b> = #NormalLink[D] + #NormalLink-override[D] + #NormalLink-override[T]</li>
+                    <li><b>#ActiveLink</b> = #ActiveLink[D] + #ActiveLink-override[D] + #ActiveLink-override[T]</li>
+                </ul>
+                We will see that,
+                the configuration in the control and the control template has a higher priority.
+                If a document want to apply styles in some text,
+                it should specify it explicitly (see <b>&lt;Content&gt;</b> for details) instead of trying to override predefined styles.
+            </p>
+            <p>
+                <b>Second round</b>: when a document is displayed:
+                <ul>
+                    <li><b>normal text</b>: #Default</li>
+                    <li><b>hyperlink</b>: #Default + #NormalLink</li>
+                    <li><b>active hyperlink</b>: #Default + #ActiveLink</li>
+                    <li><b>selected normal text</b>: #Default + #Selection</li>
+                    <li><b>selected hyperlink</b>: #Default + #NormalLink + #Selection</li>
+                    <li><b>selected active hyperlink</b>: #Default + #ActiveLink + #Selection</li>
+                </ul>
+                Active hyperlink is a hyperlink that is under the mouse cursor.
+                A hyperlink can specify its own normal style and active style,
+                but if they are not specified,
+                they become <b>#NormalLink</b> and <b>#ActiveLink</b>
+            </p>
+        </topic>
+        <topic>
+            <title>Space Characters</title>
+            <p>
+                When there are spaces between tags,
+                <ul>
+                    <li>If there are other characters, all spaces (including leading and trailing) are preserved.</li>
+                    <li>If there are only space characters, they are all ignored.</li>
+                </ul>
+            </p>
+            <p>
+                For example, in this paragraph:
+                <program><code><![CDATA[
+                    <p>
+                        <nop>This is a book.<br/></nop>
+                        <nop>It is about GacUI!<br/></nop>
+                    </p>
+                ]]></code></program>
+                The text is <b>This is a book.\r\nIt is about GacUI!\r\n</b>.
+            </p>
+            <p>
+                For example, but in this paragraph:
+                <program><code><![CDATA[
+                    <p>
+                        This is a book.
+                        It is about GacUI!
+                    </p>
+                ]]></code></program>
+                The text is <b>\r\n[many-spaces]This is a book.\r\n[many-spaces]It is about GacUI!\r\n[many-spaces]</b>.
+            </p>
+            <p>
+                The <b>&lt;nop/&gt;...&lt;br/&gt;&lt;nop/&gt;</b> pattern is highly recommended to specify lines in paragraphs.
+                If there is only one line,
+                just skip &lt;br/&gt;.
+            </p>
+        </topic>
+        <topic>
+            <title>Sample Application</title>
+            <p>
+                The page is under construction.
+            </p>
         </topic>
     </topic>
 </article>
