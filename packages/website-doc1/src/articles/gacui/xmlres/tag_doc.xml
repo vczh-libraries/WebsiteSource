@@ -292,7 +292,16 @@
         <topic>
             <title>Sample Application</title>
             <p>
-                The page is under construction.
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditor">DocumentEditor</a>,
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditorRibbon">DocumentEditorRibbon</a> and
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditorToolstrip">DocumentEditorToolstrip</a>
+                are document editors in toolstrip and ribbon.
+            </p>
+            <p>
+                Here we created another sample for
+                <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_xmlres_data/DocPage1.xml">hyperlink and embedded controls</a>:
+            </p>
+            <p>
             </p>
         </topic>
     </topic>
