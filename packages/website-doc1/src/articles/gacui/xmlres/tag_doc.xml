@@ -2,7 +2,196 @@
     <topic>
         <title>&lt;Doc&gt;</title>
         <p>
-            The page is under construction.
+            <b>&lt;Doc/&gt;</b> is a style-based rich document.
         </p>
+        <p>
+            <b>&lt;Doc/&gt;</b> works like <b>&lt;Text/&gt;</b>,
+            but there are a few differences:
+            <ul>
+                <li>It can be assigned to properties that accept <b>presentation::DocumentModel^</b>.</li>
+            </ul>
+        </p>
+        <topic>
+            <title>Syntax</title>
+            <p>
+                Here is a sample of a <b>&lt;Doc/&gt;</b> resource item:
+                <program><code><![CDATA[
+                  <Doc name="Description">
+                    <Doc>
+                      <Content>
+                        <p align="Center">
+                          <div style="Title">
+                            <b>TextEditor by GacUI</b>
+                          </div>
+                        </p>
+                        <p>
+                          <div style="Body">
+                            <nop>Welcome to the demo!</nop>
+                          </div>
+                        </p>
+                        <p>
+                          <div style="Body">
+                            <b>Author: </b>Zihan Chen (vczh)<br/>
+                            <b>Website: </b><a href="http://www.gaclib.net">http://www.gaclib.net</a><br/>
+                            <b>Github: </b><a href="https://github.com/vczh-libraries/Release">https://github.com/vczh-libraries/Release</a><br/>
+                          </div>
+                        </p>
+                      </Content>
+                      <Styles>
+                        <Style name="Content">
+                          <face>Segoe UI</face>
+                        </Style>
+                        <Style name="Title" parent="Content">
+                          <size>24</size>
+                          <b>true</b>
+                        </Style>
+                        <Style name="Body" parent="Content">
+                          <size>14</size>
+                        </Style>
+                      </Styles>
+                    </Doc>
+                  </Doc>
+                ]]></code></program>
+            </p>
+            <p>
+                There are two part of a document: styles and content.
+            </p>
+            <topic>
+                <title>&lt;Styles&gt;</title>
+                <p>
+                    <b>&lt;Styles/&gt;</b> is optional.
+                    <b>&lt;Styles/&gt;</b> consists of zero to multiple <b>&lt;Style/&gt;</b> tags.
+                    A <b>&lt;Style/&gt;</b> looks like:
+                    <program><code><![CDATA[
+                        <Style name="NAME" parent="PARENT-STYLE (optional)">
+                          <face>FONT-NAME</face>
+                          <size>FONT-SIZE in pixel for 96 dpi</size>
+                          <color>TEXT-COLOR</color>
+                          <bkcolor>BACKGROUND-COLOR</bkcolor>
+                          <b>BOLD: true or false</b>
+                          <i>ITALIC: true or false</i>
+                          <u>UNDERLINE: true or false</u>
+                          <s>STRIKELINE: true or false</s>
+                          <antialias>ANTIALIAS: horizontal (default), vertical or no</antialias>
+                        </Style>
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>parent</b> is optional.
+                    When it exist,
+                    the style <b>NAME</b> will first copy all properties from <b>PARENT-STYLE</b>,
+                    and override what is specified in this tag.
+                </p>
+                <p>
+                    Any document has five predefined styles,
+                    they always exist and cannot be specified in a document:
+                    <program><code><![CDATA[
+                        <Style name="#Default">
+                          <font>The default font face of the operator system</font>
+                          <font>The default font size of the operator system</font>
+                          <color>#000000</color>
+                          <bkcolor>#00000000</color>
+                          <b>false</b>
+                          <i>false</i>
+                          <u>false</u>
+                          <s>false</s>
+                          <antialias>default</antialias>
+                        </Style>
+                        <Style name="#Selection">
+                          <color>#FFFFFF</color>
+                          <bkcolor>#3399FF</bkcolor>
+                        </Style>
+                        <Style name="#Context">
+                        </Style>
+                        <Style name="#NormalLink" parent="#Context">
+                          <color>#0000FF</color>
+                          <u>true</u>
+                        </Style>
+                        <Style name="#ActiveLink" parent="#Context">
+                          <color>#FF8000</color>
+                          <u>true</u>
+                        </Style>
+                    ]]></code></program>
+                </p>
+                <p>
+                    If a document want to change a predefined style,
+                    let's say <b>#Default</b>,
+                    it should be written as an overriding:
+                    <program><code><![CDATA[
+                        <Style name="#Default-override">
+                          ...
+                        </Style>
+                    ]]></code></program>
+                    Overridings only work for predefined styles.
+                </p>
+                <p>
+                    Control templates for <b>DocumentLabel</b> and <b>DocumentViewer</b> can also specify a default style.
+                    For example, here is <b>DarkSkin</b>'s default style for these two controls:
+                    <program><code><![CDATA[
+                        <Style name="#Default-Override">
+                          <color>#FFFFFF</color>
+                        </Style>
+                        <Style name="#Selection-Override">
+                          <color>#FFFFFF</color>
+                          <bkcolor>#007ACC</bkcolor>
+                        </Style>
+                    ]]></code></program>
+                </p>
+                <p>
+                    When a document is loaded to <b>DocumentLabel</b> or <b>DocumentViewer</b>,
+                    all fource default styles (font of the control, default styles of the control template, predefined and overriding) are merged together in the following way.
+                </p>
+                <p>
+                    When we say <b>A + B</b>,
+                    it means we first use the style <b>A</b>,
+                    and then use all properties in <b>B</b> to override the previous result,
+                    and finally get a merged style.
+                </p>
+                <p>
+                    Obviously, there is no difference between left-to-right or right-to-left association.
+                </p>
+                <p>
+                    <b>C</b>, <b>T</b>, <b>D</b> stands for <b>control's Font property</b>, <b>control template</b> and <b>the document</b>.
+                    For example,
+                    <b>#Default[C]</b> means the <b>Font</b> property of the control,
+                    which contains everything except <b>color</b> and <b>bkcolor</b>.
+                </p>
+                <p>
+                    <b>First round</b>: when a document is assigned to a control
+                    <ul>
+                        <li><b>#Default</b> = #Default[D] + #Default-override[D] + #Default[C] + #Default-override[T]</li>
+                        <li><b>#Selection</b> = #Selection[D] + #Selection-override[D] + #Selection-override[T]</li>
+                        <li><b>#Context</b> = #Context[D] + #Context-override[D] + #Context-override[T]</li>
+                        <li><b>#NormalLink</b> = #NormalLink[D] + #NormalLink-override[D] + #NormalLink-override[T]</li>
+                        <li><b>#ActiveLink</b> = #ActiveLink[D] + #ActiveLink-override[D] + #ActiveLink-override[T]</li>
+                    </ul>
+                    We will see that,
+                    the configuration in the control and the control template has a higher priority.
+                    If a document want to apply styles in some text,
+                    it should specify it explicitly (see <b>&lt;Content&gt;</b> for details) instead of trying to override predefined styles.
+                </p>
+                <p>
+                    <b>Second round</b>: when a document is displayed:
+                    <ul>
+                        <li><b>normal text</b>: #Default</li>
+                        <li><b>hyperlink</b>: #Default + #NormalLink</li>
+                        <li><b>active hyperlink</b>: #Default + #ActiveLink</li>
+                        <li><b>selected normal text</b>: #Default + #Selection</li>
+                        <li><b>selected hyperlink</b>: #Default + #NormalLink + #Selection</li>
+                        <li><b>selected active hyperlink</b>: #Default + #ActiveLink + #Selection</li>
+                    </ul>
+                    Active hyperlink is a hyperlink that is under the mouse cursor.
+                    A hyperlink can specify its own normal style and active style,
+                    but if they are not specified,
+                    they become <b>#NormalLink</b> and <b>#ActiveLink</b>
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Content&gt;</title>
+                <p>
+                    There are two part of a document: styles and content.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
