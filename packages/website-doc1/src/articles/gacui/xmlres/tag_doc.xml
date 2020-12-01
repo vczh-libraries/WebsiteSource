@@ -157,8 +157,8 @@
                                 ::= <va>TEXT</va>                   // vertical antialias
                                 ::= <na>TEXT</na>                   // no antialias
                                 ::= <div style="STYLE">TEXT</div>   // apply style to text
-                                ::= <nop/>                          // nothing, use it when it makes your XML looks clean to control spaces
-                                ::= <p>TEXT</p>                     // paragraph that is not in the top level will be ignored, here it becomes TEXT
+                                ::= <nop>TEXT</nop>                 // here it becomes TEXT, use it when it makes your XML looks clean to control spaces
+                                ::= <p>TEXT</p>                     // here it becomes TEXT, paragraph that is not in the top level will be ignored
                     ]]></code></program>
                 </p>
                 <p>
