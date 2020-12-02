@@ -28,8 +28,8 @@
                     <ul>
                         <li><b>Name</b>: Base name of C++ files and contents, could be any valid C++ identifier.</li>
                         <li><b>SourceFolder</b>: Relative folder to this resource file to store generated C++ files.</li>
-                        <li><b>NormalInclude</b>: Files to include in headers, typically <b>GacUI.h</b>. Multiple files are separated in ";".</li>
-                        <li><b>ReflectionInclude</b> (optional): Files to include in headers when reflection is turned on, typically <b>GacUIReflection.h</b>. Multiple files are separated in ";".</li>
+                        <li><b>NormalInclude</b>: Files to include in headers, typically <b>GacUI.h</b>. Multiple files are separated by ";".</li>
+                        <li><b>ReflectionInclude</b> (optional): Files to include in headers when reflection is turned on, typically <b>GacUIReflection.h</b>. Multiple files are separated by ";".</li>
                         <li><b>Resource</b> (optional): Output path for a neutral resource binary.</li>
                         <li><b>Compressed</b> (optional, <b>not recommended</b>): Like <b>Resource</b> but it is compressed.</li>
                         <li><b>CppResource</b> (optional): A C++ file to get rid of loading the resource binary at runtime.</li>
