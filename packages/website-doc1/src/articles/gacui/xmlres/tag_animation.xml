@@ -78,5 +78,19 @@
             the second argument is the length of the animation in milliseconds.
             The returned animation object could be started or killed using <b>AddAnimation</b> or <b>KillAnimation</b> of the root object.
         </p>
+        <p>
+            An interpolation function takes a <b>double</b> between 0 and 1,
+            returns a <b>double</b> between 0 and 1.
+            It could be a function name,
+            a lambda expression,
+            or any <a href="/workflow/lang/expr.html">Workflow expression</a> that returns a function.
+        </p>
+        <p>
+            When the animation is playing,
+            the argument is the current play time divided by the animation length.
+        </p>
+        <p>
+            The return value of the interpolation function is used to determine fields in the <b>Current</b> property.
+        </p>
     </topic>
 </article>
