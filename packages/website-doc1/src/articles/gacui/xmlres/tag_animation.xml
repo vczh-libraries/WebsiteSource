@@ -92,5 +92,70 @@
         <p>
             The return value of the interpolation function is used to determine fields in the <b>Current</b> property.
         </p>
+        <p>
+            <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_animation/Resource.xml">Here</a>
+            is an example of &lt;Animation&gt;.
+            It creates animations on the control template of radio buttons.
+        </p>
+        <p>
+            Here is the state class:
+            <program><code><![CDATA[
+                class RadioButtonTemplateState
+                {
+                  prop Length : double = 0 {}
+                  prop Text : Color = {} {}
+                  prop Border : Color = {} {}
+                  prop Background : Color = {} {}
+                  ...
+                }
+            ]]></code></program>
+            In this class,
+            six static functions are defined to return configuration for different button states.
+        </p>
+        <p>
+            Here is the animation:
+            <program><code><![CDATA[
+                <Animation name="RadioButtonTemplateAnimation">
+                  <Gradient ref.Class="sample::RadioButtonTemplateAnimation" Type="sample::RadioButtonTemplateState">
+                    <Interpolation><![CDATA[
+                      func (x: double): double
+                      {
+                        if (x < 0.5) { return x * x * 2; } else { return 1 - (1 - x) * (1 - x) * 2; }
+                      }
+                    ]]]]><![CDATA[>]]><![CDATA[</Interpolation>
+                    <Targets>
+                      <Target Name="Length"/>
+                      <Target Name="Text"/>
+                      <Target Name="Border"/>
+                      <Target Name="Background"/>
+                    </Targets>
+                  </Gradient>
+                </Animation>
+            ]]></code></program>
+            The interpolation function make the animation run faster and faster in the first half,
+            and run slower and slower in the second half.
+            It does this by transfer the animation process <b>x</b>,
+            which is from 0 to 1,
+            to another value that is 0 to 1.
+            The image of its derivative looks like a mountain.
+        </p>
+        <p>
+            When the button state is changed,
+            the custom member function <b>OnStateChanged</b> is called,
+            which kills the ongoing animation and starts a new one.
+        </p>
+        <p>
+            When the animation is running,
+            properties of <b>self.animationBuilder.Current</b> is changed.
+            <b>self.animationBuilder</b> is a custom member field of type <b>sample::RadioButtonTemplateAnimation^</b>.
+            Now we only need to bind sizes and colors to properties of <b>self.animationBuilder.Current</b>,
+            and the UI will move when the animation is running.
+        </p>
+        <p>
+            Here is how they looks like:
+        </p>
+        <p>
+            <img src="/gacui/kb_animation.gif"/>
+        </p>
     </topic>
 </article>
