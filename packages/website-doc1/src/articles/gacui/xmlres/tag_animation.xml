@@ -132,9 +132,9 @@
                   </Gradient>
                 </Animation>
             ]]></code></program>
-            The interpolation function make the animation run faster and faster in the first half,
+            The interpolation function makes the animation run faster and faster in the first half,
             and run slower and slower in the second half.
-            It does this by transfer the animation process <b>x</b>,
+            It does this by transfer the animation progress <b>x</b>,
             which is from 0 to 1,
             to another value that is 0 to 1.
             The image of its derivative looks like a mountain.
