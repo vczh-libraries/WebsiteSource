@@ -14,7 +14,69 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            &lt;Animation/&gt; create a helper to create instances of <b>presentation::controls::IGuiAnimation^</b>.
+            The created animation performs customizable transformations for selected fields in a selected class.
+        </p>
+        <p>
+            Typically a &lt;Animation/&gt; looks like this:
+            <program><code><![CDATA[
+                <Animation name="RESOURCE_NAME">
+                  <Gradient ref.Class="ANIMATION_CLASS" Type="STATE_CLASS">
+                    <Interpolation>
+                      <![CDATA[
+                        DEFAULT_INTERPOLATION_FUNCTION
+                      ]]]]><![CDATA[>]]><![CDATA[
+                    </Interpolation>
+                    <Targets>
+                      <Target Name="FIELD_1"/>
+                      <Target Name="FIELD_2">
+                        <Interpolation>
+                          <![CDATA[
+                            INTERPOLATION_FUNCTION_FOR_THIS_FIELD
+                          ]]]]><![CDATA[>]]><![CDATA[
+                        </Interpolation>
+                      </Target>
+                    </Targets>
+                  </Gradient>
+                </Animation>
+            ]]></code></program>
+            It generates a class named <b>ANIMATION_CLASS</b>:
+            <program><code><![CDATA[
+                class ANIMATION_CLASS
+                {
+                    prop Begin: STATE_CLASS^ {}
+                    prop End: STATE_CLASS^{}
+                    prop Current: STATE_CLASS^{}
+
+                    new (current: STATE_CLASS^) { ... }
+                    func CreateAnimation(target: STATE_CLASS^, time: UInt64): IGuiAnimation^ { ... }
+                }
+            ]]></code></program>
+            While <b>STATE_CLASS</b> must be an existing class,
+            which could be created using &lt;Script/&gt;:
+            <program><code><![CDATA[
+                class STATE_CLASS
+                {
+                    prop FIELD_1: TYPE{}
+                    prop FIELD_2: TYPE{}
+                }
+            ]]></code></program>
+            <b>TYPE</b> must be an integer type, a floating point number type, or a color type.
+        </p>
+        <p>
+            <b>IMPORTANT</b>: In order to perform data binding on <b>ANIMATION_CLASS::Current</b>,
+            all fields in <b>STATE_CLASS</b> are recommended to be properties with events.
+        </p>
+        <p>
+            When creating <b>ANIMATION_CLASS</b>,
+            an instance of <b>STATE_CLASS</b> is required to be the initial state.
+        </p>
+        <p>
+            When calling <b>CreateAnimation</b>,
+            the current state becomes the begin state,
+            the first argument becomes the end state,
+            the second argument is the length of the animation in milliseconds.
+            The returned animation object could be started or killed using <b>AddAnimation</b> or <b>KillAnimation</b> of the root object.
         </p>
     </topic>
 </article>
