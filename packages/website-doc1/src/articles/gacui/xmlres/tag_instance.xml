@@ -14,7 +14,122 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;Instance/&gt;</b> creates a derived class inheriting from a base class which is specified by the root object.
+            Any <a href="/workflow/running/invoking3.html">inheritable class</a> with a default constructors could be derived by a <b>&lt;Instance/&gt;</b>.
+        </p>
+        <p>
+            You can use <b>&lt;Instance/&gt;</b> to create classes inheriting from:
+            <ul>
+                <li>A window.</li>
+                <li>A tab page.</li>
+                <li>A custom control.</li>
+                <li>A control template.</li>
+                <li>A theme.</li>
+                <li>Another <b>&lt;Instance/&gt;</b>.</li>
+                <li>Any other inheritable class, even it is defined in a <b>&lt;Script/&gt;</b>.</li>
+            </ul>
+        </p>
+        <p>
+            Typically, an <b>&lt;Instance/&gt;</b> looks like:
+            <program><code><![CDATA[
+              <Instance name="MainWindowResource">
+                <Instance ref.CodeBehind="false" ref.Class="helloworld::MainWindow">
+                  <!-- multiple -->    <ref.Parameter .../>
+                  <!-- multiple -->    <ref.LocalizedStrings .../>
+                  <!-- zero or one --> <ref.Members> <![CDATA[  ...  ]]<![CDATA[>]]><![CDATA[</ref.Members>
+                  <!-- zero or one --> <ref.Ctor>    <![CDATA[ {...} ]]<![CDATA[>]]><![CDATA[</ref.Ctor>
+                  <!-- zero or one --> <ref.Dtor>    <![CDATA[ {...} ]]<![CDATA[>]]><![CDATA[</ref.Dtor>
+                  <Window Text="Hello, world!" ClientSize="x:480 y:320">
+                    <att.BoundsComposition-set PreferredMinSize="x:480 y:320"/>
+                    <Label Text="Welcome to GacUI Library!"/>
+                  </Window>
+                </Instance>
+              </Instance>
+            ]]></code></program>
+        </p>
+        <p>
+            Here are tags that can be put before the root object:
+            <ul>
+                <li><b>&lt;ref.Parameter/&gt;</b>: A constructor parameter and readonly property.</li>
+                <li><b>&lt;ref.LocalizedStrings/&gt;</b>: Adding a string resource to the current instance, please check out <a href="/gacui/xmlres/tag_localizedstrings.html">&lt;LocalizedStrings&gt;</a>.</li>
+                <li><b>&lt;ref.Members/&gt;</b>: Multiple Workflow class members that will be added to the created class.</li>
+                <li><b>&lt;ref.Ctor/&gt;</b>: A Workflow statement containing code that will be executed in the constructor after the instance is created.</li>
+                <li><b>&lt;ref.Dtor/&gt;</b>: A workflow statement containing code that will be executed in the destructor.</li>
+            </ul>
+        </p>
+        <p>
+            You can define as many <b>&lt;ref.Parameter/&gt;</b> as you want in an <b>&lt;Instance/&gt;</b>.
+            For item template, there must be exactly one <b>&lt;ref.Parameter/&gt;</b> to access the item object.
+            For grid visualizer and grid editor, <b>RowValue</b> and <b>CellValue</b> properties to access the item object.
+            To inherit from an object with <b>&lt;ref.Parameter/&gt;</b>,
+            assign all of them like normal properties.
+        </p>
+        <p>
+            There are two attributes for <b>&lt;ref.Parameter/&gt;</b>:
+            <ul>
+                <li>
+                    <b>Name</b>:
+                    The name of the constructor parameter.
+                    It can be used inside the root object.
+                </li>
+                <li>
+                    <b>Class</b>:
+                    The type of the constructor parameter.
+                    If it is a class or an interface,
+                    unless <a href="/workflow/lang/class_new.html">all constructors return raw pointers</a>,
+                    it becomes a shared pointer to the type.
+                </li>
+            </ul>
+        </p>
+        <p>
+            Here are attributes for an <b>&lt;Instance/&gt;</b>:
+            <ul>
+                <li><b>ref.CodeBehind</b>: true or false. If it is true, an extra pair of C++ files will be created specifically for this instance.</li>
+                <li><b>ref.Class</b>: The class name for this instance. Namespaces are separated by "::".</li>
+                <li><b>ref.Styles</b>: Apply one or multiple <a href="/gacui/xmlres/tag_instancestyle.html">&lt;InstanceStyle&gt;</a> on objects in this instance.</li>
+                <li>
+                    <b>xmlns</b>: Default namespaces. If it is not specified, it will be:
+                    <program><code><![CDATA[
+						presentation::controls::Gui*;
+						presentation::elements::Gui*Element;
+						presentation::compositions::Gui*Composition;
+						presentation::compositions::Gui*;
+						presentation::templates::Gui*;
+						system::*;
+						system::reflection::*;
+						presentation::*;
+						presentation::Gui*;
+						presentation::controls::*;
+						presentation::controls::list::*;
+						presentation::controls::tree::*;
+						presentation::elements::*;
+						presentation::elements::Gui*;
+						presentation::elements::text::*;
+						presentation::compositions::*;
+						presentation::templates::*;
+						presentation::theme::*
+                    ]]></code></program>
+                    Multiple namespaces are separated by ";".
+                    The format is similar to <a href="/workflow/lang/module.html">Workflow's using declaration</a>.
+                </li>
+                <li>
+                    <b>xmlns:NAME</b>:
+                    Specify namespaces for <b>NAME</b>,
+                    so that you can use <b>NAME:TYPE</b> for types that are not in default namespaces.
+                    Custom namespaces are available in tag names for objects or control/item template properties.
+                    Multiple namespaces are separated by ";".
+                    The format is similar to <a href="/workflow/lang/module.html">Workflow's using declaration</a>.
+                </li>
+            </ul>
+        </p>
+        <p>
+            Here are context attributes for any object inside a <b>&lt;Instance/&gt;</b>:
+            <ul>
+                <li><b>env.ItemName</b>.</li>
+                <li><b>env.ItemType</b>.</li>
+            </ul>
+            These are for data binding for list items,
+            please check out <a href="/gacui/xmlres/instance/properties.html">Properties</a> and <a href="/gacui/advanced/bindings.html">Data Bindings</a>.
         </p>
     </topic>
 </article>
