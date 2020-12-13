@@ -1,27 +1,29 @@
 <article>
     <topic>
-        <title>Document for Gaclib 1.0</title>
+        <title>Document</title>
         <p>
-            I am writing tutorials and API references for this project.
-            I hope everything could be done at the end of this year.
+            <b>Document for Gaclib 1.0: </b><a href="/doc/current/home.html">/doc/current/home.html</a>.
         </p>
         <p>
-            Now both <b>document page</b> and <b>code index</b> are available.
-            Introductions, tutorials, API references and examples are keep adding!
+            I am working on the GacUI documentation.
+            Documentation for other libraries have been completed.
         </p>
-        <p>
-            <b>Document page: </b><a href="/doc/current/home.html">/doc/current/home.html</a>.
-        </p>
-        <p>
-            <b>Code index page: </b><a href="/CodeIndexDemo/Gaclib/FileIndex.html">/CodeIndexDemo/Gaclib/FileIndex.html</a>.
-        </p>
-        <p>
-            If you are interested in indexing C++ source code,
-            please check out <a href="https://github.com/vczh-libraries/Document">this repo</a>,
-            and these demo:
-            <a href="/CodeIndexDemo/Calculator/FileIndex.html">Calculator</a>,
-            <a href="/CodeIndexDemo/TypePrinter/FileIndex.html">TypePrinter</a>,
-            <a href="/CodeIndexDemo/STL/FileIndex.html">STL</a>.
-        </p>
+        <topic>
+            <title>Code Index</title>
+            <p>
+                <b>Code index for Gaclib 1.0: </b><a href="/CodeIndexDemo/Gaclib/FileIndex.html">/CodeIndexDemo/Gaclib/FileIndex.html</a>.
+            </p>
+            <p>
+                There are also links to indexed source code in documentation pages for classes and functions.
+            </p>
+            <p>
+                If you are interested in indexing C++ source code,
+                please check out <a href="https://github.com/vczh-libraries/Document">this repo</a>,
+                and these demo:
+                <a href="/CodeIndexDemo/Calculator/FileIndex.html">Calculator</a>,
+                <a href="/CodeIndexDemo/TypePrinter/FileIndex.html">TypePrinter</a>,
+                <a href="/CodeIndexDemo/STL/FileIndex.html">STL</a>.
+            </p>
+        </topic>
     </topic>
 </article>
