@@ -2,7 +2,65 @@
     <topic>
         <title>Root Instance</title>
         <p>
-            The page is under construction.
+            Root instance is a direct child in an <b>&lt;Instance/&gt;</b>,
+            whose tag name does not begin with "ref.".
+            There must be exactly one root instance in an <b>&lt;Instance/&gt;</b>
         </p>
+        <p>
+            The type of the root instance is the base class of this <b>&lt;Instance/&gt;</b>.
+            To create a class:
+            <program><code><![CDATA[
+                namespace helloworld
+                {
+                    class MainWindow : presentation::controls::GuiWindow
+                    {
+                        new*(){}
+                    }
+                }
+            ]]></code></program>
+            The following <b>&lt;Instance/&gt;</b> is expected:
+            <program><code><![CDATA[
+                <Instance name="MainWindowResource">
+                  <Instance ref.Class="helloworld::MainWindow">
+                    <Window/>
+                  </Instance>
+                </Instance>
+            ]]></code></program>
+            Because <b>&lt;Window/&gt;</b>,
+            which is <b>presentation::controls::GuiWindow*</b>
+            because of the default value of the attribute <b>xmlns</b> of <b>&lt;Instance/&gt;</b>,
+            returns raw pointers from all of its constructors,
+            so the constructor <b>helloworld::MainWindow</b> also returns a raw pointer.
+        </p>
+        <p>
+            Only <a href="/workflow/running/invoking3.html">inheritable classs</a> can be used as a type of root instances.
+            The type of a root instance is also required to have a constructor without parameters.
+            But GacUI also knows how to create UI objects,
+            so <b>&lt;Window/&gt;</b> is also a valid type of a root instance even it has no default constructor.
+        </p>
+        <p>
+            Here are of valid root instance types:
+        </p>
+        <topic>
+            <title>&lt;Window&gt;</title>
+        </topic>
+        <topic>
+            <title>&lt;TabPage&gt;</title>
+        </topic>
+        <topic>
+            <title>&lt;CustomControl&gt;</title>
+        </topic>
+        <topic>
+            <title>Templates</title>
+        </topic>
+        <topic>
+            <title>&lt;ThemeTemplates&gt;</title>
+        </topic>
+        <topic>
+            <title>Another Instance</title>
+        </topic>
+        <topic>
+            <title>Others</title>
+        </topic>
     </topic>
 </article>
