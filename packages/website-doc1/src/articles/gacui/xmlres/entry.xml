@@ -12,8 +12,8 @@
     <article name="Child Instances" file="instance/child_instances"/>
     <article name="Properties" file="instance/properties"/>
     <article name="Events" file="instance/events"/>
-    <article name="Using Instances in Default Namespaces" file="instance/instance_default"/>
-    <article name="Using Instances in Non-Default Namespaces" file="instance/instance_non_default"/>
+    <article name="Namespaces" file="instance/namespaces"/>
+    <article name="Instance Inheriting" file="instance/inheriting"/>
   </article>
   <article name="<InstanceStyle>" file="tag_instancestyle"/>
   <article name="<Animation>" file="tag_animation"/>

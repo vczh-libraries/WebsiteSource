@@ -43,24 +43,84 @@
         </p>
         <topic>
             <title>&lt;Window&gt;</title>
+            <p>
+                Window is a control that can be displayed in your OS.
+                Unlike other controls, it doesn't need to have a parent control.
+            </p>
+            <p>
+                There are a few other controls that inherit from Window,
+                but the only valid type for a root instance is Window.
+            </p>
         </topic>
         <topic>
             <title>&lt;TabPage&gt;</title>
+            <p>
+                TabPage is a child control for Tab.
+                When a TabPage is added to a Tab,
+                a tab header containing TabPage's <b>Text</b> property will appear in the Tab.
+            </p>
+            <p>
+                It is very common for application that,
+                TabPages in a Tab are dynamically created based on context.
+                For example,
+                pages in a wizard can be changed when you select different options in some pages.
+            </p>
+            <p>
+                In this scenario,
+                by creating TabPages as instances,
+                with the power of data binding and MVVM,
+                it is very easy to organize the application.
+            </p>
         </topic>
         <topic>
             <title>&lt;CustomControl&gt;</title>
+            <p>
+                CustomControl can be a child control for any control.
+                CustomControl itself doesn't provide any features,
+                it is another way to organize the application in multiple instances.
+            </p>
+            <p>
+                When the content of the application is also dynamically controlled based on a context,
+                but Tab doesn't fit the design.
+                For these scenarios,
+                CustomControls can be organized with a few more Workflow script,
+                which is also very convenient.
+            </p>
         </topic>
         <topic>
-            <title>Templates</title>
-        </topic>
-        <topic>
-            <title>&lt;ThemeTemplates&gt;</title>
+            <title>Templates and &lt;ThemeTemplates&gt;</title>
+            <p>
+                All control templates and item templates can be types of root items.
+            </p>
+            <p>
+                If you have already created a new design for multiple and even all controls,
+                you can use <b>&lt;ThemeTemplates/&gt;</b>
+                <a href="/gacui/kb/dtemplates.html">like this</a>
+                to make your design a default one for your application.
+            </p>
         </topic>
         <topic>
             <title>Another Instance</title>
+            <p>
+                An instance is allowed to inherit from another instance.
+                See <a href="/gacui/xmlres/instance/namespaces.html">Namespaces</a>
+                and <a href="/gacui/xmlres/instance/inheriting.html">Instance Inheriting</a>
+                for more details.
+            </p>
         </topic>
         <topic>
             <title>Others</title>
+            <p>
+                Any inheritable classes with a default constructor can be the type of a root instance.
+                You can define a class in <b>&lt;Script/&gt;</b> and use it as an instance.
+            </p>
+            <p>
+                This is a typical scenario for creating configurations.
+                By defining a configuration as a Workflow class,
+                you can create different options for that configuration as different instances,
+                or create another class with a fixed amount of options as properties,
+                and assigning option details to these properties.
+            </p>
         </topic>
     </topic>
 </article>
