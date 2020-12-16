@@ -26,11 +26,9 @@
                   </Instance>
                 </Instance>
             ]]></code></program>
-            Because <b>&lt;Window/&gt;</b>,
-            which is <b>presentation::controls::GuiWindow*</b>
-            because of the default value of the attribute <b>xmlns</b> of <b>&lt;Instance/&gt;</b>,
-            returns raw pointers from all of its constructors,
-            so the constructor <b>helloworld::MainWindow</b> also returns a raw pointer.
+        </p>
+        <p>
+            <b>IMPORTANT</b>: The generated constructor of instances always return a raw pointer.
         </p>
         <p>
             Only <a href="/workflow/running/invoking3.html">inheritable classs</a> can be used as a type of root instances.
@@ -120,6 +118,12 @@
                 you can create different options for that configuration as different instances,
                 or create another class with a fixed amount of options as properties,
                 and assigning option details to these properties.
+            </p>
+            <p>
+                The <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_animation/Resource.xml">animation sample</a>
+                is a good example.
+                Please check out and see how <b>AnimationState</b>, <b>AnimationConfig</b> and <b>RadioButtonAnimationConfig</b> are used,
+                they form a very common pattern of using instances as configurations.
             </p>
         </topic>
     </topic>
