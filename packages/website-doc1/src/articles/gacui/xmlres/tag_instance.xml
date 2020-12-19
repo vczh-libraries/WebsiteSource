@@ -123,6 +123,12 @@
             </ul>
         </p>
         <p>
+            Here are attributes for any object inside a <b>&lt;Instance/&gt;</b>:
+            <ul>
+                <li><b>ref.Name</b>: Create a private field in this instance holding this object, so that it can be accessed by Workflow code or bindings.</li>
+            </ul>
+        </p>
+        <p>
             Here are context attributes for any object inside a <b>&lt;Instance/&gt;</b>:
             <ul>
                 <li><b>env.ItemName</b>.</li>
