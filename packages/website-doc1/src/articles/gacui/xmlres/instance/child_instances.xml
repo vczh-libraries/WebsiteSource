@@ -33,6 +33,14 @@
                     </ul>
                 </li>
                 <li>
+                    <b>Any Control</b>:
+                    <ul>
+                        <li>Control: Put the control inside the parent control.</li>
+                        <li>Composition: Put the composition inside the parent control.</li>
+                        <li>Component (for root instance only): Add the component to the parent control. The component will gain access to the parent control, and the life cycle will be controlled.</li>
+                    </ul>
+                </li>
+                <li>
                     <b>&lt;Table/&gt;</b>:
                     <ul>
                         <li><b>&lt;Cell/&gt;</b>: Align the cell according to its <b>Site</b> property.</li>
@@ -56,14 +64,6 @@
                     <b>&lt;SharedSizeRoot/&gt;</b>:
                     <ul>
                         <li><b>&lt;SharedSizeItem/&gt;</b>: Align the item according to its <b>Group</b>, <b>SharedWidth</b> and <b>SharedHeight</b>. The item is not required to be a direct child instance.</li>
-                    </ul>
-                </li>
-                <li>
-                    <b>Any Control</b>:
-                    <ul>
-                        <li>Control: Put the control inside the parent control.</li>
-                        <li>Composition: Put the composition inside the parent control.</li>
-                        <li>Component (for root instance only): Add the component to the parent control. The component will gain access to the parent control, and the life cycle will be controlled.</li>
                     </ul>
                 </li>
                 <li>

@@ -4,5 +4,12 @@
         <p>
             The page is under construction.
         </p>
+        <p>
+            TODO:
+            syntax (attribute, tag, binding)
+            4 kinds of property (constructor, virtual, reflected specifying codegen, reflected)
+            Bindings: -set, -ref, -bind, -format, -str, -eval, -uri
+            &lt;_&gt; constructor, type inferred from property type.
+        </p>
     </topic>
 </article>
