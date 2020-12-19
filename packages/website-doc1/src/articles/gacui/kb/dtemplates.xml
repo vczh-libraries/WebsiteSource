@@ -37,7 +37,7 @@
         </p>
         <p>
             Maybe someday you decide to create another set of control templates and want to make it the default one.
-            It is very simple, just create an <b>&lt;Instance/&gt;</b> of <b>&lt;ThemeTemplates&gt;</b> following <a href="/gacui/xmlres/instance/root_dtemplates.html">this page</a>,
+            It is very simple, just create an <b>&lt;Instance/&gt;</b> of <b>&lt;ThemeTemplates&gt;</b> like the one below,
             and modify the above plugin code to have the correct dependencies and theme types.
         </p>
         <p>
