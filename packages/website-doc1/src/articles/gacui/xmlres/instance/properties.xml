@@ -383,7 +383,7 @@
                 <topic>
                     <title>presentation::controls::list::IDataVisualizerFactory^</title>
                     <p>
-                        A <b>IDataVisualizerFactory</b> factory is very similar to <b>Item Template</b>.
+                        A <b>IDataVisualizerFactory</b> property is very similar to <b>Item Template</b>.
                         There is no input object to select a visualizer.
                         Instead,
                         multiple visualizer are all created and nested together,
@@ -392,23 +392,49 @@
                     </p>
                     <p>
                         Each visualizer must inherit from <b>presentation::templates::GuiGridVisualizerTemplate</b>.
+                        The <b>CellValue</b> property will be assigned according to the <b>ValueProperty</b> property of the column.
                     </p>
                 </topic>
                 <topic>
                     <title>presentation::controls::list::IDataEditorFactory^</title>
                     <p>
-                        A <b>IDataEditorFactory</b> factory is very similar to <b>Item Template</b>.
+                        A <b>IDataEditorFactory</b> property is very similar to <b>Item Template</b>.
                         There is no input object to select an editor.
                     </p>
                     <p>
                         Each editor must inherit from <b>presentation::templates::GuiGridEditorTemplate</b>.
+                        The <b>CellValue</b> property will be assigned according to the <b>ValueProperty</b> property of the column.
                     </p>
                 </topic>
                 <topic>
                     <title>presentation::controls::list::IDataFilter^</title>
+                    <p>
+                        The property value of a <b>IDataFilter</b> property is expected to be a
+                        <a href="/workflow/lang/expr.html#Ordered-lambda-expression-1-2-">Workflow lambda expression</a>.
+                        The first argument is the row object,
+                        which is an item in the <b>ItemSource</b> collection of the list control.
+                        Returns true to make the row visible.
+                    </p>
+                    <p>
+                        <b>NOTE</b>:
+                        for <b>-eval</b> binding,
+                        the expression must returns an object implementing the <b>IDataFilter</b> interface.
+                    </p>
                 </topic>
                 <topic>
                     <title>presentation::controls::list::IDataSorter^</title>
+                    <p>
+                        The property value of a <b>IDataSorter</b> property is expected to be a
+                        <a href="/workflow/lang/expr.html#Ordered-lambda-expression-1-2-">Workflow lambda expression</a>.
+                        The first and second arguments are two row objects to compare,
+                        which are two items in the <b>ItemSource</b> collection of the list control.
+                        Returns a negative, zero, positive number for "less than", "equal", "greater than".
+                    </p>
+                    <p>
+                        <b>NOTE</b>:
+                        for <b>-eval</b> binding,
+                        the expression must returns an object implementing the <b>IDataSorter</b> interface.
+                    </p>
                 </topic>
             </topic>
         </topic>
