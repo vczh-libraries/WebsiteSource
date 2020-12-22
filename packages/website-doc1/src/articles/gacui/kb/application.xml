@@ -14,7 +14,9 @@
         <p>
             For macOS,
             <b>SetupOSXCoreGraphicsRenderer</b> must be called in <b>main</b>.
-            Porting to macOS is not completed yet.
+            The <a href="https://github.com/vczh-libraries/iGac">mac port</a> is almost done,
+            but there is no plan to release it within GacUI 1.0,
+            people who want to use GacUI on mac at the moment need to clone this repo.
         </p>
         <p>
             When <b>GuiMain</b> is called,
