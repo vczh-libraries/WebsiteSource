@@ -315,7 +315,7 @@
                 </p>
                 <p>
                     For item templates,
-                    there must be one constructor parameter,
+                    there can be one constructor parameter,
                     which is typically a <b>&lt;ref.Parameter/&gt;</b>.
                 </p>
                 <p>
@@ -324,6 +324,9 @@
                     each item can be different type.
                     If there are multiple item templates with different constructor parameter type,
                     each constructor parameter type will be tested until there is the first one that is compatible with the actual item type.
+                </p>
+                <p>
+                    The above test always succeeds for item templates that have no constructor parameter.
                 </p>
                 <p>
                     This is a common pattern to apply different item templates on different items in a list control.
@@ -365,14 +368,41 @@
             </topic>
             <topic>
                 <title>Writable Property Name: func(data: Object, value: PROPERTY_TYPE, isWrite: bool): PROPERTY_TYPE</title>
+                <p>
+                    <b>Writable Property Name</b> is very similar to <b>Property Name</b>.
+                    The only difference is that,
+                    regardless the property value is an identifier or an expression,
+                    it must be assignable.
+                </p>
+                <p>
+                    <b>NOTE:</b> struct fields and readonly properties are not assignable.
+                </p>
             </topic>
             <topic>
                 <title>&lt;BindableDataGrid&gt; column properties</title>
                 <topic>
                     <title>presentation::controls::list::IDataVisualizerFactory^</title>
+                    <p>
+                        A <b>IDataVisualizerFactory</b> factory is very similar to <b>Item Template</b>.
+                        There is no input object to select a visualizer.
+                        Instead,
+                        multiple visualizer are all created and nested together,
+                        so that different visualizers could share some decoration like borders.
+                        The first one is the most inner one.
+                    </p>
+                    <p>
+                        Each visualizer must inherit from <b>presentation::templates::GuiGridVisualizerTemplate</b>.
+                    </p>
                 </topic>
                 <topic>
                     <title>presentation::controls::list::IDataEditorFactory^</title>
+                    <p>
+                        A <b>IDataEditorFactory</b> factory is very similar to <b>Item Template</b>.
+                        There is no input object to select an editor.
+                    </p>
+                    <p>
+                        Each editor must inherit from <b>presentation::templates::GuiGridEditorTemplate</b>.
+                    </p>
                 </topic>
                 <topic>
                     <title>presentation::controls::list::IDataFilter^</title>
