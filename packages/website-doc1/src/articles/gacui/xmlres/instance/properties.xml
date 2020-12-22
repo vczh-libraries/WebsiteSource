@@ -189,7 +189,7 @@
         <topic>
             <title>Deserialization</title>
             <p>
-                For any non-binding property assignment,
+                For any <b>non-binding</b> property assignment,
                 GacUI interpret the property value differently for different types of propertyes.
             </p>
             <p>
@@ -197,21 +197,171 @@
             </p>
             <topic>
                 <title>Primitive Types</title>
+                <p>
+                    <ul>
+                        <li>For string, the value becomes the string literal.</li>
+                        <li>For bool, integers and numbers, it must be a valid <a href="/workflow/lang/expr.html">Workflow literal</a>.</li>
+                        <li>For DateTime, it must be "YYYY-MM-DD hh:mm:ss.sss"</li>
+                    </ul>
+                </p>
             </topic>
             <topic>
                 <title>Structs</title>
+                <p>
+                    The value must contains multiple "FIELD:VALUE".
+                    <b>FIELD</b> is a field name in the struct,
+                    <b>VALUE</b> is a valid <a href="/workflow/lang/expr.html">Workflow expression</a> with a compatible type.
+                    Multiple items a separated by spaces.
+                </p>
+                <p>
+                    It is actually a <a href="/workflow/lang/expr.html#Constructor-expression-a-b-c-a-x-b-y-c-z-">Workflow constructor expression</a>
+                    without the surrounding braces.
+                </p>
             </topic>
             <topic>
                 <title>Enums</title>
+                <p>
+                    <ul>
+                        <li>For enums, the value must be one of enum items.</li>
+                        <li>For flags, multiple enum item names are seperated by "|".</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>Nullable Types</title>
+                <p>
+                    The default value is <b>null</b>,
+                    but you cannot explicitly assign <b>null</b> in XML.
+                </p>
             </topic>
             <topic>
                 <title>Classes or Interfaces</title>
+                <p>
+                    An object is expected for these properties.
+                    But since an object cannot be created in XML attributes,
+                    so you need to use <b>&lt;att.NAME/&gt;</b>.
+                </p>
+                <p>
+                    If the object type is exactly the property type,
+                    you can use <b>_</b> as the tag name for that object.
+                </p>
+                <p>
+                    The above rule is also valid for primitive types,
+                    for example:
+                    <program><code><![CDATA[
+                        <Window Text="The Title"/>
+                    ]]></code></program>
+                    is equivalent to
+                    <program><code><![CDATA[
+                        <Window>
+                          <att.Text>
+                            <String>The Title</String>
+                          </att.Text>
+                        </Window>
+                    ]]></code></program>
+                    and
+                    <program><code><![CDATA[
+                        <Window>
+                          <att.Text>
+                            <_>The Title</_>
+                          </att.Text>
+                        </Window>
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Collections</title>
+                <p>
+                    Zero to multiple values is expected for these properties.
+                    But since a collection cannot be created in XML attributes,
+                    so you need to use <b>&lt;att.NAME/&gt;</b>.
+                </p>
+                <p>
+                    If the object type is exactly the item type,
+                    you can use <b>_</b> as the tag name for that object.
+                </p>
+                <p>
+                    For example:
+                    <program><code><![CDATA[
+                        <Table>
+                          <att.Rows>
+                            <CellOption>composeType:MinSize</CellOption>
+                            <CellOption>composeType:Percentage percentage:1.0</CellOption>
+                          </att.Rows>
+                        </Table>
+                    ]]></code></program>
+                    is equivalent to
+                    <program><code><![CDATA[
+                        <Table>
+                          <att.Rows>
+                            <_>composeType:MinSize</_>
+                            <_>composeType:Percentage percentage:1.0</_>
+                          </att.Rows>
+                        </Table>
+                    ]]></code></program>
+                </p>
             </topic>
             <topic>
                 <title>Control/Item Template: func(data: Object): TEMPLATE_CLASS*</title>
+                <p>
+                    The value must be a type name,
+                    or multiple type names separated by ";".
+                </p>
+                <p>
+                    A type name can be a full name of a class,
+                    like <b>my::namespace::MyClass</b>.
+                    Or an equivalent tag name with property namespace setting,
+                    like <b>my:MyClass</b> when there is <b>&lt;Instance xmlns:my="my::namespace::*"/&gt;</b>.
+                </p>
+                <p>
+                    For item templates,
+                    there must be one constructor parameter,
+                    which is typically a <b>&lt;ref.Parameter/&gt;</b>.
+                </p>
+                <p>
+                    The item type is unknown,
+                    because for a bindable list control,
+                    each item can be different type.
+                    If there are multiple item templates with different constructor parameter type,
+                    each constructor parameter type will be tested until there is the first one that is compatible with the actual item type.
+                </p>
+                <p>
+                    This is a common pattern to apply different item templates on different items in a list control.
+                </p>
             </topic>
             <topic>
                 <title>Property Name: func(data: Object): PROPERTY_TYPE</title>
+                <p>
+                    When there is a <b>env.ItemType</b> attribute
+                    on the object having this property of or on any parent object,
+                    the type of the object to retrieve the property value in runtime is expected to be <b>env.ItemType</b>.
+                    In this case,
+                    the value of this property must be a valid property or field name.
+                </p>
+                <p>
+                    When there is also a <b>env.ItemName</b> attribute,
+                    the value of this property can also be a valid
+                    <a href="/workflow/lang/expr.html">Workflow expression</a>,
+                    the <b>env.ItemName</b> becomes a valid identifier representing the object to retrieve the property.
+                </p>
+                <p>
+                    For example:
+                    when you bind a collection to a <b>&lt;BindableDataGrid/&gt;</b>,
+                    different columns can be configured to displays different properies of the collection item like this:
+                    <program><code><![CDATA[
+                        <BindableDataGrid env.ItemType="demo::MyDataItem^">
+                          <att.Columns>
+                            <DataColumn Text="Name" Size="120">
+                              <att.TextProperty>Name</att.TextProperty>
+                            </DataColumn>
+            
+                            <DataColumn Text="Gender" Size="80">
+                              <att.TextProperty>demo::ToString(itemToBind.Gender)</att.TextProperty>
+                            </DataColumn>
+                          </att.Columns>
+                        </BindableDataGrid>
+                    ]]></code></program>
+                </p>
             </topic>
             <topic>
                 <title>Writable Property Name: func(data: Object, value: PROPERTY_TYPE, isWrite: bool): PROPERTY_TYPE</title>
