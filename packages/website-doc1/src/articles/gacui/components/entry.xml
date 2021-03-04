@@ -1,8 +1,8 @@
 <reference>
-  <article name="Elements" file="elements"/>
-  <article name="Compositions" file="compositions"/>
-  <article name="Controls" file="controls"/>
-  <article name="Control Templates" file="ctemplates"/>
-  <article name="Item Templates" file="itemplates"/>
-  <article name="Components" file="components"/>
+  <article name="Elements" file="elements/home"/>
+  <article name="Compositions" file="compositions/home"/>
+  <article name="Controls" file="controls/home"/>
+  <article name="Control Templates" file="ctemplates/home"/>
+  <article name="Item Templates" file="itemplates/home"/>
+  <article name="Components" file="components/home"/>
 </reference>
