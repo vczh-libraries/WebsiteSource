@@ -72,7 +72,7 @@
             </p>
             <p>
                 Generally controls are in singly rooted inheritance based on their appearances.
-                Like every controls will scroll bars inherits from <b>GuiScrollView</b>.
+                Like every controls with scroll bars inherit from <b>GuiScrollView</b>.
             </p>
             <p>
                 But there are also <b>GuiTextBoxCommonInterface</b> and <b>GuiDocumentCommonInterface</b> for editor controls.
