@@ -9,11 +9,49 @@
             <p>
                 <a href="/gacui/kb/elements.html">Elements</a> offer rendering of geometry shapes and texts.
             </p>
+            <p>
+                <a href="/gacui/components/elements/home.html">Here</a> contains detailed introduction for all elements:
+                <ul>
+                    <li>&lt;SolidBorder&gt;</li>
+                    <li>&lt;SolidBackground&gt;</li>
+                    <li>&lt;GradientBackground&gt;</li>
+                    <li>&lt;FocusRectangle&gt;</li>
+                    <li>&lt;Gui3DBorderElement&gt;</li>
+                    <li>&lt;Gui3DSplitterElement&gt;</li>
+                    <li>&lt;InnerShadow&gt;</li>
+                    <li>&lt;SolidLabel&gt;</li>
+                    <li>&lt;ImageFrame&gt;</li>
+                    <li>&lt;Polygon&gt;</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Compositions</title>
             <p>
                 <a href="/gacui/kb/compositions.html">Composition</a> offer layout algorithms based on constraints.
+            </p>
+            <p>
+                <a href="/gacui/components/compositions/home.html">Here</a> contains detailed introduction for all compositions:
+                <ul>
+                    <li>&lt;Bounds&gt;</li>
+                    <li>&lt;Stack&gt;, &lt;RepeatStack&gt;, &lt;StackItem&gt;</li>
+                    <li>&lt;Flow&gt;, &lt;RepeatFlow&gt;, &lt;FlowItem&gt;</li>
+                    <li>&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt;, &lt;ColumnSplitter&gt;</li>
+                    <li>&lt;SharedSizeRoot&gt;, &lt;SharedSizeItem&gt;</li>
+                    <li>&lt;SodeAligned&gt;</li>
+                    <li>&lt;PartialView&gt;</li>
+                    <li>
+                        Responsive series:
+                        <ul>
+                            <li>&lt;ResponsiveShared&gt;</li>
+                            <li>&lt;ResponsiveView&gt;</li>
+                            <li>&lt;ResponsiveFixed&gt;</li>
+                            <li>&lt;ResponsiveStack&gt;</li>
+                            <li>&lt;ResponsiveGroup&gt;</li>
+                            <li>&lt;ResponsiveContainer&gt;</li>
+                        </ul>
+                    </li>
+                </ul>
             </p>
         </topic>
         <topic>
@@ -27,17 +65,130 @@
             <p>
                 <a href="/gacui/kb/ctemplates.html">Control Templates</a> offer customization of control appearances.
             </p>
+            <p>
+                <a href="/gacui/components/ctemplates/home.html">Here</a> contains detailed introduction for all control templates:
+                <ul>
+                    <li>
+                        &lt;ControlTemplate&gt;
+                        <ul>
+                            <li>&lt;LabelTemplate&gt;</li>
+                            <li>&lt;SinglelineTextBoxTemplate&gt;</li>
+                            <li>&lt;DocumentLabelTemplate&gt;</li>
+                            <li>
+                                &lt;WindowTemplate&gt;
+                                <ul>
+                                    <li>
+                                        &lt;MenuTemplate&gt;
+                                        <ul>            
+                                            <li>&lt;GuiRibbonToolstripMenuTemplate&gt;</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                &lt;ButtonTemplate&gt;
+                                <ul>
+                                    <li>
+                                        &lt;SelectableButtonTemplate&gt;
+                                        <ul>
+                                            <li>
+                                                &lt;ToolstripButtonTemplate&gt;
+                                                <ul>
+                                                    <li>&lt;ListViewColumnHeaderTemplate&gt;</li>
+                                                    <li>
+                                                        &lt;ComboBoxTemplate&gt;
+                                                        <ul>
+                                                            <li>&lt;DateComboBoxTemplate&gt;</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>&lt;ScrollTemplate&gt;</li>
+                            <li>
+                                &lt;ScrollViewTemplate&gt;
+                                <ul>
+                                    <li>&lt;MultilineTextBoxTemplate&gt;</li>
+                                    <li>&lt;DocumentViewerTemplate&gt;</li>
+                                    <li>
+                                       &lt;ListControlTemplate&gt;
+                                       <ul>
+                                            <li>&lt;TextListTemplate&gt;</li>
+                                            <li>&lt;ListViewTemplate&gt;</li>
+                                            <li>&lt;TreeViewTemplate&gt;</li>
+                                       </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                &lt;TabTemplate&gt;
+                                <ul>
+                                    <li>&lt;GuiRibbonGroupTemplate&gt;</li>
+                                </ul>
+                            </li>
+                            <li>&lt;DatePickerTemplate&gt;</li>
+                            <li>&lt;GuiRibbonGroupTemplate&gt;</li>
+                            <li>&lt;GuiRibbonIconLabelTemplate&gt;</li>
+                            <li>&lt;GuiRibbonButtonsTemplate&gt;</li>
+                            <li>&lt;GuiRibbonToolstripsTemplate&gt;</li>
+                            <li>
+                                &lt;GuiRibbonGalleryTemplate&gt;
+                                <ul>
+                                    <li>&lt;GuiRibbonGalleryListTemplate&gt;</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Item Templates</title>
             <p>
                 <a href="/gacui/kb/itemplates.html">Control Templates</a> offer customization of list item appearances.
             </p>
+            <p>
+                <a href="/gacui/components/itemplates/home.html">Here</a> contains detailed introduction for all item templates:
+                <ul>
+                    <li>
+                        &lt;ListItemTemplate&gt;
+                        <ul>
+                            <li>
+                                &lt;TextListItemTemplate&gt;
+                                <ul>
+                                    <li>&lt;TreeItemTemplate&gt;</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        &lt;GridCellTemplate&gt;
+                        <ul>
+                            <li>&lt;GuiGridVisualizerTemplate&gt;</li>
+                            <li>&lt;GuiGridEditorTemplate&gt;</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Components</title>
             <p>
                 Components offer other features that are not involved in rendering.
+            </p>
+            <p>
+                <a href="/gacui/components/components/home.html">Here</a> contains detailed introduction for all components:
+                <ul>
+                    <li>&lt;MessageDialog&gt;</li>
+                    <li>&lt;ColorDialog&gt;</li>
+                    <li>&lt;FontDialog&gt;</li>
+                    <li>&lt;OpenFileDialog&gt;</li>
+                    <li>&lt;SaveFileDialog&gt;</li>
+                    <li>GuiSelectableButton::&lt;MutexGroupController&gt;</li>
+                </ul>
             </p>
         </topic>
     </topic>
