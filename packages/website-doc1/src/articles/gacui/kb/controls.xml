@@ -27,7 +27,7 @@
             <ul>
                 <li>
                     <p>
-                        <b>Normal Controls:</b>
+                        <b>Basic Controls:</b>
                         <ul>
                             <li><b>Label</b>: Displays interactive texts.</li>
                             <li><b>Button</b>: Reacts to mouse input.</li>
