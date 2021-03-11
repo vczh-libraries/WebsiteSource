@@ -24,6 +24,10 @@
                     <li>&lt;Polygon&gt;</li>
                 </ul>
             </p>
+            <p>
+                <b>presentation::elements::GuiColorizedTextElement</b> and <b>presentation::elements::GuiDocumentElement</b> are not expected to be used directly.
+                Editor controls will create and update these elements in the specified area provided by the control template.
+            </p>
         </topic>
         <topic>
             <title>Compositions</title>
