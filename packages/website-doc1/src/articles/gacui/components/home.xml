@@ -12,12 +12,12 @@
             <p>
                 <a href="/gacui/components/elements/home.html">Here</a> contains detailed introduction for:
                 <ul>
+                    <li>&lt;FocusRectangle&gt;</li>
                     <li>&lt;SolidBorder&gt;</li>
                     <li>&lt;SolidBackground&gt;</li>
-                    <li>&lt;GradientBackground&gt;</li>
-                    <li>&lt;FocusRectangle&gt;</li>
                     <li>&lt;Gui3DBorderElement&gt;</li>
                     <li>&lt;Gui3DSplitterElement&gt;</li>
+                    <li>&lt;GradientBackground&gt;</li>
                     <li>&lt;InnerShadow&gt;</li>
                     <li>&lt;SolidLabel&gt;</li>
                     <li>&lt;ImageFrame&gt;</li>
