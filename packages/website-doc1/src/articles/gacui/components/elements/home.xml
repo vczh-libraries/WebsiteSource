@@ -74,7 +74,7 @@
             <p>
                 <ul>
                     <li><b>Shape</b> defines the shape of this element.</li>
-                    <li><b>Color</b> property defines the color of the border.</li>
+                    <li><b>Color</b> property defines the color of the shape.</li>
                 </ul>
             </p>
         </topic>
@@ -195,6 +195,22 @@
         <topic>
             <title>&lt;Polygon&gt;</title>
             <p>
+                <b>&lt;Polygon&gt;</b> renders a polygon with a border color and a filling color.
+            </p>
+            <p>
+                <ul>
+                    <li><b>BorderColor</b> defaults to <b>#00000000</b>. It defines the color of the border.</li>
+                    <li><b>BackgroundColor</b> defaults to <b>#00000000</b>. It defines the color of the shape.</li>
+                    <li><b>Size</b> defines the size of the polygon. It also becomes the minimum size of this element.</li>
+                    <li>
+                        <b>Points</b> is an array of <b>presentation::Point</b>. It defines all vertices of the polygon in order.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                The <b>Size</b> property creates a coordinate space for <b>Points</b> with (0,0) in the top-left corner.
+                When the size of the element is larger than the minimum size,
+                the coordinate space is aligned to the center.
             </p>
         </topic>
     </topic>
