@@ -1,6 +1,16 @@
 <reference>
   <article name="Elements" file="elements/home"/>
-  <article name="Compositions" file="compositions/home"/>
+  <article name="Compositions" file="compositions/home">
+    <article name="&lt;Bounds&gt;" file="compositions/bounds"/>
+    <article name="&lt;Stack&gt; and &lt;StackItem&gt;" file="compositions/stack"/>
+    <article name="&lt;Flow&gt; and &lt;Flow&gt;" file="compositions/flow"/>
+    <article name="&lt;Table&gt; and &lt;Cell&gt;" file="compositions/table"/>
+    <article name="&lt;RepeatStack&gt; and &lt;RepeatFlow&gt;" file="compositions/repeat"/>
+    <article name="&lt;SharedSizeRoot&gt; and &lt;SharedSizeItem&gt;" file="compositions/sharedsize"/>
+    <article name="&lt;SideAligned&gt;" file="compositions/sidealigned"/>
+    <article name="&lt;PartialView&gt;" file="compositions/partialview"/>
+    <article name="Responsive Design Series" file="compositions/responsive"/>
+  </article>
   <article name="Controls" file="controls/home"/>
   <article name="Control Templates" file="ctemplates/home"/>
   <article name="Item Templates" file="itemplates/home"/>

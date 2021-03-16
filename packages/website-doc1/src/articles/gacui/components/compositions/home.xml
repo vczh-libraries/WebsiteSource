@@ -3,6 +3,66 @@
         <title>Compositions</title>
         <p>
             <a href="/gacui/kb/compositions.html">Composition</a> offer layout algorithms based on constraints.
+            Usually, developers using GacUI places nested controls and compositions in a window,
+            by defining constraints between compositions,
+            the window knows its minimum size,
+            and how to change sizes of child controls when the window is resizing.
+        </p>
+        <p>
+            There are a lot of predefined compositions as follows,
+            each defines a kind of constraint:
+            <ul>
+                <li>
+                    GuiGraphicsComposition
+                    <ul>
+                        <li>
+                            GuiGraphicsSite
+                            <ul>
+                                <li>GuiWindowComposition</li>
+                                <li>
+                                    &lt;Bounds&gt;
+                                    <ul>
+                                        <li>
+                                            &lt;Stack&gt;
+                                            <ul>
+                                                <li>&lt;RepeatStack&gt;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            &lt;Flow&gt;
+                                            <ul>
+                                                <li>&lt;RepeatFlow&gt;</li>
+                                            </ul>
+                                        </li>
+                                        <li>&lt;Table&gt;</li>
+                                        <li>&lt;SharedSizeRoot&gt;</li>
+                                        <li>&lt;SharedSizeItem&gt;</li>
+                                        <li>
+                                            GuiResponsiveCompositionBase
+                                            <ul>
+                                                <li>&lt;ResponsiveView&gt;</li>
+                                                <li>&lt;ResponsiveFixed&gt;</li>
+                                                <li>&lt;ResponsiveStack&gt;</li>
+                                                <li>&lt;ResponsiveGroup&gt;</li>
+                                            </ul>
+                                        </li>
+                                        <li>&lt;ResponsiveShared&gt;</li>
+                                        <li>&lt;ResponsiveContainer&gt;</li>
+                                    </ul>
+                                </li>
+                                <li>&lt;StackItem&gt;</li>
+                                <li>&lt;FlowItem&gt;</li>
+                                <li>&lt;Cell&gt;</li>
+                                <li>&lt;SideAligned&gt;</li>
+                                <li>&lt;PartialView&gt;</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            Here we introduce common constraints and configuration of all compositions first.
         </p>
     </topic>
 </article>

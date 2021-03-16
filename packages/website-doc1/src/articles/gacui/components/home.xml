@@ -42,10 +42,10 @@
                     <li>&lt;Flow&gt;, &lt;RepeatFlow&gt;, &lt;FlowItem&gt;</li>
                     <li>&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt;, &lt;ColumnSplitter&gt;</li>
                     <li>&lt;SharedSizeRoot&gt;, &lt;SharedSizeItem&gt;</li>
-                    <li>&lt;SodeAligned&gt;</li>
+                    <li>&lt;SideAligned&gt;</li>
                     <li>&lt;PartialView&gt;</li>
                     <li>
-                        Responsive series:
+                        Responsive Design series:
                         <ul>
                             <li>&lt;ResponsiveShared&gt;</li>
                             <li>&lt;ResponsiveView&gt;</li>
