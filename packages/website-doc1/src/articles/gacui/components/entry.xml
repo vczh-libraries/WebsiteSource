@@ -10,6 +10,7 @@
     <article name="&lt;SideAligned&gt;" file="compositions/sidealigned"/>
     <article name="&lt;PartialView&gt;" file="compositions/partialview"/>
     <article name="Responsive Design Series" file="compositions/responsive"/>
+    <article name="Handling Input Events" file="compositions/events"/>
   </article>
   <article name="Controls" file="controls/home"/>
   <article name="Control Templates" file="ctemplates/home"/>

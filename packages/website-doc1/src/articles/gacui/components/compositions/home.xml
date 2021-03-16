@@ -1,4 +1,4 @@
-<article>
+<article index="true">
     <topic>
         <title>Compositions</title>
         <p>
@@ -64,5 +64,29 @@
         <p>
             Here we introduce common constraints and configuration of all compositions first.
         </p>
+        <topic>
+            <title>TransparentToMouse property</title>
+        </topic>
+        <topic>
+            <title>AssociatedCursor property</title>
+        </topic>
+        <topic>
+            <title>AssociatedHitTestResult property</title>
+        </topic>
+        <topic>
+            <title>Visible property</title>
+        </topic>
+        <topic>
+            <title>OwnedElement and MinSizeLimitation property</title>
+        </topic>
+        <topic>
+            <title>PreferredMinSize property</title>
+        </topic>
+        <topic>
+            <title>Margin property</title>
+        </topic>
+        <topic>
+            <title>InternalMargin property</title>
+        </topic>
     </topic>
 </article>
