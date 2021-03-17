@@ -71,35 +71,16 @@
             </p>
             <p>
                 If it is set to <b>true</b>,
-                the return value of <b>FoundComposition</b> method will never be this composition
-                when the second argument to this function is <b>true</b>.
-                This means a mouse event will not raise from at this composition.
+                this composition becomes transparent to the mouse.
+                When a mouse clicks on this composition,
+                the click just go through this composition and hit a non-transparent one under this composition.
             </p>
             <p>
-                When a mouse event is raised on a composition,
-                it also raised on all parent compositions from inside to outside one by one.
-                In the argument to the mouse event,
-                the <b>compositionSource</b> points to the composition where this mouse event raised from,
-                and the <b>eventSource</b> points to the composition that receiving the event.
-            </p>
-            <p>
-                Obviously,
-                when raising a mouse event from inside to outside,
-                the <b>compositionSource</b> property does not change,
-                pointing to the most inside composition that raises this event.
-            </p>
-            <p>
-                If <b>TransparentToMouse</b> is set to <b>false</b> for a composition,
-                when the mouse clicks this composition but not its child composition,
-                it becomes <b>compositionSource</b> and raise all events from this composition
-                to the most outside composition (which is usually a <b>GuiWindowComposition</b>).
-            </p>
-            <p>
-                If <b>TransparentToMouse</b> is set to <b>false</b> for a composition,
-                when the mouse clicks this composition but not its child composition,
-                it will find the a composition from itself to outside one by one.
-                When it reaches a composition of which the <b>TransparentToMouse</b> is true,
-                this composition becomes <b>compositionSource</b> and everything begins here.
+                <b>Note</b>:
+                by setting it to <b>true</b>,
+                it doesn't makes child compositions become transparent to the mouse.
+                If you want a whole composition tree to be transparent to the mouse,
+                every single composition in this tree must have this property set to <b>true</b>.
             </p>
         </topic>
         <topic>
