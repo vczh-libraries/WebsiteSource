@@ -132,16 +132,143 @@
             </p>
         </topic>
         <topic>
-            <title>OwnedElement and MinSizeLimitation property</title>
-        </topic>
-        <topic>
-            <title>PreferredMinSize property</title>
-        </topic>
-        <topic>
-            <title>Margin property</title>
-        </topic>
-        <topic>
-            <title>InternalMargin property</title>
+            <title>Box Model</title>
+            <p>
+                <img src="/gacui/com_BoxModel.png"/>
+            </p>
+            <p>
+                <b>DO NOT</b> control layout by code, <b>DO</b> control layout by assigning proper values to properties mentioned below.
+                the layout will be fixed as soon as possible after properties of elements are changed,
+                and it is fast enough,
+                but the timing is not guaranteed.
+            </p>
+            <p>
+                Any attempts to read the position of size of composition by programming could lead to unexpected result.
+            </p>
+            <topic>
+                <title>Minimum size of the composition</title>
+                <p>
+                    The minimum size is controlled by the following properties:
+                    <ul>
+                        <li>OwnedElement</li>
+                        <li>MinSizeLimitation</li>
+                        <li>PreferredMinSize</li>
+                    </ul>
+                </p>
+                <p>
+                    A composition has a default minimum size to 0.
+                </p>
+                <p>
+                    By assigning an element to the <b>OwnedElement</b> property,
+                    the element is binded to this composition.
+                    The element is rendered using the composition's position and size.
+                </p>
+                <p>
+                    Sometimes the element requires a minimum size to render its full content
+                    (typically for <b>SolidLabel</b> without enabling trailing ellipses).
+                    To assign the minimum size to this composition,
+                    simply just set <b>MinSizeLimitation</b> to <b>LimitToElement</b>.
+                </p>
+                <p>
+                    If this composition has children,
+                    there will also be a minimum size to render all children.
+                    To assign the minimum size to this composition,
+                    simply just set <b>MinSizeLimitation</b> to <b>LimitToElementAndChildren</b>.
+                </p>
+                <p>
+                    You can also assign a specific minimum size to this composition using the <b>PreferredMinSize</b> property.
+                </p>
+                <p>
+                    Now a composition has 3 minimum sizes (element, children, specified assigned).
+                    It will choose a maximum value among this three in each dimension,
+                    the result becomes the minimum size of this composition.
+                </p>
+                <p>
+                    <b>NOTE</b>:
+                    the required size of the element is calculated when it is being rendered.
+                    So it is obvious that,
+                    when an element has never been rendered (e.g. a window is created but not yet display),
+                    or when properties of this element is changed but the window is not yet refreshed,
+                    you could get a wrong minimum size by calling the composition's member functions.
+                </p>
+            </topic>
+            <topic>
+                <title>Position of the composition</title>
+                <p>
+                    The position is controlled by the following properties:
+                    <ul>
+                        <li>Margin, defaults to (0,0,0,0)</li>
+                        <li>AlignmentToParent, defaults to (-1,-1,-1,-1)</li>
+                        <li>InternalMargin of the parent composition, defaults to (0,0,0,0)</li>
+                    </ul>
+                </p>
+                <p>
+                    <b>Any component of Margin and InternalMargin must be 0 or positive.</b>
+                </p>
+                <p>
+                    <b>Any component of AlignmentToParent must be -1, 0 or positive.</b>
+                </p>
+                <p>
+                    <b>AlignmentToParent</b> (white) is the gap between this composition and its parent compositon.
+                    <b>Margin</b> (pink) adds an invisible border to this composition,
+                    <b>InternalMargin</b> (pink) adds an invisible internal border to the parent composition.
+                </p>
+                <p>
+                    The position and size of this composition doesn't include its <b>Margin</b>,
+                    but the position and size of the parent composition includes its <b>InternalMargin</b>.
+                </p>
+                <p>
+                    <b>AlignmentToParent</b> controls how this composition is placed in the parent composition.
+                    If any component of <b>AlignmentToParent</b> is not -1,
+                    this composition will try its best to keep the gap to the parent composition to be the specified value.
+                    When the parent composition grows, this composition also grows.
+                </p>
+                <p>
+                    But the gap is not guarenteed,
+                    one of a typical reason is that,
+                    the parent composition doesn't have enough space to satisfy both the gap and the minimum size of this composition.
+                    In this case:
+                    <ul>
+                        <li>The minimum size wins</li>
+                        <li>AlignmentToParent.left wins if both it and AlignmentToParent.right is not -1</li>
+                        <li>AlignmentToParent.top wins if both it and AlignmentToParent.bottom is not -1</li>
+                    </ul>
+                </p>
+                <p>
+                    <b>AlignmentToParent</b> also affects the minimum size of the parent composition
+                    if <b>MinSizeLimitation</b> of the parent composition is set to <b>LimitToElementAndChildren</b>.
+                </p>
+                <p>
+                    <b>NOTE</b>:
+                    some compositions like <b>&lt;SideAligned/&gt;</b> or <b>&lt;PartialView/&gt;</b>
+                    ignores <b>AlignmentToParent</b> and <b>Margin</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>Keeping a button at the right-bottom corner of the window</title>
+                <p>
+                    This is very straightforward:
+                    <program><code><![CDATA[
+                        <Button>
+                          <att.BoundsComposition AlignmentToParent="left:-1 top:-1 right:5 bottom:5"/>
+                        </Button>
+                    ]]></code></program>
+                </p>
+                <p>
+                    By doing this,
+                    the button will keep its right 5 pixel (96 dpi) away from its parent's right,
+                    also its bottom 5 pixel (96 dpi) away from its parent's bottom.
+                    When the size of its parent changes,
+                    the button will stick to the right-bottom corner.
+                </p>
+                <p>
+                    <b>NOTE</b>:
+                    you are recommended to use <b>&lt;Table/&gt;</b> when you can,
+                    since the size of the button could change because it has different text under different OS language configuration.
+                    <b>&lt;Table/&gt;</b> helps to organize the button and the content above the button,
+                    or when there are multiple button on the right-bottom size.
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>
