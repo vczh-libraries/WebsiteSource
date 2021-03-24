@@ -29,7 +29,7 @@
                         </ul>
                     </li>
                     <li>
-                        <b>Lib</b> folder: copy files to this folder from <a href="https://github.com/vczh-libraries/Release/tree/master/Import">here</a>. Choose all files in "Files you need for a typical GacUI application" from the <a href="./download.html">Download</a> page.
+                        <b>Lib</b> folder: copy files to this folder from <a href="https://github.com/vczh-libraries/Release/tree/master/Import">here</a>. Choose all files in "Files you need for a typical GacUI application" from the <a href="//download.html">Download</a> page.
                     </li>
                     <li><b>Main.cpp</b></li>
                     <li><b>WinMain.cpp</b></li>
