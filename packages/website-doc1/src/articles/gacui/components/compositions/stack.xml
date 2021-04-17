@@ -51,6 +51,19 @@
                 <p>
                     The default value is 0 for all its components.
                 </p>
+                <p>
+                    This property adds a border to a <b>&lt;StackItem/&gt;</b>.
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <b>ExtraMargin</b> does not affect how <b>other</b> <b>&lt;StackItem/&gt;</b> is located.
+                    Instead,
+                    after the position of a <b>&lt;StackItem/&gt;</b> is decided,
+                    <b>ExtraMargin</b> kicks in and add a border to enlarge it.
+                </p>
+                <p>
+                    Adding an <b>ExtraMargin</b> to a <b>&lt;StackItem/&gt;</b> does not increase the minimum size of its parent <b>&lt;Stack/&gt;</b>.
+                </p>
             </topic>
         </topic>
         <topic>
