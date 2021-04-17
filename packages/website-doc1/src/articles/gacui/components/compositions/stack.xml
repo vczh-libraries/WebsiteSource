@@ -33,17 +33,19 @@
             <topic>
                 <title>&lt;Stack&gt;::Padding</title>
                 <p>
-                    The default value is 0 for all its components.
+                    The default value is 0.
                 </p>
                 <p>
-                    This property adds a padding inside the border of a <b>&lt;Stack/&gt;</b>.
-                    This is useful when you needs <b>&lt;StackItems/&gt;</b> to keep a distance from its parent.
+                    This property keeps an distance between each <b>&lt;StackItem/&gt;</b>.
                 </p>
             </topic>
             <topic>
                 <title>&lt;Stack&gt;::ExtraMargin</title>
                 <p>
                     The default value is 0 for all its components.
+                </p>
+                <p>
+                    This property keeps an distance between <b>&lt;Stack/&gt;</b> and <b>&lt;StackItem/&gt;</b>.
                 </p>
             </topic>
             <topic>
