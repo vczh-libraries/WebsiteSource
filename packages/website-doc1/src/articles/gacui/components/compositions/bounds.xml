@@ -1,8 +1,62 @@
-<article>
+<article index="true">
     <topic>
         <title>&lt;Bounds&gt;</title>
         <p>
-            The page is under construction.
+            <b>&lt;Bounds/&gt;</b> is able to set a relative position directly.
+            But usually this composition is used when you just need to have a composition.
         </p>
+        <p>
+            Three properties are provided by <b>&lt;Bounds/&gt;</b>:
+        </p>
+        <topic>
+            <title>SizeAffectParent</title>
+            <p>
+                The default value of <b>SizeAffectParent</b> is <b>true</b>.
+            </p>
+            <p>
+                When it is <b>true</b>,
+
+            </p>
+        </topic>
+        <topic>
+            <title>Bounds</title>
+            <p>
+                To set a relative position,
+                the default value is 0 for all its components.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                The relative position of a composition does not always listen to the value of <b>Bounds</b>.
+            </p>
+            <p>
+                <b>Bounds</b> is only a suggestion.
+                To decide a position of a composition,
+                one component will be calculated by looking at other properties,
+                only when nothing is provided for this component,
+                the component of <b>Bounds</b> will be used.
+            </p>
+            <p>
+                For example,
+                to decide the width of a composition,
+                <b>AlignmentToParent</b> will first be examined.
+                But sometimes <b>left</b> and <b>right</b> are both -1 in <b>AlignmentToParent</b>,
+                and there is enough room for the composition to grow bigger than its minimum width,
+                then <b>width</b> of <b>Bounds</b> is used.
+            </p>
+        </topic>
+        <topic>
+            <title>AlignmentToParent</title>
+            <p>
+                <b>AlignmentToParent</b> is added for all compositions that can control the relative position by themselves.
+                The position of <b>&lt;StackItem/&gt;</b> and <b>&lt;FlowItem/&gt;</b> are completely decided by
+                <b>&lt;Stack/&gt;</b> and <b>&lt;Flow/&gt;</b>,
+                <b>AlignmentToParent</b> does not exist in these compositions.
+            </p>
+            <p>
+                Please check out
+                <a href="/gacui/components/compositions/home.html#Position-of-the-composition">this page</a>
+                for more information.
+            </p>
+        </topic>
     </topic>
 </article>
