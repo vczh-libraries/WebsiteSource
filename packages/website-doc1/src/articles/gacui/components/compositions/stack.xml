@@ -5,6 +5,10 @@
             <b>&lt;Stack/&gt;</b> arrange all direct children <b>&lt;SlackItem/&gt;</b> compositions
             in a line following the same direction.
         </p>
+        <p>
+            If all <b>&lt;SlackItem/&gt;</b> lines of horizontally, all of them share the same height.
+            If all <b>&lt;SlackItem/&gt;</b> lines of vertically, all of them share the same width.
+        </p>
         <topic>
             <title>Properties</title>
             <p>
@@ -16,16 +20,37 @@
                 there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;StackItem/&gt;</b>.
             </p>
             <topic>
-                <title>&lt;Stack&gt;.Direction</title>
+                <title>&lt;Stack&gt;::Direction</title>
+                <p>
+                    The default value is <b>Horizontal</b>.
+                </p>
+                <p>
+                    <b>Horizontal</b>, <b>ReversedHorizontal</b>, <b>Vertical</b> and <b>ReversedVertical</b>
+                    are all valid values for this property,
+                    deciding how <b>&lt;StackItem/&gt;</b> are line up in a <b>&lt;Stack/&gt;</b>.
+                </p>
             </topic>
             <topic>
-                <title>&lt;Stack&gt;.Padding</title>
+                <title>&lt;Stack&gt;::Padding</title>
+                <p>
+                    The default value is 0 for all its components.
+                </p>
+                <p>
+                    This property adds a padding inside the border of a <b>&lt;Stack/&gt;</b>.
+                    This is useful when you needs <b>&lt;StackItems/&gt;</b> to keep a distance from its parent.
+                </p>
             </topic>
             <topic>
-                <title>&lt;Stack&gt;.ExtraMargin</title>
+                <title>&lt;Stack&gt;::ExtraMargin</title>
+                <p>
+                    The default value is 0 for all its components.
+                </p>
             </topic>
             <topic>
-                <title>&lt;StackItem&gt;.ExtraMargin</title>
+                <title>&lt;StackItem&gt;::ExtraMargin</title>
+                <p>
+                    The default value is 0 for all its components.
+                </p>
             </topic>
         </topic>
         <topic>
@@ -39,7 +64,7 @@
                 </p>
             </topic>
             <topic>
-                <title>&lt;Stack&gt;::InsertStackItem()</title>
+                <title>&lt;Stack&gt;::InsertStackItem(index, item)</title>
                 <p>
                     To control the position of a <b>&lt;StackItem/&gt;</b> in a line,
                     call <b>&lt;Stack&gt;::InsertStackItem()</b>
@@ -62,9 +87,14 @@
             <title>Visibility of Stack Items</title>
             <topic>
                 <title>&lt;Stack&gt;::IsStackItemClipped()</title>
+                <p>
+                    This function returns <b>false</b>
+                    when any part of any <b>&lt;StackItem/&gt;</b>
+                    is invisible or clipped by this <b>&lt;Stack/&gt;</b>.
+                </p>
             </topic>
             <topic>
-                <title>&lt;Stack&gt;::EnsureVisible()</title>
+                <title>&lt;Stack&gt;::EnsureVisible(index)</title>
             </topic>
         </topic>
     </topic>
