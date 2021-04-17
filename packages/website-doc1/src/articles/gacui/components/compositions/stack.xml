@@ -110,6 +110,13 @@
             </topic>
             <topic>
                 <title>&lt;Stack&gt;::EnsureVisible(index)</title>
+                <p>
+                    When <b>MinSizeLimitation</b> of <b>&lt;Stack/&gt;</b> is not <b>LimitToElementAndChildren</b>,
+                    it is possible that some <b>&lt;StackItem/&gt;</b> are not visible because of the <b>&lt;Stack/&gt;</b> is too small.
+                </p>
+                <p>
+                    This function <b>"scrolls"</b> all items to make sure that the specified one is visible.
+                </p>
             </topic>
         </topic>
     </topic>
