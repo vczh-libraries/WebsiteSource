@@ -1,8 +1,71 @@
-<article>
+<article index="true">
     <topic>
         <title>&lt;Stack&gt; and &lt;StackItem&gt;</title>
         <p>
-            The page is under construction.
+            <b>&lt;Stack/&gt;</b> arrange all direct children <b>&lt;SlackItem/&gt;</b> compositions
+            in a line following the same direction.
         </p>
+        <topic>
+            <title>Properties</title>
+            <p>
+                A few more properties are provided by <b>&lt;Stack/&gt;</b> and <b>&lt;StackItem/&gt;</b>
+                to control the details of how to ordering <b>&lt;StackItem/&gt;</b>.
+            </p>
+            <p>
+                <b>&lt;StackItem/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
+                there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;StackItem/&gt;</b>.
+            </p>
+            <topic>
+                <title>&lt;Stack&gt;.Direction</title>
+            </topic>
+            <topic>
+                <title>&lt;Stack&gt;.Padding</title>
+            </topic>
+            <topic>
+                <title>&lt;Stack&gt;.ExtraMargin</title>
+            </topic>
+            <topic>
+                <title>&lt;StackItem&gt;.ExtraMargin</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>Adding Stack Items</title>
+            <topic>
+                <title>&lt;Stack&gt;::Children()</title>
+                <p>
+                    When a new <b>&lt;StackItem/&gt;</b> is added to <b>&lt;Stack/&gt;</b> as a child,
+                    this <b>&lt;StackItem/&gt;</b> is always appended to the end of the line,
+                    regardless of its position in <b>&lt;Stack&gt;::Children</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Stack&gt;::InsertStackItem()</title>
+                <p>
+                    To control the position of a <b>&lt;StackItem/&gt;</b> in a line,
+                    call <b>&lt;Stack&gt;::InsertStackItem()</b>
+                    instead of <b>&lt;Stack&gt;::Children()</b>.
+                </p>
+                <p>
+                    This function also adds a <b>&lt;StackItem/&gt;</b> to the <b>&lt;Stack/&gt;</b>,
+                    but it allows the position of this <b>&lt;StackItem/&gt;</b> in a line to be specified,
+                    instead of adding it to the end of the line.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Stack&gt;::GetStackItems()</title>
+                <p>
+                    Call this function to get all direct children <b>&lt;StackItem/&gt;</b> in the line order.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Visibility of Stack Items</title>
+            <topic>
+                <title>&lt;Stack&gt;::IsStackItemClipped()</title>
+            </topic>
+            <topic>
+                <title>&lt;Stack&gt;::EnsureVisible()</title>
+            </topic>
+        </topic>
     </topic>
 </article>
