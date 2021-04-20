@@ -2,12 +2,12 @@
     <topic>
         <title>&lt;Stack&gt; and &lt;StackItem&gt;</title>
         <p>
-            <b>&lt;Stack/&gt;</b> arrange all direct children <b>&lt;SlackItem/&gt;</b> compositions
+            <b>&lt;Stack/&gt;</b> arrange all direct children <b>&lt;StackItem/&gt;</b> compositions
             in a line following the same direction.
         </p>
         <p>
-            If all <b>&lt;SlackItem/&gt;</b> lines of horizontally, all of them share the same height.
-            If all <b>&lt;SlackItem/&gt;</b> lines of vertically, all of them share the same width.
+            If all <b>&lt;StackItem/&gt;</b> lines of horizontally, all of them share the same height.
+            If all <b>&lt;StackItem/&gt;</b> lines of vertically, all of them share the same width.
         </p>
         <topic>
             <title>Properties</title>
@@ -58,7 +58,7 @@
                 </p>
                 <p>
                     <b>IMPORTANT</b>:
-                    <b>ExtraMargin</b> does not affect how <b>other</b> <b>&lt;StackItem/&gt;</b> is located.
+                    <b>ExtraMargin</b> does not affect how <b>other &lt;StackItem/&gt;</b> is positioned.
                     Instead,
                     after the position of a <b>&lt;StackItem/&gt;</b> is decided,
                     <b>ExtraMargin</b> kicks in and add a border to enlarge it.
@@ -118,6 +118,16 @@
                     This function <b>"scrolls"</b> all items to make sure that the specified one is visible.
                 </p>
             </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Stack">
+                    this tutorial project
+                </a>
+                .
+            </p>
         </topic>
     </topic>
 </article>
