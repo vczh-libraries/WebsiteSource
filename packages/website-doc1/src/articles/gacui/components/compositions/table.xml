@@ -118,96 +118,82 @@
                 </p>
             </topic>
             <topic>
-                <title>&lt;Flow&gt;::ExtraMargin</title>
+                <title>&lt;Cell&gt;::Site</title>
                 <p>
-                    The default value is 0 for all its components.
+                    This is a required property in GacUI XML Resource.
                 </p>
                 <p>
-                    This property keeps an distance between <b>&lt;Flow/&gt;</b> and <b>&lt;FlowItem/&gt;</b>.
-                </p>
-            </topic>
-            <topic>
-                <title>&lt;FlowItem&gt;::ExtraMargin</title>
-                <p>
-                    The default value is 0 for all its components.
-                </p>
-                <p>
-                    This property adds a border to a <b>&lt;FlowItem/&gt;</b>.
-                </p>
-                <p>
-                    <b>IMPORTANT</b>:
-                    <b>ExtraMargin</b> does not affect how <b>other &lt;FlowItem/&gt;</b> is positioned.
-                    Instead,
-                    after the position of a <b>&lt;FlowItem/&gt;</b> is decided,
-                    <b>ExtraMargin</b> kicks in and add a border to enlarge it.
+                    This property can only be used in GacUI XML Resource and Workflow.
+                    In order to access them in C++,
+                    please check out the following methods:
+                    <ul>
+                        <li>GetRow</li>
+                        <li>GetRowSpan</li>
+                        <li>GetColumn</li>
+                        <li>GetColumnSpan</li>
+                        <li>SetSite</li>
+                    </ul>
+                    <b>SetSite</b> requires 4 arguments,
+                    which are exactly the 4 components in this <b>Site</b> property.
                 </p>
                 <p>
-                    Adding an <b>ExtraMargin</b> to a <b>&lt;FlowItem/&gt;</b> does not increase the minimum size of its parent <b>&lt;Flow/&gt;</b>.
-                </p>
-            </topic>
-            <topic>
-                <title>&lt;FlowItem&gt;::FlowOption</title>
-                <p>
-                    The default value is <b>baseline:FromBottom distance:0</b>.
-                </p>
-                <p>
-                    This property describes how <b>&lt;FlowItem/&gt;</b> are positioned in one row.
-                </p>
-                <p>
-                    <b>baseline</b> could be <b>FromTop</b>, <b>FromBottom</b> or <b>Percentage</b>:
+                    Value for this property is <b>row:R column:C rowSpan:RS columnSpan:CS</b>.
+                    The default values for <b>rowSpan</b> and <b>columnSpan</b> are 1.
                     <ul>
                         <li>
-                            <b>FromTop</b>:
-                            the <b>&lt;FlowItem/&gt;</b> keeps the <b>distance</b> from the top of the row.
+                            <b>row</b>:
+                            specify the row where this cell locates starting from 0.
                         </li>
                         <li>
-                            <b>FromBottom</b>:
-                            the <b>&lt;FlowItem/&gt;</b> keeps the <b>distance</b> from the bottom of the row.
+                            <b>column</b>:
+                            specify the column where this cell locates starting from 0.
                         </li>
                         <li>
-                            <b>Percentage</b>:
-                            the <b>&lt;FlowItem/&gt;</b> keeps the distahce,
-                            which is <b>pencentage</b> of its height,
-                            from the top of the row.
+                            <b>rowSpan</b>:
+                            specify how many rows does this cell take.
+                        </li>
+                        <li>
+                            <b>columnSpan</b>:
+                            specify how many columns does this cell take.
                         </li>
                     </ul>
                 </p>
                 <p>
-                    <b>IMPORTANT</b>:
-                    <b>Top</b> here doesn't necessary mean the top border of a row,
-                    it depends on the value of the <b>Axis</b> property.
+                    A table is split to multiple cell blocks,
+                    a cell could take multiple cell blocks at once,
+                    but they must form a rectangle space.
+                    A cell block can only be taken by one cell.
+                </p>
+                <p>
+                    <b>&lt;Cell/&gt;</b> are processed according to their order in GacUI XML Resource.
+                    If a cell is found to be taking cell blocks that have already been taken,
+                    the <b>Site</b> property of this cell is canceled,
+                    the position of this cell is undefined.
                 </p>
             </topic>
         </topic>
         <topic>
-            <title>Adding Flow Items</title>
-            <topic>
-                <title>&lt;Flow&gt;::Children()</title>
-                <p>
-                    When a new <b>&lt;FlowItem/&gt;</b> is added to <b>&lt;Flow/&gt;</b> as a child,
-                    this <b>&lt;FlowItem/&gt;</b> is always appended to the end of the last row,
-                    regardless of its position in <b>&lt;Flow&gt;::Children</b>.
-                </p>
-            </topic>
-            <topic>
-                <title>&lt;Flow&gt;::InsertFlowItem(index, item)</title>
-                <p>
-                    To control the position of a <b>&lt;FlowItem/&gt;</b> in the auto-wrapped line,
-                    call <b>&lt;Flow&gt;::InsertFlowItem()</b>
-                    instead of <b>&lt;Flow&gt;::Children()</b>.
-                </p>
-                <p>
-                    This function also adds a <b>&lt;FlowItem/&gt;</b> to the <b>&lt;Flow/&gt;</b>,
-                    but it allows the position of this <b>&lt;FlowItem/&gt;</b> in the auto-wrapped line to be specified,
-                    instead of adding it to the end of the last row.
-                </p>
-            </topic>
-            <topic>
-                <title>&lt;Flow&gt;::GetFlowItems()</title>
-                <p>
-                    Call this function to get all direct children <b>&lt;FlowItem/&gt;</b> in the line order.
-                </p>
-            </topic>
+            <title>Adding Cells in C++</title>
+            <p>
+                To create a table in C++,
+                these steps must be taken in order:
+                <ul>
+                    <li>Call <b>SetRowsAndColumns</b> of the table to allocate cell blocks.</li>
+                    <li>Call <b>SetRowOption</b> and <b>SetColumnOption</b> of the table for size configuration.</li>
+                    <li>Call <b>SetSite</b> for cells to define which cell blocks are taken by each cell.</li>
+                    <li>Add cells as a direct child composition of the table.</li>
+                    <li>Call <b>UpdateCellBounds</b> of the table to tell that the configuration is ready.</li>
+                </ul>
+            </p>
+            <p>
+                When contents of cells are changed,
+                no action is required.
+            </p>
+            <p>
+                When size configurations are changed,
+                or when cells are added or removed to the table,
+                <b>UpdateCellBounds</b> must be called to tell the table to reorganize cells.
+            </p>
         </topic>
         <topic>
             <title>Adjusting Cells by Mouse</title>
