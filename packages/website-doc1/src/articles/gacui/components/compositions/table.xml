@@ -199,9 +199,41 @@
             <title>Adjusting Cells by Mouse</title>
             <topic>
                 <title>&lt;RowSplitter&gt;</title>
+                <p>
+                    A <b>&lt;RowSplitter/&gt;</b> takes the space between two rows.
+                    This requires the table to have a non-zero <b>CellPadding</b>.
+                </p>
+                <p>
+                    One of a row above or below the splitter is required to be <b>Absolute</b>.
+                </p>
+                <p>
+                    <b>RowsToTheTop</b> specifies how many rows are above this splitter.
+                    If the table has 5 rows,
+                    valid values for <b>RowsToTheTop</b> are 1 to 4.
+                </p>
+                <p>
+                    After adding a splitter to the table,
+                    it can be dragged by a mouse to adjust the size of an <b>Absolute</b> row around the splitter.
+                </p>
             </topic>
             <topic>
                 <title>&lt;ColumnSplitter&gt;</title>
+                <p>
+                    A <b>&lt;ColumnSplitter/&gt;</b> takes the space between two columns.
+                    This requires the table to have a non-zero <b>CellPadding</b>.
+                </p>
+                <p>
+                    One of a column above or below the splitter is required to be <b>Absolute</b>.
+                </p>
+                <p>
+                    <b>ColumnsToTheTop</b> specifies how many columns are above this splitter.
+                    If the table has 5 columns,
+                    valid values for <b>ColumnsToTheTop</b> are 1 to 4.
+                </p>
+                <p>
+                    After adding a splitter to the table,
+                    it can be dragged by a mouse to adjust the size of an <b>Absolute</b> column around the splitter.
+                </p>
             </topic>
         </topic>
         <topic>
