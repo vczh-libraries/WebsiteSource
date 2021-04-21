@@ -9,6 +9,9 @@
             If all <b>&lt;StackItem/&gt;</b> lines of horizontally, all of them share the same height.
             If all <b>&lt;StackItem/&gt;</b> lines of vertically, all of them share the same width.
         </p>
+        <p>
+            <b>&lt;StackItem/&gt;</b>::MinSizeLimitation is <b>LimitToElementAndChildren</b> by default.
+        </p>
         <topic>
             <title>Properties</title>
             <p>

@@ -53,6 +53,13 @@
                                 <li>&lt;StackItem&gt;</li>
                                 <li>&lt;FlowItem&gt;</li>
                                 <li>&lt;Cell&gt;</li>
+                                <li>
+                                   GuiTableSplitterComposition
+                                    <ul>
+                                        <li>&lt;RowSplitter&gt;</li>
+                                        <li>&lt;ColumnSplitter&gt;</li>
+                                    </ul>
+                                </li>
                                 <li>&lt;SideAligned&gt;</li>
                                 <li>&lt;PartialView&gt;</li>
                             </ul>

@@ -5,6 +5,9 @@
             <b>&lt;Flow/&gt;</b> arrange all direct children <b>&lt;FlowItem/&gt;</b> compositions
             in multiple rows with auto line wrapping.
         </p>
+        <p>
+            <b>&lt;FlowItem/&gt;</b>::MinSizeLimitation is <b>LimitToElementAndChildren</b> by default.
+        </p>
         <topic>
             <title>Properties</title>
             <p>

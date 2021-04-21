@@ -1,8 +1,232 @@
-<article>
+<article index="true">
     <topic>
-        <title>&lt;Table&gt; and &lt;Cell&gt;</title>
+        <title>&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt; and &lt;ColumnSplitter&gt;</title>
         <p>
-            The page is under construction.
+            <b>&lt;Table/&gt;</b> arrange all direct children <b>&lt;Cell/&gt;</b> compositions
+            in a table with size configurations.
         </p>
+        <p>
+            <b>&lt;Cell/&gt;</b>::MinSizeLimitation is <b>LimitToElementAndChildren</b> by default.
+        </p>
+        <topic>
+            <title>Properties</title>
+            <p>
+                A few more properties are provided by <b>&lt;Table/&gt;</b> and <b>&lt;Cell/&gt;</b>
+                to control the details of how to ordering <b>&lt;Cell/&gt;</b>.
+            </p>
+            <p>
+                <b>&lt;Cell/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
+                there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;Cell/&gt;</b>.
+            </p>
+            <topic>
+                <title>&lt;Table&gt;::Rows and &lt;Table&gt;::Columns</title>
+                <p>
+                    They are collection properties that can only be used in GacUI XML Resource and Workflow.
+                    In order to access them in C++,
+                    please check out the following methods:
+                    <ul>
+                        <li>GetRows</li>
+                        <li>GetRows</li>
+                        <li>SetRowsAndColumns</li>
+                        <li>GetRowOption</li>
+                        <li>SetRowOption</li>
+                        <li>GetColumnOption</li>
+                        <li>SetColumnOption</li>
+                    </ul>
+                    Call <b>SetRowsColumns</b> to allocate the numbers of rows and columns for this table,
+                    and then call <b>SetRowOption</b> and <b>SetColumnOption</b> to set the size configuration.
+                </p>
+                <p>
+                    In GacUI XML Resource,
+                    in order to have a 5x3 table,
+                    it is expected to have 5 values in <b>Rows</b> and 3 values in <b>Columns</b>.
+                </p>
+                <p>
+                    Values for these properties could be:
+                    <ul>
+                        <li><b>composeType:MinSize</b>: the size of the cell is the minimum size for this composition.</li>
+                        <li><b>composeType:Absolute absolute:X</b>: the size of the cell cannot be smaller than X. X must be a non-negative integer.</li>
+                        <li><b>composeType:Percentage percentage:X</b>: the size of the cell is decided by all <b>Percentage</b> cells. X must be a non-negative number.</li>
+                    </ul>
+                </p>
+                <p>
+                    Before repositioning cells,
+                    the table will collect all rows and cells that are <b>MinSize</b> and <b>Absolute</b>,
+                    spaces are first allocate to these rows and cells.
+                    And then if there are still spaces,
+                    spaces will be allocate to <b>Percentage</b> cells in proportion.
+                </p>
+                <p>
+                    If <b>&lt;Table/&gt;</b>::MinSizeLimitation is set to <b>LimitToElementAndChildren</b>,
+                    the minimum size of the table is the sum of all cells' minimum sizes with paddings.
+                    For <b>Absolute</b> cells,
+                    if the absolute value is larger than its minimum size,
+                    the absolute value becomes the minimum size for this cell.
+                </p>
+                <p>
+                    The sum of all percentage values could be anything.
+                    for example, if a table has a 0 padding with these 5 row options:
+                    <ul>
+                        <li><b>composeType:Percentage percentage:0.5</b></li>
+                        <li><b>composeType:MinSize</b></li>
+                        <li><b>composeType:Percentage percentage:1.0</b></li>
+                        <li><b>composeType:Absolute absolute:200</b></li>
+                        <li><b>composeType:Percentage percentage:0.5</b></li>
+                    </ul>
+                    and the minimum width for each cell is 100.
+                </p>
+                <p>
+                    It is easy to know that the minimum width of this table is 500.
+                    If the table has a border and a cell padding of 10,
+                    its minimum width becomes 560.
+                </p>
+                <p>
+                    In the space of 500:
+                    <ul>
+                        <li>100 will be allocated to the 2nd cell</li>
+                        <li>200 will be allocated to the 4nd cell</li>
+                    </ul>
+                    and there is still 200 left.
+                </p>
+                <p>
+                    The sum of all percentage values is 0.5 + 1.0 + 0.5 = 2.
+                    <ul>
+                        <li>The 1st cell will be allocated 50 (200 * 0.5 / 2)</li>
+                        <li>The 3rd cell will be allocated 100 (200 * 1.0 / 2)</li>
+                        <li>The 5th cell will be allocated 50 (200 * 0.5 / 2)</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Table&gt;::CellPadding</title>
+                <p>
+                    The default value is 0.
+                </p>
+                <p>
+                    <b>CellPadding</b> keeps an distance between each <b>&lt;Cell/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Table&gt;::BorderVisible</title>
+                <p>
+                    The default value  is <b>true</b>.
+                </p>
+                <p>
+                    If <b>BorderVisible</b> is true,
+                    cells are keep the distance of <b>CellPadding</b> to the border of the table,
+                    otherwise the distance is 0.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::ExtraMargin</title>
+                <p>
+                    The default value is 0 for all its components.
+                </p>
+                <p>
+                    This property keeps an distance between <b>&lt;Flow/&gt;</b> and <b>&lt;FlowItem/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;FlowItem&gt;::ExtraMargin</title>
+                <p>
+                    The default value is 0 for all its components.
+                </p>
+                <p>
+                    This property adds a border to a <b>&lt;FlowItem/&gt;</b>.
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <b>ExtraMargin</b> does not affect how <b>other &lt;FlowItem/&gt;</b> is positioned.
+                    Instead,
+                    after the position of a <b>&lt;FlowItem/&gt;</b> is decided,
+                    <b>ExtraMargin</b> kicks in and add a border to enlarge it.
+                </p>
+                <p>
+                    Adding an <b>ExtraMargin</b> to a <b>&lt;FlowItem/&gt;</b> does not increase the minimum size of its parent <b>&lt;Flow/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;FlowItem&gt;::FlowOption</title>
+                <p>
+                    The default value is <b>baseline:FromBottom distance:0</b>.
+                </p>
+                <p>
+                    This property describes how <b>&lt;FlowItem/&gt;</b> are positioned in one row.
+                </p>
+                <p>
+                    <b>baseline</b> could be <b>FromTop</b>, <b>FromBottom</b> or <b>Percentage</b>:
+                    <ul>
+                        <li>
+                            <b>FromTop</b>:
+                            the <b>&lt;FlowItem/&gt;</b> keeps the <b>distance</b> from the top of the row.
+                        </li>
+                        <li>
+                            <b>FromBottom</b>:
+                            the <b>&lt;FlowItem/&gt;</b> keeps the <b>distance</b> from the bottom of the row.
+                        </li>
+                        <li>
+                            <b>Percentage</b>:
+                            the <b>&lt;FlowItem/&gt;</b> keeps the distahce,
+                            which is <b>pencentage</b> of its height,
+                            from the top of the row.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <b>Top</b> here doesn't necessary mean the top border of a row,
+                    it depends on the value of the <b>Axis</b> property.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Adding Flow Items</title>
+            <topic>
+                <title>&lt;Flow&gt;::Children()</title>
+                <p>
+                    When a new <b>&lt;FlowItem/&gt;</b> is added to <b>&lt;Flow/&gt;</b> as a child,
+                    this <b>&lt;FlowItem/&gt;</b> is always appended to the end of the last row,
+                    regardless of its position in <b>&lt;Flow&gt;::Children</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::InsertFlowItem(index, item)</title>
+                <p>
+                    To control the position of a <b>&lt;FlowItem/&gt;</b> in the auto-wrapped line,
+                    call <b>&lt;Flow&gt;::InsertFlowItem()</b>
+                    instead of <b>&lt;Flow&gt;::Children()</b>.
+                </p>
+                <p>
+                    This function also adds a <b>&lt;FlowItem/&gt;</b> to the <b>&lt;Flow/&gt;</b>,
+                    but it allows the position of this <b>&lt;FlowItem/&gt;</b> in the auto-wrapped line to be specified,
+                    instead of adding it to the end of the last row.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::GetFlowItems()</title>
+                <p>
+                    Call this function to get all direct children <b>&lt;FlowItem/&gt;</b> in the line order.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Adjusting Cells by Mouse</title>
+            <topic>
+                <title>&lt;RowSplitter&gt;</title>
+            </topic>
+            <topic>
+                <title>&lt;ColumnSplitter&gt;</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Table">
+                    this tutorial project
+                </a>
+                .
+            </p>
+        </topic>
     </topic>
 </article>
