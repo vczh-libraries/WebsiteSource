@@ -204,7 +204,7 @@
                     This requires the table to have a non-zero <b>CellPadding</b>.
                 </p>
                 <p>
-                    One of a row above or below the splitter is required to be <b>Absolute</b>.
+                    One of a sibling row of the splitter is required to be <b>Absolute</b>.
                 </p>
                 <p>
                     <b>RowsToTheTop</b> specifies how many rows are above this splitter.
@@ -223,7 +223,7 @@
                     This requires the table to have a non-zero <b>CellPadding</b>.
                 </p>
                 <p>
-                    One of a column above or below the splitter is required to be <b>Absolute</b>.
+                    One of a sibling column of the splitter is required to be <b>Absolute</b>.
                 </p>
                 <p>
                     <b>ColumnsToTheTop</b> specifies how many columns are above this splitter.
