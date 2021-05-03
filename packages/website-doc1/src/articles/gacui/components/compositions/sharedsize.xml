@@ -2,17 +2,17 @@
     <topic>
         <title>&lt;SharedSizeRoot&gt; and &lt;SharedSizeItem&gt;</title>
         <p>
-            <b>&lt;SharedSizeRoot&gt;</b> synchronizes <b>&lt;SharedSizeItem&gt;</b> in it to have the same widths or heights.
+            <b>&lt;SharedSizeRoot/&gt;</b> synchronizes <b>&lt;SharedSizeItem/&gt;</b> in it to have the same widths or heights.
         </p>
         <p>
-            <b>&lt;SharedSizeItem&gt;</b> doesn't have to be a direct child of <b>&lt;SharedSizeRoot&gt;</b>.
+            <b>&lt;SharedSizeItem/&gt;</b> doesn't have to be a direct child of <b>&lt;SharedSizeRoot/&gt;</b>.
         </p>
         <p>
             One of a useful secenario is to create control templates for menu items.
-            <b>&lt;SharedSizeRoot&gt;</b> is put in the container for menu items,
-            <b>&lt;SharedSizeItem&gt;</b> is put in the control template for each menu item.
+            <b>&lt;SharedSizeRoot/&gt;</b> is put in the container for menu items,
+            <b>&lt;SharedSizeItem/&gt;</b> is put in the control template for each menu item.
             When menu items are added in the container,
-            All <b>&lt;SharedSizeItem&gt;</b> becomes (indirect) child compositions of the <b>&lt;SharedSizeRoot&gt;</b>,
+            All <b>&lt;SharedSizeItem/&gt;</b> becomes (indirect) child compositions of the <b>&lt;SharedSizeRoot/&gt;</b>,
             and then widths for names and shortcut keys are synchronized.
         </p>
         <p>
@@ -24,23 +24,23 @@
                 The default value is <b>an empty string</b>.
             </p>
             <p>
-                Only <b>&lt;SharedSizeItem&gt;</b> in the same <b>Group</b> synchronizes size between each other.
-                Two <b>&lt;SharedSizeItem&gt;</b> in different <b>Group</b> do not affect each other.
+                Only <b>&lt;SharedSizeItem/&gt;</b> in the same <b>Group</b> synchronizes size between each other.
+                Two <b>&lt;SharedSizeItem/&gt;</b> in different <b>Group</b> do not affect each other.
             </p>
             <p>
-                If this <b>&lt;SharedSizeItem&gt;</b> is not a child composition of a <b>&lt;SharedSizeRoot&gt;</b>,
+                If this <b>&lt;SharedSizeItem/&gt;</b> is not a child composition of a <b>&lt;SharedSizeRoot/&gt;</b>,
                 sizes are not synchronized with any others.
             </p>
             <p>
-                If this <b>&lt;SharedSizeItem&gt;</b> is a child composition of multiple <b>&lt;SharedSizeRoot&gt;</b> and <b>&lt;SharedSizeItem&gt;</b>,
+                If this <b>&lt;SharedSizeItem/&gt;</b> is a child composition of multiple <b>&lt;SharedSizeRoot/&gt;</b> and <b>&lt;SharedSizeItem/&gt;</b>,
                 <ul>
                     <li>
-                        If the nearest parent composition amnong them is a <b>&lt;SharedSizeItem&gt;</b>,
+                        If the nearest parent composition amnong them is a <b>&lt;SharedSizeItem/&gt;</b>,
                         sizes are not synchronized with any others.
                     </li>
                     <li>
-                        If the nearest parent composition amnong them is a <b>&lt;SharedSizeRoot&gt;</b>,
-                        sizes are only synchronized with other valid <b>&lt;SharedSizeItem&gt;</b> in this <b>&lt;SharedSizeRoot&gt;</b>.
+                        If the nearest parent composition amnong them is a <b>&lt;SharedSizeRoot/&gt;</b>,
+                        sizes are only synchronized with other valid <b>&lt;SharedSizeItem/&gt;</b> in this <b>&lt;SharedSizeRoot/&gt;</b>.
                     </li>
                 </ul>
             </p>
@@ -52,7 +52,7 @@
             </p>
             <p>
                 If <b>SharedWidth</b> is set to true,
-                this <b>&lt;SharedSizeItem&gt;</b> synchronizes its width with other <b>&lt;SharedSizeItem&gt;</b> in the same <b>Group</b>.
+                this <b>&lt;SharedSizeItem/&gt;</b> synchronizes its width with other <b>&lt;SharedSizeItem/&gt;</b> in the same <b>Group</b>.
             </p>
         </topic>
         <topic>
@@ -62,7 +62,7 @@
             </p>
             <p>
                 If <b>SharedWidth</b> is set to true,
-                this <b>&lt;SharedSizeItem&gt;</b> synchronizes its height with other <b>&lt;SharedSizeItem&gt;</b> in the same <b>Group</b>.
+                this <b>&lt;SharedSizeItem/&gt;</b> synchronizes its height with other <b>&lt;SharedSizeItem/&gt;</b> in the same <b>Group</b>.
             </p>
         </topic>
         <topic>
@@ -70,11 +70,11 @@
             <p>
                 Please check out the demo for 
                 <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/RepeatTabPage.xml">
-                    <b>&lt;SharedSizeRoot/&gt;</b>
+                    <b>&lt;SharedSizeRoot//&gt;</b>
                 </a>
                 and
                 <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/RepeatComponents.xml">
-                    <b>&lt;SharedSizeItem/&gt;</b>
+                    <b>&lt;SharedSizeItem//&gt;</b>
                 </a>
                 .
             </p>
