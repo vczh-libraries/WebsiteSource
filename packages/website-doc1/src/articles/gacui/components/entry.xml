@@ -9,7 +9,15 @@
     <article name="&lt;SharedSizeRoot&gt; and &lt;SharedSizeItem&gt;" file="compositions/sharedsize"/>
     <article name="&lt;SideAligned&gt;" file="compositions/sidealigned"/>
     <article name="&lt;PartialView&gt;" file="compositions/partialview"/>
-    <article name="Responsive Design Series" file="compositions/responsive"/>
+    <article name="Responsive Design Series" file="compositions/responsive">
+      <article name="&lt;ResponsiveContainer&gt;" file="compositions/responsive_container"/>
+      <article name="&lt;ResponsiveView&gt;" file="compositions/responsive_view">
+        <article name="&lt;ResponsiveFixed&gt;" file="compositions/responsive_fixed"/>
+        <article name="&lt;ResponsiveShared&gt;" file="compositions/responsive_shared"/>
+      </article>
+      <article name="&lt;ResponsiveStack&gt;" file="compositions/responsive_stack"/>
+      <article name="&lt;ResponsiveGroup&gt;" file="compositions/responsive_group"/>
+    </article>
     <article name="Handling Input Events" file="compositions/events"/>
   </article>
   <article name="Controls" file="controls/home"/>
