@@ -62,5 +62,65 @@
             <b>&lt;ResponsiveFixed/&gt;</b> will only be put in <b>&lt;ResponsiveContainer/&gt;</b>::<b>Views</b>
             when this level of view doesn't have sub levels of views.
         </p>
+        <topic>
+            <title>A responsive layout sample</title>
+            <p>
+                For example,
+                in
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Responsive2">
+                    this sample
+                </a>:
+                <img src="/gacui/kb_compositions_responsive_2.gif"/>
+            </p>
+            <p>
+                There are three level of views:
+                <ul>
+                    <li><b>View 1</b>: Buttons with icons and titles on the left side, and video icons on the right side.</li>
+                    <li><b>View 2</b>: Buttons with icons on the left side, and video icons on the right side.</li>
+                    <li><b>View 3</b>: Buttons in a menu on the top side, and video icons on the bottom side.</li>
+                </ul>
+            </p>
+            <p>
+                <b>View 1</b> is larger than <b>View 2</b> because titles of buttons are hidden.
+            </p>
+            <p>
+                <b>View 2</b> is larger than <b>View 3</b> because buttons are hidden.
+                Although the menu of <b>View 3</b> increases the height,
+                but video icons are scrollable,
+                the list control could shrink vertically to make spaces for the menu.
+            </p>
+        </topic>
+        <topic>
+            <title>A basic idea to implement this sample</title>
+            <p>
+                We will easily find that,
+                the difference between <b>View 1</b> and <b>View 2</b> is button titles.
+                so the button template itself could be a <b>&lt;ResponsiveView/&gt;</b> which has two <b>&lt;ResponsiveFixed/&gt;</b> in its <b>Views</b> property:
+                <ul>
+                    <li>The first (larger) view contains one icon and one title</li>
+                    <li>The second (smaller) view contains only one icon</li>
+                </ul>
+            </p>
+            <p>
+                Now the button becomes responsive,
+                you don't need to create two different view for <b>View 1</b> and <b>View 2</b> in <b>&lt;ResponsiveView/&gt;</b>,
+                which is wasting memories and reducing performance.
+                Instead,
+                you could use a <b>&lt;ResponsiveGroup/&gt;</b> to contain these buttons.
+                Since all buttons have 2 levels of views,
+                so <b>&lt;ResponsiveGroup/&gt;</b> has 2 levels of views,
+                because all child <b>GuiResponsiveCompositionBase</b> will synchronize to the same level of view.
+            </p>
+            <p>
+                Now <b>View 1</b> and <b>View 2</b> are represented in one <b>&lt;ResponsiveGroup/&gt;</b>,
+                we have to create a <b>&lt;ResponsiveView/&gt;</b> to contain <b>&lt;ResponsiveGroup/&gt;</b> and <b>View 3</b> as its two views.
+            </p>
+            <p>
+                The list control for video icons could be registered in <b>&lt;ResponsiveView/&gt;</b>::<b>SharedControls</b>.
+                When the application switches between views,
+                the list control will be moved to different view,
+                controlled by all <b>&lt;ResponsiveShared/&gt;</b> in each views.
+            </p>
+        </topic>
     </topic>
 </article>
