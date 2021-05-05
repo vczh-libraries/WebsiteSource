@@ -1,8 +1,66 @@
-<article>
+<article index="true">
     <topic>
         <title>Responsive Design Series</title>
         <p>
-            The page is under construction.
+            Responsive design compositions consist of following compositions:
+            <ul>
+                <li>
+                    <b>&lt;ResponsiveContainer/&gt;</b>:
+                    A composition that tells its <b>ResponsiveTarget</b> to switch to a different view when the size of the &lt;ResponsiveContainer/&gt; is changed.
+                </li>
+                <li>
+                    <b>GuiResponsiveCompositionBase</b>:
+                    A composition that manages multiple views in order from large to small,
+                    it has following sub classes for different way of management:
+                    <ul>
+                        <li>
+                            <b>&lt;ResponsiveFixed/&gt;</b>:
+                            only has one level of view.
+                        </li>
+                        <li>
+                            <b>&lt;ResponsiveView/&gt;</b>:
+                            allow manually assigned views:
+                            <ul>
+                                <li>
+                                    <b>Views</b> accepts multiple <b>GuiResponsiveCompositionBase</b> in order from large to small as its levels of views.
+                                </li>
+                                <li>
+                                    <b>SharedControls</b> accepts multiple controls.
+                                    When switching views,
+                                    a <b>&lt;ResponsiveShared/&gt;</b> could move a referenced shared control from one view to another,
+                                    keeping all its status (especially for editable controls).
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>&lt;ResponsiveGroup/&gt;</b>:
+                            the number of its levels of views equals to one direct or indirect child <b>GuiResponsiveCompositionBase</b>
+                            that has the most levels of views.
+                            When it needs to switch to another view,
+                            it tells all direct or indirect child <b>GuiResponsiveCompositionBase</b> to synchronize to the same level of view.
+                        </li>
+                        <li>
+                            <b>&lt;ResponsiveStack/&gt;</b>:
+                            the number of its levels of views equals to the sum of levels of views in all direct or indirect child <b>GuiResponsiveCompositionBase</b>.
+                            When it needs to switch to another view,
+                            it tells one indirect child <b>GuiResponsiveCompositionBase</b> to switch view,
+                            unless all has switched to its largest or the smallest views.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            Usually, a <b>&lt;ResponsiveContainer/&gt;</b> is put inside a window and configured to change its size according to the window size.
+            And then use <b>&lt;ResponsiveView/&gt;</b>, <b>&lt;ResponsiveGroup/&gt;</b> and <b>&lt;ResponsiveStack/&gt;</b> together
+            to control how controls are reorganized to fit in different sizes of the container.
+            finally this <b>GuiResponsiveCompositionBase</b> tree will be assigned to <b>&lt;ResponsiveContainer/&gt;</b>::<b>ResponsiveTarget</b>
+            to make the reorganizing automatically happens.
+        </p>
+        <p>
+            Typically,
+            <b>&lt;ResponsiveFixed/&gt;</b> will only be put in <b>&lt;ResponsiveContainer/&gt;</b>::<b>Views</b>
+            when this level of view doesn't have sub levels of views.
         </p>
     </topic>
 </article>
