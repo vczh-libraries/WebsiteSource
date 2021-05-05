@@ -59,7 +59,7 @@
         </p>
         <p>
             Typically,
-            <b>&lt;ResponsiveFixed/&gt;</b> will only be put in <b>&lt;ResponsiveContainer/&gt;</b>::<b>Views</b>
+            <b>&lt;ResponsiveFixed/&gt;</b> will only be put in <b>&lt;ResponsiveView/&gt;</b>::<b>Views</b>
             when this level of view doesn't have sub levels of views.
         </p>
         <topic>
@@ -114,12 +114,107 @@
             <p>
                 Now <b>View 1</b> and <b>View 2</b> are represented in one <b>&lt;ResponsiveGroup/&gt;</b>,
                 we have to create a <b>&lt;ResponsiveView/&gt;</b> to contain <b>&lt;ResponsiveGroup/&gt;</b> and <b>View 3</b> as its two views.
+                <b>View 3</b> is contained in a <b>&lt;ResponsiveFixed/&gt;</b>,
+                since all compositions in <b>&lt;ResponsiveView/&gt;</b>::<b>Views</b>
+                must be <b>GuiResponsiveCompositionBase</b>.
             </p>
             <p>
                 The list control for video icons could be registered in <b>&lt;ResponsiveView/&gt;</b>::<b>SharedControls</b>.
                 When the application switches between views,
                 the list control will be moved to different view,
                 controlled by all <b>&lt;ResponsiveShared/&gt;</b> in each views.
+            </p>
+            <p>
+                Finally, the code looks like this (button templates are inlined, which is only for demo, not the way to implement):
+                <program>
+                    <code><![CDATA[
+                        <Window>
+                          <ResponsiveContainer AlignmentToParent="left:0 top:0 right:0 bottom:0">
+                            <att.ResponsiveTarget>
+                              <ResponsiveView Direction="Horizontal">
+                                <att.SharedControls>
+                                  <ScrollContainer ref.Name="videoContainer" ... />
+                                </att.SharedControls>
+
+                                <att.Views>
+                                  <ResponsiveGroup Direction="Horizontal">
+                                    <!-- View 1 and View 2 -->
+                                    ...
+                                    <SelectableButtonTemplate>
+                                      ...
+                                      <ResponsiveView Direction="Horizontal">
+                                        <att.Views>
+                                          <ResponsiveFixed> <!-- View 1: icon with title    --> </ResponsiveFixed>
+                                          <ResponsiveFixed> <!-- View 2: icon without title --> </ResponsiveFixed>
+                                        </att.Views>
+                                      </ResponsiveView>
+                                      ...
+                                    </SelectableButtonTemplate>
+                                    <SelectableButtonTemplate .../>
+                                    <SelectableButtonTemplate .../>
+                                    <SelectableButtonTemplate .../>
+                                    ...
+                                    <!-- the place holder for videoContainer in View 1 and View 2 -->
+                                    <ResponsiveShared Shared-ref="videoContainer"/>
+                                    ...
+                                  </ResponsiveGroup>
+                                  <ResponsiveFixed>
+                                    <!-- View 3 -->
+                                    ...
+                                    <ToolstripMenu .../>
+                                    ...
+                                    <!-- the place holder for videoContainer in View 3 -->
+                                    <ResponsiveShared Shared-ref="videoContainer"/>
+                                    ...
+                                  </ResponsiveFixed>
+                                </att.Views>
+                              </ResponsiveView>
+                            </att.ResponsiveTarget>
+                          </ResponsiveContainer>
+                        </window>
+                    ]]></code>
+                </program>
+                <ul>
+                    <li>A shared control must appears in <b>&lt;ResponsiveView/&gt;</b>::<b>SharedControls</b> in order to be referenced by multiple <b>&lt;ResponsiveShared/&gt;</b>.</li>
+                    <li><b>Direction="Horizontal"</b> in the code means the composition responsives to changing of its width.</li>
+                </ul>
+            </p>
+            <p>
+                The code organizes the <b>GuiResponsiveCompositionBase</b> as follows:
+                <ul>
+                    <li>
+                        <b>&lt;ResponsiveView/&gt;</b>
+                        <ul>
+                            <li>
+                                View[0]: <b>&lt;ResponsiveGroup/&gt;</b>
+                                <ul>
+                                    <li>
+                                        <b>&lt;ResponsiveView/&gt;</b>
+                                        <ul>
+                                            <li>View [0]: <b>&lt;ResponsiveFixed/&gt;</b> (button with icon and title)</li>
+                                            <li>View [1]: <b>&lt;ResponsiveFixed/&gt;</b> (button with icon only)</li>
+                                        </ul>
+                                    </li>
+                                    <li>...</li>
+                                </ul>
+                            </li>
+                            <li>
+                                View[1]: <b>&lt;ResponsiveFixed/&gt;</b> (button in menu)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                When the window is getting smaller,
+                <b>&lt;ResponsiveGroup/&gt;</b> shrinks all buttons at the same time (because it is a group not a stack)
+                to hide all button titles.
+            </p>
+            <p>
+                When the window is getting even smaller,
+                <b>&lt;ResponsiveGroup/&gt;</b> cannot shrinks anymore,
+                so the root <b>&lt;ResponsiveView/&gt;</b> switches to a second view in <b>&lt;ResponsiveFixed/&gt;</b>
+                to move all button inside a menu on the top.
             </p>
         </topic>
     </topic>
