@@ -2,7 +2,7 @@
     <topic>
         <title>&lt;ResponsiveStack&gt;</title>
         <p>
-            <b>&lt;ResponsiveStack/&gt;</b> tells its child <b>GuiResponsiveCompositionBase</b> to switch view one after another
+            <b>&lt;ResponsiveStack/&gt;</b> tells its managed <b>GuiResponsiveCompositionBase</b> to switch view one after another
             when itself is required to do so. 
         </p>
         <p>

@@ -2,7 +2,7 @@
     <topic>
         <title>&lt;ResponsiveGroup&gt;</title>
         <p>
-            <b>&lt;ResponsiveGroup/&gt;</b> tells its child <b>GuiResponsiveCompositionBase</b> to switch view at the same time
+            <b>&lt;ResponsiveGroup/&gt;</b> tells its managed <b>GuiResponsiveCompositionBase</b> to switch view at the same time
             when itself is required to do so. 
         </p>
         <p>
