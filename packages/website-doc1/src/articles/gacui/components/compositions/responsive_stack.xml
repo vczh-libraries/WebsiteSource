@@ -6,7 +6,7 @@
             when itself is required to do so. 
         </p>
         <p>
-            <b>&lt;ResponsiveStack/&gt;</b> is a <b>GuiResponsiveCompositionBase</b>.
+            <b>&lt;ResponsiveStack/&gt;</b> is a <b>GuiResponsiveCompositionBase</b> and a <b>&lt;Bounds/&gt;</b>.
         </p>
         <topic>
             <title>Managing child GuiResponsiveCompositionBase</title>

@@ -1,8 +1,37 @@
-<article>
+<article index="true">
     <topic>
         <title>&lt;ResponsiveFixed&gt;</title>
         <p>
-            The page is under construction.
+            <b>&lt;ResponsiveFixed/&gt;</b> only has one view.
+            If there are some <b>GuiResponsiveCompositionBase</b> added as child compositions in <b>&lt;ResponsiveFixed/&gt;</b>,
+            they are ignored and their views will not change.
         </p>
+        <p>
+            <b>&lt;ResponsiveFixed/&gt;</b> is a <b>GuiResponsiveCompositionBase</b> and a <b>&lt;Bounds/&gt;</b>.
+        </p>
+        <p>
+            Sometimes you want to just add a static view to <b>&lt;ResponsiveView/&gt;</b>::<b>View</b>,
+            but <b>Views</b> requires <b>GuiResponsiveCompositionBase</b>.
+            <b>&lt;ResponsiveFixed/&gt;</b> is designed for this scenario.
+        </p>
+        <topic>
+            <title>&lt;ResponsiveFixed&gt;::Direction</title>
+            <p>
+                Since <b>&lt;ResponsiveFixed/&gt;</b> only has one view,
+                this property is ignored.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveFixed&gt;::LevelCount</title>
+            <p>
+                This property is always 1.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveFixed&gt;::CurrentLevel</title>
+            <p>
+                This property is always 0.
+            </p>
+        </topic>
     </topic>
 </article>
