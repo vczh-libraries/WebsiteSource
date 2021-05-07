@@ -1,8 +1,107 @@
-<article>
+<article index="true">
     <topic>
         <title>&lt;ResponsiveStack&gt;</title>
         <p>
-            The page is under construction.
+            <b>&lt;ResponsiveStack/&gt;</b> tells its child <b>GuiResponsiveCompositionBase</b> to switch view one after another
+            when itself is required to do so. 
         </p>
+        <p>
+            <b>&lt;ResponsiveStack/&gt;</b> is a <b>GuiResponsiveCompositionBase</b>.
+        </p>
+        <topic>
+            <title>Managing child GuiResponsiveCompositionBase</title>
+            <p>
+                When things inside a <b>&lt;ResponsiveStack/&gt;</b> are changed,
+                <b>&lt;ResponsiveStack/&gt;</b> will search for any child composition that is a <b>GuiResponsiveCompositionBase</b>.
+                If a child composition is not,
+                it will search into this child composition and see if there are any <b>GuiResponsiveCompositionBase</b> recursively.
+                When a <b>GuiResponsiveCompositionBase</b> is found,
+                it stops searching for child compositions inside this <b>GuiResponsiveCompositionBase</b>.
+            </p>
+            <p>
+                Eventually <b>&lt;ResponsiveStack/&gt;</b> knows all child <b>GuiResponsiveCompositionBase</b> inside it.
+            </p>
+            <p>
+
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveStack&gt;::Direction</title>
+            <p>
+                The default value for this property is <b>Both</b>.
+            </p>
+            <p>
+                Valid values for this property are <b>Horizontal</b>, <b>Vertical</b> and <b>Both</b>.
+            </p>
+            <p>
+                When <b>Direction</b> is <b>Horizontal</b>,
+                it only reacts to changing to its width.
+                When <b>Direction</b> is <b>Vertical</b>,
+                it only reacts to changing to its height.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveStack&gt;::LevelCount</title>
+            <p>
+                This property represents how many different view it could have.
+                It is "sum of <b>LevelCount</b> of all managed <b>GuiResponsiveCompositionBase</b>" - "the number of all managed <b>GuiResponsiveCompositionBase</b>" + 1.
+            </p>
+            <p>
+                For example,
+                there are 3 managed <b>GuiResponsiveCompositionBase</b>,
+                their <b>LevelCount</b> are 2, 3 and 4:
+                <ul>
+                    <li><b>LevelCount</b> is 2 means that composition could change 1 times from smallest to largest.</li>
+                    <li><b>LevelCount</b> is 3 means that composition could change 2 times from smallest to largest.</li>
+                    <li><b>LevelCount</b> is 4 means that composition could change 3 times from smallest to largest.</li>
+                </ul>
+                So in total this <b>&lt;ResponsiveStack/&gt;</b> could change 1 + 2 + 3 = 6 times from smallest to largest,
+                its <b>LevelCount</b> must be 7,
+                which is exactly "2 + 3 + 4 - 3(numbers of managed) + 1".
+            </p>
+            <p>
+                If there is no managed <b>GuiResponsiveCompositionBase</b>,
+                <b>LevelCount</b> is 1.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveStack&gt;::CurrentLevel</title>
+            <p>
+                This property represents the current view of a <b>&lt;ResponsiveStack/&gt;</b>.
+            </p>
+            <p>
+                The smallest view is 0,
+                the largest view is <b>LevelCount</b> - 1.
+            </p>
+        </topic>
+        <topic>
+            <title>Choosing a view</title>
+            <p>
+                When a <b>&lt;ResponsiveStack/&gt;</b> is required to switch to a larger view
+                (increasing <b>CurrentLevel</b> by 1),
+                <b>&lt;ResponsiveStack/&gt;</b> will find a smallest managed <b>GuiResponsiveCompositionBase</b> in size
+                to switch to a larger view.
+                If it fails (usually because it has already switched to its largest view),
+                then <b>&lt;ResponsiveStack/&gt;</b> will find the next smallest one,
+                until one succeeded.
+            </p>
+            <p>
+                When a <b>&lt;ResponsiveStack/&gt;</b> is required to switch to a smaller view
+                (decreasing <b>CurrentLevel</b> by 1),
+                <b>&lt;ResponsiveStack/&gt;</b> will find a largest managed <b>GuiResponsiveCompositionBase</b> in size
+                to switch to a smaller view.
+                If it fails (usually because it has already switched to its smallest view),
+                then <b>&lt;ResponsiveStack/&gt;</b> will find the next largest one,
+                until one succeeded.
+            </p>
+            <p>
+                <b>&lt;ResponsiveStack/&gt;</b> measures the size of a <b>GuiResponsiveCompositionBase</b> according to <b>Direction</b>:
+                <ul>
+                    <li><b>Horizontal</b>: size equals to its width.</li>
+                    <li><b>Vertical</b>: size equals to its height.</li>
+                    <li><b>Both</b>: size equals to its area.</li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>
