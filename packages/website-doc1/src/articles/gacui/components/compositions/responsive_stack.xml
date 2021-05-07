@@ -22,7 +22,9 @@
                 Eventually <b>&lt;ResponsiveStack/&gt;</b> knows all child <b>GuiResponsiveCompositionBase</b> inside it.
             </p>
             <p>
-
+                <b>IMPORTANT</b>:
+                If a child <b>GuiResponsiveCompositionBase</b> has a different <b>Direction</b> than <b>&lt;ResponsiveStack/&gt;</b>,
+                it is not a managed <b>GuiResponsiveCompositionBase</b>.
             </p>
         </topic>
         <topic>
