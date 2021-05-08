@@ -36,6 +36,18 @@
             either this registration has already been canceled,
             or this registration doesn't happen in this event.
         </p>
+        <p>
+            In the event callback function,
+            the first argument is always <b>GuiGraphicsComposition*</b>,
+            the second argument varies in different events.
+        </p>
+        <p>
+            In GacUI XML Resource,
+            raw input events are treated like attributes of a composition.
+            You can either specify a method name of the current instance,
+            or specify a piece of code to run.
+            Please check out <a href="/gacui/xmlres/instance/events.html">this page</a> for details.
+        </p>
         <topic>
             <title>Mouse Events</title>
             <topic>
