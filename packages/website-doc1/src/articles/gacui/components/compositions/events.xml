@@ -259,6 +259,15 @@
             </p>
             <p>
                 <b>caretNotify</b> is keep raising on the focused control every half second.
+                If a control wants to render an input caret,
+                it needs to subscribe to <b>caretNotify</b>,
+                and than changing the input caret between visible and invisible state when this event happens.
+            </p>
+            <p>
+                COMPOSITION-&gt;<b>GetRelatedGraphicsHost</b>()-&gt;<b>SetCaretPoint</b>
+                is useful to tell the system where to show the little window for the input method.
+                This function is strongly recommended to be called by the focused control
+                to avoid state corruption.
             </p>
             <p>
                 If the window itself gets or loses focus,
