@@ -207,6 +207,46 @@
             </topic>
         </topic>
         <topic>
+            <title>Focus Events</title>
+            <p>
+                GacUI offers the following button events:
+                <ul>
+                    <li>gotFocus</li>
+                    <li>lostFocus</li>
+                    <li>caretNotify</li>
+                </ul>
+            </p>
+            <p>
+                The type of the second argument is <b>vl::presentation::compositions::GuiEventArgs&amp;</b>,
+                or <b>presentation::composition::GuiEventArgs*</b> in <b>Workflow</b>.
+            </p>
+            <p>
+                A focus composition is the <b>FocusableComposition</b> of a control that has focus.
+                Control like buttons will take focus after it is clicked,
+                you can also call <b>SetFocus</b> to move focus to a control.
+            </p>
+            <p>
+                When a control get its focus,
+                its <b>FocusableComposition</b> has the focus.
+                If you are writing a control template,
+                you can set any composition to the <b>FocusableComposition</b> property of the control template,
+                and it becomes the <b>FocusableComposition</b> of the control.
+            </p>
+            <p>
+                A window has only one focused control.
+                <b>gotFocus</b> raises on a composition when it is focused.
+                <b>lostFocus</b> raises on a previous focused composition when it lost the focus.
+            </p>
+            <p>
+                <b>caretNotify</b> is keep raising on the focused control every half second.
+            </p>
+            <p>
+                If the window itself gets or loses focus,
+                related events are raised on the window,
+                events described here are not affected.
+            </p>
+        </topic>
+        <topic>
             <title>Keyboard Events</title>
             <p>
                 GacUI offers the following button events:
@@ -240,9 +280,6 @@
                 <ul>
                     <li>previewCharInput</li>
                     <li>charInput</li>
-                    <li>gotFocus</li>
-                    <li>lostFocus</li>
-                    <li>caretNotify</li>
                 </ul>
             </p>
             <p>
@@ -263,21 +300,6 @@
             </p>
         </topic>
         <topic>
-            <title>Focus Events</title>
-            <p>
-                GacUI offers the following button events:
-                <ul>
-                    <li>gotFocus</li>
-                    <li>lostFocus</li>
-                    <li>caretNotify</li>
-                </ul>
-            </p>
-            <p>
-                The type of the second argument is <b>vl::presentation::compositions::GuiEventArgs&amp;</b>,
-                or <b>presentation::composition::GuiEventArgs*</b> in <b>Workflow</b>.
-            </p>
-        </topic>
-        <topic>
             <title>Other Events</title>
             <p>
                 GacUI offers the following button events:
@@ -292,13 +314,13 @@
             </p>
             <p>
                 When content in the system clipboard changes,
-                <b>clipboardNotify</b> raises in every compositions.
+                <b>clipboardNotify</b> raises on every compositions.
             </p>
             <p>
                 When the render target is changed,
                 this may because a composition is added to or remove from a window,
                 or the window itself loses and recreates its render target,
-                <b>renderTargetChanged</b> raises in the affected root composition and all direct or indirect child compositions.
+                <b>renderTargetChanged</b> raises on the affected root composition and all direct or indirect child compositions.
             </p>
             <p>
                 If a composition is not added to a window,
