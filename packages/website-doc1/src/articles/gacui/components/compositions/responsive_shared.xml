@@ -1,8 +1,66 @@
-<article>
+<article index="true">
     <topic>
         <title>&lt;ResponsiveShared&gt;</title>
         <p>
-            The page is under construction.
+            In <b>&lt;ResponsiveView/&gt;</b>,
+            sometimes when it switch to a different view,
+            the content is totaly changed by switching
+            from one <b>GuiResponsiveCompositionBase</b> to another <b>GuiResponsiveCompositionBase</b>
+            in <b>Views</b>.
+            If a control with important status needs to be shared between different views,
+            <b>&lt;ResponsiveShared/&gt;</b> could help.
         </p>
+        <p>
+            This kind of scenarios are very common.
+            For example,
+            different views may share a text box.
+            If different text box controls are used in different view to represent the same input data,
+            users will be confused like the selected area is gone just because of changing the window size.
+        </p>
+        <topic>
+            <title>&lt;ResponsiveView&gt;::SharedControls</title>
+            <p>
+                All controls need to share between views
+                must be created in the <b>SharedControls</b> collection property.
+            </p>
+            <p>
+                In order to make these controls being able to use in <b>&lt;ResponsiveShared/&gt;</b>,
+                usually a control name needs to be specified in the
+                <a href="/gacui/xmlres/tag_instance.html">
+                    <b>ref.Name</b>
+                </a>
+                attribute for each control.
+            </p>
+            <p>
+                When the <b>&lt;ResponsiveView/&gt;</b> is deleted,
+                all controls in <b>SharedControls</b> will also be deleted.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveShared&gt;::Shared</title>
+            <p>
+                For any control that needs to appear in a specific location in a view,
+                a <b>&lt;ResponsiveShared/&gt;</b> is used as a place holder.
+                It is a <b>&lt;Bounds/&gt;</b>
+                so all necessary properties are available just like a control's <b>BoundsComposition</b>.
+            </p>
+            <p>
+                In this composition,
+                the control to appear is specified using the <b>Shared</b> property,
+                usually using a
+                <a href="/gacui/xmlres/instance/properties.html#-ref">
+                    <b>-ref</b>
+                </a>
+                binding.
+            </p>
+            <p>
+                When a <b>GuiResponsiveCompositionBase</b> in <b>Views</b> is selected,
+                all containing <b>&lt;ResponsiveShared/&gt;</b> in this composition will get a notice
+                to make <b>Shared.BoundsComposition</b> become a child composition,
+                with <b>Shared.BoundsComposition.AlignmentToParent</b> set to <b>left:0 top:0 right:0 bottom:0</b>.
+                After that,
+                all shared controls are moved to their place holders.
+            </p>
+        </topic>
     </topic>
 </article>
