@@ -122,6 +122,88 @@
             </topic>
             <topic>
                 <title>Moving Events</title>
+                <p>
+                    GacUI offers the following button events:
+                    <ul>
+                        <li>mouseMove</li>
+                        <li>mouseEnter</li>
+                        <li>mouseLeave</li>
+                    </ul>
+                    mapping to the 5 standard buttons of a mouse.
+                    But a typical mouse today,
+                    middle button and vertical wheel are merged together,
+                    horizontal wheel are usually missing.
+                </p>
+                <p>
+                    <b>mouseEnter</b> happens when the mouse moves into a composition.
+                    <b>mouseLeave</b> happens when the mouse moves out of a composition.
+                    When a mouse moves from one composition to its child composition,
+                    it doesn't count as leaving the original composition,
+                    it is still in the original composition and its child composition.
+                </p>
+                <p>
+                    <b>mouseMove</b> happens when the mouse moves.
+                    It behaves like other button and wheel events
+                    in the way of raise through the parent chain.
+                </p>
+            </topic>
+            <topic>
+                <title>Capturing</title>
+                <p>
+                    When a button down event happens,
+                    the <b>compositionSource</b> is captured.
+                    A captured composition becomes the <b>compositionSource</b>
+                    of all following mouse events happen in the containing window (or menu, popup, etc...),
+                    including button up events.
+                </p>
+                <p>
+                    After the button up event happens,
+                    the capturing is released.
+                </p>
+            </topic>
+            <topic>
+                <title>Moving or deleting controls or compositions during mouse events.</title>
+                <p>
+                    Some times you may want to change the control tree structure in a callback of mouse events,
+                    (including <b>Clicked</b> in buttons).
+                </p>
+                <p>
+                    This is tricky because,
+                    mouse events are not just sent to this composition,
+                    it is sent to all its parent compositions.
+                    Even when <b>handled</b> is set to <b>true</b>,
+                    there is still something to do after the callback function ends.
+                </p>
+                <p>
+                    When you move or delete controls or compositions that affect the parent chain,
+                    <b>GacUI will stably CRASH</b>.
+                </p>
+                <p>
+                    In order to solve this issue,
+                    <b>GetApplication()-&gt;InvokeInMainThread</b> is your friend.
+                    Whenever you call this function,
+                    the callback to <b>InvokeInMainThread</b> will run
+                    right after the current series of events.
+                    That is a very safe point to restructure your controls or compositions.
+                </p>
+                <p>
+                    For example,
+                    if you customize the tab control to have a close button in each tab page:
+                    <program>
+                        <code><![CDATA[
+                            void MyTabPage::buttonCloseClicked(GuiGraphicsComposition* sender, GuiEventArgs& arguments)
+                            {
+                                // this is still in the chain of mouse button events,
+                                // so InvokeInMainThread is required to delete MyTabPage.
+                                GetApplication()->InvokeInMainThread(this->GetRelatedControlHost(), [=]()
+                                {
+                                    this->GetOwnerTab()->GetPages().Remove(this);
+                                    SafeDeleteControl(this);
+                                });
+                            }
+                        ]]></code>
+                    </program>
+                </p>
             </topic>
         </topic>
         <topic>
