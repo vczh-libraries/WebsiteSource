@@ -51,10 +51,74 @@
         <topic>
             <title>Mouse Events</title>
             <topic>
-                <title>Button Events</title>
-            </topic>
-            <topic>
-                <title>Wheel Events</title>
+                <title>Button and Wheel Events</title>
+                <p>
+                    GacUI offers the following button events:
+                    <ul>
+                        <li>leftButtonDown</li>
+                        <li>leftButtonUp</li>
+                        <li>leftButtonDoubleClick</li>
+                        <li>middleButtonDown</li>
+                        <li>middleButtonUp</li>
+                        <li>middleButtonDoubleClick</li>
+                        <li>rightButtonDown</li>
+                        <li>rightButtonUp</li>
+                        <li>rightButtonDoubleClick</li>
+                        <li>horizontalWheel</li>
+                        <li>verticalWheel</li>
+                    </ul>
+                    mapping to the 5 standard buttons of a mouse.
+                    But a typical mouse today,
+                    middle button and vertical wheel are merged together,
+                    horizontal wheel are usually missing.
+                </p>
+                <p>
+                    The type of the second argument is <b>vl::presentation::compositions::GuiMouseEventArgs&amp;</b>,
+                    or <b>presentation::composition::GuiMouseEventArgs*</b> in <b>Workflow</b>.
+                </p>
+                <p>
+                    When such event happens,
+                    the composition right under the mouse will receive the event,
+                    and then its parent composition,
+                    and its parent parent composition until the end.
+                    Such process could be detected using members of the second argument:
+                    <ul>
+                        <li>
+                            <b>compositionSource</b>:
+                            the composition right under the mouse, which is the original event raiser.
+                            When the event raises through the parent chain,
+                            this member doesn't change.
+                        </li>
+                        <li>
+                            <b>eventSource</b>:
+                            the owner of the current raising event.
+                            When the event raises through the parent chain,
+                            this member reflect the current one in the chain.
+                            This is the same to the first argument of the event callback function.
+                        </li>
+                        <li>
+                            <b>handled</b>:
+                            you can set this member in the event callback function to <b>true</b>
+                            to stop the event from going through more further in the parent chain.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    Other members contains the information of the event:
+                    <ul>
+                        <li><b>ctrl</b>: <b>true</b> if the CTRL key is pressing.</li>
+                        <li><b>shift</b>: <b>true</b> if the SHIFT key is pressing.</li>
+                        <li><b>left</b>: <b>true</b> if the mouse left button is pressing.</li>
+                        <li><b>middle</b>: <b>true</b> if the mouse middle button is pressing.</li>
+                        <li><b>right</b>: <b>true</b> if the mouse right button is pressing.</li>
+                        <li><b>x</b> and <b>y</b>: the relative coordinate to <b>eventSource</b>.</li>
+                        <li>
+                            <b>wheel</b>:
+                            direction and distance of the wheel. A positive number means the wheel is rotating towards right or down.
+                            The unit of the rotation is 120 for today's typical mouse.
+                        </li>
+                    </ul>
+                </p>
             </topic>
             <topic>
                 <title>Moving Events</title>
