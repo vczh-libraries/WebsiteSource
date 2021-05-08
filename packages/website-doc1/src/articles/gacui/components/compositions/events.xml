@@ -208,12 +208,65 @@
         </topic>
         <topic>
             <title>Keyboard Events</title>
+            <p>
+                GacUI offers the following button events:
+                <ul>
+                    <li>previewKey</li>
+                    <li>keyDown</li>
+                    <li>keyUp</li>
+                    <li>systemKeyDown</li>
+                    <li>systemKeyUp</li>
+                </ul>
+            </p>
+            <p>
+                The type of the second argument is <b>vl::presentation::compositions::GuiKeyEventArgs&amp;</b>,
+                or <b>presentation::composition::GuiKeyEventArgs*</b> in <b>Workflow</b>.
+            </p>
         </topic>
         <topic>
             <title>Input Events</title>
+            <p>
+                GacUI offers the following button events:
+                <ul>
+                    <li>previewCharInput</li>
+                    <li>charInput</li>
+                    <li>gotFocus</li>
+                    <li>lostFocus</li>
+                    <li>caretNotify</li>
+                </ul>
+            </p>
+            <p>
+                The type of the second argument is <b>vl::presentation::compositions::GuiCharEventArgs&amp;</b>,
+                or <b>presentation::composition::GuiCharEventArgs*</b> in <b>Workflow</b>.
+            </p>
         </topic>
         <topic>
             <title>Other Events</title>
+            <p>
+                GacUI offers the following button events:
+                <ul>
+                    <li>clipboardNotify</li>
+                    <li>renderTargetChanged</li>
+                </ul>
+            </p>
+            <p>
+                The type of the second argument is <b>vl::presentation::compositions::GuiEventArgs&amp;</b>,
+                or <b>presentation::composition::GuiEventArgs*</b> in <b>Workflow</b>.
+            </p>
+            <p>
+                When content in the system clipboard changes,
+                <b>clipboardNotify</b> raises in every compositions.
+            </p>
+            <p>
+                When the render target is changed,
+                this may because a composition is added to or remove from a window,
+                or the window itself loses and recreates its render target,
+                <b>renderTargetChanged</b> raises in the affected root composition and all direct or indirect child compositions.
+            </p>
+            <p>
+                If a composition is not added to a window,
+                its render target is <b>null</b>.
+            </p>
         </topic>
     </topic>
 </article>
