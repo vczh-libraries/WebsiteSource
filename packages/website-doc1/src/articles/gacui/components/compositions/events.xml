@@ -222,6 +222,16 @@
                 The type of the second argument is <b>vl::presentation::compositions::GuiKeyEventArgs&amp;</b>,
                 or <b>presentation::composition::GuiKeyEventArgs*</b> in <b>Workflow</b>.
             </p>
+            <p>
+                Other members contains the information of the event:
+                <ul>
+                    <li><b>ctrl</b>: <b>true</b> if the CTRL key is pressing.</li>
+                    <li><b>shift</b>: <b>true</b> if the SHIFT key is pressing.</li>
+                    <li><b>alt</b>: <b>true</b> if the ALT button is pressing.</li>
+                    <li><b>capslock</b>: <b>true</b> if the CAPSLOCK button is activated.</li>
+                    <li><b>autoRepeatKeyDown</b>: <b>true</b> if this event is generated because of holding a key.</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Input Events</title>
@@ -238,6 +248,33 @@
             <p>
                 The type of the second argument is <b>vl::presentation::compositions::GuiCharEventArgs&amp;</b>,
                 or <b>presentation::composition::GuiCharEventArgs*</b> in <b>Workflow</b>.
+            </p>
+            <p>
+                
+            </p>
+            <p>
+                Other members contains the information of the event:
+                <ul>
+                    <li><b>ctrl</b>: <b>true</b> if the CTRL key is pressing.</li>
+                    <li><b>shift</b>: <b>true</b> if the SHIFT key is pressing.</li>
+                    <li><b>alt</b>: <b>true</b> if the ALT button is pressing.</li>
+                    <li><b>capslock</b>: <b>true</b> if the CAPSLOCK button is activated.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Focus Events</title>
+            <p>
+                GacUI offers the following button events:
+                <ul>
+                    <li>gotFocus</li>
+                    <li>lostFocus</li>
+                    <li>caretNotify</li>
+                </ul>
+            </p>
+            <p>
+                The type of the second argument is <b>vl::presentation::compositions::GuiEventArgs&amp;</b>,
+                or <b>presentation::composition::GuiEventArgs*</b> in <b>Workflow</b>.
             </p>
         </topic>
         <topic>
