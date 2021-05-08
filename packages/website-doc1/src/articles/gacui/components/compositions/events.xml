@@ -1,8 +1,61 @@
-<article>
+<article index="true">
     <topic>
         <title>Handling Input Events</title>
         <p>
-            The page is under construction.
+            Raw input events are in compositions.
+            Normally a composition doesn't receive events,
+            until <b>GuiGraphicsComposition</b>::<b>GetEventReceiver</b> is called.
+            This function create a big object containing all event registrations inside it,
+            and cause <b>GuiGraphicsComposition</b>::<b>HasEventReceiver</b> to become <b>true</b> forever.
+            You are not able to free the space of event registration object once it is associated to a composition.
         </p>
+        <p>
+            In the event registration object you will find a lot of fields for events,
+            for example,
+            <b>leftButtonDown</b>.
+            There are 3 methods for subscribing an event:
+            <ul>
+                <li>
+                    composition-&gt;GetEventReceiver()-&gt;EVENT_NAME.<b>AttachMethod</b>:
+                    subscribe an event using an object and a member function pointer.
+                </li>
+                <li>
+                    composition-&gt;GetEventReceiver()-&gt;EVENT_NAME.<b>AttachFunction</b>:
+                    subscribe an event using a function pointer or a <b>vl::Func&lt;...&gt;</b> functor.
+                </li>
+                <li>
+                    composition-&gt;GetEventReceiver()-&gt;EVENT_NAME.<b>AttachLambda</b>:
+                    subscribe an event using a lambda expression or other functors.
+                </li>
+            </ul>
+            All 3 methods returns a new handler object per each call.
+            The only purpose for this object is to use in
+            composition-&gt;GetEventReceiver()-&gt;EVENT_NAME.<b>Detach</b>
+            and cancel the registration that returning that perticular handler object.
+            If <b>Detach</b> returns <b>false</b>,
+            either this registration has already been canceled,
+            or this registration doesn't happen in this event.
+        </p>
+        <topic>
+            <title>Mouse Events</title>
+            <topic>
+                <title>Button Events</title>
+            </topic>
+            <topic>
+                <title>Wheel Events</title>
+            </topic>
+            <topic>
+                <title>Moving Events</title>
+            </topic>
+        </topic>
+        <topic>
+            <title>Keyboard Events</title>
+        </topic>
+        <topic>
+            <title>Input Events</title>
+        </topic>
+        <topic>
+            <title>Other Events</title>
+        </topic>
     </topic>
 </article>
