@@ -38,7 +38,8 @@
         </p>
         <p>
             In the event callback function,
-            the first argument is always <b>GuiGraphicsComposition*</b>,
+            the first argument is always <b>GuiGraphicsComposition*</b>
+            which is the owner of the event registration object,
             the second argument varies in different events.
         </p>
         <p>
@@ -48,6 +49,44 @@
             or specify a piece of code to run.
             Please check out <a href="/gacui/xmlres/instance/events.html">this page</a> for details.
         </p>
+        <topic>
+            <title>Events and Parent Chain</title>
+            <p>
+                Most of the events are not only raised on the composition that receives the input,
+                but also all the way to the root in the parent chain,
+                which means after the event is raised on the source composition,
+                it is then raised on its parent,
+                and its parent's parent until the end.
+            </p>
+            <p>
+                Such process could be detected using members of the second argument:
+                <ul>
+                    <li>
+                        <b>compositionSource</b>:
+                        the composition right under the mouse, which is the original event raiser.
+                        When the event raises through the parent chain,
+                        this member doesn't change.
+                    </li>
+                    <li>
+                        <b>eventSource</b>:
+                        If the <b>compositionSource</b> has an associated event registration object,
+                        <b>eventSource</b> is <b>compositionSource</b>.
+                        Otherwise,
+                        <b>eventSource</b> is the nearest parent composition that has an associated event registration object.
+                    </li>
+                    <li>
+                        <b>handled</b>:
+                        you can set this member in the event callback function to <b>true</b>
+                        to stop the event from going through more further in the parent chain.
+                    </li>
+                </ul>
+                Meanwhile,
+                the first argument is the composition who owns the event registration object
+                the callback function is registered to.
+                When the event raises through the parent chain,
+                the first argument becomes the current "parent".
+            </p>
+        </topic>
         <topic>
             <title>Mouse Events</title>
             <topic>
@@ -77,31 +116,10 @@
                     or <b>presentation::composition::GuiMouseEventArgs*</b> in <b>Workflow</b>.
                 </p>
                 <p>
-                    When such event happens,
-                    the composition right under the mouse will receive the event,
-                    and then its parent composition,
-                    and its parent parent composition until the end.
-                    Such process could be detected using members of the second argument:
-                    <ul>
-                        <li>
-                            <b>compositionSource</b>:
-                            the composition right under the mouse, which is the original event raiser.
-                            When the event raises through the parent chain,
-                            this member doesn't change.
-                        </li>
-                        <li>
-                            <b>eventSource</b>:
-                            the owner of the current raising event.
-                            When the event raises through the parent chain,
-                            this member reflect the current one in the chain.
-                            This is the same to the first argument of the event callback function.
-                        </li>
-                        <li>
-                            <b>handled</b>:
-                            you can set this member in the event callback function to <b>true</b>
-                            to stop the event from going through more further in the parent chain.
-                        </li>
-                    </ul>
+                    Mouse button and wheel events are raised on captured composition,
+                    or the composition right under the mouse when no composition is captured,
+                    and then go through the parent chain,
+                    which is stoppable by setting <b>handled</b> to <b>true</b>.
                 </p>
                 <p>
                     Other members contains the information of the event:
@@ -111,7 +129,7 @@
                         <li><b>left</b>: <b>true</b> if the mouse left button is pressing.</li>
                         <li><b>middle</b>: <b>true</b> if the mouse middle button is pressing.</li>
                         <li><b>right</b>: <b>true</b> if the mouse right button is pressing.</li>
-                        <li><b>x</b> and <b>y</b>: the relative coordinate to <b>eventSource</b>.</li>
+                        <li><b>x</b> and <b>y</b>: the relative coordinate to <b>first callback argument</b>.</li>
                         <li>
                             <b>wheel</b>:
                             direction and distance of the wheel. A positive number means the wheel is rotating towards right or down.
@@ -143,8 +161,10 @@
                 </p>
                 <p>
                     <b>mouseMove</b> happens when the mouse moves.
-                    It behaves like other button and wheel events
-                    in the way of raise through the parent chain.
+                    It is raised on captured composition,
+                    or the composition right under the mouse when no composition is captured,
+                    and then go through the parent chain,
+                    which is stoppable by setting <b>handled</b> to <b>true</b>.
                 </p>
             </topic>
             <topic>
@@ -263,6 +283,21 @@
                 or <b>presentation::composition::GuiKeyEventArgs*</b> in <b>Workflow</b>.
             </p>
             <p>
+                Keyboard events are raised on the focused composition,
+                and then go through the parent chain,
+                which is stoppable by setting <b>handled</b> to <b>true</b>.
+            </p>
+            <p>
+                <b>previewKey</b> is raised before any other keyboard events.
+                If <b>handled</b> is set to <b>true</b>,
+                not only the parent chain will stop,
+                the following keyboard event will also be canceled.
+            </p>
+            <p>
+                <b>code</b> member of the second argument
+                maps to an item in <b>vl::presentation::VKEY</b> enum.
+            </p>
+            <p>
                 Other members contains the information of the event:
                 <ul>
                     <li><b>ctrl</b>: <b>true</b> if the CTRL key is pressing.</li>
@@ -287,7 +322,23 @@
                 or <b>presentation::composition::GuiCharEventArgs*</b> in <b>Workflow</b>.
             </p>
             <p>
-                
+                Input events are raised on the focused composition,
+                and then go through the parent chain,
+                which is stoppable by setting <b>handled</b> to <b>true</b>.
+            </p>
+            <p>
+                <b>previewCharInput</b> is raised before any other keyboard events.
+                If <b>handled</b> is set to <b>true</b>,
+                not only the parent chain will stop,
+                the following keyboard event will also be canceled.
+            </p>
+            <p>
+                <b>code</b> member of the second argument
+                is a <b>wchar_t</b> that being typed into the control.
+                In Windows,
+                <b>wchar_t</b> is a UTF-16 code point.
+                In other platform,
+                <b>wchar_t</b> is a UTF-32 code point.
             </p>
             <p>
                 Other members contains the information of the event:
