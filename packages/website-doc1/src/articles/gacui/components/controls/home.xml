@@ -247,9 +247,7 @@
                                                     <li>
                                                         GuiMenu
                                                         <ul>
-                                                            <li>
-                                                                <b>&lt;ToolstripMenu&gt;</b>
-                                                            </li>
+                                                            <li><b>&lt;ToolstripMenu&gt;</b></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
