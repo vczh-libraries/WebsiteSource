@@ -20,7 +20,14 @@
     </article>
     <article name="Handling Input Events" file="compositions/events"/>
   </article>
-  <article name="Controls" file="controls/home"/>
+  <article name="Controls" file="controls/home">
+      <article name="Basic Controls" file="controls/basic/home"/>
+      <article name="Container Controls" file="controls/container/home"/>
+      <article name="Editor Controls" file="controls/editor/home"/>
+      <article name="List Controls" file="controls/list/home"/>
+      <article name="Toolstrip Controls" file="controls/toolstrip/home"/>
+      <article name="Ribbon Controls" file="controls/ribbon/home"/>
+  </article>
   <article name="Control Templates" file="ctemplates/home"/>
   <article name="Item Templates" file="itemplates/home"/>
   <article name="Components" file="components/home"/>
