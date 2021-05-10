@@ -1,8 +1,32 @@
-<article>
+<article index="true">
     <topic>
         <title>Controls</title>
         <p>
             <a href="/gacui/kb/controls.html">Controls</a> offer a rich set of predefined UI functionalities.
+            Controls organize and visualize data by data binding.
+            Controls define their skins by control templates and item templates.
+            Controls have <b>BoundsComposition</b> and <b>ContainerComposition</b> to connect with compositions.
         </p>
+        <p>
+            Here are predefined controls by category:
+        </p>
+        <topic>
+            <title>Basic Controls</title>
+        </topic>
+        <topic>
+            <title>Container  Controls</title>
+        </topic>
+        <topic>
+            <title>Editor  Controls</title>
+        </topic>
+        <topic>
+            <title>List Controls</title>
+        </topic>
+        <topic>
+            <title>Toolstrip  Controls</title>
+        </topic>
+        <topic>
+            <title>Ribbon  Controls</title>
+        </topic>
     </topic>
 </article>
