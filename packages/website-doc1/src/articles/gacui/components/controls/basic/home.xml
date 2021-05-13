@@ -55,6 +55,9 @@
                 <p>
                     A visually disabled control doesn't react to user input.
                 </p>
+                <p>
+                    <b>VisuallyEnabled</b> of the control template automatically updates when this property is changed.
+                </p>
             </topic>
             <topic>
                 <title>Enabled (EnabledChanged)</title>
@@ -78,6 +81,55 @@
                     When a control's <b>Visible</b> is set to <b>false</b>,
                     the control disappears,
                     but it still affect the minimum size of all parent compositions.
+                </p>
+            </topic>
+            <topic>
+                <title>Text (TextChanged)</title>
+                <p>
+                    The default value for this property is <b>&quot;&quot;</b>.
+                </p>
+                <p>
+                    This property controls the text displayed on the control.
+                </p>
+                <p>
+                    <b>Text</b> of the control template automatically updates when this property is changed.
+                </p>
+            </topic>
+            <topic>
+                <title>Context (ContextChanged)</title>
+                <p>
+                    The default value for this property is <b>null</b>.
+                </p>
+                <p>
+                    This property offers a way to communicate between a window and control templates of child controls.
+                    A typically scenario for this property is to assign an object.
+                    The control template will get the same object and subscribe to its events.
+                    A window can than talk to this object and except the control template to change something.
+                </p>
+                <p>
+                    <b>Context</b> of the control template automatically updates when this property is changed.
+                </p>
+                <p>
+                    Please check out
+                    <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/TriplePhaseImageButton">
+                        this tutorial project
+                    </a>
+                    as an example.
+                    In this project,
+                    it creates a new control <b>TriplePhaseButton</b> which has different images for different states.
+                    This new control passes itself to the <b>Context</b> of a button inside this control,
+                    and than the control template of this button communicates directly to this new control,
+                    to make the button behaves like a triple-phases button (unlike double-phases buttons like check boxes).
+                </p>
+            </topic>
+            <topic>
+                <title>Focused (FocusedChanged)</title>
+                <p>
+                    The default value for this property is <b>false</b>.
+                </p>
+                <p>
+                    Calling <b>SetFocus</b> to try to move focus to this control.
+                    A focused control accepts keyboard and character input to the window.
                 </p>
             </topic>
         </topic>
@@ -221,6 +273,7 @@
                     or for controls that manage focus of child controls in another window (like menus),
                     <b>SetActivatingAltHost</b> is an important function to activate this feature for this control.
                     This function is only for control authors to use.
+                    Pressing <b>ESC</b> or <b>BACKSPACE</b> goes back to the upper level window or control during a <b>ALT</b> sequence.
                 </p>
             </topic>
         </topic>
