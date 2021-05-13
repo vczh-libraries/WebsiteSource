@@ -2,7 +2,120 @@
     <topic>
         <title>Basic Controls</title>
         <p>
-            The page is under construction.
+            Controls visualize data and react to user input.
+            <b>&lt;Window/&gt;</b> is also a control.
         </p>
+        <p>
+            A control has three main composition properties:
+            <ul>
+                <li>
+                    <b>BoundsComposition</b>:
+                    This is a composition of the control's border.
+                    To make a control appear inside another composition,
+                    just simply adds <b>BoundsComposition</b> as a child composition to that composition.
+                </li>
+                <li>
+                    <b>ContainerComposition</b>:
+                    This is a composition of the control's inner border.
+                    To make another composition inside a control,
+                    just simply adds that composition as a child composition to <b>ContainerComposition</b>.
+                </li>
+                <li>
+                    <b>FocusComposition</b>:
+                    If a control is focusable,
+                    this property returns a non-null value.
+                    <b>FocusComposition</b> receives <a href="/gacui/components/compositions/events.html">most of composition events</a>.
+                    Ideally,
+                    events provided by the control itself is sufficient enough,
+                    <b>FocusComposition</b> is designed for the implementation of the control and the control template.
+                </li>
+            </ul>
+            <b>BoundsComposition</b> and <b>ContainerComposition</b> will not change during a control's life time.
+            <b>FocusComposition</b> changes when the control template changes.
+        </p>
+        <p>
+            Many properties are shared across control classes.
+        </p>
+        <topic>
+            <title>States</title>
+            <p>
+                The following properties and events control states for a control.
+            </p>
+        </topic>
+        <topic>
+            <title>Control Template</title>
+            <p>
+                The following properties and events control the control template for a control.
+            </p>
+            <topic>
+                <title>ControlThemeName (ControlThemeNameChanged)</title>
+                <p>
+                    A <b>ThemeTemplates</b> contains control template implementations for controls.
+                    Each control template factory fields are optional.
+                    Multiple <b>ThemeTemplates</b> could be registered and unregistered using <b>RegisterTheme</b> and <b>UnregisteredTheme</b>.
+                    The later registered <b>ThemeTemplates</b> has a higher pririty.
+                </p>
+                <p>
+                    When calling <b>GetCurrentTheme-&gt;CreateStyle(themeName)</b>,
+                    it goes through all registered theme and find if any <b>ThemeTemplates</b> has an implementation for the specified <b>themeName</b>.
+                </p>
+                <p>
+                    <b>ControlThemeName</b> property specifies which control template should be used for this template.
+                </p>
+                <p>
+                    Different control classes have different default values for this property.
+                    In most of the cases this property is not expected to be changed during the runtime.
+                </p>
+                <p>
+                    When <b>ControlThemeName</b> is changed and <b>ControlTemplate</b> is empty,
+                    the control template for this control will be changed immediately.
+                    <b>SetControlThemeNameAndTemplate</b> is for changing both <b>ControlThemeName</b> and <b>ControlTemplate</b> at the same time to improve the performance.
+                </p>
+            </topic>
+            <topic>
+                <title>ControlTemplate (ControlTemplateChanged)</title>
+                <p>
+                    This property is used when you doesn't want the registered control template for this control.
+                </p>
+                <p>
+                    The default value for this property is empty.
+                    The value for this property must be a <b>vl::Func</b> for the function type <b>templates::GuiControlTemplate*(const reflection::description::Value&amp;)</b>.
+                </p>
+                <p>
+                    Please check out
+                    <a href="/gacui/xmlres/instance/properties.html#Control-Item-Template-func-data-Object-TEMPLATE-CLASS-">
+                        this page
+                    </a>
+                    for details about using this property in GacUI XML Resource.
+                </p>
+                <p>
+                    When <b>ControlTemplate</b> is assigned with an empty value,
+                    <b>ControlThemeName</b> kicks in and update the control template for this control.
+                    When <b>ControlTemplate</b> is assigned with a non-empty value,
+                    this property is evaluated to create a control template for this control.
+                    <b>SetControlThemeNameAndTemplate</b> is for changing both <b>ControlThemeName</b> and <b>ControlTemplate</b> at the same time to improve the performance.
+                </p>
+            </topic>
+            <topic>
+                <title>ControlTemplateObject</title>
+                <p>
+                    This property returns the currently used control template instance.
+                </p>
+                <p>
+                    A control template is also a composition,
+                    and it has <b>BoundsComposition</b> and <b>ContainerComposition<b> too.
+                    But they are not same values as the same property of the control.
+                </p>
+                <p>
+                    <b>FocusComposition</b> is the same to control and control templates.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Context</title>
+            <p>
+                The following properties and events provide access of the control's context.
+            </p>
+        </topic>
     </topic>
 </article>

@@ -6,5 +6,5 @@ cd SampleForDoc\GacUI
 # .\GacUI.sln
 # code .
 popd
-Start-Process http://localhost:8080/doc/current/gacui/components/home.html;
+Start-Process http://localhost:8080/doc/current/gacui/components/controls/home.html;
 npm run start;
