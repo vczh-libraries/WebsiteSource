@@ -96,6 +96,32 @@
                 </p>
             </topic>
             <topic>
+                <title>DisplayFont (DisplayFontChanged)</title>
+                <p>
+                    <b>DisplayFont</b> reflects the expected font for this control.
+                </p>
+                <p>
+                    The expected font for this control is,
+                    either the <b>Font</b> of this control if it is not empty,
+                    or the nearest parent control's non-empty <b>Font</b>.
+                    If no font is found all the way to the top level control,
+                    it becomes <b>GetCurrentController()-&gt;ResourceService()-&gt;GetDefaultFont()</b>
+                </p>
+                <p>
+                    <b>DisplayFont</b> of the control template automatically updates when this property is changed.
+                </p>
+            </topic>
+            <topic>
+                <title>Font (FontChanged)</title>
+                <p>
+                    The default value for this property is <b>null</b>.
+                </p>
+                <p>
+                    When a control's <b>Font</b> is changed,
+                    <b>DisplayFont</b> of the control itself and all direct or indirect child controls with an empty <b>Font</b> is also changed,
+                </p>
+            </topic>
+            <topic>
                 <title>Context (ContextChanged)</title>
                 <p>
                     The default value for this property is <b>null</b>.
@@ -130,6 +156,16 @@
                 <p>
                     Calling <b>SetFocus</b> to try to move focus to this control.
                     A focused control accepts keyboard and character input to the window.
+                </p>
+            </topic>
+            <topic>
+                <title>Tag</title>
+                <p>
+                    The default value for this property is <b>null</b>.
+                </p>
+                <p>
+                    This property accepts any value.
+                    It does nothing but associates a value to a control.
                 </p>
             </topic>
         </topic>
@@ -274,6 +310,34 @@
                     <b>SetActivatingAltHost</b> is an important function to activate this feature for this control.
                     This function is only for control authors to use.
                     Pressing <b>ESC</b> or <b>BACKSPACE</b> goes back to the upper level window or control during a <b>ALT</b> sequence.
+                </p>
+            </topic>
+            <topic>
+                <title>TooltipControl</title>
+                <p>
+                    The default value for this property is <b>null</b>.
+                </p>
+                <p>
+                    A legal value for this property must be a control that is not contained in any composition.
+                    When the mouse stops on a control for a while,
+                    its <b>TooltipControl</b> will appear at the mouse cursor.
+                </p>
+                <p>
+                    When a control is deleted,
+                    it also deletes its <b>TooltipControl</b>.
+                </p>
+                <p>
+                    <b>DisplayTooltip</b> and <b>CloseTooltip</b>
+                    could be call to manually control a tooltip proactively.
+                </p>
+            </topic>
+            <topic>
+                <title>TooltipWidth</title>
+                <p>
+                    The default value for this property is <b>0</b>.
+                </p>
+                <p>
+                    This property controls the width of <b>TooltipControl</b>.
                 </p>
             </topic>
         </topic>
