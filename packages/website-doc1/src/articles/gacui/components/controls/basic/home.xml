@@ -341,5 +341,32 @@
                 </p>
             </topic>
         </topic>
+        <topic>
+            <title>Service Objects</title>
+            <p>
+                <b>AddService</b> associates a nullable service object to this control with an identifier that could be any string.
+            </p>
+            <p>
+                <b>QueryService</b> or <b>QueryTypedService&lt;T&gt;</b> searches for a service object using an identifier all the way up to the top-level control.
+                If multiple service objects are found,
+                the one in the nearest parent control wins.
+            </p>
+            <p>
+                Some service identifiers are hard-coded in controls,
+                even if you try to associate a service objects using thses identifiers,
+                it takes no effect on some controls:
+                <ul>
+                    <li>vl::presentation::compositions::IGuiAltAction</li>
+                    <li>vl::presentation::compositions::IGuiAltActionContainer</li>
+                    <li>vl::presentation::compositions::IGuiAltActionHost</li>
+                    <li>vl::presentation::controls::IGuiMenuService</li>
+                    <li>vl::presentation::controls::IGuiMenuDropdownProvider</li>
+                    <li>vl::presentation::controls::IToolstripUpdateLayoutInvoker</li>
+                    <li>vl::presentation::compositions::IGuiTabAction</li>
+                </ul>
+                Predefined services are full name of GacUI classes,
+                it is easy to avoid conflict with your own service objects.
+            </p>
+        </topic>
     </topic>
 </article>
