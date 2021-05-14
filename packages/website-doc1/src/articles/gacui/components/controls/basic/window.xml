@@ -8,6 +8,7 @@
                     <Instance ref.CodeBehind="false" ref.Class="demo::MainWindow>
                       <Window ref.Name="self" Text="This is the main window" ClientSize="x:640 y:480">
                         <att.BoundsComposition-set PreferredMinSize="x:480 y:320">
+                        <!-- Here to put contents inside a window -->
                       </Window>
                     </Instance>
                 ]]></code>
@@ -40,5 +41,117 @@
                 </li>
             </ul>
         </p>
+        <topic>
+            <title>Adding something to a window</title>
+            <p>
+                <b>&lt;Window/&gt;</b> is just a control.
+                Compositions and controls in the window will be added to its <b>ContainerComposition</b>.
+                You don't have to explicitly use <b>att.ContainerComposition</b>.
+                <program>
+                    <code><![CDATA[
+                        <Instance ref.CodeBehind="false" ref.Class="demo::MainWindow>
+                          <Window ref.Name="self" Text="This is the main window" ClientSize="x:640 y:480">
+                            <att.BoundsComposition-set PreferredMinSize="x:480 y:320">
+                            <Label Text="Welcome to GacUI!"/>
+                          </Window>
+                        </Instance>
+                    ]]></code>
+                </program>
+            </p>
+            <p>
+                As a <b>GuiInstanceRootObject</b>,
+                components can also be added to a window.
+            </p>
+        </topic>
+        <topic>
+            <title>GuiControlHost Properties</title>
+            <topic>
+                <title>Focused (WindowGotFocus, WindowLostFocus)</title>
+                <p>
+                    A focused window receives keyboard inputs.
+                    It will deliver all inputs to the focused control,
+                    except for <b>ALT</b> sequence.
+                </p>
+            </topic>
+            <topic>
+                <title>Activated (WindowActivated, WindowDeactivated)</title>
+                <p>
+                    Usually,
+                    an activated window will get focus.
+                    But when it has a sub window,
+                    it will also get activated when the sub window is acticvated,
+                    but only the sub window has the focus.
+                </p>
+                <p>
+                    <b>ShowModal</b>, <b>ShowModalAndDelete</b> and <b>ShowModalAsync</b>
+                    in <b>&lt;Window/&gt;</b> make a window visible as another window's sub window
+                    by setting the first argument to its owner.
+                    When a window is closed,
+                    the ownership ends,
+                    a new owner can be specified when the next time
+                    this window is required to be visible using these functions.
+                </p>
+            </topic>
+            <topic>
+                <title>ShowInTaskBar</title>
+                <p>
+                    The default value is different in different sub classes.
+                </p>
+                <p>
+                    When this property is set to <b>true</b>,
+                    a icon (and probably with text) appears in the task bar.
+                </p>
+            </topic>
+            <topic>
+                <title>EnableActivate</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    When this property is set to <b>false</b>,
+                    this window is not allowed to be activated.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>GuiControlHost Events</title>
+            <topic>
+                <title>WindowOpened</title>
+                <p>
+                    This event is raised right after a window is visible.
+                </p>
+            </topic>
+            <topic>
+                <title>WindowClosing</title>
+                <p>
+                    This event is raised before a window is closed.
+                </p>
+                <p>
+                    The second argument for this event is a <b>GuiRequestEventArgs</b>.
+                    By setting the <b>cancel</b> field to <b>true</b>,
+                    it stops then window from being closed.
+                </p>
+            </topic>
+            <topic>
+                <title>WindowClosed</title>
+                <p>
+                    This event is raised right after a window is closed.
+                </p>
+            </topic>
+            <topic>
+                <title>WindowDestroying</title>
+                <p>
+                    This event is raised before a window is being deleted.
+                    At this moment,
+                    everything in the window is still alive.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>&lt;Window&gt; Properties</title>
+        </topic>
+        <topic>
+            <title>&lt;Window&gt; Events</title>
+        </topic>
     </topic>
 </article>
