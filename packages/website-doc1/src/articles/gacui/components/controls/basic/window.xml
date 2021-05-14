@@ -205,6 +205,18 @@
         </topic>
         <topic>
             <title>Displaying a GuiControlHost</title>
+            <p>
+                You could <b>Show</b> or <b>ShowDeactivated</b> a window without changing its size.
+            </p>
+            <p>
+                You could also <b>ShowRestored</b>, <b>ShowMaximized</b> or <b>ShowMinimized</b> a window.
+            </p>
+            <p>
+                To make a window invisible,
+                you could call <b>Hide</b> or <b>Close</b>.
+                Calling <b>Close</b> on the main window cause the application to begin an existing process.
+                These two functions behaves the same for other windows.
+            </p>
         </topic>
         <topic>
             <title>&lt;Window&gt; Properties</title>
