@@ -1,0 +1,44 @@
+<article index="true">
+    <topic>
+        <title>ControlHost and &lt;Window&gt;</title>
+        <p>
+            <b>&lt;Window/&gt;</b> is where we start our journey.
+            <program>
+                <code><![CDATA[
+                    <Instance ref.CodeBehind="false" ref.Class="demo::MainWindow>
+                      <Window ref.Name="self" Text="This is the main window" ClientSize="x:640 y:480">
+                        <att.BoundsComposition-set PreferredMinSize="x:480 y:320">
+                      </Window>
+                    </Instance>
+                ]]></code>
+            </program>
+            <ul>
+                <li>
+                    <b>&lt;Window/&gt;</b> is a <b>ControlHost</b>,
+                    which has to be a top-level window,
+                    is usually a base class of an
+                    <a href="/gacui/xmlres/tag_instance.html">
+                        &lt;Instance&gt;
+                    </a>.
+                    Here we create a class <b>demo::MainWindow</b> inheriting from <b>&lt;Window/&gt;</b>.
+                </li>
+                <li>
+                    <b>ref.CodeBehind</b> set to <b>false</b>
+                    so that GacUI doesn't generate a separated pair of C++ source files for this class.
+                </li>
+                <li>
+                    <b>Text</b> is the title of this window.
+                </li>
+                <li>
+                    <b>ClientSize</b> is the initial size when the window is loaded.
+                    This size doesn't include the border and the title.
+                </li>
+                <li>
+                    <b>BoundsComposition.PreferredMinSize</b> is the minimum client size of this window.
+                    When the window size is being changed by dragging the border,
+                    it cannot go smaller than this size.
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>

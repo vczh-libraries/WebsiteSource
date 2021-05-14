@@ -21,7 +21,9 @@
     <article name="Handling Input Events" file="compositions/events"/>
   </article>
   <article name="Controls" file="controls/home">
-      <article name="Basic Controls" file="controls/basic/home"/>
+      <article name="Basic Controls" file="controls/basic/home">
+        <article name="ControlHost and &lt;Window&gt;" file="controls/basic/window"/>
+      </article>
       <article name="Container Controls" file="controls/container/home"/>
       <article name="Editor Controls" file="controls/editor/home"/>
       <article name="List Controls" file="controls/list/home"/>
