@@ -112,6 +112,62 @@
                     this window is not allowed to be activated.
                 </p>
             </topic>
+            <topic>
+                <title>TopMost</title>
+                <p>
+                    The default value for this property is <b>false</b>.
+                </p>
+                <p>
+                    When this property is set to <b>true</b>,
+                    it stays in front of all windows whose <b>TopMost</b> is <b>false</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>ClientSize</title>
+                <p>
+                    This property is the client size of a window.
+                </p>
+                <p>
+                    The value doesn't change according to DPI or text scaling settings.
+                    If text scaling is set to 200%,
+                    a 320x240 client size is taking 640x480 pixels in the screen.
+                </p>
+            </topic>
+            <topic>
+                <title>Location</title>
+                <p>
+                    This property is the location of a window.
+                </p>
+                <p>
+                    This value changes acfording to DPI or text scaling settings.
+                    The coordinate is in screen space.
+                    In a multiple monitors computer,
+                    a visible window could have negative numbers in its location.
+                </p>
+                <p>
+                    <b>SetBounds</b> could be called to set <b>Location</b> and <b>ClientSize</b> at the same time.
+                </p>
+            </topic>
+            <topic>
+                <title>TimerManager</title>
+                <p>
+                    This property returns a manager object that runs tasks repeatedly
+                    until the task itself tells the manager object to stop.
+                </p>
+                <p>
+                    <a href="/gacui/xmlres/tag_animation.html">
+                        Animations
+                    </a>
+                    are built on top of it.
+                </p>
+            </topic>
+            <topic>
+                <title>Opening</title>
+                <p>
+                    When this property is <b>true</b>,
+                    the window is visible.
+                </p>
+            </topic>
         </topic>
         <topic>
             <title>GuiControlHost Events</title>
@@ -146,6 +202,9 @@
                     everything in the window is still alive.
                 </p>
             </topic>
+        </topic>
+        <topic>
+            <title>Displaying a GuiControlHost</title>
         </topic>
         <topic>
             <title>&lt;Window&gt; Properties</title>
