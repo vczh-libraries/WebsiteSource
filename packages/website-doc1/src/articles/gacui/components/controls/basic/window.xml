@@ -83,13 +83,8 @@
                     but only the sub window has the focus.
                 </p>
                 <p>
-                    <b>ShowModal</b>, <b>ShowModalAndDelete</b> and <b>ShowModalAsync</b>
-                    in <b>&lt;Window/&gt;</b> make a window visible as another window's sub window
-                    by setting the first argument to its owner.
-                    When a window is closed,
-                    the ownership ends,
-                    a new owner can be specified when the next time
-                    this window is required to be visible using these functions.
+                    Calling <b>SetParent</b> of a control host's <b>NativeWindow</b>
+                    makes a becomes another window's sub window.
                 </p>
             </topic>
             <topic>
@@ -216,6 +211,58 @@
                 you could call <b>Hide</b> or <b>Close</b>.
                 Calling <b>Close</b> on the main window cause the application to begin an existing process.
                 These two functions behaves the same for other windows.
+            </p>
+        </topic>
+        <topic>
+            <title>Controlling &lt;Window&gt; Border</title>
+            <p>
+                The following properties control what components should appear in the window's border:
+                <ul>
+                    <li>MaximizedBox</li>
+                    <li>MinimizedBox</li>
+                    <li>Border</li>
+                    <li>SizeBox</li>
+                    <li>Icon</li>
+                    <li>TitleBar</li>
+                </ul>
+                A window's control template could accept or reject such changing by setting the following properties in <b>&lt;WindowTemplate/&gt;</b>:
+                <ul>
+                    <li>MaximizedBoxOption</li>
+                    <li>MinimizedBoxOption</li>
+                    <li>BorderOption</li>
+                    <li>SizeBoxOption</li>
+                    <li>IconOption</li>
+                    <li>TitleBarOption</li>
+                </ul>
+                They could be <b>AlwaysTrue</b>, <b>AlwaysFalse</b> or <b>Customizable</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Displaying a &lt;Window&gt;</title>
+            <p>
+                The following functions displays a <b>&lt;Window/&lt;</b> as a sub window:
+                <ul>
+                    <li>
+                        <b>ShowModal</b>:
+                        This function makes a window visible as a model window.
+                        A model window will disable its owner when it is visible.
+                        The second argument will be called as a callback after this window is closed,
+                        and then its owner window becomes enabled.
+                    </li>
+                    <li>
+                        <b>ShowModalAndDelete</b>:
+                        Just like <b>ShowModal</b>,
+                        but after it is closed,
+                        the window will be deleted.
+                    </li>
+                    <li>
+                        <b>ShowModalAsync</b>:
+                        Just like <b>ShowModal</b>,
+                        but it returns a <b>system::Async^</b> (or <b>Ptr&lt;reflection::description::IAsync&gt;</b> in C++).
+                        This function can be used in <a href="/workflow/lang/coroutine_async.html">$Await</a>,
+                        it simplies <b>Workflow</b> scripts in GacUI XML Resource a lot.
+                    </li>
+                </ul>
             </p>
         </topic>
         <topic>
