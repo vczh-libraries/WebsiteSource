@@ -23,6 +23,7 @@
   <article name="Controls" file="controls/home">
       <article name="Basic Controls" file="controls/basic/home">
         <article name="ControlHost and &lt;Window&gt;" file="controls/basic/window"/>
+        <article name="&lt;CustomControl&gt;" file="controls/basic/customcontrol"/>
       </article>
       <article name="Container Controls" file="controls/container/home"/>
       <article name="Editor Controls" file="controls/editor/home"/>
