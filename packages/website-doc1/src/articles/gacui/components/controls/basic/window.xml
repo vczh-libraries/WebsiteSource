@@ -266,10 +266,13 @@
             </p>
         </topic>
         <topic>
-            <title>&lt;Window&gt; Properties</title>
-        </topic>
-        <topic>
-            <title>&lt;Window&gt; Events</title>
+            <title>&lt;Window&gt;::ClipboardUpdated Event</title>
+            <p>
+                This event is raised when the content of the clipboard is changed.
+            </p>
+            <p>
+                It happens before <b>clipboardNotify</b> in any composition inside this window.
+            </p>
         </topic>
     </topic>
 </article>
