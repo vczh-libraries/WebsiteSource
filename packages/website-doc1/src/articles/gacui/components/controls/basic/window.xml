@@ -47,20 +47,17 @@
                 <b>&lt;Window/&gt;</b> is just a control.
                 Compositions and controls in the window will be added to its <b>ContainerComposition</b>.
                 You don't have to explicitly use <b>att.ContainerComposition</b>.
-                <program>
-                    <code><![CDATA[
-                        <Instance ref.CodeBehind="false" ref.Class="demo::MainWindow>
-                          <Window ref.Name="self" Text="This is the main window" ClientSize="x:640 y:480">
-                            <att.BoundsComposition-set PreferredMinSize="x:480 y:320">
-                            <Label Text="Welcome to GacUI!"/>
-                          </Window>
-                        </Instance>
-                    ]]></code>
-                </program>
             </p>
             <p>
                 As a <b>GuiInstanceRootObject</b>,
                 components can also be added to a window.
+            </p>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Xml/Instance_Window">
+                    this tutorial project
+                </a>
+                for details.
             </p>
         </topic>
         <topic>
@@ -254,6 +251,17 @@
                         Just like <b>ShowModal</b>,
                         but after it is closed,
                         the window will be deleted.
+                        Please check out
+                        <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Xml/Instance_MultipleWindows">
+                            this tutorial project
+                        </a>
+                        for details.
+                        It calls this function in C++ by specifying a function name in the button's <b>Clicked</b> event.
+                        With <b>ref.CodeBehind="true"</b>,
+                        a place holder is generated in
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Xml/Instance_MultipleWindows/UI/Source/MainWindow.cpp">
+                            this separated file
+                        </a>.
                     </li>
                     <li>
                         <b>ShowModalAsync</b>:
@@ -261,6 +269,17 @@
                         but it returns a <b>system::Async^</b> (or <b>Ptr&lt;reflection::description::IAsync&gt;</b> in C++).
                         This function can be used in <a href="/workflow/lang/coroutine_async.html">$Await</a>,
                         it simplies <b>Workflow</b> scripts in GacUI XML Resource a lot.
+                        Please check out
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/AddressBook/UI/Resource.xml">
+                            this tutorial project
+                        </a>
+                        and
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/DocumentEditorBase.xml">
+                            this tutorial project
+                        </a>
+                        for details.
+                        They use <b>$Await window.ShowModalAsync(mainWindow);</b> followed by <b>delete window;</b>
+                        as an alternative way to <b>ShowModalAndDelete</b> without involving lambda expressions as callbacks.
                     </li>
                 </ul>
             </p>
