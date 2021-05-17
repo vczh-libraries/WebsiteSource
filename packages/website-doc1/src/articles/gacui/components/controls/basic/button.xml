@@ -13,5 +13,49 @@
                 </li>
             </ul>
         </p>
+        <p>
+            <b>&lt;Button/&gt;</b> is a control for user to execute a command.
+        </p>
+        <topic>
+            <title>&lt;Button&gt; Properties</title>
+            <topic>
+                <title>ClickOnMouseUp</title>
+                <p>
+                    The default value for this properti is <b>true</b>,
+                    but it could be different in sub classes.
+                </p>
+                <p>
+                    When this property is <b>true</b>,
+                    <b>Clicked</b> raises when the mouse button is released.
+                    When this property is <b>false</b>,
+                    <b>Clicked</b> raises when the mouse button is pressed.
+                </p>
+            </topic>
+            <topic>
+                <title>AutoFocus</title>
+                <p>
+                    The default value for this properti is <b>true</b>,
+                    but it could be different in sub classes.
+                </p>
+                <p>
+                    When this property is <b>true</b>:
+                    <ul>
+                        <li>The button is focused when the mouse button is pressed.</li>
+                        <li>The button is focused when it is executed by a <b>ALT</b> sequence.</li>
+                        <li>The button accepts focus by <b>TAB</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>&lt;Button&gt; Events</title>
+            <topic>
+                <title>Clicked</title>
+                <p>
+                    This event raises when it is clicked,
+                    or it is activated by a <b>ALT</b> sequence.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
