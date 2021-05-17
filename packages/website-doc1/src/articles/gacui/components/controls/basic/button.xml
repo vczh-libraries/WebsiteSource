@@ -1,0 +1,17 @@
+<article index="true">
+    <topic>
+        <title>&lt;Button&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;Button/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiButton*</li>
+                        <li><b>Template Tag</b>: &lt;ButtonTemplate/&gt;</li>
+                        <li><b>Template Name</b>: Button</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>

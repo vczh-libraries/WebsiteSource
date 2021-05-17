@@ -2,6 +2,18 @@
     <topic>
         <title>&lt;CustomControl&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;CustomControl/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiCustomControl*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             <b>&lt;CustomControl/&gt;</b> is a control for making new controls in GacUI XML Resource.
             <program>
                 <code><![CDATA[

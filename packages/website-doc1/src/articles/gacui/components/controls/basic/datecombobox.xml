@@ -1,0 +1,17 @@
+<article index="true">
+    <topic>
+        <title>&lt;DateComboBox&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;DateComboBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiDateComboBox*</li>
+                        <li><b>Template Tag</b>: &lt;DateComboBoxTemplate/&gt;</li>
+                        <li><b>Template Name</b>: DateComboBox</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>

@@ -54,7 +54,7 @@
                                                             <li>
                                                                 GuiComboBoxListControl
                                                                 <ul>
-                                                                    <li><b>&lt;GuiDateComboBox&gt;</b></li>
+                                                                    <li><b>&lt;DateComboBox&gt;</b></li>
                                                                 </ul>
                                                             </li>
                                                         </ul>

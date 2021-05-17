@@ -25,6 +25,11 @@
         <article name="ControlHost and &lt;Window&gt;" file="controls/basic/window"/>
         <article name="&lt;CustomControl&gt;" file="controls/basic/customcontrol"/>
         <article name="&lt;Label&gt;" file="controls/basic/label"/>
+        <article name="&lt;Button&gt;" file="controls/basic/Button"/>
+        <article name="GuiSelectableButton" file="controls/basic/selectableButton"/>
+        <article name="GuiScroll" file="controls/basic/scroll"/>
+        <article name="&lt;DatePicker&gt;" file="controls/basic/datepicker"/>
+        <article name="&lt;DateComboBox&gt;" file="controls/basic/datecombobox"/>
       </article>
       <article name="Container Controls" file="controls/container/home"/>
       <article name="Editor Controls" file="controls/editor/home"/>

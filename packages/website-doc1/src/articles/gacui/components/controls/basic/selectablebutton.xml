@@ -1,0 +1,23 @@
+<article index="true">
+    <topic>
+        <title>GuiSelectableButton</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiSelectableButton*</li>
+                <li><b>Template Tag</b>: &lt;SelectableButtonTemplate/&gt;</li>
+                <li>
+                    <b>&lt;CheckBox/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: CheckBox</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RadioButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RadioButton</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>

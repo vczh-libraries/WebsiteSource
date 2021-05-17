@@ -1,0 +1,41 @@
+<article index="true">
+    <topic>
+        <title>GuiScroll</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiScroll*</li>
+                <li><b>Template Tag</b>: &lt;ScrollTemplate/&gt;</li>
+                <li>
+                    <b>&lt;HScroll/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: HScroll</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;VScroll/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: VScroll</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;HTracker/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: HTracker</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;VTracker/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: VTracker</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ProgressBar/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ProgressBar</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>

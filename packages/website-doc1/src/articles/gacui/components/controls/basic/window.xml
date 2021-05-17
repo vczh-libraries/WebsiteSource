@@ -2,6 +2,18 @@
     <topic>
         <title>ControlHost and &lt;Window&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;Window/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiWindow*</li>
+                        <li><b>Template Tag</b>: &lt;WindowTemplate/&gt;</li>
+                        <li><b>Template Name</b>: Window</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             <b>&lt;Window/&gt;</b> is where we start our journey.
             <program>
                 <code><![CDATA[

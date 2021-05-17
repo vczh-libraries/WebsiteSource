@@ -2,6 +2,18 @@
     <topic>
         <title>&lt;Label&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;Label/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiLabel*</li>
+                        <li><b>Template Tag</b>: &lt;LabelTemplate/&gt;</li>
+                        <li><b>Template Name</b>: Label</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             <b>&lt;Label/&gt;</b> displays text in a specified font and color.
         </p>
         <p>

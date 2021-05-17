@@ -1,0 +1,17 @@
+<article index="true">
+    <topic>
+        <title>&lt;DatePicker&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;DatePicker/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiDatePicker*</li>
+                        <li><b>Template Tag</b>: &lt;DatePickerTemplate/&gt;</li>
+                        <li><b>Template Name</b>: DatePicker</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>
