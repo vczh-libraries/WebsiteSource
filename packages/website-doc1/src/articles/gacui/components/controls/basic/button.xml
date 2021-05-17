@@ -21,7 +21,7 @@
             <topic>
                 <title>ClickOnMouseUp</title>
                 <p>
-                    The default value for this properti is <b>true</b>,
+                    The default value for this property is <b>true</b>,
                     but it could be different in sub classes.
                 </p>
                 <p>
@@ -34,7 +34,7 @@
             <topic>
                 <title>AutoFocus</title>
                 <p>
-                    The default value for this properti is <b>true</b>,
+                    The default value for this property is <b>true</b>,
                     but it could be different in sub classes.
                 </p>
                 <p>
