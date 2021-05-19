@@ -37,7 +37,7 @@
                 </li>
             </ul>
             Dragging the handler is not easy to implement and it is very commonly required for <b>GuiScroll</b>,
-            so <b>&lt;CommonScrollBehavior/&gt;</b> is provided for writing control templates.
+            so <b>&lt;CommonScrollBehavior/&gt;</b> is provided for writing such control templates.
             Please check out
             <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Skins/DarkSkin/Template_Scroll.xml">
                 the default control templates
