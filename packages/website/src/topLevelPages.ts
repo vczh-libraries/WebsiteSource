@@ -16,11 +16,6 @@ const topLevelPages: { [key: string]: { title: string; button: string; article: 
         button: 'Demo',
         article: 'demo.xml'
     },
-    download: {
-        title: 'Download',
-        button: 'Download',
-        article: 'download.xml'
-    },
     document: {
         title: 'Document',
         button: 'Document',

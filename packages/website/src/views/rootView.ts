@@ -4,7 +4,7 @@ const buttons: [string, string, string][] = [
     ['Home', 'index', 'HOME'],
     ['Tutorial', 'doc/current/gacui/running', 'TUTORIAL'],
     ['Demo', 'demo', 'DEMOS'],
-    ['Download', 'download', 'DOWNLOAD'],
+    ['Download', 'dpc/current/home/download', 'DOWNLOAD'],
     ['Document', 'document', 'DOCUMENT'],
     ['Contact', 'contact', 'CONTACT']
 ];
