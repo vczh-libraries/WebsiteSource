@@ -78,23 +78,27 @@
         <topic>
             <title>&lt;ScrollContainer&gt; Properties</title>
             <topic>
-                <title>ExtendToFullWidth</title>
+                <title>ExtendToFullWidth or ExtendToFullHeight</title>
                 <p>
-                    The default value for this property is <b>false</b>.
+                    The default value for these properties is <b>false</b>.
                 </p>
                 <p>
-                    When this property is <b>true</b>,
-                    the width of the container is always kept large enough to display the content.
-                </p>
-            </topic>
-            <topic>
-                <title>ExtendToFullHeight</title>
-                <p>
-                    The default value for this property is <b>false</b>.
+                    When <b>ExtendToFullWidth</b> is <b>false</b>,
+                    <b>ContainerComposition</b> shinks in width to contain its content.
+                    When <b>ExtendToFullWidth</b> is <b>true</b>,
+                    width of <b>ContainerComposition</b> extends to the <b>ViewSize</b>
+                    when the total width of its content doesn't exceed the width of the control.
                 </p>
                 <p>
-                    When this property is <b>true</b>,
-                    the height of the container is always kept large enough to display the content.
+                    This feature is very useful when you want to create a layout with limited width but unlimited height.
+                    Just set <b>ExtendToFullWidth</b> to <b>true</b> and <b>HorizontalAlwaysVisible</b> to <b>false</b>,
+                    with correct compositions to make content fills the whole space in width but has a very small minimum width
+                    (e.g. fill things in a <b>&lt;Flow/&gt;</b>, or multiple <b>&lt;Flow/&gt;</b> in a vertical <b>&lt;Stack/&gt;</b>).
+                    When <b>&lt;ScrollContainer&gt;</b> shrinks in width,
+                    its content reorganizes to shrink in width but grow in height.
+                </p>
+                <p>
+                    <b>ExtendToFullHeight</b> works in the same way.
                 </p>
             </topic>
         </topic>

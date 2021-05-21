@@ -2,7 +2,101 @@
     <topic>
         <title>Editor Controls</title>
         <p>
-            The page is under construction.
+            Document and Text controls are two kinds of editor controls for different purpose.
         </p>
+        <topic>
+            <title>Document Controls</title>
+            <p>
+                Document controls are designed to display documents.
+                It supports all kinds of Unicode-definded languages and characters.
+            </p>
+            <p>
+                A document could be rich formatted:
+                <ul>
+                    <li>
+                        Text and Images are organized in multiple paragraphs.
+                    </li>
+                    <li>
+                        Each paragraph has its own alignment option.
+                        multiple <b>CRLF</b> characters supported in a paragrpah.
+                    </li>
+                    <li>
+                        Different parts of text could be in different sizes, fonts and colors.
+                    </li>
+                    <li>
+                        Controls and compositions could be embedded into a document.
+                        This feature could be used to create a static table,
+                        a interactive list view
+                        or even a submittable form with verifiable inputs.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                There are 3 document controls in GacUI:
+                <ul>
+                    <li><b>&lt;DocumentViewer/&gt;</b></li>
+                    <li><b>&lt;DocumentTextBox/&gt;</b></li>
+                    <li><b>&lt;DocumentLabel/&gt;</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Text Controls</title>
+            <p>
+                Text controls are designed to display programming languages.
+                It renders UCS-2 or UTF-16 code points
+                (depending on the size of <b>wchar_t</b> in your compiler)
+                independenly in a simple left-to-right layout.
+            </p>
+            <p>
+                Text control doesn't support rich format:
+                <ul>
+                    <li>
+                        Only characters are supported.
+                        Images, controls or compositions cannot be embedded into characters.
+                    </li>
+                    <li>
+                        There is no paragraph.
+                        Multiple lines of text are separated by <b>CRLF</b> characters.
+                        You can insert <b>LF</b> but it will be converted to <b>CRLF</b> immediately.
+                    </li>
+                    <li>
+                        All characters are in the same size and font but different colors.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                There are 2 text controls in GacUI:
+                <ul>
+                    <li><b>&lt;SinglelineTextBox/&gt;</b></li>
+                    <li><b>&lt;MultilineTextBox/&gt;</b></li>
+                </ul>
+            </p>
+            <topic>
+                <title>Colorization</title>
+                <p>
+                    Colorization is enabled only in text controls.
+                    Text could be colorized by multiple regular expressions or totally by code.
+                    Additional Context sensitive colorizing could be implemented by code
+                    on top of regular expressions.
+                </p>
+            </topic>
+            <topic>
+                <title>Auto Complete</title>
+                <p>
+                    Auto complete is enabled only in text controls.
+                    auto complete candidates could be dynamically provided during typing,
+                    and text controls will handle the UI.
+                </p>
+            </topic>
+            <topic>
+                <title>Programming Language Service</title>
+                <p>
+                    Colorization and auto complete could be implemented using a grammar offered by <b>VlppParser</b>.
+                    But a new <b>VlppParser2</b> is coming,
+                    which supports code refactoring with a more powerful AST design.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
