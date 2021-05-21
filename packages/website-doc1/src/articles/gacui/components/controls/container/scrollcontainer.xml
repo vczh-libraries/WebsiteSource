@@ -2,7 +2,101 @@
     <topic>
         <title>GuiScrollView and &lt;ScrollContainer&gt;</title>
         <p>
-            The page is under construction.
+            <ul>
+                <li>
+                    <b>&lt;ScrollContainer/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiScrollContainer*</li>
+                        <li><b>Template Tag</b>: &lt;ScrollViewTemplate/&gt;</li>
+                        <li><b>Template Name</b>: ScrollView</li>
+                    </ul>
+                </li>
+            </ul>
         </p>
+        <p>
+            <b>GuiScrollView</b> is the base class of all controls that with
+            a <b>&lt;HScroll/&gt;</b> and a <b>&lt;VScroll/&gt;</b>.
+            <b>&lt;ScrollView/&gt;</b> is a ready-to-use container control
+            that automatically shows scroll bars when content takes more spaces than the container itself.
+        </p>
+        <topic>
+            <title>GuiScrollView Properties</title>
+            <topic>
+                <title>ViewSize</title>
+                <p>
+                    This property represents the size of the visible part.
+                </p>
+            </topic>
+            <topic>
+                <title>ViewPosition</title>
+                <p>
+                    This property represents the position of the visible part.
+                    Components of <b>ViewPosition</b> are non-negative.
+                    When users scroll towards down or right,
+                    the position becomes larger.
+                </p>
+                <p>
+                    This property could be assigned to change the position,
+                    which could cause scroll sliders move automatically.
+                </p>
+            </topic>
+            <topic>
+                <title>ViewBounds</title>
+                <p>
+                    This property is the combination of <b>ViewPosition</b> and <b>ViewSize</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>HorizontalScroll and VerticalScroll</title>
+                <p>
+                    These properties return the <b>&lt;HScroll/&gt;</b> and the <b>&lt;VScroll/&gt;</b> of the container.
+                </p>
+            </topic>
+            <topic>
+                <title>HorizontalAlwaysVisible</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    When this property is <b>false</b>,
+                    the <b>&lt;HScroll/&gt;</b> is not visible
+                    when the width of the container is large enough to display the content.
+                </p>
+            </topic>
+            <topic>
+                <title>VerticalAlwaysVisible</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    When this property is <b>false</b>,
+                    the <b>&lt;VScroll/&gt;</b> is not visible
+                    when the height of the container is large enough to display the content.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>&lt;ScrollContainer&gt; Properties</title>
+            <topic>
+                <title>ExtendToFullWidth</title>
+                <p>
+                    The default value for this property is <b>false</b>.
+                </p>
+                <p>
+                    When this property is <b>true</b>,
+                    the width of the container is always kept large enough to display the content.
+                </p>
+            </topic>
+            <topic>
+                <title>ExtendToFullHeight</title>
+                <p>
+                    The default value for this property is <b>false</b>.
+                </p>
+                <p>
+                    When this property is <b>true</b>,
+                    the height of the container is always kept large enough to display the content.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
