@@ -6,7 +6,7 @@
             It based on <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_HelloWorlds/CppXml">one of the demo project</a> released with GacUI.
             You need to prepare the following first:
             <ul>
-                <li><a href="//download.html">Download</a> GacUI from github.</li>
+                <li><a href="/home/download.html">Download</a> GacUI from github.</li>
                 <li>
                     Install Visual Studio 2017 Community or newer version
                     <ul>
@@ -29,7 +29,7 @@
                         </ul>
                     </li>
                     <li>
-                        <b>Lib</b> folder: copy files to this folder from <a href="https://github.com/vczh-libraries/Release/tree/master/Import">here</a>. Choose all files in "Files you need for a typical GacUI application" from the <a href="//download.html">Download</a> page.
+                        <b>Lib</b> folder: copy files to this folder from <a href="https://github.com/vczh-libraries/Release/tree/master/Import">here</a>. Choose all files in "Files you need for a typical GacUI application" from the <a href="/home/download.html">Download</a> page.
                     </li>
                     <li><b>Main.cpp</b></li>
                     <li><b>WinMain.cpp</b></li>

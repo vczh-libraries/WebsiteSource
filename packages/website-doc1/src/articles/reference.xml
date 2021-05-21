@@ -1,5 +1,6 @@
 <reference>
   <article name="Gaclib Document" file="home">
+    <article name="Download Gaclib" file="home/download"/>
     <article name="Thread Safety" file="home/mt"/>
     <article name="Domain Specific Languages" file="home/dsl"/>
     <article name="Registered Types" file="home/registered">
