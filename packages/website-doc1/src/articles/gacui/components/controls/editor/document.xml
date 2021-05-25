@@ -44,7 +44,7 @@
             </p>
         </topic>
         <topic>
-            <title>Caret Position and Selection</title>
+            <title>Caret Position</title>
             <p>
                 <b>(vl::)presentation::TextPos</b> struct represents a caret position in a document.
                 <b>row</b> is the index of the paragraph,
@@ -81,6 +81,18 @@
                 <b>GetCaretBounds</b> returns the position of a caret.
                 It is a rectangle with <b>zero</b> width,
                 the <b>y1</b> and <b>y2</b> components represent the position of the vertical caret line.
+            </p>
+        </topic>
+        <topic>
+            <title>Selection</title>
+            <p>
+                The <b>SelectionText</b> and <b>SelectionModel</b> properties
+                return the selection of the document as pure text or document fragment.
+                Assigning them behaves as calling <b>EditRun</b> and <b>EditText</b>
+                on the selection.
+            </p>
+            <p>
+                <b>SelectAll</b> set the selection to the whole document.
             </p>
         </topic>
         <topic>
@@ -149,7 +161,7 @@
                 arguments <b>NotifyParagraphUpdated(index, 1, 1)</b> are expected.
             </p>
             <topic>
-                <title>Editing Texts and Images</title>
+                <title>Selection, Editing Texts and Images</title>
                 <p>
                     <b>EditText</b> replaces a part of the document with multiple paragraphcs of texts.
                     if the <b>frontSide</b> argument is set to <b>true</b>,
@@ -221,7 +233,7 @@
                     but only some of them are <b>bold</b>,
                     <b>italic</b> will be <b>true</b>,
                     <b>bold</b> will be <b>null</b>,
-                    and <b>underline<b> will be <b>false</b>.
+                    and <b>underline</b> will be <b>false</b>.
                 </p>
                 <p>
                     <b>SummarizeStyleName</b>
