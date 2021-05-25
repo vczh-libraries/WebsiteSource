@@ -130,9 +130,9 @@
         </topic>
         <topic>
             <title>Assigning Text</title>
-        </topic>
-        <topic>
-            <title>Editing Texts</title>
+            <p>
+                Assinging a text to <b>Text</b> updates the whole content in the control.
+            </p>
         </topic>
         <topic>
             <title>Clipboard</title>
