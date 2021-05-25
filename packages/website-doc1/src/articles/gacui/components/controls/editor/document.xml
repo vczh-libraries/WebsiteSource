@@ -151,7 +151,7 @@
             </p>
             <p>
                 If sub nodes in <b>Document</b> is changed without calling any <b>Edit*</b> method,
-                <b>NotifyParagraphUpdated(index, oldCount, newCount)</b> must be called,
+                <b>NotifyParagraphUpdated(index, oldCount, newCount)</b> and <b>ClearUndoRedo</b> must be called,
                 which means paragraphcs from <b>index</b>-th to <b>index+oldCount-1</b>-th
                 has been replaced by <b>newCount</b> paragraphs.
             </p>
@@ -267,9 +267,59 @@
         </topic>
         <topic>
             <title>Clipboard</title>
+            <p>
+                Return values from <b>CanCut</b>, <b>CanCopy</b> and <b>CanPaste</b>
+                indicates whether <b>Cut</b>, <b>Copy</b> and <b>Paste</b> will be successful or not.
+            </p>
+            <p>
+                <b>Cut</b>, <b>Copy</b> and <b>Paste</b> apply on selections.
+                Only non-empty selection could be <b>Cut</b> or <b>Copy</b>.
+                Calling <b>Paste</b> with a non-empty selection replaces the selection with the content from the clipboard.
+            </p>
+            <p>
+                <b>CanPaste</b> also checks the content from the clipboard and see if it is a valid document fragment.
+            </p>
+            <p>
+                When a piece of document is cut or copied,
+                following formats are written to the clipboard:
+                <ul>
+                    <li>The private format of GacUI document.</li>
+                    <li>RTF.</li>
+                    <li>HTML.</li>
+                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are available.</li>
+                    <li>If exactly one image is selected, the image is also copied to the clipboard.</li>
+                </ul>
+            </p>
+            <p>
+                Acceptable content from the clipboard is:
+                <ul>
+                    <li>The private format of GacUI document.</li>
+                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are available.</li>
+                    <li>If exactly one image is selected, the image is also copied to the clipboard.</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Undo and Redo</title>
+            <p>
+                Return values from <b>CanUndo</b> and <b>CanRedo</b>
+                indicates whether <b>Undo</b> and <b>Redo</b> will be successful or not.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                Changing sub nodes in <b>Document</b> will mess up undo and redo,
+                so <b>ClearUndoRedo</b> is always necessary after <b>NotifyParagraphUpdated</b>.
+            </p>
+            <p>
+                All other operations,
+                including keyboard operations and all editing methods mentioned above,
+                will be recorded and are all undo-able and redo-able.
+            </p>
+            <p>
+                <b>NotifyParagraphUpdated</b> marks the current version as "saved" and clear the previous mark.
+                <b>GetModified</b> returns true when the current version is marked as "saved".
+                Only one version will be marked as "saved".
+            </p>
         </topic>
     </topic>
 </article>
