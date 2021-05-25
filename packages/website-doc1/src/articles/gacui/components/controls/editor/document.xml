@@ -90,7 +90,7 @@
             </p>
             <p>
                 <b>CalculateCaretFromPoint</b> returns the nearest caret at a position.
-                The coordinate is the left-top corner of the document.
+                The coordinate origin is the left-top corner of the document.
             </p>
             <p>
                 <b>GetCaretBounds</b> returns the position of a caret.
@@ -301,7 +301,7 @@
                     <li>The private format of GacUI document.</li>
                     <li>RTF.</li>
                     <li>HTML.</li>
-                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are available.</li>
+                    <li>Plain text representation of the document. In Windows, both ANSI and UNICODE formats are available.</li>
                     <li>If exactly one image is selected, the image is also copied to the clipboard.</li>
                 </ul>
             </p>
@@ -309,7 +309,7 @@
                 Acceptable content from the clipboard is:
                 <ul>
                     <li>The private format of GacUI document.</li>
-                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are acceptable.</li>
+                    <li>Plain text. In Windows, both ANSI and UNICODE formats are acceptable.</li>
                     <li>If exactly one image is selected, the image is also copied to the clipboard.</li>
                 </ul>
             </p>

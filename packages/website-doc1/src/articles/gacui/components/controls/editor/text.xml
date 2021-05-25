@@ -86,7 +86,7 @@
             </p>
             <p>
                 <b>CalculateCaretFromPoint</b> returns the nearest caret at a position.
-                The coordinate is the left-top corner of the document.
+                The coordinate is the left-top corner of the text.
             </p>
             <p>
                 <b>GetRowText</b> and <b>GetRowCount</b> are available for accessing text by lines.
@@ -97,15 +97,36 @@
             <p>
                 The <b>SelectionText</b> returns the selected text.
                 Both <b>SetSelectionText</b> and <b>SetSelectionTextAsKeyInput</b> replace the selected text with another text.
-                <b>SetSelectionTextAsKeyInput</b> pretents that the user is typing,
+                <b>SetSelectionTextAsKeyInput</b> pretends that the user is typing,
                 it could trigger <b>Auto Complete</b>.
             </p>
             <p>
-                <b>SelectAll</b> set the selection to the whole document.
+                <b>SelectAll</b> set the selection to the whole text.
+            </p>
+            <p>
+                <b>GetFragmentText</b> get a specified part of the text by two <b>TextPos</b>.
             </p>
         </topic>
         <topic>
             <title>Text coordinate</title>
+            <p>
+                The coordinate origin is the left-top corner of all text.
+            </p>
+            <p>
+                <b>GetRowWidth</b> and <b>GetRowHeight</b> get the display size of a specified row.
+            </p>
+            <p>
+                <b>GetMaxWidth</b> get the width of the longest row.
+                <b>GetMaxHeight</b> get the height of all text.
+            </p>
+            <p>
+                <b>GetTextPosFromPoint</b> get the caret position of a character which is closet to the specified point.
+                <b>GetNearestTextPost</b> get the available caret position closet to the specified point.
+                When a given point is close to the right side of a character,
+                <b>GetNearestTextPost</b> will be one character after than <b>GetTextPosFromPoint</b>.
+                <b>GetNearestTextPost</b> could also return the end of a line,
+                which <b>GetTextPostFromPoint</b> doesn't.
+            </p>
         </topic>
         <topic>
             <title>Assigning Text</title>
@@ -125,19 +146,19 @@
                 Calling <b>Paste</b> with a non-empty selection replaces the selection with the content from the clipboard.
             </p>
             <p>
-                <b>CanPaste</b> also checks the content from the clipboard and see if it is a valid document fragment.
+                <b>CanPaste</b> also checks the content from the clipboard and see if it contains any text.
             </p>
             <p>
-                When a piece of document is cut or copied,
+                When a piece of text is cut or copied,
                 following formats are written to the clipboard:
                 <ul>
-                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are available.</li>
+                    <li>Plain text. In Windows, both ANSI and UNICODE formats are available.</li>
                 </ul>
             </p>
             <p>
                 Acceptable content from the clipboard is:
                 <ul>
-                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are acceptable.</li>
+                    <li>Plain text. In Windows, both ANSI and UNICODE formats are acceptable.</li>
                 </ul>
             </p>
         </topic>
@@ -156,6 +177,11 @@
                 <b>NotifyParagraphUpdated</b> marks the current version as "saved" and clear the previous mark.
                 <b>GetModified</b> returns true when the current version is marked as "saved".
                 Only one version will be marked as "saved".
+            </p>
+            <p>
+                <b>GetEditVersion</b> return a number representing the current version.
+                The version number increases when redo or modification happens,
+                it decreases for undo.
             </p>
         </topic>
     </topic>
