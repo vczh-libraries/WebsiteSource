@@ -55,7 +55,57 @@
             </p>
         </topic>
         <topic>
-            <title>Caret Position and Selection</title>
+            <title>Caret Position</title>
+            <p>
+                <b>(vl::)presentation::TextPos</b> struct represents a caret position in a text.
+                <b>row</b> is the index of the line,
+                <b>column</b> is the index of the next character from the caret in the current paragraph.
+            </p>
+            <p>
+                If the caret is at the end of a line,
+                <b>column</b> equals to the total character number of the line.
+            </p>
+            <p>
+                Text editor controls only support left-to-right languages,
+                the "next character" is the character at the right side of the caret.
+            </p>
+            <p>
+                The <b>CaretBegin</b> and <b>CaretEnd</b> properties
+                represent the range of the selection.
+                If the mouse dragging from right to left on a piece of text in a left-to-right language,
+                <b>CaretBegin</b> is larger than <b>CaretEnd</b>.
+            </p>
+            <p>
+                The <b>CaretSmall</b> property returns whatever is closer to the beginning in <b>CaretBegin</b> and <b>CaretEnd</b>.
+                The <b>CaretLarge</b> property returns the one closer to the end.
+            </p>
+            <p>
+                <b>SetCaret</b> changes <b>CaretBegin</b> and <b>CaretEnd</b> at the same time.
+                To cancel the selection and move the caret,
+                just set these two properties to the same value.
+            </p>
+            <p>
+                <b>CalculateCaretFromPoint</b> returns the nearest caret at a position.
+                The coordinate is the left-top corner of the document.
+            </p>
+            <p>
+                <b>GetRowText</b> and <b>GetRowCount</b> are available for accessing text by lines.
+            </p>
+        </topic>
+        <topic>
+            <title>Selection</title>
+            <p>
+                The <b>SelectionText</b> returns the selected text.
+                Both <b>SetSelectionText</b> and <b>SetSelectionTextAsKeyInput</b> replace the selected text with another text.
+                <b>SetSelectionTextAsKeyInput</b> pretents that the user is typing,
+                it could trigger <b>Auto Complete</b>.
+            </p>
+            <p>
+                <b>SelectAll</b> set the selection to the whole document.
+            </p>
+        </topic>
+        <topic>
+            <title>Text coordinate</title>
         </topic>
         <topic>
             <title>Assigning Text</title>
