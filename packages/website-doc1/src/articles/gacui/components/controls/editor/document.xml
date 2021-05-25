@@ -175,9 +175,82 @@
             </topic>
             <topic>
                 <title>Editing and Summarizing Formats</title>
+                <p>
+                    A combination of styles could be given a name and
+                    <a href="/gacui/xmlres/tag_doc.html">
+                        stored in the document
+                    </a>.
+                    Names of existing styles could be used in
+                    <b>EditStyleName</b>, <b>RemoveStyleName</b> or <b>RenameStyle</b>.
+                </p>
+                <p>
+                    <b>EditStyle</b> changes styles to a part of the document.
+                    Components of the last argument in <b>(vl::)presentation::DocumentStyleProperties</b>
+                    have one-to-one matching to style tags in <b>&lt;Style/&gt;</b> or <b>&lt;Font/&gt;</b>:
+                    <ul>
+                        <li><b>face</b>: <b>&lt;face/&gt;</b></li>
+                        <li><b>size</b>: <b>&lt;size/&gt;</b></li>
+                        <li><b>color</b>: <b>&lt;color/&gt;</b></li>
+                        <li><b>backgroundColor</b>: <b>&lt;bkcolor/&gt;</b></li>
+                        <li><b>bold</b>: <b>&lt;b/&gt;</b></li>
+                        <li><b>italic</b>: <b>&lt;i/&gt;</b></li>
+                        <li><b>underline</b>: <b>&lt;u/&gt;</b></li>
+                        <li><b>strikeline</b>: <b>&lt;s/&gt;</b></li>
+                        <li><b>antialias</b>: <b>&lt;antialias/&gt;</b></li>
+                        <li><b>verticalAntialias</b>: not supported in GacUI XML Resource</li>
+                    </ul>
+                </p>
+                <p>
+                    <b>EditStyleName</b> changes styles to a part of the document
+                    by associating a style name to it.
+                </p>
+                <p>
+                    <b>RemoveStyleName</b> changes styles to a part of the document
+                    by removing all associated style name to it.
+                </p>
+                <p>
+                    <b>RenameStyle</b> changes the name of a style,
+                    it also updates affected associated style names to any part of the document.
+                </p>
+                <p>
+                    <b>SummarizeStyle</b>
+                    checks if all characters in the specified range of the document
+                    has any common in styles.
+                    For example,
+                    if characters are all <b>italic</b> and not <b>underline</b>,
+                    but only some of them are <b>bold</b>,
+                    <b>italic</b> will be <b>true</b>,
+                    <b>bold</b> will be <b>null</b>,
+                    and <b>underline<b> will be <b>false</b>.
+                </p>
+                <p>
+                    <b>SummarizeStyleName</b>
+                    checks if all characters in the specified range
+                    are associated with the same style name.
+                    <b>null</b> is returned when they are not,
+                    otherwise the style name will be returned.
+                </p>
             </topic>
             <topic>
                 <title>Editing and Summarizing Alignments</title>
+                <p>
+                    <b>SetParagraphAlignments</b> updates alignments on multiple paragraphs with different values at the same time.
+                    <b>SetParagraphAlignment</b> updates alignments on multiple paragraphs with a same value.
+                    Since alignment is an attribute of paragraph instead of characters,
+                    the specified range of the document doesn't need to be whole paragraphs.
+                </p>
+                <p>
+                    <b>SummarizeParagraphAlignment</b>
+                    checks if all paragraphs in the specified range of the document
+                    have the same alignment configuration.
+                    <b>null</b> is returned when they are not,
+                    otherwise the alignment value will be returned.
+                </p>
+                <p>
+                    Valid values for alignment is <b>Left</b> (default), <b>Right</b> and <b>Center</b>.
+                    <b>Top</b> and <b>Bottom</b> are not used here,
+                    using them results in undefined behavior.
+                </p>
             </topic>
         </topic>
         <topic>

@@ -87,8 +87,8 @@
                     they always exist and cannot be specified in a document:
                     <program><code><![CDATA[
                         <Style name="#Default">
-                          <font>The default font face of the operator system</font>
-                          <font>The default font size of the operator system</font>
+                          <face>The default font face of the operator system</face>
+                          <face>The default font size of the operator system</face>
                           <color>#000000</color>
                           <bkcolor>#00000000</color>
                           <b>false</b>
