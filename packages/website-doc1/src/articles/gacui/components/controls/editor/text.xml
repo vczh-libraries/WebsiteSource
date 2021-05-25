@@ -5,11 +5,54 @@
             <b>&lt;SinglelineTextBox/&gt;</b> and <b>&lt;MultilineTextBox/&gt;</b>
             are editing text in the same way.
         </p>
+        <p>
+            Text are renderered without auto line-wrapping.
+            if a line is too long,
+            <b>&lt;MultilineTextBox/&gt;</b> will become scrollable horizontally.
+        </p>
+        <p>
+            <b>&lt;SinglelineTextBox/&gt;</b> only display the first line of the text.
+        </p>
         <topic>
             <title>Mouse Operations</title>
+            <p>
+                When <b>Readonly</b> is <b>true</b>,
+                the text cannot be edited by mouse operations or keyboard operations.
+            </p>
+            <p>
+                Mouse operations could change selections by dragging.
+                <b>SHIFT</b> could use to change selection with mouse clicking.
+                Drag and drop is not supported yet at this version.
+            </p>
         </topic>
         <topic>
             <title>Keyboard Operations</title>
+            <p>
+                When <b>Readonly</b> is <b>true</b>,
+                the text cannot be edited by mouse operations or keyboard operations.
+            </p>
+            <p>
+                <b>UP</b>, <b>DOWN</b>, <b>LEFT</b>, <b>RIGHT</b> move the caret.
+            </p>
+            <p>
+                <b>HOME</b> and <b>END</b> move the caret to the beginning or the ending of the current line.
+                When <b>CTRL</b> is holding,
+                they move the caret to the beginning or the ending of the whole text.
+            </p>
+            <p>
+                <b>PAGE UP</b> and <b>PAGE DOWN</b> move the caret
+                so that the view port of the text approximately
+                scroll up and down for a page.
+            </p>
+            <p>
+                When holding <b>SHIFT</b> and move the caret,
+                it set the end of the selection to the updated caret position.
+            </p>
+            <p>
+                <b>BACK</b> and <b>DELETE</b> delete characters in different direction.
+                If there is any selection,
+                they deleted the selection.
+            </p>
         </topic>
         <topic>
             <title>Caret Position and Selection</title>
@@ -22,9 +65,48 @@
         </topic>
         <topic>
             <title>Clipboard</title>
+            <p>
+                Return values from <b>CanCut</b>, <b>CanCopy</b> and <b>CanPaste</b>
+                indicates whether <b>Cut</b>, <b>Copy</b> and <b>Paste</b> will be successful or not.
+            </p>
+            <p>
+                <b>Cut</b>, <b>Copy</b> and <b>Paste</b> apply on selections.
+                Only non-empty selection could be <b>Cut</b> or <b>Copy</b>.
+                Calling <b>Paste</b> with a non-empty selection replaces the selection with the content from the clipboard.
+            </p>
+            <p>
+                <b>CanPaste</b> also checks the content from the clipboard and see if it is a valid document fragment.
+            </p>
+            <p>
+                When a piece of document is cut or copied,
+                following formats are written to the clipboard:
+                <ul>
+                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are available.</li>
+                </ul>
+            </p>
+            <p>
+                Acceptable content from the clipboard is:
+                <ul>
+                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are acceptable.</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Undo and Redo</title>
+            <p>
+                Return values from <b>CanUndo</b> and <b>CanRedo</b>
+                indicates whether <b>Undo</b> and <b>Redo</b> will be successful or not.
+            </p>
+            <p>
+                All editing operations,
+                including keyboard operations and all editing methods mentioned above,
+                will be recorded and are all undo-able and redo-able.
+            </p>
+            <p>
+                <b>NotifyParagraphUpdated</b> marks the current version as "saved" and clear the previous mark.
+                <b>GetModified</b> returns true when the current version is marked as "saved".
+                Only one version will be marked as "saved".
+            </p>
         </topic>
     </topic>
 </article>

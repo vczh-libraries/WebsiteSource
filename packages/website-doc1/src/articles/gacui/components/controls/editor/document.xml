@@ -5,8 +5,19 @@
             <b>&lt;DocumentViewer/&gt;</b>, <b>&lt;DocumentTextBox/&gt;</b> and <b>&lt;DocumentLabel/&gt;</b>
             are editing an document in the same way.
         </p>
+        <p>
+            Document are renderered with auto line-wrapping.
+            If a paragraph,
+            or a line in a paragraph,
+            is too long,
+            it will be renderered as multiple lines.
+        </p>
         <topic>
             <title>Mouse Operations</title>
+            <p>
+                When <b>EditMode</b> is <b>Selectable</b>,
+                the document cannot be edited by mouse operations or keyboard operations.
+            </p>
             <p>
                 When <b>EditMode</b> is <b>ViewOnly</b>,
                 moving a mouse could cause hyperlinks to visually changed,
@@ -25,6 +36,10 @@
         </topic>
         <topic>
             <title>Keyboard Operations</title>
+            <p>
+                When <b>EditMode</b> is <b>Selectable</b>,
+                the document cannot be edited by mouse operations or keyboard operations.
+            </p>
             <p>
                 <b>UP</b>, <b>DOWN</b>, <b>LEFT</b>, <b>RIGHT</b> move the caret.
             </p>
@@ -294,7 +309,7 @@
                 Acceptable content from the clipboard is:
                 <ul>
                     <li>The private format of GacUI document.</li>
-                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are available.</li>
+                    <li>Plain text of the document. In Windows, both ANSI and UNICODE formats are acceptable.</li>
                     <li>If exactly one image is selected, the image is also copied to the clipboard.</li>
                 </ul>
             </p>
