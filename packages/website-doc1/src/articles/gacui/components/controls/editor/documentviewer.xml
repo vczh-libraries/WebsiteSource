@@ -2,7 +2,31 @@
     <topic>
         <title>&lt;DocumentViewer&gt;</title>
         <p>
-            The page is under construction.
+            <ul>
+                <li>
+                    <b>&lt;DocumentViewer/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiDocumentViewer*</li>
+                        <li><b>Template Tag</b>: &lt;DocumentViewerTemplate/&gt;</li>
+                        <li><b>Template Name</b>: DocumentViewer</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;GuiDocumentViewer/&gt;</b> is a <b>GuiScrollContainer</b>.
+            The control template doesn't need to care about rendering characters.
+            When it is installed to the control,
+            a fully managed <b>GuiDocumentElement</b> will be installed
+            to the <b>ContainerComposition</b> of the control template.
+        </p>
+        <p>
+            <b>&lt;CommonScrollViewLook/&gt;</b> is very useful to implement the control template.
+        </p>
+        <p>
+            <b>&lt;DocumentViewer/&gt;</b> provides a vertical scroll bar.
+            When a paragraph is too long to display,
+            auto line-wrapping is automatically done so that the horizontal scroll bar is always not needed.
         </p>
     </topic>
 </article>

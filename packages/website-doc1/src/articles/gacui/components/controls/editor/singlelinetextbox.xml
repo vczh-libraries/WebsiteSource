@@ -2,7 +2,33 @@
     <topic>
         <title>&lt;SinglelineTextBox&gt;</title>
         <p>
-            The page is under construction.
+            <ul>
+                <li>
+                    <b>&lt;SinglelineTextBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiSinglelineTextBox*</li>
+                        <li><b>Template Tag</b>: &lt;SinglelineTextBoxTemplate/&gt;</li>
+                        <li><b>Template Name</b>: SinglelineTextBox</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The control template doesn't need to care about rendering characters.
+            When it is installed to the control,
+            a fully managed <b>GuiColorizedTextElement</b> will be installed
+            to the <b>ContainerComposition</b> of the control template.
+        </p>
+        <p>
+            <b>&lt;SinglelineTextBox/&gt;</b> doesn't provide any scroll bar.
+            The control only keep the first line of any input.
+            When multiple lines of text are assigned to <b>Text</b>,
+            text from the second line are all discarded.
+        </p>
+        <p>
+            The <b>PasswordChar</b> property is <b>L'\0'</b> by default.
+            When any other value is assigned to this property,
+            all characters of the text will be rendered as <b>PasswordChar</b>.
         </p>
     </topic>
 </article>

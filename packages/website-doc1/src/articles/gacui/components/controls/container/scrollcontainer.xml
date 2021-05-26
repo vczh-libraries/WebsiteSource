@@ -12,6 +12,11 @@
                     </ul>
                 </li>
             </ul>
+            Making scroll bars dynamically visible and invisible and resizing the content area
+            could be done using <b>&lt;Table/&gt;</b>.
+            But such things are commonly required by container controls, list controls and editor controls.
+            <b>&lt;CommonScrollViewLook/&gt;</b> is prepared for controlling scroll bars
+            to help implementing control templates easier.
         </p>
         <p>
             <b>GuiScrollView</b> is the base class of all controls that with
