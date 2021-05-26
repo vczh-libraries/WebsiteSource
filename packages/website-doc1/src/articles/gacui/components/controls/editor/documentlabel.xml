@@ -33,8 +33,7 @@
             Height of these controls will grow to display the whole document.
         </p>
         <p>
-            The only difference between <b>&lt;DocumentLabel/&gt;</b> and <b>&lt;DocumentTextBox/&gt;</b>
-            is only how they look.
+            There is no functionality difference between <b>&lt;DocumentLabel/&gt;</b> and <b>&lt;DocumentTextBox/&gt;</b>.
             <b>&lt;DocumentLabel/&gt;</b> is expected to look like a <b>&lt;Label/&gt;</b>.
             <b>&lt;DocumentTextBox/&gt;</b> is expected to look like <b>&lt;SinglelineTextBox/&gt;</b>.
         </p>
