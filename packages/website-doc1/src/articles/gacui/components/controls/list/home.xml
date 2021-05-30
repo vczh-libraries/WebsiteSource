@@ -42,11 +42,11 @@
                     which must support a <b>list::ITextItemView</b> view.
                 </p>
                 <p>
-                    <b>&lt;TextList;&gt;</b> is a <b>GuiVirtualTextList</b> that maintains items in its <b>Items</b> property.
+                    <b>&lt;TextList/&gt;</b> is a <b>GuiVirtualTextList</b> that maintains items in its <b>Items</b> property.
                     This property an <b>observe (list::TextItem^) []</b>.
                 </p>
                 <p>
-                    <b>&lt;BindableTextList;&gt;</b> is a <b>GuiVirtualTextList</b> that display all items from a given item source object.
+                    <b>&lt;BindableTextList/&gt;</b> is a <b>GuiVirtualTextList</b> that display all items from a given item source object.
                     Each item is required to inherit from a specified interface or class.
                     If the provided item source object is an
                     <a href="/workflow/lang/type.html#Collection-types">
@@ -73,13 +73,13 @@
                     It requires the root provider to support a <b>ITreeViewItemView</b> view.
                 </p>
                 <p>
-                    <b>&lt;TreeView;&gt;</b> is a <b>GuiVirtualTreeView</b> that maintains items in its <b>Nodes</b> property.
+                    <b>&lt;TreeView/&gt;</b> is a <b>GuiVirtualTreeView</b> that maintains items in its <b>Nodes</b> property.
                     All direct or indirect child nodes in <b>Nodes</b>
                     must be a <b>tree::MemoryNodeProvider^</b>,
-                    whose <b>Data</b> must be an <b>tree::TreeViewItem^</b>
+                    whose <b>Data</b> must be a <b>tree::TreeViewItem^</b>
                 </p>
                 <p>
-                    <b>&lt;BindableTreeView;&gt;</b> is a <b>GuiVirtualTreeView</b> that display all items from a given item source object.
+                    <b>&lt;BindableTreeView/&gt;</b> is a <b>GuiVirtualTreeView</b> that display all items from a given item source object.
                     Each item is required to inherit from a specified interface or class.
                     If the provided item source object is an
                     <a href="/workflow/lang/type.html#Collection-types">
@@ -103,11 +103,11 @@
                     one of them is to display items in a table with a column header.
                 </p>
                 <p>
-                    <b>&lt;ListView;&gt;</b> is a <b>GuiVirtualListView</b> that maintains items in its <b>Items</b> property.
+                    <b>&lt;ListView/&gt;</b> is a <b>GuiVirtualListView</b> that maintains items in its <b>Items</b> property.
                     This property an <b>observe (list::ListViewItem^) []</b>.
                 </p>
                 <p>
-                    <b>&lt;BindableListView;&gt;</b> is a <b>GuiVirtualListView</b> that display all items from a given item source object.
+                    <b>&lt;BindableListView/&gt;</b> is a <b>GuiVirtualListView</b> that display all items from a given item source object.
                     Each item is required to inherit from a specified interface or class.
                     If the provided item source object is an
                     <a href="/workflow/lang/type.html#Collection-types">
@@ -120,10 +120,9 @@
                 <title>Data Grid</title>
                 <p>
                     <b>GuiVirtualDataGrid</b> is the base class of all list controls displaying items as a table.
-                    Items could be optionally checkable.
                     This control doesn't maintain items,
                     instead it requires an <b>GuiListControl::IItemProvider</b> when created,
-                    which must support a <b>IDataGridView</b> view and all other views required by a list view control.
+                    which must support a <b>IDataGridView</b> view and all other views required by <b>GuiVirtualListView</b>.
                 </p>
                 <p>
                     A data grid is a list view control with powerful features when the list view control is rendering a table.
@@ -131,7 +130,7 @@
                     It also provide basic filtering and sorting on items.
                 </p>
                 <p>
-                    <b>&lt;BindableDataGrid;&gt;</b> is a <b>GuiVirtualDataGrid</b> that display all items from a given item source object.
+                    <b>&lt;BindableDataGrid/&gt;</b> is a <b>GuiVirtualDataGrid</b> that display all items from a given item source object.
                     Each item is required to inherit from a specified interface or class.
                     If the provided item source object is an
                     <a href="/workflow/lang/type.html#Collection-types">
