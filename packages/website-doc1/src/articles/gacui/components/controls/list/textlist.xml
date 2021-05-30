@@ -2,6 +2,28 @@
     <topic>
         <title>&lt;TextList&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;TextList/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiTextList*</li>
+                        <li><b>Template Tag</b>: &lt;TextListTemplate/&gt;</li>
+                        <li><b>Item Template Tag</b>: &lt;TextListItemTemplate/&gt;</li>
+                        <li><b>Template Name</b>: TextList</li>
+                        <li><b>Default Item Arranger</b>: list::FixedHeightItemArranger</li>
+                        <li>
+                            <b>Predefined Item Template</b>:
+                            <ul>
+                                <li><b>SetView(Text)</b> (default): list::DefaultTextListItemTemplate</li>
+                                <li><b>SetView(Check)</b>: list::DefaultCheckTextListItemTemplate</li>
+                                <li><b>SetView(Radio)</b>: list::DefaultRadioTextListItemTemplate</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             The page is under construction.
         </p>
     </topic>

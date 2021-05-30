@@ -2,6 +2,18 @@
     <topic>
         <title>&lt;BindableTextList&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;BindableTextList/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableTextList*</li>
+                        <li><b>Template Tag</b>: &lt;TextListTemplate/&gt;</li>
+                        <li><b>Template Name</b>: TextList</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             The page is under construction.
         </p>
     </topic>

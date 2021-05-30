@@ -2,6 +2,18 @@
     <topic>
         <title>&lt;ComboBox&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;ComboBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiComboBoxListControl*</li>
+                        <li><b>Template Tag</b>: &lt;ComboBoxTemplate/&gt;</li>
+                        <li><b>Template Name</b>: ComboBox</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             The page is under construction.
         </p>
     </topic>

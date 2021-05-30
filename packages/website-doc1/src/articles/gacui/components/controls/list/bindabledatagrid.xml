@@ -2,6 +2,18 @@
     <topic>
         <title>&lt;BindableDataGrid&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;ComboBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableDataGrid*</li>
+                        <li><b>Template Tag</b>: &lt;ListViewTemplate/&gt;</li>
+                        <li><b>Template Name</b>: ListView</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             The page is under construction.
         </p>
     </topic>

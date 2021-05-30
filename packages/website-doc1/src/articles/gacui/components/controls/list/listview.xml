@@ -2,6 +2,30 @@
     <topic>
         <title>&lt;ListView&gt;</title>
         <p>
+            <ul>
+                <li>
+                    <b>&lt;ListView/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiListView*</li>
+                        <li><b>Template Tag</b>: &lt;ListViewTemplate/&gt;</li>
+                        <li><b>Item Template Tag</b>: &lt;ListItemTemplate/&gt;</li>
+                        <li><b>Template Name</b>: ListView</li>
+                        <li>
+                            <b>Predefined Item Template</b>:
+                            <ul>
+                                <li><b>SetView(Detail)</b> (default): list::DetailListViewItemTemplate + list::ListViewColumnItemArranger</li>
+                                <li><b>SetView(BigIcon)</b>: list::BigIconListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
+                                <li><b>SetView(SmallIcon)</b>: list::SmallIconListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
+                                <li><b>SetView(List)</b>: list::ListListViewItemTemplate + list::FixedHeightMultiColumnItemArranger</li>
+                                <li><b>SetView(Tile)</b>: list::TileListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
+                                <li><b>SetView(Information)</b>: list::InformationListViewItemTemplate + list::FixedHeightItemArranger</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
             The page is under construction.
         </p>
     </topic>
