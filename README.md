@@ -47,6 +47,16 @@ Gaclib Website Spider
 
 Gaclib Website content: http://gaclib.net.
 
+inside the package folder:
+
+- **Debug**: Open `http://localhost:8080/index.html` after running `npm run start`.
+- **Release**: Run `npm run download` to generate the whole website statically in `./lib/website`.
+
 ### website-doc1
 
 Gaclib Website Document for GacUI 1.0: http://gaclib.net/doc/current/home.html.
+
+inside the package folder:
+
+- **Debug**: Open `http://localhost:8080/doc/current/home.html` after running `npm run start`.
+- **Release**: Run `npm run download` to generate the whole website statically in `./lib/website`.
