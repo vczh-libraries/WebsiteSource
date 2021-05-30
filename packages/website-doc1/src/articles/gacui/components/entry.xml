@@ -49,7 +49,19 @@
           <article name="Programming Language Service" file="controls/editor/textgrammar"/>
         </article>
       </article>
-      <article name="List Controls" file="controls/list/home"/>
+      <article name="List Controls" file="controls/list/home">
+        <article name="Using GuiListControl" file="controls/list/guilistcontrol"/>
+        <article name="&lt;TextList&gt;" file="controls/list/textlist"/>
+        <article name="&lt;TreeView&gt;" file="controls/list/treeview"/>
+        <article name="&lt;ListView&gt;" file="controls/list/listview"/>
+        <article name="&lt;ComboBox&gt;" file="controls/list/combobox"/>
+        <article name="Bindable List Controls" file="controls/list/bindable">
+          <article name="&lt;BindableTextList&gt;" file="controls/list/bindabletextlist"/>
+          <article name="&lt;BindableTreeView&gt;" file="controls/list/bindabletreeview"/>
+          <article name="&lt;BindableListView&gt;" file="controls/list/bindablelistview"/>
+          <article name="&lt;BindableDataGrid&gt;" file="controls/list/bindabledatagrid"/>
+        </article>
+      </article>
       <article name="Toolstrip Controls" file="controls/toolstrip/home"/>
       <article name="Ribbon Controls" file="controls/ribbon/home"/>
   </article>
