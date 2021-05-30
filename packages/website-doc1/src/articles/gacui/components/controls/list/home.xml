@@ -12,6 +12,9 @@
                 is a drop down control with a list control in the drop down.
             </p>
             <p>
+                <b>GuiListControl</b> is a <b>GuiScrollView</b>.
+            </p>
+            <p>
                 The <b>ItemTemplate</b> property to control how an item looks like.
                 All list controls have its own default <b>ItemTemplate</b>.
             </p>
