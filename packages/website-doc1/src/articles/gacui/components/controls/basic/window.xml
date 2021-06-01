@@ -85,11 +85,7 @@
             <topic>
                 <title>Activated (WindowActivated, WindowDeactivated)</title>
                 <p>
-                    Usually,
-                    an activated window will get focus.
-                    But when it has a sub window,
-                    it will also get activated when the sub window is acticvated,
-                    but only the sub window has the focus.
+                    A focused window must be activated.
                 </p>
                 <p>
                     Calling <b>SetParent</b> of a control host's <b>NativeWindow</b>
@@ -113,7 +109,11 @@
                 </p>
                 <p>
                     When this property is set to <b>false</b>,
-                    this window is not allowed to be activated.
+                    this window is not allowed to be activated by user interaction.
+                    But this property will be automatically set to <b>false</b>
+                    when the window is required to be activated by code.
+                    For example, calling <b>Show</b> instead of <b>ShowDeactivated</b>,
+                    or calling <b>SetActivated</b>.
                 </p>
             </topic>
             <topic>

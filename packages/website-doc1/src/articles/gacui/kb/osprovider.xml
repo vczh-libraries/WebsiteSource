@@ -95,34 +95,24 @@
                     <li><b>INativeDialogService</b>: Accessing default dialogs from the OS.</li>
                     <li><b>INativeImageService</b>: Loading image from files or memories.</li>
                     <li><b>INativeWindowService</b>: Managing windows using OS's window manager.</li>
-                    <li><b>INativeInputService</b>: Accessing keyboard and global hooks.</li>
+                    <li><b>INativeInputService</b>: Accessing global keyboard status and timer.</li>
                 </ul>
             </p>
         </topic>
         <topic>
             <title>Development Note</title>
             <p>
-                Depending on mouse hooks to control menus is actually not the best idea.
-                <b>INativeInputService::StartHookMouse</b> will be called when the first menu is opened,
-                and <b>INativeInputService::StopHookMouse</b> will be called when the last menu is closed,
-            </p>
-            <p>
-                In Windows,
-                when the hook is running and a break point is hit,
-                the cursor will move so slow so that you are not able to control the mouse.
-                It is highly recommended to comment out code in <b>WindowsInputService::StartHookMouse</b>
-                temporarily when you need to debug something while a menu is opened.
-            </p>
-            <p>
-                I am trying to get rid of mouse hooks but it will not happen in GacUI 1.0.
-            </p>
-            <p>
                 Implementing <b>INativeController</b> is a super complex topic.
                 In order to port GacUI to a new platform,
-                you must know everything in GacUI.
+                you must know everything about how GacUI interact with the OS.
                 It is highly recommended to read the Windows and macOS implementation for <b>INativeController</b> before creating yours.
                 Especially there are GDI and Direct2D support in Windows,
                 it is a good example to know how to allow multiple rendering techniques in one OS.
+            </p>
+            <p>
+                In the future, <b>INativeHostedController</b> and <b>INativeHostedWindow</b> will be created for scenarios that
+                all GacUI windows are rendered in one OS native window,
+                like CLI, UWP or browsers.
             </p>
         </topic>
     </topic>
