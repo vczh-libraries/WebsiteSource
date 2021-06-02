@@ -47,21 +47,106 @@
             <title>GuiListControl Properties</title>
             <topic>
                 <title>ItemProvider</title>
+                <p>
+                    This is a readonly property.
+                    It reflects how the list control understand data in its items.
+                </p>
+                <p>
+                    This property returns an instance of <b>GuiListControl::IItemProvider</b>
+                    which provide access to the text representation of each item,
+                    plus a <b>description::Value</b> representation
+                    for <a href="/vlppreflection/home.html">reflection</a>.
+                </p>
+                <p>
+                    When reflection is turned off (which is recommended)
+                    by using <b>VCZH_DEBUG_NO_REFLECTION </b>,
+                    you cannot access member via reflection in each item,
+                    but you can still do type testing or conversion.
+                </p>
+                <p>
+                    The <b>RequestView</b> method is an userful way to extend data representation.
+                    This method is usually implemented by each list control because they require more than just text representation.
+                    Here are some predefined views for certain list controls:
+                    <ul>
+                        <li><b>&lt;TextList/&gt;</b> and <b>&lt;BindableTextList/&gt;</b>: <b>list::ITextItemView</b></li>
+                        <li><b>&lt;TreeView/&gt;</b> and <b>&lt;BindableTreeView/&gt;</b>: <b>tree::INodeItemView</b></li>
+                        <li><b>&lt;ListView/&gt;</b> and <b>&lt;BindableListView/&gt;</b>: <b>list::IListViewItemView</b> and <b>list::ListViewColumnItemArranger::IColumnItemView</b></li>
+                        <li><b>&lt;BindableDataGrid/&gt;</b>: <b>list::IDataGridView</b> and all view for list view</li>
+                    </ul>
+                </p>
             </topic>
             <topic>
                 <title>ItemTemplate (ItemTemplateChanged)</title>
+                <p>
+                    Different list controls require different types of item templates.
+                    They also provide default item templates and usually require a proper <b>Arranger</b> to display them as expected.
+                </p>
+                <p>
+                    When default item templates don't satisfy the need,
+                    typically <b>&lt;BindableTextList/&gt;</b> and <b>&lt;BindableDataGrid/&gt;</b> is recommended
+                    because their item templates are very easy to implement.
+                </p>
+                <p>
+                    To implement the item template for tree views,
+                    the <b>Level</b> property needs to be carefully taken care of to render the visual effect of the hierarchy.
+                </p>
+                <p>
+                    Item templates for list views are not recommended to implement.
+                    For the <b>Detail</b> view,
+                    it is much more easier to use <b>&lt;BindableDataGrid/&gt;</b>.
+                    For other views,
+                    it is much more easier to use <b>&lt;BindableTextList/&gt;</b> with expected arrangers for these views.
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    UI object for each item consists of a background object and a foreground object.
+                    The foreground object is created from <b>ItemTemplate</b>,
+                    but the background object is created from other template properties in the control template.
+                    The background object handles the UI effect for selection and mouse operations.
+                </p>
+                <p>
+                    The above behavior is controlled <b>DisplayItemBackground</b> property.
+                    If this property is set to <b>false</b>,
+                    background objects will not be created,
+                    and foreground objects need to handle UI effect for selection and mouse operations.
+                </p>
+                <p>
+                    Please check out
+                    <a href="/gacui/components/itemplates/home.html">
+                        <b>Item Templates</b>
+                    </a>
+                    for details.
+                </p>
             </topic>
             <topic>
                 <title>Arranger (ArrangerChanged)</title>
             </topic>
             <topic>
                 <title>Axis (AxisChanged)</title>
+                <p>
+                    <b>Axis</b> in <b>GuiListControl</b> is very similar to
+                    <a href="/gacui/components/compositions/flow.html#-Flow-Axis">
+                        <b>Axis</b> in <b>&lt;Flow/&gt;</b>
+                    </a>.
+                    For some arrangers like <b>FixedHeightItemArranger</b> which displays items in single dimension,
+                    <b>LeftDown</b> and <b>RightDown</b> do no difference.
+                    Same for other 3 pairs of values for <b>AxisDirection</b>.
+                </p>
             </topic>
             <topic>
                 <title>AdoptedSize (AdoptedSizeInvalidated)</title>
+                <p>
+                    This property suggests a best size for the drop down container in a <b>&lt;ComboBox/&gt;</b>.
+                </p>
             </topic>
             <topic>
                 <title>DisplayItemBackground</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    See <b>ItemTemplate</b> for more information.
+                </p>
             </topic>
         </topic>
     </topic>

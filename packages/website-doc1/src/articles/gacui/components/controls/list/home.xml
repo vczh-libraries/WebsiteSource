@@ -65,7 +65,7 @@
                     Items are expandable if they have child items.
                     This control doesn't maintain items,
                     instead it requires an <b>INodeRootProvider</b> when created.
-                    It will create an item provider which supports the <b>INodeItemView</b> view.
+                    It will create an item provider which supports the <b>tree::INodeItemView</b> view.
                 </p>
                 <p>
                     The root node is invisible,
@@ -125,7 +125,7 @@
                     <b>GuiVirtualDataGrid</b> is the base class of all list controls displaying items as a table.
                     This control doesn't maintain items,
                     instead it requires an <b>GuiListControl::IItemProvider</b> when created,
-                    which must support a <b>IDataGridView</b> view and all other views required by <b>GuiVirtualListView</b>.
+                    which must support a <b>list::IDataGridView</b> view and all other views required by <b>GuiVirtualListView</b>.
                 </p>
                 <p>
                     A data grid is a list view control with powerful features when the list view control is rendering a table.
