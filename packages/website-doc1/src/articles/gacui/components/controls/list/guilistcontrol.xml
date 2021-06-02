@@ -1,8 +1,68 @@
 <article index="true">
     <topic>
-        <title>Using GuiListControl</title>
+        <title>GuiListControl and GuiSelectableListControl</title>
         <p>
-            The page is under construction.
+            <b>GuiListControl</b> is the base class of all list controls.
+            This control transforms items in a collection to UI object with a specified layout.
+            When items are scrolled out of the control and becomes invisible,
+            UI objects for them are disposed.
+            Resources are not taken by invisible items.
         </p>
+        <p>
+            <b>GuiSelectableListControl</b> makes items selectable.
+        </p>
+        <topic>
+            <title>GuiListControl::EnsureItemVisible</title>
+            <p>
+                This function moves the scroll bar to ensure that
+                the specified item is visible.
+            </p>
+        </topic>
+        <topic>
+            <title>Item Events</title>
+            <p>
+                UI objects dynamically created for items,
+                it is not easy to handling mouse events for items
+                by <a href="/gacui/components/compositions/events.html">events in compositions</a>.
+                <b>GuiListControl</b> redirects all such events to the list control itself:
+                <ul>
+                    <li>ItemLeftButtonDown</li>
+                    <li>ItemLeftButtonUp</li>
+                    <li>ItemLeftButtonDoubleClick</li>
+                    <li>ItemMiddleButtonDown</li>
+                    <li>ItemMiddleButtonUp</li>
+                    <li>ItemMiddleButtonDoubleClick</li>
+                    <li>ItemRightButtonDown</li>
+                    <li>ItemRightButtonUp</li>
+                    <li>ItemRightButtonDoubleClick</li>
+                    <li>ItemMouseMove</li>
+                    <li>ItemMouseEnter</li>
+                    <li>ItemMouseLeave</li>
+                </ul>
+                <b>itemIndex</b> is added to the second argument of handlers for these events
+                starting at <b>0</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>GuiListControl Properties</title>
+            <topic>
+                <title>ItemProvider</title>
+            </topic>
+            <topic>
+                <title>ItemTemplate (ItemTemplateChanged)</title>
+            </topic>
+            <topic>
+                <title>Arranger (ArrangerChanged)</title>
+            </topic>
+            <topic>
+                <title>Axis (AxisChanged)</title>
+            </topic>
+            <topic>
+                <title>AdoptedSize (AdoptedSizeInvalidated)</title>
+            </topic>
+            <topic>
+                <title>DisplayItemBackground</title>
+            </topic>
+        </topic>
     </topic>
 </article>

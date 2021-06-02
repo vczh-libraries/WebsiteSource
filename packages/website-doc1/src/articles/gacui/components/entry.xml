@@ -50,7 +50,7 @@
         </article>
       </article>
       <article name="List Controls" file="controls/list/home">
-        <article name="Using GuiListControl" file="controls/list/guilistcontrol"/>
+        <article name="GuiListControl and GuiSelectableListControl" file="controls/list/guilistcontrol"/>
         <article name="&lt;TextList&gt;" file="controls/list/textlist"/>
         <article name="&lt;TreeView&gt;" file="controls/list/treeview"/>
         <article name="&lt;ListView&gt;" file="controls/list/listview"/>
