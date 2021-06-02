@@ -165,5 +165,82 @@
                 </p>
             </topic>
         </topic>
+        <topic>
+            <title>GuiSelectableListControl Properties</b>
+            <p>
+                This control enables list items to be selected by mouse or keyboard operations.
+            </p>
+            <topic>
+                <title>MultiSelect</title>
+                <p>
+                    The default value for this property is <b>false</b>.
+                </p>
+                <p>
+                    Set this property to <b>true</b> makes multiple list items
+                    could be selected at the same time.
+                    <b>CTRL</b> with a mouse click or <b>SHIFT</b> with direction keys
+                    could help select and unselect multiple items.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedItems (SelectionChanged)</title>
+                <p>
+                    This property is a readonly collection
+                    storing indices of selected items staring at <b>0</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedItemIndex (SelectionChanged)</title>
+                <p>
+                    This property returns the index of the selected item.
+                </p>
+                <p>
+                    If no item is selected,
+                    or if more than one item is selected,
+                    this property returns <b>-1</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedItemText (SelectionChanged)</title>
+                <p>
+                    This property returns the text representation of the selected item.
+                </p>
+                <p>
+                    If no item is selected,
+                    or if more than one item is selected,
+                    this property returns <b>""</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>GuiSelectableListControl Methods</b>
+            <topic>
+                <title>GetSelected and SetSelected</title>
+                <p>
+                    <b>GetSelected</b> tells if an item is selected.
+                </p>
+                <p>
+                    <b>SetSelected</b> selects or unselects an item.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectItemsByClick</title>
+                <p>
+                    This method select items by simulate mouse operations.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectItemsByKey</title>
+                <p>
+                    This method select items by simulate keyboard operations.
+                </p>
+            </topic>
+            <topic>
+                <title>ClearSelection</title>
+                <p>
+                    This method clear all selection.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
