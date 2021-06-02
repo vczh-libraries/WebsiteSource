@@ -166,7 +166,7 @@
             </topic>
         </topic>
         <topic>
-            <title>GuiSelectableListControl Properties</b>
+            <title>GuiSelectableListControl Properties</title>
             <p>
                 This control enables list items to be selected by mouse or keyboard operations.
             </p>
@@ -213,7 +213,7 @@
             </topic>
         </topic>
         <topic>
-            <title>GuiSelectableListControl Methods</b>
+            <title>GuiSelectableListControl Methods</title>
             <topic>
                 <title>GetSelected and SetSelected</title>
                 <p>
