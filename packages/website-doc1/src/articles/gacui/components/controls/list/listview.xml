@@ -48,7 +48,7 @@
             The <b>View</b> property defines all predefined view in <b>&lt;TextList/&gt;</b>.
             Valid values are listed at the beginning of this page.
             You could ignore this property and change <b>ItemTemplate</b> and <b>Arranger</b>
-            by assigning new values to these property
+            by assigning new values to these properties
             or calling <b>SetStyleAndArranger</b> to set them at the same time.
             Doing this makes <b>View</b> become <b>Unknown</b>.
         </p>
@@ -82,7 +82,7 @@
                     The default value is <b>true</b>.
                     When the list control is deleted,
                     if this property is <b>true</b>,
-                    All <b>DropdownPopup</b> will also be deleted.
+                    the <b>DropdownPopup</b> of this column will also be deleted.
                 </li>
                 <li>
                     <b>DropdownPopup</b>:
