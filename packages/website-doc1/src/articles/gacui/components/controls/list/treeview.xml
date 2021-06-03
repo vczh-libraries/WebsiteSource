@@ -17,7 +17,30 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;TreeView/&gt;</b> stores a tree of <b>tree::TreeViewItem</b> and display them.
+            In <b>tree::TreeViewItem</b> there are <b>text</b>, <b>image</b> and <b>tag</b> fields.
+            Changing them doesn't cause the tree view to refresh itself.
+            After a <b>tree::TreeViewItem</b> is modified,
+            call <b>tree::MemoryNodeProvider::NotifyDataModified</b> to update the tree view.
+        </p>
+        <p>
+            The <b>Nodes</b> property is the root node of the tree view.
+            It is important to remember that the tree view doesn't renderer the root node,
+            insteads it renders direct children of the root node as multiple root nodes in the list control.
+        </p>
+        <p>
+            Each node is a <b>tree::MemoryNodeProvider</b>.
+            In order to display a <b>tree::TreeViewItem</b>,
+            <b>tree::MemoryNodeProvider</b> must be created first,
+            and put <b>tree::TreeViewItem</b> in it using its <b>Data</b> property.
+            <b>Children</b> property is provided to access child nodes of a <b>tree::MemoryNodeProvider</b>,
+            changing this property immediately causes changing in the list control.
+        </p>
+        <p>
+            The <b>SelectedItem</b> property returns the currently selected item in <b>tree::TreeViewItem</b>.
+            If no item is selected,
+            or multiple items are selected,
+            this property returns <b>null</b>.
         </p>
     </topic>
 </article>

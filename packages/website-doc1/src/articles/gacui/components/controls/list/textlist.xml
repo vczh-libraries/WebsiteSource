@@ -25,15 +25,17 @@
         </p>
         <p>
             <b>&lt;TextList/&gt;</b> stores a list of <b>list::TextItem</b> and display them.
+            In <b>list::TextItem</b> there are <b>Text</b> and <b>Checked</b> properties,
+            changing these properties also immediately causes changing in the list control.
         </p>
         <p>
             You can add, remove or change items in the <b>Items</b> property to change content in the list control.
-            In <b>list::TextItem</b> there is <b>Text</b> and <b>Checked</b> properties,
-            changing to these properties also immediately causes changing in the list control.
         </p>
         <p>
             The <b>SelectedItem</b> property returns the currently selected item in <b>list::TextItem</b>.
-            The return value is always <b>SelectedItemIndex == -1 ? nullptr : Items[SelectedItemIndex]</b>.
+            If no item is selected,
+            or multiple items are selected,
+            this property returns <b>null</b>.
         </p>
     </topic>
 </article>
