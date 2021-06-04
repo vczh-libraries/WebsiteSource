@@ -27,6 +27,44 @@
                 you also needs to teach the control how to read/write your item object.
             </p>
             <p>
+                For the most common cases,
+                if a property in items in <b>ItemSource</b> is exactly what you need,
+                for example a <b>Name</b> property returning <b>string</b> in <b>YOUR_ITEM_CLASS</b>
+                will be displayed directly in a <b>&lt;BindableTextList/&gt;</b>,
+                just write the property name in the XML for <b>TextProperty</b> like:
+                <program>
+                    <code><![CDATA[
+                      <BindableTextList env.ItemType="YOUR_ITEM_CLASS^" ...>
+                        <att.TextProperty>Name</att.TextProperty>
+                        <att.ItemSource-eval>COLLECTION_CONTAINING_MANY_YOUR_ITEM_CLASS</att.ItemSource-eval>
+                        ...
+                      </BindableTextList>
+                    ]]></code>
+                </program>
+            </p>
+            <p>
+                By doing this,
+                <b>&lt;BindableTextList/&gt;</b> will read the <b>Name</b> property
+                in all <b>YOUR_CLASS_CLASS</b> in its <b>ItemSource</b>,
+                and shows all names in the list control.
+                <b>IMPORTANT</b>:
+                If there are items in <b>ItemSource</b> that is not <b>YOUR_ITEM_CLASS</b>,
+                which is specified in <b>env.ItemType</b>,
+                it will crash.
+            </p>
+            <p>
+                <b>env.ItemType</b> and <b>env.ItemName</b> can be put in any tag inside <b>&lt;Instance/&gt;</b>.
+                These attributes only control how to interpret the string for <b>Property and Writable Property</b>.
+                In this case they control what does <b>Name</b> mean for <b>TextProperty</b>:
+            </p>
+            <p>
+                assume all items in <b>ItemSource</b> is or inherits from <b>YOUR_ITEM_CLASS</b>,
+                <ul>
+                    <li>call <b>(case (YOUR_ITEM_CLASS^) item).GetName()</b> if <b>Name</b> is a property.</li>
+                    <li>call <b>(case (YOUR_ITEM_CLASS^) item).Name</b> if <b>Name</b> is a field.</li>
+                </ul>
+            </p>
+            <p>
                 Different bindable list controls have different requirements.
                 For example,
                 <b>&lt;BindableTextList/&gt;</b> has <b>TextProperty</b> and <b>CheckedProperty</b> properties.
