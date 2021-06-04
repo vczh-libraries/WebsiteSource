@@ -342,7 +342,7 @@
                     when you bind a collection to a <b>&lt;BindableDataGrid/&gt;</b>,
                     different columns can be configured to displays different properies of the collection item like this:
                     <program><code><![CDATA[
-                        <BindableDataGrid env.ItemType="demo::MyDataItem^">
+                        <BindableDataGrid env.ItemType="demo::MyDataItem^" env.ItemName="itemToBind">
                           <att.Columns>
                             <DataColumn Text="Name" Size="120">
                               <att.TextProperty>Name</att.TextProperty>
