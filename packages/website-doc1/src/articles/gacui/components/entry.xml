@@ -59,7 +59,13 @@
           <article name="&lt;BindableTextList&gt;" file="controls/list/bindabletextlist"/>
           <article name="&lt;BindableTreeView&gt;" file="controls/list/bindabletreeview"/>
           <article name="&lt;BindableListView&gt;" file="controls/list/bindablelistview"/>
-          <article name="&lt;BindableDataGrid&gt;" file="controls/list/bindabledatagrid"/>
+          <article name="&lt;BindableDataGrid&gt;" file="controls/list/bindabledatagrid">
+            <article name="Column Configuration" file="controls/list/datagrid_column"/>
+            <article name="Filter" file="controls/list/datagrid_filter"/>
+            <article name="Sorter" file="controls/list/datagrid_sorter"/>
+            <article name="Visualizer" file="controls/list/datagrid_visualizer"/>
+            <article name="Editor" file="controls/list/datagrid_editor"/>
+          </article>
         </article>
       </article>
       <article name="Toolstrip Controls" file="controls/toolstrip/home"/>
