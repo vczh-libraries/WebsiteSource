@@ -30,11 +30,11 @@
             <b>ListControl</b> becomes the second argument in the constructor of <b>GuiComboBoxListControl</b>.
         </p>
         <p>
-            The <b>SelectedIndex</b>, <b>SelectedItem</b> and <b>ItemProvider</b> properties
+            The <b>SelectedIndex (SelectedIndexChanged)</b>, <b>SelectedItem</b> and <b>ItemProvider</b> properties
             always sync with <b>ListControl</b>.
         </p>
         <p>
-            The <b>ItemTemplate</b> property customizes how the selected item looks like in the <b>&lt;ComboBox/&gt;</b>.
+            The <b>ItemTemplate (ItemTemplateChanged)</b> property customizes how the selected item looks like in the <b>&lt;ComboBox/&gt;</b>.
             The control template of <b>&lt;ComboBox/&gt;</b> only renders the selected item as text.
             When <b>ItemTemplate</b> is assigned to a non-empty value,
             the <b>TextVisible</b> property in the control template will be set to <b>false</b>
