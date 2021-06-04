@@ -14,7 +14,37 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;BindableListView/&gt;</b> is very simlar to <b>&lt;ListView/&gt;</b>,
+            but it accepts any classes or interfaces instead of just <b>list::ListViewItem</b>.
+        </p>
+        <p>
+            The <b>SelectedItem (SelectionChanged)</b> property returns the selected item in <b>ItemSource</b>.
+            But if no item is selected,
+            or multiple items are selected,
+            it returns <b>null</b>.
+        </p>
+        <p>
+            <b>LargeImageProperty (LargeImagePropertyChanged)</b> defines a readable property in an item,
+            to replace <b>list::ListViewItem::LargeImage</b>.
+        </p>
+        <p>
+            <b>SmallImageProperty (SmallImagePropertyChanged)</b> defines a readable property in an item,
+            to replace <b>list::ListViewItem::SmallImage</b>.
+        </p>
+        <p>
+            In each <b>list::ListViewColumn</b> in <b>Columns</b>,
+            there is a <b>TextProperty</b> property.
+            This property takes no effect on <b>&lt;ListView/&gt;</b>,
+            it is for <b>&lt;BindableListView/&gt;</b>.
+            This property replaces <b>list::ListViewItem::Text</b> and <b>list::ListViewItem::SubItems</b>,
+            depending on the position of each column.
+        </p>
+        <p>
+            It is fine not to put any <b>list::ListViewColumn</b> in <b>&lt;ListView/&gt;</b>,
+            but this is required for <b>&lt;BindableListView/&gt;</b> even if you never use the <b>Detail</b> view.
+            You must put at least one <b>list::ListViewColumn</b> in <b>&lt;BindableListView/&gt;</b>,
+            because the <b>TextProperty</b> in the first column means the text representation for an item,
+            which is used in every views.
         </p>
     </topic>
 </article>

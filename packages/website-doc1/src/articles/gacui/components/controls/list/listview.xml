@@ -99,6 +99,7 @@
                     It is usually a triangle towards up (Ascending) or down (Descending).
                 </li>
             </ul>
+            The <b>TextProperty</b> is for <b>&lt;BindableListView/&gt;</b>.
         </p>
         <p>
             The <b>Tile</b> and <b>Information</b> views render <b>Text</b> with selected <b>SubItems</b>.
