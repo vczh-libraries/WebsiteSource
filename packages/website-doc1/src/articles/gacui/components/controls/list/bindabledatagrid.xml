@@ -14,7 +14,122 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;BindableDataGrid/&gt;</b> is an extension to the <b>Detail</b> view of list controls.
+            But since it uses different item templates,
+            the <b>View</b> property will be <b>Unknown</b> by default.
+            You can still switch <b>View</b> to other views (including <b>Detail</b>)
+            and <b>&lt;BindableDataGrid/&gt;</b> will just look like a list view.
+            To re-enable data grid features,
+            just call <b>SetViewToDefault</b> and <b>View</b> will become <b>Unknown</b> again.
+        </p>
+        <p>
+            <b>&lt;BindableDataGrid/&gt;</b> provides the following features:
+            <ul>
+                <li>
+                    <p>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_filter.html">
+                                Filtering
+                            </a>
+                        </b>:
+                        Each column could be attached a <b>list::IDataFilter</b>,
+                        the data grid itself could be attached a <b>list::IDataFilter</b>,
+                        all filters will be connected together using <b>list::DataAndFilter</b>
+                        which works like the C++ <b>&amp;&amp;</b> operator.
+                    </p>
+                    <p>
+                        There are also <b>list::DataOrFilter</b> and <b>list::DataNotFilter</b>
+                        to help making a complex filter from other filters.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_sorter.html">
+                                Sorting
+                            </a>
+                        </b>:
+                        Each column could be attached a <b>list::IDataSorter</b>.
+                        If a column has a sorter,
+                        it is sortable and clicking it will sort data ascendingly, descendingly or cancel the sorting.
+                    </p>
+                    <p>
+                        To sort by column or cancel sorting by code,
+                        you could request the <b>list::IDataGridView</b> view from the <b>ItemProvider</b>,
+                        and there will be <b>IsColumnSortable</b>, <b>SortByColumn</b>, <b>GetSortedColumn</b> and <b>IsSortOrderAscending</b> to help.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_visualizer.html">
+                                Visualizer
+                            </a>
+                        </b>:
+                        Each column could be attached a visualizer factory.
+                        There are predefined visualizers:
+                        <ul>
+                            <li>MainColumnVisualizerTemplate</li>
+                            <li>SubColumnVisualizerTemplate</li>
+                            <li>HyperlinkVisualizerTemplate</li>
+                        </ul>
+                        and visualizer decorators:
+                        <ul>
+                            <li>FocusRectangleVisualizerTemplate</li>
+                            <li>CellBorderVisualizerTemplate</li>
+                        </ul>
+                        A visualizer decorator is still a visualizer,
+                        but the data grid control will install other visualizer inside its <b>ContainerComposition</b>.
+                    </p>
+                    <p>
+                        The default visualizer factory for cells in the first column are:
+                        <b>
+                            MainColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
+                        </b>
+                    </p>
+                    <p>
+                        The default visualizer factory for cells in the other columns are:
+                        <b>
+                            SubColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
+                        </b>
+                    </p>
+                    <p>
+                        It is recommended to use
+                        <b>YOUR_VISUALIZER;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate</b>
+                        so that a cell automatically renders a focus rectangle and a border
+                        just like other cells.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_editor.html">
+                                Editor
+                            </a>
+                        </b>:
+                        Each column could be attached an editor factory.
+                        If a column has an editor,
+                        clicking any cell in this column will activate the editor.
+                    </p>
+                </li>
+            </ul>
+        </p>
+        <p>
+            Please check out
+            <a href="/gacui/xmlres/instance/properties.html#-BindableDataGrid-column-properties">
+                this page
+            </a>
+            about GacUI XML Resource syntax for properties mentioned above.
+        </p>
+        <p>
+            Please also checkout
+            <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml">
+                this tutorial project
+            </a>
+            about using <b>&lt;BindableDataGrid/&gt;</b> features.
+            This project customizes visualizers and editors for different data types,
+            defines sorters for each column,
+            and even implements a data filter in a column drop down.
         </p>
     </topic>
 </article>
