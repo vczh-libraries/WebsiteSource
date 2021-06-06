@@ -2,7 +2,94 @@
     <topic>
         <title>Column Configuration</title>
         <p>
-            The page is under construction.
+            Just like <b>&lt;ListView/&gt;</b>,
+            <b>&lt;BindableDataGrid/&gt;</b> has <b>Columns</b> and <b>DataColumns</b>.
+            There is no difference between <b>DataColumns</b>
+            in <b>&lt;ListView/&gt;</b> and <b>&lt;BindableDataGrid/&gt;</b>.
         </p>
+        <p>
+            In <b>Columns</b>,
+            <b>&lt;ListView/&gt;</b> uses <b>list::ListViewColumn</b>,
+            but <b>&lt;BindableDataGrid/&gt;</b> uses <b>list::DataColumm</b>.
+            There is not difference between the following properties
+            in <b>list::ListViewColumn</b> and <b>list::DataColumm</b>:
+            <ul>
+                <li><b>Text</b></li>
+                <li><b>Size</b></li>
+                <li><b>OwnPopup</b></li>
+                <li><b>DropdownPopup</b> in <b>list::ListViewColumn</b> and <b>Popup</b> in <b>list::DataColumm</b></li>
+            </ul>
+            There is no <b>SortingState</b> in <b>list::DataColumm</b>,
+            because the sorting state of the column is managed by <b>&lt;BindableDataGrid/&gt;</b>
+            using <b>Sorter</b> in <b>list::DataColumn</b>.
+        </p>
+        <topic>
+            <title>Defining a Column in an Item</title>
+            <p>
+                <b>TextProperty (TextPropertyChanged)</b> defines a readable property in an item.
+                It reads a text from an item for this particular column.
+                This property is used in predefined <b>Visualizer</b> for this column.
+                It is also used in other <b>View</b>.
+            </p>
+            <p>
+                <b>ValueProperty (ValuePropertyChanged)</b> defines a writable property in an item.
+                It reads and writes the cell object for this particular column.
+                This property is used in user-defined <b>Visualizer</b> and <b>Editor</b> for this column.
+            </p>
+            <p>
+                Ideally,
+                <b>TextProperty</b> and <b>ValueProperty</b> needs to be semantically equal.
+                For example,
+                if <b>ValueProperty</b> returns a <b>DataTime</b> from an item,
+                but this item doesn't have a property for the text representation for it,
+                then <b>TextProperty</b> could use a <b>Workflow</b> expression to compute the text representation inline:
+                <program>
+                    <code><![CDATA[
+                      <BindableDataGrid env.ItemType="MyDataItem^" env.ItemName="itemToBind" ...>
+                        <att.Columns>
+                          <DataColumn Text="Birthday" ...>
+                            <att.ValueProperty>Birthday</att.ValueProperty>
+                            <att.TextProperty>$'$(itemToBind.Birthday.month)/$(itemToBind.Birthday.day)/$(itemToBind.Birthday.year)'</att.TextProperty>
+                          </DataColumn>
+                        </att.Columns>
+                        ...
+                      </BindableDataGrid>
+                    ]]></code>
+                </program>
+            </p>
+            <p>
+                In this example,
+                the <b>ItemSource</b> receives a collection of multiple <b>MyDataItem^</b>,
+                which is defined in <b>env.ItemType</b>.
+                <b>env.ItemName</b> defines a name that can be used to define properties,
+                representing an item in <b>ItemSource</b>,
+                which is obviously in type <b>MyDataItem^</b>.
+            </p>
+            <p>
+                The <b>ValueProperty</b> matches to the <b>Birthday</b> property in <b>MyDataItem</b>.
+            </p>
+            <p>
+                The <b>TextProperty</b> defines an expression to format the <b>Birthday</b>.
+                In fact,
+                you could also define a static function
+                <a href="/gacui/xmlres/tag_script.html">
+                    in the GacUI XML Resource
+                </a>
+                and use it here to reuse code.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                <b>Property and Writable Property</b> is not data binding,
+                so changing <b>Birthday</b> in <b>MyDataItem</b> doesn't refresh the <b>&lt;BindableDataGrid/&gt;</b>.
+                Please check out
+                <a href="/gacui/components/controls/list/bindable.html#Updating-Items">
+                    Updating Items
+                </a>
+                for details.
+            </p>
+        </topic>
+        <topic>
+            <title>DataColumn Properties</title>
+        </topic>
     </topic>
 </article>
