@@ -89,6 +89,25 @@
             </p>
         </topic>
         <topic>
+            <title>Accessing Processed Items</title>
+            <p>
+                The <b>GetCellText</b> method is based on <b>TextProperty</b>.
+                The <b>GetCellValue</b> and <b>SetCellValue</b> methods is based on <b>ValueProperty</b>.
+            </p>
+            <p>
+                The <b>row</b> property is the position of the item in <b>&lt;BindableDataGrid/&gt;</b>.
+                It is not the index of item in <b>ItemSource</b>.
+                <b>&lt;BindableDataGrid/&gt;</b> could be applied with multiple <b>Filter</b> and a <b>Sorter</b>.
+                The displaying item order could be changed,
+                and some items may be filtered out.
+            </p>
+            <p>
+                These methods operate data based on items in the UI.
+                To get the item itself instead of data defined for columns,
+                use <b>GetBindingValue</b> in <b>ItemProvider</b>.
+            </p>
+        </topic>
+        <topic>
             <title>DataColumn Properties</title>
         </topic>
     </topic>
