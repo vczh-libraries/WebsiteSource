@@ -109,6 +109,51 @@
         </topic>
         <topic>
             <title>DataColumn Properties</title>
+            <p>
+                The following properties defines column-based features in a <b>&lt;BindableDataGrid/&gt;</b>:
+                <ul>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_filter.html">
+                                Filter
+                            </a>
+                        </b>:
+                        Assigning a filter to a column.
+                        The filter receives the item object instead of the cell object for this column.
+                        An item must satisfy all filters
+                        (including the <b>AdditinalFilter</b> in the control)
+                        in order to appear in the control.
+                    </li>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_sorter.html">
+                                Sorter
+                            </a>
+                        </b>
+                        Assigning a sorter to a column.
+                        The sorter will be activated by clicking the column header,
+                        but only one sorter in all columns can be activated.
+                    </li>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_visualizer.html">
+                                VisualizerFactory
+                            </a>
+                        </b>:
+                        This property is the creator of visualizers for cells in this column.
+                    </li>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_editor.html">
+                                EditorFactory
+                            </a>
+                        </b>:
+                        This property is the creator of editors for cells in this column.
+                        The editor will be activated by clicking a cell,
+                        but only one editor in all cells can be activated.
+                    </li>
+                </ul>
+            </p>
         </topic>
     </topic>
 </article>
