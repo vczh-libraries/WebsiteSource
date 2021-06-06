@@ -28,11 +28,11 @@
             to replace <b>tree::TreeViewItem::text</b>.
         </p>
         <p>
-            <b>ImageProperty (ImagePropertyChanged)</b> defines a writable property in an item,
+            <b>ImageProperty (ImagePropertyChanged)</b> defines a readable property in an item,
             to replace <b>tree::TreeViewItem::image</b>.
         </p>
         <p>
-            <b>ChildrenProperty (ChildrenPropertyChanged)</b> defines a writable property in an item,
+            <b>ChildrenProperty (ChildrenPropertyChanged)</b> defines a readable property in an item,
             to replace <b>tree::MemoryNodeProvider::Children</b>.
             If it reads a observable collection out of an item,
             data binding applies.
