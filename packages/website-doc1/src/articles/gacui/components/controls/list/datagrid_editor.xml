@@ -2,7 +2,11 @@
     <topic>
         <title>Editor</title>
         <p>
-            The page is under construction.
+            Please check out
+            <a href="/gacui/components/itemplates/home.html">
+                <b>Item Templates</b>
+            </a>
+            for details about <b>GuiGridVisualizerTemplate</b>.
         </p>
     </topic>
 </article>

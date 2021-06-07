@@ -2,7 +2,94 @@
     <topic>
         <title>Visualizer</title>
         <p>
-            The page is under construction.
+            The <b>VisualizerFactory</b> property is a <b>list::IDataVisualizerFactory</b>.
+            Please check out
+            <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataVisualizerFactory-">
+                this page
+            </a>
+            for using this property in GacUI XML Resource.
+        </p>
+        <p>
+            To create a <b>list::IDataVisualizerFactory</b> in C++,
+            it is recommended to use <b>list::DataVisualizerFactory</b> as the implementation for the interface.
+            The constructor has two argument.
+            The first argument is an
+            <a href="/gacui/xmlres/instance/properties.html#Control-Item-Template-func-data-Object-TEMPLATE-CLASS-">
+                item template property value
+            </a>
+            to create a <b>GuiGridVisualizerTemplate</b>.
+            The second argument is a decorated visualizer factory,
+            which is optional.
+        </p>
+        <p>
+            If the decorated visualizer factory is not <b>null</b>,
+            the created visualizer template from the first argument
+            will contain the one created from the decorated visualizer factory.
+        </p>
+        <p>
+            The default visualizer factory for cells in the first column is:
+            <b>
+                MainColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
+            </b>
+        </p>
+        <p>
+            This means that,
+            for these cells,
+            a text will be displayed in a focus rectangle (only rendered when a cell has a focus),
+            and the focus rectangle is contained in a border.
+            There is only right and bottom border lines for a cell,
+            but when all cells are rendered together,
+            they form a table.
+        </p>
+        <p>
+            The default visualizer factory for cells in the other columns is:
+            <b>
+                SubColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
+            </b>
+        </p>
+        <p>
+            For example,
+            to create the above default visualizer factories:
+            <program>
+                <code><![CDATA[
+                    auto mainProperty = [](const Value&) { return new MainColumnVisualizerTemplate; };
+                    auto subProperty = [](const Value&) { return new SubColumnVisualizerTemplate; };
+                    auto focusRectangleProperty = [](const Value&) { return new FocusRectangleVisualizerTemplate; };
+                    auto cellBorderProperty = [](const Value&) { return new CellBorderVisualizerTemplate; };
+
+                    defaultMainColumnVisualizerFactory = 
+                        MakePtr<DataVisualizerFactory>(cellBorderProperty,
+                            MakePtr<DataVisualizerFactory>(focusRectangleProperty,
+                                MakePtr<DataVisualizerFactory>(mainProperty)
+                        ));
+                    defaultSubColumnVisualizerFactory = 
+                        MakePtr<DataVisualizerFactory>(cellBorderProperty,
+                            MakePtr<DataVisualizerFactory>(focusRectangleProperty,
+                                MakePtr<DataVisualizerFactory>(subProperty)
+                        ));
+                ]]></code>
+            </program>
+        </p>
+        <p>
+            We create item template property values for all predefined visualizer templates:
+            <ul>
+                <li>MainColumnVisualizerTemplate</li>
+                <li>SubColumnVisualizerTemplate</li>
+                <li>FocusRectangleVisualizerTemplate</li>
+                <li>CellBorderVisualizerTemplate</li>
+            </ul>
+            And then combine them together using nested instances of <b>DataVisualizerFactory</b>.
+        </p>
+        <p>
+            <b>NOTE</b>:
+            The visualizer order in C++ is the reverse of in GacUI XML Resource.
+        </p>
+        <p>
+            Please check out
+            <a href="/gacui/components/itemplates/home.html">
+                <b>Item Templates</b>
+            </a>
+            for details about <b>GuiGridVisualizerTemplate</b>.
         </p>
     </topic>
 </article>

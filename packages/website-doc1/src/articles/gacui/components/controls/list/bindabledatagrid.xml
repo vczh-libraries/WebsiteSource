@@ -82,13 +82,13 @@
                         but the data grid control will install other visualizer inside its <b>ContainerComposition</b>.
                     </p>
                     <p>
-                        The default visualizer factory for cells in the first column are:
+                        The default visualizer factory for cells in the first column is:
                         <b>
                             MainColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
                         </b>
                     </p>
                     <p>
-                        The default visualizer factory for cells in the other columns are:
+                        The default visualizer factory for cells in the other columns is:
                         <b>
                             SubColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
                         </b>
