@@ -2,11 +2,40 @@
     <topic>
         <title>Editor</title>
         <p>
+            The <b>EditorFactory</b> property is a <b>list::IDataEditorFactory</b>.
+            Please check out
+            <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataEditorFactory-">
+                this page
+            </a>
+            for using this property in GacUI XML Resource.
+        </p>
+        <p>
+            To create a <b>list::IDataEditorFactory</b> in C++,
+            it is recommended to use <b>list::DataEditorFactory</b> as the implementation for the interface.
+            The constructor has one argument,
+            which is an
+            <a href="/gacui/xmlres/instance/properties.html#Control-Item-Template-func-data-Object-TEMPLATE-CLASS-">
+                item template property value
+            </a>
+            to create a <b>GuiGridEditorTemplate</b>.
+        </p>
+        <p>
+            Cells in different columns could have different editors.
+            When a cell is clicked,
+            the previous editor (if exists) is closed and deleted,
+            the new editor is created and activated on that cell.
+        </p>
+        <p>
+            Editor objects are not cached,
+            each time when an editable cell is clicked,
+            a new editor is created.
+        </p>
+        <p>
             Please check out
             <a href="/gacui/components/itemplates/home.html">
                 <b>Item Templates</b>
             </a>
-            for details about <b>GuiGridVisualizerTemplate</b>.
+            for details about <b>GuiGridEditorTemplate</b>.
         </p>
     </topic>
 </article>
