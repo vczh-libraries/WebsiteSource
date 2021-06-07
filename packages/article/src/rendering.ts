@@ -120,7 +120,7 @@ ${
             level,
             html`
 <a id="${getAnchorOfTopic(topic)}"></a>
-${prefix === undefined ? '' : `${prefix} `}${topic.title}
+${prefix === undefined ? '' : `${prefix} `}<span class="subtitle">${topic.title}</span>
         `)
         }
 ${options.buildIndex && topTopic ? html`<div class="index">${renderIndex(topic)}</div>` : ''}
@@ -155,5 +155,22 @@ export function renderArticle(article: a.Article, options?: RenderArticleOptions
         hrefPrefix: options?.hrefPrefix,
         buildIndex: article.index
     };
-    return html`<div class="article">${renderTopic(article.topic, 1, (article.numberBeforeTitle ? '' : undefined), true, renderArticleOptions)}<div>`;
+    return html`<div class="article">${renderTopic(article.topic, 1, (article.numberBeforeTitle ? '' : undefined), true, renderArticleOptions)}<div>
+<script lang="javascript">
+const highlightSubtitleByHash = function() {
+    const topics = document.getElementsByClassName("subtitle");
+    if (topics) {
+        for (const topic of topics) {
+            topic.classList.remove("highlight");
+        }
+    }
+    const anchor = document.getElementById(window.location.hash.substr(1));
+    if (anchor) {
+        const topic = anchor.parentElement.getElementsByClassName("subtitle")[0];
+        topic.classList.add("highlight");
+    }
+}
+window.addEventListener("hashchange", highlightSubtitleByHash, false);
+highlightSubtitleByHash();
+</script>`;
 }
