@@ -400,7 +400,7 @@
                     <title>presentation::controls::list::IDataFilter^</title>
                     <p>
                         The property value of a <b>IDataFilter^</b> property is expected to be a
-                        <a href="/workflow/lang/expr.html#Ordered-lambda-expression-1-2-">Workflow lambda expression</a>..
+                        <a href="/workflow/lang/expr.html#Ordered-lambda-expression-1-2-">Workflow lambda expression</a>.
                         The first argument is the row object,
                         which is an item in the <b>ItemSource</b> collection of the list control.
                         Returns true to make the row visible.
