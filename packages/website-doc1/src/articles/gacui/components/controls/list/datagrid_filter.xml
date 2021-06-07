@@ -12,6 +12,10 @@
             when the filter definition is changed
             (e.g. a the date range is changed in a filter that only allow items in that range).
         </p>
+        <p>
+            The <b>Filter</b> function accepts an item from <b>ItemSource</b>,
+            it returns <b>true</b> when the item satisfies the filter.
+        </p>
         <topic>
             <title>Implementing a Filter</title>
             <p>
