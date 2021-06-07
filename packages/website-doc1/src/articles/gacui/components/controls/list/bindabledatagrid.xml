@@ -9,6 +9,12 @@
                         <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableDataGrid*</li>
                         <li><b>Template Tag</b>: &lt;ListViewTemplate/&gt;</li>
                         <li><b>Template Name</b>: ListView</li>
+                        <li>
+                            <b>Predefined Item Template</b>:
+                            <ul>
+                                <li><b>SetViewToDefault()</b> (default): list::DefaultDataGridItemTemplate + list::ListViewColumnItemArranger</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             </ul>
