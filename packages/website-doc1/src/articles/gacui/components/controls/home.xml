@@ -279,7 +279,6 @@
                                                             <li><b>&lt;MenuItemButton&gt;</b> (virtual)</li>
                                                             <li><b>&lt;ToolstripDropdownButton&gt;</b> (virtual)</li>
                                                             <li><b>&lt;ToolstripSplitButton&gt;</b> (virtual)</li>
-                                                            <li><b>&lt;ProgressBar&gt;</b> (virtual)</li>
                                                         </ul>
                                                     </li>
                                                 </ul>
