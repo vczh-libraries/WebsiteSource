@@ -1,0 +1,56 @@
+<article index="true">
+    <topic>
+        <title>Grouping Multiple &lt;ToolstripButton&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiControl*</li>
+                <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                <li>
+                    <b>&lt;MenuSplitter/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: MenuSplitter</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;MenuBarButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: MenuBarButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ToolstripSplitter/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripSplitter</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ToolstripGroupContainer/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripGroupContainer*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ToolstripGroup/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripGroup*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>

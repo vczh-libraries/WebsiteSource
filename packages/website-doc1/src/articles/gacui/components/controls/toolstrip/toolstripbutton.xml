@@ -1,0 +1,44 @@
+<article index="true">
+    <topic>
+        <title>&lt;ToolstripButton&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripButton*</li>
+                <li><b>Template Tag</b>: &lt;ToolstripButtonTemplate/&gt;</li>
+                <li>
+                    <b>&lt;ToolstripButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;MenuBarButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: MenuBarButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;MenuItemButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: MenuItemButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ToolstripDropdownButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripDropdownButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ToolstripSplitButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripSplitButton</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>

@@ -1,0 +1,20 @@
+<article index="true">
+    <topic>
+        <title>&lt;ToolstripMenuBar&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ToolstripMenuBar/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripMenuBar*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: MenuBar</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>

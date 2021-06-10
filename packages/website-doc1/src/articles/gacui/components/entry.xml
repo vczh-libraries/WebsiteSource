@@ -68,7 +68,14 @@
         </article>
       </article>
     </article>
-    <article name="Toolstrip Controls" file="controls/toolstrip/home"/>
+    <article name="Toolstrip Controls" file="controls/toolstrip/home">
+      <article name="&lt;ToolstripButton&gt;" file="controls/toolstrip/toolstripbutton">
+        <article name="Grouping Multiple &lt;ToolstripButton&gt;" file="controls/toolstrip/grouping"/>
+      </article>
+      <article name="&lt;ToolstripMenuBar&gt;" file="controls/toolstrip/toolstripmenubar"/>
+      <article name="&lt;ToolstripMenu&gt;" file="controls/toolstrip/toolstripmenu"/>
+      <article name="&lt;ToolstripToolBar&gt;" file="controls/toolstrip/toolstriptoolbar"/>
+    </article>
     <article name="Ribbon Controls" file="controls/ribbon/home"/>
   </article>
   <article name="Control Templates" file="ctemplates/home"/>

@@ -65,6 +65,12 @@
                     <li><b>&lt;MenuItemButton/&gt;</b></li>
                 </ul>
             </p>
+            <p>
+                Expected splitter types inside this control are:
+                <ul>
+                    <li><b>&lt;MenuSplitter/&gt;</b></li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Toolbars</title>
@@ -81,6 +87,12 @@
                     <li><b>&lt;ToolstripButton/&gt;</b>: A button.</li>
                     <li><b>&lt;ToolstripDropdownButton/&gt;</b>: A button which doesn't execute a command but show a menu when it is clicked.</li>
                     <li><b>&lt;ToolstripSplitButton/&gt;</b>: A button which could execute a command and also show a menu when different parts of it are clicked.</li>
+                </ul>
+            </p>
+            <p>
+                Expected splitter types inside this control are:
+                <ul>
+                    <li><b>&lt;ToolstripSplitter/&gt;</b></li>
                 </ul>
             </p>
         </topic>
