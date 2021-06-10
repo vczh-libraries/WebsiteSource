@@ -19,6 +19,8 @@
         <p>
             The <b>TreeItemExpander</b> theme is for child item expander bullets,
             which is a <b>&lt;SelectableButtonTemplate/&gt;</b>.
+            But it will be overrides by <b>ExpandingDecoratorTemplate</b>
+            in <b>&lt;TreeViewTemplate/&gt;</b>.
         </p>
         <p>
             <b>&lt;TreeView/&gt;</b> stores a tree of <b>tree::TreeViewItem</b> and display them.

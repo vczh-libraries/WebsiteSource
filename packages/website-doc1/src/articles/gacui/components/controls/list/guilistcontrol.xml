@@ -14,6 +14,8 @@
         <p>
             The <b>ListItemBackground</b> theme is for item backgrounds,
             which is a <b>&lt;SelectableButtonTemplate/&gt;</b>.
+            But it will be overrides by <b>BackgroundTemplate</b>
+            in the control template for a list control.
         </p>
         <topic>
             <title>GuiListControl::EnsureItemVisible</title>

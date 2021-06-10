@@ -26,6 +26,8 @@
         <p>
             The <b>CheckTextListItem</b> and <b>RadioTextListItem</b> themes are for check or radio bullets,
             which are <b>&lt;SelectableButtonTemplate/&gt;</b>.
+            But they will be overrides by <b>CheckBulletTemplate</b> and <b>RadioBulletTemplate</b>
+            in <b>&lt;TextListTheme/&gt;</b>.
         </p>
         <p>
             <b>&lt;TextList/&gt;</b> stores a list of <b>list::TextItem</b> and display them.
