@@ -11,6 +11,10 @@
         <p>
             <b>GuiSelectableListControl</b> makes items selectable.
         </p>
+        <p>
+            The <b>ListItemBackground</b> theme is for item backgrounds,
+            which is a <b>&lt;SelectableButtonTemplate/&gt;</b>.
+        </p>
         <topic>
             <title>GuiListControl::EnsureItemVisible</title>
             <p>
