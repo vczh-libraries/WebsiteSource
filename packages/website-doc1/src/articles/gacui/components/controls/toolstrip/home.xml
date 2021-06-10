@@ -4,6 +4,13 @@
         <p>
             Toolstrip Controls contains toolbars and menus.
         </p>
+        <p>
+            Please check out
+            <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/DocumentEditorToolstrip.xml">
+                this tutorial project
+            </a>
+            for using toolstrip controls in GacUI XML Resource.
+        </p>
         <topic>
             <title>Menu Buttons</title>
             <p>

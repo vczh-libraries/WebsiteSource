@@ -2,7 +2,98 @@
     <topic>
         <title>Ribbon Controls</title>
         <p>
-            The page is under construction.
+            Ribbon controls are enhanced toolbar controls organized in tab pages.
         </p>
+        <p>
+            Please check out
+            <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/DocumentEditorRibbon.xml">
+                this tutorial project
+            </a>
+            for using ribbon controls in GacUI XML Resource.
+        </p>
+        <topic>
+            <title>Ribbon Application Organizations</title>
+            <p>
+                An typical ribbon application has a <b>&lt;RibbonTab/&gt;</b> at the top of the window.
+                <b>BeforeHeaders</b> and <b>AfterHeaders</b> are two containers in <b>&lt;RibbonTab/&gt;</b>
+                for extra controls.
+                Usually a button will be put in <b>BeforeHeaders</b> to show a home menu.
+            </p>
+            <p>
+                Inside <b>&lt;RibbonTab/&gt;::Pages</b> there are multiple <b>&lt;RibbonTagPage/&gt;</b>.
+            </p>
+            <p>
+                Inside <b>&lt;RibbonTagPage/&gt;::Groups</b> there are multiple <b>&lt;RibbonGroup/&gt;</b>.
+            </p>
+            <p>
+                Inside <b>&lt;RibbonGroup/&gt;::Items</b> there could be multiple following controls:
+                <ul>
+                    <li><b>&lt;RibbonSplitter/&gt;</b></li>
+                    <li><b>&lt;RibbonLargeButton/&gt;</b></li>
+                    <li><b>&lt;RibbonLargeDropdownButton/&gt;</b></li>
+                    <li><b>&lt;RibbonLargeSplitButton/&gt;</b></li>
+                    <li>
+                        <b>&lt;RibbonButtons/&gt;</b>:
+                        A group of resizable buttons.
+                        The following controls are acceptble in the <b>Buttons</b> property:
+                        <ul>
+                            <li><b>&lt;ToolstripButton/&gt;</b></li>
+                            <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+                            <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+                            <li>
+                                <b>&lt;RibbonIconLabel/&gt;</b>:
+                                A label with an image.
+                                An extra control could be put inside it,
+                                which will be displayed after the label.
+                                When the space is not enough,
+                                the label will disappear,
+                                leaving only the image.
+                            </li>
+                        </ul>
+                        When the space is far away from enough to display toolstrip buttons,
+                        they will be automatically switched to the following themes accordingly:
+                        <ul>
+                            <li><b>&lt;RibbonSmallButton/&gt;</b></li>
+                            <li><b>&lt;RibbonLargeButton/&gt;</b></li>
+                            <li><b>&lt;RibbonSmallDropdownButton/&gt;</b></li>
+                            <li><b>&lt;RibbonLargeDropdownButton/&gt;</b></li>
+                            <li><b>&lt;RibbonSmallSplitButton/&gt;</b></li>
+                            <li><b>&lt;RibbonLargeSplitButton/&gt;</b></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>&lt;RibbonToolstrips/&gt;</b>:
+                        Inside <b>&lt;RibbonToolstrips/&gt;::Groups</b> there could be
+                        multiple <b>&lt;ToolstripGroup/&gt;</b> containing multiple:
+                        <ul>
+                            <li><b>&lt;ToolstripButton/&gt;</b></li>
+                            <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+                            <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+                        </ul>
+                        Each group renders a toolbar.
+                        When there is no enough space for organizing toolbars in two lines,
+                        they will be organizing in three lines.
+                    </li>
+                    <li>
+                        <p>
+                            <b>&lt;BindableRibbonGalleryList/&gt;</b>:
+                            A bindable list control (in theme <b>RibbonGalleryItemList</b>) displaying custom items.
+                            Items will be organized in groups if
+                            <b>GroupTitleProperty</b> and <b>GroupChildrenProperty</b> are both non-empty.
+                        </p>
+                        <p>
+                            The gallery list also has a menu.
+                            On the top of the menu there is a larger gallery list.
+                            Both <b>&lt;RibbonToolstripHeader/&gt;</b> and <b>&lt;MenuItemButton/&gt;</b>
+                            could appear in <b>SubMenu</b> of the gallery list.
+                        </p>
+                        <p>
+                            The <b>ItemTemplate</b> in this control must be assigned,
+                            or there will be no item but only group headers in the gallery list.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>
