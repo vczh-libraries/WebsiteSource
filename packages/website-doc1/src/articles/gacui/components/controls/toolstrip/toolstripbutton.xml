@@ -38,7 +38,112 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;ToolstripButton/&gt;</b> is the button control for toolstrips and ribbons.
         </p>
+        <topic>
+            <title>Connecting to a &lt;ToolstripCommand/&gt;</title>
+            <p>
+                Multiple toolstrip buttons could be connected to the same toolstrip command
+                by assigning the command to the <b>Command</b> property of the button.
+                Please check out
+                <a href="/gacui/components/components/home.html">
+                    this page
+                </a>
+                for details about using toolstrip commands as components.
+            </p>
+            <p>
+                The following properties in <b>&lt;ToolstripButton/&gt;</b> is automatically
+                synced to the assigned command:
+                <ul>
+                    <li><b>LargeImage (LargeImageChanged)</b>: The large version of icon of the button. Used in ribbons.</li>
+                    <li><b>Image (ImageChanged)</b>: The icon of the button. Used in toolstrips and ribbons.</li>
+                    <li><b>ShortcutText (ShortcutTextChanged)</b>: The text representation of the key combination, rendered in menus.</li>
+                    <li><b>Text (TextChanged)</b>: The title of the menu.</li>
+                    <li><b>Enabled (EnabledChanged)</b></li>
+                    <li><b>Selected (SelectedChanged)</b></li>
+                </ul>
+                In this case,
+                <b>DO NOT</b> update these properties in toolstrip buttons directly,
+                <b>DO</b> update these properties in toolstrip commands,
+                property values will be synced to all connected toolstrip buttons.
+                For example,
+                after disabling a toolstrip command,
+                all connected toolstrip buttons will also be disabled.
+            </p>
+            <p>
+                To bind a toolstrip command with a key combination,
+                set the text representation of the key combination to the <b>Shortcut</b> property.
+                In C++,
+                use <b>SetShortcutBuilder</b> instead.
+            </p>
+            <p>
+                The format of shortcuts is <b>Ctrl+Shift+Alt+Key</b>.
+                <b>Ctrl</b>, <b>Shift</b> and <b>Alt</b> are optional.
+                Acceptable <b>Key</b> names are as follows:
+                <ul>
+                    <li>A to Z</li>
+                    <li>0 to 9</li>
+                    <li>F1 to F12</li>
+                    <li>Num +, Num -, Num *, Num Del, Num 0 to Num 9</li>
+                    <li>Home, End, Insert, Delete, Page Up, Page Down</li>
+                    <li>Tab, Caps Lock, Backspace, Space</li>
+                    <li>Esc, Enter, Pause, Scroll Lock, Sys Req (the name of Print Screen)</li>
+                    <li>Left, Right, Up, Down</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Accessing SubMenu</title>
+            <p>
+                The <b>ToolstripSubMenu</b> property returns the attached sub menu of the button.
+                It is <b>null</b> by default,
+                until <b>EnsureToolstripSubMenu</b> or <b>CreateToolstripSubMenu</b> is called.
+            </p>
+            <p>
+                In GacUI XML Resource,
+                accessing the <b>SubMenu</b> property automatically get <b>EnsureToolstripSubMenu</b> called,
+                so there is always a valid <b>&lt;ToolstripMenu/&gt;</b>.
+            </p>
+            <p>
+                Sometimes you might want to add other controls instead of menu items.
+                The following methods are for this scenario:
+                <ul>
+                    <li><b>IsSubMenuExists</b></li>
+                    <li><b>CreateSubMenu</b></li>
+                    <li><b>DestroySubMenu</b></li>
+                    <li><b>SubMenu</b> property</li>
+                    <li><b>SubMenuOpening</b> property</li>
+                    <li><b>PreferredMenuClientSize</b> property</li>
+                </ul>
+                When calling <b>SetSubMenu</b>,
+                set the second argument (which is remembered by the <b>OwnedSubMenu</b> property) to <b>true</b>
+                so that the sub menu is owned by the toolstrip button.
+                In this case,
+                when the toolstrip button is deleted,
+                the sub menu will also be deleted.
+            </p>
+            <p>
+                <b>NOTE</b>:
+                <b>CreateSubMenu</b>, <b>EnsureToolstripSubMenu</b> and <b>CreateToolstripSubMenu</b>
+                make the created sub menu <b>owned</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ToolstripMenu/&gt; v.s. &lt;Menu/&gt;</title>
+            <p>
+                The biggest difference between these two controls is that,
+                like other toolstrip button containers,
+                toolstrip controls put in the <b>&lt;ToolstripMenu/&gt;::ToolstripItems</b> property get a proper layout.
+                Although you can put same controls in <b>&lt;Menu/&gt;</b>,
+                but you need to worry about the layout by yourself.
+            </p>
+            <p>
+                Please check out
+                <a href="/gacui/components/controls/toolstrip/grouping.html">
+                    this page
+                </a>
+                for details about <b>ToolstripItems</b>.
+            </p>
+        </topic>
     </topic>
 </article>
