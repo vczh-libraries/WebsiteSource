@@ -14,7 +14,30 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            A toolbar is a toolstrip button containers for buttons.
+        </p>
+        <p>
+            Multiple <b>&lt;ToolstripGroupContainer/&gt;</b> in the menu
+            will be separated by vertical splitters.
+        </p>
+        <p>
+            Expected button types inside this control are:
+            <ul>
+                <li><b>&lt;ToolstripButton/&gt;</b>: A button.</li>
+                <li><b>&lt;ToolstripDropdownButton/&gt;</b>: A button which doesn't execute a command but show a menu when it is clicked.</li>
+                <li><b>&lt;ToolstripSplitButton/&gt;</b>: A button which could execute a command and also show a menu when different parts of it are clicked.</li>
+            </ul>
+            Such toolstrip buttons only render icons.
+            If there are attached sub menus,
+            sub menus are opened at the bottom side of buttons if there are enough spaces.
+        </p>
+        <p>
+            Please check out
+            <a href="/gacui/components/controls/toolstrip/grouping.html">
+                this page
+            </a>
+            for details about <b>ToolstripItems</b>,
+            which provides automatic layout for toolstrip buttons inside this control.
         </p>
     </topic>
 </article>
