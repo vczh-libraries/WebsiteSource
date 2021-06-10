@@ -145,5 +145,21 @@
                 for details about <b>ToolstripItems</b>.
             </p>
         </topic>
+        <topic>
+            <title>Reacting to ALT sequence</title>
+            <p>
+                When a toolstrip button is executed by an <b>ALT</b> sequence,
+                if it has a sub menu,
+                the sub menu will be opened instead of executing the button.
+            </p>
+            <p>
+                This will make split buttons inaccessible.
+                For keeping a good accessibility for your application,
+                please make sure that the same command can be executed by another <b>ALT</b> sequence,
+                e.g.
+                the sub menu has a menu item for the same task,
+                or it can be accessed from the menu bar.
+            </p>
+        </topic>
     </topic>
 </article>
