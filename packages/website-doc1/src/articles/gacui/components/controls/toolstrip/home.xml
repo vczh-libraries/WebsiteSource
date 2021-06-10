@@ -2,7 +2,87 @@
     <topic>
         <title>Toolstrip Controls</title>
         <p>
-            The page is under construction.
+            Toolstrip Controls contains toolbars and menus.
         </p>
+        <topic>
+            <title>Menu Buttons</title>
+            <p>
+                <b>&lt;ToolstripButton/&gt;</b> the button control for menu bars, menus, toolbars and ribbon controls.
+            </p>
+            <p>
+                It has other four virtual controls:
+                <ul>
+                    <li><b>&lt;MenuBarButton/&gt;</b></li>
+                    <li><b>&lt;MenuItemButton/&gt;</b></li>
+                    <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+                    <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+                </ul> 
+            </p>
+            <p>
+                One
+                <a href="/gacui/components/components/home.html">
+                    <b>&lt;ToolstripCommand/&gt;</b>
+                </a>
+                can be connected to multiple toolstrip buttons.
+                A toolstrip command could also be assigned a shortcut key.
+                Whenever the shortcut key is activated,
+                or any connected toolstrip button is executed,
+                the <b>Execute</b> event in the toolstrip command raises.
+            </p>
+            <p>
+                The <b>ShortcutText</b> property in <b>&lt;ToolstripButton/&gt;</b> is only for displaying purpose.
+                Only the <b>Shortcut</b> property in <b>&lt;ToolstripCommand/&gt;</b> makes a command react to a key combination.
+                When a <b>&lt;ToolstripCommand/&gt;</b> is connected to a <b>&lt;ToolstripButton/&gt;</b>,
+                properties in <b>&lt;ToolstripButton/&gt;</b> get synced to the <b>&lt;ToolstripCommand/&gt;</b>,
+                e.g.,
+                a proper <b>ShortcutText</b> in the <b>&lt;ToolstripButton/&gt;</b> is generated according to the <b>Shortcut</b> in <b>&lt;ToolstripCommand/&gt;</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Menu Bars</title>
+            <p>
+                <b>&lt;ToolstripMenuBar/&gt;</b> is a toolstrip button container.
+                Usually it is installed at the top of a window.
+            </p>
+            <p>
+                Expected button types inside this control are:
+                <ul>
+                    <li><b>&lt;MenuBarButton/&gt;</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Menus</title>
+            <p>
+                <b>&lt;ToolstripMenu/&gt;</b> is a popup toolstrip button container.
+            </p>
+            <p>
+                The <b>SubMenu</b> property in <b>&lt;ToolstripButton/&gt;</b> is also a <b>&lt;ToolstripMenu/&gt;</b>.
+            </p>
+            <p>
+                Expected button types inside this control are:
+                <ul>
+                    <li><b>&lt;MenuItemButton/&gt;</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Toolbars</title>
+            <p>
+                <b>&lt;ToolstripToolBar/&gt;</b> is a toolstrip button container.
+            </p>
+            <p>
+                Usually it is installed at the top of a window,
+                and below the menu bar if exists.
+            </p>
+            <p>
+                Expected button types inside this control are:
+                <ul>
+                    <li><b>&lt;ToolstripButton/&gt;</b>: A button.</li>
+                    <li><b>&lt;ToolstripDropdownButton/&gt;</b>: A button which doesn't execute a command but show a menu when it is clicked.</li>
+                    <li><b>&lt;ToolstripSplitButton/&gt;</b>: A button which could execute a command and also show a menu when different parts of it are clicked.</li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>
