@@ -1,0 +1,20 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonButtons&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;RibbonButtons/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiRibbonButtons*</li>
+                        <li><b>Template Tag</b>: &lt;RibbonButtonsTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonButtons</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>

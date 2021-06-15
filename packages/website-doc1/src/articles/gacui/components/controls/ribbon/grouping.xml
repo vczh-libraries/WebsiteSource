@@ -15,5 +15,9 @@
             you are not expected to put too many buttons in one <b>&lt;RibbonToolstrips/&gt;</b>.
             Multiple <b>&lt;RibbonToolstrips/&gt;</b> could be separated by <b>&lt;RibbonGroup/&gt;</b>.
         </p>
+        <p>
+            <b>&lt;RibbonSplitter/&gt;</b> could be added in <b>&lt;RibbonGroup/&gt;</b>
+            if really needed.
+        </p>
     </topic>
 </article>

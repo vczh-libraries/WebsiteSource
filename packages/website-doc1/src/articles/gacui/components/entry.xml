@@ -80,6 +80,18 @@
       <article name="&lt;ToolstripButton&gt;" file="controls/ribbon/toolstripbutton">
         <article name="Grouping Multiple &lt;ToolstripButton&gt;" file="controls/ribbon/grouping"/>
       </article>
+      <article name="&lt;RibbonTab&gt;" file="controls/ribbon/tab"/>
+      <article name="&lt;RibbonTabPage&gt;" file="controls/ribbon/tabpage"/>
+      <article name="&lt;RibbonGroup&gt;" file="controls/ribbon/group">
+        <article name="&lt;RibbonSplitter&gt;" file="controls/ribbon/splitter"/>
+        <article name="&lt;RibbonButtons&gt;" file="controls/ribbon/buttons">
+          <article name="&lt;RibbonIconLabel&gt;" file="controls/ribbon/iconlabel"/>
+        </article>
+        <article name="&lt;RibbonToolstrips&gt;" file="controls/ribbon/toolstrips"/>
+        <article name="&lt;BindableRibbonGalleryList&gt;" file="controls/ribbon/gallerylist">
+          <article name="&lt;RibbonToolstripHeader&gt;" file="controls/ribbon/header"/>
+        </article>
+      </article>
     </article>
   </article>
   <article name="Control Templates" file="ctemplates/home"/>

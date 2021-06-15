@@ -1,0 +1,26 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonIconLabel&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiRibbonIconLabel*</li>
+                <li><b>Template Tag</b>: &lt;RibbonIconLabelTemplate/&gt;</li>
+                <li>
+                    <b>&lt;RibbonIconLabel/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonIconLabel</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RibbonSmallIconLabel/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonSmallIconLabel</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>

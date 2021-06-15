@@ -1,0 +1,34 @@
+<article index="true">
+    <topic>
+        <title>&lt;BindableRibbonGalleryList&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;BindableRibbonGalleryList/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableRibbonGalleryList*</li>
+                        <li><b>Template Tag</b>: &lt;RibbonGalleryListTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonGalleryList</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Embedded Gallery List</b>
+                    <ul>
+                        <li><b>Template Tag</b>: &lt;TextListTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonGalleryItemList</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>SubMenu</b>
+                    <ul>
+                        <li><b>Template Tag</b>: &lt;RibbonToolstripMenuTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonToolstripMenu</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>

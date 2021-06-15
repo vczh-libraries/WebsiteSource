@@ -1,0 +1,20 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonTabPage&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;RibbonTabPage/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiRibbonTabPage*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>

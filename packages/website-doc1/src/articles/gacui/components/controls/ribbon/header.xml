@@ -1,0 +1,20 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonToolstripHeader&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;RibbonToolstripHeader/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiControl*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonToolstripHeader</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>
