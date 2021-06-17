@@ -71,6 +71,18 @@
                 <p>
                     A visually disabled control doesn't react to user input.
                 </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        Source code:
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_enabled/Resource.xml">
+                            control_basic_enabled
+                        </a>
+                    </p>
+                    <p>
+                        <img src="/gacui/control_basic_enabled.gif"/>
+                    </p>
+                </topic>
             </topic>
             <topic>
                 <title>Visible (VisibleChanged)</title>
@@ -120,6 +132,18 @@
                     When a control's <b>Font</b> is changed,
                     <b>DisplayFont</b> of the control itself and all direct or indirect child controls with an empty <b>Font</b> is also changed,
                 </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        Source code:
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_font/Resource.xml">
+                            control_basic_font
+                        </a>
+                    </p>
+                    <p>
+                        <img src="/gacui/control_basic_font.gif"/>
+                    </p>
+                </topic>
             </topic>
             <topic>
                 <title>Context (ContextChanged)</title>
@@ -339,6 +363,18 @@
                 <p>
                     This property controls the width of <b>TooltipControl</b>.
                 </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        Source code:
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_tooltip/Resource.xml">
+                            control_basic_tooltip
+                        </a>
+                    </p>
+                    <p>
+                        <img src="/gacui/control_basic_tooltip.gif"/>
+                    </p>
+                </topic>
             </topic>
         </topic>
         <topic>
