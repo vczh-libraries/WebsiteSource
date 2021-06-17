@@ -70,11 +70,11 @@
             <p>
                 Please check out the demo for 
                 <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/RepeatTabPage.xml">
-                    <b>&lt;SharedSizeRoot//&gt;</b>
+                    <b>&lt;SharedSizeRoot/&gt;</b>
                 </a>
                 and
                 <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/RepeatComponents.xml">
-                    <b>&lt;SharedSizeItem//&gt;</b>
+                    <b>&lt;SharedSizeItem/&gt;</b>
                 </a>
                 .
             </p>

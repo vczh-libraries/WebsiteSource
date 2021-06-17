@@ -58,5 +58,17 @@
                 for more information.
             </p>
         </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Source code:
+                <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/layout_bounds/Resource.xml">
+                    layout_bounds
+                </a>
+            </p>
+            <p>
+                <img src="/gacui/layout_bounds.gif"/>
+            </p>
+        </topic>
     </topic>
 </article>
