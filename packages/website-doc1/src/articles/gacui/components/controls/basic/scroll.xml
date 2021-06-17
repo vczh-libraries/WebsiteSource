@@ -48,7 +48,7 @@
             <b>HScroll</b> or <b>VScroll</b> have a slider with two buttons for controlling a position.
         </p>
         <p>
-            <b>HScroll</b> or <b>VScroll</b> have only a slider for controlling a position.
+            <b>HTracker</b> or <b>VTracker</b> have only a slider for controlling a position.
         </p>
         <p>
             <b>ProgressBar</b> only displays a position.
