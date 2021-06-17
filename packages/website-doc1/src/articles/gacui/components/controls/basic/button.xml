@@ -46,6 +46,34 @@
                     </ul>
                 </p>
             </topic>
+            <topic>
+                <title>IgnoreChildControlMouseEvents</title>
+                <p>
+                    The default value for this property is <b>true</b>,
+                    but it could be different in sub classes.
+                </p>
+                <p>
+                    When mouse operations happen in child controls which are contained in a button,
+                    the button ignores these operations so that it behaves like not being clicked.
+                    But once the <b>IgnoreChildControlMouseEvents</b> property is set to <b>false</b>,
+                    this behavior changes.
+                </p>
+                <p>
+                    This property is very useful when adding child controls for visual effect only.
+                </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        Source code:
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_button/Resource.xml">
+                            control_basic_button
+                        </a>
+                    </p>
+                    <p>
+                        <img src="/gacui/control_basic_button.gif"/>
+                    </p>
+                </topic>
+            </topic>
         </topic>
         <topic>
             <title>&lt;Button&gt; Events</title>
