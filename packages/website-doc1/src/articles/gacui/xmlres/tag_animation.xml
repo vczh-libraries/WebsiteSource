@@ -155,7 +155,7 @@
             Here is how they looks like:
         </p>
         <p>
-            <img src="/gacui/kb_animation.gif"/>
+            <sample name="kb_animation"/>
         </p>
     </topic>
 </article>

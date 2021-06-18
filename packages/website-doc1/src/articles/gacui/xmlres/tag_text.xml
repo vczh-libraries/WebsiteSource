@@ -100,7 +100,7 @@
             Here is how they looks like:
         </p>
         <p>
-            <img src="/gacui/kb_xmlres_tag_text.gif"/>
+            <sample name="kb_xmlres_data" file="TextPage" image="kb_xmlres_tag_text.gif"/>
         </p>
     </topic>
 </article>

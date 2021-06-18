@@ -62,10 +62,10 @@
             Here are a few examples of item templates:
         </p>
         <p>
-            <img src="/gacui/kb_itemplates_colorpicker.gif"/>
+            <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/ColorPicker/UI/Resource.xml" image="kb_itemplates_colorpicker.gif"/>
         </p>
         <p>
-            <img src="/gacui/kb_controls_datagrid.gif"/>
+            <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml" image="kb_controls_datagrid.gif"/>
         </p>
     </topic>
 </article>

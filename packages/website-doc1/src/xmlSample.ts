@@ -51,6 +51,13 @@ export function parseSample(e: Element): a.Plugin | undefined {
                 urlXml: `https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/${attr.name}/Resource.xml`
             };
         }
+        if (attr.name !== undefined && attr.file === undefined && attr.image !== undefined && attr.url === undefined) {
+            plugin = {
+                name: attr.name,
+                urlImage: `/gacui/${attr.image}`,
+                urlXml: `https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/${attr.name}/Resource.xml`
+            };
+        }
         if (attr.name !== undefined && attr.file !== undefined && attr.image !== undefined && attr.url === undefined) {
             plugin = {
                 name: attr.name,
@@ -72,7 +79,7 @@ export function parseSample(e: Element): a.Plugin | undefined {
         }
 
         if (plugin === undefined) {
-            throw new Error(`Attributes in <sample> must be "name", "name;file;image" or "url;image"`);
+            throw new Error(`Attributes in <sample> must be "name", "name;image", "name;file;image" or "url;image"`);
         } else {
             return {
                 kind: 'Plugin',
@@ -93,7 +100,7 @@ export function renderSample(plugin: {}): a.Content[] {
             kind: 'ContentListItem',
             content: [{
                 kind: 'Text',
-                text: 'Source code:'
+                text: 'Source code: '
             }, {
                 kind: 'PageLink',
                 href: sp.urlXml,

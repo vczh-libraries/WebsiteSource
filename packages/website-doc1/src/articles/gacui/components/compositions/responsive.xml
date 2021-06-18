@@ -65,12 +65,7 @@
         <topic>
             <title>A responsive layout sample</title>
             <p>
-                For example,
-                in
-                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Responsive2">
-                    this sample
-                </a>:
-                <img src="/gacui/kb_compositions_responsive_2.gif"/>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Layout/Responsive2/UI/Resource.xml" image="kb_compositions_responsive_2.gif"/>
             </p>
             <p>
                 There are three level of views:

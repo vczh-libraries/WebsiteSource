@@ -51,7 +51,7 @@
             you are recommended to use elements directly.
         </p>
         <p>
-            <img src="/gacui/kb_elements.gif"/>
+            <sample name="kb_elements"/>
         </p>
         <p>
             There are also <b>GuiColorizedTextElement</b> and <b>DocumentElement</b>.

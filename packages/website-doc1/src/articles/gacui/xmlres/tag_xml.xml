@@ -142,7 +142,7 @@
             Here is how they looks like:
         </p>
         <p>
-            <img src="/gacui/kb_xmlres_tag_xml.gif"/>
+            <sample name="kb_xmlres_data" file="XmlPage" image="kb_xmlres_tag_xml.gif"/>
         </p>
     </topic>
 </article>

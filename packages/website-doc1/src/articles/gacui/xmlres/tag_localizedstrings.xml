@@ -138,7 +138,7 @@
             Here is how they looks like:
         </p>
         <p>
-            <img src="/gacui/kb_localizedstrings.gif"/>
+            <sample name="kb_localizedstrings"/>
         </p>
     </topic>
 </article>

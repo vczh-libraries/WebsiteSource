@@ -79,7 +79,7 @@
             Here is how they looks like:
         </p>
         <p>
-            <img src="/gacui/kb_xmlres_tag_image.gif"/>
+            <sample name="kb_xmlres_data" file="ImagePage" image="kb_xmlres_tag_image.gif"/>
         </p>
     </topic>
 </article>

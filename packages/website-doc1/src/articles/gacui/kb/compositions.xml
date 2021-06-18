@@ -16,31 +16,31 @@
         <topic>
             <title>Bounds</title>
             <p>
-                <img src="/gacui/kb_compositions_bounds.gif"/>
+                <sample name="kb_compositions" file="Bounds" image="kb_compositions_bounds.gif"/>
             </p>
         </topic>
         <topic>
             <title>Stack</title>
             <p>
-                <img src="/gacui/kb_compositions_stack.gif"/>
+                <sample name="kb_compositions" file="Stack" image="kb_compositions_stack.gif"/>
             </p>
         </topic>
         <topic>
             <title>Flow</title>
             <p>
-                <img src="/gacui/kb_compositions_flow.gif"/>
+                <sample name="kb_compositions" file="Flow" image="kb_compositions_flow.gif"/>
             </p>
         </topic>
         <topic>
             <title>Table</title>
             <p>
-                <img src="/gacui/kb_compositions_table.gif"/>
+                <sample name="kb_compositions" file="Table" image="kb_compositions_table.gif"/>
             </p>
         </topic>
         <topic>
             <title>SharedSize</title>
             <p>
-                <img src="/gacui/kb_compositions_sharedsize.gif"/>
+                <sample name="kb_compositions" file="SharedSize" image="kb_compositions_sharedsize.gif"/>
             </p>
         </topic>
         <topic>
@@ -49,13 +49,13 @@
                 Ribbon:
             </p>
             <p>
-                <img src="/gacui/kb_compositions_responsive_1.gif"/>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/DocumentEditorRibbon.xml" image="kb_compositions_responsive_2.gif"/>
             </p>
             <p>
                 Responsive Layout:
             </p>
             <p>
-                <img src="/gacui/kb_compositions_responsive_2.gif"/>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Layout/Responsive2/UI/Resource.xml" image="kb_compositions_responsive_2.gif"/>
             </p>
         </topic>
     </topic>

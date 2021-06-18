@@ -167,25 +167,25 @@
         <topic>
             <title>Toolstrip Controls</title>
             <p>
-                <img src="/gacui/kb_controls_toolstrip.gif"/>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DocumentEditorToolstrip/UI/ResourceToolstrip.xml" image="kb_controls_toolstrip.gif"/>
             </p>
         </topic>
         <topic>
             <title>Ribbon Controls</title>
             <p>
-                <img src="/gacui/kb_controls_ribbon.gif"/>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DocumentEditorRibbon/UI/ResourceRibbon.xml" image="kb_controls_ribbon.gif"/>
             </p>
         </topic>
         <topic>
             <title>Code Editor</title>
             <p>
-                <img src="/gacui/kb_controls_textbox.gif"/>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/TextEditor/UI/MainWindow.xml" image="kb_controls_textbox.gif"/>
             </p>
         </topic>
         <topic>
             <title>DataGrid</title>
             <p>
-                <img src="/gacui/kb_controls_datagrid.gif"/>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml" image="kb_controls_datagrid.gif"/>
             </p>
         </topic>
     </topic>

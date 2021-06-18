@@ -312,7 +312,7 @@
             Finally we get:
         </p>
         <p>
-            <img src="/gacui/kb_ctemplates_tab.gif"/>
+            <sample name="kb_ctemplates" image="kb_ctemplates_tab.gif"/>
         </p>
     </topic>
 </article>
