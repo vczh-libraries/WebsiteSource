@@ -74,13 +74,7 @@
                 <topic>
                     <title>Sample</title>
                     <p>
-                        Source code:
-                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_enabled/Resource.xml">
-                            control_basic_enabled
-                        </a>
-                    </p>
-                    <p>
-                        <img src="/gacui/control_basic_enabled.gif"/>
+                        <sample name="control_basic_enabled"/>
                     </p>
                 </topic>
             </topic>
@@ -135,13 +129,7 @@
                 <topic>
                     <title>Sample</title>
                     <p>
-                        Source code:
-                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_font/Resource.xml">
-                            control_basic_font
-                        </a>
-                    </p>
-                    <p>
-                        <img src="/gacui/control_basic_font.gif"/>
+                        <sample name="control_basic_font"/>
                     </p>
                 </topic>
             </topic>
@@ -366,13 +354,7 @@
                 <topic>
                     <title>Sample</title>
                     <p>
-                        Source code:
-                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_tooltip/Resource.xml">
-                            control_basic_tooltip
-                        </a>
-                    </p>
-                    <p>
-                        <img src="/gacui/control_basic_tooltip.gif"/>
+                        <sample name="control_basic_tooltip"/>
                     </p>
                 </topic>
             </topic>

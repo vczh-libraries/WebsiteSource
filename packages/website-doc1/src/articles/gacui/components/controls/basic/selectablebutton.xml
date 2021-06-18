@@ -96,13 +96,7 @@
         <topic>
             <title>Sample</title>
             <p>
-                Source code:
-                <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_checkbox/Resource.xml">
-                    control_basic_button
-                </a>
-            </p>
-            <p>
-                <img src="/gacui/control_basic_checkbox.gif"/>
+                <sample name="control_basic_checkbox"/>
             </p>
         </topic>
     </topic>

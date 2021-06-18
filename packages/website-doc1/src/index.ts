@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
-import { parseArticle } from 'gaclib-article';
+import { consumePlugin, parseArticle } from 'gaclib-article';
 import { DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
 import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolder, untilPressEnter } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
@@ -11,6 +11,7 @@ import { DirectoryInfo, views } from './views';
 import { convertDocSymbolToHyperlink } from './xmlDocSymbol';
 import { exampleRetriver } from './xmlExample';
 import { getRegisteredTypes } from './xmlRegisteredTypes';
+import { parseSample, renderSample } from './xmlSample';
 
 const pathPrefix = `/doc/current`;
 
@@ -57,7 +58,9 @@ router.register(
                     return ['text/html', generatedHtml];
                 }
                 case 'article': {
-                    res.article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }));
+                    const article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }), parseSample);
+                    consumePlugin(article, renderSample);
+                    res.article = article;
                     const generatedHtml = generateHtml(
                         info,
                         views,

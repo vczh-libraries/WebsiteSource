@@ -82,13 +82,7 @@
                 <topic>
                     <title>Sample</title>
                     <p>
-                        Source code:
-                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_datepicker/Resource.xml">
-                            control_basic_datepicker
-                        </a>
-                    </p>
-                    <p>
-                        <img src="/gacui/control_basic_datepicker.gif"/>
+                        <sample name="control_basic_datepicker"/>
                     </p>
                 </topic>
             </topic>
