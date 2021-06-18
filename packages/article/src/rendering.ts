@@ -103,27 +103,27 @@ function renderHeader(level: number, content: TemplateResult): TemplateResult {
     }
 }
 
-function renderIndex(topic: a.Topic): TemplateResult | string {
+function renderIndex(article: a.Article, topic: a.Topic): TemplateResult | string {
     const subTopics = topic.content.filter((value: a.Topic | a.Paragraph) => value.kind === 'Topic');
     if (subTopics.length === 0) {
         return '';
     } else {
-        return html`<ul>${subTopics.map((value: a.Topic) => html`<li><a href="#${getAnchorOfTopic(value)}">${value.title}</a>${renderIndex(value)}</li>`)}</ul>`;
+        return html`<ul>${subTopics.map((value: a.Topic) => html`<li><a href="#${getAnchorOfTopic(article, value)}">${value.title}</a>${renderIndex(article, value)}</li>`)}</ul>`;
     }
 }
 
-function renderTopic(topic: a.Topic, level: number, prefix: string | undefined, topTopic: boolean, options: RenderArticleOptions): TemplateResult {
+function renderTopic(article: a.Article, topic: a.Topic, level: number, prefix: string | undefined, topTopic: boolean, options: RenderArticleOptions): TemplateResult {
     let topicIndex = 0;
     return html`
 ${
         renderHeader(
             level,
             html`
-<a id="${getAnchorOfTopic(topic)}"></a>
+<a id="${getAnchorOfTopic(article, topic)}"></a>
 ${prefix === undefined ? '' : `${prefix} `}<span class="subtitle">${topic.title}</span>
         `)
         }
-${options.buildIndex && topTopic ? html`<div class="index">${renderIndex(topic)}</div>` : ''}
+${options.buildIndex && topTopic ? html`<div class="index">${renderIndex(article, topic)}</div>` : ''}
 ${
         topic
             .content
@@ -133,7 +133,7 @@ ${
                     if (newPrefix !== undefined) {
                         newPrefix += `${++topicIndex}.`;
                     }
-                    return renderTopic(value, level + 1, newPrefix, false, options);
+                    return renderTopic(article, value, level + 1, newPrefix, false, options);
                 } else {
                     return renderParagraph(value, options);
                 }
@@ -142,9 +142,22 @@ ${
 `;
 }
 
-function getAnchorOfTopic(topic: a.Topic): string {
+function getAnchorOfTopic(article: a.Article, topic: a.Topic): string {
+    if (article.anchors === undefined) {
+        article.anchors = {};
+    }
     if (topic.anchor === undefined) {
-        return topic.title.split(/[^a-zA-Z0-9]+/).join('-');
+        let anchor = topic.title.split(/[^a-zA-Z0-9]+/).join('-');
+        if (article.anchors[anchor] !== undefined) {
+            let counter = 2;
+            while (article.anchors[`${anchor}_${counter}`] !== undefined) {
+                counter++;
+            }
+            anchor = `${anchor}_${counter}`;
+        }
+        article.anchors[anchor] = topic;
+        topic.anchor = anchor;
+        return anchor;
     } else {
         return topic.anchor;
     }
@@ -155,7 +168,7 @@ export function renderArticle(article: a.Article, options?: RenderArticleOptions
         hrefPrefix: options?.hrefPrefix,
         buildIndex: article.index
     };
-    return html`<div class="article">${renderTopic(article.topic, 1, (article.numberBeforeTitle ? '' : undefined), true, renderArticleOptions)}<div>
+    return html`<div class="article">${renderTopic(article, article.topic, 1, (article.numberBeforeTitle ? '' : undefined), true, renderArticleOptions)}<div>
 <script lang="javascript">
 const highlightSubtitleByHash = function() {
     const topics = document.getElementsByClassName("subtitle");

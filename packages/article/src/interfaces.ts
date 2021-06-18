@@ -94,4 +94,5 @@ export interface Article {
     index: boolean;
     numberBeforeTitle: boolean;
     topic: Topic;
+    anchors?: { [key: string]: Topic };
 }
