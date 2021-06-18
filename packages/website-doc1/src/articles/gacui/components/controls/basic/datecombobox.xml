@@ -33,6 +33,18 @@
                 <p>
                     The <b>&lt;DatePicker/&gt;</b> control in the dropdown container.
                 </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        Source code:
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_datecombo/Resource.xml">
+                            control_basic_datecombo
+                        </a>
+                    </p>
+                    <p>
+                        <img src="/gacui/control_basic_datecombo.gif"/>
+                    </p>
+                </topic>
             </topic>
         </topic>
     </topic>

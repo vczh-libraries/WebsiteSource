@@ -59,7 +59,7 @@
                 </p>
             </topic>
             <topic>
-                <title>DateFormat (DateFormatChanged)</title>
+                <title>DateLocale (DateLocaleChanged)</title>
                 <p>
                     The default value is first value in
                     <a href="/vlppos/ref/VL__LOCALE__USERDEFAULT@__VL__LOCALE().html">
@@ -75,6 +75,22 @@
                         <li>Any values in <a href="/vlppos/ref/VL__LOCALE__ENUMERATE@VOID(__VL__COLLECTIONS__LIST___VL__LOCALE_.html">Locale::Enumerate()</a></li>
                     </ul>
                 </p>
+                <p>
+                    When <b>DateLocale</b> is changed,
+                    <b>DateFormat</b> will also be changed.
+                </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        Source code:
+                        <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_basic_datepicker/Resource.xml">
+                            control_basic_datepicker
+                        </a>
+                    </p>
+                    <p>
+                        <img src="/gacui/control_basic_datepicker.gif"/>
+                    </p>
+                </topic>
             </topic>
             <topic>
                 <title>Text</title>
