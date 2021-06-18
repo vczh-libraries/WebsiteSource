@@ -18,6 +18,23 @@
             in the control template for a list control.
         </p>
         <topic>
+            <title>GuiListControl::Context</title>
+            <p>
+                This property inherits from <b>GuiControl</b>.
+            </p>
+            <p>
+                All <b>Context</b> properties in item template instances will keep sync to <b>GuiListControl::Context</b>.
+            </p>
+            <p>
+                For data grids, <b>Context</b> in visualizers and editors will alsp keep sync.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                Even for item template instances, visualizers or editors that are created after <b>GuiListControl::Context</b> is set,
+                their <b>Context</b> properties are assigned after their constructors.
+            </p>
+        </topic>
+        <topic>
             <title>GuiListControl::EnsureItemVisible</title>
             <p>
                 This function moves the scroll bar to ensure that
