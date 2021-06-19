@@ -231,7 +231,7 @@
                     <li>MinimizedBox</li>
                     <li>Border</li>
                     <li>SizeBox</li>
-                    <li>Icon</li>
+                    <li>IconVisible</li>
                     <li>TitleBar</li>
                 </ul>
                 A window's control template could accept or reject such changing by setting the following properties in <b>&lt;WindowTemplate/&gt;</b>:
@@ -240,7 +240,7 @@
                     <li>MinimizedBoxOption</li>
                     <li>BorderOption</li>
                     <li>SizeBoxOption</li>
-                    <li>IconOption</li>
+                    <li>IconVisibleOption</li>
                     <li>TitleBarOption</li>
                 </ul>
                 They could be <b>AlwaysTrue</b>, <b>AlwaysFalse</b> or <b>Customizable</b>.
