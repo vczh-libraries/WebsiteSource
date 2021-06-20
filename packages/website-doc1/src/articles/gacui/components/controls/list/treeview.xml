@@ -43,10 +43,23 @@
             changing this property immediately causes changing in the list control.
         </p>
         <p>
+            <b>NOTE</b>:
+            In GacUI XML Resource,
+            <b>tree::MemoryNodeProvider</b> is not needed,
+            the virtual type <b>tree::TreeNode</b> combines the two,
+            with property <b>Text</b>, <b>Image</b>, <b>Tag</b> and the default property for child nodes.
+        </p>
+        <p>
             The <b>SelectedItem</b> property returns the currently selected item in <b>tree::TreeViewItem</b>.
             If no item is selected,
             or multiple items are selected,
             this property returns <b>null</b>.
         </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_list_treeview"/>
+            </p>
+        </topic>
     </topic>
 </article>

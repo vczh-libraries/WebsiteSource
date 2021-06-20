@@ -226,9 +226,9 @@
                     One of a sibling column of the splitter is required to be <b>Absolute</b>.
                 </p>
                 <p>
-                    <b>ColumnsToTheTop</b> specifies how many columns are above this splitter.
+                    <b>ColumnsToTheLeft</b> specifies how many columns are above this splitter.
                     If the table has 5 columns,
-                    valid values for <b>ColumnsToTheTop</b> are 1 to 4.
+                    valid values for <b>ColumnsToTheLeft</b> are 1 to 4.
                 </p>
                 <p>
                     After adding a splitter to the table,
