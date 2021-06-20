@@ -46,5 +46,11 @@
             because the <b>TextProperty</b> in the first column means the text representation for an item,
             which is used in every views.
         </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_list_listview_bindable"/>
+            </p>
+        </topic>
     </topic>
 </article>
