@@ -168,6 +168,7 @@
                     <li><b>&lt;BindableListView/&gt;</b> is replaced by <b>&lt;BindableListView/&gt;</b>.</li>
                     <li><b>&lt;ListViewColumn/&gt;</b> is replaced by <b>&lt;DataColumn/&gt;</b>, each column is given a <b>ref.Name</b>.</li>
                     <li>The <b>SelectedItem</b> property is replaced by <b>SelectedRowValue</b>.</li>
+                    <li>Handling <b>SelectedCellChanged</b> instead of <b>SelectionChanged</b>.</li>
                     <li>The combo box for changing view is removed.</li>
                 </ul>
                 It is very straightforward to move your application from list view to data grid.
