@@ -91,5 +91,43 @@
             </a>
             for details about <b>GuiGridVisualizerTemplate</b>.
         </p>
+        <topic>
+            <title>Step-by-Step Sample</title>
+            <p>
+                In this demo,
+                cell visualizers are applied to the <b>Author</b> column and the <b>Summary</b> column:
+                <program><code><![CDATA[
+                    <att.AuthorColumn-set>
+                      <att.VisualizerFactory>HyperlinkVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate</att.VisualizerFactory>
+                    </att.AuthorColumn-set>
+                    <att.SummaryColumn-set>
+                      <att.VisualizerFactory>sample:SummaryVisualizer;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate</att.VisualizerFactory>
+                    </att.SummaryColumn-set>
+                ]]></code></program>
+            </p>
+            <p>
+                <b>HyperlinkVisualizerTemplate</b> is a predefined visualizer to convert a cell to a hyperlink.
+                It only changes the look and the mouse cursor for all cells under a column.
+            </p>
+            <p>
+                <b>sample:SummaryVisualizer</b> is a visualizer defined in the same resource file.
+                It adds an icon to the text,
+                when the mouse hovers above the icon,
+                a tooltip is displayed to show the whole summary.
+            </p>
+            <p>
+                In GacUI XML Resource,
+                <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataVisualizerFactory-">
+                    multiple templates
+                </a>
+                could be assigned to the <b>VisualizerFactory</b> property to make multiple visualizers nested together.
+                Here <b>FocusRectangleVisualizerTemplate</b> and <b>CellBorderVisualizerTemplate</b> are used
+                to keep a cell looks like a default one,
+                which could be focused and has a border.
+            </p>
+            <p>
+                <sample name="control_datagrid_visualizer"/>
+            </p>
+        </topic>
     </topic>
 </article>
