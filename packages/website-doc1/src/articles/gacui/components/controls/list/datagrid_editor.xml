@@ -37,5 +37,49 @@
             </a>
             for details about <b>GuiGridEditorTemplate</b>.
         </p>
+        <topic>
+            <title>Step-by-Step Sample</title>
+            <p>
+                In this demo,
+                cell editors are applied to all columns:
+                <program><code><![CDATA[
+                    <att.TitleColumn-set EditorFactory="sample::TextEditor"/>
+                    <att.AuthorColumn-set EditorFactory="sample::TextEditor"/>
+                    <att.DatePublishedColumn-set EditorFactory="sample::DateEditor"/>
+                    <att.SummaryColumn-set EditorFactory="sample::SummaryEditor"/>
+                ]]></code></program>
+                All editors are defined in the same resource file.
+            </p>
+            <p>
+                <b>sample::TextEditor</b> allows users to edit text in the data grid.
+            </p>
+            <p>
+                <b>sample::DateEditor</b> allows users to edit a date in a data grid.
+            </p>
+            <p>
+                <b>sample::SummaryEditor</b> shows a button.
+                When it is clicked,
+                a new window is displayed.
+                By modifying the text and clicked the <b>OK</b> button,
+                the modification applies.
+            </p>
+            <p>
+                Updating the <b>CellValue</b> of a <b>&lt;GridEditorTemplate/&gt;</b>
+                submits the modification.
+                It is written to the row object using the <b>ValueProperty</b> proeprty of the column header.
+            </p>
+            <p>
+                In GacUI XML Resource,
+                <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataEditorFactory-">
+                    only one editor
+                </a>
+                could be assigned to the <b>EditorFactory</b> property.
+                When a cell is clicked,
+                the associated editor is activated.
+            </p>
+            <p>
+                <sample name="control_datagrid_editor"/>
+            </p>
+        </topic>
     </topic>
 </article>
