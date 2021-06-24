@@ -49,5 +49,35 @@
                 and there will be methods for controlling sorting.
             </p>
         </topic>
+        <topic>
+            <title>Step-by-Step Sample</title>
+            <p>
+                In this demo,
+                sorters are applied to the first three columns:
+                <program><code><![CDATA[
+                    <att.TitleColumn-set Sorter="[Sys::Compare($1.Title, $2.Title)]"/>
+                    <att.AuthorColumn-set Sorter="[Sys::Compare($1.Author, $2.Author)]"/>
+                    <att.DatePublishedColumn-set Sorter="[Sys::Compare($1.DatePublished, $2.DatePublished)]"/>
+                ]]></code></program>
+            </p>
+            <p>
+                Each
+                <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataSorter-">
+                    sorter function
+                </a>
+                is a lambda expression,
+                <b>$1</b> and <b>$2</b> are the two arguments of this function.
+                argument types are specified by <b>env.ItemType</b>,
+                just like filter functions.
+            </p>
+            <p>
+                Using <b>-eval</b> on the <b>Sorter</b> property means an <b>IDataSorter^</b> is assigned to the property.
+                Setting <b>Sorter</b> without any binder means a sorter function is assigned to the property,
+                in this case an <b>IDataSorter^</b> is automatically created from this assigned function.
+            </p>
+            <p>
+                <sample name="control_datagrid_sorter"/>
+            </p>
+        </topic>
     </topic>
 </article>
