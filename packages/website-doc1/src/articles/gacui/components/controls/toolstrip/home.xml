@@ -103,5 +103,36 @@
                 </ul>
             </p>
         </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                In this demo there are all kinds of toolstrip controls.
+                It also demos about how to group buttons,
+                and how to connect buttons to commands.
+            </p>
+            <p>
+                There are three check boxes controlling the <b>Enabled</b> property of three commands.
+                When a command is disabled,
+                all connected buttons are also disabled.
+            </p>
+            <p>
+                The <b>Alt</b> property is set for all buttons.
+                By pressing <b>Alt</b> and release,
+                the window enters a special mode,
+                waiting for a key series to navigate to anything that is executable.
+            </p>
+            <p>
+                The <b>Alt</b> property could contains multiple keys as a sequence.
+                For buttons,
+                executing means raising the <b>Clicked</b> event.
+                For tab pages,
+                executing means switching to that page.
+                For most of other controls,
+                executing means setting its focus.
+            </p>
+            <p>
+                <sample name="control_toolstrip_button"/>
+            </p>
+        </topic>
     </topic>
 </article>
