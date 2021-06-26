@@ -105,5 +105,11 @@
             you need to remove it from <b>&lt;ToolstripGroupContainer/&gt;</b> if it contains no item,
             just setting its <b>Visible</b> to <b>false</b> doesn't work.
         </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_toolstrip_menu_binding"/>
+            </p>
+        </topic>
     </topic>
 </article>
