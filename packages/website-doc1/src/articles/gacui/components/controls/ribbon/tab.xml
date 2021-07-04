@@ -14,7 +14,16 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;RibbonTab/&gt;</b> is a <b>&lt;Tab/&gt;</b> with two more properties:
+            <ul>
+                <li><b>BeforeHeaders</b>: A composition as a container that is put before tab page headers.</li>
+                <li><b>AfterHeaders</b>: A composition as a container that is put after tab page headers.</li>
+            </ul>
+            Multiple <b>&lt;RibbonTabPage/&gt;</b> are expected in its <b>Pages</b> property.
+        </p>
+        <p>
+            Usually,
+            a <b>&lt;RibbonTab/&gt;</b> is put on the top of a window.
         </p>
     </topic>
 </article>
