@@ -95,5 +95,15 @@
                 </ul>
             </p>
         </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditorRibbon/UI">
+                    this tutorial project
+                </a>
+                for details about ribbon controls.
+            </p>
+        </topic>
     </topic>
 </article>
