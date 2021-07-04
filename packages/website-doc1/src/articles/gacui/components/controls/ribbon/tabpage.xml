@@ -14,7 +14,27 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;RibbonTabPage/&gt;</b> is a <b>&lt;TabPage/&gt;</b> with two more properties:
+            <ul>
+                <li><b>Groups</b>: All <b>&lt;RibbonGroup/&gt;</b> in this <b>&lt;RibbonTabPage/&gt;</b>.</li>
+                <li><b>Highlighted</b>: Set to <b>true</b> to highlight the tab header.</li>
+            </ul>
         </p>
+        <p>
+            Typically, a minmum height is needed for the first tab page like this:
+            <program><code><![CDATA[
+                <RibbonTabPage Text="First Page">
+                  <att.ContainerComposition-set PreferredMinSize="y:110"/>
+                </RibbonTabPage>
+            ]]></code></program>
+            Alternatively,
+            you could give the same minimum height to all tab pages.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_ribbon_empty"/>
+            </p>
+        </topic>
     </topic>
 </article>
