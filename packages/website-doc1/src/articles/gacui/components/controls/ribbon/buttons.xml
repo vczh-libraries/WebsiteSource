@@ -14,7 +14,65 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;RibbonButtons/&gt;</b> automatically reorganize buttons and change their control templates
+            when the size of <b>&lt;RibbonButtons/&gt;</b> changes.
         </p>
+        <p>
+            <b>MaxSize</b> and <b>MinSize</b> limits how control templates of buttons are changed.
+            Valid values of these properties are <b>Large</b>, <b>Small</b> and <b>Icon</b>.
+            There are no default values for these properties.
+        </p>
+        <p>
+            Multiple <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;RibbonIconLabel/&gt;</b>
+            are expected in the <b>Buttons</b> property.
+            You can put other controls in <b>Buttons</b>,
+            but only <b>(vl::)presentation::controls::GuiToolstripButton</b>
+            and <b>(vl::)presentation::controls::GuiRibbonIconLabel</b>
+            get their control templates managed.
+        </p>
+        <topic>
+            <title>Button Size and Control Templates</title>
+            <p>
+                When the expected size is <b>Large</b>,
+                the following control templates are applied to <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;RibbonIconLabel/&gt;</b>:
+                <ul>
+                    <li><b>&lt;RibbonLargeButton/&gt;</b></li>
+                    <li><b>&lt;RibbonLargeDropdownButton/&gt;</b></li>
+                    <li><b>&lt;RibbonLargeSplitButton/&gt;</b></li>
+                    <li><b>&lt;RibbonSmallIconLabel/&gt;</b></li>
+                </ul>
+            </p>
+            <p>
+                When the expected size is <b>Small</b>,
+                the following control templates are applied to <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;RibbonIconLabel/&gt;</b>:
+                <ul>
+                    <li><b>&lt;ToolstripButton/&gt;</b></li>
+                    <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+                    <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+                    <li><b>&lt;RibbonSmallIconLabel/&gt;</b></li>
+                </ul>
+            </p>
+            <p>
+                When the expected size is <b>Icon</b>,
+                the following control templates are applied to <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;RibbonIconLabel/&gt;</b>:
+                <ul>
+                    <li><b>&lt;RibbonSmallButton/&gt;</b></li>
+                    <li><b>&lt;RibbonSmallDropdownButton/&gt;</b></li>
+                    <li><b>&lt;RibbonSmallSplitButton/&gt;</b></li>
+                    <li><b>&lt;RibbonIconLabel/&gt;</b></li>
+                </ul>
+            </p>
+            <p>
+                These default values could be overrided by the control template of <b>&lt;RibbonButtons/&gt;</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Sample of Button Sizes</title>
+            <p>
+                The following sample shows how
+                <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;RibbonIconLabel/&gt;</b>
+                look like in different size.
+            </p>
+        </topic>
     </topic>
 </article>
