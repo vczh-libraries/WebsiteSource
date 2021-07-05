@@ -45,6 +45,7 @@
         </p>
         <p>
             <b>&lt;ToolstripButton/&gt;</b> is the button control for toolstrips and ribbons.
+            It respons to the <b>Large</b>, <b>Small</b> and <b>Icon</b> size in <b>&lt;RibbonButtons/&gt;</b>.
         </p>
         <p>
             Please check out
@@ -54,6 +55,9 @@
             for details about using <b>&lt;ToolstripButton/&gt;</b>.
             Toolstrip buttons in toolstrip controls and ribbon controls have exactly same functionalities.
             Ribbon controls only provide more themes.
+        </p>
+        <p>
+            <sample name="control_ribbon_buttonsize2"/>
         </p>
     </topic>
 </article>

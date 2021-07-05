@@ -20,7 +20,15 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;RibbonIconLabel/&gt;</b> is a container with an icon and a label.
+            It only respons to the <b>Small</b> and <b>Icon</b> size in <b>&lt;RibbonButtons/&gt;</b>.
+        </p>
+        <p>
+            The <b>Image</b> property defines the icon.
+            Everything put inside this control is displayed to the right side of the label.
+        </p>
+        <p>
+            <sample name="control_ribbon_buttonsize2"/>
         </p>
     </topic>
 </article>
