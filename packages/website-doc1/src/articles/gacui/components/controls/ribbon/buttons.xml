@@ -73,6 +73,32 @@
                 <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;RibbonIconLabel/&gt;</b>
                 look like in different size.
             </p>
+            <p>
+                <sample name="control_ribbon_buttonsize"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Auto Sizing</title>
+            <p>
+                <b>&lt;ToolstripButton/&gt;</b> accepts size from <b>Large</b> to <b>Icon</b>.
+                But <b>&lt;RibbonIconLabel/&gt;</b> only accepts size from <b>Small</b> to <b>Icon</b>.
+                So they cannot be mixed in the same <b>&lt;RibbonButtons/&gt;</b> where <b>Large</b> is possible.
+            </p>
+            <p>
+                Typically,
+                <b>&lt;RibbonIconLabel/&gt;</b> is much large than <b>&lt;ToolstripButton/&gt;</b> in width,
+                so they are not recommended to be mixed in the same column in <b>&lt;RibbonButtons/&gt;</b>.
+                <b>&lt;RibbonButtons/&gt;</b> groups every three controls in one column.
+            </p>
+            <p>
+                Multiple <b>&lt;RibbonButtons/&gt;</b> can be put in one <b>&lt;RibbonGroup/&gt;</b>
+                and have different sizing configuration.
+                A <b>&lt;RibbonSplitter/&gt;</b> is recommended but not required
+                between two <b>&lt;RibbonButtons/&gt;</b> in the same <b>&lt;RibbonGroup/&gt;</b>
+            </p>
+            <p>
+                <sample name="control_ribbon_buttonsize2"/>
+            </p>
         </topic>
     </topic>
 </article>

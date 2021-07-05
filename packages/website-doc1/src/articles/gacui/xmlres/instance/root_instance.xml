@@ -71,6 +71,12 @@
             </p>
         </topic>
         <topic>
+            <title>&lt;RibbonTabPage&gt;</title>
+            <p>
+                RibbonTabPage is a child control for RibbonTab.
+            </p>
+        </topic>
+        <topic>
             <title>&lt;CustomControl&gt;</title>
             <p>
                 CustomControl can be a child control for any control.
