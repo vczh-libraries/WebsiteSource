@@ -14,7 +14,35 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;RibbonSplitter/&gt;</b> splits controls in <b>&lt;RibbonGroup/&gt;</b>.
         </p>
+        <p>
+            For example,
+            <b>&lt;RibbonButtons/&gt;</b> groups every three buttons together,
+            but there is no splitter between buttons.
+            In order to create a visible splitter in a <b>&lt;RibbonButtons/&gt;</b> of six buttons,
+            a <b>&lt;RibbonSplitter/&gt;</b> is put between two <b>&lt;RibbonButtons/&gt;</b>,
+            each having three buttons.
+        </p>
+        <p>
+            If a button never changes into smaller size,
+            <b>&lt;RibbonLargeButton/&gt;</b>, <b>&lt;RibbonLargeDropdownButton/&gt;</b> and <b>&lt;RibbonLargeSplitButton/&gt;</b>
+            are recommended to put in <b>&lt;RibbonGroup/&gt;</b> directly,
+            instead of putting multiple <b>&lt;ToolstripButton/&gt;</b> in one <b>&lt;RibbonButtons/&gt;</b>,
+            having both <b>MaxSize</b> and <b>MinSizee</b> set to <b>Large</b>.
+        </p>
+        <p>
+            Typically,
+            <b>&lt;RibbonSplitters/&gt;</b> is designed for split buttons,
+            since <b>&lt;RibbonToolstrips/&gt;</b> and <b>&lt;BindableRibbonGalleryList/&gt;</b> are recommended
+            to have exclusive <b>&lt;RibbonGroup/&gt;</b> for each of them.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Here is a simplified version about how to build a ribbon application:
+                <sample name="control_ribbon_empty"/>
+            </p>
+        </topic>
     </topic>
 </article>
