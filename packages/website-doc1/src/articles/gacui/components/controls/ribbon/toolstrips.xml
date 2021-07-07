@@ -34,6 +34,7 @@
         <topic>
             <title>Sample</title>
             <p>
+                <sample name="control_ribbon_toolstrip"/>
             </p>
         </topic>
     </topic>
