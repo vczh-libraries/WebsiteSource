@@ -49,7 +49,6 @@
                 In API naming convention, <b>VlppReflection</b> uses <b>class</b> for reference types, and <b>struct</b> for data type.
                 A reference type can only be created and stored in a pointer, it contains fields, methods, properties, events, it also allow inheritance.
                 A data type contains only data, there is no methods and events, and inheritance is not allowed.
-                A data type contains only data, there is no methods and events, and inheritance is not allowed.
             </p>
             <p>
                 C++ primitive types, important types and containers from <b>Vlpp</b> are all reflectable.
