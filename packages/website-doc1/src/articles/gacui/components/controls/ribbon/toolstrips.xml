@@ -14,7 +14,27 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;RibbonToolstrips/&gt;</b> stores <b>&lt;ToolstripButton/&gt;</b> in the <b>Groups</b> property.
+            Splitters are automatically inserted between groups.
         </p>
+        <p>
+            Usually buttons are organized in two rows.
+            When there is not enough space,
+            buttons will be organized in three rows.
+        </p>
+        <p>
+            The following controls are expected inside each <b>&lt;ToolstripGroup/&gt;</b>:
+            <ul>
+                <li><b>&lt;ToolstripButton/&gt;</b></li>
+                <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+                <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+            </ul>
+            There is not need to have <b>&lt;ToolstripSplitter/&gt;</b> in groups.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+            </p>
+        </topic>
     </topic>
 </article>
