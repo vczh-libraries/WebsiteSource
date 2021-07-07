@@ -18,5 +18,9 @@
             It looks like a label.
             It doesn't react to user input.
         </p>
+        <p>
+            The same control template is also used in <b>&lt;BindableRibbonGalleryList/&gt;</b>
+            to render group titles of items.
+        </p>
     </topic>
 </article>

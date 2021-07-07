@@ -101,9 +101,86 @@
         </topic>
         <topic>
             <title>Item Source Properties</title>
+            <topic>
+                <title>ItemSource</title>
+                <p>
+                    This property works exactly as
+                    <a href="/gacui/components/controls/list/bindable.html#ItemSource-property">
+                        the ItemSource property
+                    </a> in other bindable list controls.
+                </p>
+            </topic>
+            <topic>
+                <title>GroupTitleProperty and GroupChildrenProperty</title>
+                <p>
+                    These are
+                    <a href="/gacui/xmlres/instance/properties.html#Property-Name-func-data-Object-PROPERTY-TYPE">
+                        readable properties
+                    </a>.
+                    Grouping is enabled only when both of these properties are set.
+                </p>
+                <p>
+                    When grouping is enabled,
+                    items in <b>ItemSource</b> become group headers.
+                    <b>GroupTitleProperty</b> defines the titie of each group.
+                    <b>GroupChildrenProperty</b> defines the collection of items in each group.
+                    <b>ItemTemplate</b> is created to renderer items in groups.
+                </p>
+                <p>
+                    When grouping is disabled,
+                    <b>ItemTemplate</b> is created to renderer items in <b>ItemSource</b>.
+                </p>
+            </topic>
         </topic>
         <topic>
             <title>Methods</title>
+            <topic>
+                <title>IndexToGalleryPos and GalleryPosToIndex</title>
+                <p>
+                    These methods convert between index of items and index of items in groups.
+                </p>
+                <p>
+                    <b>(vl::)presentation::controls::GalleryPos</b> defines the index of items in groups.
+                </p>
+                <p>
+                    When grouping is enabled,
+                    the <b>group</b> field is the position of the group in <b>ItemSource</b>,
+                    and the <b>item</b> field is the position of the item in this group.
+                </p>
+                <p>
+                    When grouping is disabled,
+                    the <b>group</b> field is always <b>0</b>,
+                    and the <b>item</b> field is the position of the item in <b>ItemSource</b>.
+                </p>
+                <p>
+                    "Index" defines the position of items in a virtual list,
+                    this virtual list merges items of all groups together.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectItem</title>
+                <p>
+                    This method selects an item.
+                </p>
+            </topic>
+            <topic>
+                <title>ApplyItem</title>
+                <p>
+                    This method selects an item,
+                    and apply the effect of this item.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Events</title>
+            <p>
+                <ul>
+                    <li><b>SelectionChanged</b>: Raises when an item is selected by <b>SelectItem</b>.</li>
+                    <li><b>PreviewStarted</b>: Raises when the mouse enters an item.</li>
+                    <li><b>PreviewStopped</b>: Raises when the mouse leaves an item.</li>
+                    <li><b>ItemApplied</b>: Raises when an item is selected by <b>ApplyItem</b> or by user input.</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Using RibbonToolstripGalleryList</title>
