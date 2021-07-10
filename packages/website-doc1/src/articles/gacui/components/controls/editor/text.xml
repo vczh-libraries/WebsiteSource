@@ -80,7 +80,7 @@
                 The <b>CaretLarge</b> property returns the one closer to the end.
             </p>
             <p>
-                <b>SetCaret</b> changes <b>CaretBegin</b> and <b>CaretEnd</b> at the same time.
+                <b>Select</b> changes <b>CaretBegin</b> and <b>CaretEnd</b> at the same time.
                 To cancel the selection and move the caret,
                 just set these two properties to the same value.
             </p>
@@ -95,7 +95,7 @@
         <topic>
             <title>Selection</title>
             <p>
-                The <b>SelectionText</b> returns the selected text.
+                The <b>SelectionText</b> property returns the selected text.
                 Both <b>SetSelectionText</b> and <b>SetSelectionTextAsKeyInput</b> replace the selected text with another text.
                 <b>SetSelectionTextAsKeyInput</b> pretends that the user is typing,
                 it could trigger <b>Auto Complete</b>.

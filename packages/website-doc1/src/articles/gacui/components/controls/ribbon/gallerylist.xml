@@ -187,7 +187,10 @@
             </p>
         </topic>
         <topic>
-            <title>Using RibbonToolstripGalleryList</title>
+            <title>Sample</title>
+            <p>
+                <sample name="control_ribbon_gallery"/>
+            </p>
         </topic>
     </topic>
 </article>
