@@ -6,13 +6,14 @@
                 <li>
                     <b>&lt;BindableRibbonGalleryList/&gt;</b>
                     <ul>
-                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableRibbonGalleryList*</li>
-                        <li><b>Template Tag</b>: &lt;RibbonGalleryListTemplate/&gt;</li>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableRibbonGalleryL
+                        <li><b>Template Tag</b>: &lt;RibbonGalleryListTemplate/&gt;</li>ist*</li>
+                        <li><b>Item Template Tag</b>: &lt;TextListItemTemplate/&gt;</li>
                         <li><b>Template Name</b>: RibbonGalleryList</li>
                     </ul>
                 </li>
                 <li>
-                    <b>Embedded Gallery List</b>
+                    <b>Gallery List in Dropdown Menu</b>
                     <ul>
                         <li><b>Template Tag</b>: &lt;TextListTemplate/&gt;</li>
                         <li><b>Template Name</b>: RibbonGalleryItemList</li>
