@@ -6,8 +6,8 @@
                 <li>
                     <b>&lt;BindableRibbonGalleryList/&gt;</b>
                     <ul>
-                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableRibbonGalleryL
-                        <li><b>Template Tag</b>: &lt;RibbonGalleryListTemplate/&gt;</li>ist*</li>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableRibbonGalleryList*</li>
+                        <li><b>Template Tag</b>: &lt;RibbonGalleryListTemplate/&gt;</li>
                         <li><b>Item Template Tag</b>: &lt;TextListItemTemplate/&gt;</li>
                         <li><b>Template Name</b>: RibbonGalleryList</li>
                     </ul>
@@ -126,10 +126,13 @@
                     <b>GroupTitleProperty</b> defines the titie of each group.
                     <b>GroupChildrenProperty</b> defines the collection of items in each group.
                     <b>ItemTemplate</b> is created to renderer items in groups.
+                    In this case,
+                    <b>env.ItemType</b> is the type of a group.
                 </p>
                 <p>
                     When grouping is disabled,
                     <b>ItemTemplate</b> is created to renderer items in <b>ItemSource</b>.
+                    <b>env.ItemType</b> is the type of an item.
                 </p>
             </topic>
         </topic>
