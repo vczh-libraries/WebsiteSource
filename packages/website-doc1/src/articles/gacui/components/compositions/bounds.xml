@@ -15,7 +15,7 @@
             </p>
             <p>
                 When it is <b>true</b>,
-
+                its <b>PreferredBounds</b> will be considered while calculating <b>MinPreferredClientSize</b> of its parent composition.
             </p>
         </topic>
         <topic>

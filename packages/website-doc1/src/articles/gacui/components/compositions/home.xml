@@ -157,9 +157,9 @@
                 <p>
                     The minimum size is controlled by the following properties:
                     <ul>
-                        <li>OwnedElement</li>
-                        <li>MinSizeLimitation</li>
-                        <li>PreferredMinSize</li>
+                        <li><b>OwnedElement</b></li>
+                        <li><b>MinSizeLimitation</b></li>
+                        <li><b>PreferredMinSize</b></li>
                     </ul>
                 </p>
                 <p>
@@ -204,9 +204,9 @@
                 <p>
                     The position is controlled by the following properties:
                     <ul>
-                        <li>Margin, defaults to (0,0,0,0)</li>
-                        <li>AlignmentToParent, defaults to (-1,-1,-1,-1)</li>
-                        <li>InternalMargin of the parent composition, defaults to (0,0,0,0)</li>
+                        <li><b>Margin</b>, defaults to (0,0,0,0)</li>
+                        <li><b>AlignmentToParent</b>, defaults to (-1,-1,-1,-1)</li>
+                        <li><b>InternalMargin</b> of the parent composition, defaults to (0,0,0,0)</li>
                     </ul>
                 </p>
                 <p>
@@ -297,6 +297,76 @@
                 This process never stops,
                 the window will keep growing when it is resizing,
                 until forever.
+            </p>
+        </topic>
+        <topic>
+            <title>Other Properties</title>
+            <topic>
+                <title>AssociatedControl</title>
+                <p>
+                    This property returns the control,
+                    whose <b>BoundsComposition</b> is this composition.
+                </p>
+                <p>
+                    This property could return <b>null</b> when this composition is not a <b>BoundsComposition</b> of a control.
+                </p>
+            </topic>
+            <topic>
+                <title>RelatedControl</title>
+                <p>
+                    This property returns the most inner control that contains this composition.
+                </p>
+                <p>
+                    This property could return <b>null</b> when this composition has not been put in a control yet.
+                </p>
+            </topic>
+            <topic>
+                <title>RelatedControlHost</title>
+                <p>
+                    This property returns the window that contains this composition.
+                </p>
+                <p>
+                    This property could return <b>null</b> when this composition has not been put in a control yet.
+                    Or the control has not been put in a window yet.
+                </p>
+            </topic>
+            <topic>
+                <title>MinPreferredClientSize</title>
+                <p>
+                    This property returns the smallest possible size of this composition.
+                </p>
+                <p>
+                    This property is a readonly property.
+                    Unlike <b>PreferredMinSize</b> which is customizable constraint for calculating the minimum size,
+                    this property returns the calculated result.
+                </p>
+            </topic>
+            <topic>
+                <title>PreferredBounds</title>
+                <p>
+                    This property returns the perfect position and size for this composition.
+                </p>
+                <p>
+                    This is not the final result,
+                    it could be inaccurate because the calculation is based on information that could be outdated,
+                    when properties of some elements are changed after the previous rendering.
+                </p>
+            </topic>
+            <topic>
+                <title>Bounds</title>
+                <p>
+                    This property returns the relative position of this composition in its parent composition.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>ForceCalculateSizeImmediately Method</title>
+            <p>
+                This function makes this property refresh its size based on constraints immediately.
+                But if elements in this composition have not been rendered yet,
+                or have not been rendered since some properties of elements are changed,
+                this function could return an inaccurate result.
+                This depends on the implementation of element renderers.
             </p>
         </topic>
     </topic>

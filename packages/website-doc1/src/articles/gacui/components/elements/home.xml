@@ -33,9 +33,9 @@
                 Some elements has a <b>Shape</b> property to define its shape.
                 It accepts 3 kinds of values:
                 <ul>
-                    <li><b>shape:Rectangle</b>: A rectangle.</li>
-                    <li><b>shape:Ellipse</b>: An ellipse.</li>
-                    <li><b>shape:RoundRect radiusX:x radiusY:y</b>: A rectangle with round coners. Radius on X and Y axis for corners are required in the value.</li>
+                    <li><b>shapeType:Rectangle</b>: A rectangle.</li>
+                    <li><b>shapeType:Ellipse</b>: An ellipse.</li>
+                    <li><b>shapeType:RoundRect radiusX:x radiusY:y</b>: A rectangle with round coners. Radius on X and Y axis for corners are required in the value.</li>
                 </ul>
             </p>
         </topic>
