@@ -95,6 +95,12 @@
     </article>
   </article>
   <article name="Control Templates" file="ctemplates/home"/>
-  <article name="Item Templates" file="itemplates/home"/>
+  <article name="Item Templates" file="itemplates/home">
+    <article name="&lt;ListItemTemplate&gt;" file="itemplates/listitemtemplate"/>
+    <article name="&lt;TextListItemTemplate&gt;" file="itemplates/textlistitemtemplate"/>
+    <article name="&lt;TreeItemTemplate&gt;" file="itemplates/treeitemtemplate"/>
+    <article name="&lt;GridVisualizerTemplate&gt;" file="itemplates/gridvisualizertemplate"/>
+    <article name="&lt;GridEditorTemplate&gt;" file="itemplates/grideditortemplate"/>
+  </article>
   <article name="Components" file="components/home"/>
 </reference>
