@@ -48,7 +48,7 @@
                             </ul>
                         </li>
                         <li>
-                            <b>&lt;ControlTemplate/&gt;</b>
+                            &lt;ControlTemplate/&gt;
                             <ul>
                                 <li>
                                     GuiGridCellTemplate
@@ -92,6 +92,15 @@
             </a>
             If you need a customizable grid,
             you are recommended to use <b>&lt;BindableDataGrid/&gt;</b>.
+        </p>
+        <p>
+            Properties of <b>GuiTemplate</b> are all <b>input property</b>:
+            <ul>
+                <li><b>Font</b>: Always sync to the <b>Font</b> property of the list control.</li>
+                <li><b>Context</b>: Always sync to the <b>Context</b> property of the list control.</li>
+                <li><b>VisuallyEnabled</b>: Always sync to the <b>VisuallyEnabled</b> property of the list control.</li>
+                <li><b>Text</b>: The text representation of a list item.</li>
+            </ul>
         </p>
     </topic>
 </article>
