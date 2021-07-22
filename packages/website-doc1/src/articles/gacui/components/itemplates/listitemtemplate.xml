@@ -12,7 +12,33 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;ListItemTemplate/&gt;</b> derives from <b>GuiTemplate</b>.
+            It has the following properties additional to its base class:
         </p>
+        <topic>
+            <title>Input Property</title>
+            <topic>
+                <title>Selected</title>
+                <p>
+                    This property is assigned by the list control.
+                    When the item is selected,
+                    this property becomes <b>true</b>.
+                    When the item is unselected,
+                    this property becomes <b>false</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>Index</title>
+                <p>
+                    This property is assigned by the list control.
+                    The number is the position of this item in the list control.
+                    The <b>Index</b> of the first item is <b>0</b>.
+                </p>
+                <p>
+                    This property could be changed when items before this item
+                    are inserted to or removed from the list control.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>

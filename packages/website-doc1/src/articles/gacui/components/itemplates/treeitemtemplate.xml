@@ -12,7 +12,48 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;TreeItemTemplate/&gt;</b> derives from <b>&lt;TextListItemTemplate/&gt;</b>.
+            It has the following properties additional to its base class:
         </p>
+        <topic>
+            <title>Input Property</title>
+            <topic>
+                <title>Expanding</title>
+                <p>
+                    This property is assigned by the list control.
+                    When the child item list is expanded,
+                    this property becomes <b>true</b>.
+                    When the child item list is collapsed,
+                    this property becomes <b>false</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>Expandable</title>
+                <p>
+                    This property is assigned by the list control.
+                    This property is <b>true</b> when there are child items under this item.
+                    When child items are added to or removed from this item,
+                    this property could change.
+                </p>
+            </topic>
+            <topic>
+                <title>Level</title>
+                <p>
+                    This property is assigned by the list control.
+                    For all top level items rendered in the list control
+                    (which are child items under the root item),
+                    the <b>Level</b> is <b>0</b>.
+                    For all other items,
+                    their <b>Level</b> is one greater than its parent item.
+                </p>
+            </topic>
+            <topic>
+                <title>Image</title>
+                <p>
+                    This property is assigned by the list control.
+                    It is the image of the item.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>

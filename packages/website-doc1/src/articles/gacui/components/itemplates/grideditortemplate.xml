@@ -12,7 +12,116 @@
             </ul>
         </p>
         <p>
-            The page is under construction.
+            <b>&lt;GridEditorTemplate/&gt;</b> derives from <b>&lt;ControlTemplate/&gt;</b>.
+            It has the following properties additional to its base class:
         </p>
+        <topic>
+            <title>Input Property</title>
+            <topic>
+                <title>PrimaryTextColor</title>
+                <p>
+                    This property is assigned by the list control.
+                    It comes from the <b>PrimaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b> that applied to the list control.
+                </p>
+                <p>
+                    The list control does not track the changing of the <b>PrimaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b>.
+                    If it is changed,
+                    <b>PrimaryTextColor</b> of item templates are not changed automatically.
+                    But when a list control is assigned with a new control template,
+                    <b>PrimaryTextColor</b> of item templates will be updated as well.
+                </p>
+            </topic>
+            <topic>
+                <title>SecondaryTextColor</title>
+                <p>
+                    This property is assigned by the list control.
+                    It comes from the <b>SecondaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b> that applied to the list control.
+                </p>
+                <p>
+                    The list control does not track the changing of the <b>SecondaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b>.
+                    If it is changed,
+                    <b>SecondaryTextColor</b> of item templates are not changed automatically.
+                    But when a list control is assigned with a new control template,
+                    <b>SecondaryTextColor</b> of item templates will be updated as well.
+                </p>
+            </topic>
+            <topic>
+                <title>ItemSeparatorColor</title>
+                <p>
+                    This property is assigned by the list control.
+                    It comes from the <b>ItemSeparatorColor</b> property of <b>&lt;ListViewTemplate/&gt;</b> that applied to the list control.
+                </p>
+                <p>
+                    The list control does not track the changing of the <b>ItemSeparatorColor</b> property of <b>&lt;ListViewTemplate/&gt;</b>.
+                    If it is changed,
+                    <b>ItemSeparatorColor</b> of item templates are not changed automatically.
+                    But when a list control is assigned with a new control template,
+                    <b>ItemSeparatorColor</b> of item templates will be updated as well.
+                </p>
+            </topic>
+            <topic>
+                <title>LargeImage</title>
+                <p>
+                    This property is assigned by the list control.
+                    It is the large image of the item.
+                </p>
+            </topic>
+            <topic>
+                <title>SmallImage</title>
+                <p>
+                    This property is assigned by the list control.
+                    It is the small image of the item.
+                </p>
+            </topic>
+            <topic>
+                <title>RowValue</title>
+                <p>
+                    This property is assigned by the list control.
+                    This is the row object for the item.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Output Property</title>
+            <topic>
+                <title>CellValueSaved</title>
+                <p>
+                    This property is assigned by the item template.
+                    The default value is <b>true</b>.
+                    When a cell is being editing but the value has not been updated to the <b>CellValue</b> property,
+                    update this property to <b>false</b>.
+                    When a new value is updated to the <b>CellValue</b> property,
+                    update this property to <b>true</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>FocusControl</title>
+                <p>
+                    This property is assigned by the item template.
+                    The default value is <b>null</b>.
+                </p>
+                <p>
+                    When an editor is opened for a cell,
+                    if <b>FocusControl</b> is not <b>null</b>,
+                    <b>FocusControl</b> will receive the focus.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Exchange Property</title>
+            <topic>
+                <title>CellValue</title>
+                <p>
+                    This property is assigned by the list control and the item template.
+                    This is the cell object for the cell.
+                </p>
+                <p>
+                    When an editor believes a new value is ready for this cell,
+                    update this property with the new value.
+                    For example,
+                    an editor with a text box could update this property whenever the text in the text box is changed.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>

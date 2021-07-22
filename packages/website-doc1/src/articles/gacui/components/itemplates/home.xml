@@ -26,10 +26,13 @@
                                     for
                                     <a href="/gacui/components/controls/list/textlist.html">
                                         <b>&lt;TextList/&gt;</b>
-                                    </a>
-                                    and
+                                    </a>,
                                     <a href="/gacui/components/controls/list/bindabletextlist.html">
                                         <b>&lt;BindableTextList/&gt;</b>
+                                    </a>
+                                    and
+                                    <a href="/gacui/components/controls/ribbon/gallerylist.html">
+                                        <b>&lt;BindableRibbonGalleryList/&gt;</b>
                                     </a>
                                     <ul>
                                         <li>
@@ -101,6 +104,14 @@
                 <li><b>VisuallyEnabled</b>: Always sync to the <b>VisuallyEnabled</b> property of the list control.</li>
                 <li><b>Text</b>: The text representation of a list item.</li>
             </ul>
+        </p>
+        <p>
+            <b>IMPORTANT</b>:
+            All input/exchange properties of item templates will only be assigned after it is created.
+            Property change events of these properties are expected to be subscribed
+            in order to correctly behave when these properties are initialized or updated.
+            In GacUI XML Resource,
+            data binding is recommended on these properties to reduce the complexity of creating item templates.
         </p>
     </topic>
 </article>
