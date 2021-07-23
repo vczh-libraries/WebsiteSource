@@ -126,5 +126,14 @@
                 </p>
             </topic>
         </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_datagrid_visualizer"/>
+            </p>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml" image="kb_controls_datagrid.gif"/>
+            </p>
+        </topic>
     </topic>
 </article>

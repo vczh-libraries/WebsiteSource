@@ -97,6 +97,18 @@
             you are recommended to use <b>&lt;BindableDataGrid/&gt;</b>.
         </p>
         <p>
+            Typically,
+            a <b>&lt;TextList/&gt;</b> or <b>&lt;BindableTextList/&gt;</b> is used with <b>&lt;ComboBox/&gt;</b> together.
+            Since <b>&lt;TextListItemTemplate/&gt;</b> indirectly derives from <b>&lt;GuiTemplate/&gt;</b>,
+            the combo box and the list control could share the same <b>ItemTemplate</b>.
+        </p>
+        <p>
+            When creating item templates for <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b> compositions,
+            anything derives from <b>GuiTemplate</b> could be used.
+            But since they are compositions instead of controls,
+            no property of the created item template instance will be assigned.
+        </p>
+        <p>
             Properties of <b>GuiTemplate</b> are all <b>input property</b>:
             <ul>
                 <li><b>Font</b>: Always sync to the <b>Font</b> property of the list control.</li>

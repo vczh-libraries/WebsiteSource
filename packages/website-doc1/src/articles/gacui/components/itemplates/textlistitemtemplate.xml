@@ -42,5 +42,11 @@
                 </p>
             </topic>
         </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/ColorPicker/UI/Resource.xml" image="kb_itemplates_colorpicker.gif"/>
+            </p>
+        </topic>
     </topic>
 </article>
