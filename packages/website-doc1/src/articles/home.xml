@@ -129,7 +129,14 @@
             <p>
                 GacUI has a high performance and extensible framework,
                 to enable porting to different platform using different rendering engine.
-                Windows is ready, macOS and Linux support will be done in 2.0.
+                <ul>
+                    <li><b>Windows</b>: <a href="https://github.com/vczh-libraries/Release">vczh-libraries/Release</a></li>
+                    <li><b>Linux</b>: <a href="https://github.com/vczh-libraries/gGac">vczh-libraries/gGac</a></li>
+                    <li><b>macOS</b>: <a href="https://github.com/vczh-libraries/iGac">vczh-libraries/iGac</a></li>
+                </ul>
+                At this moment,
+                the Linux port and the macOS port have not been merged into the release repo yet,
+                but it will soon be done.
             </p>
             <p>
                 GacUI also has a rich set of layouts, controls, skins and data bindings.

@@ -5,18 +5,21 @@
             A GacUI application requires a user defined function <b>void GuiMain(void)</b>.
             In order to start a GacUI application,
             one of the following functions must be called in entry function.
-        </p>
-        <p>
-            For Windows,
-            <b>SetupWindowsDirect2DRenderer</b> or <b>SetupWindowsGDIRenderer</b> must be called in <b>WinMain</b>,
-            which initialize necessary objects and call <b>GuiMain</b> with different rendering techniques.
-        </p>
-        <p>
-            For macOS,
-            <b>SetupOSXCoreGraphicsRenderer</b> must be called in <b>main</b>.
-            The <a href="https://github.com/vczh-libraries/iGac">mac port</a> is almost done,
-            but there is no plan to release it within GacUI 1.0,
-            people who want to use GacUI on mac at the moment need to clone this repo.
+            <ul>
+                <li>
+                    For Windows,
+                    <b>SetupWindowsDirect2DRenderer</b> or <b>SetupWindowsGDIRenderer</b> must be called in <b>WinMain</b>,
+                    which initialize necessary objects and call <b>GuiMain</b> with different rendering techniques.
+                </li>
+                <li>
+                    For macOS,
+                    <b>SetupOSXCoreGraphicsRenderer</b> must be called in <b>main</b>.
+                </li>
+                <li>
+                    For Linux,
+                    <b>SetupGGacRenderer</b> must be called in <b>main</b>.
+                </li>
+            </ul>
         </p>
         <p>
             When <b>GuiMain</b> is called,

@@ -105,7 +105,12 @@
                 Implementing <b>INativeController</b> is a super complex topic.
                 In order to port GacUI to a new platform,
                 you must know everything about how GacUI interact with the OS.
-                It is highly recommended to read the Windows and macOS implementation for <b>INativeController</b> before creating yours.
+                It is highly recommended to read the
+                <a href="https://github.com/vczh-libraries/GacUI/tree/master/Source/NativeWindow/Windows">Windows</a>,
+                <a href="https://github.com/vczh-libraries/iGac">macOS</a>
+                and
+                <a href="https://github.com/vczh-libraries/gGac">Linux</a>
+                implementation for <b>INativeController</b> before creating yours.
                 Especially there are GDI and Direct2D support in Windows,
                 it is a good example to know how to allow multiple rendering techniques in one OS.
             </p>
