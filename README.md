@@ -60,3 +60,13 @@ inside the package folder:
 
 - **Debug**: Open `http://localhost:8080/doc/current/home.html` after running `npm run start`.
 - **Release**: Run `npm run download` to generate the whole website statically in `./lib/website`.
+
+## Developer Notes:
+
+Update multiple platform supporting information in:
+
+- packages\website-doc1\src\articles\home.xml
+- packages\website-doc1\src\articles\home\download.xml
+- packages\website-doc1\src\articles\gacui\running.xml
+- packages\website-doc1\src\articles\gacui\kb\application.xml
+- packages\website-doc1\src\articles\gacui\kb\osprovider.xml

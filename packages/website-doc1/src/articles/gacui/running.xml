@@ -8,11 +8,20 @@
             <ul>
                 <li><a href="/home/download.html">Download</a> GacUI from github.</li>
                 <li>
+                    For <b>Windows</b>,
                     Install Visual Studio 2017 Community or newer version
                     <ul>
                         <li>Go to <a href="https://visualstudio.microsoft.com">https://visualstudio.microsoft.com</a></li>
                         <li>Or use <a href="https://code.visualstudio.com/">Visual Studio Code</a> with <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Visual C++ Build Tools</a> instead.</li>
                     </ul>
+                </li>
+                <li>
+                    For <b>macOS</b>,
+                    (article to be completed)
+                </li>
+                <li>
+                    For <b>Linux</b>,
+                    (article to be completed)
                 </li>
             </ul>
         </p>

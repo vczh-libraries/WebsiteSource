@@ -2,7 +2,15 @@
     <topic>
         <title>Download Gaclib</title>
         <p>
-            Gaclib can be downloaded <a href="https://github.com/vczh-libraries/Release">here</a>.
+            Gaclib can be downloaded from:
+            <ul>
+                <li><b>Windows</b>: <a href="https://github.com/vczh-libraries/Release">vczh-libraries/Release</a></li>
+                <li><b>Linux</b>: <a href="https://github.com/vczh-libraries/gGac">vczh-libraries/gGac</a></li>
+                <li><b>macOS</b>: <a href="https://github.com/vczh-libraries/iGac">vczh-libraries/iGac</a></li>
+            </ul>
+            At this moment,
+            the Linux port and the macOS port have not been merged into the release repo yet,
+            but it will soon be done.
         </p>
         <topic>
             <title>Using C++ Source Code</title>
