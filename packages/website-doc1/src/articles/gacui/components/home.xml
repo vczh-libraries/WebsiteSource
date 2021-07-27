@@ -105,7 +105,7 @@
                                     <li>
                                         &lt;MenuTemplate&gt;
                                         <ul>            
-                                            <li>&lt;GuiRibbonToolstripMenuTemplate&gt;</li>
+                                            <li>&lt;RibbonToolstripMenuTemplate&gt;</li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -151,18 +151,18 @@
                             <li>
                                 &lt;TabTemplate&gt;
                                 <ul>
-                                    <li>&lt;GuiRibbonGroupTemplate&gt;</li>
+                                    <li>&lt;RibbonGroupTemplate&gt;</li>
                                 </ul>
                             </li>
                             <li>&lt;DatePickerTemplate&gt;</li>
-                            <li>&lt;GuiRibbonGroupTemplate&gt;</li>
-                            <li>&lt;GuiRibbonIconLabelTemplate&gt;</li>
-                            <li>&lt;GuiRibbonButtonsTemplate&gt;</li>
-                            <li>&lt;GuiRibbonToolstripsTemplate&gt;</li>
+                            <li>&lt;RibbonGroupTemplate&gt;</li>
+                            <li>&lt;RibbonIconLabelTemplate&gt;</li>
+                            <li>&lt;RibbonButtonsTemplate&gt;</li>
+                            <li>&lt;RibbonToolstripsTemplate&gt;</li>
                             <li>
-                                &lt;GuiRibbonGalleryTemplate&gt;
+                                &lt;RibbonGalleryTemplate&gt;
                                 <ul>
-                                    <li>&lt;GuiRibbonGalleryListTemplate&gt;</li>
+                                    <li>&lt;RibbonGalleryListTemplate&gt;</li>
                                 </ul>
                             </li>
                         </ul>

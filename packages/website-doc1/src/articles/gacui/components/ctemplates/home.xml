@@ -4,5 +4,84 @@
         <p>
             <a href="/gacui/kb/ctemplates.html">Control Templates</a> offer customization of control appearances.
         </p>
+        <p>
+            Here are all predefined control templates and their control themes:
+            <ul>
+                <li>
+                    <b>&lt;ControlTemplate/&gt;</b>: CustomControl, GroupBox, MenuBar, MenuSplitter, ToolstripToolBar, ToolstripSplitter, RibbonSplitter, RibbonToolstripHeader
+                    <ul>
+                        <li><b>&lt;LabelTemplate/&gt;</b>: Label, ShortcutKey</li>
+                        <li><b>&lt;SinglelineTextBoxTemplate/&gt;</b>: SinglelineTextBox</li>
+                        <li><b>&lt;DocumentLabelTemplate/&gt;</b>: DocumentLabel, DocumentTextBox</li>
+                        <li>
+                            <b>&lt;WindowTemplate/&gt;</b>: Window, Tooltip
+                            <ul>
+                                <li>
+                                    <b>&lt;MenuTemplate/&gt;</b>: Menu
+                                    <ul>            
+                                        <li><b>&lt;RibbonToolstripMenuTemplate/&gt;</b>: RibbonToolstripMenu</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>&lt;ButtonTemplate/&gt;</b>: Button
+                            <ul>
+                                <li>
+                                    <b>&lt;SelectableButtonTemplate/&gt;</b>: CheckBox, RadioButton, ListItemBackground, TreeItemExpander, CheckTextListItem, RadioTextListItem
+                                    <ul>
+                                        <li>
+                                            <b>&lt;ToolstripButtonTemplate/&gt;</b>: MenuBarButton, MenuItemButton, ToolstripButton, ToolstripDropdownButton, ToolstripSplitButton, RibbonSmallButton, RibbonSmallDropdownButton, RibbonSmallSplitButton, RibbonLargeButton, RibbonLargeDropdownButton, RibbonSplitButton
+                                            <ul>
+                                                <li><b>&lt;ListViewColumnHeaderTemplate/&gt;</b></li>
+                                                <li>
+                                                    <b>&lt;ComboBoxTemplate/&gt;</b>: ComboBox
+                                                    <ul>
+                                                        <li><b>&lt;DateComboBoxTemplate/&gt;</b>: DateComboBox</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><b>&lt;ScrollTemplate/&gt;</b>: ProgressBar, HScroll, VScroll, HTracker, VTracker</li>
+                        <li>
+                            <b>&lt;ScrollViewTemplate/&gt;</b>: ScrollView
+                            <ul>
+                                <li><b>&lt;MultilineTextBoxTemplate/&gt;</b>: MultilineTextBox</li>
+                                <li><b>&lt;DocumentViewerTemplate/&gt;</b>: DocumentViewer</li>
+                                <li>
+                                    <b>&lt;ListControlTemplate/&gt;</b>
+                                    <ul>
+                                        <li><b>&lt;TextListTemplate/&gt;</b>: TextList, RibbonGalleryItemList</li>
+                                        <li><b>&lt;ListViewTemplate/&gt;</b>: ListView</li>
+                                        <li><b>&lt;TreeViewTemplate/&gt;</b>: TreeView</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>&lt;TabTemplate/&gt;</b>: Tab
+                            <ul>
+                                <li><b>&lt;RibbonGroupTemplate/&gt;</b>: RibbonGroup</li>
+                            </ul>
+                        </li>
+                        <li><b>&lt;DatePickerTemplate/&gt;</b>: DatePicker</li>
+                        <li><b>&lt;RibbonGroupTemplate/&gt;</b>: RibbonGroup</li>
+                        <li><b>&lt;RibbonIconLabelTemplate/&gt;</b>: RibbonIconLabel, RibbonSmallIconLabel</li>
+                        <li><b>&lt;RibbonButtonsTemplate/&gt;</b>: RibbonButtons</li>
+                        <li><b>&lt;RibbonToolstripsTemplate/&gt;</b>: RibbonToolstrips</li>
+                        <li>
+                            <b>&lt;RibbonGalleryTemplate/&gt;</b>: RibbonGallery
+                            <ul>
+                                <li><b>&lt;RibbonGalleryListTemplate/&gt;</b>: RibbonGalleryList</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
     </topic>
 </article>
