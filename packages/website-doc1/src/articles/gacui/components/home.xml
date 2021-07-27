@@ -151,7 +151,7 @@
                             <li>
                                 &lt;TabTemplate&gt;
                                 <ul>
-                                    <li>&lt;RibbonGroupTemplate&gt;</li>
+                                    <li>&lt;RibbonTabTemplate&gt;</li>
                                 </ul>
                             </li>
                             <li>&lt;DatePickerTemplate&gt;</li>
