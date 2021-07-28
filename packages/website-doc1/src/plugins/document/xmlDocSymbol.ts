@@ -1,6 +1,6 @@
 import { PageLink } from 'gaclib-article';
 import { DocSymbol } from 'gaclib-article-document';
-import { DocTree } from './treeView';
+import { DocTree } from '../../treeView';
 
 export function convertDocSymbolToHyperlink(ds: DocSymbol, docTree: DocTree): PageLink {
     if (ds.docId !== undefined) {

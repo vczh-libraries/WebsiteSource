@@ -6,12 +6,12 @@ import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
+import { parseSample, renderSample } from './plugins/article/xmlSample';
+import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol';
+import { exampleRetriver } from './plugins/document/xmlExample';
+import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes';
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
-import { convertDocSymbolToHyperlink } from './xmlDocSymbol';
-import { exampleRetriver } from './xmlExample';
-import { getRegisteredTypes } from './xmlRegisteredTypes';
-import { parseSample, renderSample } from './xmlSample';
 
 const pathPrefix = `/doc/current`;
 

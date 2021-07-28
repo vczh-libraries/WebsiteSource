@@ -5,13 +5,13 @@ import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
 
 const templateCodeMapping: { [key: string]: string } = {
-    VLPP: path.join(__dirname, '../../../../Document/Tools/Examples/Vlpp/Main.cpp'),
-    VLPPOS: path.join(__dirname, '../../../../Document/Tools/Examples/VlppOS/Main.cpp'),
-    VLPPREGEX: path.join(__dirname, '../../../../Document/Tools/Examples/VlppRegex/Main.cpp'),
-    VLPPREFLECTION: path.join(__dirname, '../../../../Document/Tools/Examples/VlppReflection/Main.cpp'),
-    VLPPPARSER: path.join(__dirname, '../../../../Document/Tools/Examples/VlppParser/Main.cpp'),
-    WORKFLOW: path.join(__dirname, '../../../../Document/Tools/Examples/Workflow/Main.cpp'),
-    GACUI: path.join(__dirname, '../../../../Document/Tools/Examples/GacUI/Main.cpp')
+    VLPP: path.join(__dirname, '../../../../../../Document/Tools/Examples/Vlpp/Main.cpp'),
+    VLPPOS: path.join(__dirname, '../../../../../../Document/Tools/Examples/VlppOS/Main.cpp'),
+    VLPPREGEX: path.join(__dirname, '../../../../../../Document/Tools/Examples/VlppRegex/Main.cpp'),
+    VLPPREFLECTION: path.join(__dirname, '../../../../../../Document/Tools/Examples/VlppReflection/Main.cpp'),
+    VLPPPARSER: path.join(__dirname, '../../../../../../Document/Tools/Examples/VlppParser/Main.cpp'),
+    WORKFLOW: path.join(__dirname, '../../../../../../Document/Tools/Examples/Workflow/Main.cpp'),
+    GACUI: path.join(__dirname, '../../../../../../Document/Tools/Examples/GacUI/Main.cpp')
 };
 
 const templateCodeContent: { [key: string]: string } = {};
