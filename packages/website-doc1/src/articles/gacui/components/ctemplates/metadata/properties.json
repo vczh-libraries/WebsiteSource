@@ -1,0 +1,230 @@
+{
+    "ControlTemplate": {
+        "inputs": [
+            "Focused"
+        ],
+        "outputs": [
+            "ContainerComposition",
+            "FocusableComposition"
+        ]
+    },
+    "LabelTemplate": {
+        "inputs": [
+            "TextColor"
+        ],
+        "outputs": [
+            "DefaultTextColor"
+        ]
+    },
+    "SinglelineTextBoxTemplate": {
+        "outputs": [
+            "TextColor",
+            "CaretColor"
+        ]
+    },
+    "DocumentLabelTemplate": {
+        "outputs": [
+            "BaselineDocument",
+            "CaretColor"
+        ]
+    },
+    "WindowTemplate": {
+        "inputs": [
+            "MaximizedBox",
+            "MinimizedBox",
+            "Border",
+            "SizeBox",
+            "IconVisible",
+            "TitleBar",
+            "Maximized",
+            "Activated",
+            "CustomFramePadding",
+            "Icon"
+        ],
+        "outputs": [
+            "MaximizedBoxOption",
+            "MinimizedBoxOption",
+            "BorderOption",
+            "SizeBoxOption",
+            "IconVisibleOption",
+            "TitleBarOption",
+            "TooltipTemplate",
+            "ShortcutKeyTemplate",
+            "CustomFrameEnabled"
+        ]
+    },
+    "MenuTemplate": {},
+    "ButtonTemplate": {
+        "inputs": [
+            "State"
+        ]
+    },
+    "SelectableButtonTemplate": {
+        "inputs": [
+            "Selected"
+        ]
+    },
+    "ToolstripButtonTemplate": {
+        "inputs": [
+            "SubMenuExisting",
+            "SubMenuOpening",
+            "LargeImage",
+            "Image",
+            "ShortcutText"
+        ],
+        "outputs": [
+            "SubMenuTemplate",
+            "SubMenuHost"
+        ]
+    },
+    "ListViewColumnHeaderTemplate": {
+        "inputs": [
+            "SortingState"
+        ]
+    },
+    "ComboBoxTemplate": {
+        "inputs": [
+            "TextVisible"
+        ]
+    },
+    "ScrollTemplate": {
+        "inputs": [
+            "Commands",
+            "TotalSize",
+            "PageSize",
+            "Position"
+        ]
+    },
+    "ScrollViewTemplate": {
+        "outputs": [
+            "HorizontalScroll",
+            "VerticalScroll"
+        ]
+    },
+    "MultilineTextBoxTemplate": {
+        "inputs": [
+            "Commands"
+        ],
+        "outputs": [
+            "TextColor",
+            "CaretColor"
+        ]
+    },
+    "DocumentViewerTemplate": {
+        "outputs": [
+            "BaselineDocument",
+            "CaretColor"
+        ]
+    },
+    "ListControlTemplate": {
+        "outputs": [
+            "BackgroundTemplate"
+        ]
+    },
+    "TextListTemplate": {
+        "outputs": [
+            "TextColor",
+            "CheckBulletTemplate",
+            "RadioBulletTemplate"
+        ]
+    },
+    "ListViewTemplate": {
+        "outputs": [
+            "ColumnHeaderTemplate",
+            "PrimaryTextColor",
+            "SecondaryTextColor",
+            "ItemSeparatorColor"
+        ]
+    },
+    "TreeViewTemplate": {
+        "outputs": [
+            "ExpandingDecoratorTemplate",
+            "TextColor"
+        ]
+    },
+    "TabTemplate": {
+        "inputs": [
+            "Commands",
+            "TabPages",
+            "SelectedTabPage"
+        ],
+        "outputs": [
+            "TabOrder"
+        ]
+    },
+    "DatePickerTemplate": {
+        "inputs": [
+            "Commands",
+            "DateLocale",
+            "Date"
+        ]
+    },
+    "DateComboBoxTemplate": {
+        "outputs": [
+            "DatePickerTemplate"
+        ]
+    },
+    "RibbonTabTemplate": {
+        "outputs": [
+            "BeforeHeadersContainer",
+            "AfterHeadersContainer"
+        ]
+    },
+    "RibbonGroupTemplate": {
+        "inputs": [
+            "Commands",
+            "Expandable",
+            "Collapsed"
+        ],
+        "outputs": [
+            "LargeDropdownButtonTemplate",
+            "SubMenuTemplate"
+        ]
+    },
+    "RibbonIconLabelTemplate": {
+        "inputs": [
+            "Image"
+        ]
+    },
+    "RibbonButtonsTemplate": {
+        "outputs": [
+            "LargeButtonTemplate",
+            "LargeDropdownButtonTemplate",
+            "LargeSplitButtonTemplate",
+            "SmallButtonTemplate",
+            "SmallDropdownButtonTemplate",
+            "SmallSplitButtonTemplate",
+            "SmallIconLabelTemplate",
+            "IconButtonTemplate",
+            "IconDropdownButtonTemplate",
+            "IconSplitButtonTemplate",
+            "IconLabelTemplate"
+        ]
+    },
+    "RibbonToolstripsTemplate": {
+        "outputs": [
+            "ToolbarTemplate"
+        ]
+    },
+    "RibbonToolstripMenuTemplate": {
+        "outputs": [
+            "ContentComposition"
+        ]
+    },
+    "RibbonGalleryTemplate": {
+        "inputs": [
+            "Commands",
+            "ScrollUpEnabled",
+            "ScrollDownEnabled"
+        ]
+    },
+    "RibbonGalleryListTemplate": {
+        "outputs": [
+            "ItemListTemplate",
+            "MenuTemplate",
+            "HeaderTemplate",
+            "BackgroundTemplate",
+            "GroupContainerTemplate"
+        ]
+    }
+}
