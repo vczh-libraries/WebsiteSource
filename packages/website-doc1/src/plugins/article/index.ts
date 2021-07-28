@@ -28,7 +28,7 @@ export function renderArticlePlugin(plugin: {}): a.Content[] {
             return renderSample(plugin);
         }
         case 'ControlTemplatesPlugin': {
-            return renderControlTemplates(plugin);
+            return renderControlTemplates();
         }
         default: {
             throw new Error(`Unrecognized plugin kind: ${kind}.`);
