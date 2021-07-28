@@ -21,7 +21,7 @@ export function parseSample(e: Element): a.Plugin {
         url?: string;
     } = {};
     if (e.attributes === undefined) {
-        throw new Error(`Missing attribute "name", "file", "image" or "url" in <sample>`);
+        throw new Error(`Missing attribute "name", "file", "image" or "url" in <sample>.`);
     } else {
         for (const key of Object.keys(e.attributes)) {
             switch (key) {

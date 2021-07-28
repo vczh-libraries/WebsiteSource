@@ -92,88 +92,13 @@
             </p>
             <p>
                 <a href="/gacui/components/ctemplates/home.html">Here</a> contains detailed introduction for:
-                <ul>
-                    <li>
-                        &lt;ControlTemplate&gt;
-                        <ul>
-                            <li>&lt;LabelTemplate&gt;</li>
-                            <li>&lt;SinglelineTextBoxTemplate&gt;</li>
-                            <li>&lt;DocumentLabelTemplate&gt;</li>
-                            <li>
-                                &lt;WindowTemplate&gt;
-                                <ul>
-                                    <li>
-                                        &lt;MenuTemplate&gt;
-                                        <ul>            
-                                            <li>&lt;RibbonToolstripMenuTemplate&gt;</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                &lt;ButtonTemplate&gt;
-                                <ul>
-                                    <li>
-                                        &lt;SelectableButtonTemplate&gt;
-                                        <ul>
-                                            <li>
-                                                &lt;ToolstripButtonTemplate&gt;
-                                                <ul>
-                                                    <li>&lt;ListViewColumnHeaderTemplate&gt;</li>
-                                                    <li>
-                                                        &lt;ComboBoxTemplate&gt;
-                                                        <ul>
-                                                            <li>&lt;DateComboBoxTemplate&gt;</li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>&lt;ScrollTemplate&gt;</li>
-                            <li>
-                                &lt;ScrollViewTemplate&gt;
-                                <ul>
-                                    <li>&lt;MultilineTextBoxTemplate&gt;</li>
-                                    <li>&lt;DocumentViewerTemplate&gt;</li>
-                                    <li>
-                                       &lt;ListControlTemplate&gt;
-                                       <ul>
-                                            <li>&lt;TextListTemplate&gt;</li>
-                                            <li>&lt;ListViewTemplate&gt;</li>
-                                            <li>&lt;TreeViewTemplate&gt;</li>
-                                       </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                &lt;TabTemplate&gt;
-                                <ul>
-                                    <li>&lt;RibbonTabTemplate&gt;</li>
-                                </ul>
-                            </li>
-                            <li>&lt;DatePickerTemplate&gt;</li>
-                            <li>&lt;RibbonGroupTemplate&gt;</li>
-                            <li>&lt;RibbonIconLabelTemplate&gt;</li>
-                            <li>&lt;RibbonButtonsTemplate&gt;</li>
-                            <li>&lt;RibbonToolstripsTemplate&gt;</li>
-                            <li>
-                                &lt;RibbonGalleryTemplate&gt;
-                                <ul>
-                                    <li>&lt;RibbonGalleryListTemplate&gt;</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <control-templates details="false"/>
             </p>
         </topic>
         <topic>
             <title>Item Templates</title>
             <p>
-                <a href="/gacui/kb/itemplates.html">Control Templates</a> offer customization of list item appearances.
+                <a href="/gacui/kb/itemplates.html">Item Templates</a> offer customization of list item appearances.
             </p>
             <p>
                 <a href="/gacui/components/itemplates/home.html">Here</a> contains detailed introduction for:

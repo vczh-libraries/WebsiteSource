@@ -1,64 +1,87 @@
-<article>
+<article index="true">
     <topic>
         <title>Control Templates</title>
         <p>
             <a href="/gacui/kb/ctemplates.html">Control Templates</a> offer customization of control appearances.
         </p>
-        <p>
-            Multiple control themes could share the same control template class.
-            Multiple controls could share the same control theme.
-            <ul>
-                <li>These control themes are actually the same control class, like <b>&lt;CheckBox/&gt;</b> and <b>&lt;RadioButton/&gt;</b>.</li>
-                <li>The derived control class has no extra visual or layout feature, like <b>&lt;Window/&gt;</b> and <b>&lt;Popup/&gt;</b>.</li>
-                <li>The derived control class expresses the same UI concept, only with more programming features, like <b>&lt;TextList/&gt;</b> and <b>&lt;BindableTextList/&gt;</b>.</li>
-            </ul>
-            It is very common to implement a control template using its derived control template class.
-            For example,
-            <b>&lt;RibbonTabTemplate/&gt;</b> is also a legal control template class for <b>&lt;Tab/&gt;</b>,
-            because it inherits from <b>&lt;TabTemplate/&gt;</b>.
-            In the default GacUI control template <b>DarkSkin</b>,
-            <b>&lt;Tab/&gt;</b> and <b>&lt;RibbonTab/&gt;</b> looks exactly the same,
-            there is no reason to write two control template implementations.
-        </p>
-        <p>
-            Some control themes are for a specific part of a control.
-            For example,
-            <b>CheckTextListItem</b> and <b>RadioTextListItem</b> are two item background themes,
-            controls will be created with these themes when a <b>&lt;TextList/&gt;</b> is assigned <b>Check</b> or <b>Radio</b> view,
-            to create a check box or radio button put before a list item.
-        </p>
-        <p>
-            Here are a full list of these control themes:
-            <ul>
-                <li><b>ShortcutKey</b>: Labels indicates the <b>ALT</b> key sequence to focus or execute a control, when a window has the <b>ALT</b> key pressed, and is waiting for a complete key sequence.</li>
-                <li><b>Tooltip</b>: A theme for the system created <b>&lt;Popup/&gt;</b> to display the <b>TooltipControl</b> property for a control.</li>
-                <li><b>ListItemBackground</b>: Item background for all list items, to render the <b>Selected</b> state, when a <b>DisplayItemBackground</b> is <b>true</b> (by default) for the list control.</li>
-                <li><b>TreeItemExpander</b>: Triangle buttons before a tree view item, to render the <b>Expanded</b> state, when there is not customized item template assigned to the list control.</li>
-                <li><b>CheckTextListItem</b>: Check boxes before a list item in <b>&lt;TextList/&gt;</b> or <b>&lt;BindableTextList/&gt;</b> when switched to the <b>Check</b> view.</li>
-                <li><b>RadioTextListItem</b>: Radio buttons before a list item in <b>&lt;TextList/&gt;</b> or <b>&lt;BindableTextList/&gt;</b> when switched to the <b>Radio</b> view.</li>
-                <li><b>RibbonGalleryItemList</b>: A theme for the list control in the drop down menu from <b>&lt;RibbonGallery/&gt;</b>.</li>
-            </ul>
-        </p>
-        <p>
-            Here are all predefined control templates and their control themes:
-            <control-templates/>
-        </p>
-        <p>
-            All control templates has three kinds of properties:
-            <ul>
-                <li><b>Input Property</b>: Such property is assigned by the control, to communicate with the item template.</li>
-                <li><b>Output Property</b>: Such property is assigned by the item template, to communicate with the control.</li>
-                <li><b>Exchange Property</b>: Such property is assigned by both the item template and the control, to communicate with each other.</li>
-            </ul>
-        </p>
-        <p>
-            Properties of <b>GuiTemplate</b> are all <b>input property</b>:
-            <ul>
-                <li><b>Font</b>: Always sync to the <b>Font</b> property of the control.</li>
-                <li><b>Context</b>: Always sync to the <b>Context</b> property of the control.</li>
-                <li><b>VisuallyEnabled</b>: Always sync to the <b>VisuallyEnabled</b> property of the control.</li>
-                <li><b>Text</b>: Always sync to the <b>Text</b> property of the control.</li>
-            </ul>
-        </p>
+        <topic>
+            <title>Theme Name</title>
+            <p>
+                A theme name is:
+                <ul>
+                    <li>An enum item in <b>(vl::)presentation::theme::ThemeName</b>, which could also be an argument in some control constructors.</li>
+                    <li>A property in in <b>(vl::)presentation::theme::ThemeTemplates</b>, which defines <a href="/gacui/kb/dtemplates.html">default control templates</a> for controls whose <b>ControlTemplate</b> property is <b>empty</b>.</li>
+                </ul>
+                In documents for <a href="/gacui/components/controls/home.html">each controls</a>,
+                the <b>Template Name</b> record indicates the correct theme name for this control,
+                and the <b>Template Tag</b> record indicates the correct control template tag for this control.
+            </p>
+            <p>
+                For any control template <b>&lt;X/&gt;</b>,
+                its full class name is <b>(vl::)presentation::presentation::templates::GuiX</b>.
+            </p>
+            <p>
+                Multiple control themes could share the same control template class.
+                Multiple controls could share the same control theme.
+                <ul>
+                    <li>These control themes are actually the same control class, like <b>&lt;CheckBox/&gt;</b> and <b>&lt;RadioButton/&gt;</b>.</li>
+                    <li>The derived control class has no extra visual or layout feature, like <b>&lt;Window/&gt;</b> and <b>&lt;Popup/&gt;</b>.</li>
+                    <li>The derived control class expresses the same UI concept, only with more programming features, like <b>&lt;TextList/&gt;</b> and <b>&lt;BindableTextList/&gt;</b>.</li>
+                </ul>
+                It is very common to implement a control template using its derived control template class.
+                For example,
+                <b>&lt;RibbonTabTemplate/&gt;</b> is also a legal control template class for <b>&lt;Tab/&gt;</b>,
+                because it inherits from <b>&lt;TabTemplate/&gt;</b>.
+                In the default GacUI control template <b>DarkSkin</b>,
+                <b>&lt;Tab/&gt;</b> and <b>&lt;RibbonTab/&gt;</b> looks exactly the same,
+                there is no reason to write two control template implementations.
+            </p>
+        </topic>
+        <topic>
+            <title>Control Templates</title>
+            <p>
+                Some control themes are for a specific part of a control.
+                For example,
+                <b>CheckTextListItem</b> and <b>RadioTextListItem</b> are two item background themes,
+                controls will be created with these themes when a <b>&lt;TextList/&gt;</b> is assigned <b>Check</b> or <b>Radio</b> view,
+                to create a check box or radio button put before a list item.
+            </p>
+            <p>
+                Here are a full list of these control themes:
+                <ul>
+                    <li><b>ShortcutKey</b>: Labels indicates the <b>ALT</b> key sequence to focus or execute a control, when a window has the <b>ALT</b> key pressed, and is waiting for a complete key sequence.</li>
+                    <li><b>Tooltip</b>: A theme for the system created <b>&lt;Popup/&gt;</b> to display the <b>TooltipControl</b> property for a control.</li>
+                    <li><b>ListItemBackground</b>: Item background for all list items, to render the <b>Selected</b> state, when a <b>DisplayItemBackground</b> is <b>true</b> (by default) for the list control.</li>
+                    <li><b>TreeItemExpander</b>: Triangle buttons before a tree view item, to render the <b>Expanded</b> state, when there is not customized item template assigned to the list control.</li>
+                    <li><b>CheckTextListItem</b>: Check boxes before a list item in <b>&lt;TextList/&gt;</b> or <b>&lt;BindableTextList/&gt;</b> when switched to the <b>Check</b> view.</li>
+                    <li><b>RadioTextListItem</b>: Radio buttons before a list item in <b>&lt;TextList/&gt;</b> or <b>&lt;BindableTextList/&gt;</b> when switched to the <b>Radio</b> view.</li>
+                    <li><b>RibbonGalleryItemList</b>: A theme for the list control in the drop down menu from <b>&lt;RibbonGallery/&gt;</b>.</li>
+                </ul>
+            </p>
+            <p>
+                Here are all predefined control templates and their control themes:
+                <control-templates details="true"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Properties</title>
+            <p>
+                All control templates has three kinds of properties:
+                <ul>
+                    <li><b>Input Property</b>: Such property is assigned by the control, to communicate with the item template.</li>
+                    <li><b>Output Property</b>: Such property is assigned by the item template, to communicate with the control.</li>
+                    <li><b>Exchange Property</b>: Such property is assigned by both the item template and the control, to communicate with each other.</li>
+                </ul>
+            </p>
+            <p>
+                Properties of <b>GuiTemplate</b> are all <b>input property</b>:
+                <ul>
+                    <li><b>Font</b>: Always sync to the <b>Font</b> property of the control.</li>
+                    <li><b>Context</b>: Always sync to the <b>Context</b> property of the control.</li>
+                    <li><b>VisuallyEnabled</b>: Always sync to the <b>VisuallyEnabled</b> property of the control.</li>
+                    <li><b>Text</b>: Always sync to the <b>Text</b> property of the control.</li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>
