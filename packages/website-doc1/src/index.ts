@@ -6,7 +6,7 @@ import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { parseSample, renderSample } from './plugins/article/xmlSample';
+import { parseArticlePlugin, renderArticlePlugin } from './plugins/article';
 import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol';
 import { exampleRetriver } from './plugins/document/xmlExample';
 import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes';
@@ -58,8 +58,8 @@ router.register(
                     return ['text/html', generatedHtml];
                 }
                 case 'article': {
-                    const article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }), parseSample);
-                    consumePlugin(article, renderSample);
+                    const article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }), parseArticlePlugin);
+                    consumePlugin(article, renderArticlePlugin);
                     res.article = article;
                     const generatedHtml = generateHtml(
                         info,
