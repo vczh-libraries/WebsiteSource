@@ -1,6 +1,6 @@
 import * as a from 'gaclib-article';
 import { Element } from 'xml-js';
-import { Hierarchy, hierarchyRoot, themeNamesMetadata } from '../control-template/xmlControlTemplateCommon';
+import { Hierarchy, hierarchyRoot, propertiesMetadata, themeNamesMetadata } from '../control-template/xmlControlTemplateCommon';
 
 export interface ControlTemplatesPlugin {
     kind: 'ControlTemplatesPlugin';
@@ -49,9 +49,16 @@ function generateListItemForCT(hierarchy: Hierarchy, details: boolean): a.Conten
     const content: a.Content[] = [];
 
     if (details) {
+        if (propertiesMetadata[hierarchy.controlTemplate] === undefined) {
+            throw new Error(`Missing <control-template-document> for ${hierarchy.controlTemplate}.`);
+        }
         content.push({
             kind: 'Strong',
-            content: [{ kind: 'Text', text: `<${hierarchy.controlTemplate}/>` }]
+            content: [{
+                kind: 'PageLink',
+                href: `/gacui/components/ctemplates/${hierarchy.controlTemplate}.html`,
+                content: [{ kind: 'Text', text: `<${hierarchy.controlTemplate}/>` }]
+            }]
         });
 
         const themeNames = Object.keys(themeNamesMetadata).filter((themeName: string) => themeNamesMetadata[themeName] === hierarchy.controlTemplate);
