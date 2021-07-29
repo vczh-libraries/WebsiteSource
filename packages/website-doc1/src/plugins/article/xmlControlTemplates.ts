@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import * as a from 'gaclib-article';
 import * as path from 'path';
 import { Element } from 'xml-js';
@@ -11,8 +11,99 @@ interface HierarchyMetadata {
     [derivedControlTemplate: string]: string;
 }
 
-const themeNamesMetadata = <ThemeNamesMetadata>JSON.parse(readFileSync(path.join(__dirname, '../../../src/articles/gacui/components/ctemplates/metadata/themeNames.json'), { encoding: 'utf-8' }));
-const hierarchyMetadata = <HierarchyMetadata>JSON.parse(readFileSync(path.join(__dirname, '../../../src/articles/gacui/components/ctemplates/metadata/hierarchy.json'), { encoding: 'utf-8' }));
+interface PropertyMetadata {
+    input?: string[];
+    output?: string[];
+    exchange?: string[];
+}
+
+interface PropertiesMetadata {
+    [controlTemplate: string]: PropertyMetadata;
+}
+
+const dirRoot = path.join(__dirname, '../../../src/articles/gacui/components/ctemplates');
+const themeNamesMetadata = <ThemeNamesMetadata>JSON.parse(readFileSync(path.join(dirRoot, 'metadata/themeNames.json'), { encoding: 'utf-8' }));
+const hierarchyMetadata = <HierarchyMetadata>JSON.parse(readFileSync(path.join(dirRoot, 'metadata/hierarchy.json'), { encoding: 'utf-8' }));
+const propertiesMetadata = <PropertiesMetadata>JSON.parse(readFileSync(path.join(dirRoot, 'metadata/properties.json'), { encoding: 'utf-8' }));
+
+interface Hierarchy {
+    controlTemplate: string;
+    documented: boolean;
+    children: Hierarchy[];
+}
+
+function createHierarchy(controlTemplate: string): Hierarchy {
+    return {
+        controlTemplate,
+        documented: false,
+        children: []
+    };
+}
+
+const hierarchyRoot: Hierarchy = createHierarchy('ControlTemplate');
+const hierarchyIndex: { [controlTemplate: string]: Hierarchy } = {};
+
+function initializeHierarchy(hierarchy: Hierarchy): void {
+    hierarchyIndex[hierarchy.controlTemplate] = hierarchy;
+    const deriveds = Object.keys(hierarchyMetadata).filter((derived: string) => hierarchyMetadata[derived] === hierarchy.controlTemplate);
+    for (const derived of deriveds) {
+        const child = createHierarchy(derived);
+        hierarchy.children.push(child);
+        initializeHierarchy(child);
+    }
+}
+
+function initializeEntry(): void {
+    function hierarchyToEntry(hierarchy: Hierarchy, indent: string): string {
+        if (hierarchy.children.length > 0) {
+            return `${indent}<control-template name="&lt;${hierarchy.controlTemplate}&gt;" file="${hierarchy.controlTemplate}">
+${hierarchy.children.map((child: Hierarchy) => hierarchyToEntry(child, `${indent}  `)).join('\r\n')}
+${indent}</control-template>`;
+        } else {
+            return `${indent}<control-template name="&lt;${hierarchy.controlTemplate}&gt;" file="${hierarchy.controlTemplate}"/>`;
+        }
+    }
+
+    const entryPath = path.join(dirRoot, 'entry.xml');
+    const entryContent = `<reference>
+${hierarchyToEntry(hierarchyRoot, '  ')}
+</reference>`;
+    if (!existsSync(entryPath) || readFileSync(entryPath, { encoding: 'utf-8' }) !== entryContent) {
+        writeFileSync(entryPath, entryContent, { encoding: 'utf-8' });
+    }
+}
+
+function initializeDocs(): void {
+    function propsToContent(props: string[] | undefined): string {
+        if (props === undefined || props.length === 0) {
+            return '';
+        } else {
+            return props.map((prop: string) => `
+    <prop name="${prop}">
+    </prop>`).join('\r\n');
+        }
+    }
+
+    for (const ct of Object.keys(hierarchyIndex)) {
+        const ctPath = path.join(dirRoot, `documents/${ct}.xml`);
+        if (!existsSync(ctPath)) {
+            const props = propertiesMetadata[ct];
+            const ctContent = `<control-template-document name="${ct}">
+  <inputs>${propsToContent(props.input)}
+  </inputs>
+  <output>${propsToContent(props.output)}
+  </output>
+  <exchange>${propsToContent(props.exchange)}
+  </exchange>
+</control-template-document>`;
+            writeFileSync(ctPath, ctContent, { encoding: 'utf-8' });
+        }
+    }
+}
+
+initializeHierarchy(hierarchyRoot);
+initializeEntry();
+initializeDocs();
 
 export interface ControlTemplatesPlugin {
     kind: 'ControlTemplatesPlugin';
@@ -57,16 +148,16 @@ export function parseControlTemplates(e: Element): a.Plugin {
     };
 }
 
-function generateListItemForCT(controlTemplate: string, details: boolean): a.ContentListItem {
+function generateListItemForCT(hierarchy: Hierarchy, details: boolean): a.ContentListItem {
     const content: a.Content[] = [];
 
     if (details) {
         content.push({
             kind: 'Strong',
-            content: [{ kind: 'Text', text: `<${controlTemplate}/>` }]
+            content: [{ kind: 'Text', text: `<${hierarchy.controlTemplate}/>` }]
         });
 
-        const themeNames = Object.keys(themeNamesMetadata).filter((themeName: string) => themeNamesMetadata[themeName] === controlTemplate);
+        const themeNames = Object.keys(themeNamesMetadata).filter((themeName: string) => themeNamesMetadata[themeName] === hierarchy.controlTemplate);
         if (themeNames.length > 0) {
             content.push(... (
                 themeNames
@@ -87,15 +178,14 @@ function generateListItemForCT(controlTemplate: string, details: boolean): a.Con
             ));
         }
     } else {
-        content.push({ kind: 'Text', text: `<${controlTemplate}/>` });
+        content.push({ kind: 'Text', text: `<${hierarchy.controlTemplate}/>` });
     }
 
-    const deriveds = Object.keys(hierarchyMetadata).filter((derived: string) => hierarchyMetadata[derived] === controlTemplate);
-    if (deriveds.length > 0) {
+    if (hierarchy.children.length > 0) {
         content.push({
             kind: 'List',
             ordered: false,
-            items: deriveds.map((derived: string) => generateListItemForCT(derived, details))
+            items: hierarchy.children.map((child: Hierarchy) => generateListItemForCT(child, details))
         });
     }
 
@@ -110,6 +200,6 @@ export function renderControlTemplates(plugin: {}): a.Content[] {
     return [{
         kind: 'List',
         ordered: false,
-        items: [generateListItemForCT('ControlTemplate', ctp.details)]
+        items: [generateListItemForCT(hierarchyRoot, ctp.details)]
     }];
 }
