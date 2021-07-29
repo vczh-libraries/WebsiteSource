@@ -25,6 +25,7 @@ export const hierarchyMetadata = <HierarchyMetadata>JSON.parse(readFileSync(path
 export const propertiesMetadata = <PropertiesMetadata>JSON.parse(readFileSync(path.join(dirRoot, 'metadata/properties.json'), { encoding: 'utf-8' }));
 
 export interface Hierarchy {
+    parent?: Hierarchy;
     controlTemplate: string;
     documented: boolean;
     children: Hierarchy[];
@@ -46,6 +47,7 @@ function initializeHierarchy(hierarchy: Hierarchy): void {
     const deriveds = Object.keys(hierarchyMetadata).filter((derived: string) => hierarchyMetadata[derived] === hierarchy.controlTemplate);
     for (const derived of deriveds) {
         const child = createHierarchy(derived);
+        child.parent = hierarchy;
         hierarchy.children.push(child);
         initializeHierarchy(child);
     }
