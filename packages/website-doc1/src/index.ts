@@ -74,7 +74,7 @@ router.register(
                 }
                 case 'control-template': {
                     const ctArticle = parseControlTemplateArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }), parseArticlePlugin);
-                    const article = renderControlTemplateArticle(ctArticle, dnode.name);
+                    const article = renderControlTemplateArticle(ctArticle, <string>dnode.docId);
                     consumePlugin(article, renderArticlePlugin);
                     res.article = article;
                     const generatedHtml = generateHtml(

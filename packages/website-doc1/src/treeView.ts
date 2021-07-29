@@ -78,11 +78,13 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
             break;
         }
         case 'control-template': {
-            const name = <string>xmlNode.attributes?.name;
+            const ct = <string>xmlNode.attributes?.ct;
             const file = <string>xmlNode.attributes?.file;
             child = {
-                name,
+                name: `<${ct}>`,
+                docId: ct,
                 kind: 'control-template',
+                path: url.concat([file]),
                 file: path.join(wd, `${file}.xml`)
             };
             break;

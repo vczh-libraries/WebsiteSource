@@ -54,11 +54,11 @@ function initializeHierarchy(hierarchy: Hierarchy): void {
 function initializeEntry(): void {
     function hierarchyToEntry(hierarchy: Hierarchy, indent: string): string {
         if (hierarchy.children.length > 0) {
-            return `${indent}<control-template name="&lt;${hierarchy.controlTemplate}&gt;" file="${hierarchy.controlTemplate}">
+            return `${indent}<control-template ct="${hierarchy.controlTemplate}" file="${hierarchy.controlTemplate}">
 ${hierarchy.children.map((child: Hierarchy) => hierarchyToEntry(child, `${indent}  `)).join('\r\n')}
 ${indent}</control-template>`;
         } else {
-            return `${indent}<control-template name="&lt;${hierarchy.controlTemplate}&gt;" file="${hierarchy.controlTemplate}"/>`;
+            return `${indent}<control-template ct="${hierarchy.controlTemplate}" file="${hierarchy.controlTemplate}"/>`;
         }
     }
 

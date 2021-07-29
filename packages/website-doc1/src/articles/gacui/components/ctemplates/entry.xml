@@ -1,43 +1,43 @@
 <reference>
-  <control-template name="&lt;ControlTemplate&gt;" file="ControlTemplate">
-    <control-template name="&lt;LabelTemplate&gt;" file="LabelTemplate"/>
-    <control-template name="&lt;SinglelineTextBoxTemplate&gt;" file="SinglelineTextBoxTemplate"/>
-    <control-template name="&lt;DocumentLabelTemplate&gt;" file="DocumentLabelTemplate"/>
-    <control-template name="&lt;WindowTemplate&gt;" file="WindowTemplate">
-      <control-template name="&lt;MenuTemplate&gt;" file="MenuTemplate">
-        <control-template name="&lt;RibbonToolstripMenuTemplate&gt;" file="RibbonToolstripMenuTemplate"/>
+  <control-template ct="ControlTemplate" file="ControlTemplate">
+    <control-template ct="LabelTemplate" file="LabelTemplate"/>
+    <control-template ct="SinglelineTextBoxTemplate" file="SinglelineTextBoxTemplate"/>
+    <control-template ct="DocumentLabelTemplate" file="DocumentLabelTemplate"/>
+    <control-template ct="WindowTemplate" file="WindowTemplate">
+      <control-template ct="MenuTemplate" file="MenuTemplate">
+        <control-template ct="RibbonToolstripMenuTemplate" file="RibbonToolstripMenuTemplate"/>
       </control-template>
     </control-template>
-    <control-template name="&lt;ButtonTemplate&gt;" file="ButtonTemplate">
-      <control-template name="&lt;SelectableButtonTemplate&gt;" file="SelectableButtonTemplate">
-        <control-template name="&lt;ToolstripButtonTemplate&gt;" file="ToolstripButtonTemplate">
-          <control-template name="&lt;ListViewColumnHeaderTemplate&gt;" file="ListViewColumnHeaderTemplate"/>
-          <control-template name="&lt;ComboBoxTemplate&gt;" file="ComboBoxTemplate">
-            <control-template name="&lt;DateComboBoxTemplate&gt;" file="DateComboBoxTemplate"/>
+    <control-template ct="ButtonTemplate" file="ButtonTemplate">
+      <control-template ct="SelectableButtonTemplate" file="SelectableButtonTemplate">
+        <control-template ct="ToolstripButtonTemplate" file="ToolstripButtonTemplate">
+          <control-template ct="ListViewColumnHeaderTemplate" file="ListViewColumnHeaderTemplate"/>
+          <control-template ct="ComboBoxTemplate" file="ComboBoxTemplate">
+            <control-template ct="DateComboBoxTemplate" file="DateComboBoxTemplate"/>
           </control-template>
         </control-template>
       </control-template>
     </control-template>
-    <control-template name="&lt;ScrollTemplate&gt;" file="ScrollTemplate"/>
-    <control-template name="&lt;ScrollViewTemplate&gt;" file="ScrollViewTemplate">
-      <control-template name="&lt;MultilineTextBoxTemplate&gt;" file="MultilineTextBoxTemplate"/>
-      <control-template name="&lt;DocumentViewerTemplate&gt;" file="DocumentViewerTemplate"/>
-      <control-template name="&lt;ListControlTemplate&gt;" file="ListControlTemplate">
-        <control-template name="&lt;TextListTemplate&gt;" file="TextListTemplate"/>
-        <control-template name="&lt;ListViewTemplate&gt;" file="ListViewTemplate"/>
-        <control-template name="&lt;TreeViewTemplate&gt;" file="TreeViewTemplate"/>
+    <control-template ct="ScrollTemplate" file="ScrollTemplate"/>
+    <control-template ct="ScrollViewTemplate" file="ScrollViewTemplate">
+      <control-template ct="MultilineTextBoxTemplate" file="MultilineTextBoxTemplate"/>
+      <control-template ct="DocumentViewerTemplate" file="DocumentViewerTemplate"/>
+      <control-template ct="ListControlTemplate" file="ListControlTemplate">
+        <control-template ct="TextListTemplate" file="TextListTemplate"/>
+        <control-template ct="ListViewTemplate" file="ListViewTemplate"/>
+        <control-template ct="TreeViewTemplate" file="TreeViewTemplate"/>
       </control-template>
     </control-template>
-    <control-template name="&lt;TabTemplate&gt;" file="TabTemplate">
-      <control-template name="&lt;RibbonTabTemplate&gt;" file="RibbonTabTemplate"/>
+    <control-template ct="TabTemplate" file="TabTemplate">
+      <control-template ct="RibbonTabTemplate" file="RibbonTabTemplate"/>
     </control-template>
-    <control-template name="&lt;DatePickerTemplate&gt;" file="DatePickerTemplate"/>
-    <control-template name="&lt;RibbonGroupTemplate&gt;" file="RibbonGroupTemplate"/>
-    <control-template name="&lt;RibbonIconLabelTemplate&gt;" file="RibbonIconLabelTemplate"/>
-    <control-template name="&lt;RibbonButtonsTemplate&gt;" file="RibbonButtonsTemplate"/>
-    <control-template name="&lt;RibbonToolstripsTemplate&gt;" file="RibbonToolstripsTemplate"/>
-    <control-template name="&lt;RibbonGalleryTemplate&gt;" file="RibbonGalleryTemplate">
-      <control-template name="&lt;RibbonGalleryListTemplate&gt;" file="RibbonGalleryListTemplate"/>
+    <control-template ct="DatePickerTemplate" file="DatePickerTemplate"/>
+    <control-template ct="RibbonGroupTemplate" file="RibbonGroupTemplate"/>
+    <control-template ct="RibbonIconLabelTemplate" file="RibbonIconLabelTemplate"/>
+    <control-template ct="RibbonButtonsTemplate" file="RibbonButtonsTemplate"/>
+    <control-template ct="RibbonToolstripsTemplate" file="RibbonToolstripsTemplate"/>
+    <control-template ct="RibbonGalleryTemplate" file="RibbonGalleryTemplate">
+      <control-template ct="RibbonGalleryListTemplate" file="RibbonGalleryListTemplate"/>
     </control-template>
   </control-template>
 </reference>
