@@ -7,6 +7,7 @@ import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
 import { parseArticlePlugin, renderArticlePlugin } from './plugins/article';
+import { parseControlTemplateArticle, renderControlTemplateArticle } from './plugins/control-template/xmlControlTemplateArticle';
 import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol';
 import { exampleRetriver } from './plugins/document/xmlExample';
 import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes';
@@ -59,6 +60,21 @@ router.register(
                 }
                 case 'article': {
                     const article = parseArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }), parseArticlePlugin);
+                    consumePlugin(article, renderArticlePlugin);
+                    res.article = article;
+                    const generatedHtml = generateHtml(
+                        info,
+                        views,
+                        'Gaclib-ArticleView',
+                        model,
+                        '',
+                        res
+                    );
+                    return ['text/html', generatedHtml];
+                }
+                case 'control-template': {
+                    const ctArticle = parseControlTemplateArticle(readFileSync(<string>dnode.file, { encoding: 'utf-8' }), parseArticlePlugin);
+                    const article = renderControlTemplateArticle(ctArticle, dnode.name);
                     consumePlugin(article, renderArticlePlugin);
                     res.article = article;
                     const generatedHtml = generateHtml(

@@ -94,7 +94,9 @@
       </article>
     </article>
   </article>
-  <article name="Control Templates" file="ctemplates/home"/>
+  <article name="Control Templates" file="ctemplates/home">
+    <link pathPrefix="ctemplates/documents/" filePrefix="VLPP/" file="ctemplates/entry.xml"/>
+  </article>
   <article name="Item Templates" file="itemplates/home">
     <article name="&lt;ListItemTemplate&gt;" file="itemplates/listitemtemplate"/>
     <article name="&lt;TextListItemTemplate&gt;" file="itemplates/textlistitemtemplate"/>

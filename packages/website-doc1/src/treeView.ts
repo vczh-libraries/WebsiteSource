@@ -5,7 +5,7 @@ import { DirectoryInfo, DirectoryNode } from './views';
 
 export interface DocTreeNode {
     name: string;
-    kind: 'root' | 'registeredTypes' | 'article' | 'namespace' | 'directory' | 'document';
+    kind: 'root' | 'registeredTypes' | 'article' | 'namespace' | 'directory' | 'document' | 'control-template';
     docId?: string;
     path?: string[];
     file?: string;
@@ -35,10 +35,6 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
                 kind: 'registeredTypes',
                 path: url.concat(file.split('/'))
             };
-            if (target.subNodes === undefined) {
-                target.subNodes = [];
-            }
-            target.subNodes.push(child);
             break;
         }
         case 'article': {
@@ -50,10 +46,6 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
                 path: url.concat(file.split('/')),
                 file: path.join(wd, `${file}.xml`)
             };
-            if (target.subNodes === undefined) {
-                target.subNodes = [];
-            }
-            target.subNodes.push(child);
             break;
         }
         case 'namespace': {
@@ -63,10 +55,6 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
                 kind: 'namespace',
                 path: url.concat([name.replace(/:/g, '_')])
             };
-            if (target.subNodes === undefined) {
-                target.subNodes = [];
-            }
-            target.subNodes.push(child);
             break;
         }
         case 'document': {
@@ -87,10 +75,16 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
                     file: path.join(wd, `${file}.xml`)
                 };
             }
-            if (target.subNodes === undefined) {
-                target.subNodes = [];
-            }
-            target.subNodes.push(child);
+            break;
+        }
+        case 'control-template': {
+            const name = <string>xmlNode.attributes?.name;
+            const file = <string>xmlNode.attributes?.file;
+            child = {
+                name,
+                kind: 'control-template',
+                file: path.join(wd, `${file}.xml`)
+            };
             break;
         }
         case 'link': {
@@ -104,9 +98,16 @@ function loadDocTreeNodeFromElement(target: DocTreeNode, xmlNode: Element, wd: s
             throw new Error(`Unrecognized reference node type ${xmlNode.name}`);
     }
 
-    if (child !== undefined && xmlNode.elements !== undefined) {
-        for (const subNode of xmlNode.elements) {
-            loadDocTreeNodeFromElement(child, subNode, wd, url);
+    if (child !== undefined) {
+        if (target.subNodes === undefined) {
+            target.subNodes = [];
+        }
+        target.subNodes.push(child);
+
+        if (xmlNode.elements !== undefined) {
+            for (const subNode of xmlNode.elements) {
+                loadDocTreeNodeFromElement(child, subNode, wd, url);
+            }
         }
     }
 }
