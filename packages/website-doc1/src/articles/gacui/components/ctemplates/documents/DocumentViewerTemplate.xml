@@ -1,0 +1,17 @@
+<control-template-document name="DocumentViewerTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="BaselineDocument">
+    </prop>
+
+    <prop name="CaretColor">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

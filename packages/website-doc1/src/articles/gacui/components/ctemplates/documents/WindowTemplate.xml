@@ -1,0 +1,67 @@
+<control-template-document name="WindowTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="MaximizedBox">
+    </prop>
+
+    <prop name="MinimizedBox">
+    </prop>
+
+    <prop name="Border">
+    </prop>
+
+    <prop name="SizeBox">
+    </prop>
+
+    <prop name="IconVisible">
+    </prop>
+
+    <prop name="TitleBar">
+    </prop>
+
+    <prop name="Maximized">
+    </prop>
+
+    <prop name="Activated">
+    </prop>
+
+    <prop name="CustomFramePadding">
+    </prop>
+
+    <prop name="Icon">
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="MaximizedBoxOption">
+    </prop>
+
+    <prop name="MinimizedBoxOption">
+    </prop>
+
+    <prop name="BorderOption">
+    </prop>
+
+    <prop name="SizeBoxOption">
+    </prop>
+
+    <prop name="IconVisibleOption">
+    </prop>
+
+    <prop name="TitleBarOption">
+    </prop>
+
+    <prop name="TooltipTemplate">
+    </prop>
+
+    <prop name="ShortcutKeyTemplate">
+    </prop>
+
+    <prop name="CustomFrameEnabled">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

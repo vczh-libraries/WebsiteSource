@@ -1,0 +1,23 @@
+<control-template-document name="ListViewTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="ColumnHeaderTemplate">
+    </prop>
+
+    <prop name="PrimaryTextColor">
+    </prop>
+
+    <prop name="SecondaryTextColor">
+    </prop>
+
+    <prop name="ItemSeparatorColor">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

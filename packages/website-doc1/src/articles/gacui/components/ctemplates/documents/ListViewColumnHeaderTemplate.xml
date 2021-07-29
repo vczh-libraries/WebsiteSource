@@ -1,0 +1,14 @@
+<control-template-document name="ListViewColumnHeaderTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="SortingState">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

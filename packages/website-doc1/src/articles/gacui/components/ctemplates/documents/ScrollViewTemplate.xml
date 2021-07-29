@@ -1,0 +1,17 @@
+<control-template-document name="ScrollViewTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="HorizontalScroll">
+    </prop>
+
+    <prop name="VerticalScroll">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

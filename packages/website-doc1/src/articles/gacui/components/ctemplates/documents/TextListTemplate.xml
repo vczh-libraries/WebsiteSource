@@ -1,0 +1,20 @@
+<control-template-document name="TextListTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="TextColor">
+    </prop>
+
+    <prop name="CheckBulletTemplate">
+    </prop>
+
+    <prop name="RadioBulletTemplate">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

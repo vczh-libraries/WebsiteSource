@@ -1,0 +1,25 @@
+<control-template-document name="RibbonGroupTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+    </prop>
+
+    <prop name="Expandable">
+    </prop>
+
+    <prop name="Collapsed">
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="LargeDropdownButtonTemplate">
+    </prop>
+
+    <prop name="SubMenuTemplate">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

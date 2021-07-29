@@ -1,0 +1,17 @@
+<control-template-document name="RibbonTabTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="BeforeHeadersContainer">
+    </prop>
+
+    <prop name="AfterHeadersContainer">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

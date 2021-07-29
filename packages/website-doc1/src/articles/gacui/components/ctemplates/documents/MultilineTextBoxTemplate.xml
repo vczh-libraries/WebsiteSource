@@ -1,0 +1,19 @@
+<control-template-document name="MultilineTextBoxTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="TextColor">
+    </prop>
+
+    <prop name="CaretColor">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

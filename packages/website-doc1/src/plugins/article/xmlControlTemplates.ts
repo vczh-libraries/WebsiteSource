@@ -12,9 +12,9 @@ interface HierarchyMetadata {
 }
 
 interface PropertyMetadata {
-    input?: string[];
-    output?: string[];
-    exchange?: string[];
+    inputs?: string[];
+    outputs?: string[];
+    exchanges?: string[];
 }
 
 interface PropertiesMetadata {
@@ -89,12 +89,16 @@ function initializeDocs(): void {
         if (!existsSync(ctPath)) {
             const props = propertiesMetadata[ct];
             const ctContent = `<control-template-document name="${ct}">
-  <inputs>${propsToContent(props.input)}
+  <introduction>
+  </introduction>
+  <inputs>${propsToContent(props.inputs)}
   </inputs>
-  <output>${propsToContent(props.output)}
-  </output>
-  <exchange>${propsToContent(props.exchange)}
-  </exchange>
+  <outputs>${propsToContent(props.outputs)}
+  </outputs>
+  <exchanges>${propsToContent(props.exchanges)}
+  </exchanges>
+  <samples>
+  </samples>
 </control-template-document>`;
             writeFileSync(ctPath, ctContent, { encoding: 'utf-8' });
         }

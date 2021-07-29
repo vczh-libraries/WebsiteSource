@@ -1,0 +1,44 @@
+<control-template-document name="RibbonButtonsTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="LargeButtonTemplate">
+    </prop>
+
+    <prop name="LargeDropdownButtonTemplate">
+    </prop>
+
+    <prop name="LargeSplitButtonTemplate">
+    </prop>
+
+    <prop name="SmallButtonTemplate">
+    </prop>
+
+    <prop name="SmallDropdownButtonTemplate">
+    </prop>
+
+    <prop name="SmallSplitButtonTemplate">
+    </prop>
+
+    <prop name="SmallIconLabelTemplate">
+    </prop>
+
+    <prop name="IconButtonTemplate">
+    </prop>
+
+    <prop name="IconDropdownButtonTemplate">
+    </prop>
+
+    <prop name="IconSplitButtonTemplate">
+    </prop>
+
+    <prop name="IconLabelTemplate">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

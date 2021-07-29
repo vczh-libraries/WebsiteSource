@@ -1,0 +1,26 @@
+<control-template-document name="RibbonGalleryListTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="ItemListTemplate">
+    </prop>
+
+    <prop name="MenuTemplate">
+    </prop>
+
+    <prop name="HeaderTemplate">
+    </prop>
+
+    <prop name="BackgroundTemplate">
+    </prop>
+
+    <prop name="GroupContainerTemplate">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

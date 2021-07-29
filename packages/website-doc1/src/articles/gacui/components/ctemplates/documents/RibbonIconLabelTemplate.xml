@@ -1,0 +1,14 @@
+<control-template-document name="RibbonIconLabelTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Image">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

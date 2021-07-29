@@ -1,0 +1,31 @@
+<control-template-document name="ToolstripButtonTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="SubMenuExisting">
+    </prop>
+
+    <prop name="SubMenuOpening">
+    </prop>
+
+    <prop name="LargeImage">
+    </prop>
+
+    <prop name="Image">
+    </prop>
+
+    <prop name="ShortcutText">
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="SubMenuTemplate">
+    </prop>
+
+    <prop name="SubMenuHost">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

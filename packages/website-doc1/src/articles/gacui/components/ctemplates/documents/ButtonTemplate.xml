@@ -1,0 +1,14 @@
+<control-template-document name="ButtonTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="State">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

@@ -1,0 +1,23 @@
+<control-template-document name="ScrollTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+    </prop>
+
+    <prop name="TotalSize">
+    </prop>
+
+    <prop name="PageSize">
+    </prop>
+
+    <prop name="Position">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

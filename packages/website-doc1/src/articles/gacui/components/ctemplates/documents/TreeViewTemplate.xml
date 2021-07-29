@@ -1,0 +1,17 @@
+<control-template-document name="TreeViewTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="ExpandingDecoratorTemplate">
+    </prop>
+
+    <prop name="TextColor">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

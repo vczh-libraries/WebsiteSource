@@ -1,0 +1,22 @@
+<control-template-document name="TabTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+    </prop>
+
+    <prop name="TabPages">
+    </prop>
+
+    <prop name="SelectedTabPage">
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="TabOrder">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

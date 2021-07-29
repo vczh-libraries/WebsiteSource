@@ -1,0 +1,14 @@
+<control-template-document name="ComboBoxTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="TextVisible">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

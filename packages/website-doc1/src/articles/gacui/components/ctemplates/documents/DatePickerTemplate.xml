@@ -1,0 +1,20 @@
+<control-template-document name="DatePickerTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+    </prop>
+
+    <prop name="DateLocale">
+    </prop>
+
+    <prop name="Date">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

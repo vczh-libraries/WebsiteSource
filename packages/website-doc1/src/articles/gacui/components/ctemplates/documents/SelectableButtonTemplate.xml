@@ -1,0 +1,14 @@
+<control-template-document name="SelectableButtonTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Selected">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

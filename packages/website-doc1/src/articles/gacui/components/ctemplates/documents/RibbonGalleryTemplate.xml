@@ -1,0 +1,20 @@
+<control-template-document name="RibbonGalleryTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+    </prop>
+
+    <prop name="ScrollUpEnabled">
+    </prop>
+
+    <prop name="ScrollDownEnabled">
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

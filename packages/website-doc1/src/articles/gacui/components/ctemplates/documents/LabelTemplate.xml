@@ -1,0 +1,16 @@
+<control-template-document name="LabelTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="TextColor">
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="DefaultTextColor">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

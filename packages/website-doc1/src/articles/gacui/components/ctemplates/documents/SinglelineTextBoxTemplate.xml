@@ -1,0 +1,17 @@
+<control-template-document name="SinglelineTextBoxTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="TextColor">
+    </prop>
+
+    <prop name="CaretColor">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

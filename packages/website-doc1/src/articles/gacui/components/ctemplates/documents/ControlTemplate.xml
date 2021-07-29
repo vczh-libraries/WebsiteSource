@@ -1,0 +1,19 @@
+<control-template-document name="ControlTemplate">
+  <introduction>
+  </introduction>
+  <inputs>
+    <prop name="Focused">
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="ContainerComposition">
+    </prop>
+
+    <prop name="FocusableComposition">
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>
