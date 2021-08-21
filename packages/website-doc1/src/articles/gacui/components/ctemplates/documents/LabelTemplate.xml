@@ -1,12 +1,25 @@
 <control-template-document name="LabelTemplate">
   <introduction>
+    <p>
+      This control template is for <b>&lt;Label/&gt;</b>.
+      Windows and menus also use <b>&lt;Label/&gt;</b> in theme <b>ShortcutKey</b>
+      to display awaiting key input after <b>TAB</b> is pressed.
+    </p>
   </introduction>
   <inputs>
     <prop name="TextColor">
+      <p>
+        This property defines the color of the text.
+      </p>
     </prop>
   </inputs>
   <outputs>
     <prop name="DefaultTextColor">
+      <p>
+        This property defines the default color of the text for the control.
+        When there is no customization to the control,
+        this property will be copied to <b>TextColor</b>.
+      </p>
     </prop>
   </outputs>
   <exchanges>

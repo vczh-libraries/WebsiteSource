@@ -1,15 +1,43 @@
 <control-template-document name="MultilineTextBoxTemplate">
   <introduction>
+    <p>
+      This control template is for <b>&lt;MultilineTextBoxTemplate/&gt;</b>.
+    </p>
   </introduction>
   <inputs>
     <prop name="Commands">
+      <p>
+        The type of this property is <b>(vl::)presentation::controls::ITextBoxCommandExecutor*</b>.
+      </p>
+      <p>
+        This property is set after this control template is applied to a control.
+        It offers a way for this control template to communicate with the control.
+      </p>
     </prop>
   </inputs>
   <outputs>
     <prop name="TextColor">
+      <p>
+        This color defines the default text color for the control.
+        A text box is expected to render text in this color when colorization is not in use.
+      </p>
+      <p>
+        The type of this property is <b>(vl::)presentation::elements::text::ColorEntry</b>
+        with these components:
+        <ul>
+          <li><b>normal</b>: color for text.</li>
+          <li><b>selectedFocused</b>: color for selected text when this control is focused.</li>
+          <li><b>selectedUnfocused</b>: color for selected text when this control is not focused.</li>
+        </ul>
+        These components are <b>(vl::)presentation::elements::text::ColorItem</b>,
+        which has <b>text</b> and <b>background</b> for the color of the text and the color of the background behind the text.
+      </p>
     </prop>
 
     <prop name="CaretColor">
+      <p>
+        This color defines the default caret color for the control.
+      </p>
     </prop>
   </outputs>
   <exchanges>
