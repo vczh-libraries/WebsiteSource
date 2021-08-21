@@ -1,11 +1,11 @@
 {
     "ControlTemplate": {
         "inputs": [
-            "Focused"
+            "Focused",
+            "FocusableComposition"
         ],
         "outputs": [
-            "ContainerComposition",
-            "FocusableComposition"
+            "ContainerComposition"
         ]
     },
     "LabelTemplate": {

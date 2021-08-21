@@ -14,7 +14,19 @@ export interface ControlTemplateArticle {
     inputs: PropertyArticle[];
     outputs: PropertyArticle[];
     exchanges: PropertyArticle[];
-    samples: string[];
+    samples: a.Paragraph[];
+}
+
+function parseArticle(element: Element, pluginParser: PluginParser): a.Paragraph[] {
+    return element.elements === undefined ? [] : element.elements.map((xmlParagraph: Element) => {
+        if (xmlParagraph.name === 'p') {
+            return a.parseParagraph(xmlParagraph, pluginParser);
+        } else if (xmlParagraph.name !== undefined) {
+            throw new Error(`<p> is expected but <${xmlParagraph.name}> found.`);
+        } else {
+            throw new Error(`<p> is expected but non-element node "${xmlParagraph.type}" found.`);
+        }
+    });
 }
 
 export function parseControlTemplateArticle(xml: string, pluginParser?: PluginParser): ControlTemplateArticle {
@@ -37,6 +49,8 @@ export function parseControlTemplateArticle(xml: string, pluginParser?: PluginPa
         }
     );
 
+    const pp = pluginParser === undefined ? (e: Element): a.Plugin | undefined => { return undefined; } : pluginParser;
+
     if (xmlCt.elements !== undefined) {
         if (xmlCt.elements.length !== 1 || xmlCt.elements[0].name !== 'control-template-document') {
             throw new Error(`Root element must be <control-template-document>.`);
@@ -45,7 +59,9 @@ export function parseControlTemplateArticle(xml: string, pluginParser?: PluginPa
         if (xmlCtd.elements !== undefined) {
             for (const categoryXml of xmlCtd.elements) {
                 switch (categoryXml.name) {
-                    case 'introduction': {
+                    case 'introduction':
+                    case 'samples': {
+                        ctArticle[categoryXml.name] = parseArticle(categoryXml, pp);
                         break;
                     }
                     case 'inputs':
@@ -60,7 +76,7 @@ export function parseControlTemplateArticle(xml: string, pluginParser?: PluginPa
                                     }
                                     const propArticle: PropertyArticle = {
                                         name: propName,
-                                        content: []
+                                        content: parseArticle(propXml, pp)
                                     };
                                     ctArticle[categoryXml.name].push(propArticle);
                                 } else {
@@ -68,9 +84,6 @@ export function parseControlTemplateArticle(xml: string, pluginParser?: PluginPa
                                 }
                             }
                         }
-                        break;
-                    }
-                    case 'samples': {
                         break;
                     }
                     default: {
@@ -144,7 +157,7 @@ export function renderControlTemplateArticle(ctArticle: ControlTemplateArticle, 
         topics.push({
             kind: 'Topic',
             title: 'Sample',
-            content: ensureParagraph([])
+            content: ensureParagraph(ctArticle.samples)
         });
     }
 

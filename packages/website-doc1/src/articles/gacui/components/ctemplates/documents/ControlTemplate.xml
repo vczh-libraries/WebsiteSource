@@ -1,15 +1,39 @@
 <control-template-document name="ControlTemplate">
   <introduction>
+    <p>
+      This control template contains common properties for all controls.
+      Some controls which don't accept user interaction,
+      like group box or different splitters,
+      use this class as their control template classes directly.
+    </p>
   </introduction>
   <inputs>
     <prop name="Focused">
+      <p>
+        When the control gets its focus, this property is set to <b>true</b>.
+        When the control loses its focus, this property is set to <b>false</b>.
+      </p>
+    </prop>
+
+    <prop name="FocusableComposition">
+      <p>
+        When a control template is applied to a control,
+        if this control accepts focus,
+        this property will be assigned,
+        indicating the composition that accepts user inputs,
+        especially keyboard events.
+      </p>
     </prop>
   </inputs>
   <outputs>
     <prop name="ContainerComposition">
-    </prop>
-
-    <prop name="FocusableComposition">
+      <p>
+        Assign a composition to this property in the contructor of a control template,
+        and it will become the container for child controls.
+        If this composition is not assigned,
+        or it is assigned later when the control template is applied to a control,
+        then the container composition becomes the control template itself.
+      </p>
     </prop>
   </outputs>
   <exchanges>
