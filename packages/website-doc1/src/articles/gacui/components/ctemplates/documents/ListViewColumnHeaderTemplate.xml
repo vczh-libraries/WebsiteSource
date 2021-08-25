@@ -1,8 +1,20 @@
 <control-template-document name="ListViewColumnHeaderTemplate">
   <introduction>
+    <p>
+      This control template is for column header buttons of list view controls.
+    </p>
   </introduction>
   <inputs>
     <prop name="SortingState">
+      <p>
+        This property is changed when the the sorting state of the column header is changed.
+        It could be one of the following values:
+        <ul>
+          <li><b>NotSorted</b></li>
+          <li><b>Ascending</b>: Typically a triangle towards up is rendered.</li>
+          <li><b>Descending</b>: Typically a triangle towards down is rendered.</li>
+        </ul>
+      </p>
     </prop>
   </inputs>
   <outputs>

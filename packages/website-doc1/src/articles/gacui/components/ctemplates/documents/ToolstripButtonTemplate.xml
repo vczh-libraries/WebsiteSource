@@ -1,27 +1,90 @@
 <control-template-document name="ToolstripButtonTemplate">
   <introduction>
+    <p>
+      This control template is for:
+      <ul>
+        <li><b>&lt;MenuBarButton/&gt;</b></li>
+        <li><b>&lt;MenuItemButton/&gt;</b></li>
+        <li><b>&lt;ToolstripButton/&gt;</b></li>
+        <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+        <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+        <li><b>&lt;RibbonSmallButton/&gt;</b></li>
+        <li><b>&lt;RibbonSmallDropdownButton/&gt;</b></li>
+        <li><b>&lt;RibbonSmallSplitButton/&gt;</b></li>
+        <li><b>&lt;RibbonLargeButton/&gt;</b></li>
+        <li><b>&lt;RibbonLargeDropdownButton/&gt;</b></li>
+        <li><b>&lt;RibbonLargeSplitButton/&gt;</b></li>
+      </ul>
+    </p>
   </introduction>
   <inputs>
     <prop name="SubMenuExisting">
+      <p>
+        This property becomes <b>true</b> when there is a menu attached to this button.
+      </p>
     </prop>
 
     <prop name="SubMenuOpening">
+      <p>
+        This property becomes <b>true</b> when the attached menu is opened.
+      </p>
     </prop>
 
     <prop name="LargeImage">
+      <p>
+        This property defines the large icon for this button.
+        Typically it is used in:
+        <ul>
+          <li><b>&lt;RibbonLargeButton/&gt;</b></li>
+          <li><b>&lt;RibbonLargeDropdownButton/&gt;</b></li>
+          <li><b>&lt;RibbonLargeSplitButton/&gt;</b></li>
+        </ul>
+      </p>
     </prop>
 
     <prop name="Image">
+      <p>
+        This property defines the small icon for this button.
+        Typically it is used in:
+        <ul>
+          <li><b>&lt;MenuItemButton/&gt;</b></li>
+          <li><b>&lt;ToolstripButton/&gt;</b></li>
+          <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+          <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+          <li><b>&lt;RibbonSmallButton/&gt;</b></li>
+          <li><b>&lt;RibbonSmallDropdownButton/&gt;</b></li>
+          <li><b>&lt;RibbonSmallSplitButton/&gt;</b></li>
+        </ul>
+      </p>
     </prop>
 
     <prop name="ShortcutText">
+      <p>
+        This property defines the text representation of the shortcut key for this button.
+      </p>
     </prop>
   </inputs>
   <outputs>
     <prop name="SubMenuTemplate">
+      <p>
+        This property defines the control template for the attached menu.
+        If it is <b>empty</b>,
+        the attached menu will use the <b>Menu</b> theme,
+        unless a control template is manually assigned to the menu.
+      </p>
     </prop>
 
     <prop name="SubMenuHost">
+      <p>
+        This property defines the control for the menu.
+        If it is <b>null</b>,
+        the host control is the button itself.
+      </p>
+      <p>
+        Typically for all kinds of split buttons,
+        the host control is the embedded button that opens the menu.
+        This property is recommended not to set for all other kinds of buttons.
+      </p>
     </prop>
   </outputs>
   <exchanges>

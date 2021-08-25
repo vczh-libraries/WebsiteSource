@@ -1,8 +1,18 @@
 <control-template-document name="ComboBoxTemplate">
   <introduction>
+    <p>
+      This control template is for <b>&lt;ComboBox/&gt;</b>.
+    </p>
   </introduction>
   <inputs>
     <prop name="TextVisible">
+      <p>
+        This property becomes <b>true</b> when the text representation of the selected item is expected to render.
+        Typically,
+        it becomes <b>false</b> when <b>ItemTemplate</b> is assigned to the control.
+        The item template will be installed in <b>ContainerComposition</b> to render the selected item,
+        so rendering the text representation is unnecessary.
+      </p>
     </prop>
   </inputs>
   <outputs>
