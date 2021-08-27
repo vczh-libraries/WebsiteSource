@@ -1,16 +1,43 @@
 <control-template-document name="TextListTemplate">
   <introduction>
+    <p>
+      This control template is for <b>&lt;TextList/&gt;</b> and <b>&lt;BindableTextList/&gt;</b>.
+      This is also used for the <b>RibbonGalleryItemList</b> them,
+      which is for the list control in the dropdown menu of <b>&gt;BindableRibbonGalleryList/&gt;</b>
+    </p>
   </introduction>
   <inputs>
   </inputs>
   <outputs>
     <prop name="TextColor">
+      <p>
+        This property defines the default color for the item text.
+        The value will be copied to the <b>TextColor</b> property of all <b>&lt;TextListItemTemplate/&gt;</b> in the list control.
+      </p>
     </prop>
 
     <prop name="CheckBulletTemplate">
+      <p>
+        This property defines the control template for the selectable button,
+        which controls the <b>Checked</b> property of an item,
+        when the <b>View</b> property of the list control is set to <b>Check</b>.
+      </p>
+      <p>
+        If this property is <b>empty</b>,
+        the default control template for the <b>CheckTextListItem</b> theme will be used.
+      </p>
     </prop>
 
     <prop name="RadioBulletTemplate">
+      <p>
+        This property defines the control template for the selectable button,
+        which controls the <b>Checked</b> property of an item,
+        when the <b>View</b> property of the list control is set to <b>Radio</b>.
+      </p>
+      <p>
+        If this property is <b>empty</b>,
+        the default control template for the <b>RadioTextListItem</b> theme will be used.
+      </p>
     </prop>
   </outputs>
   <exchanges>

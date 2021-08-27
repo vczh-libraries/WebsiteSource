@@ -1,13 +1,26 @@
 <control-template-document name="ScrollViewTemplate">
   <introduction>
+    <p>
+      This control template is for <b>&lt;ScrollView/&gt;</b>.
+    </p>
   </introduction>
   <inputs>
   </inputs>
   <outputs>
     <prop name="HorizontalScroll">
+      <p>
+        This property must be assigned in the constructor of the control template,
+        and should not be changed during the life cycle.
+        It is the <b>&lt;HScroll/&gt;</b> control in the control template.
+      </p>
     </prop>
 
     <prop name="VerticalScroll">
+      <p>
+        This property must be assigned in the constructor of the control template,
+        and should not be changed during the life cycle.
+        It is the <b>&lt;VScroll/&gt;</b> control in the control template.
+      </p>
     </prop>
   </outputs>
   <exchanges>
