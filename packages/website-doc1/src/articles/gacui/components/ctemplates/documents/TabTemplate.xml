@@ -1,18 +1,66 @@
 <control-template-document name="TabTemplate">
   <introduction>
+    <p>
+      This control template is for <b>&lt;Tab/&gt;</b>.
+    </p>
   </introduction>
   <inputs>
     <prop name="Commands">
+      <p>
+        The type of this property is <b>(vl::)presentation::controls::ITabCommandExecutor*</b>.
+      </p>
+      <p>
+        This property is set after this control template is applied to a control.
+        It offers a way for this control template to communicate with the control.
+      </p>
     </prop>
 
     <prop name="TabPages">
+      <p>
+        This property is a bindable list (<b>(vl::)reflection::description::IValueObservableList^</b>),
+        its elements are all <b>(vl::)presentation::controls::GuiTabPage*</b>.
+      </p>
+      <p>
+        This property keeps sync to tab pages in the tab control.
+        In the implementation of this control template,
+        collection bindable controls or compositions
+        (e.g. <b>&lt;RepeatFlow/&gt;</b>)
+        are recommended to contain tab page headers.
+      </p>
+      <p>
+        When a tab page header is selected,
+        a call to <b>ShowTab</b> of <b>Commands</b> is required to notify the tab control.
+      </p>
     </prop>
 
     <prop name="SelectedTabPage">
+      <p>
+        This property defines the current selected tab page.
+        It could be <b>null</b> when there is no selected tab page,
+        especially when <b>TabPages</b> contains no item.
+      </p>
+      <p>
+        <b>NOTE</b>:
+        when the selectable tab page is removed from the tab control,
+        the order between updating <b>TabPages</b> and <b>SelectedTabPage</b> is undefined.
+        <b>DO NOT</b> assume that <b>SelectableTabPage</b> will always be in <b>TabPages</b>.
+      </p>
     </prop>
   </inputs>
   <outputs>
     <prop name="TabOrder">
+      <p>
+        This property defines the visual order of tab pages.
+        It must be set to one of the following values:
+        <ul>
+          <li><b>LeftToRight</b></li>
+          <li><b>RightToLeft</b></li>
+          <li><b>TopToBottom</b></li>
+          <li><b>BottomToTop</b></li>
+        </ul>
+        It tells the tab control how to select an expected tab page when
+        <b>LEFT</b>, <b>RIGHT</b>, <b>UP</b> or <b>DOWN</b> is pressed.
+      </p>
     </prop>
   </outputs>
   <exchanges>
