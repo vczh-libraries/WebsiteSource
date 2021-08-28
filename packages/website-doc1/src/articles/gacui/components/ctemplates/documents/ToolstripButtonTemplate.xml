@@ -67,6 +67,9 @@
   <outputs>
     <prop name="SubMenuTemplate">
       <p>
+        The assigned control template instance must be or derived from <b>&lt;MenuTemplate/&gt;</b>.
+      </p>
+      <p>
         This property defines the control template for the attached menu.
         If it is <b>empty</b>,
         the attached menu will use the <b>Menu</b> theme,

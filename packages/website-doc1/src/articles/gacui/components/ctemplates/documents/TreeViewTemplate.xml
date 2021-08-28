@@ -9,6 +9,9 @@
   <outputs>
     <prop name="ExpandingDecoratorTemplate">
       <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
+      <p>
         This property defines the control template for the selectable button,
         which controls the <b>Expanding</b> property of an item.
       </p>

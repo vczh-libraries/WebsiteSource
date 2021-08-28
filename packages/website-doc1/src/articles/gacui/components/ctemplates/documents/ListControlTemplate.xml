@@ -9,6 +9,9 @@
   <outputs>
     <prop name="BackgroundTemplate">
       <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
+      <p>
         This property defines the control template for a item background.
         If it is empty,
         the default control template for the <b>ListItemBackground</b> theme will be used.

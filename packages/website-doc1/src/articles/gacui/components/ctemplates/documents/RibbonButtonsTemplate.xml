@@ -5,36 +5,69 @@
   </inputs>
   <outputs>
     <prop name="LargeButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="LargeDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="LargeSplitButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="SmallButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="SmallDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="SmallSplitButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="SmallIconLabelTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="IconButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="IconDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="IconSplitButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="IconLabelTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
   </outputs>
   <exchanges>

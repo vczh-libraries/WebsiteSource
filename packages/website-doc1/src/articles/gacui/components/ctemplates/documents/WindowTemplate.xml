@@ -177,6 +177,9 @@
 
     <prop name="TooltipTemplate">
       <p>
+        The assigned control template instance must be or derived from <b>&lt;WindowTemplate/&gt;</b>.
+      </p>
+      <p>
         This property defines the control template for tooltips of any control in this window.
         If this property is not set,
         then the control template provided by the <b>Tooltip</b> them will be used.
@@ -184,6 +187,9 @@
     </prop>
 
     <prop name="ShortcutKeyTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;LabelTemplate/&gt;</b>.
+      </p>
       <p>
         This property defines the control template for labels that displaying awaiting key input for this window in <b>TAB</b> mode.
         If this property is not set,

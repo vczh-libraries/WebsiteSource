@@ -5,18 +5,33 @@
   </inputs>
   <outputs>
     <prop name="ItemListTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;TextListTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="MenuTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;RibbonToolstripMenuTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="HeaderTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ControlTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="BackgroundTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="GroupContainerTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ScrollViewTemplate/&gt;</b>.
+      </p>
     </prop>
   </outputs>
   <exchanges>

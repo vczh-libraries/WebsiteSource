@@ -5,6 +5,9 @@
   </inputs>
   <outputs>
     <prop name="ToolbarTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ControlTemplate/&gt;</b>.
+      </p>
     </prop>
   </outputs>
   <exchanges>

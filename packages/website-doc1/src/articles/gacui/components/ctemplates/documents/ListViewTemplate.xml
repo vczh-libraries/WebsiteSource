@@ -9,6 +9,9 @@
   <outputs>
     <prop name="ColumnHeaderTemplate">
       <p>
+        The assigned control template instance must be or derived from <b>&lt;ListViewColumnHeaderTemplate/&gt;</b>.
+      </p>
+      <p>
         This property must be assigned in the constructor of the control template,
         and should not be changed during the life cycle.
       </p>

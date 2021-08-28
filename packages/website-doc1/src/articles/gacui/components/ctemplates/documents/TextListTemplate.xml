@@ -18,6 +18,9 @@
 
     <prop name="CheckBulletTemplate">
       <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
+      <p>
         This property defines the control template for the selectable button,
         which controls the <b>Checked</b> property of an item,
         when the <b>View</b> property of the list control is set to <b>Check</b>.
@@ -29,6 +32,9 @@
     </prop>
 
     <prop name="RadioBulletTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
       <p>
         This property defines the control template for the selectable button,
         which controls the <b>Checked</b> property of an item,

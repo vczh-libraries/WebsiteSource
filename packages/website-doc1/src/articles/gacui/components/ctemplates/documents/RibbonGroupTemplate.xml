@@ -13,9 +13,15 @@
   </inputs>
   <outputs>
     <prop name="LargeDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
     </prop>
 
     <prop name="SubMenuTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;MenuTemplate/&gt;</b>.
+      </p>
     </prop>
   </outputs>
   <exchanges>
