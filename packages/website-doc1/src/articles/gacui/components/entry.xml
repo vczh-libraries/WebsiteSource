@@ -96,6 +96,9 @@
   </article>
   <article name="Control Templates" file="ctemplates/home">
     <link pathPrefix="ctemplates" filePrefix="documents/" file="ctemplates/entry.xml"/>
+    <article name="&lt;CommonScrollBehavior&gt;" file="ctemplates/commonscrollbehavior"/>
+    <article name="&lt;CommonScrollViewLook&gt;" file="ctemplates/commonscrollviewlook"/>
+    <article name="&lt;CommonDatePicker&gt;" file="ctemplates/commondatepickerlook"/>
   </article>
   <article name="Item Templates" file="itemplates/home">
     <article name="&lt;ListItemTemplate&gt;" file="itemplates/listitemtemplate"/>

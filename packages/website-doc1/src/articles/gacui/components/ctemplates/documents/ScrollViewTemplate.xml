@@ -3,6 +3,12 @@
     <p>
       This control template is for <b>&lt;ScrollView/&gt;</b>.
     </p>
+    <p>
+      <a href="/gacui/components/ctemplates/commonscrollviewlook.html">
+        <b>&lt;CommonScrollViewLook/&gt;</b>
+      </a>
+      is recommended to use when implementing this control template.
+    </p>
   </introduction>
   <inputs>
   </inputs>

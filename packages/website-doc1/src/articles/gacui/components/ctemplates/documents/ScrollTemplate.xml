@@ -8,6 +8,12 @@
       <b>&lt;VTracker/&gt;</b> and
       <b>&lt;ProgressBar/&gt;</b>.
     </p>
+    <p>
+      <a href="/gacui/components/ctemplates/commonscrollbehavior.html">
+        <b>&lt;CommonScrollBehavior/&gt;</b>
+      </a>
+      is recommended to use when implementing this control template.
+    </p>
   </introduction>
   <inputs>
     <prop name="Commands">
