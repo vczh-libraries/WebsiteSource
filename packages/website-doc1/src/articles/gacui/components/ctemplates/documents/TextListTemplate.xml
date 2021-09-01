@@ -3,7 +3,7 @@
     <p>
       This control template is for <b>&lt;TextList/&gt;</b> and <b>&lt;BindableTextList/&gt;</b>.
       This is also used for the <b>RibbonGalleryItemList</b> them,
-      which is for the list control in the dropdown menu of <b>&gt;BindableRibbonGalleryList/&gt;</b>
+      which is for the list control in the dropdown menu of <b>&lt;BindableRibbonGalleryList/&gt;</b>
     </p>
   </introduction>
   <inputs>

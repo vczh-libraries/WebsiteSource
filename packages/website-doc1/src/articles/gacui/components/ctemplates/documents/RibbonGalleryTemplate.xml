@@ -1,14 +1,35 @@
 <control-template-document name="RibbonGalleryTemplate">
   <introduction>
+    <p>
+      This control template is the base class of all control templates for ribbon gallery controls.
+      Implement <b>&lt;RibbonGalleryListTemplate/&gt;</b> to create a control template for <b>&lt;BindableRibbonGalleryList/&gt;</b>.
+    </p>
   </introduction>
   <inputs>
     <prop name="Commands">
+      <p>
+        The type of this property is <b>(vl::)presentation::controls::IRibbonGalleryCommandExecutor*</b>.
+      </p>
+      <p>
+        This property is set after this control template is applied to a control.
+        It offers a way for this control template to communicate with the control.
+      </p>
+      <p>
+        There must be three navigation buttons,
+        calling the <b>NotifyScrollUp</b>, <b>NotifyScrollDown</b> and <b>NotifyDropdown</b> methods of <b>Commands</b>.
+      </p>
     </prop>
 
     <prop name="ScrollUpEnabled">
+      <p>
+        This property is set to <b>true</b> when scrolling up is doable.
+      </p>
     </prop>
 
     <prop name="ScrollDownEnabled">
+      <p>
+        This property is set to <b>true</b> when scrolling down is doable.
+      </p>
     </prop>
   </inputs>
   <outputs>
