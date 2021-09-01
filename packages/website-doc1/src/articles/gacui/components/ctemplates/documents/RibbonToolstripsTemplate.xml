@@ -1,5 +1,12 @@
 <control-template-document name="RibbonToolstripsTemplate">
   <introduction>
+    <p>
+      This control template is for <b>&lt;RibbonToolstrips/&gt;</b>.
+    </p>
+    <p>
+      The <b>ContainerComposition</b> property must be set to toolbars.
+      The control template doesn't need to worry about how to rearrange toolbars.
+    </p>
   </introduction>
   <inputs>
   </inputs>
@@ -7,6 +14,11 @@
     <prop name="ToolbarTemplate">
       <p>
         The assigned control template instance must be or derived from <b>&lt;ControlTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for toolbars inside this control.
+        If this property is <b>empty</b>,
+        the default control template for the <b>ToolstripToolBar</b> will be used.
       </p>
     </prop>
   </outputs>

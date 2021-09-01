@@ -3,6 +3,12 @@
     <p>
       This control template is for <b>&lt;Tab/&gt;</b>.
     </p>
+    <p>
+      The <b>ContainerComposition</b> property must be set to contain objects,
+      which are typically below all tab headers.
+      If tab headers and the container is organized in other direction,
+      the <b>TabOrder</b> property must be properly set.
+    </p>
   </introduction>
   <inputs>
     <prop name="Commands">

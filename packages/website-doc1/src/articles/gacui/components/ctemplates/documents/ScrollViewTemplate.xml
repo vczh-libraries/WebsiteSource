@@ -9,6 +9,11 @@
       </a>
       is recommended to use when implementing this control template.
     </p>
+    <p>
+      The <b>ContainerComposition</b> property must be set to contain objects.
+      Scroll bars will be controlled by the control itself.
+      The control template doesn't need to worry about moving contained objects.
+    </p>
   </introduction>
   <inputs>
   </inputs>
