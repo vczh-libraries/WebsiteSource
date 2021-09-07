@@ -107,5 +107,12 @@
     <article name="&lt;GridVisualizerTemplate&gt;" file="itemplates/gridvisualizertemplate"/>
     <article name="&lt;GridEditorTemplate&gt;" file="itemplates/grideditortemplate"/>
   </article>
-  <article name="Components" file="components/home"/>
+  <article name="Components" file="components/home">
+    <article name="&lt;TollstripCommand&gt;" file="components/toolstripcommand"/>
+    <article name="&lt;MessageDialog&gt;" file="components/messagedialog"/>
+    <article name="&lt;ColorDialog&gt;" file="components/colordialog"/>
+    <article name="&lt;FontDialog&gt;" file="components/fontdialog"/>
+    <article name="&lt;OpenFileDialog&gt;" file="components/openfiledialog"/>
+    <article name="&lt;SaveFileDialog&gt;" file="components/savefiledialog"/>
+  </article>
 </reference>

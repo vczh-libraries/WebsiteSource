@@ -27,7 +27,7 @@
             </p>
             <p>
                 One
-                <a href="/gacui/components/components/home.html">
+                <a href="/gacui/components/components/toolstripcommand.html">
                     <b>&lt;ToolstripCommand/&gt;</b>
                 </a>
                 can be connected to multiple toolstrip buttons.

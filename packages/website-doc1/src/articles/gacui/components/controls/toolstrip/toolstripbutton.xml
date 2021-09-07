@@ -46,7 +46,7 @@
                 Multiple toolstrip buttons could be connected to the same toolstrip command
                 by assigning the command to the <b>Command</b> property of the button.
                 Please check out
-                <a href="/gacui/components/components/home.html">
+                <a href="/gacui/components/components/toolstripcommand.html">
                     this page
                 </a>
                 for details about using toolstrip commands as components.
