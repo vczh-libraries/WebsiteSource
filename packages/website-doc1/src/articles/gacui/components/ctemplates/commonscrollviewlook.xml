@@ -2,7 +2,54 @@
     <topic>
         <title>&lt;CommonScrollViewLook&gt;</title>
         <p>
-            This page is under construction
+            This is a helper class for implementing any control templates inherit from <b>&lt;ScrollViewTemplate/&gt;</b>.
+            It inherits from <b>GuiTemplate</b>.
+        </p>
+        <p>
+            This helper class is expected to be used in this way:
+            <program><code><![CDATA[
+                <Instance ref.CodeBehind="false" ref.Class="darkskin::ScrollViewTemplate" ref.Styles="res://DarkSkin/Style">
+                  <ScrollViewTemplate ref.Name="self" MinSizeLimitation="LimitToElementAndChildren">
+                    <att.ContainerComposition-eval>look.ContainerComposition</att.ContainerComposition-eval>
+                    <att.HorizontalScroll-eval>look.HScroll</att.HorizontalScroll-eval>
+                    <att.VerticalScroll-eval>look.VScroll</att.VerticalScroll-eval>
+
+                    <SolidBackground Color="#252526"/>
+                    <Bounds AlignmentToParent="left:0 top:0 right:0 bottom:0" InternalMargin="left:1 top:1 right:1 bottom:1">
+                      <SolidBorder Color="#3F3F46"/>
+                      <CommonScrollViewLook ref.Name="look" AlignmentToParent="left:0 top:0 right:0 bottom:0">
+                        <att.HScrollTemplate>darkskin::HScrollTemplate</att.HScrollTemplate>
+                        <att.VScrollTemplate>darkskin::VScrollTemplate</att.VScrollTemplate>
+                        <att.DefaultScrollSize>20</att.DefaultScrollSize>
+                      </CommonScrollViewLook>
+                    </Bounds>
+                  </ScrollViewTemplate>
+                </Instance>
+            ]]></code></program>
+        </p>
+        <p>
+            These properties are expected to pass from <b>&lt;CommonScrollViewLook/&gt;</b> to <b>&lt;ScrollViewTemplate/&gt;</b>:
+            <ul>
+                <li><b>ContainerComposition</b></li>
+                <li><b>HorizontalScroll</b></li>
+                <li><b>VerticalScroll</b></li>
+            </ul>
+            These properties defines control templates for:
+            <ul>
+                <li><b>HScrollTemplate</b>: Horizontal scroll.</li>
+                <li><b>VScrollTemplate</b>: Vertical scroll.</li>
+            </ul>
+            These properties defines the thickness of scroll bars:
+            <ul>
+                <li><b>DefaultScrollSize</b>: Height of the horizontal scroll, and width of the vertical scroll.</li>
+            </ul>
+        </p>
+        <p>
+            After installing this helper class properly,
+            parameters of scroll bars will be taken care of by the control itself.
+            For control templates of list controls,
+            control templates don't need to worry about rendering items,
+            they just need to provide more configurations like colors or control templates of sub objects.
         </p>
     </topic>
 </article>
