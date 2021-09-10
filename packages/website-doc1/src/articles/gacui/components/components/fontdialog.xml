@@ -2,7 +2,61 @@
     <topic>
         <title>&lt;FontDialog&gt;</title>
         <p>
-            This page is under construction.
+            <b>&lt;FontDialog/&gt;</b> displays a OS native font dialog.
         </p>
+        <topic>
+            <title>Input / Output Properties</title>
+            <p>
+                Set these properties before calling <b>ShowDialog</b> to create a default user input.
+                These properties will be changed after calling <b>ShowDialog</b> if the user change the default input.
+            </p>
+            <topic>
+                <title>SelectedFont</title>
+                <p>
+                    This property defines the selected font.
+                    If <b>ShowDialog</b> returns <b>false</b>,
+                    the value of this property is undefined.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedColor</title>
+                <p>
+                    This property defines the selected color.
+                    If <b>ShowDialog</b> returns <b>false</b>,
+                    the value of this property is undefined.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Input Properties</title>
+            <p>
+                Set these properties before calling <b>ShowDialog</b> to define the content of the dialog.
+            </p>
+            <topic>
+                <title>ShowSelection</title>
+                <p>
+                    Set this property to <b>true</b> to highlight the <b>SelectedFont</b> and <b>SelectedColor</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>ShowEffect</title>
+                <p>
+                    Set this property to <b>true</b> to enable the font review area.
+                </p>
+            </topic>
+            <topic>
+                <title>ForceFontExist</title>
+                <p>
+                    Set this property to <b>true</b> to ensure user cannot select an unexisting font.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>ShowDialog Method</title>
+            <p>
+                Call this function to display a dialog,
+                and return <b>true</b> if a color is selected.
+            </p>
+        </topic>
     </topic>
 </article>

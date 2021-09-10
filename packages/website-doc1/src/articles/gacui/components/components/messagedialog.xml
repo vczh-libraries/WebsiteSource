@@ -7,7 +7,7 @@
         <topic>
             <title>Input Properties</title>
             <p>
-                Set these properties before calling <b>ShowDialog</b> to define the content of the dialog:
+                Set these properties before calling <b>ShowDialog</b> to define the content of the dialog.
             </p>
             <topic>
                 <title>Input</title>
@@ -23,6 +23,8 @@
                         <li><b>DisplayCancelTryAgainContinue</b>: Display Cancel / Try Again / Continue button.</li>
                     </ul> 
                 </p>
+            </topic>
+            <topic>
                 <title>DefaultButton</title>
                 <p>
                     The value of this property must be one of the followuing values:
@@ -32,6 +34,8 @@
                         <li><b>DefaultThird</b>: The third button is focused right after the dialog is displayed.</li>
                     </ul> 
                 </p>
+            </topic>
+            <topic>
                 <title>Icon</title>
                 <p>
                     The value of this property must be one of the followuing values:
@@ -43,6 +47,8 @@
                         <li><b>IconInformation</b>: Display an information icon.</li>
                     </ul> 
                 </p>
+            </topic>
+            <topic>
                 <title>ModalOption</title>
                 <p>
                     The value of this property must be one of the followuing values:
@@ -52,10 +58,14 @@
                         <li><b>ModalSystem</b>: Same as <b>ModelTask</b> and the dialog is set to top-most.</li>
                     </ul> 
                 </p>
+            </topic>
+            <topic>
                 <title>Text</title>
                 <p>
                     This property defines the content of the dialog.
                 </p>
+            </topic>
+            <topic>
                 <title>Title</title>
                 <p>
                     This property defines the title of the dialog.
