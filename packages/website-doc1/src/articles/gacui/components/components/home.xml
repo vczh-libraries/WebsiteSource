@@ -22,27 +22,27 @@
                     <ul>
                         <li>
                             <a href="/gacui/components/components/messagedialog.html">
-                                <b>&lt;MessageDialog&gt;</b>
+                                <b>&lt;MessageDialog/&gt;</b>
                             </a>
                         </li>
                         <li>
                             <a href="/gacui/components/components/colordialog.html">
-                                <b>&lt;ColorDialog&gt;</b>
+                                <b>&lt;ColorDialog/&gt;</b>
                             </a>
                         </li>
                         <li>
                             <a href="/gacui/components/components/fontdialog.html">
-                                <b>&lt;FontDialog&gt;</b>
+                                <b>&lt;FontDialog/&gt;</b>
                             </a>
                         </li>
                         <li>
                             <a href="/gacui/components/components/openfiledialog.html">
-                                <b>&lt;OpenFileDialog&gt;</b>
+                                <b>&lt;OpenFileDialog/&gt;</b>
                             </a>
                         </li>
                         <li>
                             <a href="/gacui/components/components/savefiledialog.html">
-                                <b>&lt;SaveFileDialog&gt;</b>
+                                <b>&lt;SaveFileDialog/&gt;</b>
                             </a>
                         </li>
                     </ul>
