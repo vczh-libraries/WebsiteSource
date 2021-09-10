@@ -7,7 +7,7 @@
         <topic>
             <title>Input Properties</title>
             <p>
-                Set these properties before calling <b>ShowDialog</b> to define the content of a message dialog:
+                Set these properties before calling <b>ShowDialog</b> to define the content of the dialog:
             </p>
             <topic>
                 <title>Input</title>
