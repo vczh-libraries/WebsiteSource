@@ -2,7 +2,14 @@
     <topic>
         <title>&lt;SaveFileDialog&gt;</title>
         <p>
-            This page is under construction.
+            <b>&lt;SaveFileDialog/&gt;</b> displays a OS native save file dialog.
+        </p>
+        <p>
+            <b>&lt;SaveFileDialog/&gt;</b> shares all properties and methods with
+            <a href="/gacui/components/components/openfiledialog.html">
+                <b>&lt;OpenFileDialog/&gt;</b>
+            </a>,
+            except that the <b>FileNames</b> property does not exist in <b>&lt;SaveFileDialog/&gt;</b>.
         </p>
     </topic>
 </article>

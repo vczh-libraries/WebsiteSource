@@ -55,7 +55,7 @@
             <title>ShowDialog Method</title>
             <p>
                 Call this function to display a dialog,
-                and return <b>true</b> if a color is selected.
+                and return <b>true</b> if a font is selected.
             </p>
         </topic>
     </topic>
