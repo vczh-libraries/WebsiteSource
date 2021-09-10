@@ -45,11 +45,8 @@
             <p>
                 Multiple toolstrip buttons could be connected to the same toolstrip command
                 by assigning the command to the <b>Command</b> property of the button.
-                Please check out
-                <a href="/gacui/components/components/toolstripcommand.html">
-                    this page
-                </a>
-                for details about using toolstrip commands as components.
+                When a toolstrip button is clicked,
+                the <b>Executed</b> event in the connected toolstrip command will be raised.
             </p>
             <p>
                 The following properties in <b>&lt;ToolstripButton/&gt;</b> is automatically
@@ -62,24 +59,36 @@
                     <li><b>Enabled (EnabledChanged)</b></li>
                     <li><b>Selected (SelectedChanged)</b></li>
                 </ul>
-                In this case,
-                <b>DO NOT</b> update these properties in toolstrip buttons directly,
-                <b>DO</b> update these properties in toolstrip commands,
+                Synchronizable properties in <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;ToolstripCommand/&gt;</b> shares the same name,
+                except that <b>ShortcutBuilder</b> in <b>&lt;ToolstripCommand/&gt;</b> controls <b>ShortcutText</b> in <b>&lt;ToolstripButton/&gt;</b>.
+            </p>
+            <p>
+                When a <b>&lt;ToolstripCommand/&gt;</b> is connected to a <b>&lt;ToolstripButton/&gt;</b>,
+                <b>DO NOT</b> update these properties the <b>&lt;ToolstripButton/&gt;</b> directly,
+                <b>DO</b> update these properties in the <b>&lt;ToolstripCommand/&gt;</b>,
                 property values will be synced to all connected toolstrip buttons.
                 For example,
                 after disabling a toolstrip command,
                 all connected toolstrip buttons will also be disabled.
             </p>
+        </topic>
+        <topic>
+            <title>Shortcut Key</title>
             <p>
-                To bind a toolstrip command with a key combination,
-                set the text representation of the key combination to the <b>Shortcut</b> property.
-                In C++,
-                use <b>SetShortcutBuilder</b> instead.
+                Setting a correct key combination to <b>&lt;ToolstripCommand/&gt;</b>::<b>ShortcutBuilder</b>
+                will actually combine the command to this shortcut key in the current window.
+                While setting <b>&lt;ToolstripButton/&gt;</b>::<b>ShortcutText</b> only affect rendering.
             </p>
             <p>
-                The format of shortcuts is <b>Ctrl+Shift+Alt+Key</b>.
-                <b>Ctrl</b>, <b>Shift</b> and <b>Alt</b> are optional.
-                Acceptable <b>Key</b> names are as follows:
+                The value of the <b>ShortcutBuilder</b> property must be in this format:
+                <program><code><![CDATA[
+                    Ctrl+Shift+Alt+KEY
+                ]]></code></program>
+                <b>Ctrl+</b>, <b>Shift+</b> and <b>Alt+</b> are optional.
+                And <b>KEY</b> must be one of a value returning from <b>vl::presentation::GetCurrentController()->InputService()->GetKeyName(VKEY)</b>.
+            </p>
+            <p>
+                A valid <b>KEY</b> must be one of the following values:
                 <ul>
                     <li>A to Z</li>
                     <li>0 to 9</li>
