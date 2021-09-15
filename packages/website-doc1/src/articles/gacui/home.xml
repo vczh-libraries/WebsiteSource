@@ -2,7 +2,107 @@
     <topic>
         <title>Introduction to GacUI</title>
         <p>
-            The page is under construction.
+            GacUI is a high performance cross-platform C++ UI library with built-in
+            <ul>
+                <li>rich control libraries</li>
+                <li>powerful layout mechanism</li>
+                <li>control/item template mechanism</li>
+                <li>reactive design</li>
+                <li>object/list/tree data binding</li>
+                <li>MVVM support</li>
+            </ul>
         </p>
+        <p>
+            GacUI XML Resource is an recommended to build a GacUI application.
+            The provided toolchain consumes GacUI XML Resource and output:
+            <ul>
+                <li>
+                    <p>
+                        A compiled binary resource format.
+                    </p>
+                    <p>
+                        Such binary files contain only resources like
+                        text, image, rich text documents, etc.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Per-platform compiled <b>Workflow</b> assemblies. <b>(unrecommended)</b>
+                    </p>
+                    <p>
+                        These assemblies are compiled from XML descripted
+                        UIs, animations, localed texts, etc.
+                    </p>
+                    <p>
+                        You need to know what CPU platform the application is running one
+                        to load the correct assembly file at runtime.
+                        Reflection must be enabled in order to execute the assembly.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        C++/14 C++ files translated from above assemblies. <b>(recommended)</b>
+                    </p>
+                    <p>
+                        These C++ files are compiled from XML descripted
+                        UIs, animations, located texts, etc.
+                    </p>
+                    <p>
+                        If all UI objects are known and no code need to be dynamically downloaded,
+                        instead of loading assemblies with reflection enabled at runtime,
+                        you can link all generated C++ code with your application
+                        <b>to avoid enabling Reflection</b>.
+                    </p>
+                    <p>
+                        In this way your application could start very quickly
+                        and reduce 90% of the binary size.
+                    </p>
+                </li>
+            </ul>
+        </p>
+        <p>
+            These platforms are supported at this moment:
+            <ul>
+                <li><b>Win32 Subsystem</b>: You could use either GDI or Direct2D 1.0/1.1 to render UI.</li>
+                <li><b>Linux</b>: Experimental but it is working. (<a href="https://github.com/vczh-libraries/gGac">https://github.com/vczh-libraries/gGac</a>)</li>
+                <li><b>macOS</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)</li>
+            </ul>
+            In the future, more platforms will be included in GacUI like:
+            <ul>
+                <li>UWP</li>
+                <li>WASM running on browsers</li>
+                <li>Command-line interface applications</li>
+                <li>Single-window mode, which renders menus and dialog boxes in the main window, instead of creating new native windows for them.</li>
+                <li>etc ...</li>
+            </ul>
+        </p>
+        <topic>
+            <title>In this topic ...</title>
+            <p>
+                <ul>
+                    <li>
+                        <a href="/gacui/running.html">Build your first GacUI Application!</a>:
+                        A step-by-step tutorial for creating a GacUI application.
+                    </li>
+                    <li>
+                        <a href="/gacui/kb/home.html">Knowledge Base</a>:
+                        Basic concepts to know before learning GacUI.
+                    </li>
+                    <li>
+                        <a href="/gacui/xmlres/home.html">GacUI XMl Resource</a>:
+                        A complete guide for GacUI XML Resource.
+                    </li>
+                    <li>
+                        <a href="/gacui/components/home.html">GacUI Components</a>:
+                        A complete guide for all GacUI objects like
+                        elements, compositions, controls, templates and components.
+                    </li>
+                    <li>
+                        <a href="/gacui/advanced/home.html">Advanced Topics</a>:
+                        Details about advanced features and patterns for GacUI.
+                    </li>
+                </ul>
+            </p>
+        </topic>
     </topic>
 </article>
