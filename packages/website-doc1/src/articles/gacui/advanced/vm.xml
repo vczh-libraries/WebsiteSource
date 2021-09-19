@@ -2,7 +2,210 @@
     <topic>
         <title>Interop with C++ View Model</title>
         <p>
-            The page is under construction.
+            It is recommended to use the
+            <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">MVVM</a>
+            pattern with GacUI:
+            <ul>
+                <li>
+                    <p>
+                        <b>Model</b>:
+                        It refers to a domain model.
+                        Code in <b>Model</b> solves real problem that users need.
+                        It could be an object-oriented design of a domain,
+                        it could also be a data access layer to the data in database, from the internet, or any possible way.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>ViewModel</b>:
+                        It refers to a set of interface exposing the <b>Model</b> in a convient way for <b>Views</b>.
+                        Data organization in <b>Model</b> doesn't have to be UI friendly.
+                        It is the <b>ViewModel</b> who exposes a right set of operations,
+                        to make <b>Views</b> access <b>Model</b> convenient.
+                    </p>
+                    <p>
+                        For example,
+                        there are many applications offer list sorting to users.
+                        Data in <b>Model</b> is not sorted,
+                        it could be indexed,
+                        because there is so many way to sort the data,
+                        it is a waste of storage to cache all sorting result.
+                        When a user sort the data in a specific way,
+                        it is the <b>ViewModel</b> who handels the sorting.
+                        the <b>ViewModel</b> accesses the data,
+                        return the data organization in a sorted way.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>View</b>:
+                        A <b>View</b> could be the actual UI of an application,
+                        it could also be a set of unit tests.
+                        <b>Views</b> access <b>ViewModel</b>,
+                        typically it doesn't access <b>Model</b>.
+                    </p>
+                </li>
+            </ul>
         </p>
+        <p>
+            In GacUI,
+            <b>ViewModels</b> are defined as a set of interfaces in
+            <a href="/gacui/xmlres/tag_script.html">Workflow script files</a>.
+            <b>Views</b> are defined as a set of
+            <a href="/gacui/xmlres/instance/root_instance.html">windows and controls</a>.
+        </p>
+        <p>
+            All <b>ViewModels</b> that are needed in a <b>View</b> are defined as
+            <a href="/gacui/xmlres/tag_instance.html"><b>&lt;ref.Parameter/&gt;</b></a>,
+            which represents constructor arguments to that <b>View</b>.
+            The <b>Class</b> attributes of such <b>&lt;ref.Parameter/&gt;</b> will be interfaces for <b>ViewModels</b>.
+        </p>
+        <p>
+            In the GacUI entry point (the <b>GuiMain</b> function),
+            a main window will be created.
+            If the main window needs <b>ViewModels</b>,
+            the main window <b>&lt;Instance/&gt;</b> will have one or more <b>&lt;ref.Parameter/&gt;</b>,
+            then the constructor of the main window will have one or more constructor arguments.
+        </p>
+        <p>
+            Now, <b>GuiMain</b> just needs to create classes that implement these interfaces,
+            and gives all of them to the constructor of the main window,
+            then <b>ViewModels</b> and the <b>View</b> is connected together.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_HelloWorlds/MVVM">This</a>
+                is a very simple example for using MVVM in GacUI.
+            </p>
+            <p>
+                <img src="/gacui/adv_mvvm.gif"/>
+            </p>
+            <p>
+                The <b>ViewModel</b> is an interface:
+                <program><code><![CDATA[
+                    interface IViewModel
+                    {
+                        func GetUserName() : string;
+                        func SetUserName(value : string) : void;
+                        prop UserName : string {GetUserName, SetUserName}
+                            
+                        func GetPassword() : string;
+                        func SetPassword(value : string) : void;
+                        prop Password : string {GetPassword, SetPassword}
+                            
+                        func GetUserNameError() : string;
+                        event UserNameErrorChanged();
+                        prop UserNameError : string {GetUserNameError : UserNameErrorChanged}
+                            
+                        func GetPasswordError() : string;
+                        event PasswordErrorChanged();
+                        prop PasswordError : string {GetPasswordError : PasswordErrorChanged}
+                            
+                        func SignUp() : bool;
+                    }
+                ]]></code></program>
+                It defines all <b>View</b> needs to know:
+                <ul>
+                    <li>Accessing the user name and the password.</li>
+                    <li>Retriving validation results for the user name and the password.</li>
+                </ul>
+            </p>
+            <p>
+                When the content of a text box is changed,
+                the data is stored to the view model.
+                This is implemented using data bindings to the view model object:
+                <program><code><![CDATA[
+                    <ref.Parameter Name="ViewModel" Class="vm::IViewModel"/>
+                    <Window ref.Name="self" Text="Let's Sign Up!" ClientSize="x:320 y:320">
+                        <att.ViewModel-set UserName-bind="textBoxUserName.Text" Password-bind="textBoxPassword.Text"/>
+                        ...
+                ]]></code></program>
+            </p>
+            <p>
+                When the validation result is changed,
+                errors are displayed to the UI immediately.
+                This is implemented using data bindings to UI objects:
+                <program><code><![CDATA[
+                    <SolidLabel Text-bind="ViewModel.UserNameError"/>
+                ]]></code></program>
+            </p>
+            <p>
+                When the user name or the password is stored to the view model,
+                validation results are updated automatically.
+                This is implemented in a C++ class which inherits the interface:
+                <program><code><![CDATA[
+                    class ViewModel : public Object, public virtual vm::IViewModel
+                    {
+                    private:
+                        WString userName;
+                        WString password;
+                        Regex regexLcLetters;
+                        Regex regexUcLetters;
+                        Regex regexNumbers;
+
+                    public:
+                        ViewModel()
+                            :regexLcLetters(L"[a-z]")
+                            , regexUcLetters(L"[A-Z]")
+                            , regexNumbers(L"[0-9]")
+                        {
+                        }
+
+                        ...
+
+                        WString GetPassword()override
+                        {
+                            return password;
+                        }
+
+                        void SetPassword(const WString& value)override
+                        {
+                            password = value;
+                            PasswordErrorChanged();
+                        }
+
+                        WString GetPasswordError()override
+                        {
+                            if (password == L"")
+                            {
+                                return L"Password should not be empty.";
+                            }
+                            bool containsLowerCases = regexLcLetters.Match(password);
+                            bool containsUpperCases = regexUcLetters.Match(password);
+                            bool containsNumbers = regexNumbers.Match(password);
+                            if (!containsLowerCases || !containsUpperCases || !containsNumbers)
+                            {
+                                return L"Password should contains at least one lower case letter, one upper case letter and one digit.";
+                            }
+                            return L"";
+                        }
+                    };
+                ]]></code></program>
+            </p>
+            <p>
+                It is very easy to connect the <b>ViewModel</b> to the <b>View</b>:
+                <program><code><![CDATA[
+                    void GuiMain()
+                    {
+                        ...
+                        auto viewModel = MakePtr<ViewModel>();
+                        auto window = new helloworld::MainWindow(viewModel);
+                        ...
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                Collection objects or tree-like objects can be binded to
+                <a href="/gacui/components/controls/list/home.html">list controls</a>
+                directly.
+                Data bindings accept any
+                <a href="/workflow/lang/bind.html">workflow expressions</a>
+                that compiles.
+                MVVM in GacUI is very powerful,
+                you are free to choose any way to define <b>ViewModel</b> interfaces,
+                and it is always possible to bind it to the UI.
+            </p>
+        </topic>
     </topic>
 </article>
