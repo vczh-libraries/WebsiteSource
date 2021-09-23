@@ -135,7 +135,7 @@
             and all string resources will be updated if it is used in <b>-str</b>, <b>-format</b> or <b>-bind</b>.
         </p>
         <p>
-            Here is how they looks like:
+            Here is how it looks like:
         </p>
         <p>
             <sample name="kb_localizedstrings"/>

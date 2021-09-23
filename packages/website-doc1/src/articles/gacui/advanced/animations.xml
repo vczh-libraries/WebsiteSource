@@ -1,8 +1,190 @@
-<article>
+<article index="true">
     <topic>
         <title>Animations</title>
         <p>
-            The page is under construction.
+            The GacUI XML
+            <a href="/gacui/xmlres/tag_animation.html">
+                <b>&lt;Animation/&gt;</b>
+            </a>
+            resource creates helper classes for animations.
+            It creates a class like this:
+            <program><code><![CDATA[
+                class MyAnimation
+                {
+                    prop Current: STATE_CLASS^{}
+                    new (current: STATE_CLASS^){}
+                    func CreateAnimation(target: STATE_CLASS^, time: UInt64);
+                }
+            ]]></code></program>
+            <b>STATE_CLASS</b> is a class with fields of number types or <b>Color</b>.
+            By creating an <b>MyAnimation^</b> in a window like this:
+            <program><code><![CDATA[
+                <Instance ...>
+                    <ref.Members><![CDATA[
+                        var myAnimation : MyAnimation^ = new MyAnimation(initial_state);
+                    ]]]]><![CDATA[>]]><![CDATA[</ref.Members>
+                    <Window ref.Name="self">
+                        <Something PropertyToAnimate-bind="self.myAnimation.Current.FIELD"/>
+                    </Window>
+                </Instance>
+            ]]></code></program>
+            You are able to bind the expression <b>self.myAnimation.Current.FIELD</b> to any compatible property.
+            When the animation is running,
+            fields in <b>self.myAnimation.Current</b> will keep updating,
+            so that to animate the UI.
         </p>
+        <topic>
+            <title>Interpolation Functions</title>
+            <p>
+                The first step to animate a field in <b>self.myAnimation.Current</b> is to set a proper interpolation function,
+                which is described in
+                <a href="/gacui/xmlres/tag_animation.html">
+                    <b>&lt;Animation/&gt;</b>
+                </a>.
+                Only fields that mentioned by a <b>&lt;Target/&gt;</b> tag could be animated.
+                All animated fields must associate an interpolation function.
+                There is also a place for a default interpolation function,
+                which will apply on all animated fields unless one is specified in <b>&lt;Target/&gt;</b>.
+            </p>
+            <p>
+                An interpolation function is an Workflow expression in a function type,
+                which takes a <b>double</b> and returns a <b>double</b>.
+            </p>
+            <p>
+                The function parameter is the progress of the animation from <b>0</b> to <b>1</b>.
+                If an animation is 10 seconds long,
+                then <b>0</b> is the beginning,
+                <b>1</b> is the ending,
+                and <b>0.4</b> means <b>10 seconds * 0.4</b> which is at the end of the 4th second.
+            </p>
+            <p>
+                The return value is the interpolation of the animation from <b>0</b> to <b>1</b>.
+                If the begin state is <b>5</b> and the end state is <b>15</b>,
+                then returning <b>0</b> means <b>5</b>,
+                returning <b>1</b> means <b>15</b>,
+                and returning <b>0.4</b> means the <b>5 + (15 - 5) * 0.4</b> which is <b>9</b>.
+            </p>
+            <p>
+                The interpolation calculate that,
+                where a field should go given the progress of the animation.
+                If a linear interpolation function is expected,
+                then just return the parameter.
+                Such a function would typically be:
+                <ul>
+                    <li>
+                        for <a href="/workflow/lang/expr.html#Ordered-lambda-expression-1-2-">ordered lambda expression</a>
+                        : <b>[$1]</b>
+                    </li>
+                    <li>
+                        for <a href="/workflow/lang/expr.html#Lambda-expression-func-x-int-y-int-int-return-x-y-">lambda expression</a>
+                        : for example: <b>func (progress: double) : double { return progress; }</b>
+                    </li>
+                </ul>
+                Sometimes it is better to make the field accelerate at the first half and decelerate at the second half,
+                such a function could be easily created using:
+                <program><code><![CDATA[
+                    func (x: double): double
+                    {
+                        if (x < 0.5) { return x * x * 2; } else { return 1 - (1 - x) * (1 - x) * 2; }
+                    }
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Running an Animation</title>
+            <p>
+                In the <b>&lt;Animation/&gt;</b> generated class,
+                there is a <b>CreateAnimation(state, time)</b> function,
+                which means the animation begins from the current state,
+                and run towards <b>state</b> in <b>time</b> milliseconds.
+            </p>
+            <p>
+                Calling this function doesn't make the animation run,
+                instead it returns an <b>(vl::)presentation::controls::IGuiAnimation^</b> object.
+                <b>AddAnimation</b> and <b>KillAnimation</b> of
+                <b>(vl::)presentation::controls::GuiInstanceRootObject</b>
+                controls how the animation run.
+                This class is the base class for all UI
+                <a href="/gacui/xmlres/instance/root_instance.html">
+                    root instances
+                </a>,
+                so <b>AddAnimation</b> and <b>KillAnimation</b>,
+                or <b>self.AddAnimation</b> and <b>self.KillAnimation</b>,
+                are accessible in the XML.
+            </p>
+            <p>
+                <b>AddAnimation</b> adds an <b>IGuiAnimation</b> object to the UI object,
+                and start the animation immediately.
+            </p>
+            <p>
+                <b>KillAnimation</b> stops an <b>IGuiAnimation</b> object that has been added to the UI object,
+                and stop the animation immediately.
+            </p>
+            <p>
+                For animations that need to switch from state to state for multiple times,
+                like a button when the mouse is moving in and out,
+                there is a pattern to control the animation:
+                <program><code><![CDATA[
+                    <ref.Members><![CDATA[
+                        var myAnimation : MyAnimation^ = new MyAnimation(initial_state);
+                        var lastAnimation : IGuiAnimation^ = null;
+                    ]]]]><![CDATA[>]]><![CDATA[</ref.Members>
+                    ...
+                    var newAnimation = myAnimation.CreateAnimation(newState, animationLengthInMilliseconds);
+                    KillAnimation(lastAnimation);
+                    lastAnimation = newAnimation;
+                    AddAnimation(lastAnimation);
+                ]]></code></program>
+                When the state needs to move to a new state when the animation is running,
+                this piece of code stops the current running animation,
+                and replace it with a new one.
+                The new animation moves the current state from where it is to a new state,
+                and it should look smooth.
+            </p>
+            <p>
+                <b>KillAnimation</b> could accept <b>null</b>,
+                and it does nothing.
+            </p>
+        </topic>
+        <topic>
+            <title>Managing Multiple Animations</title>
+            <p>
+                It is easy to copy the above pattern multiple times for each animation.
+            </p>
+            <p>
+                Please remember that,
+                the created <b>lastAnimation</b> will change <b>myAnimation.Current.FIELD</b>
+                when it is executing,
+                so if multiple animation needs to run at the same time,
+                multiple <b>lastAnimation</b> and <b>myAnimation</b> should be created at the same time.
+                Please give them good names to make the code looks clear.
+            </p>
+            <p>
+                When a UI object is disposing,
+                e.g. when the close button on a window is clicked,
+                all animations will be shut down,
+                and calling <b>AddAnimation</b> will result in an exception.
+            </p>
+            <p>
+                It is function idential to split all fields to multiple animation objects.
+                But if multiple fields represent different parts of the same animation,
+                do your best to make one animation for all these fields to increase the performance.
+            </p>
+            <p>
+                In
+                <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_animation/Resource.xml">
+                    this tutorial project
+                </a>,
+                a button is controlled by 4 colors,
+                which changes in one animation because they represent different parts of the same animation.
+                So only one <b>&lt;Animation/&gt;</b> and only one instance of it is needed for one button.
+            </p>
+            <p>
+                Here is how it looks like:
+            </p>
+            <p>
+                <sample name="kb_animation"/>
+            </p>
+        </topic>
     </topic>
 </article>
