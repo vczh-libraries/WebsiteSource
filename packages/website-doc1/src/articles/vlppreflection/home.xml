@@ -6,13 +6,13 @@
         </p>
         <p>
             If a project includes VlppReflection source code,
-            it doesn't necessarily mean that the project uses reflection in runtime,
+            it doesn't necessarily mean that the project uses reflection at runtime,
             because reflectable class must inherits from <b>Description&lt;T&gt;</b> or <b>AggregatableDescription&lt;T&gt;</b>,
             which are defined in VlppReflection.
         </p>
         <p>
             The same source code could be used in compilers or code generators,
-            typically these kind of tools uses reflection in runtime,
+            typically these kind of tools uses reflection at runtime,
             so source code that defines reflectable C++ types are required to compile
             regardless weather <b>VCZH_DEBUG_NO_REFLECTION</b> is on or off,
             so that to share the same code to consumers which don't need runtime reflection.
@@ -116,7 +116,7 @@
                 These are all done by <b>GacBuild.ps1</b>
             </p>
             <p>
-                You can load compiled resource files and script files in runtime to create controls,
+                You can load compiled resource files and script files at runtime to create controls,
                 but this is not recommended.
             </p>
             <p>

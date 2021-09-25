@@ -16,7 +16,7 @@
                             <li>
                                 pros:
                                 It offers a huge flexibility of developing UI,
-                                UI can be loaded in runtime dynamically.
+                                UI can be loaded at runtime dynamically.
                             </li>
                             <li>
                                 cons:
@@ -35,7 +35,7 @@
                             <li>
                                 pros:
                                 All UI are converted to C++ code,
-                                the application can statically link to them and keep a high performance in runtime.
+                                the application can statically link to them and keep a high performance at runtime.
                                 And it offers an option to disable <a href="/vlppreflection/home.html">reflection</a>,
                                 which significantly reduces the size of the executable file.
                             </li>

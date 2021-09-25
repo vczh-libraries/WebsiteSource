@@ -327,7 +327,7 @@
                 <p>
                     When there is a <b>env.ItemType</b> attribute
                     on the object having this property of or on any parent object,
-                    the type of the object to retrieve the property value in runtime is expected to be <b>env.ItemType</b>.
+                    the type of the object to retrieve the property value at runtime is expected to be <b>env.ItemType</b>.
                     In this case,
                     the value of this property must be a valid property or field name.
                 </p>

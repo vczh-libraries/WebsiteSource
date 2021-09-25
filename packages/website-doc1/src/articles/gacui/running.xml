@@ -184,7 +184,7 @@ void GuiMain()
             </p>
             <p>
                 Please note that, you need to carefully place <b>HelloWorld.bin</b>,
-                and search for this file in runtime.
+                and search for this file at runtime.
                 <b>"HelloWorld.bin"</b> is a relative path,
                 it will try to find the file in your working directory.
                 When you press F5 in Visual Studio, the working directory is the folder containing the ".vcxproj" file.

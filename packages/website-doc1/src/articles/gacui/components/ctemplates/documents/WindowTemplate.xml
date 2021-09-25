@@ -101,7 +101,7 @@
         </ul>
         If it is set to <b>Customizable</b>,
         <b>MaximizedBox</b> could be changed many times during the life cycle of the control template,
-        which means the control template should be able to adjust its look in runtime.
+        which means the control template should be able to adjust its look at runtime.
       </p>
     </prop>
 
@@ -115,7 +115,7 @@
         </ul>
         If it is set to <b>Customizable</b>,
         <b>MinimizedBox</b> could be changed many times during the life cycle of the control template,
-        which means the control template should be able to adjust its look in runtime.
+        which means the control template should be able to adjust its look at runtime.
       </p>
     </prop>
 
@@ -129,7 +129,7 @@
         </ul>
         If it is set to <b>Customizable</b>,
         <b>Border</b> could be changed many times during the life cycle of the control template,
-        which means the control template should be able to adjust its look in runtime.
+        which means the control template should be able to adjust its look at runtime.
       </p>
     </prop>
 
@@ -143,7 +143,7 @@
         </ul>
         If it is set to <b>Customizable</b>,
         <b>SizeBox</b> could be changed many times during the life cycle of the control template,
-        which means the control template should be able to adjust its look in runtime.
+        which means the control template should be able to adjust its look at runtime.
       </p>
     </prop>
 
@@ -157,7 +157,7 @@
         </ul>
         If it is set to <b>Customizable</b>,
         <b>IconVisible</b> could be changed many times during the life cycle of the control template,
-        which means the control template should be able to adjust its look in runtime.
+        which means the control template should be able to adjust its look at runtime.
       </p>
     </prop>
 
@@ -171,7 +171,7 @@
         </ul>
         If it is set to <b>Customizable</b>,
         <b>TieleBar</b> could be changed many times during the life cycle of the control template,
-        which means the control template should be able to adjust its look in runtime.
+        which means the control template should be able to adjust its look at runtime.
       </p>
     </prop>
 

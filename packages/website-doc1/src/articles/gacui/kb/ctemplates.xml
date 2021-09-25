@@ -20,7 +20,7 @@
             for example, some colors.
             Output properties are configuration to the control's outfit related behavior,
             almost all of them will only be read once,
-            so changing them in runtime takes no effect.
+            so changing them at runtime takes no effect.
         </p>
         <p>
             Here we demo how to write a control template for <b>SelectableButton</b>.
@@ -139,7 +139,7 @@
             and it has two important properties: <b>Commands</b> and <b>TabPages</b>.
             These are all input properties.
             <b>Commands</b> is an interface with a method <b>ShowTab</b> for activate a tab page.
-            <b>TabPages</b> is an observable collection for all tab pages in runtime.
+            <b>TabPages</b> is an observable collection for all tab pages at runtime.
         </p>
         <p>
             By binding <b>TabPages</b> to a <b>RepeatStack</b>,
