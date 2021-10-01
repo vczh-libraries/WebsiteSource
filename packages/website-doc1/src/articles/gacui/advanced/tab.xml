@@ -2,7 +2,56 @@
     <topic>
         <title>TAB and Control Focus</title>
         <p>
-            This page is under construction.
+            If a focusable control is put on a window,
+            by setting the
+            <a href="/gacui/components/controls/basic/home.html#TabPriority">
+                <b>TabPriority</b>
+            </a>
+            property to a value that is not <b>-1</b>,
+            then it could get focused by pressing <b>TAB</b>.
         </p>
+        <p>
+            Pressing <b>TAB</b> switches the focus between different controls in a window,
+            in the order of their <b>TabPriority</b> from less to greater,
+            when both <b>IsTabEnabled</b> and <b>IsTabAvailable</b> return <b>true</b>.
+            If the value is less than <b>-1</b>,
+            then they will be treated as <b>0xFFFFFFFFFFFFFFFF</b>.
+            The order between controls with the same <b>TabPriority</b> is undefined.
+        </p>
+        <topic>
+            <title>Behavior after being Focused</title>
+            <p>
+                A focusable control will just get focused if <b>TAB</b> decides to give the focus to this control.
+            </p>
+        </topic>
+        <topic>
+            <title>Create your own Behavior</title>
+            <p>
+                If a new control class is created,
+                there are multiple ways to customize the behavior
+                about how a control should react to <b>TAB</b>:
+            </p>
+            <topic>
+                <title>Using IGuiTabAction</title>
+                <p>
+                    <b>IGuiTabAction</b> is a protected base class of all controls.
+                    If a new control is created,
+                    methods could be overriden.
+                </p>
+                <p>
+                    <b>IsTabEnabled</b> returns <b>true</b> if the control is visible and enabled.
+                    <b>IsTabAvailable</b> returns <b>true</b> if the control is focusable.
+                </p>
+                <p>
+                    The default value from <b>GetAcceptTabInput</b> is <b>false</b>.
+                    But a few controls like text controls or document controls set this value to <b>true</b>.
+                    When <b>GetAcceptTabInput</b> is <b>true</b>,
+                    it means this control defines the behavior for this key,
+                    like entering a <b>TAB</b> character,
+                    so that it doesn't want the focus to be switched to another control.
+                    Calling <b>SetAcceptTabInput</b> could change this value.
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
