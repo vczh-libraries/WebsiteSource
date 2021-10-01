@@ -2,10 +2,139 @@
     <topic>
         <title>Advanced Topics</title>
         <p>
-            The page is under construction.
+            Here are advanced topics about using GacUI.
+            Creating a tool using GacUI doesn't always involve these topic,
+            but they are needed for applications with professional user interfaces.
         </p>
         <p>
-            New pages to add: ALT sequence, TAB, implementing own list control, implementing OS provider
+            <ul>
+                <li>
+                    <p>
+                        <b>Interop with C++ View Model</b>
+                    </p>
+                    <p>
+                        Only UI objects are available to <b>Workflow</b> script.
+                        If you want your application to do <b>real thing</b>,
+                        which usually requires interop with resources and the operating system,
+                        You would like to use a native language to complete these jobs.
+                    </p>
+                    <p>
+                        In this section,
+                        it introduces a way to let <b>Workflow</b> in GacUI XML Resource be able to talk to your own C++ classes and functions.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Data Bindings</b>
+                    </p>
+                    <p>
+                        Data binding is an important part of the Model-View-ViewModel pattern.
+                        It models the application logic (ViewModel) in a way that is familiar to software engineers.
+                        You can use whatever data structure you like,
+                        not only a class or an interface could be connected to the UI,
+                        but also list and tree data structures using data bindings.
+                    </p>
+                    <p>
+                        ViewModel becomes testable alone,
+                        and also very easy to interop with the UI.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Animations</b>
+                    </p>
+                    <p>
+                        In GacUI 1.0,
+                        you still need to write code to control the detail of animations.
+                        But with the animation mechanism with data bindings,
+                        GacUI does all the rest.
+                        You don't need to worry about how to update UI objects.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Localization</b>
+                    </p>
+                    <p>
+                        If your application will be used by people using different languages,
+                        The localization mechanism is just for you.
+                        With the help of data bindings,
+                        your application is able to switch languages on the fly,
+                        and it requires nothing but specifying UI text separately.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Cross XML Resource References</b>
+                    </p>
+                    <p>
+                        When your application grows big,
+                        it becomes difficult to control dependencies between UI objects and view models.
+                        GacUI allows different resource file to depend on each other.
+                    </p>
+                    <p>
+                        A GacUI XML Resource could use not only data resources,
+                        but also generated classes and interfaces from anothre resource file.
+                        The dependency also help GacUI to introduce incremental build,
+                        which significantly improve the build performance.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>ALT Sequence and Control Focus</b>
+                    </p>
+                    <p>
+                        Switching focus between controls is an important part of UI accessibility.
+                        By pressing <b>ALT</b> on a GacUI application,
+                        the UI allow you to locate a control using a customizable key sequence.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>TAB and Control Focus</b>
+                    </p>
+                    <p>
+                        Switching focus between controls is an important part of UI accessibility.
+                        By pressing <b>TAB</b> on a GacUI application,
+                        it jumps from one control to another,
+                        if the focused control doesn't take <b>TAB</b> as key input.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Creating New List Controls</b>
+                    </p>
+                    <p>
+                        GacUI already offers a set of list controls with powerful data bindings.
+                        But if it still don't meet your requirement,
+                        you could deeply customize a list control using C++.
+                    </p>
+                    <p>
+                        In this section you will learn how to customize:
+                        <ul>
+                            <li>Keyboard and mouse controlling</li>
+                            <li>Virtual list item algorithm</li>
+                            <li>Layouting list items</li>
+                            <li>Data accessing</li>
+                            <li>Creating your own way to performa data binding</li>
+                            <li>and more ...</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Porting GacUI to Other Platforms</b>
+                    </p>
+                    <p>
+                        GacUI decouples with any OS, sub systems and even renderer,
+                        from the first day it is created.
+                        If you like GacUI but it doesn't run on your platform,
+                        you could port GacUI to it,
+                        not by changing GacUI,
+                        but only creating a new adaptor to talk to the OS!
+                    </p>
+                </li>
+            </ul>
         </p>
     </topic>
 </article>
