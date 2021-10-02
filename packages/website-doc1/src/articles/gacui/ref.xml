@@ -27,7 +27,7 @@
                     </ul>
                 </p>
                 <p>
-                    It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <a href="//tutorial.html">tutorial</a>).
+                    It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <a href="/gacui/running.html">tutorial</a>).
                     By not using reflection, it reduces about 90% of the execution size, which significantly improves performance.
                 </p>
             </topic>
