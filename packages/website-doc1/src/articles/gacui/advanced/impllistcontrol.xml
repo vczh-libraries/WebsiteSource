@@ -2,7 +2,21 @@
     <topic>
         <title>Creating New List Controls</title>
         <p>
-            This page is under construction.
+            Customizing <b>GuiTextList</b> or <b>GuiBindableTextList</b> by providing new item templates ,
+            should be the most common way to create a new list control experience.
+            But you could still create your new list control.
+        </p>
+        <p>
+            In GacUI 1.0,
+            any new classes created completely by C++
+            (instead of by <b>&lt;Instance/&gt;</b> in GacUI XML Resource)
+            is not accessible in the GacUI XML Resource,
+            because the compiler doesn't know about that.
+        </p>
+        <p>
+            Any new list control is expected to derives from <b>GuiSelectableListControl</b> directly.
+            If list items are not selectable,
+            then <b>GuiListControl</b> could be used to reduce runtime overhead.
         </p>
     </topic>
 </article>
