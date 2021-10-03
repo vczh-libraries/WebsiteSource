@@ -164,6 +164,116 @@
                 it will be installed as a callback to <b>IItemProvider</b>.
                 So that <b>IItemArranger</b> could update the rendering when any item is changed.
             </p>
+            <p>
+
+            </p>
+            <p>
+                Here are all methods to implemement:
+                <ul>
+                    <li>
+                        <b>AttachListControl</b>:
+                        This method is called when it is attached to a list control.
+                    </li>
+                    <li>
+                        <b>DetachListControl</b>:
+                        This method is called when it is detached from a list control.
+                    </li>
+                    <li>
+                        <b>GetCallback</b>:
+                        Get the argument from the last <b>SetCallback</b> call.
+                    </li>
+                    <li>
+                        <b>SetCallback</b>:
+                        This method is called when it is attached to a list control.
+                        Only one callback will be installed to <b>IItemArranger</b>.
+                        This callback provides everything that an <b>IItemArranger</b> could do the a list control.
+                    </li>
+                    <li>
+                        <p>
+                            <b>GetTotalSize</b>:
+                            Return the total size of all items in their layout.
+                            This is a <b>virtual size</b>,
+                            it will be translated by
+                            <a href="/gacui/components/controls/list/guilistcontrol.html#Axis-AxisChanged-">
+                                the axis configuration of the list control
+                            </a>.
+                        </p>
+                        <p>
+                            <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction,
+                            and let the <b>Axis</b> property adjust locations and sizes of all visible items to layout them in the expected direction.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>GetVisibleStyle</b>:
+                            This method should return the item template instance for a give item.
+                            If the item is invisible because it is scrolled out of the visible area of the list control,
+                            it should return <b>nullptr</b>.
+                        </p>
+                        <p>
+                            Living item template instances for items could be managed using
+                            <b>IItemArrangerCallback::RequestItem</b> and <b>IItemArrangerCallback::ReleaseItem</b>.
+                        </p>
+                    </li>
+                    <li>
+                        <b>GetVisibleIndex</b>:
+                        This method should return the item index for a given item template instance.
+                        If such an instance is unknown to this <b>IItemArranger</b>,
+                        it should return <b>-1</b>.
+                    </li>
+                    <li>
+                        <p>
+                            <b>ReloadVisibleStyles</b>:
+                            Recreate all UI objects for visible items.
+                            Items don't need to be recreated immediately,
+                            but all UI objects for items should be disposed in the call to this method.
+                        </p>
+                        <p>
+                            <b>GetVisibleStyle</b> and <b>GetVisibleIndex</b> could pretend that all items are invisible
+                            until the next call to <b>OnViewChanged</b>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>OnViewChanged</b>:
+                            This method is called to tell the <b>IItemArranger</b>
+                            what is the visible part in <b>GetTotalSize</b>.
+                        </p>
+                        <p>
+                            <b>IItemArranger</b> could only create UI objects for items in this area,
+                            to reduce the memory pressure and improve the performance.
+                            <b>IItemArranger</b> could also create UI objects for all items if performance is not important.
+                            All items with their UI objects created are <b>visible items</b>.
+                        </p>
+                        <p>
+                            Living item template instances for items could be managed using
+                            <b>IItemArrangerCallback::RequestItem</b> and <b>IItemArrangerCallback::ReleaseItem</b>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>FindItem</b>:
+                            Search a next item from the specified item <b>itemIndex</b> using a keyboard operation <b>key</b>.
+                            <b>-1</b> could be returned if no reasonable item is definded as <b>the next item</b>.
+                        </p>
+                        <p>
+                            <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction,
+                            and let the <b>Axis</b> property adjust locations and sizes of all visible items to layout them in the expected direction.
+                        </p>
+                    </li>
+                    <li>
+                        <b>EnsureItemVisible</b>:
+                        This method is called if the list control want to scroll to an area to make a given item visible.
+                        <b>IItemArrangerCallback::SetViewLocation</b> is usually called as a respond.
+                        <b>OnViewChanged</b> could be called in <b>SetViewLocation</b>.
+                    </li>
+                    <li>
+                        <b>GetAdoptedSize</b>:
+                        Return a reasonable size for the visible area of items,
+                        if the list control is used as a combo box dropdown list.
+                    </li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>GuiListControl::IItemArrangerCallback, the item layouting</title>
