@@ -165,42 +165,48 @@
                 So that <b>IItemArranger</b> could update the rendering when any item is changed.
             </p>
             <p>
-
+                All locations and sizes involved in this interface are all <b>virtual</b>.
+                <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction.
+                The 
+                <a href="/gacui/components/controls/list/guilistcontrol.html#Axis-AxisChanged-">
+                    <b>Axis</b>
+                </a>
+                property will be used by the list control
+                to adjust locations and sizes of all visible items to layout them in the expected direction.
             </p>
             <p>
                 Here are all methods to implemement:
                 <ul>
                     <li>
-                        <b>AttachListControl</b>:
-                        This method is called when it is attached to a list control.
+                        <p>
+                            <b>AttachListControl</b>:
+                            This method is called when it is attached to a list control.
+                        </p>
                     </li>
                     <li>
-                        <b>DetachListControl</b>:
-                        This method is called when it is detached from a list control.
+                        <p>
+                            <b>DetachListControl</b>:
+                            This method is called when it is detached from a list control.
+                        </p>
                     </li>
                     <li>
-                        <b>GetCallback</b>:
-                        Get the argument from the last <b>SetCallback</b> call.
+                        <p>
+                            <b>GetCallback</b>:
+                            Get the argument from the last <b>SetCallback</b> call.
+                        </p>
                     </li>
                     <li>
-                        <b>SetCallback</b>:
-                        This method is called when it is attached to a list control.
-                        Only one callback will be installed to <b>IItemArranger</b>.
-                        This callback provides everything that an <b>IItemArranger</b> could do the a list control.
+                        <p>
+                            <b>SetCallback</b>:
+                            This method is called when it is attached to a list control.
+                            Only one callback will be installed to <b>IItemArranger</b>.
+                            This callback provides everything that an <b>IItemArranger</b> could do the a list control.
+                        </p>
                     </li>
                     <li>
                         <p>
                             <b>GetTotalSize</b>:
                             Return the total size of all items in their layout.
-                            This is a <b>virtual size</b>,
-                            it will be translated by
-                            <a href="/gacui/components/controls/list/guilistcontrol.html#Axis-AxisChanged-">
-                                the axis configuration of the list control
-                            </a>.
-                        </p>
-                        <p>
-                            <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction,
-                            and let the <b>Axis</b> property adjust locations and sizes of all visible items to layout them in the expected direction.
                         </p>
                     </li>
                     <li>
@@ -216,10 +222,12 @@
                         </p>
                     </li>
                     <li>
-                        <b>GetVisibleIndex</b>:
-                        This method should return the item index for a given item template instance.
-                        If such an instance is unknown to this <b>IItemArranger</b>,
-                        it should return <b>-1</b>.
+                        <p>
+                            <b>GetVisibleIndex</b>:
+                            This method should return the item index for a given item template instance.
+                            If such an instance is unknown to this <b>IItemArranger</b>,
+                            it should return <b>-1</b>.
+                        </p>
                     </li>
                     <li>
                         <p>
@@ -256,10 +264,6 @@
                             Search a next item from the specified item <b>itemIndex</b> using a keyboard operation <b>key</b>.
                             <b>-1</b> could be returned if no reasonable item is definded as <b>the next item</b>.
                         </p>
-                        <p>
-                            <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction,
-                            and let the <b>Axis</b> property adjust locations and sizes of all visible items to layout them in the expected direction.
-                        </p>
                     </li>
                     <li>
                         <b>EnsureItemVisible</b>:
@@ -277,6 +281,47 @@
         </topic>
         <topic>
             <title>GuiListControl::IItemArrangerCallback, the item layouting</title>
+            <p>
+                All locations and sizes involved in this interface are all <b>virtual</b>.
+                <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction.
+                The 
+                <a href="/gacui/components/controls/list/guilistcontrol.html#Axis-AxisChanged-">
+                    <b>Axis</b>
+                </a>
+                property will be used by the list control
+                to adjust locations and sizes of all visible items to layout them in the expected direction.
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        <b>RequestItem</b>:
+                    </li>
+                    <li>
+                        <b>ReleaseItem</b>:
+                    </li>
+                    <li>
+                        <b>SetViewLocation</b>:
+                    </li>
+                    <li>
+                        <b>GetStylePreferredSize</b>:
+                    </li>
+                    <li>
+                        <b>SetStyleAlignmentToParent</b>:
+                    </li>
+                    <li>
+                        <b>GetStyleBounds</b>:
+                    </li>
+                    <li>
+                        <b>SetStyleBounds</b>:
+                    </li>
+                    <li>
+                        <b>GetContainerComposition</b>:
+                    </li>
+                    <li>
+                        <b>OnTotalSizeChanged</b>:
+                    </li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Using IItemProvider::RequestView Properly</title>
