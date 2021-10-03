@@ -400,6 +400,36 @@
         </topic>
         <topic>
             <title>Data Binding on Items</title>
+            <p>
+                A data bindable list control could read or write items from a item source implementing <b>Ptr&lt;IValueEnumerable&gt;</b>.
+                This object could also implement any derived interfaces like:
+                <ul>
+                    <li><b>IValueReadonlyList</b></li>
+                    <li><b>IValueList</b></li>
+                    <li><b>IValueObservableList</b></li>
+                </ul>
+                If the item source implements <b>IValueObservableList</b>,
+                then the list control is expected to update automatically when items are changed.
+            </p>
+            <p>
+                <a href="/gacui/xmlres/instance/properties.html#Property-Name-func-data-Object-PROPERTY-TYPE">
+                    The readable property type
+                </a> and
+                <a href="/gacui/xmlres/instance/properties.html#Writable-Property-Name-func-data-Object-value-PROPERTY-TYPE-isWrite-bool-PROPERTY-TYPE">
+                    the writable property type
+                </a>
+                could be used to let the user tell you how to access details from items.
+                <b>vl::presentation::controls::ReadProperty</b> and <b>vl::presentation::controls::WriteProperty</b>
+                could be used on these property types in C++.
+            </p>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                You are strongly recommended to read the source code of
+                <b>GuiTextList</b> and <b>GuiBindableTextList</b>
+                before creating your own list control classes.
+            </p>
         </topic>
     </topic>
 </article>
