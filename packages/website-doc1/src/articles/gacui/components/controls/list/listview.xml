@@ -54,7 +54,7 @@
                 Valid values are listed at the beginning of this page.
                 You could ignore this property and change <b>ItemTemplate</b> and <b>Arranger</b>
                 by assigning new values to these properties
-                or calling <b>SetStyleAndArranger</b> to set them at the same time.
+                or calling the protected method <b>SetStyleAndArranger</b> to set them at the same time.
                 Doing this makes <b>View</b> become <b>Unknown</b>.
             </p>
             <p>

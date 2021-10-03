@@ -143,12 +143,30 @@
         </topic>
         <topic>
             <title>GuiListControl::IItemArranger, the item layouting</title>
+            <p>
+                <b>IItemArranger</b> handles rendering of list items.
+                An <b>IItemArranger</b> is attached to a list control
+                using its <b>Arranger</b> property
+                or its protected method <b>SetStyleAndArranger</b>.
+            </p>
+            <p>
+                There are already some
+                <a href="/gacui/components/controls/list/guilistcontrol.html#Arranger-ArrangerChanged-">
+                    built-in IItemArranger implementations
+                </a>.
+                Check them out to see if any of the works,
+                so you don't have to implement this interface.
+                It is pretty difficult.
+            </p>
+            <p>
+                <b>IItemProviderCallback</b> is also the base class of <b>IItemArranger</b>.
+                When an <b>IItemArranger</b> is attached to a list control,
+                it will be installed as a callback to <b>IItemProvider</b>.
+                So that <b>IItemArranger</b> could update the rendering when any item is changed.
+            </p>
         </topic>
         <topic>
             <title>GuiListControl::IItemArrangerCallback, the item layouting</title>
-        </topic>
-        <topic>
-            <title>Built-in IItemArranger Implementations</title>
         </topic>
         <topic>
             <title>Using IItemProvider::RequestView Properly</title>
