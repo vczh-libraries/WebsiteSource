@@ -100,6 +100,46 @@
         </topic>
         <topic>
             <title>GuiListControl::IItemProviderCallback, the constructor argument</title>
+            <p>
+                The <b>OnItemModified</b> allow <b>IItemProvider</b> to report
+                one change of consecutive items:
+                <ul>
+                    <li><b>start</b>: The index of the first item in all changing consecutive items.</li>
+                    <li><b>count</b>: The numbers of all changing consecutive items.</li>
+                    <li><b>newCount</b>: The numbers of new items that all changing consecutive items change into.</li>
+                </ul>
+            </p>
+            <p>
+                If changes happens in multiple groups of consecutive items,
+                each group should be reported in separate call to <b>OnItemModified</b>.
+                You must try your best to ensure that,
+                <b>IItemProvider::Count</b>,
+                <b>IItemProvider::GetTextValue</b>,
+                <b>IItemProvider::GetBindingValue</b>
+                and all related methods in views from <b>RequestView</b>
+                should not see any unreported changes.
+            </p>
+            <p>
+                Call <b>OnItemModified(start, 0, count)</b>
+                when a group of items are inserted to the position <b>start</b>.
+                If one item is inserted,
+                <b>count</b> should be <b>1</b>.
+            </p>
+            <p>
+                Call <b>OnItemModified(start, count, 0)</b>
+                when a group of items are removed from the position <b>start</b>.
+                If one item is removed,
+                <b>count</b> should be <b>1</b>.
+            </p>
+            <p>
+                Call <b>OnItemModified(start, count, count)</b>
+                when a group of items are updated beginning from the position <b>start</b>.
+                If one item is updated,
+                <b>count</b> should be <b>1</b>.
+                An item is updated,
+                if the item is replaced,
+                or any interested content inside this item is updated.
+            </p>
         </topic>
         <topic>
             <title>GuiListControl::IItemArranger, the item layouting</title>
