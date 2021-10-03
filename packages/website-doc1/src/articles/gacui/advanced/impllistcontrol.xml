@@ -18,5 +18,23 @@
             If list items are not selectable,
             then <b>GuiListControl</b> could be used to reduce runtime overhead.
         </p>
+        <topic>
+            <title>GuiListControl::IItemProvider, the constructor argument</title>
+        </topic>
+        <topic>
+            <title>GuiListControl::IItemProviderCallback, the constructor argument</title>
+        </topic>
+        <topic>
+            <title>GuiListControl::IItemArranger, the item layouting</title>
+        </topic>
+        <topic>
+            <title>GuiListControl::IItemArrangerCallback, the item layouting</title>
+        </topic>
+        <topic>
+            <title>Built-in IItemArranger Implementations</title>
+        </topic>
+        <topic>
+            <title>Data Binding on Items</title>
+        </topic>
     </topic>
 </article>

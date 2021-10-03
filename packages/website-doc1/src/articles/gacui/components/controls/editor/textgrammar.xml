@@ -2,7 +2,24 @@
     <topic>
         <title>Programming Language Service</title>
         <p>
-            The page is under construction.
+            A new design is common in GacUI 2.0.
+            Please check out
+            <ul>
+                <li>
+                    <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/TextEditor">
+                        the XML context sensitive colorizer
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/vczh-libraries/GacUI/blob/master/Test/GacUISrc/Host/AutoComplete_Grammar.cpp">
+                        the grammar editor with code complete
+                    </a>
+                </li>
+            </ul>
+            for related topic in GacUI 1.0.
+        </p>
+        <p>
+            The implementation and API usage is not guaranteed to be compatible with GacUI 2.0.
         </p>
     </topic>
 </article>
