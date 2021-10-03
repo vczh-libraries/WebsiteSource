@@ -165,7 +165,21 @@
                 So that <b>IItemArranger</b> could update the rendering when any item is changed.
             </p>
             <p>
-                All locations and sizes involved in this interface are all <b>virtual</b>.
+                A <b>IItemArranger</b> should be aware of the
+                <a href="/gacui/components/controls/list/guilistcontrol.html#DisplayItemBackground">
+                    DisplayItemBackground
+                </a>
+                property of a list control.
+                If this property returns <b>true</b>,
+                all item template instances returned from <b>IItemArrangerCallback::ReleaseItem</b>
+                should be contained in a <b>GuiSelectableButton</b> as the item background using
+                <ul>
+                    <li>The <b>ThemeNameLLListItemBackground</b> as the theme of this button.</li>
+                    <li><b>listControl->TypedControlTemplateObject(true)->GetBackgroundTemplate()</b> as the control template of this button.</li>
+                </ul>
+            </p>
+            <p>
+                All locations, sizes and margins involved in this interface are all <b>virtual</b>.
                 <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction.
                 The 
                 <a href="/gacui/components/controls/list/guilistcontrol.html#Axis-AxisChanged-">
@@ -282,7 +296,7 @@
         <topic>
             <title>GuiListControl::IItemArrangerCallback, the item layouting</title>
             <p>
-                All locations and sizes involved in this interface are all <b>virtual</b>.
+                All locations, sizes and margins involved in this interface are all <b>virtual</b>.
                 <b>IItemArranger</b> just need to provide item layout in the <b>LeftDown</b> direction.
                 The 
                 <a href="/gacui/components/controls/list/guilistcontrol.html#Axis-AxisChanged-">
@@ -295,30 +309,58 @@
                 <ul>
                     <li>
                         <b>RequestItem</b>:
+                        Ask the list control to create an item template instance for a specific item.
+                        An item template instance that is released by calling <b>ReleaseItem</b>
+                        could be reused for a different item.
                     </li>
                     <li>
                         <b>ReleaseItem</b>:
+                        Ask the list control to dispose an item template instance for a specific item.
+                        The item template instance will be deleted from the memory later if necessary,
+                        the pointer should not be used anymore after calling this method.
                     </li>
                     <li>
                         <b>SetViewLocation</b>:
+                        Tell the list control what should be the left-top corner of the visible area.
+                        But the list control could move the visible area to a different location closed by
+                        if it thinks this is better.
                     </li>
                     <li>
                         <b>GetStylePreferredSize</b>:
+                        Read the size of the <b>PreferredBounds</b> property of a compositon contained by list control.
+                        <b>IMPORTANT</b>: the result is <b>virtual</b>.
+                        Do not use this property directly,
+                        use this method instead.
                     </li>
                     <li>
                         <b>SetStyleAlignmentToParent</b>:
+                        Update the <b>AlignmentToParent</b> property of a composition contained by list control.
+                        <b>IMPORTANT</b>: the result is <b>virtual</b>.
+                        Do not use this property directly,
+                        use this method instead.
                     </li>
                     <li>
                         <b>GetStyleBounds</b>:
+                        Read the <b>Bounds</b> property of a composition contained by list control.
+                        <b>IMPORTANT</b>: the result is <b>virtual</b>.
+                        Do not use this property directly,
+                        use this method instead.
                     </li>
                     <li>
                         <b>SetStyleBounds</b>:
+                        Update the <b>Bounds</b> property of a composition contained by list control.
+                        <b>IMPORTANT</b>: the result is <b>virtual</b>.
+                        Do not use this property directly,
+                        use this method instead.
                     </li>
                     <li>
                         <b>GetContainerComposition</b>:
+                        Get the composition as a container to store all UI objects for items.
                     </li>
                     <li>
                         <b>OnTotalSizeChanged</b>:
+                        Call this method to tell the list control that
+                        <b>IItemArranger::GetTotalSize</b> has been changed.
                     </li>
                 </ul>
             </p>
