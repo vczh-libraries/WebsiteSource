@@ -20,6 +20,83 @@
         </p>
         <topic>
             <title>GuiListControl::IItemProvider, the constructor argument</title>
+            <p>
+                An instance of <b>IItemProvider</b> is required in the constructor of
+                <b>GuiListControl</b> and <b>GuiSelectableListControl</b>.
+                The base class doesn't control the life cycle of this instance,
+                it should be properly disposed in the derived class.
+            </p>
+            <p>
+                This interface offers a bridge so that <b>GuiListControl</b> could access its items.
+                <ul>
+                    <li>
+                        <b>AttachCallback</b>:
+                        Multiple <b>IItemProviderCallback</b> could be installed to an <b>IItemProvider</b>.
+                        When a callback is properly installed,
+                        its <b>OnAttached(this)</b> must be called immediately.
+                    </li>
+                    <li>
+                        <b>DetachCallback</b>:
+                        This method is called to remove an installed <b>IItemProviderCallback</b>.
+                        When a callback is properly uninstalled,
+                        its <b>OnAttached(nullptr)</b> must be called immediately.
+                    </li>
+                    <li>
+                        <b>PushEditing</b>:
+                        This method is called when the list control enters another level of editing mode.
+                    </li>
+                    <li>
+                        <b>PopEditing</b>:
+                        This method is called when the list control leaves one level of editing mode.
+                    </li>
+                    <li>
+                        <b>IsEditing</b>:
+                        This method should return <b>true</b> if at least one level of editing mode is still in the list control.
+                    </li>
+                    <li>
+                        <b>Count</b>:
+                        This method should return the total number of items in the list control.
+                        In <b>GuiTreeView</b>,
+                        all collapsed items are not counted.
+                        Although they exist in the logical tree,
+                        but if a node is collapsed,
+                        all sub items will be treated as removed by calling <b>IItemProviderCallback::OnItemModified</b>.
+                        And when a node is expanded,
+                        all sub items come back in the same way.
+                    </li>
+                    <li>
+                        <b>GetTextValue</b>:
+                        This method should return a text representation for a given item.
+                        The value will be copied to the <b>Text</b> property of a item template.
+                    </li>
+                    <li>
+                        <b>GetBindingValue</b>:
+                        This method should return a <b>non-null</b> object for a given item,
+                        if data binding for item source is available in this control.
+                        For non-bindable list controls,
+                        a <b>null</b> object should be returned by calling the constructor of the return value with no argument,
+                        for example, <b>{}</b> in C++.
+                    </li>
+                    <li>
+                        <b>RequestView</b>:
+                        This method provides a way to decouple between the list control and the details of items.
+                        <b>IItemProvider</b> should handle the life cycle of all returned views.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                <b>list::ItemProviderBase</b> could be used to create an <b>IItemProvider</b>.
+                The following methods are implemented in this class:
+                <ul>
+                    <li><b>AttachCallback</b></li>
+                    <li><b>DetachCallback</b></li>
+                    <li><b>PushEditing</b></li>
+                    <li><b>PopEditing</b></li>
+                    <li><b>IsEditing</b></li>
+                </ul>
+                You need to implement the rest to complete an <b>IItemProvider</b>.
+                The <b>InvokeOnItemModified</b> method is provider to call <b>OnItemModified</b> in all installed callbacks.
+            </p>
         </topic>
         <topic>
             <title>GuiListControl::IItemProviderCallback, the constructor argument</title>
@@ -32,6 +109,9 @@
         </topic>
         <topic>
             <title>Built-in IItemArranger Implementations</title>
+        </topic>
+        <topic>
+            <title>Using IItemProvider::RequestView Properly</title>
         </topic>
         <topic>
             <title>Data Binding on Items</title>
