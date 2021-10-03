@@ -367,6 +367,36 @@
         </topic>
         <topic>
             <title>Using IItemProvider::RequestView Properly</title>
+            <p>
+                A list control could override <b>OnStyleInstalled</b> from <b>GuiListControl</b>.
+                This method is called when an item template instance is binded to a list item.
+            </p>
+            <p>
+                A new list control class typlically defines a new item template class for an item.
+                the new item template class adds new properties to define how an item for this new list control should look like.
+            </p>
+            <p>
+                One or more views could be defined to read or write details for an item for this particular list control class.
+                Then the list control class could call <b>RequestView</b> for a view using a unique identifier string,
+                to bind data from the view to item template instances.
+            </p>
+            <p>
+                For example:
+                <b>GuiTextList</b> defines the <b>ITextItemView</b> view to add the <b>Checked</b> property to items.
+            </p>
+            <p>
+                <b>IItemArranger</b> could also defines its own views.
+                For example,
+                <b>ListViewColumnItemArranger</b> defines <b>IColumnItemView</b>
+                to read columns from the list control
+                to render column headers.
+                Any list control using <b>ListViewColumnItemArranger</b> should make sure that
+                <b>IColumnItemView</b> is implemented and accessible from <b>IItemProvider::RequestView</b>.
+            </p>
+            <p>
+                You can define your own view for any purpose,
+                as long as it is only used to read or write details of for items.
+            </p>
         </topic>
         <topic>
             <title>Data Binding on Items</title>
