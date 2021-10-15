@@ -46,6 +46,7 @@
                         <li><b>Localization</b> : Switching between languages and displaying localized text.</li>
                         <li><b>TriplePhaseImageButton</b> : Create a triple phase image button using the Context property to connect control and control template.</li>
                         <li><b>QueryService</b> : Child control queries services from ancestor controls.</li>
+                        <li><b>Win11ToolstripMenu</b> : Create a menu with toolbar buttons on the first line.</li>
                     </ul>
                 </li>
                 <li>
