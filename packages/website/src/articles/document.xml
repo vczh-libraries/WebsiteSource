@@ -1,4 +1,4 @@
-<article>
+<article index="true">
     <topic>
         <title>Document</title>
         <topic>
@@ -16,12 +16,32 @@
                 <title>Updates from Gaclib 1.0</title>
                 <topic>
                     <title>Gaclib 1.1.3.0</title>
+                    <p>
+                        <ul>
+                            <li>Remove key type arguments from containers.</li>
+                            <li><b>LAMBDA</b> macro is removed, please change <b>LAMBDA([]...)</b> to <b>Func([]...)</b>.</li>
+                            <li><b>MakePtr</b> function is removed, please use <b>Ptr(new T(...))</b> instead.</li>
+                            <li>The contructor from <b>T*</b> to <b>Ptr&lt;T&gt;</b> becomes explicit.</li>
+                        </ul>
+                    </p>
                 </topic>
                 <topic>
                     <title>Gaclib 1.1.2.0</title>
+                    <p>
+                        <ul>
+                            <li>Add more features for <b>VlppParser2</b>.</li>
+                        </ul>
+                    </p>
                 </topic>
                 <topic>
                     <title>Gaclib 1.1.1.0</title>
+                    <p>
+                        <ul>
+                            <li>Fixed layout glitch.</li>
+                            <li>Fixed unusual crashes on Direct2D in x64.</li>
+                            <li>Added ARM intrinsic.</li>
+                        </ul>
+                    </p>
                 </topic>
                 <topic>
                     <title>Gaclib 1.1.0.0</title>
