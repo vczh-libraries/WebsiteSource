@@ -1,28 +1,67 @@
 <article>
     <topic>
         <title>Document</title>
-        <p>
-            <b>Document for Gaclib 1.0: </b><a href="/doc/current/home.html">/doc/current/home.html</a>.
-        </p>
-        <p>
-            I am working on the GacUI documentation.
-            Documentation for other libraries have been completed.
-        </p>
         <topic>
-            <title>Code Index</title>
+            <title>Gaclib 2.0</title>
+            <p>
+                Gaclib 2.0 has been upgraded to use C++20.
+                I need to update
+                <a href="https://github.com/vczh-libraries/VlppParser2">VlppParser2</a> and
+                <a href="https://github.com/vczh-libraries/Document">Document</a> repo before being able to generate document for the new code.
+            </p>
+            <p>
+                Please checkout <a href="https://github.com/vczh-libraries/Release/releases">the latest release</a> if you are interested in it and able to use it by the help of unit tests in repos.
+            </p>
+            <topic>
+                <title>Updates from Gaclib 1.0</title>
+                <topic>
+                    <title>Gaclib 1.1.3.0</title>
+                </topic>
+                <topic>
+                    <title>Gaclib 1.1.2.0</title>
+                </topic>
+                <topic>
+                    <title>Gaclib 1.1.1.0</title>
+                </topic>
+                <topic>
+                    <title>Gaclib 1.1.0.0</title>
+                    <p>
+                        <ul>
+                            <li>Added <b>U8String</b> for <b>char8_t</b>, <b>U16String</b> for <b>char16_t</b>, <b>U32String</b> for <b>char32_t</b>, with string conversion functions between all kinds of string types.</li>
+                            <li><b>Regex</b>, <b>RegexLexer</b>, <b>RegexLexerWalker</b> and <b>RegexLexerColorizer</b> supports all new string types.</li>
+                            <li><b>vl::ParsingException</b> is deleted and replaced by <b>vl::regex_internal::RegexException</b>.</li>
+                            <li>Added <b>Utf32Encoder</b> and <b>Utf32Decoder</b>.</li>
+                            <li><b>FOREACH</b> macro is removed, FOREACH(TYPE, VAR, COLLECTION) is replaced by for(auto VAR : COLLECTION).</li>
+                            <li><b>FOREACH_INDEXED</b> macro is removed, FOREACH_INDEXED(TYPE, VAR, INDEX, COLLECTION) is replaced by for(auto [VAR, INDEX] : indexed(COLLECTION)).</li>
+                            <li>All type traits invented in the library are removed, please use C++ standard type traits.</li>
+                            <li>Linq supports generic lambda.</li>
+                            <li>Calling <b>BoxParameter</b> multiple times on the same collection object returns the same <b>Ptr&lt;IValueXXX&gt;</b> pointer.</li>
+                            <li>Calling <b>UnboxParameter</b> returns <b>Unboxed&lt;T&gt;</b> instead of filling the second argument.</li>
+                            <li>Added <b>IValueArray</b>.</li>
+                            <li>Improved Workflow script on collection behaviors.</li>
+                            <li>Application for Windows need to link <b>Vlpp.Windows.cpp</b>, <b>VlppOS.Windows.cpp</b> and <b>GacUI.Windows.cpp</b> (which was <b>GacUIWindows.cpp</b>).</li>
+                            <li>Application for other platforms need to link <b>Vlpp.Linux.cpp</b> and <b>VlppOS.Linux.cpp</b>.</li>
+                            <li>New <b>VlppGlrParser.h</b> to deprecate <b>VlppParser.h</b>, <b>GlrParserGen.exe</b> to replace <b>ParserGen.exe</b>. The new parser library is highly recommended.</li>
+                            <li><b>vl::parsing::xml</b> is renamed to <b>vl::glr::xml</b>.</li>
+                            <li><b>vl::parsing::json</b> is renamed to <b>vl::glr::json</b>.</li>
+                        </ul>
+                    </p>
+                </topic>
+            </topic>
+        </topic>
+        <topic>
+            <title>Gaclib 1.0 Release Candidate 3</title>
+            <p>
+                <a href="https://github.com/vczh-libraries/Release/releases/tag/1.0-rc-3">Gaclib 1.0-rc3</a> is the latest release for Gaclib 1.0.
+            </p>
+            <p>
+                <b>Document for Gaclib 1.0: </b><a href="/doc/current/home.html">/doc/current/home.html</a>.
+            </p>
             <p>
                 <b>Code index for Gaclib 1.0: </b><a href="/CodeIndexDemo/Gaclib/FileIndex.html">/CodeIndexDemo/Gaclib/FileIndex.html</a>.
             </p>
             <p>
                 There are also links to indexed source code in documentation pages for classes and functions.
-            </p>
-            <p>
-                If you are interested in indexing C++ source code,
-                please check out <a href="https://github.com/vczh-libraries/Document">this repo</a>,
-                and these demo:
-                <a href="/CodeIndexDemo/Calculator/FileIndex.html">Calculator</a>,
-                <a href="/CodeIndexDemo/TypePrinter/FileIndex.html">TypePrinter</a>,
-                <a href="/CodeIndexDemo/STL/FileIndex.html">STL</a>.
             </p>
         </topic>
     </topic>
