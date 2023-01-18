@@ -15,6 +15,16 @@
             <topic>
                 <title>Updates from Gaclib 1.0</title>
                 <topic>
+                    <title>Gaclib 1.2.0.0</title>
+                    <p>
+                        <ul>
+                            <li>Add <b>SetupHostedWindowsGDIRenderer</b> and <b>SetHostedWindowsDirect2DRenderer</b> for hosted mode on Windows.</li>
+                            <li>Small breaking changes in <b>IGuiGraphicsRenderTarget</b>, <b>INativeWindow</b>, <b>INativeWindowListener</b>, <b>GuiControl</b>, <b>GuiControlHost</b>.</li>
+                            <li>Add <b>SharedAsyncService</b>.</li>
+                        </ul>
+                    </p>
+                </topic>
+                <topic>
                     <title>Gaclib 1.1.3.0</title>
                     <p>
                         <ul>

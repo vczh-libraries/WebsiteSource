@@ -53,6 +53,7 @@
                     <b><a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_ControlTemplate">ControlTemplate</a></b> : Demonstrates all controls and control templates. This demo is under development.
                     <ul>
                         <li><b>BlackSkin</b> : Create a set of control templates which look like Visual Studio's dark theme.</li>
+                        <li><b>WindowSkin</b> : Change window frame feature in runtime.</li>
                     </ul>
                 </li>
                 <li>
