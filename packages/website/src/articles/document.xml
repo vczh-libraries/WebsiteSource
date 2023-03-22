@@ -15,6 +15,16 @@
             <topic>
                 <title>Updates from Gaclib 1.0</title>
                 <topic>
+                    <title>Gaclib 1.2.4.0</title>
+                    <p>
+                        <ul>
+                            <li>Replace OS dialogs with GacUI created dialogs for hosted mode.</li>
+                            <li>Add <b>SharedCallbackService</b>.</li>
+                            <li>Add <b>GetCursorFromHitTest</b> function.</li>
+                        </ul>
+                    </p>
+                </topic>
+                <topic>
                     <title>Gaclib 1.2.0.0</title>
                     <p>
                         <ul>
