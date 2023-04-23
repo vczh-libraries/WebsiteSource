@@ -38,13 +38,14 @@
                         <li><b>ProgressAndAsync</b> : Using $await to call a C++ provided async function in Xml Resource to implement async operation with proper UI interaction.</li>
                         <li><b>ListControls</b> : Different list controls with bindable or unbindable data sources.</li>
                         <li><b>DataGrid</b> : DataGrid with drop down filter, different embedded editor controls in cells, and sorting.</li>
+                        <li><b>Dialogs</b> : Using predefined dialogs with detailed options.</li>
                         <li><b>CalculatorAndStateMachine</b> : Using Workflow Script's state machine syntax to create a calculator.</li>
                         <li><b>DocumentEditor</b> : A rich text editor control.</li>
                         <li><b>DocumentEditorToolstrip</b> : Import the resource and project from DocumentEditor and finish the editor with toolstrip controls.</li>
                         <li><b>DocumentEditorRibbon</b> : Import the resource and project from DocumentEditor and finish the editor with ribbon controls.</li>
                         <li><b>Animation</b> : Using XML and new Workflow coroutine operators to define different types of animations.</li>
                         <li><b>MenuVisibility</b> : Control visibility of menu items.</li>
-                        <li><b>Localization</b> : Switching between languages and displaying localized text.</li>
+                        <li><b>Localization</b> : Switching between languages and displaying localized text, including injecting new locale into existing locale configuration.</li>
                         <li><b>TriplePhaseImageButton</b> : Create a triple phase image button using the Context property to connect control and control template.</li>
                         <li><b>QueryService</b> : Child control queries services from ancestor controls.</li>
                         <li><b>Win11ToolstripMenu</b> : Create a menu with toolbar buttons on the first line.</li>
