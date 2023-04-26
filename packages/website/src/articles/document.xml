@@ -15,12 +15,20 @@
             <topic>
                 <title>Updates from Gaclib 1.0</title>
                 <topic>
-                    <title>Gaclib 1.2.4.0</title>
+                    <title>Gaclib 1.2.6.0</title>
                     <p>
                         <ul>
+                            <li>Add <b>ThemeName::SystemFrameWindow</b> and <b>ThemeName::CustomFrameWindow</b>.</li>
+                            <li>Add global hot key.</li>
                             <li>Replace OS dialogs with GacUI created dialogs for hosted mode.</li>
                             <li>Add <b>SharedCallbackService</b>.</li>
                             <li>Add <b>GetCursorFromHitTest</b> function.</li>
+                            <li>DarkSkin types are included in GacUI XML Compiler as predefined types.</li>
+                            <li>New <b>static{}</b> Workflow Script syntax for module initialization.</li>
+                            <li>Adapt C++20's <b>operator&lt;=&gt;</b>.</li>
+                            <li>Add <b>LazyList&lt;T&gt;::OrderBySelf</b> and <b>LazyList&lt;T&gt;::OrderByKey</b></li>
+                            <li>Refactor <b>Tuple</b> (breaking change), <b>Pair</b> and <b>Nullable</b> (affected Workflow Script).</li>
+                            <li>Remove <b>Lazy&lt;T&gt;</b>.</li>
                         </ul>
                     </p>
                 </topic>
@@ -31,32 +39,11 @@
                             <li>Add <b>SetupHostedWindowsGDIRenderer</b> and <b>SetHostedWindowsDirect2DRenderer</b> for hosted mode on Windows.</li>
                             <li>Small breaking changes in <b>IGuiGraphicsRenderTarget</b>, <b>INativeWindow</b>, <b>INativeWindowListener</b>, <b>GuiControl</b>, <b>GuiControlHost</b>.</li>
                             <li>Add <b>SharedAsyncService</b>.</li>
-                        </ul>
-                    </p>
-                </topic>
-                <topic>
-                    <title>Gaclib 1.1.3.0</title>
-                    <p>
-                        <ul>
                             <li>Remove key type arguments from containers.</li>
                             <li><b>LAMBDA</b> macro is removed, please change <b>LAMBDA([]...)</b> to <b>Func([]...)</b>.</li>
                             <li><b>MakePtr</b> function is removed, please use <b>Ptr(new T(...))</b> instead.</li>
                             <li>The contructor from <b>T*</b> to <b>Ptr&lt;T&gt;</b> becomes explicit.</li>
-                        </ul>
-                    </p>
-                </topic>
-                <topic>
-                    <title>Gaclib 1.1.2.0</title>
-                    <p>
-                        <ul>
                             <li>Add more features for <b>VlppParser2</b>.</li>
-                        </ul>
-                    </p>
-                </topic>
-                <topic>
-                    <title>Gaclib 1.1.1.0</title>
-                    <p>
-                        <ul>
                             <li>Fixed layout glitch.</li>
                             <li>Fixed unusual crashes on Direct2D in x64.</li>
                             <li>Added ARM intrinsic.</li>

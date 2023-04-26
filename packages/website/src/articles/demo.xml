@@ -49,6 +49,7 @@
                         <li><b>TriplePhaseImageButton</b> : Create a triple phase image button using the Context property to connect control and control template.</li>
                         <li><b>QueryService</b> : Child control queries services from ancestor controls.</li>
                         <li><b>Win11ToolstripMenu</b> : Create a menu with toolbar buttons on the first line.</li>
+                        <li><b>GlobalHotKey</b> : Register global hot key while the application is running.</li>
                     </ul>
                 </li>
                 <li>
