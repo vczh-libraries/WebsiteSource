@@ -10,11 +10,10 @@ function exampleRetriver(index: number): DocExample {
 
 test(`Empty Document`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -26,12 +25,11 @@ test(`Empty Document`, () => {
 
 test(`<signature>`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <signature><![CDATA[this is a signature]]></signature>
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -44,12 +42,11 @@ test(`<signature>`, () => {
 
 test(`<example> 1`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <example><![CDATA[this is an example]]></example>
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -62,13 +59,12 @@ test(`<example> 1`, () => {
 
 test(`<example> 2`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <signature><![CDATA[this is a signature]]></signature>
   <example index="5"/>
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -82,7 +78,7 @@ test(`<example> 2`, () => {
 
 test(`<basetypes> and <seealsos>`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <basetypes>
     <symbol name="x" docId="A" declFile="B" declId="C"/>
     <symbol name="y" docId="D" declFile="E" declId="F"/>
@@ -94,7 +90,6 @@ test(`<basetypes> and <seealsos>`, () => {
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -114,7 +109,7 @@ test(`<basetypes> and <seealsos>`, () => {
 
 test(`<summary> with text`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     Line1
     Line2
@@ -123,7 +118,6 @@ test(`<summary> with text`, () => {
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -147,7 +141,7 @@ test(`<summary> with text`, () => {
 
 test(`<summary> with links`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     Line1
     Line2 <symbol name="a" declFile="F" declId="I"/> Line2
@@ -160,7 +154,6 @@ test(`<summary> with links`, () => {
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -187,7 +180,7 @@ test(`<summary> with links`, () => {
 
 test(`<summary> with links surrounded by CRLF`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     Line1
     <symbol name="a" declFile="F" declId="I"/> Line2
@@ -198,7 +191,6 @@ test(`<summary> with links surrounded by CRLF`, () => {
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -228,7 +220,7 @@ test(`<summary> with links surrounded by CRLF`, () => {
 
 test(`<summary> with article paragraphs`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>
     <p>Line1</p>
     <p>Line2 <symbol name="a" declFile="F" declId="I"/> Line2</p>
@@ -241,7 +233,6 @@ test(`<summary> with article paragraphs`, () => {
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -268,12 +259,11 @@ test(`<summary> with article paragraphs`, () => {
 
 test(`<summary> with implicit article paragraphs`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>This is a <b>book</b>.</summary>
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',
@@ -291,7 +281,7 @@ test(`<summary> with implicit article paragraphs`, () => {
 
 test(`DocText with text in document`, () => {
     const input = `
-<Document symbolId="::MyClass" accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
   <summary>summary</summary>
   <remarks>remarks</remarks>
   <returns>returns</returns>
@@ -304,7 +294,6 @@ test(`DocText with text in document`, () => {
 </Document>
 `;
     const output: DocArticle = {
-        symbolId: '::MyClass',
         accessor: '',
         category: 'Class',
         name: 'MyClass',

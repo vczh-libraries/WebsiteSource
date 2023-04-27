@@ -98,7 +98,6 @@
 
 ```xml
 <Document
-  symbolId="docId in hyper link"]
   accessor="public|protected|private"
   category="Enum|Class|Struct|Union|TypeAlias|Variable|ValueAlias|Namespace|Function"
   name="display name (decorated for functions and partial specialized declarations)"

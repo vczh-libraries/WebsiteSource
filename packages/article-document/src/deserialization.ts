@@ -215,10 +215,7 @@ export function parseDocArticle(xml: string, exampleRetriver: ExampleRetriver): 
         throw new Error(`Root element of an article should be <document> instead of <${xmlArticle.name}>.`);
     }
     if (xmlArticle.attributes === undefined) {
-        throw new Error(`Missing attribute "symbolId", "accessor", "category" and "name" in <document>.`);
-    }
-    if (xmlArticle.attributes.symbolId === undefined) {
-        throw new Error(`Missing attribute "symbolId" in <document>.`);
+        throw new Error(`Missing attribute "accessor", "category" and "name" in <document>.`);
     }
     if (xmlArticle.attributes.accessor === undefined) {
         throw new Error(`Missing attribute "accessor" in <document>.`);
@@ -244,7 +241,6 @@ export function parseDocArticle(xml: string, exampleRetriver: ExampleRetriver): 
     }
 
     const darticle: d.DocArticle = {
-        symbolId: `${xmlArticle.attributes.symbolId}`,
         accessor: <typeof d.acceptableAccessors[number]>`${xmlArticle.attributes.accessor}`,
         category: <typeof d.acceptableCategories[number]>`${xmlArticle.attributes.category}`,
         name: `${xmlArticle.attributes.name}`,

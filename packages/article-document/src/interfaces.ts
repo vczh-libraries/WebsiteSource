@@ -26,7 +26,6 @@ export interface DocExample {
 }
 
 export interface DocArticle {
-    symbolId: string;
     accessor: typeof acceptableAccessors[number];
     category: typeof acceptableCategories[number];
     name: string;
