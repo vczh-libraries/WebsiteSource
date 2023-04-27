@@ -1,7 +1,7 @@
 import * as a from 'gaclib-article';
 import * as d from './interfaces';
 
-type DocSymbolConverter = (docSymbol: d.DocSymbol) => a.PageLink;
+type DocSymbolConverter = (docSymbol: d.DocSymbol) => a.PageLink | undefined;
 
 function renderDocText(docText: d.DocText, title: string): a.Topic {
     return {
@@ -27,19 +27,6 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
             kind: 'Topic',
             title: 'Signature',
             content: [{
-                kind: 'Paragraph',
-                content: [{
-                    kind: 'Strong',
-                    content: [{
-                        kind: 'Text',
-                        text: 'Jump to '
-                    }, dsc({
-                        name: 'source code',
-                        declFile: docArticle.declFile,
-                        declId: docArticle.declId
-                    })]
-                }]
-            }, {
                 kind: 'Paragraph',
                 content: [{
                     kind: 'Program',
@@ -110,54 +97,70 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
     }
 
     if (docArticle.basetypes !== undefined) {
-        article.topic.content.push({
-            kind: 'Topic',
-            title: 'Base Types',
-            content: [{
-                kind: 'Paragraph',
+        const items: a.ContentListItem[] = docArticle.basetypes
+            .map(dsc)
+            .filter(Boolean)
+            .map((pageLink: a.PageLink) => ({
+                kind: 'ContentListItem',
+                content: [pageLink]
+            }));
+        if (items.length > 0) {
+            article.topic.content.push({
+                kind: 'Topic',
+                title: 'Base Types',
                 content: [{
-                    kind: 'List',
-                    ordered: false,
-                    items: docArticle.basetypes.map((ds: d.DocSymbol) => ({
-                        kind: 'ContentListItem',
-                        content: [dsc(ds)]
-                    }))
+                    kind: 'Paragraph',
+                    content: [{
+                        kind: 'List',
+                        ordered: false,
+                        items
+                    }]
                 }]
-            }]
-        });
+            });
+        }
     }
 
     if (docArticle.seealsos !== undefined) {
-        article.topic.content.push({
-            kind: 'Topic',
-            title: 'See Also',
-            content: [{
-                kind: 'Paragraph',
+        const items: a.ContentListItem[] = docArticle.seealsos
+            .map(dsc)
+            .filter(Boolean)
+            .map((pageLink: a.PageLink) => ({
+                kind: 'ContentListItem',
+                content: [pageLink]
+            }));
+        if (items.length > 0) {
+            article.topic.content.push({
+                kind: 'Topic',
+                title: 'See Also',
                 content: [{
-                    kind: 'List',
-                    ordered: false,
-                    items: docArticle.seealsos.map((ds: d.DocSymbol) => ({
-                        kind: 'ContentListItem',
-                        content: [dsc(ds)]
-                    }))
+                    kind: 'Paragraph',
+                    content: [{
+                        kind: 'List',
+                        ordered: false,
+                        items
+                    }]
                 }]
-            }]
-        });
+            });
+        }
     }
 
     a.consumePlugin(article, (p: {}): a.Content[] => {
         const dsymbols = <d.DocSymbolsPluginObject>(p);
         if (dsymbols.symbols.length === 0) {
             throw new Error('DocSymbols should contain at least 1 DocSymbol.');
-        } else if (dsymbols.symbols.length === 1) {
-            return [dsc(dsymbols.symbols[0])];
         } else {
-            const links = dsymbols.symbols.map(dsc);
-            return [{
-                kind: 'MultiPageLink',
-                href: links.map((link: a.PageLink) => link.href),
-                content: links[0].content
-            }];
+            const links = <a.PageLink[]>dsymbols.symbols.map(dsc).filter(Boolean);
+            if (links.length === 0) {
+                return [];
+            } else if (links.length === 1) {
+                return links;
+            } else {
+                return [{
+                    kind: 'MultiPageLink',
+                    href: links.map((link: a.PageLink) => link.href),
+                    content: links[0].content
+                }];
+            }
         }
     });
 

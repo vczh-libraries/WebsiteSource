@@ -103,9 +103,11 @@ router.register(
                     res.documentArticle = renderDocArticle(
                         parseDocArticle(
                             readFileSync(<string>dnode.file, { encoding: 'utf-8' }),
-                            (index: number) => exampleRetriver(<string>dnode.file, index)),
+                            (index: number) => exampleRetriver(<string>dnode.file, index)
+                        ),
                         dnode.name,
-                        (ds: DocSymbol) => convertDocSymbolToHyperlink(ds, docTree));
+                        (ds: DocSymbol) => convertDocSymbolToHyperlink(ds, docTree)
+                    );
                     const generatedHtml = generateHtml(
                         info,
                         views,
