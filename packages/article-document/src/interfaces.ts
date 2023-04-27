@@ -6,8 +6,6 @@ export const acceptableCategories = (<const>['Enum', 'Class', 'Struct', 'Union',
 export interface DocSymbol {
     name: string;
     docId?: string;
-    declFile: string;
-    declId: string;
 }
 
 export interface DocSymbolsPluginObject {
@@ -29,8 +27,6 @@ export interface DocArticle {
     accessor: typeof acceptableAccessors[number];
     category: typeof acceptableCategories[number];
     name: string;
-    declFile: string;
-    declId: string;
 
     signature?: string;
     summary?: DocText;

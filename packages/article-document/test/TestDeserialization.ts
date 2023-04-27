@@ -10,22 +10,20 @@ function exampleRetriver(index: number): DocExample {
 
 test(`Empty Document`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
 </Document>
 `;
     const output: DocArticle = {
         accessor: '',
         category: 'Class',
-        name: 'MyClass',
-        declFile: 'F',
-        declId: 'I'
+        name: 'MyClass'
     };
     assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
 });
 
 test(`<signature>`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <signature><![CDATA[this is a signature]]></signature>
 </Document>
 `;
@@ -33,8 +31,6 @@ test(`<signature>`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         signature: 'this is a signature'
     };
     assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
@@ -42,7 +38,7 @@ test(`<signature>`, () => {
 
 test(`<example> 1`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <example><![CDATA[this is an example]]></example>
 </Document>
 `;
@@ -50,8 +46,6 @@ test(`<example> 1`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         example: { code: 'this is an example' }
     };
     assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
@@ -59,7 +53,7 @@ test(`<example> 1`, () => {
 
 test(`<example> 2`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <signature><![CDATA[this is a signature]]></signature>
   <example index="5"/>
 </Document>
@@ -68,8 +62,6 @@ test(`<example> 2`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         signature: 'this is a signature',
         example: { code: 'code<5>', output: 'output<5>' }
     };
@@ -78,14 +70,14 @@ test(`<example> 2`, () => {
 
 test(`<basetypes> and <seealsos>`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <basetypes>
-    <symbol name="x" docId="A" declFile="B" declId="C"/>
-    <symbol name="y" docId="D" declFile="E" declId="F"/>
+    <symbol name="x" docId="A"/>
+    <symbol name="y" docId="D"/>
   </basetypes>
   <seealsos>
-    <symbol name="z" declFile="B" declId="C"/>
-    <symbol name="w" declFile="E" declId="F"/>
+    <symbol name="z"/>
+    <symbol name="w"/>
   </seealsos>
 </Document>
 `;
@@ -93,15 +85,13 @@ test(`<basetypes> and <seealsos>`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         basetypes: [
-            { name: 'x', docId: 'A', declFile: 'B', declId: 'C' },
-            { name: 'y', docId: 'D', declFile: 'E', declId: 'F' }
+            { name: 'x', docId: 'A' },
+            { name: 'y', docId: 'D' }
         ],
         seealsos: [
-            { name: 'z', declFile: 'B', declId: 'C' },
-            { name: 'w', declFile: 'E', declId: 'F' }
+            { name: 'z' },
+            { name: 'w' }
         ]
     };
     assert.deepStrictEqual(parseDocArticle(input, exampleRetriver), output);
@@ -109,7 +99,7 @@ test(`<basetypes> and <seealsos>`, () => {
 
 test(`<summary> with text`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <summary>
     Line1
     Line2
@@ -121,8 +111,6 @@ test(`<summary> with text`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         summary: {
             paragraphs: [{
                 kind: 'Paragraph',
@@ -141,13 +129,13 @@ test(`<summary> with text`, () => {
 
 test(`<summary> with links`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <summary>
     Line1
-    Line2 <symbol name="a" declFile="F" declId="I"/> Line2
+    Line2 <symbol name="a"/> Line2
     Line3 <symbols>
-        <symbol name="b" declFile="F" declId="I"/>
-        <symbol name="c" declFile="F" declId="I"/>
+        <symbol name="b"/>
+        <symbol name="c"/>
     </symbols> Line3
     Line4
   </summary>
@@ -157,18 +145,16 @@ test(`<summary> with links`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         summary: {
             paragraphs: [{
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Text', text: 'Line2 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line2' }]
+                content: [{ kind: 'Text', text: 'Line2 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a' }] } }, { kind: 'Text', text: ' Line2' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Text', text: 'Line3 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line3' }]
+                content: [{ kind: 'Text', text: 'Line3 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b' }, { name: 'c' }] } }, { kind: 'Text', text: ' Line3' }]
             }, {
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line4' }]
@@ -180,12 +166,12 @@ test(`<summary> with links`, () => {
 
 test(`<summary> with links surrounded by CRLF`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <summary>
     Line1
-    <symbol name="a" declFile="F" declId="I"/> Line2
+    <symbol name="a"/> Line2
     Line3
-    Line4 <symbol name="b" declFile="F" declId="I"/>
+    Line4 <symbol name="b"/>
     Line5
   </summary>
 </Document>
@@ -194,21 +180,19 @@ test(`<summary> with links surrounded by CRLF`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         summary: {
             paragraphs: [{
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line2' }]
+                content: [{ kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a' }] } }, { kind: 'Text', text: ' Line2' }]
             }, {
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line3' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Text', text: 'Line4 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }] } }]
+                content: [{ kind: 'Text', text: 'Line4 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b' }] } }]
             }, {
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line5' }]
@@ -220,13 +204,13 @@ test(`<summary> with links surrounded by CRLF`, () => {
 
 test(`<summary> with article paragraphs`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <summary>
     <p>Line1</p>
-    <p>Line2 <symbol name="a" declFile="F" declId="I"/> Line2</p>
+    <p>Line2 <symbol name="a"/> Line2</p>
     <p><b>Line3 </b><symbols>
-        <symbol name="b" declFile="F" declId="I"/>
-        <symbol name="c" declFile="F" declId="I"/>
+        <symbol name="b"/>
+        <symbol name="c"/>
     </symbols> Line3</p>
     <p>Line4</p>
   </summary>
@@ -236,18 +220,16 @@ test(`<summary> with article paragraphs`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         summary: {
             paragraphs: [{
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line1' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Text', text: 'Line2 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line2' }]
+                content: [{ kind: 'Text', text: 'Line2 ' }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'a' }] } }, { kind: 'Text', text: ' Line2' }]
             }, {
                 kind: 'Paragraph',
-                content: [{ kind: 'Strong', content: [{ kind: 'Text', text: 'Line3 ' }] }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b', declFile: 'F', declId: 'I' }, { name: 'c', declFile: 'F', declId: 'I' }] } }, { kind: 'Text', text: ' Line3' }]
+                content: [{ kind: 'Strong', content: [{ kind: 'Text', text: 'Line3 ' }] }, { kind: 'Plugin', plugin: { kind: 'Symbols', symbols: [{ name: 'b' }, { name: 'c' }] } }, { kind: 'Text', text: ' Line3' }]
             }, {
                 kind: 'Paragraph',
                 content: [{ kind: 'Text', text: 'Line4' }]
@@ -259,7 +241,7 @@ test(`<summary> with article paragraphs`, () => {
 
 test(`<summary> with implicit article paragraphs`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <summary>This is a <b>book</b>.</summary>
 </Document>
 `;
@@ -267,8 +249,6 @@ test(`<summary> with implicit article paragraphs`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         summary: {
             paragraphs: [{
                 kind: 'Paragraph',
@@ -281,7 +261,7 @@ test(`<summary> with implicit article paragraphs`, () => {
 
 test(`DocText with text in document`, () => {
     const input = `
-<Document accessor="" category="Class" name="MyClass" declFile="F" declId="I">
+<Document accessor="" category="Class" name="MyClass">
   <summary>summary</summary>
   <remarks>remarks</remarks>
   <returns>returns</returns>
@@ -297,8 +277,6 @@ test(`DocText with text in document`, () => {
         accessor: '',
         category: 'Class',
         name: 'MyClass',
-        declFile: 'F',
-        declId: 'I',
         summary: { paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'summary' }] }] },
         remarks: { paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'remarks' }] }] },
         returns: { paragraphs: [{ kind: 'Paragraph', content: [{ kind: 'Text', text: 'returns' }] }] },

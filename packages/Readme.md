@@ -39,7 +39,7 @@
 
 ```xml
 <a href="./document.html">Text</a>
-<symbol name="class MyClass" docId="optional: SYMBOL-ID" declFile="optional: HTML source file" declId="id in HTML source file"/>
+<symbol name="class MyClass" docId="optional: SYMBOL-ID"/>
 <symbols><symbol/>...</symbols>
 <name>Just like `` in md</name>
 <img src="logo.png"/>Description</img>
@@ -101,8 +101,6 @@
   accessor="public|protected|private"
   category="Enum|Class|Struct|Union|TypeAlias|Variable|ValueAlias|Namespace|Function"
   name="display name (decorated for functions and partial specialized declarations)"
-  declFile="optional: HTML source file"
-  declId="id in HTML source file"
   >
   <signature>
     <![CDATA[ code printed in the first topic ]]>

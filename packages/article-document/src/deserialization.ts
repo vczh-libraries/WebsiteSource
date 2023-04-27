@@ -4,22 +4,14 @@ import * as d from './interfaces';
 
 function parseDocSymbol(xml: Element): d.DocSymbol {
     if (xml.attributes === undefined) {
-        throw new Error(`Missing attribute "docId" (optional), "declFile", "declId" in <document>.`);
+        throw new Error(`Missing attribute "docId" (optional) in <document>.`);
     }
     if (xml.attributes.name === undefined) {
         throw new Error(`Missing attribute "name" in <symbol>.`);
     }
-    if (xml.attributes.declFile === undefined) {
-        throw new Error(`Missing attribute "declFile" in <symbol>.`);
-    }
-    if (xml.attributes.declId === undefined) {
-        throw new Error(`Missing attribute "declId" in <symbol>.`);
-    }
 
     const dsymbol: d.DocSymbol = {
-        name: `${xml.attributes.name}`,
-        declFile: `${xml.attributes.declFile}`,
-        declId: `${xml.attributes.declId}`
+        name: `${xml.attributes.name}`
     };
     if (xml.attributes.docId !== undefined) {
         dsymbol.docId = `${xml.attributes.docId}`;
@@ -226,12 +218,6 @@ export function parseDocArticle(xml: string, exampleRetriver: ExampleRetriver): 
     if (xmlArticle.attributes.name === undefined) {
         throw new Error(`Missing attribute "name" in <document>.`);
     }
-    if (xmlArticle.attributes.declFile === undefined) {
-        throw new Error(`Missing attribute "declFile" in <document>.`);
-    }
-    if (xmlArticle.attributes.declId === undefined) {
-        throw new Error(`Missing attribute "declId" in <document>.`);
-    }
 
     if (!(<readonly string[]>d.acceptableAccessors).includes(`${xmlArticle.attributes.accessor}`)) {
         throw new Error(`Attribute "accessor" in <document> can only be one of ${JSON.stringify(d.acceptableAccessors)}.`);
@@ -243,9 +229,7 @@ export function parseDocArticle(xml: string, exampleRetriver: ExampleRetriver): 
     const darticle: d.DocArticle = {
         accessor: <typeof d.acceptableAccessors[number]>`${xmlArticle.attributes.accessor}`,
         category: <typeof d.acceptableCategories[number]>`${xmlArticle.attributes.category}`,
-        name: `${xmlArticle.attributes.name}`,
-        declFile: `${xmlArticle.attributes.declFile}`,
-        declId: `${xmlArticle.attributes.declId}`
+        name: `${xmlArticle.attributes.name}`
     };
 
     if (xmlArticle.elements !== undefined) {
