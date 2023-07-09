@@ -17,22 +17,50 @@
                 <li><b>VlppParser</b>:
                     <ul><li>LoadParsingTypes</li><li>XmlLoadTypes</li><li>JsonLoadTypes</li></ul>
                 </li>
+                <li><b>VlppParser2</b>:
+                    <ul><li>LoadParsing2Types</li><li>XmlAstLoadTypes</li><li>JsonAstLoadTypes</li></ul>
+                </li>
                 <li><b>Workflow-Runtime</b>:
                     <ul><li>WfLoadLibraryTypes</li></ul>
                 </li>
                 <li><b>Workflow-Compiler</b>:
-                    <ul><li>WfLoadTypes</li></ul>
+                    <ul><li>WorkflowAstLoadTypes</li></ul>
                 </li>
                 <li><b>GacUI</b>:
-                    <ul><li>
-                        By linking <b>GacUIReflection.cpp</b> to your C++ project
-                        and set <b>VCZH_DEBUG_NO_REFLECTION</b> to off,
-                        all types will be automatically registered,
-                        except <b>Workflow-Compiler</b> and <b>GacUI-Compiler</b>.
-                    </li></ul>
+                    <ul>
+                        <li>
+                            By linking <b>GacUIReflection.cpp</b> to your C++ project
+                            without setting <b>VCZH_DEBUG_NO_REFLECTION</b>,
+                            all types will be automatically registered,
+                            except <b>Workflow-Compiler</b> and <b>GacUI-Compiler</b>.
+                        </li>
+                        <li>
+                            The following functions are called in any reflection mode:
+                            <ul>
+                                <li>LoadPredefinedTypes</li>
+                                <li>LoadParsing2Types</li>
+                                <li>XmlAstLoadTypes</li>
+                                <li>JsonAstLoadTypes</li>
+                                <li>WfLoadLibraryTypes</li>
+                                <li>LoadGuiBasicTypes</li>
+                                <li>LoadGuiElementTypes</li>
+                                <li>LoadGuiCompositionTypes</li>
+                                <li>LoadGuiEventTypes</li>
+                                <li>LoadGuiTemplateTypes</li>
+                                <li>LoadGuiControlTypes</li>
+                            </ul>
+                        </li>
+                        <li>
+                            GacUI also offers additional types:
+                            <ul>
+                                <li>LoadDarkSkinTypes</li>
+                                <li>LoadGuiFakeDialogServiceUITypes</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li><b>GacUI-Compiler</b>:
-                    <ul><li>GuiIqLoadTypes</li></ul>
+                    <ul><li>GuiInstanceQueryAstLoadTypes</li></ul>
                 </li>
             </ul>
         </p>
