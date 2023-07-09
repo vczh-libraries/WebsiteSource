@@ -52,5 +52,13 @@ const documentView: ViewMetadata = {
     htmlInfo: {}
 };
 
-export const views = [rootView, directoryView, registeredTypesView, articleView, namespaceView, documentView];
+const unfinishedView: ViewMetadata = {
+    name: 'Gaclib-UnfinishedView',
+    source: `${__dirname}/unfinishedView.js`,
+    path: '/scripts/unfinishedView.js',
+    parentView: 'Gaclib-DirectoryView',
+    htmlInfo: {}
+};
+
+export const views = [rootView, directoryView, registeredTypesView, articleView, namespaceView, documentView, unfinishedView];
 export { DirectoryInfo, DirectoryNode } from './directoryView';
