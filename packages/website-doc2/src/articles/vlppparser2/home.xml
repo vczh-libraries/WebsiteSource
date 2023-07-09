@@ -1,0 +1,12 @@
+<article>
+    <topic>
+        <title>Introduction to VlppParser2</title>
+        <p>
+            VlppParser2 provides GLR parser generator for C++,
+            with generated XML and JSON parsers.
+        </p>
+        <p>
+            The page is under construction.
+        </p>
+    </topic>
+</article>
