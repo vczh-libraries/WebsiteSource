@@ -10,7 +10,7 @@ import { parseArticlePlugin, renderArticlePlugin } from './plugins/article';
 import { parseControlTemplateArticle, renderControlTemplateArticle } from './plugins/control-template/xmlControlTemplateArticle';
 import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol';
 import { exampleRetriver } from './plugins/document/xmlExample';
-import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes';
+//import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes';
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
 
@@ -47,11 +47,11 @@ router.register(
             switch (dnode.kind) {
                 case 'registeredTypes': {
                     res.projectName = dnode.name;
-                    res.registeredTypesInfo = getRegisteredTypes(dnode.name);
+                    //res.registeredTypesInfo = getRegisteredTypes(dnode.name);
                     const generatedHtml = generateHtml(
                         info,
                         views,
-                        'Gaclib-RegisteredTypesView',
+                        'Gaclib-UnfinishedView', //'Gaclib-RegisteredTypesView'
                         model,
                         '',
                         res
