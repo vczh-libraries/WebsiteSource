@@ -1,0 +1,220 @@
+<article index="true">
+    <topic>
+        <title>Binary Operators</title>
+        <topic>
+            <title>Type inferences</title>
+            <p>
+                Here assume <b>A</b> is the left operand, and <b>B</b> is the right operand.
+            </p>
+            <p>
+                When type of <b>A</b> can be implicitly converted to type of <b>B</b>,
+                <b>A</b> will be cast to type of <b>B</b> before being applied to this operator.
+            </p>
+            <p>
+                When type of <b>B</b> can be implicitly converted to type of <b>A</b>,
+                <b>B</b> will be cast to type of <b>A</b> before being applied to this operator.
+            </p>
+            <p>
+                If implicitly casting does not exist in both way,
+                an error will be generated.
+            </p>
+            <p>
+                For unlisted types, it means this operator is not allowed on those types.
+            </p>
+            <topic>
+                <title>&amp;</title>
+                <p>
+                    When type of converted operands are:
+                    <ul>
+                        <li><b>string</b>: the result is <b>string</b>.</li>
+                        <li><b>flagenum</b>: the result is the same <b>flagenum</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>|</title>
+                <p>
+                    <ul>
+                        <li><b>flagenum</b>: the result is the same <b>flagenum</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>^</title>
+                <p>
+                    When type of converted operands are:
+                    <ul>
+                        <li>8-bits or 16-bits integer: the result is <b>float</b>.</li>
+                        <li>other integer types: the result is <b>double</b>.</li>
+                        <li>floating-point numbers: the result is in the same floating-point numbers.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>+, -, *, /</title>
+                <p>
+                    When type of converted operands are:
+                    <ul>
+                        <li>8-bits, 16-bits or 32-bits signed/unsigned integer: the result is 32-bits signed/unsigned integer.</li>
+                        <li>64-bits signed/unsigned integer: the result is 64-bits signed/unsigned integer.</li>
+                        <li>floating-point numbers: the result is in the same floating-point numbers.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>%, shl, shr</title>
+                <p>
+                    When type of converted operands are:
+                    <ul>
+                        <li>8-bits, 16-bits or 32-bits signed/unsigned integer: the result is 32-bits signed/unsigned integer.</li>
+                        <li>64-bits signed/unsigned integer: the result is 64-bits signed/unsigned integer.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;, &gt;, &lt;=, &gt;=</title>
+                <p>
+                    When type of converted operands are:
+                    <ul>
+                        <li>Integers, floating-point numbers or <b>string</b>: the result is <b>bool</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>==, !=</title>
+                <p>
+                    Any type applies, the result is <b>bool</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>and, or, xor</title>
+                <p>
+                    When type of converted operands are:
+                    <ul>
+                        <li><b>bool</b>: the result is <b>bool</b>.</li>
+                        <li>integers: the result is in the same integer type.</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Definitions</title>
+            <topic>
+                <title>A &amp; B</title>
+                <p>
+                    <ul>
+                        <li>Concatinate two strings.</li>
+                        <li>Bit-wise <b>and</b> on two <b>flagenum</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A | B</title>
+                <p>
+                    <ul>
+                        <li>Bit-wise <b>or</b> on two <b>flagenum</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A ^ B</title>
+                <p>
+                    <ul>
+                        <li>Exponentiation. For example, <b>2 ^ 3 == 8.0</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A + B</title>
+                <p>
+                    <ul>
+                        <li>Adding.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A - B</title>
+                <p>
+                    <ul>
+                        <li>Substracting.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A * B</title>
+                <p>
+                    <ul>
+                        <li>Multiplying.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A / B</title>
+                <p>
+                    <ul>
+                        <li>Dividing.</li>
+                        <li><b>(1 / 2) of double</b> gets <b>0</b>.</li>
+                        <li><b>(1.0 / 2)</b> or <b>(1 of double) / 2</b> gets <b>0.5</b></li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A % B</title>
+                <p>
+                    <ul>
+                        <li>Get the remainder from A / B.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A (&lt;, &gt;, &lt;=, &gt;=, ==, !=) B</title>
+                <p>
+                    <ul>
+                        <li>Compare two values, returns <b>true</b> when the specified order is correct.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A xor B</title>
+                <p>
+                    <ul>
+                        <li><b>exclusive or</b> on <b>bool</b>.</li>
+                        <li>bit-wise <b>exclusive or</b> on integers.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A and B</title>
+                <p>
+                    <ul>
+                        <li><b>and</b> on <b>bool</b>.</li>
+                        <li>bit-wise <b>and</b> on integers.</li>
+                    </ul>
+                </p>
+                <p>
+                    For any <b>A and B</b> that is performed on two <b>bool</b> expressions:
+                    <ul>
+                        <li>When running Workflow script directly, B will be executed when A is <b>false</b>.</li>
+                        <li>When running generated C++ code, B not will be executed when A is <b>false</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>A or B</title>
+                <p>
+                    <ul>
+                        <li><b>or</b> on <b>bool</b>.</li>
+                        <li>bit-wise <b>or</b> on integers.</li>
+                    </ul>
+                </p>
+                <p>
+                    For any <b>A or B</b> that is performed on two <b>bool</b> expressions:
+                    <ul>
+                        <li>When running Workflow script directly, B will be executed when A is <b>true</b>.</li>
+                        <li>When running generated C++ code, B not will be executed when A is <b>true</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

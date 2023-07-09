@@ -1,0 +1,73 @@
+<reference>
+  <article name="Gaclib Document" file="home">
+    <article name="Download Gaclib" file="home/download"/>
+    <article name="Thread Safety" file="home/mt"/>
+    <article name="Domain Specific Languages" file="home/dsl"/>
+    <article name="Registered Types" file="home/registered">
+      <registeredTypes name="VlppReflection" file="home/registered/vlppreflection"/>
+      <registeredTypes name="VlppParser" file="home/registered/vlppparser"/>
+      <registeredTypes name="Workflow-Runtime" file="home/registered/workflow-runtime"/>
+      <registeredTypes name="Workflow-Compiler" file="home/registered/workflow-compiler"/>
+      <registeredTypes name="GacUI" file="home/registered/gacui"/>
+      <registeredTypes name="GacUI-Compiler" file="home/registered/gacui-compiler"/>
+    </article>
+  </article>
+  <article name="Vlpp" file="vlpp/home">
+    <article name="References" file="vlpp/ref">
+      <link pathPrefix="vlpp/ref" filePrefix="VLPP/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPP.xml"/>
+    </article>
+  </article>
+  <article name="Vlpp OS" file="vlppos/home">
+    <article name="Using Streams" file="vlppos/using-streams"/>
+    <article name="Using Threads and Locks" file="vlppos/using-threads"/>
+    <article name="References" file="vlppos/ref">
+      <link pathPrefix="vlppos/ref" filePrefix="VLPPOS/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPOS.xml"/>
+    </article>
+  </article>
+  <article name="Vlpp Regex" file="vlppregex/home">
+    <article name="References" file="vlppregex/ref">
+      <link pathPrefix="vlppregex/ref" filePrefix="VLPPREGEX/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREGEX.xml"/>
+    </article>
+  </article>
+  <article name="Vlpp Reflection" file="vlppreflection/home">
+    <article name="References" file="vlppreflection/ref">
+      <link pathPrefix="vlppreflection/ref" filePrefix="VLPPREFLECTION/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREFLECTION.xml"/>
+    </article>
+  </article>
+  <article name="Vlpp Parser" file="vlppparser/home">
+    <article name="References" file="vlppparser/ref">
+      <link pathPrefix="vlppparser/ref" filePrefix="VLPPPARSER/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER.xml"/>
+    </article>
+  </article>
+  <article name="Workflow Script" file="workflow/home">
+    <article name="Running a Script" file="workflow/running">
+      <link pathPrefix="workflow/running" filePrefix="" file="workflow/running/entry.xml"/>
+    </article>
+    <article name="Syntax" file="workflow/lang">
+      <link pathPrefix="workflow/lang" filePrefix="" file="workflow/lang/entry.xml"/>
+    </article>
+    <article name="Runtime Instructions" file="workflow/ins"/>
+    <article name="C++ Code Generation" file="workflow/codegen"/>
+    <article name="References" file="workflow/ref">
+      <link pathPrefix="workflow/ref" filePrefix="WORKFLOW/" file="../../../../../Document/Tools/Demos/Gaclib/References/WORKFLOW.xml"/>
+    </article>
+  </article>
+  <article name="GacUI" file="gacui/home">
+    <article name="Build your first GacUI Application!" file="gacui/running"/>
+    <article name="Knowledge Base" file="gacui/kb/home">
+      <link pathPrefix="gacui/kb" filePrefix="" file="gacui/kb/entry.xml"/>
+    </article>
+    <article name="GacUI XML Resource" file="gacui/xmlres/home">
+      <link pathPrefix="gacui/xmlres" filePrefix="" file="gacui/xmlres/entry.xml"/>
+    </article>
+    <article name="GacUI Components" file="gacui/components/home">
+      <link pathPrefix="gacui/components" filePrefix="" file="gacui/components/entry.xml"/>
+    </article>
+    <article name="Advanced Topics" file="gacui/advanced/home">
+      <link pathPrefix="gacui/advanced" filePrefix="" file="gacui/advanced/entry.xml"/>
+    </article>
+    <article name="References" file="gacui/ref">
+      <link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/>
+    </article>
+  </article>
+</reference>

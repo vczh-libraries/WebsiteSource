@@ -1,0 +1,138 @@
+<article index="true">
+    <topic>
+        <title>Item Templates</title>
+        <p>
+            <a href="/gacui/kb/itemplates.html">Item Templates</a> offer customization of list item appearances.
+        </p>
+        <topic>
+            <title>Item Templates</title>
+            <p>
+                Here are all predefined item templates:
+                <ul>
+                    <li>
+                        GuiTemplate
+                        for
+                        <a href="/gacui/components/compositions/repeat.html">
+                            <b>&lt;RepeatStack/&gt;</b>, <b>&lt;RepeatFlow/&gt;</b>
+                        </a>
+                        and
+                        <a href="/gacui/components/controls/list/combobox.html">
+                            <b>&lt;ComboBox/&gt;</b>
+                        </a>
+                        <ul>
+                            <li>
+                                <b>&lt;ListItemTemplate/&gt;</b>
+                                <ul>
+                                    <li>
+                                        <b>&lt;TextListItemTemplate/&gt;</b>
+                                        for
+                                        <a href="/gacui/components/controls/list/textlist.html">
+                                            <b>&lt;TextList/&gt;</b>
+                                        </a>,
+                                        <a href="/gacui/components/controls/list/bindabletextlist.html">
+                                            <b>&lt;BindableTextList/&gt;</b>
+                                        </a>
+                                        and
+                                        <a href="/gacui/components/controls/ribbon/gallerylist.html">
+                                            <b>&lt;BindableRibbonGalleryList/&gt;</b>
+                                        </a>
+                                        <ul>
+                                            <li>
+                                                <b>&lt;TreeItemTemplate/&gt;</b>:
+                                                for
+                                                <a href="/gacui/components/controls/list/treeview.html">
+                                                    <b>&lt;TreeView/&gt;</b>
+                                                </a>
+                                                and
+                                                <a href="/gacui/components/controls/list/bindabletreeview.html">
+                                                    <b>&lt;BindableTreeView/&gt;</b>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                &lt;ControlTemplate/&gt;
+                                <ul>
+                                    <li>
+                                        GuiGridCellTemplate
+                                        <ul>
+                                            <li>
+                                                <b>&lt;GridVisualizerTemplate/&gt;</b>
+                                                for
+                                                <a href="/gacui/components/controls/list/bindabledatagrid.html">
+                                                    <b>&lt;BindableDataGrid/&gt;</b>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <b>&lt;GridEditorTemplate/&gt;</b>
+                                                for
+                                                <a href="/gacui/components/controls/list/bindabledatagrid.html">
+                                                    <b>&lt;BindableDataGrid/&gt;</b>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Properties</title>
+            <p>
+                All item templates has three kinds of properties:
+                <ul>
+                    <li><b>Input Property</b>: Such property is assigned by the control, to communicate with the item template.</li>
+                    <li><b>Output Property</b>: Such property is assigned by the item template, to communicate with the control.</li>
+                    <li><b>Exchange Property</b>: Such property is assigned by both the item template and the control, to communicate with each other.</li>
+                </ul>
+            </p>
+            <p>
+                Properties of <b>GuiTemplate</b> are all <b>input property</b>:
+                <ul>
+                    <li><b>Font</b>: Always sync to the <b>Font</b> property of the list control.</li>
+                    <li><b>Context</b>: Always sync to the <b>Context</b> property of the list control.</li>
+                    <li><b>VisuallyEnabled</b>: Always sync to the <b>VisuallyEnabled</b> property of the list control.</li>
+                    <li><b>Text</b>: The text representation of a list item.</li>
+                </ul>
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                All input/exchange properties of item templates will only be assigned after it is created.
+                Property change events of these properties are expected to be subscribed
+                in order to correctly behave when these properties are initialized or updated.
+                In GacUI XML Resource,
+                data binding is recommended on these properties to reduce the complexity of creating item templates.
+            </p>
+        </topic>
+        <topic>
+            <title>When to Implement Item Templates</title>
+            <p>
+                The item template of <b>&lt;ListView/&gt;</b> and <b>&lt;BindableListView/&gt;</b> are not recommended to change.
+                If you need a customizable list with items organized as boxes,
+                you are recommended to use <b>&lt;BindableTextList/&lt;</b> with
+                <a href="/gacui/components/controls/list/guilistcontrol.html#Arranger-ArrangerChanged-">
+                    predefined item arrangers.
+                </a>
+                If you need a customizable grid,
+                you are recommended to use <b>&lt;BindableDataGrid/&gt;</b>.
+            </p>
+            <p>
+                Typically,
+                a <b>&lt;TextList/&gt;</b> or <b>&lt;BindableTextList/&gt;</b> is used with <b>&lt;ComboBox/&gt;</b> together.
+                Since <b>&lt;TextListItemTemplate/&gt;</b> indirectly derives from <b>&lt;GuiTemplate/&gt;</b>,
+                the combo box and the list control could share the same <b>ItemTemplate</b>.
+            </p>
+            <p>
+                When creating item templates for <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b> compositions,
+                anything derives from <b>GuiTemplate</b> could be used.
+                But since they are compositions instead of controls,
+                no property of the created item template instance will be assigned.
+            </p>
+        </topic>
+    </topic>
+</article>

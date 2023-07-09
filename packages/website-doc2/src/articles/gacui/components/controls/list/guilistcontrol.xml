@@ -1,0 +1,269 @@
+<article index="true">
+    <topic>
+        <title>GuiListControl and GuiSelectableListControl</title>
+        <p>
+            <b>GuiListControl</b> is the base class of all list controls.
+            This control transforms items in a collection to UI object with a specified layout.
+            When items are scrolled out of the control and becomes invisible,
+            UI objects for them are disposed.
+            Resources are not taken by invisible items.
+        </p>
+        <p>
+            <b>GuiSelectableListControl</b> makes items selectable.
+        </p>
+        <p>
+            The <b>ListItemBackground</b> theme is for item backgrounds,
+            which is a <b>&lt;SelectableButtonTemplate/&gt;</b>.
+            But it will be overrides by <b>BackgroundTemplate</b>
+            in the control template for a list control.
+        </p>
+        <topic>
+            <title>GuiListControl::Context</title>
+            <p>
+                This property inherits from <b>GuiControl</b>.
+            </p>
+            <p>
+                All <b>Context</b> properties in item template instances will keep sync to <b>GuiListControl::Context</b>.
+            </p>
+            <p>
+                For data grids, <b>Context</b> in visualizers and editors will alsp keep sync.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                Even for item template instances, visualizers or editors that are created after <b>GuiListControl::Context</b> is set,
+                their <b>Context</b> properties are assigned after their constructors.
+            </p>
+        </topic>
+        <topic>
+            <title>GuiListControl::EnsureItemVisible</title>
+            <p>
+                This function moves the scroll bar to ensure that
+                the specified item is visible.
+            </p>
+        </topic>
+        <topic>
+            <title>Item Events</title>
+            <p>
+                UI objects dynamically created for items,
+                it is not easy to handling mouse events for items
+                by <a href="/gacui/components/compositions/events.html">events in compositions</a>.
+                <b>GuiListControl</b> redirects all such events to the list control itself:
+                <ul>
+                    <li>ItemLeftButtonDown</li>
+                    <li>ItemLeftButtonUp</li>
+                    <li>ItemLeftButtonDoubleClick</li>
+                    <li>ItemMiddleButtonDown</li>
+                    <li>ItemMiddleButtonUp</li>
+                    <li>ItemMiddleButtonDoubleClick</li>
+                    <li>ItemRightButtonDown</li>
+                    <li>ItemRightButtonUp</li>
+                    <li>ItemRightButtonDoubleClick</li>
+                    <li>ItemMouseMove</li>
+                    <li>ItemMouseEnter</li>
+                    <li>ItemMouseLeave</li>
+                </ul>
+                <b>itemIndex</b> is added to the second argument of handlers for these events
+                starting at <b>0</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>GuiListControl Properties</title>
+            <topic>
+                <title>ItemProvider</title>
+                <p>
+                    This is a readonly property.
+                    It reflects how the list control understand data in its items.
+                </p>
+                <p>
+                    This property returns an instance of <b>GuiListControl::IItemProvider</b>
+                    which provide access to the text representation of each item,
+                    plus a <b>description::Value</b> representation
+                    for <a href="/vlppreflection/home.html">reflection</a>.
+                </p>
+                <p>
+                    When reflection is turned off (which is recommended)
+                    by using <b>VCZH_DEBUG_NO_REFLECTION </b>,
+                    you cannot access member via reflection in each item,
+                    but you can still do type testing or conversion.
+                </p>
+                <p>
+                    The <b>RequestView</b> method is an userful way to extend data representation.
+                    This method is usually implemented by each list control because they require more than just text representation.
+                    Here are some predefined views for certain list controls:
+                    <ul>
+                        <li><b>&lt;TextList/&gt;</b> and <b>&lt;BindableTextList/&gt;</b>: <b>list::ITextItemView</b></li>
+                        <li><b>&lt;TreeView/&gt;</b> and <b>&lt;BindableTreeView/&gt;</b>: <b>tree::INodeItemView</b></li>
+                        <li><b>&lt;ListView/&gt;</b> and <b>&lt;BindableListView/&gt;</b>: <b>list::IListViewItemView</b> and <b>list::ListViewColumnItemArranger::IColumnItemView</b></li>
+                        <li><b>&lt;BindableDataGrid/&gt;</b>: <b>list::IDataGridView</b> and all view for list view</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>ItemTemplate (ItemTemplateChanged)</title>
+                <p>
+                    Different list controls require different types of item templates.
+                    They also provide default item templates and usually require a proper <b>Arranger</b> to display them as expected.
+                </p>
+                <p>
+                    When default item templates don't satisfy the need,
+                    typically <b>&lt;BindableTextList/&gt;</b> and <b>&lt;BindableDataGrid/&gt;</b> is recommended
+                    because their item templates are very easy to implement.
+                </p>
+                <p>
+                    To implement the item template for tree views,
+                    the <b>Level</b> property needs to be carefully taken care of to render the visual effect of the hierarchy.
+                </p>
+                <p>
+                    Item templates for list views are not recommended to implement.
+                    For the <b>Detail</b> view,
+                    it is much more easier to use <b>&lt;BindableDataGrid/&gt;</b>.
+                    For other views,
+                    it is much more easier to use <b>&lt;BindableTextList/&gt;</b> with expected arrangers for these views.
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    UI object for each item consists of a background object and a foreground object.
+                    The foreground object is created from <b>ItemTemplate</b>,
+                    but the background object is created from other template properties in the control template.
+                    The background object handles the UI effect for selection and mouse operations.
+                </p>
+                <p>
+                    The above behavior is controlled <b>DisplayItemBackground</b> property.
+                    If this property is set to <b>false</b>,
+                    background objects will not be created,
+                    and foreground objects need to handle UI effect for selection and mouse operations.
+                </p>
+                <p>
+                    Please check out
+                    <a href="/gacui/components/itemplates/home.html">
+                        <b>Item Templates</b>
+                    </a>
+                    for details.
+                </p>
+            </topic>
+            <topic>
+                <title>Arranger (ArrangerChanged)</title>
+                <p>
+                    Implementing an arranger is not easy,
+                    but there are predefined arrangers for common requirements:
+                    <ul>
+                        <li><b>list::FreeHeightItemArranger</b>: Each item take a row, heights could be different.</li>
+                        <li><b>list::FixedHeightItemArranger</b>: Each item take a row with the same height.</li>
+                        <li><b>list::FixedSizeMultiColumnItemArranger</b>: Layout items like a grid, each cell has the same size.</li>
+                        <li><b>list::FixedHeightMultiColumnItemArranger</b>: Layout items like a grid, but each column could have a different width.</li>
+                        <li><b>list::ListViewColumnItemArranger</b>: Each item take a row, contents are controlled by column headers.</li>
+                    </ul>
+                    <b>NOTE</b>:
+                    the direction is controlled by <b>Asix</b>.
+                    For example,
+                    by using <b>DownLeft</b> instead of <b>RightDown</b> or the default axis,
+                    <b>FixedHeightItemArranger</b> layout items from left to right instead of from top to bottom.
+                </p>
+            </topic>
+            <topic>
+                <title>Axis (AxisChanged)</title>
+                <p>
+                    <b>Axis</b> in <b>GuiListControl</b> is very similar to
+                    <a href="/gacui/components/compositions/flow.html#-Flow-Axis">
+                        <b>Axis</b> in <b>&lt;Flow/&gt;</b>
+                    </a>.
+                    For some arrangers like <b>FixedHeightItemArranger</b> which displays items in single dimension,
+                    <b>LeftDown</b> and <b>RightDown</b> do no difference.
+                    Same for other 3 pairs of values for <b>AxisDirection</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>AdoptedSize (AdoptedSizeInvalidated)</title>
+                <p>
+                    This property suggests a best size for the drop down container in a <b>&lt;ComboBox/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>DisplayItemBackground</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    See <b>ItemTemplate</b> for more information.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>GuiSelectableListControl Properties</title>
+            <p>
+                This control enables list items to be selected by mouse or keyboard operations.
+            </p>
+            <topic>
+                <title>MultiSelect</title>
+                <p>
+                    The default value for this property is <b>false</b>.
+                </p>
+                <p>
+                    Set this property to <b>true</b> makes multiple list items
+                    could be selected at the same time.
+                    <b>CTRL</b> with a mouse click or <b>SHIFT</b> with direction keys
+                    could help select and unselect multiple items.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedItems (SelectionChanged)</title>
+                <p>
+                    This property is a readonly collection
+                    storing indices of selected items staring at <b>0</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedItemIndex (SelectionChanged)</title>
+                <p>
+                    This property returns the index of the selected item.
+                </p>
+                <p>
+                    If no item is selected,
+                    or if more than one item is selected,
+                    this property returns <b>-1</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedItemText (SelectionChanged)</title>
+                <p>
+                    This property returns the text representation of the selected item.
+                </p>
+                <p>
+                    If no item is selected,
+                    or if more than one item is selected,
+                    this property returns <b>""</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>GuiSelectableListControl Methods</title>
+            <topic>
+                <title>GetSelected and SetSelected</title>
+                <p>
+                    <b>GetSelected</b> tells if an item is selected.
+                </p>
+                <p>
+                    <b>SetSelected</b> selects or unselects an item.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectItemsByClick</title>
+                <p>
+                    This method select items by simulate mouse operations.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectItemsByKey</title>
+                <p>
+                    This method select items by simulate keyboard operations.
+                </p>
+            </topic>
+            <topic>
+                <title>ClearSelection</title>
+                <p>
+                    This method clear all selection.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

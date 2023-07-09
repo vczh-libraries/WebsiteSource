@@ -1,0 +1,92 @@
+<article index="true">
+    <topic>
+        <title>Structs</title>
+        <p>
+            Structs can be defined in <b>modules</b>, <b>namespaces</b>, <b>classes</b> and <b>interfaces</b>.
+        </p>
+        <p>
+            A struct is a tuple with all fields assigned a name:
+            <program><code><![CDATA[
+                struct Point
+                {
+                    x: int;
+                    y: int;
+                }
+            ]]></code></program>
+            Types of fields should only be value types, like:
+            <ul>
+                <li>primitive types</li>
+                <li>enums</li>
+                <li>structs</li>
+                <li>primitive types</li>
+                <li>nullable types</li>
+            </ul>
+        </p>
+        <p>
+            Structs cannot inherit from other structs.
+        </p>
+        <topic>
+            <title>Allocating a struct</title>
+            <p>
+                The constructor expression is the only way to allocate a value of a struct type:
+                <program><code><![CDATA[
+                    func use(p: Point): Point
+                    {
+                        return p;
+                    }
+
+                    var a: Point = {x:1 y:2};
+                    var b = {x:3 y:4} of Point;
+                    var c = use({x:5 y:6});
+                ]]></code></program>
+                A constructor expression does not have an explicit type,
+                so the place receiving this expression must have an explicit type,
+                otherwise an error will be generated.
+            </p>
+            <p>
+                <b>null</b> is not allowed to be assigned to a variable of a struct type.
+                But there is an optional type that helps in this case:
+                <program><code><![CDATA[
+                    var d: Point? = null;
+                    d = {x:7 y:8};
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Accessing fields</title>
+            <p>
+                The type of <b>a</b> is <b>Point</b>,
+                so <b>a.x</b> is 1, and <b>a.y</b> is 2.
+            </p>
+            <p>
+                The type of <b>d</b> is <b>Point?</b>,
+                so <b>d.x</b> is 7, and <b>d.y</b> is 8.
+            </p>
+            <p>
+                When <b>d</b> becomes <b>null</b>,
+                accessing fields in <b>d</b> will result in throwing an exception.
+            </p>
+            <p>
+                Struct fields are readonly,
+                after a struct is allocated,
+                fields cannot be re-assigned.
+                But the struct variable itself can be assigned with a new value.
+            </p>
+        </topic>
+        <topic>
+            <title>Ambiguity</title>
+            <p>
+                Due to rich kinds of expression that Workflow supports,
+                sometimes the constructor expression could introduce ambiguity.
+                In this case,
+                semicolons are allowed after every fields:
+                <program><code><![CDATA[
+                    var e: Point = {x:1; y:2;};
+                ]]></code></program>
+                Please note that,
+                semicolons must either appear after all fields,
+                or completely be comiited.
+            </p>
+        </topic>
+    </topic>
+</article>

@@ -1,0 +1,154 @@
+<article index="true">
+    <topic>
+        <title>GuiScroll</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiScroll*</li>
+                <li><b>Template Tag</b>: &lt;ScrollTemplate/&gt;</li>
+                <li>
+                    <b>&lt;HScroll/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: HScroll</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;VScroll/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: VScroll</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;HTracker/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: HTracker</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;VTracker/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: VTracker</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ProgressBar/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ProgressBar</li>
+                    </ul>
+                </li>
+            </ul>
+            Dragging the handler is not easy to implement and it is very commonly required for <b>GuiScroll</b>,
+            so <b>&lt;CommonScrollBehavior/&gt;</b> is provided for writing such control templates.
+            Please check out
+            <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Skins/DarkSkin/Template_Scroll.xml">
+                the default control templates
+            </a>
+            for details.
+        </p>
+        <p>
+            <b>HScroll</b> or <b>VScroll</b> have a slider with two buttons for controlling a position.
+        </p>
+        <p>
+            <b>HTracker</b> or <b>VTracker</b> have only a slider for controlling a position.
+        </p>
+        <p>
+            <b>ProgressBar</b> only displays a position.
+        </p>
+        <topic>
+            <title>GuiScroll Properties</title>
+            <topic>
+                <title>TotalSize (TotalSizeChanged)</title>
+                <p>
+                    The default value for this property is <b>100</b>.
+                </p>
+                <p>
+                    This property represents the total size of a logical concept.
+                </p>
+            </topic>
+            <topic>
+                <title>PageSize (PageSizeChanged)</title>
+                <p>
+                    The default value for this property is <b>10</b>.
+                    For <b>&lt;HTracker/&gt;</b>, <b>&lt;VTracker/&gt;</b> and <b>&lt;ProgressBar/&gt;</b>,
+                    this property is set to <b>0</b> right after constructors are called.
+                </p>
+                <p>
+                    This property represents the view port size of a logical concept.
+                </p>
+                <p>
+                    In default control templates for <b>HScroll</b> and <b>VScroll</b>,
+                    this property affect the size of the slider,
+                    it takes <b>PageSize/TotalSize</b> of the space that is not covered by the two buttons.
+                </p>
+            </topic>
+            <topic>
+                <title>Position (PositionChanged)</title>
+                <p>
+                    The default value for this property is <b>0</b>.
+                </p>
+                <p>
+                    The property represents the position of the view port of a logical concept.
+                </p>
+                <p>
+                    A legal value must be in <b>[MinPosition, MaxPosition]</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>SmallMove (SmallMoveChanged)</title>
+                <p>
+                    The default value for this property is <b>1</b>.
+                </p>
+                <p>
+                    This property describes how much the position will be increased or decreased
+                    by clicking the two buttons (if exist).
+                </p>
+            </topic>
+            <topic>
+                <title>BigMove (BigMoveChanged)</title>
+                <p>
+                    The default value for this property is <b>10</b>.
+                </p>
+                <p>
+                    This property describes how much the position will be increased or decreased
+                    by clicking the remaining space of a scroll that is not covered by the two buttons and the slider.
+                </p>
+                <p>
+                    Usually it is recommended to keep <b>PageSize</b> and <b>BigMove</b>
+                    being the same for <b>&lt;HScroll/&gt;</b> and <b>&lt;VScroll/&gt;</b>,
+                    but it is up to you.
+                </p>
+            </topic>
+            <topic>
+                <title>MinPosition</title>
+                <p>
+                    This property is always <b>0</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>MaxPosition</title>
+                <p>
+                    This property is always <b>TotalSize - PageSize</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>AutoFocus</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    When this property is <b>true</b>:
+                    <ul>
+                        <li>The scroll is focused when the mouse button is pressed.</li>
+                        <li>The scroll is focused when it is executed by <b>TAB</b> or a <b>ALT</b> sequence.</li>
+                    </ul>
+                </p>
+                <p>
+                    When a scroll is focused,
+                    pressing <b>HOME</b>, <b>END</b>, <b>PAGE UP</b>, <b>PAGE DOWN</b>,
+                    <b>Left</b>, <b>Up</b>, <b>Right</b>, <b>Down</b> could change <b>Position</b>.
+                    In order to correctly transfer the focus to <b>GuiScroll</b>,
+                    buttons in this control should have <b>AutoFocus</b> set to <b>false</b>.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

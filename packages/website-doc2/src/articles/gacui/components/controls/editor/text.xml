@@ -1,0 +1,188 @@
+<article index="true">
+    <topic>
+        <title>Text Editor Controls</title>
+        <p>
+            <b>&lt;SinglelineTextBox/&gt;</b> and <b>&lt;MultilineTextBox/&gt;</b>
+            are editing text in the same way.
+        </p>
+        <p>
+            Text are renderered without auto line-wrapping.
+            if a line is too long,
+            <b>&lt;MultilineTextBox/&gt;</b> will become scrollable horizontally.
+        </p>
+        <p>
+            <b>&lt;SinglelineTextBox/&gt;</b> only display the first line of the text.
+        </p>
+        <topic>
+            <title>Mouse Operations</title>
+            <p>
+                When <b>Readonly</b> is <b>true</b>,
+                the text cannot be edited by mouse operations or keyboard operations.
+            </p>
+            <p>
+                Mouse operations could change selections by dragging.
+                <b>SHIFT</b> could use to change selection with mouse clicking.
+                Drag and drop is not supported yet at this version.
+            </p>
+        </topic>
+        <topic>
+            <title>Keyboard Operations</title>
+            <p>
+                When <b>Readonly</b> is <b>true</b>,
+                the text cannot be edited by mouse operations or keyboard operations.
+            </p>
+            <p>
+                <b>UP</b>, <b>DOWN</b>, <b>LEFT</b>, <b>RIGHT</b> move the caret.
+            </p>
+            <p>
+                <b>HOME</b> and <b>END</b> move the caret to the beginning or the ending of the current line.
+                When <b>CTRL</b> is holding,
+                they move the caret to the beginning or the ending of the whole text.
+            </p>
+            <p>
+                <b>PAGE UP</b> and <b>PAGE DOWN</b> move the caret
+                so that the view port of the text approximately
+                scroll up and down for a page.
+            </p>
+            <p>
+                When holding <b>SHIFT</b> and move the caret,
+                it set the end of the selection to the updated caret position.
+            </p>
+            <p>
+                <b>BACK</b> and <b>DELETE</b> delete characters in different direction.
+                If there is any selection,
+                they deleted the selection.
+            </p>
+        </topic>
+        <topic>
+            <title>Caret Position</title>
+            <p>
+                <b>(vl::)presentation::TextPos</b> struct represents a caret position in a text.
+                <b>row</b> is the index of the line,
+                <b>column</b> is the index of the next character from the caret in the current paragraph.
+            </p>
+            <p>
+                If the caret is at the end of a line,
+                <b>column</b> equals to the total character number of the line.
+            </p>
+            <p>
+                Text editor controls only support left-to-right languages,
+                the "next character" is the character at the right side of the caret.
+            </p>
+            <p>
+                The <b>CaretBegin</b> and <b>CaretEnd</b> properties
+                represent the range of the selection.
+                If the mouse dragging from right to left on a piece of text in a left-to-right language,
+                <b>CaretBegin</b> is larger than <b>CaretEnd</b>.
+            </p>
+            <p>
+                The <b>CaretSmall</b> property returns whatever is closer to the beginning in <b>CaretBegin</b> and <b>CaretEnd</b>.
+                The <b>CaretLarge</b> property returns the one closer to the end.
+            </p>
+            <p>
+                <b>Select</b> changes <b>CaretBegin</b> and <b>CaretEnd</b> at the same time.
+                To cancel the selection and move the caret,
+                just set these two properties to the same value.
+            </p>
+            <p>
+                <b>CalculateCaretFromPoint</b> returns the nearest caret at a position.
+                The coordinate is the left-top corner of the text.
+            </p>
+            <p>
+                <b>GetRowText</b> and <b>GetRowCount</b> are available for accessing text by lines.
+            </p>
+        </topic>
+        <topic>
+            <title>Selection</title>
+            <p>
+                The <b>SelectionText</b> property returns the selected text.
+                Both <b>SetSelectionText</b> and <b>SetSelectionTextAsKeyInput</b> replace the selected text with another text.
+                <b>SetSelectionTextAsKeyInput</b> pretends that the user is typing,
+                it could trigger <b>Auto Complete</b>.
+            </p>
+            <p>
+                <b>SelectAll</b> set the selection to the whole text.
+            </p>
+            <p>
+                <b>GetFragmentText</b> get a specified part of the text by two <b>TextPos</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Text coordinate</title>
+            <p>
+                The coordinate origin is the left-top corner of all text.
+            </p>
+            <p>
+                <b>GetRowWidth</b> and <b>GetRowHeight</b> get the display size of a specified row.
+            </p>
+            <p>
+                <b>GetMaxWidth</b> get the width of the longest row.
+                <b>GetMaxHeight</b> get the height of all text.
+            </p>
+            <p>
+                <b>GetTextPosFromPoint</b> get the caret position of a character which is closet to the specified point.
+                <b>GetNearestTextPost</b> get the available caret position closet to the specified point.
+                When a given point is close to the right side of a character,
+                <b>GetNearestTextPost</b> will be one character after than <b>GetTextPosFromPoint</b>.
+                <b>GetNearestTextPost</b> could also return the end of a line,
+                which <b>GetTextPostFromPoint</b> doesn't.
+            </p>
+        </topic>
+        <topic>
+            <title>Assigning Text</title>
+            <p>
+                Assinging a text to <b>Text</b> updates the whole content in the control.
+            </p>
+        </topic>
+        <topic>
+            <title>Clipboard</title>
+            <p>
+                Return values from <b>CanCut</b>, <b>CanCopy</b> and <b>CanPaste</b>
+                indicates whether <b>Cut</b>, <b>Copy</b> and <b>Paste</b> will be successful or not.
+            </p>
+            <p>
+                <b>Cut</b>, <b>Copy</b> and <b>Paste</b> apply on selections.
+                Only non-empty selection could be <b>Cut</b> or <b>Copy</b>.
+                Calling <b>Paste</b> with a non-empty selection replaces the selection with the content from the clipboard.
+            </p>
+            <p>
+                <b>CanPaste</b> also checks the content from the clipboard and see if it contains any text.
+            </p>
+            <p>
+                When a piece of text is cut or copied,
+                following formats are written to the clipboard:
+                <ul>
+                    <li>Plain text. In Windows, both ANSI and UNICODE formats are available.</li>
+                </ul>
+            </p>
+            <p>
+                Acceptable content from the clipboard is:
+                <ul>
+                    <li>Plain text. In Windows, both ANSI and UNICODE formats are acceptable.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Undo and Redo</title>
+            <p>
+                Return values from <b>CanUndo</b> and <b>CanRedo</b>
+                indicates whether <b>Undo</b> and <b>Redo</b> will be successful or not.
+            </p>
+            <p>
+                All editing operations,
+                including keyboard operations and all editing methods mentioned above,
+                will be recorded and are all undo-able and redo-able.
+            </p>
+            <p>
+                <b>NotifyParagraphUpdated</b> marks the current version as "saved" and clear the previous mark.
+                <b>GetModified</b> returns true when the current version is marked as "saved".
+                Only one version will be marked as "saved".
+            </p>
+            <p>
+                <b>GetEditVersion</b> return a number representing the current version.
+                The version number increases when redo or modification happens,
+                it decreases for undo.
+            </p>
+        </topic>
+    </topic>
+</article>

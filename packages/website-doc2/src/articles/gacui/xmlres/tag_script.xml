@@ -1,0 +1,33 @@
+<article>
+    <topic>
+        <title>&lt;Script&gt;</title>
+        <p>
+            After a <b>GacUI XML Resource</b> is converted to a resource binary:
+            <ul>
+                <li>This resource does not exist in the resource binary.</li>
+                <li>The equivalent Workflow script will be included in the Workflow assembly part in the resource binary.</li>
+                <li>
+                    If you use the one specified in <b>GacGenConfig/Cpp</b>,
+                    the Workflow assembly is also not included in the resource binary,
+                    because you are supposed to use the generated C++ code.
+                </li>
+            </ul>
+        </p>
+        <p>
+            The <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_xmlres_data/XmlPage.xml">sample</a> for <b>&lt;Xml/&gt;</b>
+            also uses <b>&lt;Script/&gt;</b>.
+        </p>
+        <p>
+            Currently only Workflow script is the only supported script language in <b>GacUI XMl Resource</b>.
+            To include a <a href="/workflow/lang/module.html">Workflow module</a> in the resource,
+            we need to include the code in a <b>CDATA</b> section like this:
+            <program><code><![CDATA[
+                <Scriρt name="RESOURCE-NAME">
+                  <Workflow><![CDATA[
+                    /* put the whole module here *./
+                  ]]]]><![CDATA[>]]><![CDATA[</Workflow>
+                </Scriρt>
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

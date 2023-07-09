@@ -1,0 +1,148 @@
+<article>
+    <topic>
+        <title>Code Generation Configuration</title>
+        <p>
+            The configuration is written in the XML as follow:
+            <program><code><![CDATA[
+                <Resource>
+                  <Folder name="GacGenConfig">
+                    <Folder name="Cpp">
+                      <Text name="SourceFolder">Source</Text>
+                      <Text name="NormalInclude">GacUI.h</Text>
+                      <Text name="Name">MyApp</Text>
+                      <Text name="Resource">..\MyApp.bin</Text>
+                      ...
+                    </Folder>
+                    <Folder name="ResX86">...</Folder>
+                    <Folder name="ResX64">...</Folder>
+                    <Xml name="Metadata">...</Xml>
+                  </Folder>
+                </Resource>
+            ]]></code></program>
+        </p>
+        <p>
+            Here are all available options:
+            <ul>
+                <li>
+                    <b>Cpp</b>
+                    <ul>
+                        <li><b>Name</b>: Base name of C++ files and contents, could be any valid C++ identifier.</li>
+                        <li><b>SourceFolder</b>: Relative folder to this resource file to store generated C++ files.</li>
+                        <li><b>NormalInclude</b>: Files to include in headers, typically <b>GacUI.h</b>. Multiple files are separated by ";".</li>
+                        <li><b>ReflectionInclude</b> (optional): Files to include in headers when reflection is turned on, typically <b>GacUIReflection.h</b>. Multiple files are separated by ";".</li>
+                        <li><b>Resource</b> (optional): Output path for a neutral resource binary.</li>
+                        <li><b>Compressed</b> (optional, <b>not recommended</b>): Like <b>Resource</b> but it is compressed.</li>
+                        <li><b>CppResource</b> (optional): A C++ file to get rid of loading the resource binary at runtime.</li>
+                        <li><b>CppCompressed</b> (optional): Like <b>CppResource</b> but the binary is compressed to reduce file size.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>ResX86</b> or <b>ResX64</b> (optional): Control output paths for x86 or x64 resource binary.
+                    These options are necessary only when you don't want generated C++ code and decide to load resource binaries at runtime with reflection enabled.
+                    <ul>
+                        <li><b>Assembly</b>: Resource binary without any Workflow scripts. <b>Reflection</b> is not required but you need to generate C++ code.</li>
+                        <li><b>Resource</b> (optional): Resource binary with UI as Workflow scripts. <b>Reflection</b> is required to load this binary file.</li>
+                        <li><b>Compressed</b> (optional): Like <b>Resource</b> but it is compressed.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Metadata</b> (optional):
+                    An xml describing the name of the resource file and its dependencies.
+                    Only resources with a metadata can be depended by others.
+                    See <a href="/gacui/xmlres/cxrr.html">Cross XML Resource References</a> for details.
+                    <program><code><![CDATA[
+                        <Resource>
+                          <Folder name="GacGenConfig">
+                            ...
+                            <Xml name="Metadata">
+                              <ResourceMetadata Name="MyApp" Version="1.0">
+                                <Dependencies>
+                                  <Resource Name="OtherLibrary1"/>
+                                  <Resource Name="OtherLibrary2"/>
+                                  ...
+                                </Dependencies>
+                              </ResourceMetadata>
+                            </Xml>
+                          </Folder>
+                        </Resource>
+                    ]]></code></program>
+                </li>
+            </ul>
+        </p>
+        <p>
+            To compile <b>GacUI XML Resource</b> files:
+            <ul>
+                <li>
+                    <p>
+                        put <b>GacUI.xml</b> with the following content in the root folder:
+                        <program><code><![CDATA[
+                            <GacUI/>
+                        ]]></code></program>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        put all resource files in their own sub folders.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Open <b>PowerShell</b>,
+                        navigate to the root folder and run
+                        <program><code><![CDATA[
+                            GacBuild.ps1 -FileName GacUI.xml
+                        ]]></code></program>
+                        You must use the correct path for <b>GacBuild.ps1</b> which is in <a href="https://github.com/vczh-libraries/Release/tree/master/Tools">here</a>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Some <b>.xml.log</b> folders will be create to containe intermediate files and log files,
+                        do not submit them to your source control.
+                        If there are errors,
+                        you can find details there.
+                        Otherwise you will get generated files ready in your specified folders.
+                    </p>
+                </li>
+            </ul>
+        </p>
+        <p>
+            If you specify <b>Cpp/CppResource</b> or <b>Cpp/CppCompressed</b>,
+            you don't need to load resource binary before creating the main window.
+            Instead,
+            you add that generated C++ code (cannot add both) to your project,
+            and it will handle the rest for you.
+        </p>
+        <p>
+            Otherwise, use the following code to load a resource binary before creating any windows:
+            <program><code><![CDATA[
+                void GuiMain()
+                {
+                    {
+                        FileStream fileStream(L"MyApp.bin", FileStream::ReadOnly);
+                        GetResourceManager()->LoadResourceOrPending(fileStream);
+                    }
+                    // create the main window and launch ...
+                }
+            ]]></code></program>
+            <b>GetApplication()->GetExecutableFolder()</b>
+            is highly recommended to calculate an absolute path to the resource binary,
+            instead of specifying a relative path in C++.
+        </p>
+        <p>
+            When the resource binary is compressed:
+            <program><code><![CDATA[
+                void GuiMain()
+                {
+                    {
+                        FileStream fileStream(L"MyApp.bin", FileStream::ReadOnly);
+                        LzwDecoder decoder;
+                        DecoderStream decoderStream(fileStream, decoder);
+                        GetResourceManager()->LoadResourceOrPending(decoderStream);
+                    }
+                    // create the main window and launch ...
+                }
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

@@ -1,0 +1,41 @@
+<article index="true">
+    <topic>
+        <title>&lt;DocumentLabel&gt; and &lt;DocumentTextBox&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiDocumentLabel*</li>
+                <li><b>Template Tag</b>: &lt;DocumentLabelTemplate/&gt;</li>
+                <li>
+                    <b>&lt;DocumentLabel/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: DocumentLabel</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;DocumentTextBox/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: DocumentTextBox</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The control template doesn't need to care about rendering characters.
+            When it is installed to the control,
+            a fully managed <b>GuiDocumentElement</b> will be installed
+            to the <b>ContainerComposition</b> of the control template.
+        </p>
+        <p>
+            <b>&lt;DocumentLabel/&gt;</b> and <b>&lt;DocumentTextBox/&gt;</b>
+            don't provide any scroll bar.
+            When a paragraph is too long to display,
+            auto line-wrapping is automatically done so that the horizontal scroll bar is always not needed.
+            Height of these controls will grow to display the whole document.
+        </p>
+        <p>
+            There is no functionality difference between <b>&lt;DocumentLabel/&gt;</b> and <b>&lt;DocumentTextBox/&gt;</b>.
+            <b>&lt;DocumentLabel/&gt;</b> is expected to look like a <b>&lt;Label/&gt;</b>.
+            <b>&lt;DocumentTextBox/&gt;</b> is expected to look like <b>&lt;SinglelineTextBox/&gt;</b>.
+        </p>
+    </topic>
+</article>

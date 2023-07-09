@@ -1,0 +1,94 @@
+<article index="true">
+    <topic>
+        <title>&lt;MessageDialog&gt;</title>
+        <p>
+            <b>&lt;MessageDialog/&gt;</b> displays a OS native message dialog.
+        </p>
+        <topic>
+            <title>Input Properties</title>
+            <p>
+                Set these properties before calling <b>ShowDialog</b> to define the content of the dialog.
+            </p>
+            <topic>
+                <title>Input</title>
+                <p>
+                    The value of this property must be one of the followuing values:
+                    <ul>
+                        <li><b>DisplayOK</b>: Display OK button.</li>
+                        <li><b>DisplayOKCancel</b>: Display OK / Cancel button.</li>
+                        <li><b>DisplayYesNo</b>: Display Yes / No button.</li>
+                        <li><b>DisplayYesNoCancel</b>: Display Yes / No / Cancel button.</li>
+                        <li><b>DisplayRetryCancel</b>: Display Retry / Cancel button.</li>
+                        <li><b>DisplayAbortRetryIgnore</b>: Display Abort / Retry / Ignore button.</li>
+                        <li><b>DisplayCancelTryAgainContinue</b>: Display Cancel / Try Again / Continue button.</li>
+                    </ul> 
+                </p>
+            </topic>
+            <topic>
+                <title>DefaultButton</title>
+                <p>
+                    The value of this property must be one of the followuing values:
+                    <ul>
+                        <li><b>DefaultFirst</b>: The first button is focused right after the dialog is displayed.</li>
+                        <li><b>DefaultSecond</b>: The second button is focused right after the dialog is displayed.</li>
+                        <li><b>DefaultThird</b>: The third button is focused right after the dialog is displayed.</li>
+                    </ul> 
+                </p>
+            </topic>
+            <topic>
+                <title>Icon</title>
+                <p>
+                    The value of this property must be one of the followuing values:
+                    <ul>
+                        <li><b>IconNone</b>: Do not display an icon.</li>
+                        <li><b>IconError</b>: Display an error icon.</li>
+                        <li><b>IconQuestion</b>: Display a question icon.</li>
+                        <li><b>IconWarning</b>: Display a warning icon.</li>
+                        <li><b>IconInformation</b>: Display an information icon.</li>
+                    </ul> 
+                </p>
+            </topic>
+            <topic>
+                <title>ModalOption</title>
+                <p>
+                    The value of this property must be one of the followuing values:
+                    <ul>
+                        <li><b>ModalWindow</b>: The current window is disabled until the dialog is closed.</li>
+                        <li><b>ModalTask</b>: All window of the current application is disabled until the dialog is closed.</li>
+                        <li><b>ModalSystem</b>: Same as <b>ModelTask</b> and the dialog is set to top-most.</li>
+                    </ul> 
+                </p>
+            </topic>
+            <topic>
+                <title>Text</title>
+                <p>
+                    This property defines the content of the dialog.
+                </p>
+            </topic>
+            <topic>
+                <title>Title</title>
+                <p>
+                    This property defines the title of the dialog.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>ShowDialog Method</title>
+            <p>
+                Call this function to display a dialog,
+                and returns the button that is clicked to close the dialog:
+                <ul>
+                    <li><b>SelectOK</b>: The OK button is clicked.</li>
+                    <li><b>SelectCancel</b>: The Cancel button is clicked.</li>
+                    <li><b>SelectYes</b>: The Yes button is clicked.</li>
+                    <li><b>SelectNo</b>: The No button is clicked.</li>
+                    <li><b>SelectRetry</b>: The Retry button is clicked.</li>
+                    <li><b>SelectAbort</b>: The Abort button is clicked.</li>
+                    <li><b>SelectIgnore</b>: The Ignore button is clicked.</li>
+                    <li><b>SelectTryAgain</b>: The Try Again button is clicked.</li>
+                    <li><b>SelectContinue</b>: The Continue button is clicked.</li>
+                </ul> 
+            </p>
+        </topic>
+    </topic>
+</article>

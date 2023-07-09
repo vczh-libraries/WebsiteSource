@@ -1,0 +1,455 @@
+<article index="true">
+    <topic>
+        <title>Types</title>
+        <p>
+            <a href="/home/registered.html">This type list</a> shows all types that you can use in a Workflow script.
+            You can use <a href="/workflow/lang/module.html">using declaration</a> to import names so that to make a type name shorter.
+        </p>
+        <topic>
+            <title>Identifier</title>
+            <p>
+                <ul>
+                    <li>
+                        <b>NAME</b>: uses a name that is imported by <b>using declarations</b>.
+                    </li>
+                    <li>
+                        <b>::NAME</b>: uses a name that is in the global namespace.
+                        If you define anything directly in a module,
+                        instead of putting it in a namespace,
+                        you are defining a concept in the global namespace.
+                    </li>
+                    <li>
+                        <b>IDENTIFIER::NAME</b>: uses a name that is declared in <b>IDENTIFIER</b>.
+                        <b>IDENTIFIER</b> could be
+                        a <a href="/workflow/lang/module.html">namespace</a>,
+                        a <a href="/workflow/lang/class.html">class</a>,
+                        or an <a href="/workflow/lang/interface.html">interface</a>.
+                        Note that you are not allowed to define a new type in a <a href="/workflow/lang/struct.html">struct</a>.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Types in parentheses</title>
+            <p>
+                Parentheses can change associations in a type,
+                it is useful when there is ambiguity.
+                For example:
+                <program><code><![CDATA[
+                    var x: func():string{} = null;
+                ]]></code></program>
+                This is ambiguous,
+                <b>x</b> could be a function returning an enumerable of string,
+                it could also be an enumerable of functions that returns a string.
+                In order to tell the difference,
+                we could use parentheses like this:
+                <program><code><![CDATA[
+                    var x: func():(string{}) = null;
+                    var y: (func():string){} = null;
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Primitive types</title>
+            <p>
+                Here is all keyword for primitive types supported by Workflow script.
+                Not all primitive types have a keyword, like <b>system::DateTime</b>,
+                the only way to use it is to write <b>system::DateTime</b>,
+                or shorten the name using a <b>using declaration</b>.
+                <ul>
+                    <li>
+                        <b>void</b>: <b>system::Void</b>.
+                        It can only appear at the function return type,
+                        indicating that this function do not have a return value.
+                    </li>
+                    <li>
+                        <b>object</b>: <b>system::Object</b>.
+                        Values of all types can be implicitly converted to <b>object</b>.
+                        A value of <b>object</b> can be explicitly converted to any type,
+                        conversion failure results in throwing an exception.
+                        <b>null</b> is also a valid value for <b>object</b>,
+                        casting <b>null</b> to an optional type results in <b>null</b>,
+                        casting <b>null</b> to any other type results in throwing an exception.
+                    </li>
+                    <li>
+                        <b>interface</b>: <b>system::Interface</b>.
+                        This is a reference type,
+                        the base type for all interfaces.
+                        it means that <b>interface*</b> and <b>interface^</b> are valid types,
+                        but <b>interface</b> itself is not.
+                    </li>
+                    <li>
+                        <b>int</b>:
+                        When the compiler is running in an x86 process, it is <b>system::Int32</b>.
+                        When the compiler is running in an x64 process, it is <b>system::Int64</b>.
+                    </li>
+                    <li>
+                        <b>uint</b>:
+                        When the compiler is running in an x86 process, it is <b>system::UInt32</b>.
+                        When the compiler is running in an x64 process, it is <b>system::UInt64</b>.
+                    </li>
+                    <li>
+                        <b>float</b>: <b>system::Float</b>.
+                    </li>
+                    <li>
+                        <b>double</b>: <b>system::Double</b>.
+                    </li>
+                    <li>
+                        <b>string</b>: <b>system::String</b>.
+                        You can either use <b>'</b> or <b>"</b> to create a value of <b>string</b>.
+                        The following strings equal to each other:
+                        <program><code><![CDATA[
+                            var a = "a'\"";
+                            var b = 'a\'"';
+                            var c = "a" & "'" & '"';
+                        ]]></code></program>
+                        Unlike other programming languages,
+                        the "<b>&amp;</b>" operator joins two strings to one,
+                        instead of "<b>+</b>".
+                    </li>
+                    <li>
+                        <b>char</b>: <b>system::Char</b>.
+                        Workflow does not support <b>char</b> operations,
+                        you are not able to create any value of <b>char</b>,
+                        you are not able read <b>char</b> from <b>string</b>,
+                        unless it is returned from a C++ function.
+                    </li>
+                    <li>
+                        <b>bool</b>: <b>system::Boolean</b>.
+                        It could be <b>true</b> or <b>false</b>.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                You could check out how <a href="/home/registered/vlppreflection.html">predefined types</a> are mapped to C++ types.
+            </p>
+            <topic>
+                <title>Type Conversions</title>
+                <p>
+                    <ul>
+                        <li>All primitive types could be implicitly converted to <b>string</b>.</li>
+                        <li><b>string</b> could be explicitly converted to any primitive type.</li>
+                        <li><b>float</b> could be implicitly converted to <b>double</b>.</li>
+                        <li>Signed integer types could be implicitly converted to any larger signed integer types.</li>
+                        <li>Unsigned integer types could be implicitly converted to any larger unsigned integer types.</li>
+                        <li>8-bits and 16-bits integer types could be implicitly converted to <b>float</b>.</li>
+                        <li>32-bits and 64-bits integer types could be implicitly converted to <b>double</b>.</li>
+                        <li>All numeric types could be explicitly converted to each other.</li>
+                        <li>Enum types could be explicitly converted to <b>system::UInt64</b>.</li>
+                        <li><b>system::UInt64</b> could be explicitly converted to enum types.</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Reference types and Pointers</title>
+            <p>
+                Any class types, interface types, or the type "<b>interface</b>", are all reference types.
+                Optional types are not reference types.
+                A reference type itself is not a valid type,
+                pointers to a reference type are valid types.
+            </p>
+            <topic>
+                <title>Shared pointers</title>
+                <p>
+                    Type <b>T^</b> means <b>Ptr&lt;T&gt;</b> in C++.
+                </p>
+                <p>
+                    Althought <b>T</b> could be any type in C++,
+                    but in Workflow script,
+                    pointers could only point to reference types.
+                </p>
+            </topic>
+            <topic>
+                <title>Raw pointers</title>
+                <p>
+                    Type <b>T*</b> means <b>T*</b> in C++.
+                </p>
+                <p>
+                    Althought <b>T</b> could be any type in C++,
+                    but in Workflow script,
+                    pointers could only point to reference types.
+                </p>
+                <p>
+                    You can <b>delete</b> a raw pointer value as in C++.
+                    But it could result in throwing an exception,
+                    when there are shared pointers that holding this object.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Optional types</title>
+            <p>
+                Type <b>T?</b> means <b>Nullable&lt;T&gt;</b> in C++.
+            </p>
+            <p>
+                Althought <b>T</b> could be any type in C++,
+                but in Workflow script,
+                optional types could only point to primitive types, structs and enums.
+            </p>
+            <p>
+                <b>null</b> is a valid value for optional types.
+            </p>
+            <p>
+                Value of any valid type could be implicitly converted to its optional type.
+            </p>
+            <p>
+                Value of an optional types could be implicitly converted to its containing type.
+            </p>
+            <p>
+                An optional type <b>A?</b> can be implicitly or explicitly converted to <b>B?</b>,
+                when <b>A</b> can be implicitly or explicitly converted to <b>B</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Function types</title>
+            <p>
+                A boxed function type is <b>Ptr&lt;IValueFunctionProxy&gt;</b>,
+                but it can also be unboxed to <b>Func&lt;T&gt;</b>.
+            </p>
+            <p>
+                Both function and member can be pack in a function type:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    func A(): string
+                    {
+                        return "A";
+                    }
+
+                    class B
+                    {
+                        func M(): string
+                        {
+                            return "B";
+                        }
+                    }
+
+                    interface IC
+                    {
+                        func M(): string;
+                    }
+
+                    var c = new IC^
+                    {
+                        override func M(): string
+                        {
+                            return "C";
+                        }
+                    }.M;
+
+                    func main(): string
+                    {
+                        var fs /* : (func(): string){} */ = {
+                            A;
+                            new B^().M;
+                            c;
+                            ["D"];
+                            func():string {return "E";};
+                        };
+
+                        var r = "";
+                        for (f in fs)
+                        {
+                            r = r & f();
+                        }
+                        return r;
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>
+                        Function <b>A</b> can be stored in a variable of functions type.
+                    </li>
+                    <li>
+                        A class method can be stored in a variable of function type.
+                        We allocate <b>B</b> as a shared pointer.
+                        Even we have lost the pointer holding a <b>B</b>,
+                        but another pointer is in the function type,
+                        the reference count is maintained.
+                    </li>
+                    <li>
+                        An interface method can also be stored in a variable of function type.
+                    </li>
+                    <li>
+                        An ordered lambda expression can be stored in a variable of function type.
+                    </li>
+                    <li>
+                        A lambda expression can be stored in a variable of function type.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                A function is allowed to have parameters,
+                so as a function type.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    func main(): string
+                    {
+                        var add: func(int, int):int = [$1 + $2];
+                        var mul = func(x:int, y:int):int {return x * y;};
+                        return mul(add(1, 2), add(3, 4));
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                An ordered lambda expression does not have an explicit type,
+                because type of parameters is not specified,
+                so the place receiving it must have an explicit type.
+            </p>
+            <p>
+                A lambda expression has an explicit type,
+                so the type of variable <b>mul</b> can be inferred.
+            </p>
+        </topic>
+        <topic>
+            <title>Collection types</title>
+            <p>
+                Here are all supported collection types:
+                <ul>
+                    <li>
+                        <p><b>TValue {}</b></p>
+                        <p>This is an readonly collection, it can be iterated, it has no random access.</p>
+                        <p>non-generic version: <b>system::Enumerable^</b></p>
+                        <p>reflectable type: <b>system::IValueEnumerable</b></p>
+                    </li>
+                    <li>
+                        <p><b>TValue []</b></p>
+                        <p>This is a list, it has random access.</p>
+                        <p>non-generic version: <b>system::List^</b></p>
+                        <p>reflectable type: <b>system::IValueList</b></p>
+                    </li>
+                    <li>
+                        <p><b>const TValue []</b></p>
+                        <p>This is a read-only list, it has random access.</p>
+                        <p>non-generic version: <b>system::ReadonlyList^</b></p>
+                        <p>reflectable type: <b>system::IValueReadonlyList</b></p>
+                    </li>
+                    <li>
+                        <p><b>observe TValue []</b></p>
+                        <p>This is an observable list, it has random access, changing the list triggers events.</p>
+                        <p>non-generic version: <b>system::ObservableList^</b></p>
+                        <p>reflectable type: <b>system::IValueObservableList</b></p>
+                    </li>
+                    <li>
+                        <p><b>TValue [TKey]</b></p>
+                        <p>This is a dictionary, it maps from a key to a value, it has random access on keys and values.</p>
+                        <p>non-generic version: <b>system::Dictionary^</b></p>
+                        <p>reflectable type: <b>system::IValueDictionary</b></p>
+                    </li>
+                    <li>
+                        <p><b>const TValue [TKey]</b></p>
+                        <p>This is a readonly dictionary, it maps from a key to a value, it has random access on keys and values.</p>
+                        <p>non-generic version: <b>system::ReadonlyDictionary^</b></p>
+                        <p>reflectable type: <b>system::IValueReadonlyDictionary</b></p>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                When calling methods of collection types,
+                all keys and values are <b>object</b>,
+                because Workflow doesn't support generic interface.
+            </p>
+            <p>
+                When using the "<b>[]</b>" operator,
+                or using <b>for</b> statement,
+                keys and values are strong-typed.
+            </p>
+            <topic>
+                <title>Allocating lists</title>
+                <p>
+                    Collections and lists can be allocated by constructor expressions:
+                    <program><code><![CDATA[
+                        var a: int{} = {1 2 3 4 5};
+                        var b: int[] = {1 2 3 4 5};
+                        var c: const int[] = {1 2 3 4 5};
+                        var d: observe int[] = {1 2 3 4 5};
+                        var e /* : int[] */ = {1 2 3 4 5};
+                    ]]></code></program>
+                    We can also use <b>{1; 2; 3; 4; 5;}</b>.
+                </p>
+                <p>
+                    If we don't specify variable types,
+                    a constructor expression that making a list becomes <b>T []</b>.
+                </p>
+                <p>
+                    Range expressions are very useful to create collections:
+                    <program><code><![CDATA[
+                        var a = range (1, 5); /* {2 3 4} of int{}       */
+                        var b = range [1, 5); /* {1 2 3 4} of int{}     */
+                        var c = range (1, 5]; /* {2 3 4 5} of int{}     */
+                        var d = range [1, 5]; /* {1 2 3 4 5} of int{}   */
+                    ]]></code></program>
+                    <ul>
+                        <li>Round parenthesis means the value on that side is included.</li>
+                        <li>Square parenthesis means the value on that side is not included.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>Iterating over lists</title>
+                <p>
+                    <b>TValue {}</b>, <b>TValue []</b>, <b>const TValue []</b>, <b>observe TValue []</b>
+                    can be used in <b>for</b> statements:
+                    <program><code><![CDATA[
+                        func main(): string
+                        {
+                            var xs = {1 2 3 4 5};
+                            var sum = 0;
+                            for (x in xs)
+                            {
+                                sum = sum + x;
+                            }
+                            return sum;
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>For</b> statements can iterate over a list in an opposite direction:
+                    <program><code><![CDATA[
+                        func main(): string
+                        {
+                            var xs = {1 2 3 4 5};
+                            var sum = 0;
+                            for (x in revsersed xs)
+                            {
+                                sum = sum + x;
+                            }
+                            return sum;
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    Range expressions works with <b>for</b> statements very well:
+                    <program><code><![CDATA[
+                        func main(): string
+                        {
+                            var sum = 0;
+                            for (x in range[1, 5])
+                            {
+                                sum = sum + x;
+                            }
+                            return sum;
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Allocating dictionaries</title>
+                <p>
+                    Dictionaries can be allocated by constructor expressions:
+                    <program><code><![CDATA[
+                        var a: string[int] = {1:"one" 2:"two" 3:"three"};
+                        var b: const string[int] = {1:"one" 2:"two" 3:"three"};
+                        var c /* : string[int] */ = {1:"one" 2:"two" 3:"three"};
+                    ]]></code></program>
+                    We can also use <b>{1:"one"; 2:"two"; 3:"three";}</b>.
+                </p>
+                <p>
+                    If we don't specify variable types,
+                    a constructor expression that making a dictionary becomes <b>TValue [TKey]</b>.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

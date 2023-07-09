@@ -1,0 +1,149 @@
+<article index="true">
+    <topic>
+        <title>&lt;ListView&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ListView/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiListView*</li>
+                        <li><b>Template Tag</b>: &lt;ListViewTemplate/&gt;</li>
+                        <li><b>Item Template Tag</b>: &lt;ListItemTemplate/&gt;</li>
+                        <li><b>Template Name</b>: ListView</li>
+                        <li>
+                            <b>Predefined Item Template</b>:
+                            <ul>
+                                <li><b>SetView(Detail)</b> (default): list::DetailListViewItemTemplate + list::ListViewColumnItemArranger</li>
+                                <li><b>SetView(BigIcon)</b>: list::BigIconListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
+                                <li><b>SetView(SmallIcon)</b>: list::SmallIconListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
+                                <li><b>SetView(List)</b>: list::ListListViewItemTemplate + list::FixedHeightMultiColumnItemArranger</li>
+                                <li><b>SetView(Tile)</b>: list::TileListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
+                                <li><b>SetView(Information)</b>: list::InformationListViewItemTemplate + list::FixedHeightItemArranger</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <topic>
+            <title>Items</title>
+            <p>
+                <b>&lt;ListView/&gt;</b> stores a list of <b>list::ListViewItem</b> and display them.
+                In <b>list::ListViewItem</b> there are
+                <b>Text</b>,
+                <b>SmallImage</b>,
+                <b>LargeImage</b>,
+                <b>Tag</b> and
+                <b>SubItems</b> properties,
+                changing these properties also immediately causes changing in the list control.
+            </p>
+            <p>
+                You can add, remove or change items in the <b>Items</b> property to change content in the list control.
+            </p>
+            <p>
+                The <b>SelectedItem</b> property returns the currently selected item in <b>list::ListViewItem</b>.
+                If no item is selected,
+                or multiple items are selected,
+                this property returns <b>null</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Views</title>
+            <p>
+                The <b>View</b> property defines all predefined view in <b>&lt;TextList/&gt;</b>.
+                Valid values are listed at the beginning of this page.
+                You could ignore this property and change <b>ItemTemplate</b> and <b>Arranger</b>
+                by assigning new values to these properties
+                or calling the protected method <b>SetStyleAndArranger</b> to set them at the same time.
+                Doing this makes <b>View</b> become <b>Unknown</b>.
+            </p>
+            <p>
+                The <b>Detail</b> view renders a table,
+                column headers are defined by <b>list::ListViewColumn</b> objects in the <b>Columns</b> property.
+                Changing <b>Columns</b> immediately causes the list control to display different columns.
+                In each row,
+                the first column is always <b>Text</b> in <b>list::ListViewItem</b>,
+                other columns are stored in <b>SubItems[0]</b>, <b>SubItems[1]</b>, <b>SubItems[2]</b> ...
+            </p>
+        </topic>
+        <topic>
+            <title>Columns</title>
+            <p>
+                In <b>list::ListViewColumn</b> there are
+                <b>Text</b>,
+                <b>Size</b>,
+                <b>OwnPopup</b>,
+                <b>DropdownPopup</b> and
+                <b>SortingState</b> properties,
+                changing these properties also immediately causes changing in the list control headers:
+                <ul>
+                    <li>
+                        <b>Text</b>:
+                        The column header.
+                    </li>
+                    <li>
+                        <b>Size</b>:
+                        The size of the column header. Column sizes could also be changed by dragging them by mouse.
+                    </li>
+                    <li>
+                        <b>OwnPopup</b>:
+                        The default value is <b>true</b>.
+                        When the list control is deleted,
+                        if this property is <b>true</b>,
+                        the <b>DropdownPopup</b> of this column will also be deleted.
+                    </li>
+                    <li>
+                        <b>DropdownPopup</b>:
+                        A popup attaching to the window.
+                        This could be either <b>&lt;Popup/&gt;</b>, <b>&lt;ToolstripMenu/&gt;</b> or anything that is compatible.
+                        If <b>DropdownPopup</b> is not <b>null</b>,
+                        a small dropdown button will be displayed in the column header.                    
+                    </li>
+                    <li>
+                        <b>SortingState</b>:
+                        The default value is <b>NotSorted</b>.
+                        Changing it to <b>Ascending</b> or <b>Descending</b>
+                        causes a sorting mark to appear in the column header.
+                        It is usually a triangle towards up (Ascending) or down (Descending).
+                    </li>
+                </ul>
+                The <b>TextProperty</b> is for <b>&lt;BindableListView/&gt;</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Sub Items and Data Columns</title>
+            <p>
+                The <b>Tile</b> and <b>Information</b> views render <b>Text</b> with selected <b>SubItems</b>.
+                Selected <b>SubItems</b> are defined by <b>DataColumns</b> in the list control.
+                <b>DataColumns</b> stores indices of <b>SubItems</b>.
+                It also require enough column headers in <b>Columns</b>.
+            </p>
+            <p>
+                The relationship between these properties are:
+                <ul>
+                    <li><b>list::ListViewItem::Text</b> matches <b>Columns[0]</b>.</li>
+                    <li><b>list::ListViewItem::SubItems[X]</b> matches <b>DataColumns[X]</b>.</li>
+                    <li><b>list::ListViewItem::SubItems[X]</b> matches <b>Columns[X + 1]</b>.</li>
+                </ul>
+            </p>
+            <p>
+                If <b>SubItems</b> in <b>list::ListViewItem</b> contains not enough values
+                but they are required in
+                <b>Columns</b> or <b>DataColumns</b> in the list control,
+                the list control renders empty strings for these sub columns.
+            </p>
+            <p>
+                If <b>Columns</b> contains not enough values
+                but they are required in
+                <b>DataColumns</b> in the list control,
+                the list control renders empty strings for these column headers.
+            </p>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_list_listview"/>
+            </p>
+        </topic>
+    </topic>
+</article>

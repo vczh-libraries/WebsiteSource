@@ -1,0 +1,71 @@
+<article>
+    <topic>
+        <title>Inheriting C++ Interfaces</title>
+        <p>
+            Involved files:
+            <ul>
+                <li><a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Console_Workflow/W03_InheritingCppInterfaces/Main.cpp">Main.cpp</a></li>
+            </ul>
+        </p>
+        <p>
+            You are able to implement a reflectable C++ interface in Workflow using anonymous interface expression.
+            You are able to write classes in Workflow script, but classes are not allowed to implement interfaces.
+        </p>
+        <p>
+            For example, we can define this C++ interface, and make it reflectable:
+            <program><code><![CDATA[
+                class IScripting : public virtual IDescriptable, public Description<IScripting>
+                {
+                public:
+                    virtual void Execute(const WString& name) = 0;
+                };
+            ]]></code></program>
+        </p>
+        <p>
+            By inheriting from <b>IDescriptable</b> and <b>Description</b>,
+            instances of this interface are accessible in Workflow scripts.
+            But in order to make Workflow scripts being able to implement this interface,
+            more things need to be done:
+            <program><code><![CDATA[
+                namespace vl::reflection::description
+                {
+                    BEGIN_INTERFACE_PROXY_SHAREDPTR(IScripting)
+                        void Execute(const WString& name)override
+                        {
+                            INVOKE_INTERFACE_PROXY(Execute, name);
+                        }
+                    END_INTERFACE_PROXY(IScripting)
+                }
+            ]]></code></program>
+            Unfortunately it looks boring,
+            but this version of reflection requires you to write such code to allow it to be implemented by Workflow script code.
+        </p>
+        <p>
+            Here we use <b>BEGIN_INTERFACE_PROXY_SHAREDPTR</b>,
+            because we want instances of this interface to be shared pointers.
+        </p>
+        <p>
+            Now, we are able to implement this interface in Workflow script:
+            <program><code><![CDATA[
+                module sampleModule;
+                using myapi::*;
+
+                func main(): IScripting^
+                {
+                    return new IScripting^
+                    {
+                        override func Execute(name: string): void
+                        {
+                            App::Print($"Hello, $(name)!");
+                        }
+                    };
+                }
+            ]]></code></program>
+            And call it in C++:
+            <program><code><![CDATA[
+                auto mainFunction = LoadFunction<Ptr<myapi::IScripting>()>(globalContext, L"main");
+                mainFunction()->Execute(L"Gaclib");
+            ]]></code></program>
+        </p>
+    </topic>
+</article>

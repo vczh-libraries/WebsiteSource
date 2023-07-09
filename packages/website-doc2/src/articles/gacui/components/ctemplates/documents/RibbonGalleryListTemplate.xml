@@ -1,0 +1,75 @@
+<control-template-document name="RibbonGalleryListTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;BindableRibbonGalleryList/&gt;</b>.
+    </p>
+    <p>
+      The <b>ContainerComposition</b> property must be set to contain objects,
+      which are typically at the left side of navigation buttons.
+      The control template doesn't need to worry about how to display or navigate gallery items.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="ItemListTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;TextListTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for the list control in the control.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonGalleryItemList</b> theme will be used.
+      </p>
+    </prop>
+
+    <prop name="MenuTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;RibbonToolstripMenuTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for the dropdown menu.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonToolstripMenu</b> theme will be used.
+      </p>
+    </prop>
+
+    <prop name="HeaderTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ControlTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for group headers in the dropdown menu.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonToolstripMenu</b> theme will be used.
+      </p>
+    </prop>
+
+    <prop name="BackgroundTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for gallery item backgrounds
+        for gallery items in the dropdown menu.
+        If this property is <b>empty</b>,
+        the default control template for the <b>ListItemBackground</b> theme will be used.
+      </p>
+    </prop>
+
+    <prop name="GroupContainerTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ScrollViewTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for the gallery item container in the dropdown menu.
+        If this property is <b>empty</b>,
+        the default control template for the <b>ScrollView</b> theme will be used.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

@@ -1,0 +1,74 @@
+<article index="true">
+    <topic>
+        <title>&lt;PartialView&gt;</title>
+        <p>
+            <b>&lt;PartialView/&gt;</b> sticks its location and size to a ratio of the location and size of its parent composition.
+        </p>
+        <p>
+            <b>&lt;PartialView/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
+            there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in this composition.
+        </p>
+        <p>
+            <b>Margin</b> of this composition and <b>InternalMargin</b> of its parent composition are ignored.
+        </p>
+        <p>
+            One of the scenario for <b>&lt;PartialView/&gt;</b> is the moving handle of a scroll bar.
+        </p>
+        <topic>
+            <title>&lt;PartialView&gt;::WidthRatio and &lt;PartialView&gt;::WidthPageSize</title>
+            <p>
+                The default value of <b>WidthRatio</b> is <b>0.0</b>.
+            </p>
+            <p>
+                The default value of <b>WidthPageSize</b> is <b>1.0</b>.
+            </p>
+            <p>
+                <ul>
+                    <li>Value for <b>WidthRatio</b> should be in <b>[0, 1]</b></li>
+                    <li>Value for <b>WidthPageSize</b> should be in <b>[0, 1]</b></li>
+                    <li><b>WidthRatio</b> + <b>WidthPageSize</b> should not exceed 1</li>
+                </ul>
+            </p>
+            <p>
+                These properties define the location and size of this composition in the following way:
+                <ul>
+                    <li>The distance between this composition to the left border of its parent composition is <b>WidthRatio</b> * "width of its parent composition".</li>
+                    <li>The width of this composition is <b>WidthPageSize</b> * "width of its parent composition".</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;PartialView&gt;::HeightRatio and &lt;PartialView&gt;::HeightPageSize</title>
+            <p>
+                The default value of <b>HeightRatio</b> is <b>0.0</b>.
+            </p>
+            <p>
+                The default value of <b>HeightPageSize</b> is <b>1.0</b>.
+            </p>
+            <p>
+                <ul>
+                    <li>Value for <b>HeightRatio</b> should be in <b>[0, 1]</b></li>
+                    <li>Value for <b>HeightPageSize</b> should be in <b>[0, 1]</b></li>
+                    <li><b>HeightRatio</b> + <b>HeightPageSize</b> should not exceed 1</li>
+                </ul>
+            </p>
+            <p>
+                These properties define the location and size of this composition in the following way:
+                <ul>
+                    <li>The distance between this composition to the left border of its parent composition is <b>HeightRatio</b> * "height of its parent composition".</li>
+                    <li>The height of this composition is <b>HeightPageSize</b> * "height of its parent composition".</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Skins/DarkSkin/Template_Scroll.xml">
+                    dark skin control templates
+                </a>
+                .
+            </p>
+        </topic>
+    </topic>
+</article>

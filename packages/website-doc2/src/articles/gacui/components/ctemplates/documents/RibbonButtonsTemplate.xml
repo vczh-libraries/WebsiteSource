@@ -1,0 +1,135 @@
+<control-template-document name="RibbonButtonsTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;RibbonButtons/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="LargeButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip buttons in the large scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonLargeButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="LargeDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip dropdown buttons in the large scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonLargeDropdownButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="LargeSplitButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip split buttons in the large scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonLargeSplitButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="SmallButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip buttons in the medium scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonSmallButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="SmallDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip dropdown buttons in the medium scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonSmallDropdownButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="SmallSplitButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip split buttons in the medium scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonSmallSplitButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="SmallIconLabelTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for icon labels in the medium scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonSmallIconLabel</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="IconButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip buttons in the small scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>ToolstripButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="IconDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip dropdown buttons in the small scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>ToolstripDropdownButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="IconSplitButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for toolstrip split buttons in the small scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>ToolstripSplitButton</b> will be used.
+      </p>
+    </prop>
+
+    <prop name="IconLabelTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines a control template for icon labels in the small scale.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonIconLabel</b> will be used.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

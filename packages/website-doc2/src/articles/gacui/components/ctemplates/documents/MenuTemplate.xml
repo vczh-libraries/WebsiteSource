@@ -1,0 +1,21 @@
+<control-template-document name="MenuTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;ToolstripMenu/&gt;</b> and the <b>RibbonToolstripMenu</b> theme.
+    </p>
+    <p>
+      <b>MaximizedBox</b>, <b>MinimizedBox</b>, <b>Border</b>, <b>SizeBox</b>, <b>IconVisible</b>, <b>TitleBar</b> will always be true.
+      <b>Maximized</b> will always be false.
+      A menu is expected to only have a visible border,
+      and the whole area must have <b>AssociatedHitTestResult</b> set to <b>Client</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

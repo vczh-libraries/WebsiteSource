@@ -1,0 +1,108 @@
+<article index="true">
+    <topic>
+        <title>&lt;ResponsiveView&gt;</title>
+        <p>
+            <b>&lt;ResponsiveView/&gt;</b> tells its current managed <b>GuiResponsiveCompositionBase</b> to switch view,
+            or switch to a new managed <b>GuiResponsiveCompositionBase</b>,
+            when itself is required to do so.
+        </p>
+        <p>
+            <b>&lt;ResponsiveView/&gt;</b> is a <b>GuiResponsiveCompositionBase</b> and a <b>&lt;Bounds/&gt;</b>.
+        </p>
+        <topic>
+            <title>&lt;ResponsiveView&gt;::Views</title>
+            <p>
+                <b>&lt;ResponsiveView/&gt;</b> only manages <b>GuiResponsiveCompositionBase</b> that is added to <b>Views</b>.
+                The first one in <b>Views</b> is the one that is expected to be the largest one.
+                The last one in <b>Views</b> is the one that is expected to be the smallest one.
+            </p>
+            <p>
+                Although only the <b>CurrentView</b> is a child composition of <b>&lt;ResponsiveView/&gt;</b>,
+                but every <b>GuiResponsiveCompositionBase</b> in <b>View</b> will be deleted when <b>&lt;ResponsiveView/&gt;</b> is deleted.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                If a <b>GuiResponsiveCompositionBase</b> in <b>View</b> has a different <b>Direction</b> than <b>&lt;ResponsiveView/&gt;</b>,
+                its <b>LevelCount</b> will be treated like 1.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveView&gt;::Direction</title>
+            <p>
+                The default value for this property is <b>Both</b>.
+            </p>
+            <p>
+                Valid values for this property are <b>Horizontal</b>, <b>Vertical</b> and <b>Both</b>.
+            </p>
+            <p>
+                When <b>Direction</b> is <b>Horizontal</b>,
+                it only reacts to changing to its width.
+                When <b>Direction</b> is <b>Vertical</b>,
+                it only reacts to changing to its height.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveView&gt;::LevelCount</title>
+            <p>
+                This property represents how many different view it could have.
+                It is the sum of <b>LevelCount</b> of all managed <b>GuiResponsiveCompositionBase</b>.
+            </p>
+            <p>
+                If there is no managed <b>GuiResponsiveCompositionBase</b>,
+                <b>LevelCount</b> is 1.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveView&gt;::CurrentLevel</title>
+            <p>
+                This property represents the current view of a <b>&lt;ResponsiveView/&gt;</b>.
+            </p>
+            <p>
+                The smallest view is 0,
+                the largest view is <b>LevelCount</b> - 1.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveView&gt;::CurrentView</title>
+            <p>
+                Each view in <b>Views</b> could have multiple view (<b>LevelCount</b> > 1).
+                <b>CurrentView</b> represents a <b>GuiResponsiveCompositionBase</b> in <b>Views</b>
+                who is selected to display one of its view.
+            </p>
+            <p>
+                When <b>Views</b> is empty,
+                <b>CurrentView</b> is <b>null</b>.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                <b>LevelCount IS NOT</b> always <b>Views.Count</b>,
+                so <b>CurrentView IS NOT</b> always <b>Views[CurrentView]</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Choosing a view</title>
+            <p>
+                When a <b>&lt;ResponsiveView/&gt;</b> is required to switch to a larger view
+                (increasing <b>CurrentLevel</b> by 1),
+                <b>&lt;ResponsiveView/&gt;</b> will tell <b>CurrentView</b> to switch to a larger view.
+                If <b>CurrentView</b> is already in its largest view,
+                than <b>&lt;ResponsiveView/&gt;</b> switches <b>CurrentView</b> to its previous one in <b>Views</b>.
+                The new <b>CurrentView</b> will be in its smallest view.
+            </p>
+            <p>
+                When a <b>&lt;ResponsiveView/&gt;</b> is required to switch to a smaller view
+                (decreasing <b>CurrentLevel</b> by 1),
+                <b>&lt;ResponsiveView/&gt;</b> will tell <b>CurrentView</b> to switch to a smaller view.
+                If <b>CurrentView</b> is already in its smallest view,
+                than <b>&lt;ResponsiveView/&gt;</b> switches <b>CurrentView</b> to its next one in <b>Views</b>.
+                The new <b>CurrentView</b> will be in its largest view.
+            </p>
+            <p>
+                When <b>CurrentView</b> is changed,
+                the old one is removed from <b>&lt;ResponsiveView/&gt;</b>,
+                the new one is added as a child composition in <b>&lt;ResponsiveView/&gt;</b>
+                with its <b>AlignmentToParent</b> set to <b>left:0 top:0 right:0 bottom:0</b>.
+            </p>
+        </topic>
+    </topic>
+</article>

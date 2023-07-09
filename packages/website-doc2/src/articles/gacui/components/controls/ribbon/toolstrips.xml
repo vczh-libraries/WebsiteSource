@@ -1,0 +1,41 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonToolstrips&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;RibbonToolstrips/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiRibbonToolstrips*</li>
+                        <li><b>Template Tag</b>: &lt;RibbonToolstripsTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonToolstrips</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;RibbonToolstrips/&gt;</b> stores <b>&lt;ToolstripButton/&gt;</b> in the <b>Groups</b> property.
+            Splitters are automatically inserted between groups.
+        </p>
+        <p>
+            Usually buttons are organized in two rows.
+            When there is not enough space,
+            buttons will be organized in three rows.
+        </p>
+        <p>
+            The following controls are expected inside each <b>&lt;ToolstripGroup/&gt;</b>:
+            <ul>
+                <li><b>&lt;ToolstripButton/&gt;</b></li>
+                <li><b>&lt;ToolstripDropdownButton/&gt;</b></li>
+                <li><b>&lt;ToolstripSplitButton/&gt;</b></li>
+            </ul>
+            There is not need to have <b>&lt;ToolstripSplitter/&gt;</b> in groups.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_ribbon_toolstrip"/>
+            </p>
+        </topic>
+    </topic>
+</article>

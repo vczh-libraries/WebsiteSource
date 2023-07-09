@@ -1,0 +1,172 @@
+<article index="true">
+    <topic>
+        <title>&lt;Flow&gt; and &lt;FlowItem&gt;</title>
+        <p>
+            <b>&lt;Flow/&gt;</b> arrange all direct children <b>&lt;FlowItem/&gt;</b> compositions
+            in multiple rows with auto line wrapping.
+        </p>
+        <p>
+            <b>&lt;FlowItem/&gt;</b>::MinSizeLimitation is <b>LimitToElementAndChildren</b> by default.
+        </p>
+        <topic>
+            <title>Properties</title>
+            <p>
+                A few more properties are provided by <b>&lt;Flow/&gt;</b> and <b>&lt;FlowItem/&gt;</b>
+                to control the details of how to ordering <b>&lt;FlowItem/&gt;</b>.
+            </p>
+            <p>
+                <b>&lt;FlowItem/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
+                there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;FlowItem/&gt;</b>.
+            </p>
+            <topic>
+                <title>&lt;Flow&gt;::Axis</title>
+                <p>
+                    The default value is <b>&lt;DefaultAxis/&gt;</b>,
+                    which equivalents to <b>&lt;Axis AxisDirection=&quot;RightDown&quot;/&gt;</b>.
+                </p>
+                <p>
+                    <b>LeftDown</b>, <b>RightDown</b>, <b>LeftUp</b>, <b>RightUp</b>,
+                    <b>DownLeft</b>, <b>DownRight</b>, <b>UpLeft</b> and <b>UpRight</b>
+                    are all valid values for the <b>AxisDirection</b> property.
+                </p>
+                <p>
+                    Among these values,
+                    the first word describes the direction how <b>&lt;FlowItem/&gt;</b> are line up one by one,
+                    the second word describes the direction how auto line wrapping does.
+                    For example,
+                    <b>RightDown</b> means the next item is put on the <b>right</b> side of the previous item,
+                    and when there is no more space for this item in the current row,
+                    it creates a new row on the <b>down</b> side of the current row.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::Alignment</title>
+                <p>
+                    The default value is <b>Left</b>.
+                </p>
+                <p>
+                    <b>Left</b>, <b>Center</b> and <b>Extend</b>
+                    are all valid values for the this property.
+                </p>
+                <p>
+                    This property describes how <b>&lt;FlowItem/&gt;</b> are positioned in one row.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::RowPadding and &lt;Flow&gt;::ColumnPadding</title>
+                <p>
+                    The default value is 0.
+                </p>
+                <p>
+                    This property keeps an distance between each <b>&lt;FlowItem/&gt;</b>.
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <b>Row</b> here doesn't necessary mean a line in horizontal direction,
+                    it depends on the value of the <b>Axis</b> property.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::ExtraMargin</title>
+                <p>
+                    The default value is 0 for all its components.
+                </p>
+                <p>
+                    This property keeps an distance between <b>&lt;Flow/&gt;</b> and <b>&lt;FlowItem/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;FlowItem&gt;::ExtraMargin</title>
+                <p>
+                    The default value is 0 for all its components.
+                </p>
+                <p>
+                    This property adds a border to a <b>&lt;FlowItem/&gt;</b>.
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <b>ExtraMargin</b> does not affect how <b>other &lt;FlowItem/&gt;</b> is positioned.
+                    Instead,
+                    after the position of a <b>&lt;FlowItem/&gt;</b> is decided,
+                    <b>ExtraMargin</b> kicks in and add a border to enlarge it.
+                </p>
+                <p>
+                    Adding an <b>ExtraMargin</b> to a <b>&lt;FlowItem/&gt;</b> does not increase the minimum size of its parent <b>&lt;Flow/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;FlowItem&gt;::FlowOption</title>
+                <p>
+                    The default value is <b>baseline:FromBottom distance:0</b>.
+                </p>
+                <p>
+                    This property describes how <b>&lt;FlowItem/&gt;</b> are positioned in one row.
+                </p>
+                <p>
+                    <b>baseline</b> could be <b>FromTop</b>, <b>FromBottom</b> or <b>Percentage</b>:
+                    <ul>
+                        <li>
+                            <b>FromTop</b>:
+                            the <b>&lt;FlowItem/&gt;</b> keeps the <b>distance</b> from the top of the row.
+                        </li>
+                        <li>
+                            <b>FromBottom</b>:
+                            the <b>&lt;FlowItem/&gt;</b> keeps the <b>distance</b> from the bottom of the row.
+                        </li>
+                        <li>
+                            <b>Percentage</b>:
+                            the <b>&lt;FlowItem/&gt;</b> keeps the distahce,
+                            which is <b>pencentage</b> of its height,
+                            from the top of the row.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <b>Top</b> here doesn't necessary mean the top border of a row,
+                    it depends on the value of the <b>Axis</b> property.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Adding Flow Items</title>
+            <topic>
+                <title>&lt;Flow&gt;::Children()</title>
+                <p>
+                    When a new <b>&lt;FlowItem/&gt;</b> is added to <b>&lt;Flow/&gt;</b> as a child,
+                    this <b>&lt;FlowItem/&gt;</b> is always appended to the end of the last row,
+                    regardless of its position in <b>&lt;Flow&gt;::Children</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::InsertFlowItem(index, item)</title>
+                <p>
+                    To control the position of a <b>&lt;FlowItem/&gt;</b> in the auto-wrapped line,
+                    call <b>&lt;Flow&gt;::InsertFlowItem()</b>
+                    instead of <b>&lt;Flow&gt;::Children()</b>.
+                </p>
+                <p>
+                    This function also adds a <b>&lt;FlowItem/&gt;</b> to the <b>&lt;Flow/&gt;</b>,
+                    but it allows the position of this <b>&lt;FlowItem/&gt;</b> in the auto-wrapped line to be specified,
+                    instead of adding it to the end of the last row.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Flow&gt;::GetFlowItems()</title>
+                <p>
+                    Call this function to get all direct children <b>&lt;FlowItem/&gt;</b> in the line order.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Flow">
+                    this tutorial project
+                </a>
+                .
+            </p>
+        </topic>
+    </topic>
+</article>

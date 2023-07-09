@@ -1,0 +1,227 @@
+<control-template-document name="WindowTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;Window/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+    <prop name="MaximizedBox">
+      <p>
+        This property is set to <b>true</b> when a window is maximizable.
+        Typically, a maximize button must have <b>AssociatedHitTestResult</b> of its <b>BorderComposition</b> set to <b>ButtonMaximum</b>.
+        Its <b>Clicked</b> event doesn't need to be handled,
+        the system will take care of its functionality when <b>AssociatedHitTestResult</b> is correctly assigned.
+      </p>
+    </prop>
+
+    <prop name="MinimizedBox">
+      <p>
+        This property is set to <b>true</b> when a window is minimizable.
+        Typically, a minimize button must have <b>AssociatedHitTestResult</b> of its <b>BorderComposition</b> set to <b>ButtonMinimum</b>.
+        Its <b>Clicked</b> event doesn't need to be handled,
+        the system will take care of its functionality when <b>AssociatedHitTestResult</b> is correctly assigned.
+      </p>
+    </prop>
+
+    <prop name="Border">
+      <p>
+        This property is set to <b>true</b> when a window is expected to have a border.
+        In this case,
+        it must have a button with <b>AssociatedHitTestResult</b> of its <b>BorderComposition</b> set to <b>ButtonClose</b>.
+        Its <b>Clicked</b> event doesn't need to be handled,
+        the system will take care of its functionality when <b>AssociatedHitTestResult</b> is correctly assigned.
+      </p>
+    </prop>
+
+    <prop name="SizeBox">
+      <p>
+        This property is set to <b>true</b> when a window is expected to have a sizable border.
+        Typically, a sizable border is consist of some compositions with <b>AssociatedHitTestResult</b> in the following values:
+        <ul>
+          <li><b>BorderLeftTop</b></li>
+          <li><b>BorderRightTop</b></li>
+          <li><b>BorderLeftBottom</b></li>
+          <li><b>BorderRightBottom</b></li>
+          <li><b>BorderLeft</b></li>
+          <li><b>BorderRight</b></li>
+          <li><b>BorderTop</b></li>
+          <li><b>BorderBottom</b></li>
+        </ul>
+      </p>
+    </prop>
+
+    <prop name="IconVisible">
+      <p>
+        This property is set to <b>true</b> when an icon is expected to render on the window.
+        Typically, an icon is consist of some compositions with <b>AssociatedHitTestResult</b> set to <b>Icon</b>.
+      </p>
+    </prop>
+
+    <prop name="TitleBar">
+      <p>
+        This property is set to <b>true</b> when a title bar is expected to render on the window.
+        Typically, a title bar is consist of some compositions with <b>AssociatedHitTestResult</b> set to <b>Title</b>.
+      </p>
+    </prop>
+
+    <prop name="Maximized">
+      <p>
+        This property is set to <b>true</b> when the window is maximized.
+      </p>
+    </prop>
+
+    <prop name="Activated">
+      <p>
+        This property is set to <b>true</b> when the window is activated.
+      </p>
+    </prop>
+
+    <prop name="CustomFramePadding">
+      <p>
+        When a window is maximized,
+        this property indicates the size of a border that is invisible because they are outside of the monitor.
+        This property could be changed many times during the life cycle of the control template.
+      </p>
+    </prop>
+
+    <prop name="Icon">
+      <p>
+        The image of the icon.
+      </p>
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="MaximizedBoxOption">
+      <p>
+        This property could be one of the following values:
+        <ul>
+          <li><b>AlwaysTrue</b>: The window must be maximizable.</li>
+          <li><b>AlwaysFalse</b>: The window must not be maximizable.</li>
+          <li><b>Customizable</b>: The user decide whether the window is maximizable.</li>
+        </ul>
+        If it is set to <b>Customizable</b>,
+        <b>MaximizedBox</b> could be changed many times during the life cycle of the control template,
+        which means the control template should be able to adjust its look at runtime.
+      </p>
+    </prop>
+
+    <prop name="MinimizedBoxOption">
+      <p>
+        This property could be one of the following values:
+        <ul>
+          <li><b>AlwaysTrue</b>: The window must be minimizable.</li>
+          <li><b>AlwaysFalse</b>: The window must not be minimizable.</li>
+          <li><b>Customizable</b>: The user decide whether the window is minimizable.</li>
+        </ul>
+        If it is set to <b>Customizable</b>,
+        <b>MinimizedBox</b> could be changed many times during the life cycle of the control template,
+        which means the control template should be able to adjust its look at runtime.
+      </p>
+    </prop>
+
+    <prop name="BorderOption">
+      <p>
+        This property could be one of the following values:
+        <ul>
+          <li><b>AlwaysTrue</b>: The window must have a border.</li>
+          <li><b>AlwaysFalse</b>: The window must not have a border.</li>
+          <li><b>Customizable</b>: The user decide whether the window has a border.</li>
+        </ul>
+        If it is set to <b>Customizable</b>,
+        <b>Border</b> could be changed many times during the life cycle of the control template,
+        which means the control template should be able to adjust its look at runtime.
+      </p>
+    </prop>
+
+    <prop name="SizeBoxOption">
+      <p>
+        This property could be one of the following values:
+        <ul>
+          <li><b>AlwaysTrue</b>: The window must be sizable.</li>
+          <li><b>AlwaysFalse</b>: The window must not be sizable.</li>
+          <li><b>Customizable</b>: The user decide whether the window is sizable.</li>
+        </ul>
+        If it is set to <b>Customizable</b>,
+        <b>SizeBox</b> could be changed many times during the life cycle of the control template,
+        which means the control template should be able to adjust its look at runtime.
+      </p>
+    </prop>
+
+    <prop name="IconVisibleOption">
+      <p>
+        This property could be one of the following values:
+        <ul>
+          <li><b>AlwaysTrue</b>: The window must have an icon.</li>
+          <li><b>AlwaysFalse</b>: The window must not have an icon.</li>
+          <li><b>Customizable</b>: The user decide whether the window has an icon.</li>
+        </ul>
+        If it is set to <b>Customizable</b>,
+        <b>IconVisible</b> could be changed many times during the life cycle of the control template,
+        which means the control template should be able to adjust its look at runtime.
+      </p>
+    </prop>
+
+    <prop name="TitleBarOption">
+      <p>
+        This property could be one of the following values:
+        <ul>
+          <li><b>AlwaysTrue</b>: The window must have a title bar.</li>
+          <li><b>AlwaysFalse</b>: The window must not have a title bar.</li>
+          <li><b>Customizable</b>: The user decide whether the window has a title bar.</li>
+        </ul>
+        If it is set to <b>Customizable</b>,
+        <b>TieleBar</b> could be changed many times during the life cycle of the control template,
+        which means the control template should be able to adjust its look at runtime.
+      </p>
+    </prop>
+
+    <prop name="TooltipTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;WindowTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for tooltips of any control in this window.
+        If this property is not set,
+        then the control template provided by the <b>Tooltip</b> them will be used.
+      </p>
+    </prop>
+
+    <prop name="ShortcutKeyTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;LabelTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for labels that displaying awaiting key input for this window in <b>TAB</b> mode.
+        If this property is not set,
+        then the control template provided by the <b>ShortcutKey</b> them will be used.
+      </p>
+    </prop>
+
+    <prop name="CustomFrameEnabled">
+      <p>
+        If this property is <b>true</b>,
+        it means the control template defines the border of the window.
+        In this case,
+        the control template must adjust its look by listening to
+        <b>MaximizedBox</b>, <b>MinimizedBox</b>, <b>Border</b>, <b>SizeBox</b>, <b>IconVisible</b>, <b>TitleBar</b>, <b>Maximized</b> and <b>CustomFramePadding</b>.
+      </p>
+      <p>
+        If this property is <b>false</b>,
+        it means the window uses the border from the system,
+        and this control template only control the look of the client area.
+      </p>
+      <p>
+        The whole client area must have its <b>AssociatedHitTestResult</b> set to <b>Client</b>.
+      </p>
+      <p>
+        When <b>AssociatedHitTestResult</b> is <b>NoDecision</b>,
+        it uses the property from its parent composition.
+        Every pixel inside the control template must eventually not be <b>NoDecision</b>.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

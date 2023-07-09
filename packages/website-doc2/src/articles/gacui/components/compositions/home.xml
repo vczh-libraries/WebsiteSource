@@ -1,0 +1,373 @@
+<article index="true">
+    <topic>
+        <title>Compositions</title>
+        <p>
+            <a href="/gacui/kb/compositions.html">Composition</a> offer layout algorithms based on constraints.
+            Usually, developers using GacUI places nested controls and compositions in a window,
+            by defining constraints between compositions,
+            the window knows its minimum size,
+            and how to change sizes of child controls when the window is resizing.
+        </p>
+        <p>
+            There are a lot of predefined compositions as follows,
+            each defines a kind of constraint:
+            <ul>
+                <li>
+                    GuiGraphicsComposition
+                    <ul>
+                        <li>
+                            GuiGraphicsSite
+                            <ul>
+                                <li>GuiWindowComposition</li>
+                                <li>
+                                    &lt;Bounds&gt;
+                                    <ul>
+                                        <li>
+                                            &lt;Stack&gt;
+                                            <ul>
+                                                <li>&lt;RepeatStack&gt;</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            &lt;Flow&gt;
+                                            <ul>
+                                                <li>&lt;RepeatFlow&gt;</li>
+                                            </ul>
+                                        </li>
+                                        <li>&lt;Table&gt;</li>
+                                        <li>&lt;SharedSizeRoot&gt;</li>
+                                        <li>&lt;SharedSizeItem&gt;</li>
+                                        <li>
+                                            GuiResponsiveCompositionBase
+                                            <ul>
+                                                <li>&lt;ResponsiveView&gt;</li>
+                                                <li>&lt;ResponsiveFixed&gt;</li>
+                                                <li>&lt;ResponsiveStack&gt;</li>
+                                                <li>&lt;ResponsiveGroup&gt;</li>
+                                            </ul>
+                                        </li>
+                                        <li>&lt;ResponsiveShared&gt;</li>
+                                        <li>&lt;ResponsiveContainer&gt;</li>
+                                    </ul>
+                                </li>
+                                <li>&lt;StackItem&gt;</li>
+                                <li>&lt;FlowItem&gt;</li>
+                                <li>&lt;Cell&gt;</li>
+                                <li>
+                                   GuiTableSplitterComposition
+                                    <ul>
+                                        <li>&lt;RowSplitter&gt;</li>
+                                        <li>&lt;ColumnSplitter&gt;</li>
+                                    </ul>
+                                </li>
+                                <li>&lt;SideAligned&gt;</li>
+                                <li>&lt;PartialView&gt;</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            Here we introduce common constraints and configuration of all compositions first.
+        </p>
+        <topic>
+            <title>TransparentToMouse property</title>
+            <p>
+                The default value is <b>false</b>.
+            </p>
+            <p>
+                If it is set to <b>true</b>,
+                this composition becomes transparent to the mouse.
+                When a mouse clicks on this composition,
+                the click just go through this composition and hit a non-transparent one under this composition.
+            </p>
+            <p>
+                <b>Note</b>:
+                by setting it to <b>true</b>,
+                it doesn't makes child compositions become transparent to the mouse.
+                If you want a whole composition tree to be transparent to the mouse,
+                every single composition in this tree must have this property set to <b>true</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>AssociatedCursor property</title>
+            <p>
+                This property defines how the cursor should look like
+                when the cursor is over this composition.
+            </p>
+            <p>
+                If this property is not set,
+                it will ask its parent composition for a value.
+            </p>
+            <p>
+                In <b>GacUI XML Resource</b>,
+                the type of this property is <b>presentation::INativeCursor::SystemCursorType</b>.
+                The value could be any item of this enum.
+            </p>
+        </topic>
+        <topic>
+            <title>AssociatedHitTestResult property</title>
+            <p>
+                The property defines how the window should behave
+                when the mouse is interacting with this composition.
+            </p>
+            <p>
+                The type of this property is <b>presentation::INativeWindowListener::HitTestResult</b>.
+                The value could be any item of this enum.
+            </p>
+            <p>
+                Usually this property is used when implementing a control template for <b>&lt;Window/&gt;</b>.
+                For example,
+                the window template will have a close button
+                and <b>ButtonClose</b> is set to the <b>AssociatedHitTestResult</b> property of this button's <b>BoundsComposition</b>.
+                When the mouse clicks this button,
+                the OS will know that this button is for closing the window,
+                and then raise a sequence of events and close the window if it is not interrupted.
+                No code is needed for the <b>Clicked</b> event of this button.
+            </p>
+        </topic>
+        <topic>
+            <title>Visible property</title>
+            <p>
+                The default value is <b>true</b>.
+            </p>
+            <p>
+                If it is set to <b>false</b>,
+                anything inside this composition will not be rendered,
+                <b>but they still affect the sizing</b> as they are visible.
+            </p>
+        </topic>
+        <topic>
+            <title>Box Model</title>
+            <p>
+                <img src="/gacui/com_BoxModel.png"/>
+            </p>
+            <p>
+                <b>DO NOT</b> control layout by code, <b>DO</b> control layout by assigning proper values to properties mentioned below.
+                the layout will be fixed as soon as possible after properties of elements are changed,
+                and it is fast enough,
+                but the timing is not guaranteed.
+            </p>
+            <p>
+                Any attempts to read the position of size of composition by programming could lead to unexpected result.
+            </p>
+            <topic>
+                <title>Minimum size of the composition</title>
+                <p>
+                    The minimum size is controlled by the following properties:
+                    <ul>
+                        <li><b>OwnedElement</b></li>
+                        <li><b>MinSizeLimitation</b></li>
+                        <li><b>PreferredMinSize</b></li>
+                    </ul>
+                </p>
+                <p>
+                    A composition has a default minimum size to 0.
+                </p>
+                <p>
+                    By assigning an element to the <b>OwnedElement</b> property,
+                    the element is binded to this composition.
+                    The element is rendered using the composition's position and size.
+                </p>
+                <p>
+                    Sometimes the element requires a minimum size to render its full content
+                    (typically for <b>SolidLabel</b> without enabling trailing ellipses).
+                    To assign the minimum size to this composition,
+                    simply just set <b>MinSizeLimitation</b> to <b>LimitToElement</b>.
+                </p>
+                <p>
+                    If this composition has children,
+                    there will also be a minimum size to render all children.
+                    To assign the minimum size to this composition,
+                    simply just set <b>MinSizeLimitation</b> to <b>LimitToElementAndChildren</b>.
+                </p>
+                <p>
+                    You can also assign a specific minimum size to this composition using the <b>PreferredMinSize</b> property.
+                </p>
+                <p>
+                    Now a composition has 3 minimum sizes (element, children, specified assigned).
+                    It will choose a maximum value among this three in each dimension,
+                    the result becomes the minimum size of this composition.
+                </p>
+                <p>
+                    <b>NOTE</b>:
+                    the required size of the element is calculated when it is being rendered.
+                    So it is obvious that,
+                    when an element has never been rendered (e.g. a window is created but not yet display),
+                    or when properties of this element is changed but the window is not yet refreshed,
+                    you could get a wrong minimum size by calling the composition's member functions.
+                </p>
+            </topic>
+            <topic>
+                <title>Position of the composition</title>
+                <p>
+                    The position is controlled by the following properties:
+                    <ul>
+                        <li><b>Margin</b>, defaults to (0,0,0,0)</li>
+                        <li><b>AlignmentToParent</b>, defaults to (-1,-1,-1,-1)</li>
+                        <li><b>InternalMargin</b> of the parent composition, defaults to (0,0,0,0)</li>
+                    </ul>
+                </p>
+                <p>
+                    <b>Any component of Margin and InternalMargin must be 0 or positive.</b>
+                </p>
+                <p>
+                    <b>Any component of AlignmentToParent must be -1, 0 or positive.</b>
+                </p>
+                <p>
+                    <b>AlignmentToParent</b> (white) is the gap between this composition and its parent compositon.
+                    <b>Margin</b> (pink) adds an invisible border to this composition,
+                    <b>InternalMargin</b> (pink) adds an invisible internal border to the parent composition.
+                </p>
+                <p>
+                    The position and size of this composition doesn't include its <b>Margin</b>,
+                    but the position and size of the parent composition includes its <b>InternalMargin</b>.
+                </p>
+                <p>
+                    <b>AlignmentToParent</b> controls how this composition is placed in the parent composition.
+                    If any component of <b>AlignmentToParent</b> is not -1,
+                    this composition will try its best to keep the gap to the parent composition to be the specified value.
+                    When the parent composition grows, this composition also grows.
+                </p>
+                <p>
+                    But the gap is not guarenteed,
+                    one of a typical reason is that,
+                    the parent composition doesn't have enough space to satisfy both the gap and the minimum size of this composition.
+                    In this case:
+                    <ul>
+                        <li>The minimum size wins</li>
+                        <li>AlignmentToParent.left wins if both it and AlignmentToParent.right is not -1</li>
+                        <li>AlignmentToParent.top wins if both it and AlignmentToParent.bottom is not -1</li>
+                    </ul>
+                </p>
+                <p>
+                    <b>AlignmentToParent</b> also affects the minimum size of the parent composition
+                    if <b>MinSizeLimitation</b> of the parent composition is set to <b>LimitToElementAndChildren</b>.
+                </p>
+                <p>
+                    <b>NOTE</b>:
+                    some compositions like <b>&lt;SideAligned/&gt;</b> or <b>&lt;PartialView/&gt;</b>
+                    ignores <b>AlignmentToParent</b> and <b>Margin</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>Keeping a button at the right-bottom corner of the window</title>
+                <p>
+                    This is very straightforward:
+                    <program><code><![CDATA[
+                        <Button>
+                          <att.BoundsComposition AlignmentToParent="left:-1 top:-1 right:5 bottom:5"/>
+                        </Button>
+                    ]]></code></program>
+                </p>
+                <p>
+                    By doing this,
+                    the button will keep its right 5 pixel (96 dpi) away from its parent's right,
+                    also its bottom 5 pixel (96 dpi) away from its parent's bottom.
+                    When the size of its parent changes,
+                    the button will stick to the right-bottom corner.
+                </p>
+                <p>
+                    <b>NOTE</b>:
+                    you are recommended to use <b>&lt;Table/&gt;</b> when you can,
+                    since the size of the button could change because it has different text under different OS language configuration.
+                    <b>&lt;Table/&gt;</b> helps to organize the button and the content above the button,
+                    or when there are multiple button on the right-bottom size.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Data Binding on Positioning Properties</title>
+            <p>
+                Just <b>DON'T DO THIS</b>.
+            </p>
+            <p>
+                <b>IT IS DANGEROUS</b> to bind one positining properties to another.
+                For example,
+                you may want to keep a composition takes exactly the left half of its parent composition.
+                But if you bind <b>AlignmentToParent</b> of this composition to its size,
+                it could results in keeping growing its parent composition.
+            </p>
+            <p>
+                When the parent composition grows (e.g. dragging the window),
+                the child composition also grows because it wants to keep the gap exactly to <b>AlignmentToParent</b>.
+                After that <b>AlignmentToParent</b> also grows because the child composition grows,
+                and it makes the parent composition to grow again because the gap increases.
+                This process never stops,
+                the window will keep growing when it is resizing,
+                until forever.
+            </p>
+        </topic>
+        <topic>
+            <title>Other Properties</title>
+            <topic>
+                <title>AssociatedControl</title>
+                <p>
+                    This property returns the control,
+                    whose <b>BoundsComposition</b> is this composition.
+                </p>
+                <p>
+                    This property could return <b>null</b> when this composition is not a <b>BoundsComposition</b> of a control.
+                </p>
+            </topic>
+            <topic>
+                <title>RelatedControl</title>
+                <p>
+                    This property returns the most inner control that contains this composition.
+                </p>
+                <p>
+                    This property could return <b>null</b> when this composition has not been put in a control yet.
+                </p>
+            </topic>
+            <topic>
+                <title>RelatedControlHost</title>
+                <p>
+                    This property returns the window that contains this composition.
+                </p>
+                <p>
+                    This property could return <b>null</b> when this composition has not been put in a control yet.
+                    Or the control has not been put in a window yet.
+                </p>
+            </topic>
+            <topic>
+                <title>MinPreferredClientSize</title>
+                <p>
+                    This property returns the smallest possible size of this composition.
+                </p>
+                <p>
+                    This property is a readonly property.
+                    Unlike <b>PreferredMinSize</b> which is customizable constraint for calculating the minimum size,
+                    this property returns the calculated result.
+                </p>
+            </topic>
+            <topic>
+                <title>PreferredBounds</title>
+                <p>
+                    This property returns the perfect position and size for this composition.
+                </p>
+                <p>
+                    This is not the final result,
+                    it could be inaccurate because the calculation is based on information that could be outdated,
+                    when properties of some elements are changed after the previous rendering.
+                </p>
+            </topic>
+            <topic>
+                <title>Bounds</title>
+                <p>
+                    This property returns the relative position of this composition in its parent composition.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>ForceCalculateSizeImmediately Method</title>
+            <p>
+                This function makes this property refresh its size based on constraints immediately.
+                But if elements in this composition have not been rendered yet,
+                or have not been rendered since some properties of elements are changed,
+                this function could return an inaccurate result.
+                This depends on the implementation of element renderers.
+            </p>
+        </topic>
+    </topic>
+</article>

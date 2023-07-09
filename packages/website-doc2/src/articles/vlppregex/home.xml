@@ -1,0 +1,33 @@
+<article>
+    <topic>
+        <title>Introduction to VlppRegex</title>
+        <p>
+            VlppRegex provides string matching utilities based on regular expressions. Here is what you can get from this library:
+        </p>
+        <topic>
+            <title>Regular Expression</title>
+            <p>In namespace <b>::vl::regex</b>,</p>
+            <p>
+                <ul>
+                    <li><b>Regex</b>: A regular expression class with string matching and other features.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Lexical analyzer based on regular expressions</title>
+            <p>In namespace <b>::vl::regex</b>,</p>
+            <p>
+                <ul>
+                    <li><b>RegexLexer</b>: The lexical analyzer.</li>
+                    <li><b>RegexTokens</b>: Token iterator for lexical analyzed text, from <b>RegexLexer::Parse</b>.</li>
+                    <li><b>RegexLexerWalker</b>: Lexical analyzer that provides information when consuming each character, from <b>RegexLexer::Walk</b>.</li>
+                    <li><b>RegexLexerColorizer</b>: Text colorizer for lexical analyzed text, from <b>RegexLexer::Colorize</b>.</li>
+                </ul>
+            </p>
+            <p>
+                This lexical analyzer also supports context-sensitive token,
+                which requires user-provided callbacks instead of just setting regular expressions.
+            </p>
+        </topic>
+    </topic>
+</article>

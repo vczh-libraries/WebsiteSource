@@ -1,0 +1,148 @@
+<article>
+    <topic>
+        <title>&lt;Xml&gt;</title>
+        <p>
+            <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_xmlres_data/XmlPage.xml">Here</a>
+            is the sample used in this topic.
+        </p>
+        <p>
+            <b>&lt;Xml/&gt;</b> works like <b>&lt;Text/&gt;</b>,
+            but there are a few differences:
+            <ul>
+                <li>It can be assigned to properties that accept <b>system::xml::XmlDocument^</b>.</li>
+            </ul>
+        </p>
+        <p>
+            There is no property in predefined GacUI objects to accept an XML,
+            it is designed to store static structured data.
+            Another choice is to use <b>&lt;Script&gt;</b> and write them in Workflow script.
+        </p>
+        <p>
+            In the sample,
+            XML is read by a piece of Workflow script,
+            and data are loaded to a list view control.
+            XML helper functions and Linq are not introduced to Workflow,
+            so this piece of code will be much simpler in C++.
+        </p>
+        <p>
+            First we define an XML resource item in <b>res://MainWindow/XmlPage/IDE</b>:
+            <program><code><![CDATA[
+              <Xml name="IDE">
+                <IDEs>
+                  <IDE name="Visual Studio" dev="Microsoft" />
+                  <IDE name="Visual Studio Code" dev="Microsoft" />
+                  <IDE name="XCode" dev="Apple" />
+                  <IDE name="CLion" dev="JetBrains" />
+                  <IDE name="C++ Builder" dev="Embarcadero" />
+                  <IDE name="Eclipse" dev="Eclipse Foundation" />
+                </IDEs>
+              </Xml>
+            ]]></code></program>
+        </p>
+        <p>
+            And then we define a class to store the data,
+            with a function to read the XML and fill to an observable list.
+            <program><code><![CDATA[
+              module sharedscript;
+
+              using system::*;
+              using system::xml::*;
+
+              namespace sample
+              {
+                class IDE
+                {
+                  prop Name: string = "" {}
+                  prop Developer: string = "" {}
+                }
+
+                func Fill(doc: XmlDocument^, ides: observe IDE^[]): void
+                {
+                  for (nodeIde in doc.rootElement.subNodes)
+                  {
+                    var xIde = cast (XmlElement^) nodeIde;
+                    var oIde = new IDE^();
+                    for (att in xIde.attributes)
+                    {
+                      switch (att.name)
+                      {
+                        case "name": { oIde.Name = att.value; }
+                        case "dev": { oIde.Developer = att.value; }
+                      }
+                    }
+                    ides.Add(oIde);
+                  }
+                }
+              }
+            ]]></code></program>
+        </p>
+        <p>
+            In the sample,
+            a variable <b>var ides: observe IDE^[] = {};</b> is added to the tab page using <b>&lt;ref.Members/&gt;</b>.
+            You can write as many class members as you want in this tag.
+            If you need to write something in the constructor or the destructor,
+            you can also use <b>&lt;ref.Ctor/&gt;</b> or <b>&lt;ref.Dtor/&gt;</b>,
+            they accept one Workflow statement or a pair of brace with multiple statements.
+        </p>
+        <p>
+            Now we need to bind this observable list to a <b>BindableListView</b>:
+            <program><code><![CDATA[
+              <BindableListView View="Detail" HorizontalAlwaysVisible="false" VerticalAlwaysVisible="false" env.ItemType="sample::IDE^">
+                <att.BoundsComposition-set AlignmentToParent="left:0 top:0 right:0 bottom:0"/>
+                <att.ItemSource-bind>self.ides</att.ItemSource-bind>
+
+                <att.Columns>
+                  <ListViewColumn Text="IDE" TextProperty="Name" Size="180"/>
+                  <ListViewColumn Text="Developer" TextProperty="Developer" Size="240"/>
+                </att.Columns>
+              </BindableListView>
+            ]]></code></program>
+            There are three important things here:
+            <ul>
+                <li>
+                    <b>ItemSource</b>:
+                    This property accept any collection type,
+                    and list view items will be created in a one-to-one mapping to items in the collection.
+                    If it is an observable collection just like this sample,
+                    when items are added to or removed from this observable collection,
+                    list view items will change automatically.
+                </li>
+                <li>
+                    <b>env.ItemType</b>:
+                    The type name of items in <b>ItemSource</b>.
+                </li>
+                <li>
+                    <b>TextProperty</b> in <b>ListViewColumn</b>:
+                    One of a property in <b>env.ItemType</b>.
+                    For <b>BindableDataGrid</b>,
+                    if you specify editor templates or visualizer templates to columns,
+                    you can represent data in any way you want so that this property does not have to be a string property.
+                </li>
+            </ul>
+        </p>
+        <p>
+            Finally, we create a button.
+            By clicking it,
+            it loads all data to the <b>ides</b> observable collection,
+            so that the list view will sense the change and create list view items:
+            <program><code><![CDATA[
+              <Button ref.Name="buttonLoad" Text="Click Me To Load Data">
+                <att.BoundsComposition-set AlignmentToParent="left:0 top:0 right:0 bottom:0"/>
+                <ev.Clicked-eval><![CDATA[
+                  {
+                    var doc = cast (system::XmlDocument^) self.ResolveResource('res', 'MainWindow/XmlPage/IDE', true);
+                    Fill(doc, self.ides);
+                    buttonLoad.Enabled = false;
+                  }
+                ]]]]><![CDATA[>]]><![CDATA[</ev.Clicked-eval>
+              </Button>
+            ]]></code></program>
+        </p>
+        <p>
+            Here is how it looks like:
+        </p>
+        <p>
+            <sample name="kb_xmlres_data" file="XmlPage" image="kb_xmlres_tag_xml.gif"/>
+        </p>
+    </topic>
+</article>

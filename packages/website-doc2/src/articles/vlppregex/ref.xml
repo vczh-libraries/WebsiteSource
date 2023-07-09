@@ -1,0 +1,35 @@
+<article>
+    <topic>
+        <title>API References for VlppRegex</title>
+        <topic>
+            <title>Resources</title>
+            <p>
+                <ul>
+                    <li><a href="/gacui/running.html">Tutorial</a>: build your first GacUI application.</li>
+                    <li><a href="/home/download.html">Download</a>: download this library.</li>
+                </ul>
+            </p>
+            <p>
+                If you don't need runtime reflection on C++ classes,
+                it is recommended to add <b>VCZH_DEBUG_NO_REFLECTION</b> to <a href="https://docs.microsoft.com/en-us/cpp/build/reference/d-preprocessor-definitions">preprocessor definitions</a>.
+                By doing this, unnecessary code are eliminated, which significantly reduces both executable size and object sizes.
+            </p>
+        </topic>
+        <topic>
+            <title>Source Files for VlppRegex</title>
+            <p>
+                <ul>
+                    <li><b>VlppRegex.h</b> and <b>VlppRegex.cpp</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Dependencies</title>
+            <p>
+                <ul>
+                    <li><b>Vlpp.h</b> and <b>Vlpp.cpp</b></li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>

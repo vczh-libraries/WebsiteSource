@@ -1,0 +1,83 @@
+<article index="true">
+    <topic>
+        <title>&lt;Button&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;Button/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiButton*</li>
+                        <li><b>Template Tag</b>: &lt;ButtonTemplate/&gt;</li>
+                        <li><b>Template Name</b>: Button</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;Button/&gt;</b> is a control for user to execute a command.
+        </p>
+        <topic>
+            <title>&lt;Button&gt; Properties</title>
+            <topic>
+                <title>ClickOnMouseUp</title>
+                <p>
+                    The default value for this property is <b>true</b>,
+                    but it could be different in sub classes.
+                </p>
+                <p>
+                    When this property is <b>true</b>,
+                    <b>Clicked</b> raises when the mouse button is released.
+                    When this property is <b>false</b>,
+                    <b>Clicked</b> raises when the mouse button is pressed.
+                </p>
+            </topic>
+            <topic>
+                <title>AutoFocus</title>
+                <p>
+                    The default value for this property is <b>true</b>,
+                    but it could be different in sub classes.
+                </p>
+                <p>
+                    When this property is <b>true</b>:
+                    <ul>
+                        <li>The button is focused when the mouse button is pressed.</li>
+                        <li>The button is focused when it is executed by a <b>ALT</b> sequence.</li>
+                        <li>The button accepts focus by <b>TAB</b>.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>IgnoreChildControlMouseEvents</title>
+                <p>
+                    The default value for this property is <b>true</b>,
+                    but it could be different in sub classes.
+                </p>
+                <p>
+                    When mouse operations happen in child controls which are contained in a button,
+                    the button ignores these operations so that it behaves like not being clicked.
+                    But once the <b>IgnoreChildControlMouseEvents</b> property is set to <b>false</b>,
+                    this behavior changes.
+                </p>
+                <p>
+                    This property is very useful when adding child controls for visual effect only.
+                </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        <sample name="control_basic_button"/>
+                    </p>
+                </topic>
+            </topic>
+        </topic>
+        <topic>
+            <title>&lt;Button&gt; Events</title>
+            <topic>
+                <title>Clicked</title>
+                <p>
+                    This event raises when it is clicked,
+                    or it is activated by a <b>ALT</b> sequence.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

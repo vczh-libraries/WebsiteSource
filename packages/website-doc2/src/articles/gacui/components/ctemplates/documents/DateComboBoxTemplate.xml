@@ -1,0 +1,25 @@
+<control-template-document name="DateComboBoxTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;DateComboBox/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="DatePickerTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;DatePickerTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for the <b>&lt;DatePicker/&gt;</b> in the dropdown menu.
+        If it is <b>empty</b>,
+        the <b>DatePicker</b> theme will be used.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

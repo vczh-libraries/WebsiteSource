@@ -1,0 +1,301 @@
+<article index="true">
+    <topic>
+        <title>Design Your Own Coroutine</title>
+        <p>
+            A coroutine provider is a class with methods that following a naming convention.
+        </p>
+        <p>
+            A coroutine provider could be written in either C++ with reflection, or just Workflow.
+        </p>
+        <topic>
+            <title>Naming your coroutine</title>
+            <p>
+                If you want a coroutine to be written in this way:
+                <program><code><![CDATA[
+                    func MyCoroutine(): void
+                    $Foo {
+                        /* ... */
+                    }
+                ]]></code></program>
+                you need to define the coroutine provider like this:
+                <program><code><![CDATA[
+                    using system::*;
+
+                    class FooCoroutine
+                    {
+                        class InternalState
+                        {
+                            /* ... */
+                        }
+
+                        static CreateAndRun(creator: func(InternalState*): (Coroutine^)): void
+                        {
+                            /* ... */
+                        }
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                If you want a coroutine to be written in this way:
+                <program><code><![CDATA[
+                    func MyCoroutine(): Foo^
+                    ${
+                        /* ... */
+                    }
+                ]]></code></program>
+                or
+                <program><code><![CDATA[
+                    $interface StringFoo : Foo<string>;
+                    func MyCoroutine(): StringFoo^
+                    ${
+                        /* ... */
+                    }
+                ]]></code></program>
+                you need to define the coroutine provider like this:
+                <program><code><![CDATA[
+                    using system::*;
+
+                    interface Foo
+                    {
+                        /* ... */
+                    }
+
+                    class FooCoroutine
+                    {
+                        class InternalState
+                        {
+                            /* ... */
+                        }
+
+                        static Create(creator: func(InternalState*): (Coroutine^)): Foo^
+                        {
+                            /* ... */
+                        }
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        <b>FooCoroutine::InternalState</b> could be a class or an interface.
+                    </li>
+                    <li>
+                        <b>Create</b> and <b>CreateAndRun</b> could both appear.
+                        This makes coroutine functions being able to return both <b>void</b> and <b>Foo^</b>.
+                    </li>
+                    <li>
+                        The return type of <b>Create</b> must be compatible with the return type of coroutine functions:
+                        <ul>
+                            <li>If <b>Create</b> returns <b>Foo^</b>, then coroutine functions could return <b>Foo^</b> or any of its base type.</li>
+                            <li>If <b>Create</b> returns <b>Foo^</b>, then coroutine functions could return a generic version of <b>Foo^</b>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        The only argument of <b>Create</b> or <b>CreateAndRun</b> should be a function:
+                        <ul>
+                            <li>It takes a raw pointer of an object for storing internal states.</li>
+                            <li>It must return <b>Coroutine^</b>.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                When a coroutine function is called,
+                either <b>Create</b> or <b>CreateAndRun</b> will be called.
+                You are responsible to create the object for storing internal states,
+                and then a <b>Coroutine^</b> will be given to you.
+            </p>
+            <p>
+                The coroutine function takes and stores the internal state object.
+                When any method in the coroutine provider is called because of
+                coroutine providers, <b>return</b> or <b>$</b>,
+                this object will be used as the first argument.
+            </p>
+            <p>
+                Nothing in the coroutine function is executed before the first call to <b>Coroutine::Resume</b>.
+            </p>
+            <p>
+                Whenever a coroutine operation is called,
+                the coroutine pauses,
+                and another call to <b>Coroutine::Resume</b> is required to continue the coroutine function.
+            </p>
+            <p>
+                After <b>Coroutine::Resume</b> is called,
+                <b>Coroutine::Failure</b> and <b>Coroutine::Status</b> must be read in order to correctly handle coroutine operations.
+            </p>
+        </topic>
+        <topic>
+            <title>Define coroutine operations</title>
+            <p>
+                If you want to support
+                <program><code><![CDATA[
+                    $Do1;
+                    $Do2 something;
+                    $Do3 something, otherthings;
+                ]]></code></program>
+                you are required to add the following methods to your coroutine provider:
+                <program><code><![CDATA[
+                    static Do1AndPause(internalState: InternalState*): void { /* ... */ }
+                    static Do2AndPause(internalState: InternalState*, something: Something): void { /* ... */ }
+                    static Do3AndPause(internalState: InternalState*, something: Something, otherthings: Otherthings): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                If you want to support both
+                <program><code><![CDATA[
+                    $Do1;
+                    $Do2 something;
+                    $Do3 something, otherthings;
+                ]]></code></program>
+                and
+                <program><code><![CDATA[
+                    var x = $Do1;
+                    var y = $Do2 something;
+                    var z = $Do3 something, otherthings;
+                ]]></code></program>
+                you are required to add the following methods to your coroutine provider:
+                <program><code><![CDATA[
+                    static Do1AndRead(internalState: InternalState*): void { /* ... */ }
+                    static Do2AndRead(internalState: InternalState*, something: Something): void { /* ... */ }
+                    static Do3AndRead(internalState: InternalState*, something: Something, otherthings: Otherthings): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                Overloading is allowed.
+            </p>
+            <p>
+                When a coroutine operation is called,
+                one of these methods will be called,
+                and the created <b>Coroutine^</b> will pause right after that.
+            </p>
+            <p>
+                All methods for coroutine operations must return <b>void</b>.
+                After the coroutine is resumed,
+                the return value from the coroutine operation comes from the second argument in <b>Coroutine::Resume</b>.
+            </p>
+            <p>
+                This argument is a <b>CoroutineResult^</b>.
+                <ul>
+                    <li>If the coroutine operation succeeds, the return value is stored in the <b>Result</b> property.</li>
+                    <li>If the coroutine operation succeeds, the exception is stored in the <b>Failure</b> property.</li>
+                    <li>
+                        If <b>Failure</b> is not null,
+                        <b>Result</b> will be ignored.
+                        and an exception is thrown.
+                        If there is no <b>try-catch</b> in this coroutine function,
+                        the coroutine stops immediately with this exception.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Define the return statement</title>
+            <p>
+                If you want to support
+                <program><code><![CDATA[
+                    return;
+                ]]></code></program>
+                you are required to add this method to your coroutine provider:
+                <program><code><![CDATA[
+                    static ReturnAndExit(internalState: InternalState*): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                If you want to support
+                <program><code><![CDATA[
+                    return something;
+                ]]></code></program>
+                you are required to add this method to your coroutine provider:
+                <program><code><![CDATA[
+                    static ReturnAndExit(internalState: InternalState*, something: Something): void { /* ... */ }
+                ]]></code></program>
+            </p>
+            <p>
+                Both methods could appear together.
+            </p>
+            <p>
+                When <b>return</b> is called,
+                <b>ReturnAndExit</b> will be called,
+                and the coroutine stops immediately.
+            </p>
+        </topic>
+        <topic>
+            <title>Define the $ expression</title>
+            <p>
+                If you want to suppor the <b>$</b> expression,
+                you are required to add this method to your coroutine provider:
+                <program><code><![CDATA[
+                    static QueryContext(internalState: InternalState*): Something { /* ... */ }
+                ]]></code></program>
+                and the return value from <b>$</b> becomes <b>Something</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Example</title>
+            <p>
+                Let's see the example <a href="/workflow/lang/interface_using.html">here</a>.
+            </p>
+            <p>
+                The <b>ReaderCoroutine</b> defines:
+                <ul>
+                    <li><b>$Set values;</b>: Stores a collection of values.</li>
+                    <li><b>var x = $Get;</b>: Read a value from the stored collection, returns <b>null</b> after all values are read.</li>
+                    <li><b>return value;</b>: Finish the coroutine with a result.</li>
+                </ul>
+            </p>
+            <p>
+                After the coroutine pauses,
+                you need to know which coroutine operation is called.
+                In this example,
+                the <b>readObject</b> field in <b>ReaderCoroutine::Executer</b> is used for this purpose.
+            </p>
+            <p>
+                In <b>ReaderCoroutine::Executor::Continue</b>,
+                when <b>readObject</b> is <b>true</b>,
+                it means <b>$Get</b> is called.
+                The default value of <b>cr.Result</b> is <b>null</b>.
+                If all values are read,
+                the assignment is not executed,
+                so <b>$Get</b> returns <b>null</b>.
+            </p>
+            <p>
+                If <b>$Get</b> is called before <b>$Set</b>,
+                it crashes because the <b>enumerator</b> field is <b>null</b>.
+            </p>
+            <p>
+                After that, <b>co.Resume(false, cr);</b> is called,
+                this is how the return value from <b>$Get</b> is specified.
+            </p>
+            <p>
+                Finally <b>Sum</b> is called,
+                it first stores 10 numbers,
+                and then read them out one by one,
+                and add them together.
+            </p>
+            <p>
+                In the <b>main</b> function,
+                it keeps calling <b>ReaderCoroutine::Executor::Continue</b> until the whole coroutine function finishes.
+                The return value is read from the <b>result</b> field,
+                because <b>ReturnAndExit</b> use this field to store the value given to the return statement.
+            </p>
+            <p>
+                By executing <b>main</b>,
+                methods in <b>ReaderCoroutine</b> is called in the following order:
+                <ul>
+                    <li><b>Create</b></li>
+                    <li><b>Executor::Continue</b></li>
+                    <li><b>SetAndPause</b></li>
+                    <li>
+                        Call 10 times:
+                        <ul>
+                            <li><b>Executor::Continue</b></li>
+                            <li><b>GetAndRead</b></li>
+                        </ul>
+                    </li>
+                    <li><b>Executor::Continue</b></li>
+                    <li><b>ReturnAndExit</b></li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>

@@ -4,6 +4,12 @@
         <topic>
             <title>Gaclib 2.0</title>
             <p>
+                <a href="https://github.com/vczh-libraries/Release/releases">The latest release</a> is for Gaclib 2.0. A final version will be settled down after all development works are done for Gaclib 2.0.
+            </p>
+            <p>
+                <b>Document for Gaclib 2.0: </b><a href="/doc/current/home.html">/doc/current/home.html</a>.
+            </p>
+            <p>
                 Gaclib 2.0 has been upgraded to use C++20.
                 I need to update
                 <a href="https://github.com/vczh-libraries/VlppParser2">VlppParser2</a> and
@@ -82,7 +88,7 @@
                 <a href="https://github.com/vczh-libraries/Release/releases/tag/1.0-rc-3">Gaclib 1.0-rc3</a> is the latest release for Gaclib 1.0.
             </p>
             <p>
-                <b>Document for Gaclib 1.0: </b><a href="/doc/current/home.html">/doc/current/home.html</a>.
+                <b>Document for Gaclib 1.0: </b><a href="/doc/ver1/home.html">/doc/ver1/home.html</a>.
             </p>
             <p>
                 There are also links to indexed source code in documentation pages for classes and functions.

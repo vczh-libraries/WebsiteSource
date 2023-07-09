@@ -1,0 +1,36 @@
+<article>
+    <topic>
+        <title>Instance Inheriting</title>
+        <p>
+            An <b>&lt;Instance/&gt;</b> can be a base type of another <b>&lt;Instance/&gt;</b>.
+            These two instances are required to be in the same XML resource,
+            or the base type is required to be in
+            <a href="/gacui/xmlres/cxrr.html">one of the dependency</a>
+            specified in
+            <a href="/gacui/xmlres/cgc.html">the <b>Metadata</b> configuration</a>.
+        </p>
+        <p>
+            Typically,
+            you don't want your <b>&lt;Instance/&gt;</b> to be in the default namespaces,
+            so it is very common to use <a href="/gacui/xmlres/instance/namespaces.html">xmlns:NAMESPACE</a> for the base type like:
+            <program><code><![CDATA[
+                <Resource>
+                  <Instance name="BaseInstanceResource">
+                    <Instance ref.Class="sample::MyBaseInstance">
+                      <Window/>
+                    </Instance>
+                  </Instance>
+                  
+                  <Instance name="DerivedInstanceResource">
+                    <Instance ref.Class="sample::MyDerivedInstance" xmlns:sample="sample::*">
+                      <sample:MyBaseInstance/>
+                    </Instance>
+                  </Instance>
+                </Resource>
+            ]]></code></program>
+        </p>
+        <p>
+            Please check out <a href="/gacui/advanced/cxrr.html">Cross XML Resource References</a> for details.
+        </p>
+    </topic>
+</article>

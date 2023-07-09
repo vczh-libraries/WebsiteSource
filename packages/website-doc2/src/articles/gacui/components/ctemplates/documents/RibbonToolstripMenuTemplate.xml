@@ -1,0 +1,22 @@
+<control-template-document name="RibbonToolstripMenuTemplate">
+  <introduction>
+    <p>
+      This control template is for the dropdown menu of <b>&lt;BindableRibbonGalleryList/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="ContentComposition">
+      <p>
+        This property must be set.
+        It is used to display the list control in the dropdown menu.
+        Typically, the list control is expected to be on top of all menu items.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

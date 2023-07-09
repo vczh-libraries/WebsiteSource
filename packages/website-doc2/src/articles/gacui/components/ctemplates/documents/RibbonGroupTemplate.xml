@@ -1,0 +1,86 @@
+<control-template-document name="RibbonGroupTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;RibbonGroup/&gt;</b>.
+    </p>
+    <p>
+      A ribbon group could be collapsed when there is no enough space for all its contained objects.
+      When the collapsing happens,
+      contained objects will be removed from the container,
+      and the toolstrip button will be put in it instead.
+      The title bar below contained objects is expected to disappear,
+      or there will be two group names rendered inside the control.
+    </p>
+    <p>
+      The <b>ContainerComposition</b> property must be set to contain objects,
+      which are typically above of the title bar.
+    </p>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+      <p>
+        The type of this property is <b>(vl::)presentation::controls::IRibbonGroupCommandExecutor*</b>.
+      </p>
+      <p>
+        This property is set after this control template is applied to a control.
+        It offers a way for this control template to communicate with the control.
+      </p>
+    </prop>
+
+    <prop name="Expandable">
+      <p>
+        This property is set to <b>true</b> when the <b>Expandable</b> property of the control is set to <b>true</b>.
+      </p>
+      <p>
+        When a ribbon group is expandable,
+        there should be a extend button,
+        which is usually placed at the corner of the title bar.
+        When it is clicked,
+        the <b>NotifyExpandButtonClicked</b> method of <b>Commands</b> must be called.
+      </p>
+    </prop>
+
+    <prop name="Collapsed">
+      <p>
+        This property is set to <b>true</b> when there is no enough space for the ribbon group.
+        The ribbon group will become a button,
+        and the control template will appear in the dropdown menu.
+      </p>
+      <p>
+        When the ribbon group is collapsed,
+        the title bar is expected to disappear.
+        This is usually done by setting a row of the table to be zero height,
+        when this row is specifically just for the title bar.
+      </p>
+    </prop>
+  </inputs>
+  <outputs>
+    <prop name="LargeDropdownButtonTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ToolstripButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for the button,
+        which is rendered when the ribbon group is collapsed.
+        If this property is <b>empty</b>,
+        the default control template for the <b>RibbonLargeButton</b> theme will be used.
+      </p>
+    </prop>
+
+    <prop name="SubMenuTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;MenuTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for the dropdown menu,
+        which is rendered when the ribbon group is collapsed.
+        If this property is <b>empty</b>,
+        the default control template for the <b>Menu</b> theme will be used.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

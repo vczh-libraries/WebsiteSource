@@ -1,0 +1,83 @@
+<article index="true">
+    <topic>
+        <title>&lt;SideAligned&gt;</title>
+        <p>
+            <b>&lt;SideAligned/&gt;</b> sticks itself to a border of the parent composition.
+        </p>
+        <p>
+            <b>&lt;SideAligned/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
+            there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in this composition.
+        </p>
+        <p>
+            <b>Margin</b> of this composition and <b>InternalMargin</b> of its parent composition are ignored.
+        </p>
+        <p>
+            One of the scenario for <b>&lt;SideAligned/&gt;</b> is the arrow button of a scroll bar.
+        </p>
+        <topic>
+            <title>&lt;SlideAlign&gt;::Direction</title>
+            <p>
+                The default value for <b>Direction</b> is <b>Top</b>.
+                The following are valid values for this property:
+                <ul>
+                    <li>
+                        <b>Left</b>:
+                        This makes the composition behaves like its <b>AlignmentToParent</b> is <b>left:0 top:0 right:-1 bottom:0</b>.
+                        Its width is decided by <b>MaxLength</b>, <b>MaxRatio</b> and the size of its parent composition.
+                    </li>
+                    <li>
+                        <b>Top</b>:
+                        This makes the composition behaves like its <b>AlignmentToParent</b> is <b>left:0 top:0 right:0 bottom:-1</b>.
+                        Its height is decided by <b>MaxLength</b>, <b>MaxRatio</b> and the size of its parent composition.
+                    </li>
+                    <li>
+                        <b>Right</b>:
+                        This makes the composition behaves like its <b>AlignmentToParent</b> is <b>left:-1 top:0 right:0 bottom:0</b>.
+                        Its width is decided by <b>MaxLength</b>, <b>MaxRatio</b> and the size of its parent composition.
+                    </li>
+                    <li>
+                        <b>Bottom</b>:
+                        This makes the composition behaves like its <b>AlignmentToParent</b> is <b>left:0 top:-1 right:0 bottom:0</b>.
+                        Its height is decided by <b>MaxLength</b>, <b>MaxRatio</b> and the size of its parent composition.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;SlideAlign&gt;::MaxLength and &lt;SlideAlign&gt;::MaxRatio</title>
+            <p>
+                The default value for <b>MaxLength</b> is <b>10</b>.
+            </p>
+            <p>
+                The default value for <b>MaxRatio</b> is <b>1.0</b>.
+                Value for this property should be in <b>[0, 1]</b>.
+            </p>
+            <p>
+                When <b>Direction</b> is <b>Left</b> or <b>Right</b>:
+                <ul>
+                    <li>let X be <b>MaxLength</b>.</li>
+                    <li>let Y be <b>MaxRatio</b> * "width of the parent composition".</li>
+                </ul>
+                The width of this composition becomes <b>min(X, Y)</b>.
+            </p>
+            <p>
+                When <b>Direction</b> is <b>Top</b> or <b>Bottom</b>:
+                <ul>
+                    <li>let X be <b>MaxLength</b>.</li>
+                    <li>let Y be <b>MaxRatio</b> * "height of the parent composition".</li>
+                </ul>
+                The height of this composition becomes <b>min(X, Y)</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Skins/DarkSkin/Template_Scroll.xml">
+                    dark skin control templates
+                </a>
+                .
+            </p>
+        </topic>
+    </topic>
+</article>

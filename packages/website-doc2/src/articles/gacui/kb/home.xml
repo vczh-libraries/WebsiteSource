@@ -1,0 +1,16 @@
+<article>
+    <topic>
+        <title>Knowledge Base</title>
+        <p>
+            There are a few thing to know before learning how to write <b>GacUI XMl Resource</b>.
+            In this topic,
+            we will introduce to you about:
+            <ul>
+                <li>GacUI's object model, including elements, compositions, controls, templates and template registration.</li>
+                <li>The application model.</li>
+                <li>The OS provider.</li>
+            </ul>
+            It is highly recommended to read the knowledge base before rushing to learn how to write <b>GacUI XML Resource</b>.
+        </p>
+    </topic>
+</article>

@@ -1,0 +1,432 @@
+<article index="true">
+    <topic>
+        <title>Properties</title>
+        <topic>
+            <title>Syntax</title>
+            <p>
+                There are two ways to assign values to a property:
+                <program><code><![CDATA[
+                    <Object PROP1="VALUE">
+                        <att.PROP2>VALUE</att.PROP2>
+                    </Object>
+                ]]></code></program>
+                Or using data binding:
+                <program><code><![CDATA[
+                    <Object PROP1-BINDING="VALUE">
+                        <att.PROP2-BINDING>VALUE</att.PROP2-BINDING>
+                    </Object>
+                ]]></code></program>
+            </p>
+            <p>
+                Sometimes you want to assign values to a property in an object which is returned from another property:
+                <program><code><![CDATA[
+                    <Object>
+                        <att.PROP1-set PROP2="VALUE">
+                            <!-- all the above four ways are valid -->
+                        </att.PROP1-set>
+                    </Object>
+                ]]></code></program>
+                What it do is "OBJECT.PROP1.PROP2 = VALUE".
+                This is very useful when configuring <b>BoundsComposition</b> and <b>ContainerComposition</b> of a control.
+            </p>
+        </topic>
+        <topic>
+            <title>Kinds of Properties</title>
+            <p>
+                An object have four kinds of properties
+                all of them are in the same syntax:
+                <ul>
+                    <li>
+                        <p>
+                            <b>Constructor Parameter</b>:
+                        </p>
+                        <p>
+                            The value of the parameter must be evaluated before calling the constructor of the object.
+                            In <b>&lt;ComboBox/&gt;</b>,
+                            <b>ListControl</b> is such kind of property.
+                        </p>
+                        <p>
+                            A constructor parameter is not a real property,
+                            it cannot be changed after the object is created.
+                            Only assignment, <b>-uri</b> binding and <b>-eval</b> binding is valid on such properties.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>Virtual Property</b>:
+                        </p>
+                        <p>
+                            A virtual property is created to make XML more readable.
+                            In <b>&lt;Table/&gt;</b>,
+                            <b>Rows</b> and <b>Columns</b> are such kinds of properties.
+                        </p>
+                        <p>
+                            A virtual parameter is not a real property,
+                            it cannot be changed after the object is created.
+                            Only assignment, <b>-ref</b> binding, <b>-uri</b> binding and <b>-eval</b> binding is valid on such properties.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>Standard Property</b>:
+                        </p>
+                        <p>
+                            A standard property is a real property of the object.
+                            Typically,
+                            assignment to the property <b>X</b> is converted to a calling of <b>SetX</b>,
+                            but the actual generated code can be customized by using <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">reflection</a>.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Binding</title>
+            <p>
+                Besides assignment or <b>-set</b>,
+                there are several kinds of data binding:
+            </p>
+            <topic>
+                <title>-uri</title>
+                <p>
+                    This binding retrive an object from a resource and assign to the property.
+                    This is a one-time assignment of the property.
+                </p>
+                <p>
+                    Please checkout the following topics for details:
+                    <ul>
+                        <li><a href="/gacui/xmlres/tag_text.html">&lt;Text&gt;</a></li>
+                        <li><a href="/gacui/xmlres/tag_image.html">&lt;Image&gt;</a></li>
+                        <li><a href="/gacui/xmlres/tag_doc.html">&lt;Doc&gt;</a></li>
+                        <li><a href="/gacui/xmlres/tag_xml.html">&lt;Xml&gt;</a></li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>-ref</title>
+                <p>
+                    This binding assign an object to the property.
+                    This is a one-time assignment of the property.
+                </p>
+                <p>
+                    The value of the property is the name of the object.
+                    The name of an object is defined by its <b>ref.Name</b> property.
+                </p>
+                <p>
+                    <b>-ref="self"</b> on the root instance is a very common pattern,
+                    so that you can access the root instance with all custom members in <b>&lt;ref.Members/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>-eval</title>
+                <p>
+                    This binding assign a value to the property.
+                    This is a one-time assignment of the property.
+                </p>
+                <p>
+                    The value of the property is a <a href="/workflow/lang/expr.html">Workflow expression</a>.
+                </p>
+            </topic>
+            <topic>
+                <title>-bind</title>
+                <p>
+                    This binding bind the property to a <a href="/workflow/lang/expr.html">Workflow expression</a>.
+                    When the expression is changed,
+                    the property is assigned again.
+                </p>
+                <p>
+                    Writing <b>-bind="EXPR"</b> means observing the <b><a href="/workflow/lang/bind.html">bind(EXPR)</a></b> expression.
+                    You can also use <b>-bind="a.observe as b(EXPR on E1, E2, ...)"</b>
+                    since <b>bind(a.observe as b(EXPR on E1, E2, ...))</b> is a valid Workflow expression.
+                </p>
+            </topic>
+            <topic>
+                <title>-format</title>
+                <p>
+                    This binding bind the property to <a href="/workflow/lang/expr.html#-formatted-string-">formatted string expression</a>.
+                    When the expression is changed,
+                    the property is assigned again.
+                </p>
+                <p>
+                    For example,
+                    to bind a text box's content to a label,
+                    you can use:
+                    <program><code><![CDATA[
+                        <DocumentTextBox ref.Name="textBox"/>
+                        <Label Text-format="Hello, $(textBox.Text)!"/>
+                    ]]></code></program>
+                    It is equivalent to:
+                    <program><code><![CDATA[
+                        <DocumentTextBox ref.Name="textBox"/>
+                        <Label Text-bind="$'Hello, $(textBox.Text)!'"/>
+                    ]]></code></program>
+                    Note that, both <b>'</b> and <b>"</b> are valid for strings,
+                    so it is very convenient to use <b>'</b> in XML attributes to avoid escaping.
+                </p>
+            </topic>
+            <topic>
+                <title>-str</title>
+                <p>
+                    This binding bind the property to string resource.
+                    When the expression is changed,
+                    the property is assigned again.
+                </p>
+                <p>
+                    Please checkout <a href="/gacui/xmlres/tag_localizedstrings.html">&lt;LocalizedStrings&gt;</a> for details.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Deserialization</title>
+            <p>
+                For any <b>non-binding</b> property assignment,
+                GacUI interpret the property value differently for different types of propertyes.
+            </p>
+            <p>
+                Here are a list of types and how they interpret property values:
+            </p>
+            <topic>
+                <title>Primitive Types</title>
+                <p>
+                    <ul>
+                        <li>For string, the value becomes the string literal.</li>
+                        <li>For bool, integers and numbers, it must be a valid <a href="/workflow/lang/expr.html">Workflow literal</a>.</li>
+                        <li>For DateTime, it must be "YYYY-MM-DD hh:mm:ss.sss"</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>Structs</title>
+                <p>
+                    The value must contains multiple "FIELD:VALUE".
+                    <b>FIELD</b> is a field name in the struct,
+                    <b>VALUE</b> is a valid <a href="/workflow/lang/expr.html">Workflow expression</a> with a compatible type.
+                    Multiple items a separated by spaces.
+                </p>
+                <p>
+                    It is actually a <a href="/workflow/lang/expr.html#Constructor-expression-a-b-c-a-x-b-y-c-z-">Workflow constructor expression</a>
+                    without the surrounding braces.
+                </p>
+            </topic>
+            <topic>
+                <title>Enums</title>
+                <p>
+                    <ul>
+                        <li>For enums, the value must be one of enum items.</li>
+                        <li>For flags, multiple enum item names are seperated by "|".</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>Nullable Types</title>
+                <p>
+                    The default value is <b>null</b>,
+                    but you cannot explicitly assign <b>null</b> in XML.
+                </p>
+            </topic>
+            <topic>
+                <title>Classes or Interfaces</title>
+                <p>
+                    An object is expected for these properties.
+                    But since an object cannot be created in XML attributes,
+                    so you need to use <b>&lt;att.NAME/&gt;</b>.
+                </p>
+                <p>
+                    If the object type is exactly the property type,
+                    you can use <b>_</b> as the tag name for that object.
+                </p>
+                <p>
+                    The above rule is also valid for primitive types,
+                    for example:
+                    <program><code><![CDATA[
+                        <Window Text="The Title"/>
+                    ]]></code></program>
+                    is equivalent to
+                    <program><code><![CDATA[
+                        <Window>
+                          <att.Text>
+                            <String>The Title</String>
+                          </att.Text>
+                        </Window>
+                    ]]></code></program>
+                    and
+                    <program><code><![CDATA[
+                        <Window>
+                          <att.Text>
+                            <_>The Title</_>
+                          </att.Text>
+                        </Window>
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Collections</title>
+                <p>
+                    Zero to multiple values is expected for these properties.
+                    But since a collection cannot be created in XML attributes,
+                    so you need to use <b>&lt;att.NAME/&gt;</b>.
+                </p>
+                <p>
+                    If the object type is exactly the item type,
+                    you can use <b>_</b> as the tag name for that object.
+                </p>
+                <p>
+                    For example:
+                    <program><code><![CDATA[
+                        <Table>
+                          <att.Rows>
+                            <CellOption>composeType:MinSize</CellOption>
+                            <CellOption>composeType:Percentage percentage:1.0</CellOption>
+                          </att.Rows>
+                        </Table>
+                    ]]></code></program>
+                    is equivalent to
+                    <program><code><![CDATA[
+                        <Table>
+                          <att.Rows>
+                            <_>composeType:MinSize</_>
+                            <_>composeType:Percentage percentage:1.0</_>
+                          </att.Rows>
+                        </Table>
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Control/Item Template: func(data: Object): TEMPLATE_CLASS*</title>
+                <p>
+                    The value must be a type name,
+                    or multiple type names separated by ";".
+                </p>
+                <p>
+                    A type name can be a full name of a class,
+                    like <b>my::namespace::MyClass</b>.
+                    Or an equivalent tag name with property namespace setting,
+                    like <b>my:MyClass</b> when there is <b>&lt;Instance xmlns:my="my::namespace::*"/&gt;</b>.
+                </p>
+                <p>
+                    For item templates,
+                    there can be one constructor parameter,
+                    which is typically a <b>&lt;ref.Parameter/&gt;</b>.
+                </p>
+                <p>
+                    The item type is unknown,
+                    because for a bindable list control,
+                    each item can be different type.
+                    If there are multiple item templates with different constructor parameter type,
+                    each constructor parameter type will be tested until there is the first one that is compatible with the actual item type.
+                </p>
+                <p>
+                    The above test always succeeds for item templates that have no constructor parameter.
+                </p>
+                <p>
+                    This is a common pattern to apply different item templates on different items in a list control.
+                </p>
+            </topic>
+            <topic>
+                <title>Property Name: func(data: Object): PROPERTY_TYPE</title>
+                <p>
+                    When there is a <b>env.ItemType</b> attribute
+                    on the object having this property of or on any parent object,
+                    the type of the object to retrieve the property value at runtime is expected to be <b>env.ItemType</b>.
+                    In this case,
+                    the value of this property must be a valid property or field name.
+                </p>
+                <p>
+                    When there is also a <b>env.ItemName</b> attribute,
+                    the value of this property can also be a valid
+                    <a href="/workflow/lang/expr.html">Workflow expression</a>,
+                    the <b>env.ItemName</b> becomes a valid identifier representing the object to retrieve the property.
+                </p>
+                <p>
+                    For example:
+                    when you bind a collection to a <b>&lt;BindableDataGrid/&gt;</b>,
+                    different columns can be configured to displays different properies of the collection item like this:
+                    <program><code><![CDATA[
+                        <BindableDataGrid env.ItemType="demo::MyDataItem^" env.ItemName="itemToBind">
+                          <att.Columns>
+                            <DataColumn Text="Name" Size="120">
+                              <att.TextProperty>Name</att.TextProperty>
+                            </DataColumn>
+            
+                            <DataColumn Text="Gender" Size="80">
+                              <att.TextProperty>demo::ToString(itemToBind.Gender)</att.TextProperty>
+                            </DataColumn>
+                          </att.Columns>
+                        </BindableDataGrid>
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Writable Property Name: func(data: Object, value: PROPERTY_TYPE, isWrite: bool): PROPERTY_TYPE</title>
+                <p>
+                    <b>Writable Property Name</b> is very similar to <b>Property Name</b>.
+                    The only difference is that,
+                    regardless the property value is an identifier or an expression,
+                    it must be assignable.
+                </p>
+                <p>
+                    <b>NOTE:</b> struct fields and readonly properties are not assignable.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;BindableDataGrid&gt; column properties</title>
+                <topic>
+                    <title>presentation::controls::list::IDataVisualizerFactory^</title>
+                    <p>
+                        A <b>IDataVisualizerFactory</b> property is very similar to <b>Item Template</b>.
+                        There is no input object to select a visualizer.
+                        Instead,
+                        multiple visualizer are all created and nested together,
+                        so that different visualizers could share some decoration like borders.
+                        The first one is the most inner one.
+                    </p>
+                    <p>
+                        Each visualizer must inherit from <b>presentation::templates::GuiGridVisualizerTemplate</b>.
+                        The <b>CellValue</b> property will be assigned according to the <b>ValueProperty</b> property of the column.
+                    </p>
+                </topic>
+                <topic>
+                    <title>presentation::controls::list::IDataEditorFactory^</title>
+                    <p>
+                        A <b>IDataEditorFactory</b> property is very similar to <b>Item Template</b>.
+                        There is no input object to select an editor.
+                    </p>
+                    <p>
+                        Each editor must inherit from <b>presentation::templates::GuiGridEditorTemplate</b>.
+                        The <b>CellValue</b> property will be assigned according to the <b>ValueProperty</b> property of the column.
+                    </p>
+                </topic>
+                <topic>
+                    <title>presentation::controls::list::IDataFilter^</title>
+                    <p>
+                        The property value of a <b>IDataFilter^</b> property is expected to be a
+                        <a href="/workflow/lang/expr.html#Ordered-lambda-expression-1-2-">Workflow lambda expression</a>.
+                        The first argument is the row object,
+                        which is an item in the <b>ItemSource</b> collection of the list control.
+                        Returns true to make the row visible.
+                    </p>
+                    <p>
+                        <b>NOTE</b>:
+                        for <b>-eval</b> binding,
+                        the expression must returns an object implementing the <b>IDataFilter</b> interface.
+                    </p>
+                </topic>
+                <topic>
+                    <title>presentation::controls::list::IDataSorter^</title>
+                    <p>
+                        The property value of a <b>IDataSorter^</b> property is expected to be a
+                        <a href="/workflow/lang/expr.html#Ordered-lambda-expression-1-2-">Workflow lambda expression</a>.
+                        The first and second arguments are two row objects to compare,
+                        which are two items in the <b>ItemSource</b> collection of the list control.
+                        Returns a negative, zero, positive number for "less than", "equal", "greater than".
+                    </p>
+                    <p>
+                        <b>NOTE</b>:
+                        for <b>-eval</b> binding,
+                        the expression must returns an object implementing the <b>IDataSorter</b> interface.
+                    </p>
+                </topic>
+            </topic>
+        </topic>
+    </topic>
+</article>

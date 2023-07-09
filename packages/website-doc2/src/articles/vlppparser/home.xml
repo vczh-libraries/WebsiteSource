@@ -1,0 +1,101 @@
+<article>
+    <topic>
+        <title>Introduction to VlppParser</title>
+        <p>
+            VlppParser provides GLR parser generator for C++,
+            with generated XML and JSON parsers.
+        </p>
+        <p>
+            <b>AST</b> here means abstract syntax tree, which are strong-typed representation of text in a specific format.
+        </p>
+        <topic>
+            <title>JSON parser</title>
+            <p>In namespace <b>::vl::parsing::json</b>.</p>
+            <p>
+                <ul>
+                    <li>
+                        <b>JsonParse</b>: Takes a JSON string and the return value from <b>JsonLoadTable</b>,
+                        returns the AST for the JSON string.
+                        You are recommended to cache the return value from <b>JsonLoadTable</b> to improve performance.
+                    </li>
+                    <li>
+                        <b>JsonPrint</b> and <b>JsonToString</b>: Serialize JSON from AST back to string.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                <b>IMPORTANT</b>: The parser does not support surrogate pairs in HEX codes.
+            </p>
+        </topic>
+        <topic>
+            <title>XML parser</title>
+            <p>In namespace <b>::vl::parsing::xml</b>.</p>
+            <p>
+                <ul>
+                    <li>
+                        <b>XmlParse</b>: Takes an XML string and the return value from <b>XmlLoadTable</b>,
+                        returns the AST for the XML string.
+                        You are recommended to cache the return value from <b>XmlLoadTable</b> to improve performance.
+                    </li>
+                    <li>
+                        <b>XmlPrint</b>, <b>XmlPrintContent</b> and <b>XmlToString</b>: Serialize XML from AST back to string.
+                    </li>
+                    <li>
+                        <b>XmlGetAttribute</b>, <b>XmlGetElement</b>, <b>XmlGetElements</b> and <b>XmlGetValue</b>: Helper functions for reading XML in AST.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                <b>IMPORTANT</b>: The XML parser only accept a subset of the XML standard:
+                <ul>
+                    <li>Prologue nodes only accept instructions and comments.</li>
+                    <li>Elements only accept elements, text nodes, cdata nodes and comments as sub nodes.</li>
+                    <li><b>&lt;</b>(&amp;lt;), <b>&gt;</b>(&amp;gt;), <b>&amp;</b>(&amp;amp;), <b>&apos;</b>(&amp;apos;), <b>&quot;</b>(&amp;quot;) must be escaped in attribute values and text nodes.</li>
+                    <li>The <b>xml:space</b> attribute is ignored during parsing.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Writing your own parsers.</title>
+            <p>
+                You are recommended to learn <a href="https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form">EBNF</a> before using the parser generator.
+            </p>
+            <p>
+                To write your own parser:
+                <ul>
+                    <li>
+                        Prepare <a href="/vlppparser/ref/VL__PARSING__TABLING__PARSINGTABLE.html">a grammar file</a> for your parser.
+                    </li>
+                    <li>
+                        Use <b>ParserGen.exe</b> from the release to process this file.
+                    </li>
+                    <li>
+                        Some C++ source files will be generated in the same folder that contains the grammar file.
+                        Add them to your project.
+                    </li>
+                    <li>
+                        For example, if you have such configuration in your grammar file:
+                        <program><code><![CDATA[
+                            classPrefix:Xml
+                            parser:ParseDocument(XDocument)
+                        ]]></code></program>
+                        Then you can call <b>XmlParseDocument("Input", XmlLoadTable())</b> to do parsing.
+                        You are recommended to cache the return value from the load table function.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                Here are some sample grammar files:
+                <ul>
+                    <li><a href="https://github.com/vczh-libraries/VlppParser/blob/master/Source/Parsing/Json/ParsingJson.parser.txt">JSON parser</a>.</li>
+                    <li><a href="https://github.com/vczh-libraries/VlppParser/blob/master/Source/Parsing/Xml/ParsingXml.parser.txt">XML parser</a>.</li>
+                    <li><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Expression/WfExpression.parser.txt">Workflow script parser</a>.</li>
+                    <li>
+                        <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Compiler/InstanceQuery/GuiInstanceQuery_Parser.parser.txt">Instance query parser</a> for GacUI XML resource,
+                        working like the CSS selector but it is inspired by XPath.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>

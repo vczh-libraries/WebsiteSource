@@ -1,0 +1,82 @@
+<article>
+    <topic>
+        <title>API References for Workflow</title>
+        <topic>
+            <title>Resources</title>
+            <p>
+                <ul>
+                    <li><a href="/gacui/running.html">Tutorial</a>: build your first GacUI application.</li>
+                    <li><a href="/home/download.html">Download</a>: download this library.</li>
+                </ul>
+            </p>
+            <p>
+                If you don't need runtime reflection on C++ classes,
+                it is recommended to add <b>VCZH_DEBUG_NO_REFLECTION</b> to <a href="https://docs.microsoft.com/en-us/cpp/build/reference/d-preprocessor-definitions">preprocessor definitions</a>.
+                By doing this, unnecessary code are eliminated, which significantly reduces both executable size and object sizes.
+            </p>
+        </topic>
+        <topic>
+            <title>Source Files for Workflow</title>
+            <topic>
+                <title>VlppWorkflowLibrary.h and VlppWorkflowLibrary.cpp</title>
+                <p>
+                    They are needed for using Workflow. They contain.
+                    <ul>
+                        <li>Predefined libraries for Workflow script.</li>
+                        <li>Helper functions for C++ code that generated from Workflow script.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>VlppWorkflowRuntime.h and VlppWorkflowRuntime.cpp</title>
+                <p>
+                    They are needed for executing compiled binaries from Workflow script.
+                </p>
+                <p>
+                    There are 2 ways to run Workflow script:
+                    <ul>
+                        <li>Generate C++ code from Workflow script, and add them to your project. This is highly recommended especially for running GacUI applications.</li>
+                        <li>Load compiled binaries from Workflow script and run classes at runtime.</li>
+                    </ul>
+                </p>
+                <p>
+                    An in-process debugger interface is also included.
+                </p>
+            </topic>
+            <topic>
+                <title>VlppWorkflowCompiler.h and VlppWorkflowCompiler.cpp</title>
+                <p>
+                    They are needed for compiling Workflow script.
+                </p>
+                <p>
+                    There is no IO or other data exchange functionalities in predefined libraries.
+                    In order to make Workflow script works,
+                    usually you need to provide your own API to your script.
+                </p>
+                <p>
+                    Typically, this is done by writing reflectable C++ class,
+                    loading type information and then running the compiler in the same process.
+                    And then you get a binary from compiled scripts,
+                    all classes defined in scripts are accessible.
+                    You can use <b>VlppReflection</b> to run classes in scripts.
+                </p>
+                <p>
+                    The Workflow compiler can also generate C++ code.
+                    Using generated C++ code directly is always highly recommended when possible.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Dependencies</title>
+            <p>
+                <ul>
+                    <li><b>Vlpp.h</b> and <b>Vlpp.cpp</b></li>
+                    <li><b>VlppOS.h</b> and <b>VlppOS.cpp</b></li>
+                    <li><b>VlppRegex.h</b> and <b>VlppRegex.cpp</b></li>
+                    <li><b>VlppReflection.h</b> and <b>VlppReflection.cpp</b></li>
+                    <li><b>VlppParser.h</b> and <b>VlppParser.cpp</b></li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>

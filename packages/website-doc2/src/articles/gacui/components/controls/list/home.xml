@@ -1,0 +1,148 @@
+<article index="true">
+    <topic>
+        <title>List Controls</title>
+        <p>
+            List controls organize multiple similar items in a particular order.
+        </p>
+        <topic>
+            <title>Overview of Classes</title>
+            <p>
+                <b>GuiListControl</b> is the base class of all list controls.
+                <b>&lt;ComboBox/&gt;</b>, which is a virtual control of  <b>GuiComboBoxListControl</b>,
+                is a drop down control with a list control in the drop down.
+            </p>
+            <p>
+                <b>GuiListControl</b> is a <b>GuiScrollView</b>.
+            </p>
+            <p>
+                The <b>ItemTemplate</b> property to control how an item looks like.
+                All list controls have its own default <b>ItemTemplate</b>.
+            </p>
+            <p>
+                The <b>Arranger</b> and the <b>Axis</b> property controls how items are organized.
+            </p>
+            <p>
+                Each visible item has its own instance of <b>ItemTemplate</b>.
+                When an item becomes invisible (typically because it is scrolled out of the view port),
+                its item template instance will be deleted.
+                When an item becomes visible again,
+                a new item template will be created for this item.
+            </p>
+            <p>
+                Items in a list control are not required to use the same item template class,
+                this is very easy to customize for bindable version of list controls.
+            </p>
+            <p>
+                All mentioned types in <b>(vl::)presentation::controls::</b> namespace are without a full name.
+            </p>
+            <topic>
+                <title>Text List</title>
+                <p>
+                    <b>GuiVirtualTextList</b> is the base class of all list controls displaying items as texts.
+                    Items could be optionally checkable.
+                    This control doesn't maintain items,
+                    instead it requires an <b>GuiListControl::IItemProvider</b> when created,
+                    which must support a <b>list::ITextItemView</b> view.
+                </p>
+                <p>
+                    <b>&lt;TextList/&gt;</b> is a <b>GuiVirtualTextList</b> that maintains items in its <b>Items</b> property.
+                    This property an <b>observe (list::TextItem^) []</b>.
+                </p>
+                <p>
+                    <b>&lt;BindableTextList/&gt;</b> is a <b>GuiVirtualTextList</b> that display all items from a given item source object.
+                    Each item is required to inherit from a specified interface or class.
+                    If the provided item source object is an
+                    <a href="/workflow/lang/type.html#Collection-types">
+                        observable collection
+                    </a>,
+                    the list control will automatically updates itself when items are added to or removed from this item source object.
+                </p>
+            </topic>
+            <topic>
+                <title>Tree View</title>
+                <p>
+                    <b>GuiVirtualTreeListControl</b> is the base class of all list controls displaying cascading items.
+                    Items are expandable if they have child items.
+                    This control doesn't maintain items,
+                    instead it requires an <b>INodeRootProvider</b> when created.
+                    It will create an item provider which supports the <b>tree::INodeItemView</b> view.
+                </p>
+                <p>
+                    The root node is invisible,
+                    the control displays child nodes of the root node as visible root nodes.
+                </p>
+                <p>
+                    <b>GuiVirtualTreeView</b> is a <b>GuiVirtualTreeListControl</b> for all items that has an icon and a title.
+                    It requires the root provider to support a <b>ITreeViewItemView</b> view.
+                </p>
+                <p>
+                    <b>&lt;TreeView/&gt;</b> is a <b>GuiVirtualTreeView</b> that maintains items in its <b>Nodes</b> property.
+                    All direct or indirect child nodes in <b>Nodes</b>
+                    must be a <b>tree::MemoryNodeProvider^</b>,
+                    whose <b>Data</b> must be a <b>tree::TreeViewItem^</b>
+                </p>
+                <p>
+                    <b>&lt;BindableTreeView/&gt;</b> is a <b>GuiVirtualTreeView</b> that display all items from a given item source object.
+                    Each item is required to inherit from a specified interface or class.
+                    If the provided item source object is an
+                    <a href="/workflow/lang/type.html#Collection-types">
+                        observable collection
+                    </a>,
+                    the list control will automatically updates itself when items are added to or removed from this item source object.
+                    The base type of items is required to have a property for getting child nodes,
+                    this property could also be an observable collection.
+                </p>
+            </topic>
+            <topic>
+                <title>List View</title>
+                <p>
+                    <b>GuiVirtualListView</b> is the base class of all list controls displaying items as texts with icons.
+                    This control doesn't maintain items,
+                    instead it requires an <b>GuiListControl::IItemProvider</b> when created,
+                    which must support a <b>list::IListViewItemView</b> and a <b>list::ListViewColumnItemArranger::IColumnItemView</b> view.
+                </p>
+                <p>
+                    A list view control could organizes items in different way,
+                    one of them is to display items in a table with a column header.
+                </p>
+                <p>
+                    <b>&lt;ListView/&gt;</b> is a <b>GuiVirtualListView</b> that maintains items in its <b>Items</b> property.
+                    This property an <b>observe (list::ListViewItem^) []</b>.
+                </p>
+                <p>
+                    <b>&lt;BindableListView/&gt;</b> is a <b>GuiVirtualListView</b> that display all items from a given item source object.
+                    Each item is required to inherit from a specified interface or class.
+                    If the provided item source object is an
+                    <a href="/workflow/lang/type.html#Collection-types">
+                        observable collection
+                    </a>,
+                    the list control will automatically updates itself when items are added to or removed from this item source object.
+                </p>
+            </topic>
+            <topic>
+                <title>Data Grid</title>
+                <p>
+                    <b>GuiVirtualDataGrid</b> is the base class of all list controls displaying items as a table.
+                    This control doesn't maintain items,
+                    instead it requires an <b>GuiListControl::IItemProvider</b> when created,
+                    which must support a <b>list::IDataGridView</b> view and all other views required by <b>GuiVirtualListView</b>.
+                </p>
+                <p>
+                    A data grid is a list view control with powerful features when the list view control is rendering a table.
+                    A data grid provide customizable visualizing and editing experience for each cell in the table.
+                    It also provide basic filtering and sorting on items.
+                </p>
+                <p>
+                    <b>&lt;BindableDataGrid/&gt;</b> is a <b>GuiVirtualDataGrid</b> that display all items from a given item source object.
+                    Each item is required to inherit from a specified interface or class.
+                    If the provided item source object is an
+                    <a href="/workflow/lang/type.html#Collection-types">
+                        observable collection
+                    </a>,
+                    the list control will automatically updates itself when items are added to or removed from this item source object.
+                    Data in different columns in an item could be connected to different properties in the item.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

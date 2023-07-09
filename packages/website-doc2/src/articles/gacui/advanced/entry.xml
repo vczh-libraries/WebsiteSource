@@ -1,0 +1,11 @@
+<reference>
+  <article name="Interop with C++ View Model" file="vm"/>
+  <article name="Data Bindings" file="bindings"/>
+  <article name="Animations" file="animations"/>
+  <article name="Localization" file="localization"/>
+  <article name="Cross XML Resource References" file="cxrr"/>
+  <article name="ALT Sequence and Control Focus" file="alt"/>
+  <article name="TAB and Control Focus" file="tab"/>
+  <article name="Creating New List Controls" file="impllistcontrol"/>
+  <article name="Porting GacUI to Other Platforms" file="implosprovider"/>
+</reference>

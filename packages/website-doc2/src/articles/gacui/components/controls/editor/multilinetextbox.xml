@@ -1,0 +1,30 @@
+<article index="true">
+    <topic>
+        <title>&lt;MultilineTextBox&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;MultilineTextBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiMultilineTextBox*</li>
+                        <li><b>Template Tag</b>: &lt;MultilineTextBoxTemplate/&gt;</li>
+                        <li><b>Template Name</b>: MultilineTextBox</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;MultilineTextBox/&gt;</b> is a <b>GuiScrollView</b>.
+            The control template doesn't need to care about rendering characters.
+            When it is installed to the control,
+            a fully managed <b>GuiColorizedTextElement</b> will be installed
+            to the <b>ContainerComposition</b> of the control template.
+        </p>
+        <p>
+            <b>&lt;CommonScrollViewLook/&gt;</b> is very useful to implement the control template.
+        </p>
+        <p>
+            <b>&lt;MultilineTextBox/&gt;</b> provides both horizontal and vertical scroll bars.
+        </p>
+    </topic>
+</article>

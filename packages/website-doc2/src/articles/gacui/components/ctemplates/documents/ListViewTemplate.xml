@@ -1,0 +1,63 @@
+<control-template-document name="ListViewTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;ListView/&gt;</b> and <b>&lt;BindableListView/&gt;</b> and <b>&lt;BindableDataGrid/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="ColumnHeaderTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;ListViewColumnHeaderTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property must be assigned in the constructor of the control template,
+        and should not be changed during the life cycle.
+      </p>
+      <p>
+        This property defines the control templates for all column header buttons.
+        It is used when the <b>View</b> of the list control is set to <b>Detail</b>.
+      </p>
+    </prop>
+
+    <prop name="PrimaryTextColor">
+      <p>
+        This property defines the default color for the primary item text.
+        Primary item text is the text of a list view item.
+      </p>
+      <p>
+        For data grid control,
+        the value will be copied to the <b>PrimaryTextColor</b> property of
+        <b>&lt;GridVisualizerTemplate/&gt;</b> and <b>&lt;GridEditorTemplate/&gt;</b>.
+      </p>
+    </prop>
+
+    <prop name="SecondaryTextColor">
+      <p>
+        This property defines the default color for the non-primary item text.
+        Non-primary item text are sub items of a list view item.
+      </p>
+      <p>
+        For data grid control,
+        the value will be copied to the <b>SecondaryTextColor</b> property of
+        <b>&lt;GridVisualizerTemplate/&gt;</b> and <b>&lt;GridEditorTemplate/&gt;</b>.
+      </p>
+    </prop>
+
+    <prop name="ItemSeparatorColor">
+      <p>
+        This property defines the default color for all item separators.
+      </p>
+      <p>
+        For data grid control,
+        the value will be copied to the <b>ItemSeparatorColor</b> property of
+        <b>&lt;GridVisualizerTemplate/&gt;</b> and <b>&lt;GridEditorTemplate/&gt;</b>.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

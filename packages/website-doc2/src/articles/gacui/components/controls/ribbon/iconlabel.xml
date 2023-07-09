@@ -1,0 +1,34 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonIconLabel&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiRibbonIconLabel*</li>
+                <li><b>Template Tag</b>: &lt;RibbonIconLabelTemplate/&gt;</li>
+                <li>
+                    <b>&lt;RibbonIconLabel/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonIconLabel</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RibbonSmallIconLabel/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonSmallIconLabel</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;RibbonIconLabel/&gt;</b> is a container with an icon and a label.
+            It only respons to the <b>Small</b> and <b>Icon</b> size in <b>&lt;RibbonButtons/&gt;</b>.
+        </p>
+        <p>
+            The <b>Image</b> property defines the icon.
+            Everything put inside this control is displayed to the right side of the label.
+        </p>
+        <p>
+            <sample name="control_ribbon_buttonsize2"/>
+        </p>
+    </topic>
+</article>

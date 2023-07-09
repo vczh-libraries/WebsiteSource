@@ -1,0 +1,159 @@
+<article index="true">
+    <topic>
+        <title>Column Configuration</title>
+        <p>
+            Just like <b>&lt;ListView/&gt;</b>,
+            <b>&lt;BindableDataGrid/&gt;</b> has <b>Columns</b> and <b>DataColumns</b>.
+            There is no difference between <b>DataColumns</b>
+            in <b>&lt;ListView/&gt;</b> and <b>&lt;BindableDataGrid/&gt;</b>.
+        </p>
+        <p>
+            In <b>Columns</b>,
+            <b>&lt;ListView/&gt;</b> uses <b>list::ListViewColumn</b>,
+            but <b>&lt;BindableDataGrid/&gt;</b> uses <b>list::DataColumm</b>.
+            There is not difference between the following properties
+            in <b>list::ListViewColumn</b> and <b>list::DataColumm</b>:
+            <ul>
+                <li><b>Text</b></li>
+                <li><b>Size</b></li>
+                <li><b>OwnPopup</b></li>
+                <li><b>DropdownPopup</b> in <b>list::ListViewColumn</b> and <b>Popup</b> in <b>list::DataColumm</b></li>
+            </ul>
+            There is no <b>SortingState</b> in <b>list::DataColumm</b>,
+            because the sorting state of the column is managed by <b>&lt;BindableDataGrid/&gt;</b>
+            using <b>Sorter</b> in <b>list::DataColumn</b>.
+        </p>
+        <topic>
+            <title>Defining a Column in an Item</title>
+            <p>
+                <b>TextProperty (TextPropertyChanged)</b> defines a readable property in an item.
+                It reads a text from an item for this particular column.
+                This property is used in predefined <b>Visualizer</b> for this column.
+                It is also used in other <b>View</b>.
+            </p>
+            <p>
+                <b>ValueProperty (ValuePropertyChanged)</b> defines a writable property in an item.
+                It reads and writes the cell object for this particular column.
+                This property is used in user-defined <b>Visualizer</b> and <b>Editor</b> for this column.
+            </p>
+            <p>
+                Ideally,
+                <b>TextProperty</b> and <b>ValueProperty</b> needs to be semantically equal.
+                For example,
+                if <b>ValueProperty</b> returns a <b>DataTime</b> from an item,
+                but this item doesn't have a property for the text representation for it,
+                then <b>TextProperty</b> could use a <b>Workflow</b> expression to compute the text representation inline:
+                <program>
+                    <code><![CDATA[
+                      <BindableDataGrid env.ItemType="MyDataItem^" env.ItemName="itemToBind" ...>
+                        <att.Columns>
+                          <DataColumn Text="Birthday" ...>
+                            <att.ValueProperty>Birthday</att.ValueProperty>
+                            <att.TextProperty>$'$(itemToBind.Birthday.month)/$(itemToBind.Birthday.day)/$(itemToBind.Birthday.year)'</att.TextProperty>
+                          </DataColumn>
+                        </att.Columns>
+                        ...
+                      </BindableDataGrid>
+                    ]]></code>
+                </program>
+            </p>
+            <p>
+                In this example,
+                the <b>ItemSource</b> receives a collection of multiple <b>MyDataItem^</b>,
+                which is defined in <b>env.ItemType</b>.
+                <b>env.ItemName</b> defines a name that can be used to define properties,
+                representing an item in <b>ItemSource</b>,
+                which is obviously in type <b>MyDataItem^</b>.
+            </p>
+            <p>
+                The <b>ValueProperty</b> matches to the <b>Birthday</b> property in <b>MyDataItem</b>.
+            </p>
+            <p>
+                The <b>TextProperty</b> defines an expression to format the <b>Birthday</b>.
+                In fact,
+                you could also define a static function
+                <a href="/gacui/xmlres/tag_script.html">
+                    in the GacUI XML Resource
+                </a>
+                and use it here to reuse code.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                <b>Property and Writable Property</b> is not data binding,
+                so changing <b>Birthday</b> in <b>MyDataItem</b> doesn't refresh the <b>&lt;BindableDataGrid/&gt;</b>.
+                Please check out
+                <a href="/gacui/components/controls/list/bindable.html#Updating-Items">
+                    Updating Items
+                </a>
+                for details.
+            </p>
+        </topic>
+        <topic>
+            <title>Accessing Processed Items</title>
+            <p>
+                The <b>GetCellText</b> method is based on <b>TextProperty</b>.
+                The <b>GetCellValue</b> and <b>SetCellValue</b> methods is based on <b>ValueProperty</b>.
+            </p>
+            <p>
+                The <b>row</b> property is the position of the item in <b>&lt;BindableDataGrid/&gt;</b>.
+                It is not the index of item in <b>ItemSource</b>.
+                <b>&lt;BindableDataGrid/&gt;</b> could be applied with multiple <b>Filter</b> and a <b>Sorter</b>.
+                The displaying item order could be changed,
+                and some items may be filtered out.
+            </p>
+            <p>
+                These methods operate data based on items in the UI.
+                To get the item itself instead of data defined for columns,
+                use <b>GetBindingValue</b> in <b>ItemProvider</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>DataColumn Properties</title>
+            <p>
+                The following properties defines column-based features in a <b>&lt;BindableDataGrid/&gt;</b>:
+                <ul>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_filter.html">
+                                Filter
+                            </a>
+                        </b>:
+                        Assigning a filter to a column.
+                        The filter receives the item object instead of the cell object for this column.
+                        An item must satisfy all filters
+                        (including the <b>AdditinalFilter</b> in the control)
+                        in order to appear in the control.
+                    </li>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_sorter.html">
+                                Sorter
+                            </a>
+                        </b>
+                        Assigning a sorter to a column.
+                        The sorter will be activated by clicking the column header,
+                        but only one sorter in all columns can be activated.
+                    </li>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_visualizer.html">
+                                VisualizerFactory
+                            </a>
+                        </b>:
+                        This property is the creator of visualizers for cells in this column.
+                    </li>
+                    <li>
+                        <b>
+                            <a href="/gacui/components/controls/list/datagrid_editor.html">
+                                EditorFactory
+                            </a>
+                        </b>:
+                        This property is the creator of editors for cells in this column.
+                        The editor will be activated by clicking a cell,
+                        but only one editor in all cells can be activated.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>

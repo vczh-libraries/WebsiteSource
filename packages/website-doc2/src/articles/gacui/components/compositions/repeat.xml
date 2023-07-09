@@ -1,0 +1,159 @@
+<article index="true">
+    <topic>
+        <title>&lt;RepeatStack&gt; and &lt;RepeatFlow&gt;</title>
+        <p>
+            <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b>
+            are <b>&lt;Stack/&gt;</b> and <b>&lt;Flow/&gt;</b> with data binding.
+        </p>
+        <p>
+            You are not required to create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item.
+            Instead,
+            you bind a collection object to the <b>ItemSource</b> property,
+            assign an item template to the <b>ItemTemplate</b> property,
+            <b>&lt;RepeatStack/&gt;</b> or <b>&lt;RepeatFlow/&gt;</b>
+            will create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item in <b>ItemSource</b>,
+            each containing an instance from <b>ItemTemplate</b> to display an item in <b>ItemSource</b>.
+        </p>
+        <p>
+            <b>&lt;RepeatStack/&gt;</b> inherits from <b>&lt;Stack/&gt;</b>,
+            <b>&lt;RepeatFlow/&gt;</b> inherits from <b>&lt;Flow/&gt;</b>,
+            all properties in <b>&lt;Stack/&gt;</b> or <b>&lt;Flow/&gt;</b> are available.
+        </p>
+        <topic>
+            <title>ItemSource property</title>
+            <p>
+                A valid object to assign to the <b>ItemSource</b> should be a <b>system::Enumerable^</b>.
+                Here are built-in interfaces that inherits from <b>system::Enumerable</b>:
+                <ul>
+                    <li>system::ReadonlyList</li>
+                    <li>system::List</li>
+                    <li>system::ObservableList</li>
+                </ul>
+            </p>
+            <p>
+                In <a href="/home/registered/vlppreflection.html">this page</a>
+                you could find C++ class names for these interfaces.
+            </p>
+            <p>
+                In <a href="/workflow/lang/type.html#Collection-types">this page</a>
+                you could find <b>Workflow</b> syntax for these types.
+            </p>
+            <p>
+                Values in the collection must match <b>&lt;ref.Parameter/&gt;</b>
+                of the <a href="/gacui/xmlres/tag_instance.html">instance</a>
+                that is specified in the <b>ItemProperty</b> property.
+            </p>
+            <p>
+                If there are
+                <a href="/gacui/xmlres/instance/properties.html#Control-Item-Template-func-data-Object-TEMPLATE-CLASS-">multiple instances</a>
+                in the <b>ItemProperty</b> property,
+                the first one whose <b>&lt;ref.Parameter/&gt;</b> is able to accept the value will be selected for the item in the collection.
+                If none of them can,
+                an exception will raise.
+            </p>
+            <p>
+                To create a <b>system::Enumerable^</b> in C++,
+                either call <b>vl::reflection::description::IValueEnumerable::Create</b>,
+                or call <b>vl::reflection::description::BoxParameter</b> on an <b>vl::collections::IEnumerable&lt;T&gt;&amp;</b>.
+            </p>
+            <p>
+                To create a <b>system::List^</b> in C++,
+                either call <b>vl::reflection::description::IValueList::Create</b>,
+                or call <b>vl::reflection::description::BoxParameter</b> on an <b>vl::collections::IList&lt;T&gt;&amp;</b>.
+            </p>
+            <p>
+                The <b>BoxParameter</b> function creates a reference to the C++ collection,
+                the C++ collection and the created object share items in the collection,
+                and one can observe changes from another.
+            </p>
+        </topic>
+        <topic>
+            <title>Binding system::ObservableList to ItemSource property</title>
+            <p>
+                If an <b>ObservableList</b> is assigned to the <b>ItemSource</b> property,
+                when items in the list changed,
+                associated <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b>
+                will be automatically created or destroyed in <b>&lt;RepeatStack/&gt;</b> or<b>&lt;RepeatFlow/&gt;</b>
+            </p>
+            <p>
+                To create a <b>system::List^</b> in C++,
+                either call <b>vl::reflection::description::IValueList::Create</b>,
+                or use <b>vl::collections::ObservableList&lt;T&gt;</b> as your collection class and call its <b>GetWrapper</b> function.
+            </p>
+            <p>
+                The <b>GetWrapper</b> function creates a reference to the C++ collection,
+                they share items in the collection,
+                and one can observe changes from another.
+            </p>
+        </topic>
+        <topic>
+            <title>ItemTemplate property</title>
+            <p>
+                The <a href="/gacui/xmlres/instance/properties.html#Control-Item-Template-func-data-Object-TEMPLATE-CLASS-">ItemTemplate</a>
+                property accepts one or a list of <a href="/gacui/xmlres/tag_instance.html">instances</a>
+                in their full names or XML names.
+            </p>
+            <p>
+                Instances here are required to have exactly one <b>&lt;ref.Parameter/&gt;</b>
+                as the only argument in their constructor.
+            </p>
+            <p>
+                When <b>ItemSource</b> is being assigned,
+                or when <b>ItemSource</b> is a <b>system::ObservableList^</b> and new items are inserted to the list,
+                instances in <b>ItemTemplate</b> will be tested one by one to see if its constructor argument could accept the item in the list.
+            </p>
+            <p>
+                The first instance of a successful test will be created with the item in the list,
+                with <b>MinSizeLimitation</b> set to <b>LimitToElementAndChildren</b>
+                and <b>Margin</b> set to <b>left:0 top:0 right:0 bottom:0</b>.
+                And then a <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> will be created to contain this instance
+                and inserted to the <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b> in the correct position.
+            </p>
+        </topic>
+        <topic>
+            <title>Accessing auto-managed &lt;StackItem/&gt; or &lt;FlowItem/&gt;</title>
+            <p>
+                <b>&lt;RepeatStack/&gt;::StackItems</b> property
+                or <b>&lt;RepeatFlow/&gt;::FlowItems</b> property
+                contains the same number of <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b>
+                to items in <b>ItemSource</b> in exactly the same order.
+            </p>
+            <p>
+                If a <b>system::ObservableList^</b> is assigned to <b>ItemSource</b>,
+                the items and the order will be kept throught out the running time.
+                Otherwise these compositions only reflect items in the collection at the moment of assigning to <b>ItemSource</b>.
+            </p>
+            <p>
+                Each <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> has an only child composition
+                which is an selected instance from <b>ItemTemplate</b>.
+            </p>
+            <p>
+                To access the item template instance of a specified item in <b>ItemSource</b>,
+                just use <b>StackItems</b> or <b>FlowItems</b> with the same index,
+                and find the first direct child composition of the returned <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b>.
+            </p>
+            <p>
+                To access <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> inside the item template instance,
+                just find its direct parent composition.
+            </p>
+            <p>
+                When <b>null</b> is assigned to <b>ItemSource</b>,
+                all items will be deleted.
+            </p>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/RepeatTabPage.xml">
+                    the demo for <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b>
+                </a>
+                and its
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/RepeatComponents.xml">
+                    sample item templates
+                </a>
+                .
+            </p>
+        </topic>
+    </topic>
+</article>

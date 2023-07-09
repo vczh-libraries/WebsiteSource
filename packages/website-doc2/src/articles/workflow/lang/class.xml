@@ -1,0 +1,85 @@
+<article index="true">
+    <topic>
+        <title>Classes</title>
+        <p>
+            Classes can be defined in <b>modules</b>, <b>namespaces</b>, <b>classes</b> and <b>interfaces</b>.
+        </p>
+        <p>
+            A class is a type that contains data and behaviors.
+            It can be allocated directly,
+            without having to be implemented like interfaces.
+        </p>
+        <p>
+            A class can inherit from other classes,
+            but it cannot override virtual members in base classes.
+            A class cannot define virtual members in Workflow script.
+            So <b>override</b> is not allowed for all members in classes.
+        </p>
+        <p>
+            Unlike C++, all members in classes are public.
+            But you can change access controls for members in <a href="/workflow/codegen.html">generated C++ code</a>.
+        </p>
+        <p>
+            Variables, methods, properties, events, constructors and destructors are allowed in classes.
+        </p>
+        <p>
+            Static methods, classes, interfaces, enums are allowed in classes,
+            they are accessed by <b>TYPE::MEMBER</b> outside of the class.
+        </p>
+        <p>
+            Unlike interfaces,
+            a class does not control whether it should be created and held by a shared pointer or a raw pointer,
+            this is controlled by individual constructors.
+            When there is no contructor,
+            <b>new(){}</b> will be added to the class automatically,
+            which allocate the class in a shared pointer.
+        </p>
+        <p>
+            A class could also be a <a href="/workflow/lang/state.html">state machine</a>.
+        </p>
+        <p>
+            <program><code><![CDATA[
+                module sampleModule;
+
+                class Counter
+                {
+                    var counter: int = 0;
+
+                    func Increase(): int
+                    {
+                        counter = counter + 1;
+                        return counter;
+                    }
+                }
+
+                func main(): string
+                {
+                    var counter = new Counter^();
+                    var r = "";
+                    for (i in range [0, 10))
+                    {
+                        r = r & $"$(counter.Increase()); ";
+                    }
+                    return r;
+                }
+            ]]></code></program>
+        </p>
+        <p>
+            The default contructor is not defined,
+            so <b>new(){}</b> is added to the class when compiling.
+            This makes <b>new Counter^()</b> a legal expression to allocate this class.
+            Meanwhile, <b>new Counter*()</b> is not allowed,
+            unless <b>new*(){}</b> is explicitly declared in the class.
+        </p>
+        <p>
+            The type of <b>counter</b> becomes <b>Counter^</b>.
+            You don't need to call <b>delete counter;</b>,
+            the object will be deleted automatically when the last shared pointer is out of scope.
+        </p>
+        <p>
+            Now we call <b>counter.Increase()</b> 10 times,
+            which generates numbers from 1 to 10.
+            Function <b>main</b> returns <b>"1; 2; 3; 4; 5; 6; 7; 8; 9; 10; "</b>.
+        </p>
+    </topic>
+</article>

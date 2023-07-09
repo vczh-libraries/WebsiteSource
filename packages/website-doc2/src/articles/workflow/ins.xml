@@ -1,0 +1,1266 @@
+<article index="true">
+    <topic>
+        <title>Runtime Instructions</title>
+        <p>
+            This is for reference only.
+            You are not expected to generate instructions by yourself,
+            but it could be useful when programming against the Workflow script debugger interface.
+        </p>
+        <p>
+            All instructions are defined in <b>vl::workflow::runtime::WfInsCode</b>.
+        </p>
+        <p>
+            An instruction could have two types of arguments:
+            <ul>
+                <li><b>Embedded arguments</b>: They are generated at compile time and are saved in fields of <b>vl::workflow::runtime::WfInstruction</b>.</li>
+                <li><b>Stack arguments</b>: They are stored in the stack at runtime, most of them will be consumed and removed from the stack after executing the instruction.</li>
+            </ul>
+            Argument schema of each instructions are defined by static methods of <b>vl::workflow::runtime::WfInstruction</b>.
+        </p>
+        <p>
+            When an instruction is named after, for example, <b>ConvertToType(flag, type)</b>,
+            it means the name of the instruction is <b>WfInsCode::ConvertToType</b>,
+            and embedded arguments are stored in field <b>flagParameter</b> and <b>typeParameter</b>.
+        </p>
+        <topic>
+            <title>Stack Operations</title>
+            <topic>
+                <title>Nop</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    This instruction does nothing.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadValue(value)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push a value to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadFunction(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        index
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the function index to the stack.
+                    This instruction load functions for creating closures.
+                    To push a function value to the stack,
+                    use <b>CreateClosure</b> instead.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadException</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the exception
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the exception object of the current thread context to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadLocalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (int) value of the variable
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the value of the local variable of the specified index to the stack.
+                    Local variables are stored in the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadCapturedVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the variable
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the value of the captured variable of the specified index to the stack.
+                    Captured variables are stored in the closure context that is assigned to the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadGlobalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the variable
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the value of the global variable of the specified index to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadMethodInfo(method)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (IMethodInfo*)
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the <b>IMethodInfo*</b> object to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadMethodClosure(method)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        closure of the IMethodInfo* object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the closure of the <b>IMethodInfo*</b> object to the stack.
+                    It is created by calling <b>IMethodInfo::CreateFunctionProxy</b>,
+                    this function returns a function object that can be invoked.
+                </p>
+            </topic>
+            <topic>
+                <title>LoadClosureContext</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<WfRuntimeVariableContext>)
+                    ]]></code></program>
+                </p>
+                <p>
+                    Push the closure context of the current stack frame to the stack.
+                    Local variables are stored in the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>StoreLocalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack to update a specified local variable.
+                </p>
+            </topic>
+            <topic>
+                <title>StoreCapturedVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack to update a specified captured variable.
+                    Captured variables are stored in the closure context that is assigned to the current stack frame.
+                </p>
+            </topic>
+            <topic>
+                <title>StoreGlobalVar(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack to update a specified global variable.
+                </p>
+            </topic>
+            <topic>
+                <title>Duplicate</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Duplicate the top value in the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>Pop</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Jumping Operations</title>
+            <topic>
+                <title>Return</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> stack frame 1 (top)
+                        value
+                        ... others
+                        --> stack frame 2
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> stack frame 2 (top)
+                        value
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value as a function return value,
+                    pop the current stack frame so that all remaining values of this stack frame is removed,
+                    push the return value to the next stack frame,
+                    and the function ends, jumping to the next instruction from one that calling into the current function.
+                    If there is not stack frame after running this instruction,
+                    the return value will be the only value in the stack,
+                    and the script ends.
+                </p>
+            </topic>
+            <topic>
+                <title>Jump(index)</title>
+                <p>
+                    Jump to the specified instruction.
+                </p>
+            </topic>
+            <topic>
+                <title>JumpIf(index)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack.
+                    If it is <b>true</b>, jump to the specified instruction.
+                    If it is <b>false</b>, continue to execute the next instruction.
+                    If it is not a boolean value, exception occurs.
+                </p>
+            </topic>
+            <topic>
+                <title>Invoke(index, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> stack frame 2 (top)
+                        arg-n
+                        ...
+                        arg-1
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> stack frame 1 (top)
+                        ... local variables
+                        arg-n
+                        ...
+                        arg-1
+                        --> stack frame 2 (top)
+                        ... others
+                    ]]></code></program>
+                </p>
+                <p>
+                    Jump to the specified function, taking a specified number of stack values as arguments.
+                    Arguments are transferred to the new stack frame,
+                    so after the function ends,
+                    they are all gone.
+                </p>
+            </topic>
+            <topic>
+                <title>InvokeWithContext(index, count)</title>
+                <p>
+                    Works like <b>Invoke(index, count)</b>,
+                    but the target function shares captured values of the current function.
+                    This happens when methods of the same interface implementation are calling each other,
+                    because all of these methods share the same captured values.
+                </p>
+            </topic>
+            <topic>
+                <title>InstallTry(index)</title>
+                <p>
+                    Push a new trap frame with the entry instruction to the <b>catch</b> handler.
+                    <b>UninstallTry(count)</b> must be called pairing with <b>InstallTry(index)</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>UninstallTry(count)</title>
+                <p>
+                    Pop a new trap frame.
+                    Keep the specified number of stack values right after this trap frame.
+                    This happens when no exception occurs while evaluating the left operand of the <b>??</b> operator,
+                    the value of the left operand becomes the value of the whole expression,
+                    which should be kept in the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>RaiseException</title>
+                <p>
+                    Raise an exception.
+                </p>
+                <p>
+                    When an exception occurs,
+                    all stack frames and stack values that are pushed after the top trap frame will be removed,
+                    and jump to the specified instruction of the top trap frame.
+                    If there is no trap frame,
+                    the script ends with this exception.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Object Creating Operations</title>
+            <topic>
+                <title>CreateArray(count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        item-1
+                        ...
+                        item-n
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueList>) value of created array
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the specified number of values from the stack,
+                    push the created array containing these values in popping order.
+                </p>
+            </topic>
+            <topic>
+                <title>CreateObservableList(count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        item-1
+                        ...
+                        item-n
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueObservableList>) value of created observable list
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the specified number of values from the stack,
+                    push the created observable list containing these values in popping order.
+                </p>
+            </topic>
+            <topic>
+                <title>CreateMap(count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value-1
+                        key-1
+                        ...
+                        value-n
+                        key-n
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueDictionary>) value of created map
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the specified number of value-key-pair from the stack,
+                    push the created observable map.
+                    A pair is two values on the stack instead of being a pair object.
+                    The order of keys in the map depends on value of keys.
+                </p>
+            </topic>
+            <topic>
+                <title>CreateClosureContext(count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        item-n
+                        ...
+                        item-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<WfRuntimeVariableContext>) value of created closure context
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the specified number of values from the stack,
+                    push the created closure context containing these values in reverse popping order.
+                    If there is no value to be stored, the created context will be <b>null</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>CreateClosure</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        (int) function
+                        (Ptr<WfRuntimeVariableContext>) closure context
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueFunctionProxy>) value of created closure
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the index of global function and a closure context,
+                    push the created closure to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>CreateInterface(method, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        (int) function-1
+                        (IMethodInfo*) method-1
+                        ...
+                        function-n
+                        method-n
+                        (Ptr<WfRuntimeVariableContext>) closure context
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of created interface
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the specified number of function-method-pair from the stack.
+                    Push the created interface to the stack.
+                    A pair is two values on the stack instead of being a pair object,
+                    declaring that which method is implemented by which global function.
+                </p>
+                <p>
+                    The <b>methodParamter</b> of the instruction is the constructor of the interface.
+                    Such interface must be registered using one of the <b>BEGIN_INTERFACE_PROXY_*</b> macro.
+                    Please check out <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">class Description</a> for more details.
+                </p>
+            </topic>
+            <topic>
+                <title>CreateRange</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of ending
+                        value of beginning
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueEnumerable>) value of created range
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the value of ending and beginning in order,
+                    push the created range,
+                    which is a enumerable collection,
+                    including the value of beginning but excluding the value of ending.
+                    Each value is one greater than the previous one in this collection.
+                </p>
+            </topic>
+            <topic>
+                <title>CreateStruct(flag, type)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of created struct
+                    ]]></code></program>
+                </p>
+                <p>
+                    Create a struct of the specified type and push to the stack.
+                    All fields are filled with default values according to their types.
+                </p>
+            </topic>
+            <topic>
+                <title>DeleteRawPtr</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to delete
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and delete it.
+                    If the value is not a raw pointer,
+                    then it is just popped but not deleted.
+                    Otherwise, <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION__VALUE__DELETERAWPTR@BOOL().html">Value::DeleteRawPtr</a> is called.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Type Operations</title>
+            <topic>
+                <title>ConvertToType(flag, type)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to convert
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of converted
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and push the converted value to the stack.
+                    This instruction performs a <a href="/workflow/lang/expr.html#Strong-casting-expression-cast-TYPE-OBJECT-cast-OBJECT">strong casting</a> on a value.
+                    Exception occurs if the conversion fails.
+                </p>
+            </topic>
+            <topic>
+                <title>TryConvertToType(flag, type)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to convert
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of converted
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and push the converted value to the stack.
+                    This instruction performs a <a href="/workflow/lang/expr.html#Strong-casting-expression-cast-TYPE-OBJECT-cast-OBJECT">strong casting</a> on a value.
+                    <b>null</b> will be pushed to the stack if the conversion fails.
+                </p>
+            </topic>
+            <topic>
+                <title>TestType(flag, type)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to test
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (bool) value of testing result
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and perform a <a href="/workflow/lang/expr.html#Type-testing-expression-OBJECT-is-TYPE-OBJECT-is-not-TYPE">type testing</a>.
+                    <b>true</b> will be pushed to the stack if the testing succeeds.
+                    Otherwise <b>false</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>GetType</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value to test
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (ITypeDescriptor*) type of the value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack and get its type descriptor.
+                    For <b>null</b>, its type descriptor is also <b>null</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Reflection Operations</title>
+            <topic>
+                <title>GetProperty(property)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the property
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack as the object,
+                    push the value of the specified property of this object.
+                </p>
+            </topic>
+            <topic>
+                <title>SetProperty(property)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        value of the property
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack as the object,
+                    pop a value as the new value of the property
+                    update the value of the specified property of this object.
+                </p>
+            </topic>
+            <topic>
+                <title>UpdateProperty(property)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        value of the property
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop a value from the stack as the object,
+                    pop a value as the new value of the property
+                    update the value of the specified property of this object.
+                    Unlike <b>SetProperty(property)</b>,
+                    the value of the object will be pushed back to the stack after executing this instruction.
+                </p>
+            </topic>
+            <topic>
+                <title>InvokeProxy(count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueFunctionProxy>) value of the function
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the function along with a specified number of stack values as arguments from the stack,
+                    run the function with arguments,
+                    push the return value to the stack.
+                </p>
+                <p>
+                    If the function is a global function or a lambda expression in the same assembly,
+                    instead of creating a new thread context,
+                    the current stack will be use to store the new stack frame for this function.
+                </p>
+            </topic>
+            <topic>
+                <title>InvokeMethod(method, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the object along with a specified number of stack values as arguments from the stack,
+                    run the specified method on that object with arguments,
+                    push the return value to the stack.
+                </p>
+                <p>
+                    If the method is implemented by another piece of Workflow script in the same assembly,
+                    instead of creating a new thread context,
+                    the current stack will be use to store the new stack frame for this function.
+                    For non-static method,
+                    the object will becomes the only captured value.
+                </p>
+            </topic>
+            <topic>
+                <title>InvokeEvent(event, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the object along with a specified number of stack values as arguments from the stack,
+                    run the specified event on that object with arguments,
+                    push <b>null</b> as the return value to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>InvokeBaseCtor(method, count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the object
+                        arg-n
+                        ...
+                        arg-1
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the return value
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the object along with a specified number of stack values as arguments from the stack,
+                    run the specified method on that object with arguments,
+                    push <b>null</b> as the return value to the stack.
+                </p>
+                <p>
+                    This instruction is used in classes that defined using Workflow script.
+                </p>
+                <p>
+                    If the base constructor is implemented by another piece of Workflow script in the same assembly,
+                    instead of creating a new thread context,
+                    the current stack will be use to store the new stack frame for this function.
+                </p>
+                <p>
+                    If the base constructor is implemented by another piece of Workflow script in another assembly,
+                    the base constructor will be applied to the object directly.
+                </p>
+                <p>
+                    If the base constructor is implemented by C++,
+                    aggregation will be used to bind the object and the created C++ instance.
+                </p>
+            </topic>
+            <topic>
+                <title>AttachEvent(event)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the function
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IEventHandler>) value of the event handler
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the callback function and the object from the stack,
+                    attach the callback function to the specified event of the object,
+                    push the event handler to the stack.
+                </p>
+            </topic>
+            <topic>
+                <title>DetachEvent(event)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IEventHandler>) value of the event handler
+                        value of the object
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (bool) value of detaching result
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the event handler and the object from the stack,
+                    detach the event handler from the specified event of the object.
+                    <b>true</b> will be pushed to the stack if the detaching succeeds.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Set Operations</title>
+            <topic>
+                <title>TestElementInSet</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        value of the set
+                        value of the element
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (bool) value of testing result
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the set and the value from the stack,
+                    test if the element is in the set.
+                    <b>true</b> will be pushed to the stack if the testing succeeds.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Comparison Operations</title>
+            <p>
+                Stack pattern before:
+                <program><code><![CDATA[
+                    --> top
+                    right-operand
+                    left-operand
+                ]]></code></program>
+            </p>
+            <p>
+                Stack pattern after:
+                <program><code><![CDATA[
+                    --> top
+                    (int or bool) value of the result
+                ]]></code></program>
+            </p>
+            <topic>
+                <title>CompareLiteral(type)</title>
+                <p>
+                    Compare booleans, numbers or strings.
+                </p>
+                <p>
+                    Push <b>-1</b> to the stack if the left operand is smaller.
+                    Push <b>1</b> to the stack if the left operand is larger.
+                    Push <b>0</b> to the stack if operands are equal to each other.
+                </p>
+            </topic>
+            <topic>
+                <title>CompareReference</title>
+                <p>
+                    Compare two pointers.
+                </p>
+                <p>
+                    Push <b>true</b> to the stack if operands are equal to each other.
+                    Push <b>false</b> to the stack if operands are not equal to each other, or any of them is not a pointer.
+                </p>
+            </topic>
+            <topic>
+                <title>CompareValue</title>
+                <p>
+                    Compare two values.
+                </p>
+                <p>
+                    Push <b>true</b> to the stack if operands are equal to each other.
+                    Push <b>true</b> to the stack if operands are not equal to each other.
+                </p>
+            </topic>
+            <topic>
+                <title>OpLT</title>
+                <p>
+                    This instruction executes <b>left &lt; right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpGT</title>
+                <p>
+                    This instruction executes <b>left &gt; right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpLE</title>
+                <p>
+                    This instruction executes <b>left &lt;= right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpGE</title>
+                <p>
+                    This instruction executes <b>left &gt;= right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpEQ</title>
+                <p>
+                    This instruction executes <b>left == right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpNE</title>
+                <p>
+                    This instruction executes <b>left != right</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Unary Operations</title>
+            <p>
+                Stack pattern before:
+                <program><code><![CDATA[
+                    --> top
+                    operand
+                ]]></code></program>
+            </p>
+            <p>
+                Stack pattern after:
+                <program><code><![CDATA[
+                    --> top
+                    value of the result
+                ]]></code></program>
+            </p>
+            <p>
+                Pop the operand, push the result of a specified unary operator.
+                Instructions in this category apply <a href="http://localhost:8080/doc/current/workflow/lang/expr_unary.html">unary operators</a> on the operand.
+            </p>
+            <topic>
+                <title>OpNot(type)</title>
+                <p>
+                    This instruction executes <b>not operand</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpPositive(type)</title>
+                <p>
+                    This instruction executes <b>+ operand</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpNegative(type)</title>
+                <p>
+                    This instruction executes <b>- operand</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Binary Operations</title>
+            <p>
+                Stack pattern before:
+                <program><code><![CDATA[
+                    --> top
+                    right-operand
+                    left-operand
+                ]]></code></program>
+            </p>
+            <p>
+                Stack pattern after:
+                <program><code><![CDATA[
+                    --> top
+                    value of the result
+                ]]></code></program>
+            </p>
+            <p>
+                Pop the right and left operands in order, push the result of a specified binary operator.
+                Instructions in this category apply <a href="http://localhost:8080/doc/current/workflow/lang/expr_binary.html">binary operators</a> on operands.
+            </p>
+            <topic>
+                <title>OpConcat</title>
+                <p>
+                    This instruction executes <b>left &amp; right</b> on strings.
+                </p>
+            </topic>
+            <topic>
+                <title>OpExp(type)</title>
+                <p>
+                    This instruction executes <b>left ^ right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpAdd(type)</title>
+                <p>
+                    This instruction executes <b>left + right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpSub(type)</title>
+                <p>
+                    This instruction executes <b>left - right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpMul(type)</title>
+                <p>
+                    This instruction executes <b>left * right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpMod(type)</title>
+                <p>
+                    This instruction executes <b>left % right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpDiv(type)</title>
+                <p>
+                    This instruction executes <b>left / right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpShl(type)</title>
+                <p>
+                    This instruction executes <b>left shl right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpShr(type)</title>
+                <p>
+                    This instruction executes <b>left shr right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpXor(type)</title>
+                <p>
+                    This instruction executes <b>left xor right</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>OpAnd(type)</title>
+                <p>
+                    This instruction executes <b>left and right</b>.
+                </p>
+                <p>
+                    For flags,
+                    values are converted to <b>UInt64</b>,
+                    and then converted back after running this instruction.
+                </p>
+            </topic>
+            <topic>
+                <title>OpOr(type)</title>
+                <p>
+                    This instruction executes <b>left or right</b>.
+                </p>
+                <p>
+                    For flags,
+                    values are converted to <b>UInt64</b>,
+                    and then converted back after running this instruction.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

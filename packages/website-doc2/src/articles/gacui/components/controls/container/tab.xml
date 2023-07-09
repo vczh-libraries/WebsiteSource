@@ -1,0 +1,130 @@
+<article index="true">
+    <topic>
+        <title>&lt;Tab&gt; and &lt;TabPage&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;Tab/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiTab*</li>
+                        <li><b>Template Tag</b>: &lt;TabTemplate/&gt;</li>
+                        <li><b>Template Name</b>: Tab</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;TabPage/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiTabPage*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            When a <b>&lt;Tab/&gt;</b> is deleted,
+            all <b>&lt;TabPage/&gt;</b> in its <b>Pages</b> will also be deleted.
+        </p>
+        <p>
+            When a <b>&lt;TabPage/&gt;</b> is activated,
+            only content of this tab page is visible in the <b>&lt;Tab/&gt;</b>.
+            But inactivated pages still limit the minimum size of the <b>&lt;Tab/&gt;</b>.
+            The only exception is when an inactivated page has never become activated,
+            since its content has never been rendered,
+            the minimum size of that page is never calculated.
+        </p>
+        <topic>
+            <title>Patterns</title>
+            <p>
+                <b>&lt;Tab/&gt;</b> is a container with multiple labeled pages,
+                each page is a <b>&lt;TabPage/&gt;</b>.
+                Typically they are created in this pattern:
+                <program>
+                    <code><![CDATA[
+                        <Tab>
+                          <att.Pages>
+                            <TabPage Text="Title" Alt="X"> ... </TabPage>
+                            ...
+                          </att.Pages>
+                        </Tab>
+                    ]]></code>
+                </program>
+                If an <b>ALT</b> sequence is assigned to a tab page,
+                the page will be selected and shown to the user
+                when the <b>ALT</b> sequence is hit.
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/Animation/UI/Resource.xml">
+                    this tutorial project
+                </a>
+                for more details.
+            </p>
+            <p>
+                <b>&lt;TabPage/&gt;</b> is also a <b>GuiInstanceRootObject</b>,
+                which means it could also be a base class of an <b>&lt;Instance/&gt;</b>.
+                It is very useful when you want to put a tab page in a single file,
+                or create components that just for this tab page and other part of the code cannot access these components.
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/ListControls">
+                    this tutorial page
+                </a>
+                for more details.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;Tab&gt; Properties</title>
+            <topic>
+                <title>Pages</title>
+                <p>
+                    The default value for this property is empty.
+                </p>
+                <p>
+                    This property is an observable collection.
+                    When tab pages are added to <b>Pages</b>,
+                    labels displaying their <b>Text</b> property will also be added to the tab control.
+                </p>
+                <p>
+                    If a tab page is added to <b>Pages</b> when it is empty,
+                    it automatically becomes activated,
+                    and <b>SelectedPage</b> is set to this tab page.
+                    If a tab page is removed from <b>Pages</b> and cause it to become empty,
+                    <b>SelectedPage</b> will also become <b>null</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedPage (SelectedPageChanged)</title>
+                <p>
+                    This property is <b>null</b> only when <b>Pages</b> is empty.
+                </p>
+                <p>
+                    This property represents the current activated tab page.
+                    Only tab pages in <b>Pages</b> could be assigned to this property.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>&lt;TabPage&gt; Properties</title>
+            <topic>
+                <title>OwnerTab</title>
+                <p>
+                    This property returns the <b>&lt;Tab/&gt;</b> that owns this tab page.
+                </p>
+                <p>
+                    When a tab page is added to a tab's <b>Pages</b>,
+                    <b>OwnerTab</b> becomes this tab control.
+                    When a tab page is removed from a tab's <b>Pages</b>,
+                    <b>OwnerTab</b> becomes <b>null</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_basic_window"/>
+            </p>
+        </topic>
+    </topic>
+</article>

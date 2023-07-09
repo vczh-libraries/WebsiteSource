@@ -1,0 +1,217 @@
+<article index="true">
+    <topic>
+        <title>Elements</title>
+        <p>
+            <a href="/gacui/kb/elements.html">Elements</a> offer rendering of geometry shapes and texts.
+        </p>
+        <p>
+            Elements render differently under different DPI and text scaling.
+        </p>
+        <p>
+            GacUI with Windows GDI renderer does not support high DPI.
+            Rendering will be performed under 96 DPI with 100% text scaling,
+            and Windows will blur the window using its default behavior.
+        </p>
+        <p>
+            GacUI with Windows Direct2D renderer supports high DPI.
+            Text size will scale with the system,
+            and line width will be enlarged with higher DPI.
+            For example, <b>&lt;SolidBorder/&gt;</b> draw a one pixel border in 96 DPI.
+            But for 192 DPI, the border becomes 2 pixels.
+            The differences between Direct2D and GDI with higher DPI is that,
+            texts and images are not blurred for Direct2D.
+        </p>
+        <p>
+            Some renderers do not support alpha channel.
+            For example, GDI ignores the value in the alpha channel.
+            But when the alpha channel has a value of zero for geometry elements,
+            it doesn't render.
+        </p>
+        <topic>
+            <title>Format of Shape property</title>
+            <p>
+                Some elements has a <b>Shape</b> property to define its shape.
+                It accepts 3 kinds of values:
+                <ul>
+                    <li><b>shapeType:Rectangle</b>: A rectangle.</li>
+                    <li><b>shapeType:Ellipse</b>: An ellipse.</li>
+                    <li><b>shapeType:RoundRect radiusX:x radiusY:y</b>: A rectangle with round coners. Radius on X and Y axis for corners are required in the value.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Format of Color property</title>
+            <p>
+                Some elements has one or more color properties to define colors.
+                The value could be <b>#RRGGBB</b> or <b>#RRGGBBAA</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;FocusRectangle&gt;</title>
+            <p>
+                <b>&lt;FocusRectangle&gt;</b> renders an OS dependent rectangle for a focused visual effect.
+                In Windows it is formed by multiple dots,
+                which are applied with XOR operator.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;SolidBorder&gt;</title>
+            <p>
+                <b>&lt;SolidBorder&gt;</b> renders a border of a specified shape.
+            </p>
+            <p>
+                <ul>
+                    <li><b>Shape</b> defines the shape of this element.</li>
+                    <li><b>Color</b> property defines the color of the border.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;SolidBackground&gt;</title>
+            <p>
+                <b>&lt;SolidBorder&gt;</b> fills color in a specified shape.
+            </p>
+            <p>
+                <ul>
+                    <li><b>Shape</b> defines the shape of this element.</li>
+                    <li><b>Color</b> property defines the color of the shape.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;Gui3DBorderElement&gt;</title>
+            <p>
+                <b>&lt;Gui3DBorderElement&gt;</b> renders a border of a 3D-like rectangle.
+            </p>
+            <p>
+                <ul>
+                    <li><b>Color1</b> property defines the bright color.</li>
+                    <li><b>Color2</b> property defines the dark color.</li>
+                </ul>
+            </p>
+            <p>
+                If <b>Color1</b> is brighter than <b>Color2</b>,
+                the element looks like a raised rectangle.
+            </p>
+            <p>
+                If <b>Color1</b> is darker than <b>Color2</b>,
+                the element looks like a sink rectangle.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;Gui3DSplitterElement&gt;</title>
+            <p>
+                <b>&lt;Gui3DSplitterElement&gt;</b> renders a border of a 3D-like line.
+            </p>
+            <p>
+                <ul>
+                    <li><b>Color1</b> property defines the bright color.</li>
+                    <li><b>Color2</b> property defines the dark color.</li>
+                    <li><b>Direction</b> property defines the direction of the line. The value could be <b>Horizontal</b> or <b>Vertical</b>.</li>
+                </ul>
+            </p>
+            <p>
+                If <b>Color1</b> is brighter than <b>Color2</b>,
+                the element looks like a raised line.
+            </p>
+            <p>
+                If <b>Color1</b> is darker than <b>Color2</b>,
+                the element looks like a sink line.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;GradientBackground&gt;</title>
+            <p>
+                <b>&lt;GradientBackground&gt;</b> fills gradient colors in a specified shape.
+            </p>
+            <p>
+                <ul>
+                    <li><b>Shape</b> defines the shape of this element.</li>
+                    <li><b>Color1</b> property defines the beginning color.</li>
+                    <li><b>Color2</b> property defines the ending color.</li>
+                    <li><b>Direction</b> property defines the direction of the gradient. The value could be <b>Horizontal</b>, <b>Vertical</b>, <b>Slash</b> or <b>Backslash</b>.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;InnerShadow&gt;</title>
+            <p>
+                <b>&lt;SolidBorder&gt;</b> renders a border with gradient colors of a specified shape.
+            </p>
+            <p>
+                <ul>
+                    <li><b>Thickness</b> defines the width of the border.</li>
+                    <li><b>Color</b> property defines the outer color of the border. It fades to <b>#00000000</b> towards the center.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;SolidLabel&gt;</title>
+            <p>
+                <b>&lt;SolidLabel&gt;</b> renders text.
+            </p>
+            <p>
+                <ul>
+                    <li><b>Color</b> defines the color of the text.</li>
+                    <li>
+                        <b>Font</b> defines the font of the text. It could be binded to the <b>DisplayFont</b> property of a control or the <b>Font</b> property of a control template.
+                        The type of this property is <b>presentation::FontProperties</b>, which is a <a href="/gacui/xmlres/instance/properties.html#Structs">struct</a>.
+                    </li>
+                    <li><b>Thickness</b> defines the width of the text.</li>
+                    <li><b>Text</b> defines the content of the text.</li>
+                    <li><b>HorizontalAlignment</b> defines the horizontal alignment of the text. The value could be <b>Center</b>, <b>Left</b>, or <b>Right</b>. The default value is <b>Left</b>.</li>
+                    <li><b>VerticalAlignment</b> defines the vertical alignment of the text. The value could be <b>Center</b>, <b>Top</b>, or <b>Bottom</b>. The default value is <b>Bottom</b>.</li>
+                    <li><b>WrapLine</b> defaults to <b>false</b>. When it is <b>true</b>, the element wraps the text to multiple line if it exceeds the expected width.</li>
+                    <li><b>Ellipse</b> defaults to <b>false</b>. When it is <b>true</b>, the element renders out-of-bound text to <b>...</b> line if it exceeds the expected width.</li>
+                    <li><b>Multiline</b> defaults to <b>false</b>. When it is <b>true</b>, the element interpret <b>\n</b> as a line break.</li>
+                    <li>
+                        <b>WrapLineHeightCalculation</b> defaults to <b>false</b>.
+                        When it is <b>false</b>, the minimum size of the element does not consider <b>WrapLine</b>.
+                        When it is <b>true</b>, the minimum height of the element depends on the expected width, and the minimum width is the expected width.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ImageFrame&gt;</title>
+            <p>
+                <b>&lt;ImageFrame&gt;</b> renders an image.
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        <b>Image</b> defines the source of an image.
+                        It could be binded to image properties of a control or a control template.
+                        The <a href="/gacui/xmlres/instance/properties.html#-uri">-uri</a> binding could be used to specify an image from the resource.
+                    </li>
+                    <li><b>FrameIndex</b> defaults to 0. It specified the target frame in the image to render. All image contains only one frame except <b>gif</b>.</li>
+                    <li><b>HorizontalAlignment</b> defines the horizontal alignment of the text. The value could be <b>Center</b>, <b>Left</b>, or <b>Right</b>. The default value is <b>Left</b>.</li>
+                    <li><b>VerticalAlignment</b> defines the vertical alignment of the text. The value could be <b>Center</b>, <b>Top</b>, or <b>Bottom</b>. The default value is <b>Bottom</b>.</li>
+                    <li><b>Stretch</b> defaults to <b>false</b>. When it is <b>true</b>, image fills the expected size instead of keeping its original size. And the minimum size of this element becomes 0.</li>
+                    <li><b>Enabled</b> defaults to <b>true</b>. When it is <b>false</b>, the element renders a gray-scaled image. Typically this is used on icons of toolstrip buttons.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;Polygon&gt;</title>
+            <p>
+                <b>&lt;Polygon&gt;</b> renders a polygon with a border color and a filling color.
+            </p>
+            <p>
+                <ul>
+                    <li><b>BorderColor</b> defaults to <b>#00000000</b>. It defines the color of the border.</li>
+                    <li><b>BackgroundColor</b> defaults to <b>#00000000</b>. It defines the color of the shape.</li>
+                    <li><b>Size</b> defines the size of the polygon. It also becomes the minimum size of this element.</li>
+                    <li>
+                        <b>Points</b> is an array of <b>presentation::Point</b>. It defines all vertices of the polygon in order.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                The <b>Size</b> property creates a coordinate space for <b>Points</b> with (0,0) in the top-left corner.
+                When the size of the element is larger than the minimum size,
+                the coordinate space is aligned to the center.
+            </p>
+        </topic>
+    </topic>
+</article>

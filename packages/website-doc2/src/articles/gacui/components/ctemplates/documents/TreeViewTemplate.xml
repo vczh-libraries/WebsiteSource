@@ -1,0 +1,35 @@
+<control-template-document name="TreeViewTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;TreeView/&gt;</b> and <b>&lt;BindableTreeView/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="ExpandingDecoratorTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for the selectable button,
+        which controls the <b>Expanding</b> property of an item.
+      </p>
+      <p>
+        If this property is <b>empty</b>,
+        the default control template for the <b>TreeItemExpander</b> theme will be used.
+      </p>
+    </prop>
+
+    <prop name="TextColor">
+      <p>
+        This property defines the default color for the item text.
+        The value will be copied to the <b>TextColor</b> property of all <b>&lt;TreeItemTemplate/&gt;</b> in the list control.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

@@ -1,0 +1,101 @@
+<article index="true">
+    <topic>
+        <title>Module</title>
+        <p>
+            Any Workflow script file should be a module, written as:
+            <program><code><![CDATA[
+                module NAME;
+
+                using system::*;
+                using presentation::compositions::Gui*Composition;
+
+                /* ... */
+            ]]></code></program>
+        </p>
+        <p>
+            The module name does not matter,
+            but when multiple files are given to the compiler to build an assembly,
+            module names in this assembly are require to be unique.
+        </p>
+        <topic>
+            <title>Using declaration</title>
+            <p>
+                A <b>using</b> declaration imports names in this module.
+            </p>
+            <p>
+                <b>using system::*;</b> means that names under the namespace <b>system</b> can be used directly.
+                For example, you can use <b>system::DateTime</b> in a module.
+                But writing the namespace everywhere is annoying,
+                so when <b>using system::*</b> appears in a module,
+                you can use <b>DateTime</b> directly.
+            </p>
+            <p>
+                The wildcard is not required to be a complete name.
+                When you have <a href="/home/registered/gacui.html">GacUI types</a> loaded,
+                <b>presentation::compositions::GuiTableComposition</b> is available.
+                But this name is too long,
+                even <b>GuiTableComposition</b> is too long.
+                Now when <b>using presentation::compositions::Gui*Composition;</b> appears in a module,
+                you can use <b>Table</b> for that type.
+            </p>
+            <p>
+                Because when you replace the wildcard by <b>Table</b>,
+                it becomes <b>presentation::compositions::GuiTableComposition</b>,
+                which is exactly the full name of the type.
+            </p>
+            <p>
+                Sometimes wildcards could create ambiguity,
+                for example,
+                <program><code><![CDATA[
+                    using presentation::compositions::Gui*Composition;
+                    using presentation::controls::Gui*;
+                    using presentation::templates::Gui*Template;
+                ]]></code></program>
+                When we try to use <b>Window</b> in this module,
+                the compiler founds that all following types
+                <ul>
+                    <li>presentation::compositions::GuiWindowComposition</li>
+                    <li>presentation::controls::GuiWindow</li>
+                    <li>presentation::templates::GuiWindowTemplate</li>
+                </ul>
+                exist,
+                it cannot determine which type to use,
+                so an error is generated.
+            </p>
+            <p>
+                In order to resolve this issue,
+                you are able to just use the full name,
+                or <b>GuiWindow</b> if <b>using presentation::controls::*</b> appears in the module,
+                or even <b>controls::GuiWindow</b> if <b>using presentation::*</b> appears in the module.
+            </p>
+        </topic>
+        <topic>
+            <title>Namespace declaration</title>
+            <p>
+                You can create namespace by yourself like this:
+                <program><code><![CDATA[
+                    module test;
+                    using system::*;
+
+                    namespace mynamespace
+                    {
+                        namespace another
+                        {
+                            func MyFunc(): string
+                            {
+                                return "Hello, world!";
+                            }
+                        }
+                    }
+                ]]></code></program>
+                Namespaces are allowed to be nested.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                <b>using</b> declarations are not allowed to be in namespaces.
+                In fact they should be declared before any other declarations,
+                right below the module name.
+            </p>
+        </topic>
+    </topic>
+</article>

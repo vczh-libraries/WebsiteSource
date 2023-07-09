@@ -1,0 +1,125 @@
+<article index="true">
+    <topic>
+        <title>Enumerable Coroutine</title>
+        <p>
+            This coroutine provider is <b>system::EnumerableCoroutine</b>.
+            <ul>
+                <li>
+                    It has a <b>Create</b> method,
+                    so this coroutine function declaration is <b>legal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): int{}
+                        ${
+                            /* legal */
+                        }
+                    ]]></code></program>
+                    Note that <b>int{}</b> is the generic version of <b>system::Enumerable^</b>,
+                    so it uses <b>system::EnumerableCoroutine</b> as the coroutine provider.
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It does not have a <b>CreateAndRun</b> method,
+                    so this coroutine function declaration is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): void
+                        $Enumerable {
+                            /* illegal */
+                        }
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>YieldAndPause</b> method,
+                    so this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $Yield EXPR; /* legal */
+                    ]]></code></program>
+                    It does not have a <b>YieldAndRead</b> method,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        var NAME = $Yield EXPR; /* illegal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>JoinAndPause</b> method,
+                    so this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $Join EXPR; /* legal */
+                    ]]></code></program>
+                    It does not have a <b>JoinAndRead</b> method,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        var NAME = $Join EXPR; /* illegal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>ReturnAndExit</b> method,
+                    which has no parameter,
+                    so this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $return; /* legal */
+                    ]]></code></program>
+                    but this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        $return EXPR; /* illegal */
+                    ]]></code></program>
+                </li>
+            </ul>
+        </p>
+        <topic>
+            <title>Using return and $Yield</title>
+            <p>
+                <b>return;</b> stops a <b>$Enumerable</b> coroutine.
+            </p>
+            <p>
+                <b>$Yield EXPR;</b> pauses a <b>$Enumerable</b> coroutine,
+                and generates a new number for the returned <b>system::Enumerable^</b>.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    func GetNumbers(): int{}
+                    ${
+                        for (i in range [1, 10])
+                        {
+                            $Yield i;
+                            if (i == 5)
+                            {
+                                return;
+                            }
+                        }
+                    }
+                ]]></code></program>
+                This function returns <b>{1 2 3 4 5}</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Using $Join</title>
+            <p>
+                <b>$Join EXPR;</b> works like <b>$Yield</b>,
+                but it generates a series of numbers from the given <b>system::Enumerable^</b>.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    func GetNumbers(): int{}
+                    ${
+                        for (i in range [1, 3])
+                        {
+                            $Join range [i, i + 2];
+                        }
+                    }
+                ]]></code></program>
+                This function returns <b>{1 2 3 2 3 4 3 4 5}</b>.
+            </p>
+        </topic>
+    </topic>
+</article>

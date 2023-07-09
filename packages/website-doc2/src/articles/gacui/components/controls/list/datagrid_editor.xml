@@ -1,0 +1,85 @@
+<article index="true">
+    <topic>
+        <title>Editor</title>
+        <p>
+            The <b>EditorFactory</b> property is a <b>list::IDataEditorFactory</b>.
+            Please check out
+            <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataEditorFactory-">
+                this page
+            </a>
+            for using this property in GacUI XML Resource.
+        </p>
+        <p>
+            To create a <b>list::IDataEditorFactory</b> in C++,
+            it is recommended to use <b>list::DataEditorFactory</b> as the implementation for the interface.
+            The constructor has one argument,
+            which is an
+            <a href="/gacui/xmlres/instance/properties.html#Control-Item-Template-func-data-Object-TEMPLATE-CLASS-">
+                item template property value
+            </a>
+            to create a <b>GuiGridEditorTemplate</b>.
+        </p>
+        <p>
+            Cells in different columns could have different editors.
+            When a cell is clicked,
+            the previous editor (if exists) is closed and deleted,
+            the new editor is created and activated on that cell.
+        </p>
+        <p>
+            Editor objects are not cached,
+            each time when an editable cell is clicked,
+            a new editor is created.
+        </p>
+        <p>
+            Please check out
+            <a href="/gacui/components/itemplates/home.html">
+                <b>Item Templates</b>
+            </a>
+            for details about <b>GuiGridEditorTemplate</b>.
+        </p>
+        <topic>
+            <title>Step-by-Step Sample</title>
+            <p>
+                In this demo,
+                cell editors are applied to all columns:
+                <program><code><![CDATA[
+                    <att.TitleColumn-set EditorFactory="sample::TextEditor"/>
+                    <att.AuthorColumn-set EditorFactory="sample::TextEditor"/>
+                    <att.DatePublishedColumn-set EditorFactory="sample::DateEditor"/>
+                    <att.SummaryColumn-set EditorFactory="sample::SummaryEditor"/>
+                ]]></code></program>
+                All editors are defined in the same resource file.
+            </p>
+            <p>
+                <b>sample::TextEditor</b> allows users to edit text in the data grid.
+            </p>
+            <p>
+                <b>sample::DateEditor</b> allows users to edit a date in a data grid.
+            </p>
+            <p>
+                <b>sample::SummaryEditor</b> shows a button.
+                When it is clicked,
+                a new window is displayed.
+                By modifying the text and clicked the <b>OK</b> button,
+                the modification applies.
+            </p>
+            <p>
+                Updating the <b>CellValue</b> of a <b>&lt;GridEditorTemplate/&gt;</b>
+                submits the modification.
+                It is written to the row object using the <b>ValueProperty</b> proeprty of the column header.
+            </p>
+            <p>
+                In GacUI XML Resource,
+                <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataEditorFactory-">
+                    only one editor
+                </a>
+                could be assigned to the <b>EditorFactory</b> property.
+                When a cell is clicked,
+                the associated editor is activated.
+            </p>
+            <p>
+                <sample name="control_datagrid_editor"/>
+            </p>
+        </topic>
+    </topic>
+</article>

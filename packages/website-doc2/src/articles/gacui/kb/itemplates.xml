@@ -1,0 +1,71 @@
+<article>
+    <topic>
+        <title>Item Templates</title>
+        <p>
+            As what is described in the previous chapter,
+            there are several compositions and controls that behaves like collections.
+            By assigning an item template to replace the default one (if exists),
+            outfit of items can be preciously controlled.
+        </p>
+        <p>
+            Here are a list of compositions and controls that support item template:
+            <ul>
+                <li><b>RepeatStack</b></li>
+                <li><b>RepeatFlow</b></li>
+                <li><b>TextList</b> and <b>BindableTextList</b></li>
+                <li><b>ListView</b> and <b>BindableListView</b></li>
+                <li><b>TreeView</b> and <b>BindableTreeView</b></li>
+                <li><b>BindableDataGrid</b></li>
+                <li><b>BindableRibbonGalleryList</b></li>
+                <li><b>ComboBox</b></li>
+            </ul>
+            Note that <b>ComboBox</b> doesn't work like other item template,
+            it is not a collection control,
+            but it can use the assigned item template to visualize the selected item,
+            which comes from a list control that is assigned to the <b>ListControl</b> property.
+        </p>
+        <p>
+            Different controls requires different types of item templates.
+            For example, <b>ComboBox</b> requires <b>ControlTemplate</b>,
+            <b>TreeView</b> requires <b>TreeItemTemplate</b>,
+            <b>DataGrid</b> requires <b>GridVisualizerTemplate</b> and <b>GridEditorTemplate</b>,
+            while others require <b>TextListItemTemplate</b>.
+        </p>
+        <p>
+            List controls are all virtual
+            (except <b>RepeatStack</b> and <b>RepeatFlow</b> which are compositions),
+            it means that when an item is scrolled out of the visible boundary,
+            it doesn't require rendering resources.
+            In this case,
+            the associated item template instance will just be deleted.
+        </p>
+        <p>
+            An item template is associated to an item,
+            the association is never changed,
+            the item will be passed in the only constructor argument,
+            which means a valid item template must have exactly one <b>&lt;ref.Parameter/&gt;</b>.
+            After that,
+            data bindings are available.
+        </p>
+        <p>
+            Different kinds of item template types provide different extra information.
+            For example,
+            <b>TreeItemTemplate</b> contains properties to tell you about,
+            is this item selected,
+            is this item expanded,
+            how many levels from this item to the root item,
+            etc.
+            With all of these information,
+            data bindings become very useful and convenient to render the tree view item.
+        </p>
+        <p>
+            Here are a few examples of item templates:
+        </p>
+        <p>
+            <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/ColorPicker/UI/Resource.xml" image="kb_itemplates_colorpicker.gif"/>
+        </p>
+        <p>
+            <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml" image="kb_controls_datagrid.gif"/>
+        </p>
+    </topic>
+</article>

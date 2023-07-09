@@ -1,0 +1,192 @@
+<article>
+    <topic>
+        <title>Controls</title>
+        <p>
+            Controls are interfaces with predefined functionalities.
+            A control doesn't care about what it looks like,
+            control templates handle all of these.
+        </p>
+        <p>
+            There are also <b>virtual controls</b>.
+            A virtual control is a predefined configuration to an existing control,
+            which changes some properties of that control with a different control template.
+        </p>
+        <p>
+            <b>CheckBox</b> and <b>RadioButton</b> are typical virtual controls.
+            They do not exist in C++,
+            they are just <b>SelectableButton</b> with different control templates.
+            They also have behavior differences,
+            for example,
+            when you click a <b>CheckBox</b>,
+            it switches between selected and unselected,
+            but when you click a <b>RadioButton</b>,
+            it always try to become selected.
+        </p>
+        <p>
+            GacUI offers a set of predefined controls:
+            <ul>
+                <li>
+                    <p>
+                        <b>Basic Controls:</b>
+                        <ul>
+                            <li><b>Label</b>: Displays interactive texts.</li>
+                            <li><b>Button</b>: Reacts to mouse input.</li>
+                            <li><b>DatePicker</b> and <b>DateComboBox</b>: Displays and choosing date.</li>
+                            <li>
+                                <b>SelectableButton</b>: Button with a select mark.
+                                This control is not intended to be used directly,
+                                you are supposed to use the following virtual controls:
+                                <ul>
+                                    <li><b>CheckBox</b>: A selectable button that represents individual selection.</li>
+                                    <li><b>RadioButton</b>: A selectable button that represents a selection among different choices.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Scroll</b>: Displays editable position information.
+                                This control is not intended to be used directly,
+                                you are supposed to use the following virtual controls:
+                                <ul>
+                                    <li><b>ProgressBar</b>: Display readonly progress information.</li>
+                                    <li><b>HScroll</b>, <b>VScroll</b>, <b>HTracker</b>, <b>VTracker</b>: Displays editable position information for different directions and purposes.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Container Controls:</b>
+                        <ul>
+                            <li><b>Tab</b> and <b>TabPage</b>: Organizes controls into multiple pages, only one page can be displayed at a time.</li>
+                            <li><b>ScrollContainer</b>: Displays scroll bars when content inside it exceeds the visible boundary.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Editor Controls:</b>
+                        <ul>
+                            <li><b>SinglelineTextBox</b> and <b>MultilineTextBox</b>: Displays editable colorizable code, offer customizable auto-complete functionalities.</li>
+                            <li><b>DocumentLabel</b> and <b>DocumentViewer</b>: Displays editable text or rich document, allowing compositions and controls to be embedded into a document.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>List Controls:</b>
+                        <ul>
+                            <li><b>TextList</b>, <b>ListView</b>, <b>TreeView</b>: Organize data into some predefined list structure.</li>
+                            <li><b>BindableTextList</b>, <b>BindableListView</b>, <b>BindableTreeView</b>: Bindable version of list controls, which change content automatically when data in a collection is changed.</li>
+                            <li><b>BindableDataGrid</b>: Organizes data into a table, in which different cells could have different views and editors.</li>
+                            <li><b>ComboBox</b>: A control with a dropdown that containing a list control.</li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Toolstrip Controls:</b>
+                        <ul>
+                            <li><b>ToolstripMenu</b>: A popup menu.</li>
+                            <li><b>ToolstripMenuBar</b>: A menu bar for first level menu items.</li>
+                            <li><b>ToolstripToolBar</b>: A container for toolstrip buttons.</li>
+                            <li><b>ToolstripGroupContainer</b> and <b>ToolstripGroup</b>: Organize menu items or toolstrip buttons into different groups in dropdown menus or toolstrip toolbars.</li>
+                            <li><b>ToolstripButton</b>: A button with icon in <b>ToolstripToolBar</b>.</li>
+                            <li>
+                                Virtual <b>ToolstripButton</b> controls for menus:
+                                <ul>
+                                    <li><b>MenuBarButton</b>: Menu item in <b>ToolstripMenuBar</b>.</li>
+                                    <li><b>MenuItemButton</b>: Menu item in <b>ToolstripMenu</b>.</li>
+                                    <li><b>MenuSplitter</b>: A splitter between menu buttons.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Virtual <b>ToolstripButton</b> controls for toolbars:
+                                <ul>
+                                    <li><b>ToolstripDropdownButton</b>: A button in <b>ToolstripToolBar</b>, clicking it opens a dropdown menu.</li>
+                                    <li><b>ToolstripSplitButton</b>: A button in <b>ToolstripToolBar</b>, splitted into a button and a small dropdown button.</li>
+                                    <li><b>ToolstripSplitter</b>: A splitter between toolstrip buttons.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Ribbon Controls:</b>
+                        <ul>
+                            <li><b>RibbonTab</b> and <b>RibbonTabPage</b>: The first level container for ribbon controls, organizs ribbon controls into different pages.</li>
+                            <li><b>RibbonGroup</b>: The second level container for ribbon controls, when the space is not enough for the whole group, it becomes a super large dropdown button.</li>
+                            <li><b>RibbonIconLabel</b>: Displays icon and text before another control.</li>
+                            <li><b>RibbonSmallIconLabel</b>: A virtual <b>RibbonIconLabel</b> control that looks smaller.</li>
+                            <li>
+                                Virtual <b>ToolstripButton</b> controls for ribbon:
+                                <ul>
+                                    <li><b>RibbonSmallButton</b>, <b>RibbonSmallDropdownButton</b> and <b>RibbonSmallSplitButton</b>: Toolstrip toolbar buttons that display not only icons but texts.</li>
+                                    <li><b>RibbonLargeButton</b>, <b>RibbonLargeDropdownButton</b> and <b>RibbonLargeSplitButton</b>: Even larger buttons.</li>
+                                </ul>
+                            </li>
+                            <li><b>RibbonToolstrip</b>: Displays toolbars, redistributes buttons in different numbers of toolbars when the space is changing.</li>
+                            <li><b>RibbonGallery</b>: Displays large icons, and when the space is not enough for all icons, they will be in the dropdown menu.
+                                <ul>
+                                    <li><b>BindableRibbonGalleryList</b>: The gallery list in <b>RibbonGallery</b>.</li>
+                                    <li><b>RibbonToolstripMenu</b>: The dropdown menu in <b>RibbonGallery</b>.</li>
+                                    <li><b>RibbonToolstripHeader</b>: Group header in <b>RibbonToolstripMenu</b>.</li>
+                                </ul>
+                            </li>
+                            <li><b>RibbonButtons</b>: Displays some <b>ToolstripButton</b> and <b>RibbonIconLabel</b> in order,
+                                when the space is not enough,
+                                controls will be automatically changed to different outfit including
+                                <ul>
+                                    <li><b>ToolstripButton</b></li>
+                                    <li><b>ToolstripDropdownButton</b></li>
+                                    <li><b>ToolstripSplitButton</b></li>
+                                    <li><b>RibbonSmallButton</b></li>
+                                    <li><b>RibbonSmallDropdownButton</b></li>
+                                    <li><b>RibbonSmallSplitButton</b></li>
+                                    <li><b>RibbonLargeButton</b></li>
+                                    <li><b>RibbonLargeDropdownButton</b></li>
+                                    <li><b>RibbonLargeSplitButton</b></li>
+                                    <li><b>RibbonIconLabel</b></li>
+                                    <li><b>RibbonSmallIconLabel</b></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>Root Controls:</b>
+                        <ul>
+                            <li><b>CustomControl</b>: Blank control for customize.</li>
+                            <li><b>Window</b>: The most outer container that interacts with window manager of OS.</li>
+                        </ul>
+                    </p>
+                </li>
+            </ul>
+        </p>
+        <topic>
+            <title>Toolstrip Controls</title>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DocumentEditorToolstrip/UI/ResourceToolstrip.xml" image="kb_controls_toolstrip.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Ribbon Controls</title>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DocumentEditorRibbon/UI/ResourceRibbon.xml" image="kb_controls_ribbon.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Code Editor</title>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/TextEditor/UI/MainWindow.xml" image="kb_controls_textbox.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>DataGrid</title>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml" image="kb_controls_datagrid.gif"/>
+            </p>
+        </topic>
+    </topic>
+</article>

@@ -1,0 +1,11 @@
+<reference>
+  <article name="GacUI Object Models" file="gom"/>
+  <article name="Elements" file="elements"/>
+  <article name="Compositions" file="compositions"/>
+  <article name="Controls" file="controls"/>
+  <article name="Control Templates" file="ctemplates"/>
+  <article name="Item Templates" file="itemplates"/>
+  <article name="Default Template Registrations" file="dtemplates"/>
+  <article name="Application" file="application"/>
+  <article name="OS Provider" file="osprovider"/>
+</reference>

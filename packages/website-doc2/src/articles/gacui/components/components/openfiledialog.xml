@@ -1,0 +1,130 @@
+<article index="true">
+    <topic>
+        <title>&lt;OpenFileDialog&gt;</title>
+        <p>
+            <b>&lt;OpenFileDialog/&gt;</b> displays a OS native open file dialog.
+        </p>
+        <topic>
+            <title>Input / Output Properties</title>
+            <p>
+                Set these properties before calling <b>ShowDialog</b> to create a default user input.
+                These properties will be changed after calling <b>ShowDialog</b> if the user change the default input.
+            </p>
+            <topic>
+                <title>FileName</title>
+                <p>
+                    This property defines the full path of the selected file.
+                    If <b>ShowDialog</b> returns <b>false</b>,
+                    the value of this property is undefined.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Input Properties</title>
+            <p>
+                Set these properties before calling <b>ShowDialog</b> to define the content of the dialog.
+            </p>
+            <topic>
+                <title>Filter</title>
+                <p>
+                    This property defines a file filter by wildcard.
+                </p>
+                <p>
+                    Pattern names and wildcards in a filter are splitted by "|".
+                    For example,
+                    a filter to display text files or all files will typically be:
+                    <program><code><![CDATA[
+                        Text Files (*.txt)|*.txt|All Files (*.*)|*.*
+                    ]]></code></program>
+                    This filter defines two filters:
+                    <ul>
+                        <li><b>Text Files (*.txt)</b>: its wildcard is *.txt</li>
+                        <li><b>All Files (*.*)</b>: its wildcard is *.*</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>FilterIndex</title>
+                <p>
+                    This property defines the default selected filter,
+                    starting from <b>0</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>EnabledPreview</title>
+                <p>
+                    Set this property to <b>true</b> to enable the preview area.
+                    When a file is selected,
+                    its content will be displayed in the preview area.
+                </p>
+            </topic>
+            <topic>
+                <title>Title</title>
+                <p>
+                    This property defines the title of the dialog.
+                </p>
+            </topic>
+            <topic>
+                <title>Directory</title>
+                <p>
+                    This property defines the default folder of the dialog.
+                </p>
+            </topic>
+            <topic>
+                <title>DefaultExtension</title>
+                <p>
+                    This property defines the default extension of the dialog.
+                </p>
+                <p>
+                    If a file is selected by manually entering a file name,
+                    the <b>DefaultExtension</b> will be appended after the file name
+                    if the file extension is not entered.
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    The value of the <b>DefaultExtension</b> property does not include the "." character.
+                    For example,
+                    an extension for text files is <b>txt</b>, instead of <b>.txt</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>Options</title>
+                <p>
+                    The value of this property must be one of the following values, or multiple values combined together:
+                    <ul>
+                        <li><b>FileDialogAllowMultipleSelection</b>: Allow multiple selection.</li>
+                        <li><b>FileDialogFileMustExist</b>: Prevent the user to select unexisting files.</li>
+                        <li><b>FileDialogShowReadOnlyCheckBox</b>: Show the "Read Only" check box.</li>
+                        <li><b>FileDialogDereferenceLinks</b>: Dereference link files. <b>FileName</b> and <b>FileNames</b> will contain the full path of actual files.</li>
+                        <li><b>FileDialogShowNetworkButton</b>: Show the "Network" button to allow selection of objects across the network.</li>
+                        <li><b>FileDialogPromptCreateFile</b>: Prompt if a new file is going to be created.</li>
+                        <li><b>FileDialogPromptOverwriteFile</b>: Promt if a existing file is going to be overwritten.</li>
+                        <li><b>FileDialogDirectoryMustExist</b>: Prevent the user to select an unexisting directory.</li>
+                        <li><b>FileDialogAddToRecent</b>: Add user selected files to "Recent" directory.</li>
+                    </ul> 
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>ShowDialog Method</title>
+            <p>
+                Call this function to display a dialog,
+                and return <b>true</b> if a file is selected.
+            </p>
+        </topic>
+        <topic>
+            <title>Output Properties</title>
+            <p>
+                Read these properties after calling <b>ShowDialog</b> for user input.
+            </p>
+            <topic>
+                <title>FileNames</title>
+                <p>
+                    This property returns full paths of all selected files.
+                    If <b>ShowDialog</b> returns <b>false</b>,
+                    the value of this property is undefined.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

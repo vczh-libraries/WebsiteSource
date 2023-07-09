@@ -1,0 +1,34 @@
+<control-template-document name="ListControlTemplate">
+  <introduction>
+    <p>
+      This is the base class of all control templates for different list controls.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="BackgroundTemplate">
+      <p>
+        The assigned control template instance must be or derived from <b>&lt;SelectableButtonTemplate/&gt;</b>.
+      </p>
+      <p>
+        This property defines the control template for a item background.
+        If it is empty,
+        the default control template for the <b>ListItemBackground</b> theme will be used.
+      </p>
+      <p>
+        An item background is a selectable button.
+        The button is selected when the list item is selected.
+      </p>
+      <p>
+        If the <b>DisplayItemBackground</b> property of the list control is <b>false</b>,
+        <b>BackgroundTemplate</b> will be ignored,
+        and item templates must handle the visual effect of item selections.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

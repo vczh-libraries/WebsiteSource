@@ -1,0 +1,103 @@
+<article index="true">
+    <topic>
+        <title>GuiSelectableButton</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiSelectableButton*</li>
+                <li><b>Template Tag</b>: &lt;SelectableButtonTemplate/&gt;</li>
+                <li>
+                    <b>&lt;CheckBox/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: CheckBox</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RadioButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RadioButton</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>GuiSelectableButton</b> is a <b>&lt;Button/&gt;</b>
+            with the ability to be selected.
+        </p>
+        <p>
+            Usually,
+            <b>&lt;CheckBox/&gt;</b> represents an independent option,
+            and multiple <b>&lt;RadioButton/&gt;</b> represent a group of exclusive choices.
+        </p>
+        <topic>
+            <title>GuiSelectableButton Properties</title>
+            <topic>
+                <title>AutoSelection (AutoSelectionChanged)</title>
+                <p>
+                    The default value for this property is <b>true</b>,
+                    but it could be different in sub classes.
+                </p>
+                <p>
+                    When this property is <b>true</b>,
+                    the <b>Selected</b> property reverses when <b>Clicked</b> raises,
+                    otherwise,
+                    the <b>Selected</b> property is not changed automatically,
+                    but it could be changed by code.
+                </p>
+            </topic>
+            <topic>
+                <title>Selected (SelectedChanged)</title>
+                <p>
+                    The default value for this property is <b>false</b>.
+                </p>
+                <p>
+                    This property doesn't change behaviors,
+                    it is used to record a selection and tell the control template to render differently.
+                </p>
+            </topic>
+            <topic>
+                <title>GroupController (GroupControllerChanged)</title>
+                <p>
+                    The default value for this property is <b>null</b>.
+                </p>
+                <p>
+                    A <b>GuiSelectableButton::GroupController</b> instance is required for this property.
+                    <b>GuiSelectableButton::MutexGroupController</b> is a predefined group controller
+                    to make <b>&lt;RadioButton/&gt;</b> exclusive to each other.
+                </p>
+                <p>
+                    typical steps to create a group of <b>&lt;RadioButton/&gt;</b>:
+                    <ul>
+                        <li>Create a namespace mapping if necessary, like <b>xmlns:x=&quot;presentation::controls::GuiSelectableButton::*&quot;</b></li>
+                        <li>Create one <b>&lt;x:MutexGroupController/&gt;</b> for each group of radio buttons, as a component for the current <b>&lt;Instance/&gt;</b>.</li>
+                        <li>Assign <b>GroupController</b> of radio buttons in the same group to the same <b>&lt;x:MutexGroupController/&gt;</b></li>
+                    </ul>
+                    <b>NOTE:</b>
+                    <b>"xmlns:x"</b> is just a name, you can map the namespace to any name you like.
+                    If you call it <b>"xmlns:abc"</b>,
+                    then the controller becomes <b>&lt;abc:MutexGroupController/&gt;</b>.
+                </p>
+                <p>
+                    Please check out
+                    <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/TextListTabPage.xml">
+                        this tutorial project
+                    </a>
+                    for <b>&lt;CheckBox/&gt;</b>, <b>&lt;RadioButton/&gt;</b> and <b>&lt;x:MutexGroupController/&gt;</b>
+                </p>
+                <p>
+                    You could create a new class and inherit from <b>GuiSelectableButton::GroupController</b>
+                    and use it in the <b>GroupController</b> property,
+                    for a scenario like "only 3 options could be selected",
+                    and automatically canceled the oldest option when 4 options are selected.
+                    But in order to prevent users from being confused,
+                    error messages are recommended instead of changing users' input.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_basic_checkbox"/>
+            </p>
+        </topic>
+    </topic>
+</article>

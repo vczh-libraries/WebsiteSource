@@ -1,0 +1,83 @@
+<article index="true">
+    <topic>
+        <title>Sorter</title>
+        <p>
+            A sorter is an instance of interface <b>list::IDataSorter</b>.
+        </p>
+        <p>
+            When a sorter is installed to the data grid,
+            <b>SetCallback</b> will be called.
+            <b>GetItemProvider</b> in the callback object provides access to the <b>ItemProvider</b> of the data grid.
+            <b>OnProcessorChanged</b> in the callback object is called by the sorter,
+            when the sorter definition is changed.
+        </p>
+        <p>
+            The <b>Compare</b> function accepts two items in <b>ItemSource</b>.
+            It returns a negative number when <b>rows1</b> should appear before <b>rows2</b> in ascending order.
+            It returns a positive number when <b>rows1</b> should appear after <b>rows2</b> in ascending order.
+            It returns 0 when the order is not important.
+        </p>
+        <topic>
+            <title>Implementing a Sorter</title>
+            <p>
+                Typically you need to implement the interface directly.
+            </p>
+        </topic>
+        <topic>
+            <title>Predefined Sorter Combinators</title>
+            <p>
+                <b>list::DataMultipleSorter</b>:
+                Combine two sorters into one sorter.
+                If the <b>LeftSorter</b> decides an order for two items,
+                that's the order.
+                If the <b>LeftSorter</b> decides that the order is not important,
+                the <b>RightSorter</b> kicks in.
+            </p>
+            <p>
+                <b>list::DataReverseSorter</b>:
+                This sorter defines a revert order based on another sorter.
+            </p>
+        </topic>
+        <topic>
+            <title>Installing Sorters</title>
+            <p>
+                Multiple sorters could be assigned to each columns,
+                but only one sorter could be activated.
+                To activate or cancel a sorter,
+                just click the column header,
+                or request the <b>list::IDataGridView</b> view from the <b>ItemProvider</b>
+                and there will be methods for controlling sorting.
+            </p>
+        </topic>
+        <topic>
+            <title>Step-by-Step Sample</title>
+            <p>
+                In this demo,
+                sorters are applied to the first three columns:
+                <program><code><![CDATA[
+                    <att.TitleColumn-set Sorter="[Sys::Compare($1.Title, $2.Title)]"/>
+                    <att.AuthorColumn-set Sorter="[Sys::Compare($1.Author, $2.Author)]"/>
+                    <att.DatePublishedColumn-set Sorter="[Sys::Compare($1.DatePublished, $2.DatePublished)]"/>
+                ]]></code></program>
+            </p>
+            <p>
+                Each
+                <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataSorter-">
+                    sorter function
+                </a>
+                is a lambda expression,
+                <b>$1</b> and <b>$2</b> are the two arguments of this function.
+                argument types are specified by <b>env.ItemType</b>,
+                just like filter functions.
+            </p>
+            <p>
+                Using <b>-eval</b> on the <b>Sorter</b> property means an <b>IDataSorter^</b> is assigned to the property.
+                Setting <b>Sorter</b> without any binder means a sorter function is assigned to the property,
+                in this case an <b>IDataSorter^</b> is automatically created from this assigned function.
+            </p>
+            <p>
+                <sample name="control_datagrid_sorter"/>
+            </p>
+        </topic>
+    </topic>
+</article>

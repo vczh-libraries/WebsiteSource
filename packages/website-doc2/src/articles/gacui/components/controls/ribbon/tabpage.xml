@@ -1,0 +1,48 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonTabPage&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;RibbonTabPage/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiRibbonTabPage*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            A <b>&lt;RibbonTabPage/&gt;</b> is a <b>&lt;TabPage/&gt;</b> with two more properties:
+            <ul>
+                <li><b>Groups</b>: All <b>&lt;RibbonGroup/&gt;</b> in this <b>&lt;RibbonTabPage/&gt;</b>.</li>
+                <li><b>Highlighted</b>: Set to <b>true</b> to highlight the tab header.</li>
+            </ul>
+        </p>
+        <p>
+            Typically, a minmum height is needed for the first tab page like this:
+            <program><code><![CDATA[
+                <RibbonTabPage Text="First Page">
+                  <att.ContainerComposition-set PreferredMinSize="y:110"/>
+                </RibbonTabPage>
+            ]]></code></program>
+            Alternatively,
+            you could give the same minimum height to all tab pages.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditorRibbon/UI">
+                    this tutorial project
+                </a>
+                for details of ribbon controls.
+            </p>
+            <p>
+                Here is a simplified version about how to build a ribbon application:
+                <sample name="control_ribbon_empty"/>
+            </p>
+        </topic>
+    </topic>
+</article>

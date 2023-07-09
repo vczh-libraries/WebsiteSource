@@ -1,0 +1,127 @@
+<article index="true">
+    <topic>
+        <title>Localization</title>
+        <p>
+            The GacUI XML <a href="/gacui/xmlres/tag_localizedstrings.html"><b>&lt;LocalizedStrings/&gt;</b></a> resource
+            creates multi-language string template as bindable objects.
+        </p>
+        <topic>
+            <title>&lt;ref.LocalizedStrings/&gt;</title>
+            <p>
+                <b>&lt;ref.LocalizedStrings/&gt;</b> imports a <b>&lt;LocalizedStrings/&gt;</b> to the current UI instance:
+                <program><code><![CDATA[
+                    <ref.LocalizedStrings Name="Strings" Class="demo::StringResource" Default="true"/>
+                ]]></code></program>
+                <ul>
+                    <li>
+                        <b>Name</b>:
+                        The name of this string resource.
+                        It will also create a property in the current UI instance in the same name.
+                        The property value could be changed at runtime.
+                        Unlike <b>&lt;ref.Parameter/&gt;</b>,
+                        the instance knows how to initialize a string resource,
+                        so it doesn't create a constructor parameter.
+                    </li>
+                    <li>
+                        <b>Class</b>:
+                        The full name of the string resource class.
+                        The resource should look like this to be referenced using <b>Class="demo::StringResource"</b>:
+                        <program><code><![CDATA[
+                            <LocalizedStrings ref.Class="demo::StringResource" DefaultLocale="en-US">
+                                ...
+                            </LocalizedStrings>
+                        ]]></code></program>
+                    </li>
+                    <li>
+                        <b>Default</b>:
+                        Specify a default string resource.
+                        If there are multiple <b>&lt;LocalizedStrings/&gt;</b>,
+                        only one of them could be the default string resource.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>-str Binding</title>
+            <p>
+                The value of the <b>-str</b> binding must be a
+                <a href="/workflow/lang/expr.html#Call-expression-FUNCTION-ARGUMENTS-">
+                    Workflow call expression
+                </a>.
+                The function could be either <b>METHOD</b> or <b>NAME.METHOD</b>.
+                <ul>
+                    <li>
+                        <b>METHOD</b>:
+                        This syntax use the <b>default string resource</b>.
+                        <b>METHOD</b> must be one of the <b>Name</b> attribute of a <b>&lt;String/&gt;</b> in the referenced <b>&lt;LocalizedStrings/&gt;</b>.
+                    </li>
+                    <li>
+                        <b>NAME.METHOD</b>:
+                        Unlike the above one,
+                        this syntax use the <b>&lt;ref.LocalizedStrings/&gt;</b> whose <b>Name</b> attribute is <b>NAME</b>.
+                    </li>
+                </ul>
+                Once the string resource and the string item is located,
+                the <b>-str</b> binding will check if arguments match the type requirement.
+                Note that parameter types of the same string item in different languages should be exactly the same in one <b>&lt;LocalizedStrings/&gt;</b>,
+                so it doesn't matter which is the current UI language.
+                This also ensure that you are able to switch the UI language at runtime.
+            </p>
+        </topic>
+        <topic>
+            <title>Using -bind or -format on String Resources</title>
+            <p>
+                For a string resource imported by:
+                <program><code><![CDATA[
+                    <ref.LocalizedStrings Name="Strings" Class="demo::StringResource" Default="true"/>
+                ]]></code></program>
+                The <b>-str</b> binding is also a data binding,
+                so it knows when the <b>Strings</b> property is changed,
+                and update the property value.
+            </p>
+            <p>
+                Assume the default string resource is <b>Strings</b>,
+                the following binding code
+                <ul>
+                    <li><b>-str="Something(p1, p2, p3)"</b></li>
+                    <li><b>-str="Strings.Something(p1, p2, p3)"</b></li>
+                </ul>
+                is equivalent to
+                <ul>
+                    <li><b>-bind="self.Strings.Something(p1, p2, p3)"</b></li>
+                    <li><b>-format="$(self.Strings.Something(p1, p2, p3))"</b></li>
+                </ul>
+                when the current UI instance has a <b>ref.Name="self"</b> attribute.
+            </p>
+        </topic>
+        <topic>
+            <title>Switching the UI Language</title>
+            <p>
+                The only way to specify the UI language is:
+                <ul>
+                    <li><b>C++</b>: GetApplication()->SetLocale(LOCALE);</li>
+                    <li><b>Workflow</b>: presentation::controls::GuiApplication.GetApplication().Locale = LOCALE;</li>
+                </ul>
+                This configuration affect all windows in the current process.
+            </p>
+            <p>
+                For a string resource imported by:
+                <program><code><![CDATA[
+                    <ref.LocalizedStrings Name="Strings" Class="demo::StringResource" Default="true"/>
+                ]]></code></program>
+                When the application locale is changed,
+                the <b>Strings</b> property of the current UI object will be replaced by a new object,
+                which is from a <b>&lt;Strings/&gt;</b> in the referenced <b>&lt;LocalizedStrings/&gt;</b> for that locale.
+                If the specified locale doesn't exist in that localized string,
+                the default one will be used.
+            </p>
+            <p>
+                Such <b>&lt;LocalizedStrings/&gt;</b> will also create an interface called demo::<b>I</b>StringResource<b>Strings</b>,
+                which becomes the type of the <b>Strings</b> property if it is imported using the above <b>&lt;ref.LocalizedStrings/&gt;</b>.
+                Usually you don't need to use
+                either the generated class <b>demo::StringResource</b>.
+                or the generated interface <b>demo::IStringResourceStrings</b>.
+            </p>
+        </topic>
+    </topic>
+</article>

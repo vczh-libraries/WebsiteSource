@@ -1,0 +1,192 @@
+<article index="true">
+    <topic>
+        <title>ALT Sequence and Control Focus</title>
+        <p>
+            If a focusable control is put on a window,
+            by setting the
+            <a href="/gacui/components/controls/basic/home.html#Alt-AltChanged-">
+                <b>Alt</b>
+            </a>
+            property to a value,
+            for example "X",
+            then it could get focused by pressing <b>ALT</b> followed by <b>X</b>
+            (not <b>ALT+X</b>).
+        </p>
+        <p>
+            The <b>Alt</b> property could accept a sequence of characters,
+            not just one.
+            Characters in such a sequence needs to be entered to activate this control.
+        </p>
+        <p>
+            If <b>ESC</b> is pressed,
+            it goes back to the previous container.
+        </p>
+        <p>
+            If <b>BACKSPACE</b> is pressed,
+            it cancels the last character in the sequence.
+        </p>
+        <p>
+            When <b>ALT</b> is pressed,
+            all valid <b>ALT</b> sequences will be printed on the window.
+            All labels rendering these sequences will get changed
+        </p>
+        <topic>
+            <title>Example</title>
+            <p>
+                <img src="/gacui/adv_alt.gif"/>
+            </p>
+            <p>
+                The operation is done by pressing the following keys:
+                <ul>
+                    <li><b>ALT</b>: Enter the ALT sequence mode.</li>
+                    <li><b>P</b>: There are two controls with the <b>Alt</b> property set to "P". It filters them out and wait for a number key.</li>
+                    <li><b>0</b>: The dropdown button is activated, a sub menu is opened.</li>
+                    <li><b>ESC</b>: Close the sub menu and go back to the previous container, which is the window.</li>
+                    <li><b>P</b>: Filter again.</li>
+                    <li><b>BACKSPACE</b>: Cancel the last character "P" in the sequence, showing all available items.</li>
+                    <li><b>P</b>: Filter again.</li>
+                    <li><b>1</b>: The paste button is activated, a piece of text get pasted to the editor. The ALT sequence mode is exited because an item is finally chosen.</li>
+                    <li><b>ALT</b>: Enter the ALT sequence mode.</li>
+                    <li><b>D</b>: Give the focus to the editor control.</li>
+                    <li><b>CTRL+A</b>: Select all text.</li>
+                    <li><b>DELETE</b>: Delete the selection.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Behavior after being Focused</title>
+            <p>
+                There are three kinds of behaviors when a control is focused by a <b>ALT</b> sequence.
+                If a control is focused by <b>TAB</b>,
+                it could behaves differently.
+                <ul>
+                    <li>
+                        <p>
+                            <b>Just being focused</b>
+                        </p>
+                        <p>
+                            Controls with complex keyboard behaviors like editors or list controls,
+                            will just get focused and do nothing else.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>Execute a Command</b>
+                        </p>
+                        <p>
+                            Controls with simple executable behaviors like buttons,
+                            will do what it does when clicked,
+                            after being focused by an <b>ALT</b> sequence.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>Just being focused</b>
+                        </p>
+                        <p>
+                            Controls that are not executable but contains executable items,
+                            like menu items with a sub menu,
+                            will render all executable items
+                            after being focused by an <b>ALT</b> sequence.
+                        </p>
+                        <p>
+                            A menu item with a sub menu does nothing when it is clicked.
+                            But if it is activated by an <b>ALT</b> sequence,
+                            the sub menu will be opened and wait for more keys.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Create your own Behavior</title>
+            <p>
+                If a new control class is created,
+                there are multiple ways to customize the behavior
+                about how a control should react to an <b>ALT</b> sequence: 
+            </p>
+            <topic>
+                <title>Using IGuiAltAction</title>
+                <p>
+                    <b>IGuiAltAction</b> is a protected base class of all controls.
+                    If a new control is created,
+                    methods could be overriden.
+                </p>
+                <p>
+                    Properly assigning an <b>ALT</b> sequence to the <b>Alt</b> property of a control
+                    could also make these methods behave as expected easily.
+                    <b>IsAltEnabled</b> returns <b>true</b> if the control is visible and enabled.
+                    <b>IsAltAvailable</b> returns <b>true</b> if the control is focusable and the <b>Alt</b> property is not empty.
+                </p>
+                <p>
+                    When the window is in the <b>ALT</b> sequence mode,
+                    a label rendering the sequence for this control
+                    will be put in the composition from <b>GetAltComposition</b>.
+                </p>
+                <p>
+                    If both <b>IsAltEnabled</b> and <b>IsAltAvailable</b> returns <b>true</b>,
+                    then the result of <b>GetAlt()</b>,
+                    which is also the value from the <b>Alt</b> property by default,
+                    becomes one of an candidate.
+                    <b>OnActiveAlt</b> will be called when this control is selected by a <b>ALT</b> sequence.
+                </p>
+            </topic>
+            <topic>
+                <title>Using IGuiAltActionContainer</title>
+                <p>
+                    <b>IGuiAltActionContainer</b> is a
+                    <a href="/gacui/components/controls/basic/home.html#Service-Objects">
+                        service object
+                    </a>.
+                    A service object could be attached to a control
+                    by calling <b>AddService</b> or overriding <b>QueryService</b>.
+                </p>
+                <p>
+                    If an <b>IGuiAltActionContainer</b> instance is attached to a control,
+                    then all methods in <b>IGuiAltAction</b> are ignored.
+                    Instead,
+                    multiple <b>IGuiAltAction</b> object returned from this interface will be used.
+                </p>
+                <p>
+                    You could now assign multiple <b>ALT</b> sequence to a control,
+                    with each sequence binded to a different behavior.
+                </p>
+                <p>
+                    All <b>IGuiAltAction</b> returned from <b>IGuiAltActionContainer</b> must be enabled and available.
+                </p>
+            </topic>
+            <topic>
+                <title>Using IGuiAltActionHost</title>
+                <p>
+                    An <b>IGuiAltActionHost</b> instance could be attached to a control
+                    by calling <b>SetActivatingAltHost</b> or overriding <b>GetActivatingAltHost</b>.
+                </p>
+                <p>
+                    When a control is selected by a <b>ALT</b> sequence,
+                    if <b>IGuiAltActionHost</b> is attached to this control,
+                    then the <b>ALT</b> sequence mode will not exit.
+                    Instead,
+                    this <b>IGuiAltActionHost</b> is treated as a nested container,
+                    and GacUI calls <b>CollectAltActions</b> to collect all valid <b>IGuiAltAction</b>,
+                    renders all <b>ALT</b> and wait for keyboard input.
+                </p>
+                <p>
+                    All top level controls like a window or a menu are attached by an <b>IGuiAltActionHost</b> by default.
+                    If a sub menu is created on a menu item,
+                    <b>IGuiAltActionHost</b> is attached to this control.
+                    So when it is activated,
+                    it opens the sub menu and continue to wait for more keys,
+                    instead of executing this menu item.
+                </p>
+                <p>
+                    <b>GuiAltActionHostBase</b> is the default implementation of <b>IGuiAltActionHost</b>.
+                    If it is attached to a control,
+                    all child controls with valid <b>IGuiAltAction</b> are not visible from the container,
+                    instead they are available when the parent control is selected by an <b>ALT</b> sequence.
+                    <b>GuiAltActionHostBase::SetAltControl</b> must be called to initialize this class,
+                    it tells this implementation where to search for child controls to collect <b>IGuiAltAction</b>.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

@@ -1,0 +1,106 @@
+<article>
+    <topic>
+        <title>&lt;Text&gt;</title>
+        <p>
+            <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_xmlres_data/TextPage.xml">Here</a>
+            is the sample used in this topic.
+        </p>
+        <p>
+            <b>&lt;Text/&gt;</b> is a resource that contains <b>string</b>.
+            In <b>&lt;Instance/&gt;</b> it can be used in the following ways:
+            <ul>
+                <li><b>res://path/to/the/resource/item</b></li>
+                <li><b>import-res://RESOURCE-NAME/path/to/the/resource/item</b></li>
+            </ul>
+            <b>RESOURCE-NAME</b> should be a resource that is specifies in one of a
+            <b>/ResourceMetadata/Dependencies/Resource/@Name</b> in <b>res://GacGenConfig/Metadata</b>.
+        </p>
+        <p>
+            In the sample there are three text resources:
+            <program><code><![CDATA[
+                <Resource>
+                  <Folder name="MainWindow">
+                    <Folder name="TextPage">
+                      <Text name="TextResource1">This is the first text resource.</Text>
+                      <Text name="TextResource2">the second</Text>
+                      <Text name="TextResource3">the third text resource.</Text>
+                    </Folder>
+                  </Folder>
+                </Resource>
+            ]]></code></program>
+        </p>
+        <p>
+            <b>TextResource1</b> is used in:
+            <program><code><![CDATA[
+                <Button Text-uri="res://MainWindow/TextPage/TextResource1"/>
+            ]]></code></program>
+            <b>-uri</b> is one of a <a href="/gacui/advanced/bindings.html">data binding</a> operator,
+            which pull the resource by a path and assign to the property.
+            A <b>&lt;Text/&gt;</b> resource can be assigned to any property that accepts <b>presentation::GuiTextData^</b> or <b>string</b>.
+        </p>
+        <p>
+            Here the button's <b>Text</b> property becomes the content of this resource.
+        </p>
+        <p>
+            <b>TextResource2</b> is used in:
+            <program><code><![CDATA[
+                <Button Text-format="This is $((cast (TextData^) self.ResolveResource('res', 'MainWindow/TextPage/TextResource2', true)).Text) text resource."/>
+            ]]></code></program>
+            <b>-format</b> is one of a <a href="/gacui/advanced/bindings.html">data binding</a> operator,
+            which evaluates all Workflow expressions in <b>$()</b> and assign the whole result to the property.
+            If any expression <a href="/workflow/lang/bind.html">references observable properties</a>,
+            when those property is changed,
+            <b>-format</b> will evaluate the whole thing and update the property automatically.
+        </p>
+        <p>
+            This example consist of <b>"This is $()" text resource.</b> and an expression:
+            <program><code><![CDATA[
+                (cast
+                  (TextData^)
+                  self.ResolveResource('res', 'MainWindow/TextPage/TextResource2', true)
+                ).Text
+            ]]></code></program>
+            <b>self</b> is the tab page because there is <b>ref.Name="self"</b> in <b>&lt;TabPage/&gt;</b>.
+            <b>ResolveResource</b> uses the resource binary containing this tab page as a reference.
+            If the first argument is <b>'res'</b>,
+            it finds the path in the current resource.
+            If the first argument is <b>'import-res'</b> and the second argument is <b>'RESOURCE-NAME/path/to/the/resource/item'</b>
+            it finds the path in a loaded resource binary named <b>RESOURCE-NAME</b>.
+        </p>
+        <p>
+            This function returns <b>system::ReferenceType^</b>,
+            but for <b>&lt;Text/&gt;</b> it is actually a <b>presentation::GuiTextData^</b>.
+            Since by default there is already an implicit <b>using presentation::*;</b>,
+            so <b>TextData^</b> becomes the type name.
+        </p>
+        <p>
+            The content of <b>TextResource2</b> is <b>the second</b>,
+            and there is no observable property in this data binding,
+            so it is equivalent to <b>-format="This is $('the second') text resource."</b>.
+        </p>
+        <p>
+            <b>TextResource1</b> is used in:
+            <program><code><![CDATA[
+              <Button ref.Name="button3" Text="Click Me!">
+                <ev.Clicked-eval>
+                  <![CDATA[
+                    {
+                      var textRes = (cast (TextData^) self.ResolveResource('res', 'MainWindow/TextPage/TextResource3', true)).Text;
+                      button3.Text = $"This button shows $(textRes)!";
+                    }
+                  ]]]]><![CDATA[>]]><![CDATA[
+                </ev.Clicked-eval>
+              </Button>
+            ]]></code></program>
+            Obviously,
+            by clicking the button,
+            it updates the itself.
+        </p>
+        <p>
+            Here is how it looks like:
+        </p>
+        <p>
+            <sample name="kb_xmlres_data" file="TextPage" image="kb_xmlres_tag_text.gif"/>
+        </p>
+    </topic>
+</article>

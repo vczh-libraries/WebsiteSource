@@ -1,0 +1,117 @@
+<article index="true">
+    <topic>
+        <title>GuiScrollView and &lt;ScrollContainer&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ScrollContainer/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiScrollContainer*</li>
+                        <li><b>Template Tag</b>: &lt;ScrollViewTemplate/&gt;</li>
+                        <li><b>Template Name</b>: ScrollView</li>
+                    </ul>
+                </li>
+            </ul>
+            Making scroll bars dynamically visible and invisible and resizing the content area
+            could be done using <b>&lt;Table/&gt;</b>.
+            But such things are commonly required by container controls, list controls and editor controls.
+            <b>&lt;CommonScrollViewLook/&gt;</b> is prepared for controlling scroll bars
+            to help implementing control templates easier.
+        </p>
+        <p>
+            <b>GuiScrollView</b> is the base class of all controls that with
+            a <b>&lt;HScroll/&gt;</b> and a <b>&lt;VScroll/&gt;</b>.
+            <b>&lt;ScrollView/&gt;</b> is a ready-to-use container control
+            that automatically shows scroll bars when content takes more spaces than the container itself.
+        </p>
+        <topic>
+            <title>GuiScrollView Properties</title>
+            <topic>
+                <title>ViewSize</title>
+                <p>
+                    This property represents the size of the visible part.
+                </p>
+            </topic>
+            <topic>
+                <title>ViewPosition</title>
+                <p>
+                    This property represents the position of the visible part.
+                    Components of <b>ViewPosition</b> are non-negative.
+                    When users scroll towards down or right,
+                    the position becomes larger.
+                </p>
+                <p>
+                    This property could be assigned to change the position,
+                    which could cause scroll sliders move automatically.
+                </p>
+            </topic>
+            <topic>
+                <title>ViewBounds</title>
+                <p>
+                    This property is the combination of <b>ViewPosition</b> and <b>ViewSize</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>HorizontalScroll and VerticalScroll</title>
+                <p>
+                    These properties return the <b>&lt;HScroll/&gt;</b> and the <b>&lt;VScroll/&gt;</b> of the container.
+                </p>
+            </topic>
+            <topic>
+                <title>HorizontalAlwaysVisible</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    When this property is <b>false</b>,
+                    the <b>&lt;HScroll/&gt;</b> is not visible
+                    when the width of the container is large enough to display the content.
+                </p>
+            </topic>
+            <topic>
+                <title>VerticalAlwaysVisible</title>
+                <p>
+                    The default value for this property is <b>true</b>.
+                </p>
+                <p>
+                    When this property is <b>false</b>,
+                    the <b>&lt;VScroll/&gt;</b> is not visible
+                    when the height of the container is large enough to display the content.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>&lt;ScrollContainer&gt; Properties</title>
+            <topic>
+                <title>ExtendToFullWidth or ExtendToFullHeight</title>
+                <p>
+                    The default value for these properties is <b>false</b>.
+                </p>
+                <p>
+                    When <b>ExtendToFullWidth</b> is <b>false</b>,
+                    <b>ContainerComposition</b> shinks in width to contain its content.
+                    When <b>ExtendToFullWidth</b> is <b>true</b>,
+                    width of <b>ContainerComposition</b> extends to the <b>ViewSize</b>
+                    when the total width of its content doesn't exceed the width of the control.
+                </p>
+                <p>
+                    This feature is very useful when you want to create a layout with limited width but unlimited height.
+                    Just set <b>ExtendToFullWidth</b> to <b>true</b> and <b>HorizontalAlwaysVisible</b> to <b>false</b>,
+                    with correct compositions to make content fills the whole space in width but has a very small minimum width
+                    (e.g. fill things in a <b>&lt;Flow/&gt;</b>, or multiple <b>&lt;Flow/&gt;</b> in a vertical <b>&lt;Stack/&gt;</b>).
+                    When <b>&lt;ScrollContainer&gt;</b> shrinks in width,
+                    its content reorganizes to shrink in width but grow in height.
+                </p>
+                <p>
+                    <b>ExtendToFullHeight</b> works in the same way.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_container_scrollcontainer"/>
+            </p>
+        </topic>
+    </topic>
+</article>

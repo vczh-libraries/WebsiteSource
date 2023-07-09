@@ -1,0 +1,75 @@
+<article>
+    <topic>
+        <title>Introduction to VlppOS</title>
+        <p>
+            Vlpp provides an thin OS abstraction layer. Here is what you can get from this library:
+        </p>
+        <topic>
+            <title>Stream</title>
+            <p>In namespace <b>::vl::stream</b>,</p>
+            <p>
+                <ul>
+                    <li><b>FileStream</b> for reading and writing files.</li>
+                    <li><b>MemoryStream</b>, <b>MemoryWrapperStream</b> for reading and writing memories.</li>
+                    <li><b>CacheStream</b> for speeding up IO performance.</li>
+                    <li><b>StringReader</b>, <b>StreamReader</b>, <b>StreamWriter</b> for reading and writing text against a stream.</li>
+                    <li><b>CompressTream</b> and <b>DecompressStream</b> functions for handling compressed data using LZW compression algorithm.</li>
+                    <li>And more ...</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Text encoding operations</title>
+            <p>In namespace <b>::vl::stream</b>,</p>
+            <p>
+                <ul>
+                    <li><b>EncoderStream</b> and <b>DecoderStream</b> for translating content in streams.</li>
+                    <li><b>BomEncoder</b>, <b>BomDecoder</b>  and others for converting text between a certain encoding and <b>wchar_t</b>.</li>
+                    <li><b>TestEncoding</b> function for guessting text encoding in a piece of memory.</li>
+                    <li><b>GenerateToStream</b> function for speeding up large string building.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>File system</title>
+            <p>In namespace <b>::vl::filesystem</b>,</p>
+            <p>
+                <ul>
+                    <li><b>FilePath</b> for file path operations.</li>
+                    <li><b>File</b> and <b>Folder</b> for accessing file system.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Locale operations</title>
+            <p>In namespace <b>::vl</b>,</p>
+            <p>
+                <ul>
+                    <li><b>Locale</b> for locale awared string and format operations.</li>
+                    <li><b>INVLOC</b> macro as a shortcut to access the invariant locale.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>HTTP client</title>
+            <p>In namespace <b>::vl</b>,</p>
+            <p>
+                <ul>
+                    <li><b>HttpQuery</b> function for sending a request and waiting for a response synchronized.</li>
+                    <li><b>UrlEncodeQuery</b> function for building query arguments.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Threadings and synchronizations</title>
+            <p>In namespace <b>::vl</b>,</p>
+            <p>
+                <ul>
+                    <li><b>Thread</b>, <b>ThreadPoolLite</b> and <b>RepeatingTaskExecutor&lt;T&gt;</b> for executing tasks in background.</li>
+                    <li><b>ThreadVariable&lt;T&gt;</b> for thread local variables.</li>
+                    <li><b>Mutex</b>, <b>Semaphore</b>, <b>EventObject</b>, <b>CriticalSection</b>, <b>ReaderWriterLock</b>, <b>ConditionVariable</b>, <b>SpinLock</b> for synchronization.</li>
+                </ul>
+            </p>
+        </topic>
+    </topic>
+</article>

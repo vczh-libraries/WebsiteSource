@@ -1,0 +1,136 @@
+<article>
+    <topic>
+        <title>&lt;InstanceStyle&gt;</title>
+        <p>
+            After a <b>GacUI XML Resource</b> is converted to a resource binary:
+            <ul>
+                <li>This resource does not exist in the resource binary.</li>
+                <li>
+                    <b>&lt;Instance/&gt;</b> using this <b>&lt;InstanceStyle/&gt;</b> will copy everything from styles to instances.
+                    Styles itself doesn't generate Workflow scripts.
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;InstanceStyle/&gt;</b> is used to make the code looks clean.
+            It adds attributes to instances by matching instance tags using a query language that looks similar to XPath.
+        </p>
+        <p>
+            <b>&lt;InstanceStyle/&gt;</b> works on XML code,
+            it doesn't know the semantic about instances.
+        </p>
+        <p>
+            To apply styles on instances,
+            put the path of the style in the <b>ref.Styles</b> property of those instances.
+            Since styles are not included in the resource binary,
+            it means it cannot be imported,
+            so <b>res://</b> is the only valid way to use styles.
+        </p>
+        <p>
+            Multiple paths are separated by ";" in <b>ref.Styles</b>.
+            If they are conflicts between styles,
+            the later win.
+            If some properties in instances conflict with styles,
+            instances win.
+            Unless for collection properties,
+            all values are preserved.
+        </p>
+        <topic>
+            <title>Path</title>
+            <p>
+                A path represents a query which returns a collection of GacUI object tags.
+                Sometimes properties and events are also written as tags,
+                but they will not be queried,
+                only objects will.
+            </p>
+            <p>
+                <b>/NAME</b> means one level of direct child tag.
+                A query begins from the root tag.
+                For an instance that is a <b>&lt;Window/&gt;</b>,
+                <b>/Window</b> contains the root instance,
+                but <b>/CustomControl</b> returns nothing.
+            </p>
+            <p>
+                <b>/Window/Stack/StackItem</b> is also a valid path,
+                which first find the root instance which is a <b>&lt;Window/&gt;</b>,
+                and then find all direct children which are <b>&lt;Stack/&gt;</b>,
+                and then find all direct children in <b>&lt;Stack/&gt;</b> which are <b>&lt;StackItem/&gt;</b>.
+            </p>
+            <p>
+                If you use <b>//</b> instead of <b>/</b>,
+                any indirect or indirect children of that name will be found.
+            </p>
+            <p>
+                <b>NAME</b> could be in these formats:
+                <ul>
+                    <li>
+                        <b>Button</b>:
+                        a tag that looks like <b>&lt;Button/&gt;</b> or <b>&lt;anything:Button/&gt;</b>,
+                        the namespace doesn't matter.
+                    </li>
+                    <li>
+                        <b>*</b>:
+                        any tag that is an object.
+                    </li>
+                    <li>
+                        <b>Button.buttonSubmit</b>:
+                        a tag that looks like <b>&lt;Button ref.Name="buttonSubmit"/&gt;</b> or <b>&lt;anything:Button ref.Name="buttonSubmit"/&gt;</b>,
+                        the namespace doesn't matter,
+                        but the variable name must match.
+                    </li>
+                    <li>
+                        <b>*.buttonSubmit</b>:
+                        a tag with <b>ref.Name</b> set to <b>buttonSubmit</b>.
+                    </li>
+                </ul>
+                You can also add <b>@ATTRIBUTE:</b> as a prefix of <b>NAME</b>,
+                which means this object must be assigned to a property called <b>ATTRIBUTE</b>.
+                For example,
+                <b>//Tab/@Pages:TabPage</b> only returns all <b>&lt;TabPage/&gt;</b> that are assigned to the <b>Pages</b> property in any <b>&lt;Tab/&gt;</b>.
+            </p>
+            <p>
+                The following binary operators are also valid in a path,
+                and you can use <b>()</b> to change the precedences:
+                <ul>
+                    <li><b>A + B</b>: Union of A and B.</li>
+                    <li><b>A * B</b>: Intersection of A and B.</li>
+                    <li><b>A - B</b>: Objects in A but not in B.</li>
+                    <li><b>A ^ B</b>: Objects that only in A or only in B, equivalents to <b>(A + B) - (A * B)</b></li>
+                </ul>
+                <b>*</b> and <b>^</b> has a higher precedence than <b>+</b> and <b>-</b>,
+                but parentheses are always recommended if you feel confused.
+            </p>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                In <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/kb_xmlres_data/TextPage.xml">this sample</a>,
+                there is an <b>&lt;InstanceStyle/&gt;</b>:
+                <program><code><![CDATA[
+                    <InstanceStyle name="SharedStyle">
+                      <Styles>
+                        <Style ref.Path="//Stack" AlignmentToParent="left:5 top:5 right:5 bottom:5" Padding="5" Direction="Vertical"/>
+                        <Style ref.Path="//Stack + //StackItem" MinSizeLimitation="LimitToElementAndChildren"/>
+                        <Style ref.Path="//StackItem/*">
+                          <att.BoundsComposition-set AlignmentToParent="left:0 top:0 right:0 bottom:0"/>
+                        </Style>
+                      </Styles>
+                    </InstanceStyle>
+                ]]></code></program>
+                A <b>&lt;Styles/&gt;</b> consists of multiple <b>&lt;Style/&gt;</b>,
+                any <b>&lt;Style/&gt;</b> has its own path and properties.
+                In these styles:
+                <ul>
+                    <li><b>//Stack</b>: Any <b>&lt;Stack/&gt;</b>.</li>
+                    <li><b>//Stack + //StackItem</b>: Any <b>&lt;Stack/&gt;</b> and <b>&lt;StackItem/&gt;</b>.</li>
+                    <li><b>//StackItem/*</b>: Any direct child in <b>&lt;StackItem/&gt;</b>.</li>
+                </ul>
+                Specified properties will be assigned to all objects that described by the path.
+                In this sample,
+                anything that is a direct child of <b>&lt;StackItem/&gt;</b>,
+                its <b>BoundsComposition</b> object will be assigned a property <b>AlignmentToParent</b>.
+                So you don't need to write it three times for all three <b>&lt;Button/&gt;</b> in all three <b>&lt;StackItem/&gt;</b>
+            </p>
+        </topic>
+    </topic>
+</article>

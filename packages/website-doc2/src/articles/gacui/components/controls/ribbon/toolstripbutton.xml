@@ -1,0 +1,63 @@
+<article index="true">
+    <topic>
+        <title>&lt;ToolstripButton&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripButton*</li>
+                <li><b>Template Tag</b>: &lt;ToolstripButtonTemplate/&gt;</li>
+                <li>
+                    <b>&lt;RibbonSmallButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonSmallButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RibbonLargeButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonLargeButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RibbonSmallDropdownButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonSmallDropdownButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RibbonLargeDropdownButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonLargeDropdownButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RibbonSmallSplitButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonSmallSplitButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;RibbonLargeSplitButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: RibbonLargeSplitButton</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;ToolstripButton/&gt;</b> is the button control for toolstrips and ribbons.
+            It respons to the <b>Large</b>, <b>Small</b> and <b>Icon</b> size in <b>&lt;RibbonButtons/&gt;</b>.
+        </p>
+        <p>
+            Please check out
+            <a href="/gacui/components/controls/toolstrip/toolstripbutton.html">
+                Toolstrip Controls
+            </a>
+            for details about using <b>&lt;ToolstripButton/&gt;</b>.
+            Toolstrip buttons in toolstrip controls and ribbon controls have exactly same functionalities.
+            Ribbon controls only provide more themes.
+        </p>
+        <p>
+            <sample name="control_ribbon_buttonsize2"/>
+        </p>
+    </topic>
+</article>

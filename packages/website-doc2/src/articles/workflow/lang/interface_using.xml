@@ -1,0 +1,231 @@
+<article index="true">
+    <topic>
+        <title>Generic (interface)</title>
+        <p>
+            Interfaces do not actually support generic,
+            but sometimes it works like generic in <a href="/workflow/lang/coroutine.html">coroutines</a>.
+        </p>
+        <p>
+            Here is an example of a coroutine that created by Workflow:
+            <program><code><![CDATA[
+                module sampleModule;
+
+                using system::*;
+
+                interface Reader
+                {
+                }
+
+                $interface IntReader: Reader<int?>;
+                $interface StringReader: Reader<string?>;
+
+                func Read(): Reader^
+                {
+                    return new Reader^{};
+                }
+
+                func ReadInt(): IntReader^
+                {
+                    return new IntReader^(using Read());
+                }
+
+                func ReadString(): StringReader^
+                {
+                    return new StringReader^(using Read());
+                }
+
+                class ReaderCoroutine
+                {
+                    class Executor
+                    {
+                        var readObject: bool = false;
+                        var source: Enumerable^ = {};
+                        var enumerator: Enumerator^ = null;
+                        var co: Coroutine^ = null;
+                        var result: object = null;
+
+                        func Continue(): bool
+                        {
+                            if (co.Status == CoroutineStatus::Stopped)
+                            {
+                                return false;
+                            }
+
+                            var cr = new CoroutineResult^();
+                            if (co.Failure is not null)
+                            {
+                                cr.Failure = co.Failure;
+                            }
+                            else if (readObject and enumerator is not null)
+                            {
+                                if (enumerator.Next())
+                                {
+                                    cr.Result = enumerator.Current;
+                                }
+                            }
+                            co.Resume(false, cr);
+                            return true;
+                        }
+                    }
+
+                    static func SetAndPause(impl: Executor*, numbers: Enumerable^): void
+                    {
+                        impl.source = numbers;
+                        impl.enumerator = numbers.CreateEnumerator();
+                        impl.readObject = false;
+                    }
+
+                    static func GetAndRead(impl: Executor*, reader: Reader^): void
+                    {
+                        impl.readObject = true;
+                    }
+
+                    static func ReturnAndExit(impl: Executor*, value: object): void
+                    {
+                        impl.result = value;
+                    }
+
+                    static func Create(creator: func(Executor*): (Coroutine^)): ReaderCoroutine::Executor^
+                    {
+                        var e = new Executor^();
+                        e.co = creator(cast Executor* e);
+                        return e;
+                    }
+                }
+
+                func Sum(): ReaderCoroutine::Executor^
+                $Reader{
+                    $Set range [1, 10];
+                    var sum = 0;
+                    while (true)
+                    {
+                        var current = $Get ReadInt();
+                        if (current is null)
+                        {
+                            break;
+                        }
+                        sum = sum + current;
+                    }
+                    return sum;
+                }
+
+                func main(): string
+                {
+                    var e = Sum();
+                    while (e.Continue()) {}
+                    return cast string e.result;
+                }
+            ]]></code></program>
+            The <b>Sum</b> function does:
+            <ul>
+                <li>calls <b>$Set</b> to set a number collection.</li>
+                <li>calls <b>$Read</b> to read numbers one by one.</li>
+                <li>returns the sum of all numbers.</li>
+            </ul>
+            The <b>main</b> function gets the coroutine created from <b>Sum</b>,
+            drives the coroutine to run until a result is produced.
+        </p>
+        <topic>
+            <title>$interface IDerived: IBase&lt;TYPE&gt;;</title>
+            <p>
+                In the example there is:
+                <program><code><![CDATA[
+                    $interface IntReader: Reader<int?>;
+                    $interface StringReader: Reader<string?>;
+                ]]></code></program>
+                which expands to:
+                <program><code><![CDATA[
+                    interface IntReader : Reader
+                    {
+                        static func CastResult(value : ::system::Object) : (int?)
+                        {
+                            return (cast (int?) value);
+                        }
+
+                        static func StoreResult(value : int?) : (::system::Object)
+                        {
+                            return value;
+                        }
+                    }
+                ]]></code></program>
+                So as:
+                <program><code><![CDATA[
+                    $interface StringReader: Reader<string?>;
+                ]]></code></program>
+            </p>
+            <p>
+                <b>$interface</b> simply creates an interface
+                which inherits from the one that is specified,
+                and add static functions <b>CastResult</b> and <b>StoreResult</b>
+                for casting values between <b>object</b> and the generic argument that is specified.
+            </p>
+            <p>
+                This is how <b>$Get</b> knows the type of the return value.
+                obviously in:
+                <program><code><![CDATA[
+                    var current = $Get ReadInt();
+                ]]></code></program>
+                the type of <b>current</b> is <b>int?</b>,
+                because <b>ReadInt</b> returns <b>IntReader^</b>,
+                in which the <b>CastResult</b> function returns <b>int?</b>.
+            </p>
+            <p>
+                It doesn't matter what the original interface looks like.
+            </p>
+        </topic>
+        <topic>
+            <title>new TYPE^(using OBJECT)</title>
+            <p>
+                This expression creates an object of interface <b>TYPE</b>,
+                redirecting all methods to <b>OBJECT</b>.
+            </p>
+            <p>
+                It needs to meet the following requirements:
+                <ul>
+                    <li><b>TYPE</b> and the type of <b>OBJECT</b> should both be interfaces.</li>
+                    <li><b>TYPE</b> must be different from the type of <b>OBJECT</b>.</li>
+                    <li><b>TYPE</b> must inherit from the type of <b>OBJECT</b>. It doesn't have to be the direct base type.</li>
+                    <li><b>TYPE</b> must not have more members than the type of <b>OBJECT</b>.</li>
+                </ul>
+            </p>
+            <p>
+                <b>new TYPE*</b> is also available, according to how <b>TYPE</b> is declared.
+            </p>
+            <p>
+                For example:
+                <program><code><![CDATA[
+                    interface Reader
+                    {
+                        func Dummy(): void;
+                    }
+
+                    $interface IntReader: Reader<int?>;
+
+                    func ReadInt(): IntReader^
+                    {
+                        return new IntReader^(using Read());
+                    }
+                ]]></code></program>
+                <b>ReadInt</b> expands to:
+                <program><code><![CDATA[
+                    func ReadInt() : (IntReader^)
+                    {
+                        return new (IntReader^)
+                        {
+                            var source = Read();
+
+                            override func Dummy() : (::system::Void)
+                            {
+                                source.Dummy();
+                            }
+                        };
+                    }
+                ]]></code></program>
+                It is clear that,
+                if <b>OBJECT</b> is a raw pointer,
+                then the created object holds a raw pointer to <b>OBJECT</b>.
+                In this case, you must be very careful to object life cycles.
+            </p>
+        </topic>
+    </topic>
+</article>

@@ -1,0 +1,200 @@
+<article index="true">
+    <topic>
+        <title>&lt;BindableRibbonGalleryList&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;BindableRibbonGalleryList/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableRibbonGalleryList*</li>
+                        <li><b>Template Tag</b>: &lt;RibbonGalleryListTemplate/&gt;</li>
+                        <li><b>Item Template Tag</b>: &lt;TextListItemTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonGalleryList</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Gallery List in the control</b>
+                    <ul>
+                        <li><b>Template Tag</b>: &lt;TextListTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonGalleryItemList</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>SubMenu</b>
+                    <ul>
+                        <li><b>Template Tag</b>: &lt;RibbonToolstripMenuTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonToolstripMenu</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;BindableRibbonGalleryList/&gt;</b> is a huge combo box button displaying a list control and a dropdown menu.
+            When the mouse hovering above an item,
+            it previews the effect of this item.
+            When an item is selected,
+            it applies the effect of this item.
+        </p>
+        <p>
+            In the dropdown menu,
+            there is a bigger list containing the same content,
+            followed by menu items.
+            Menu items could be visually grouped
+            by inserting <b>&lt;RibbonToolstripHeader/&gt;</b>.
+        </p>
+        <p>
+            The list in the dropdown menu is not a list control,
+            it is a <b>&lt;RepeatStack/&gt;</b> containing multiple <b>&lt;RepeatFlow/&gt;</b> for each group.
+        </p>
+        <topic>
+            <title>Control Properties</title>
+            <topic>
+                <title>ItemTemplate</title>
+                <p>
+                    The default value of this property is empty,
+                    but this property must be set,
+                    otherwise <b>&lt;BindableRibbonGalleryList/&gt;</b> renders nothing.
+                </p>
+                <p>
+                    The item template should return a <b>&lt;TextListItemTemplate/&gt;</b> or one of its derived classes.
+                </p>
+            </topic>
+            <topic>
+                <title>MinCount and MaxCount</title>
+                <p>
+                    The default value of these properties are <b>0</b>,
+                    but this property must be set,
+                    otherwise <b>&lt;BindableRibbonGalleryList/&gt;</b> shrinks to its smallest size and show no item.
+                </p>
+                <p>
+                    As a ribbon control,
+                    <b>&lt;BindableRibbonGalleryList/&gt;</b> automatically shinks when there is no space.
+                    <b>MinCount</b> and <b>MaxCount</b> define the minimum and maximum size of this control,
+                    so that it renders an expected number of items whatever the available space for this control is.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectedIndex and SelectedItem</title>
+                <p>
+                    These properties returns the selected item.
+                    When no item is selected,
+                    <b>SelectedIndex</b> is <b>-1</b>,
+                    and <b>SelectedItem</b> is <b>null</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>VisibleItemCount</title>
+                <p>
+                    The default value of this property is <b>1</b>.
+                </p>
+                <p>
+                    This property defines the minimum number of items
+                    that must be visible in the dropdown list.
+                </p>
+            </topic>
+            <topic>
+                <title>ScrollUpEnabled and ScrollDownEnabled</title>
+                <p>
+                    The default value of this property is <b>true</b>.
+                </p>
+                <p>
+                    You don't have to open the dropdown menu to view all contents in the list.
+                    <b>&lt;BindableRibbonGalleryList/&gt;</b> provides a pair of navigation buttons,
+                    and these properties control the <b>Enabled</b> property of these buttons.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Item Source Properties</title>
+            <topic>
+                <title>ItemSource</title>
+                <p>
+                    This property works exactly as
+                    <a href="/gacui/components/controls/list/bindable.html#ItemSource-property">
+                        the ItemSource property
+                    </a> in other bindable list controls.
+                </p>
+            </topic>
+            <topic>
+                <title>GroupTitleProperty and GroupChildrenProperty</title>
+                <p>
+                    These are
+                    <a href="/gacui/xmlres/instance/properties.html#Property-Name-func-data-Object-PROPERTY-TYPE">
+                        readable properties
+                    </a>.
+                    Grouping is enabled only when both of these properties are set.
+                </p>
+                <p>
+                    When grouping is enabled,
+                    items in <b>ItemSource</b> become group headers.
+                    <b>GroupTitleProperty</b> defines the titie of each group.
+                    <b>GroupChildrenProperty</b> defines the collection of items in each group.
+                    <b>ItemTemplate</b> is created to renderer items in groups.
+                    In this case,
+                    <b>env.ItemType</b> is the type of a group.
+                </p>
+                <p>
+                    When grouping is disabled,
+                    <b>ItemTemplate</b> is created to renderer items in <b>ItemSource</b>.
+                    <b>env.ItemType</b> is the type of an item.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Methods</title>
+            <topic>
+                <title>IndexToGalleryPos and GalleryPosToIndex</title>
+                <p>
+                    These methods convert between index of items and index of items in groups.
+                </p>
+                <p>
+                    <b>(vl::)presentation::controls::GalleryPos</b> defines the index of items in groups.
+                </p>
+                <p>
+                    When grouping is enabled,
+                    the <b>group</b> field is the position of the group in <b>ItemSource</b>,
+                    and the <b>item</b> field is the position of the item in this group.
+                </p>
+                <p>
+                    When grouping is disabled,
+                    the <b>group</b> field is always <b>0</b>,
+                    and the <b>item</b> field is the position of the item in <b>ItemSource</b>.
+                </p>
+                <p>
+                    "Index" defines the position of items in a virtual list,
+                    this virtual list merges items of all groups together.
+                </p>
+            </topic>
+            <topic>
+                <title>SelectItem</title>
+                <p>
+                    This method selects an item.
+                </p>
+            </topic>
+            <topic>
+                <title>ApplyItem</title>
+                <p>
+                    This method selects an item,
+                    and apply the effect of this item.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Events</title>
+            <p>
+                <ul>
+                    <li><b>SelectionChanged</b>: Raises when an item is selected by <b>SelectItem</b>.</li>
+                    <li><b>PreviewStarted</b>: Raises when the mouse enters an item.</li>
+                    <li><b>PreviewStopped</b>: Raises when the mouse leaves an item.</li>
+                    <li><b>ItemApplied</b>: Raises when an item is selected by <b>ApplyItem</b> or by user input.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_ribbon_gallery"/>
+            </p>
+        </topic>
+    </topic>
+</article>

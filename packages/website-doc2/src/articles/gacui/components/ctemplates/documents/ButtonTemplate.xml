@@ -1,0 +1,26 @@
+<control-template-document name="ButtonTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;Button/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+    <prop name="State">
+      <p>
+        This property is changed when the state of the button is changed by user interaction.
+        It could be one of the following values:
+        <ul>
+          <li><b>Normal</b></li>
+          <li><b>Active</b>: The mouse is on the button.</li>
+          <li><b>Pressed</b>: The button is being pressed. It could be by mouse or by keyboard.</li>
+        </ul>
+      </p>
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

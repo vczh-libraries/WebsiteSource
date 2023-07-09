@@ -1,0 +1,114 @@
+<article index="true">
+    <topic>
+        <title>Filter</title>
+        <p>
+            A filter is an instance of interface <b>list::IDataFilter</b>.
+        </p>
+        <p>
+            When a filter is installed to the data grid,
+            <b>SetCallback</b> will be called.
+            <b>GetItemProvider</b> in the callback object provides access to the <b>ItemProvider</b> of the data grid.
+            <b>OnProcessorChanged</b> in the callback object is called by the filter,
+            when the filter definition is changed
+            (e.g. a the date range is changed in a filter that only allow items in that range).
+        </p>
+        <p>
+            The <b>Filter</b> function accepts an item from <b>ItemSource</b>,
+            it returns <b>true</b> when the item satisfies the filter.
+        </p>
+        <topic>
+            <title>Implementing a Filter</title>
+            <p>
+                Typically you need to implement the interface directly.
+            </p>
+            <p>
+                When a filter is semantically designed for a column,
+                a filter could be implemented by a column dropdown.
+                Usually this is done by creating a <b>&lt;CustomControl/&gt;</b> or a <b>&lt;Popup/&gt;</b>
+                for the UI in the column dropdown.
+                The control has a <b>list::IDataFilter</b> property,
+                whose the implementation talks to the control for filter arguments.
+                In the end,
+                install the filter to both <b>Filter</b> and <b>Popup</b> in <b>list::DataColumn</b>.
+            </p>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml">
+                    this tutorial project
+                </a>
+                for details.
+            </p>
+        </topic>
+        <topic>
+            <title>Predefined Filter Combinators</title>
+            <p>
+                <b>list::DataAndFilter</b>:
+                Combine multiple filters to one filter.
+                An item satisfies this filter when it satisfies all sub filters.
+            </p>
+            <p>
+                <b>list::DataOrFilter</b>:
+                Combine multiple filters to one filter.
+                An item satisfies this filter when it satisfies at least one sub filters.
+            </p>
+            <p>
+                <b>list::DataNotFilter</b>:
+                Convert one filter to another.
+                An item satisfies this filter when it unsatisfies the sub filter.
+            </p>
+        </topic>
+        <topic>
+            <title>Installing Filters</title>
+            <p>
+                Multiple filters could be assigned to each column.
+                A filter could be assigned to the control using the <b>AdditionalFilter</b> property.
+                An item must satisfies <b>AdditionalFilter</b> add every filter assigned to columns
+                in order to appear in the control.
+            </p>
+        </topic>
+        <topic>
+            <title>Step-by-Step Sample</title>
+            <p>
+                In this demo,
+                a control is created for editing a date range using two <b>&lt;DateComboBox/&gt;</b>,
+                each with a <b>&lt;CheckBox/&gt;</b> for controlling the condition availability.
+            </p>
+            <p>
+                In the constructor of this control,
+                a filter is created.
+                It reads the date range from the control to filter a row object
+                (which is <b>BookItem</b>).
+            </p>
+            <p>
+                In the derived main window,
+                the following configuration is added to the <b>DatePublishedColumn</b>.
+                Please check out the base class <b>sample::MainWindow</b> for details about
+                how a <b>&lt;DateColumn/&gt;</b> is exposed as a property.
+                <program><code><![CDATA[
+                    <att.DatePublishedColumn-set>
+                      <att.Filter-eval>dateFilter.Filter</att.Filter-eval>
+                      <att.Popup>
+                        <ToolstripMenu>
+                          <sample:DateFilter ref.Name="dateFilter">
+                            <att.BoundsComposition-set AlignmentToParent="left:0 top:0 right:0 bottom:0"/>
+                          </sample:DateFilter>
+                        </ToolstripMenu>
+                      </att.Popup>
+                    </att.DatePublishedColumn-set>
+                ]]></code></program>
+                Setting the <b>Popup</b> property doesn't automatically apply the filter,
+                the <b>Filter</b> property is still needed.
+                Using <b>-eval</b> on the <b>Filter</b> property means an <b>IDataFilter^</b> is assigned to the property.
+                Setting <b>Filter</b> without any binder means a
+                <a href="/gacui/xmlres/instance/properties.html#presentation-controls-list-IDataFilter-">
+                    filter function
+                </a>
+                is assigned to the property,
+                in this case an <b>IDataFilter^</b> is automatically created from this assigned function.
+            </p>
+            <p>
+                <sample name="control_datagrid_filter"/>
+            </p>
+        </topic>
+    </topic>
+</article>

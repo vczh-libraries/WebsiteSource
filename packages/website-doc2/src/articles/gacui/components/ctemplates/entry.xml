@@ -1,0 +1,43 @@
+<reference>
+  <control-template ct="ControlTemplate" file="ControlTemplate">
+    <control-template ct="LabelTemplate" file="LabelTemplate"/>
+    <control-template ct="SinglelineTextBoxTemplate" file="SinglelineTextBoxTemplate"/>
+    <control-template ct="DocumentLabelTemplate" file="DocumentLabelTemplate"/>
+    <control-template ct="WindowTemplate" file="WindowTemplate">
+      <control-template ct="MenuTemplate" file="MenuTemplate">
+        <control-template ct="RibbonToolstripMenuTemplate" file="RibbonToolstripMenuTemplate"/>
+      </control-template>
+    </control-template>
+    <control-template ct="ButtonTemplate" file="ButtonTemplate">
+      <control-template ct="SelectableButtonTemplate" file="SelectableButtonTemplate">
+        <control-template ct="ToolstripButtonTemplate" file="ToolstripButtonTemplate">
+          <control-template ct="ListViewColumnHeaderTemplate" file="ListViewColumnHeaderTemplate"/>
+          <control-template ct="ComboBoxTemplate" file="ComboBoxTemplate">
+            <control-template ct="DateComboBoxTemplate" file="DateComboBoxTemplate"/>
+          </control-template>
+        </control-template>
+      </control-template>
+    </control-template>
+    <control-template ct="ScrollTemplate" file="ScrollTemplate"/>
+    <control-template ct="ScrollViewTemplate" file="ScrollViewTemplate">
+      <control-template ct="MultilineTextBoxTemplate" file="MultilineTextBoxTemplate"/>
+      <control-template ct="DocumentViewerTemplate" file="DocumentViewerTemplate"/>
+      <control-template ct="ListControlTemplate" file="ListControlTemplate">
+        <control-template ct="TextListTemplate" file="TextListTemplate"/>
+        <control-template ct="ListViewTemplate" file="ListViewTemplate"/>
+        <control-template ct="TreeViewTemplate" file="TreeViewTemplate"/>
+      </control-template>
+    </control-template>
+    <control-template ct="TabTemplate" file="TabTemplate">
+      <control-template ct="RibbonTabTemplate" file="RibbonTabTemplate"/>
+    </control-template>
+    <control-template ct="DatePickerTemplate" file="DatePickerTemplate"/>
+    <control-template ct="RibbonGroupTemplate" file="RibbonGroupTemplate"/>
+    <control-template ct="RibbonIconLabelTemplate" file="RibbonIconLabelTemplate"/>
+    <control-template ct="RibbonButtonsTemplate" file="RibbonButtonsTemplate"/>
+    <control-template ct="RibbonToolstripsTemplate" file="RibbonToolstripsTemplate"/>
+    <control-template ct="RibbonGalleryTemplate" file="RibbonGalleryTemplate">
+      <control-template ct="RibbonGalleryListTemplate" file="RibbonGalleryListTemplate"/>
+    </control-template>
+  </control-template>
+</reference>

@@ -1,0 +1,216 @@
+<article index="true">
+    <topic>
+        <title>Responsive Design Series</title>
+        <p>
+            Responsive design compositions consist of following compositions:
+            <ul>
+                <li>
+                    <b>&lt;ResponsiveContainer/&gt;</b>:
+                    A composition that tells its <b>ResponsiveTarget</b> to switch to a different view when the size of the &lt;ResponsiveContainer/&gt; is changed.
+                </li>
+                <li>
+                    <b>GuiResponsiveCompositionBase</b>:
+                    A composition that manages multiple views in order from large to small,
+                    it has following sub classes for different way of management:
+                    <ul>
+                        <li>
+                            <b>&lt;ResponsiveFixed/&gt;</b>:
+                            only has one level of view.
+                        </li>
+                        <li>
+                            <b>&lt;ResponsiveView/&gt;</b>:
+                            allow manually assigned views:
+                            <ul>
+                                <li>
+                                    <b>Views</b> accepts multiple <b>GuiResponsiveCompositionBase</b> in order from large to small as its levels of views.
+                                </li>
+                                <li>
+                                    <b>SharedControls</b> accepts multiple controls.
+                                    When switching views,
+                                    a <b>&lt;ResponsiveShared/&gt;</b> could move a referenced shared control from one view to another,
+                                    keeping all its status (especially for editable controls).
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>&lt;ResponsiveGroup/&gt;</b>:
+                            the number of its levels of views equals to one direct or indirect child <b>GuiResponsiveCompositionBase</b>
+                            that has the most levels of views.
+                            When it needs to switch to another view,
+                            it tells all direct or indirect child <b>GuiResponsiveCompositionBase</b> to synchronize to the same level of view.
+                        </li>
+                        <li>
+                            <b>&lt;ResponsiveStack/&gt;</b>:
+                            the number of its levels of views equals to the sum of levels of views in all direct or indirect child <b>GuiResponsiveCompositionBase</b>.
+                            When it needs to switch to another view,
+                            it tells one indirect child <b>GuiResponsiveCompositionBase</b> to switch view,
+                            unless all has switched to its largest or the smallest views.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            Usually, a <b>&lt;ResponsiveContainer/&gt;</b> is put inside a window and configured to change its size according to the window size.
+            And then use <b>&lt;ResponsiveView/&gt;</b>, <b>&lt;ResponsiveGroup/&gt;</b> and <b>&lt;ResponsiveStack/&gt;</b> together
+            to control how controls are reorganized to fit in different sizes of the container.
+            finally this <b>GuiResponsiveCompositionBase</b> tree will be assigned to <b>&lt;ResponsiveContainer/&gt;</b>::<b>ResponsiveTarget</b>
+            to make the reorganizing automatically happens.
+        </p>
+        <p>
+            Typically,
+            <b>&lt;ResponsiveFixed/&gt;</b> will only be put in <b>&lt;ResponsiveView/&gt;</b>::<b>Views</b>
+            when this level of view doesn't have sub levels of views.
+        </p>
+        <topic>
+            <title>A responsive layout sample</title>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Layout/Responsive2/UI/Resource.xml" image="kb_compositions_responsive_2.gif"/>
+            </p>
+            <p>
+                There are three level of views:
+                <ul>
+                    <li><b>View 1</b>: Buttons with icons and titles on the left side, and video icons on the right side.</li>
+                    <li><b>View 2</b>: Buttons with icons on the left side, and video icons on the right side.</li>
+                    <li><b>View 3</b>: Buttons in a menu on the top side, and video icons on the bottom side.</li>
+                </ul>
+            </p>
+            <p>
+                <b>View 1</b> is larger than <b>View 2</b> because titles of buttons are hidden.
+            </p>
+            <p>
+                <b>View 2</b> is larger than <b>View 3</b> because buttons are hidden.
+                Although the menu of <b>View 3</b> increases the height,
+                but video icons are scrollable,
+                the list control could shrink vertically to make spaces for the menu.
+            </p>
+        </topic>
+        <topic>
+            <title>A basic idea to implement this sample</title>
+            <p>
+                We will easily find that,
+                the difference between <b>View 1</b> and <b>View 2</b> is button titles.
+                so the button template itself could be a <b>&lt;ResponsiveView/&gt;</b> which has two <b>&lt;ResponsiveFixed/&gt;</b> in its <b>Views</b> property:
+                <ul>
+                    <li>The first (larger) view contains one icon and one title</li>
+                    <li>The second (smaller) view contains only one icon</li>
+                </ul>
+            </p>
+            <p>
+                Now the button becomes responsive,
+                you don't need to create two different view for <b>View 1</b> and <b>View 2</b> in <b>&lt;ResponsiveView/&gt;</b>,
+                which is wasting memories and reducing performance.
+                Instead,
+                you could use a <b>&lt;ResponsiveGroup/&gt;</b> to contain these buttons.
+                Since all buttons have 2 levels of views,
+                so <b>&lt;ResponsiveGroup/&gt;</b> has 2 levels of views,
+                because all child <b>GuiResponsiveCompositionBase</b> will synchronize to the same level of view.
+            </p>
+            <p>
+                Now <b>View 1</b> and <b>View 2</b> are represented in one <b>&lt;ResponsiveGroup/&gt;</b>,
+                we have to create a <b>&lt;ResponsiveView/&gt;</b> to contain <b>&lt;ResponsiveGroup/&gt;</b> and <b>View 3</b> as its two views.
+                <b>View 3</b> is contained in a <b>&lt;ResponsiveFixed/&gt;</b>,
+                since all compositions in <b>&lt;ResponsiveView/&gt;</b>::<b>Views</b>
+                must be <b>GuiResponsiveCompositionBase</b>.
+            </p>
+            <p>
+                The list control for video icons could be registered in <b>&lt;ResponsiveView/&gt;</b>::<b>SharedControls</b>.
+                When the application switches between views,
+                the list control will be moved to different view,
+                controlled by all <b>&lt;ResponsiveShared/&gt;</b> in each views.
+            </p>
+            <p>
+                Finally, the code looks like this (button templates are inlined, which is only for demo, not the way to implement):
+                <program>
+                    <code><![CDATA[
+                        <Window>
+                          <ResponsiveContainer AlignmentToParent="left:0 top:0 right:0 bottom:0">
+                            <att.ResponsiveTarget>
+                              <ResponsiveView Direction="Horizontal">
+                                <att.SharedControls>
+                                  <ScrollContainer ref.Name="videoContainer" ... />
+                                </att.SharedControls>
+
+                                <att.Views>
+                                  <ResponsiveGroup Direction="Horizontal">
+                                    <!-- View 1 and View 2 -->
+                                    ...
+                                    <SelectableButtonTemplate>
+                                      ...
+                                      <ResponsiveView Direction="Horizontal">
+                                        <att.Views>
+                                          <ResponsiveFixed> <!-- View 1: icon with title    --> </ResponsiveFixed>
+                                          <ResponsiveFixed> <!-- View 2: icon without title --> </ResponsiveFixed>
+                                        </att.Views>
+                                      </ResponsiveView>
+                                      ...
+                                    </SelectableButtonTemplate>
+                                    <SelectableButtonTemplate .../>
+                                    <SelectableButtonTemplate .../>
+                                    <SelectableButtonTemplate .../>
+                                    ...
+                                    <!-- the place holder for videoContainer in View 1 and View 2 -->
+                                    <ResponsiveShared Shared-ref="videoContainer"/>
+                                    ...
+                                  </ResponsiveGroup>
+                                  <ResponsiveFixed>
+                                    <!-- View 3 -->
+                                    ...
+                                    <ToolstripMenu .../>
+                                    ...
+                                    <!-- the place holder for videoContainer in View 3 -->
+                                    <ResponsiveShared Shared-ref="videoContainer"/>
+                                    ...
+                                  </ResponsiveFixed>
+                                </att.Views>
+                              </ResponsiveView>
+                            </att.ResponsiveTarget>
+                          </ResponsiveContainer>
+                        </window>
+                    ]]></code>
+                </program>
+                <ul>
+                    <li>A shared control must appears in <b>&lt;ResponsiveView/&gt;</b>::<b>SharedControls</b> in order to be referenced by multiple <b>&lt;ResponsiveShared/&gt;</b>.</li>
+                    <li><b>Direction="Horizontal"</b> in the code means the composition responsives to changing of its width.</li>
+                </ul>
+            </p>
+            <p>
+                The code organizes the <b>GuiResponsiveCompositionBase</b> as follows:
+                <ul>
+                    <li>
+                        <b>&lt;ResponsiveView/&gt;</b>
+                        <ul>
+                            <li>
+                                View[0]: <b>&lt;ResponsiveGroup/&gt;</b>
+                                <ul>
+                                    <li>
+                                        <b>&lt;ResponsiveView/&gt;</b>
+                                        <ul>
+                                            <li>View [0]: <b>&lt;ResponsiveFixed/&gt;</b> (button with icon and title)</li>
+                                            <li>View [1]: <b>&lt;ResponsiveFixed/&gt;</b> (button with icon only)</li>
+                                        </ul>
+                                    </li>
+                                    <li>...</li>
+                                </ul>
+                            </li>
+                            <li>
+                                View[1]: <b>&lt;ResponsiveFixed/&gt;</b> (button in menu)
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                When the window is getting smaller,
+                <b>&lt;ResponsiveGroup/&gt;</b> shrinks all buttons at the same time (because it is a group not a stack)
+                to hide all button titles.
+            </p>
+            <p>
+                When the window is getting even smaller,
+                <b>&lt;ResponsiveGroup/&gt;</b> cannot shrinks anymore,
+                so the root <b>&lt;ResponsiveView/&gt;</b> switches to a second view in <b>&lt;ResponsiveFixed/&gt;</b>
+                to move all button inside a menu on the top.
+            </p>
+        </topic>
+    </topic>
+</article>

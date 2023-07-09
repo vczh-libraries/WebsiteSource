@@ -1,0 +1,43 @@
+<article index="true">
+    <topic>
+        <title>&lt;ResponsiveContainer&gt;</title>
+        <p>
+            <b>&lt;ResponsiveContainer/&gt;</b> tells the associated <b>GuiResponsiveCompositionBase</b> to switch to another view
+            when <b>Bounds</b> is changed.
+        </p>
+        <topic>
+            <title>&lt;ResponsiveContainer&gt;::ResponsiveTarget</title>
+            <p>
+                When a <b>GuiResponsiveCompositionBase</b> is assigned to <b>ResponsiveTarget</b>,
+                it is also added as a child composition in &lt;ResponsiveContainer/&gt;,
+                with its <b>AlignmentToParent</b> set to <b>left:0 top:0 right:0 bottom:0</b>,
+                and it switches to the largest view that could fit in the <b>&lt;ResponsiveContainer/&gt;</b>.
+            </p>
+            <p>
+                When a <b>GuiResponsiveCompositionBase</b> is removed from <b>ResponsiveTarget</b>,
+                it is also removed from &lt;ResponsiveContainer/&gt;.
+            </p>
+        </topic>
+        <topic>
+            <title>Choosing a view</title>
+            <p>
+                When a <b>&lt;ResponsiveContainer/&gt;</b> becomes larger,
+                it will try to tell its <b>ResponsiveTarget</b> to switch to a largest view
+                that could fit in the <b>&lt;ResponsiveContainer/&gt;</b>.
+                If the current view is the largest view,
+                or the next larger view could not fit in the <b>&lt;ResponsiveContainer/&gt;</b>,
+                it stays with the current view.
+            </p>
+            <p>
+                When a <b>&lt;ResponsiveContainer/&gt;</b> becomes smaller,
+                it does the same but try to switch to a smaller view.
+            </p>
+            <p>
+                If the size of <b>&lt;ResponsiveContainer/&gt;</b> is decided by the window size,
+                when the window is being resized,
+                it takes effect only when the mouse is released.
+                It doesn't change view when the mouse is still dragging.
+            </p>
+        </topic>
+    </topic>
+</article>

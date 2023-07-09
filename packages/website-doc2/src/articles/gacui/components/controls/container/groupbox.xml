@@ -1,0 +1,25 @@
+<article index="true">
+    <topic>
+        <title>&lt;GroupBox&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;GroupBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiControl*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: GroupBox</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            In the default control template,
+            a <b>&lt;GroupBox/&gt;</b> is a container with a border and a label.
+            Content of the label comes from the <b>Text</b> property.
+        </p>
+        <p>
+            <b>&lt;GroupBox/&gt;</b> does not provide anything more than a <b>GuiControl</b>.
+        </p>
+    </topic>
+</article>

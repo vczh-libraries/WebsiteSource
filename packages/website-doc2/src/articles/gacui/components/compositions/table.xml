@@ -1,0 +1,250 @@
+<article index="true">
+    <topic>
+        <title>&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt; and &lt;ColumnSplitter&gt;</title>
+        <p>
+            <b>&lt;Table/&gt;</b> arrange all direct children <b>&lt;Cell/&gt;</b> compositions
+            in a table with size configurations.
+        </p>
+        <p>
+            <b>&lt;Cell/&gt;</b>::MinSizeLimitation is <b>LimitToElementAndChildren</b> by default.
+        </p>
+        <topic>
+            <title>Properties</title>
+            <p>
+                A few more properties are provided by <b>&lt;Table/&gt;</b> and <b>&lt;Cell/&gt;</b>
+                to control the details of how to ordering <b>&lt;Cell/&gt;</b>.
+            </p>
+            <p>
+                <b>&lt;Cell/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
+                there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;Cell/&gt;</b>.
+            </p>
+            <topic>
+                <title>&lt;Table&gt;::Rows and &lt;Table&gt;::Columns</title>
+                <p>
+                    They are collection properties that can only be used in GacUI XML Resource and Workflow.
+                    In order to access them in C++,
+                    please check out the following methods:
+                    <ul>
+                        <li>GetRows</li>
+                        <li>GetRows</li>
+                        <li>SetRowsAndColumns</li>
+                        <li>GetRowOption</li>
+                        <li>SetRowOption</li>
+                        <li>GetColumnOption</li>
+                        <li>SetColumnOption</li>
+                    </ul>
+                    Call <b>SetRowsColumns</b> to allocate the numbers of rows and columns for this table,
+                    and then call <b>SetRowOption</b> and <b>SetColumnOption</b> to set the size configuration.
+                </p>
+                <p>
+                    In GacUI XML Resource,
+                    in order to have a 5x3 table,
+                    it is expected to have 5 values in <b>Rows</b> and 3 values in <b>Columns</b>.
+                </p>
+                <p>
+                    Values for these properties could be:
+                    <ul>
+                        <li><b>composeType:MinSize</b>: the size of the cell is the minimum size for this composition.</li>
+                        <li><b>composeType:Absolute absolute:X</b>: the size of the cell cannot be smaller than X. X must be a non-negative integer.</li>
+                        <li><b>composeType:Percentage percentage:X</b>: the size of the cell is decided by all <b>Percentage</b> cells. X must be a non-negative number.</li>
+                    </ul>
+                </p>
+                <p>
+                    Before repositioning cells,
+                    the table will collect all rows and cells that are <b>MinSize</b> and <b>Absolute</b>,
+                    spaces are first allocate to these rows and cells.
+                    And then if there are still spaces,
+                    spaces will be allocate to <b>Percentage</b> cells in proportion.
+                </p>
+                <p>
+                    If <b>&lt;Table/&gt;</b>::MinSizeLimitation is set to <b>LimitToElementAndChildren</b>,
+                    the minimum size of the table is the sum of all cells' minimum sizes with paddings.
+                    For <b>Absolute</b> cells,
+                    if the absolute value is larger than its minimum size,
+                    the absolute value becomes the minimum size for this cell.
+                </p>
+                <p>
+                    The sum of all percentage values could be anything.
+                    for example, if a table has a 0 padding with these 5 row options:
+                    <ul>
+                        <li><b>composeType:Percentage percentage:0.5</b></li>
+                        <li><b>composeType:MinSize</b></li>
+                        <li><b>composeType:Percentage percentage:1.0</b></li>
+                        <li><b>composeType:Absolute absolute:200</b></li>
+                        <li><b>composeType:Percentage percentage:0.5</b></li>
+                    </ul>
+                    and the minimum width for each cell is 100.
+                </p>
+                <p>
+                    It is easy to know that the minimum width of this table is 500.
+                    If the table has a border and a cell padding of 10,
+                    its minimum width becomes 560.
+                </p>
+                <p>
+                    In the space of 500:
+                    <ul>
+                        <li>100 will be allocated to the 2nd cell</li>
+                        <li>200 will be allocated to the 4nd cell</li>
+                    </ul>
+                    and there is still 200 left.
+                </p>
+                <p>
+                    The sum of all percentage values is 0.5 + 1.0 + 0.5 = 2.
+                    <ul>
+                        <li>The 1st cell will be allocated 50 (200 * 0.5 / 2)</li>
+                        <li>The 3rd cell will be allocated 100 (200 * 1.0 / 2)</li>
+                        <li>The 5th cell will be allocated 50 (200 * 0.5 / 2)</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Table&gt;::CellPadding</title>
+                <p>
+                    The default value is 0.
+                </p>
+                <p>
+                    <b>CellPadding</b> keeps an distance between each <b>&lt;Cell/&gt;</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Table&gt;::BorderVisible</title>
+                <p>
+                    The default value  is <b>true</b>.
+                </p>
+                <p>
+                    If <b>BorderVisible</b> is true,
+                    cells are keep the distance of <b>CellPadding</b> to the border of the table,
+                    otherwise the distance is 0.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;Cell&gt;::Site</title>
+                <p>
+                    This is a required property in GacUI XML Resource.
+                </p>
+                <p>
+                    This property can only be used in GacUI XML Resource and Workflow.
+                    In order to access them in C++,
+                    please check out the following methods:
+                    <ul>
+                        <li>GetRow</li>
+                        <li>GetRowSpan</li>
+                        <li>GetColumn</li>
+                        <li>GetColumnSpan</li>
+                        <li>SetSite</li>
+                    </ul>
+                    <b>SetSite</b> requires 4 arguments,
+                    which are exactly the 4 components in this <b>Site</b> property.
+                </p>
+                <p>
+                    Value for this property is <b>row:R column:C rowSpan:RS columnSpan:CS</b>.
+                    The default values for <b>rowSpan</b> and <b>columnSpan</b> are 1.
+                    <ul>
+                        <li>
+                            <b>row</b>:
+                            specify the row where this cell locates starting from 0.
+                        </li>
+                        <li>
+                            <b>column</b>:
+                            specify the column where this cell locates starting from 0.
+                        </li>
+                        <li>
+                            <b>rowSpan</b>:
+                            specify how many rows does this cell take.
+                        </li>
+                        <li>
+                            <b>columnSpan</b>:
+                            specify how many columns does this cell take.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    A table is split to multiple cell blocks,
+                    a cell could take multiple cell blocks at once,
+                    but they must form a rectangle space.
+                    A cell block can only be taken by one cell.
+                </p>
+                <p>
+                    <b>&lt;Cell/&gt;</b> are processed according to their order in GacUI XML Resource.
+                    If a cell is found to be taking cell blocks that have already been taken,
+                    the <b>Site</b> property of this cell is canceled,
+                    the position of this cell is undefined.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Adding Cells in C++</title>
+            <p>
+                To create a table in C++,
+                these steps must be taken in order:
+                <ul>
+                    <li>Call <b>SetRowsAndColumns</b> of the table to allocate cell blocks.</li>
+                    <li>Call <b>SetRowOption</b> and <b>SetColumnOption</b> of the table for size configuration.</li>
+                    <li>Call <b>SetSite</b> for cells to define which cell blocks are taken by each cell.</li>
+                    <li>Add cells as a direct child composition of the table.</li>
+                    <li>Call <b>UpdateCellBounds</b> of the table to tell that the configuration is ready.</li>
+                </ul>
+            </p>
+            <p>
+                When contents of cells are changed,
+                no action is required.
+            </p>
+            <p>
+                When size configurations are changed,
+                or when cells are added or removed to the table,
+                <b>UpdateCellBounds</b> must be called to tell the table to reorganize cells.
+            </p>
+        </topic>
+        <topic>
+            <title>Adjusting Cells by Mouse</title>
+            <topic>
+                <title>&lt;RowSplitter&gt;</title>
+                <p>
+                    A <b>&lt;RowSplitter/&gt;</b> takes the space between two rows.
+                    This requires the table to have a non-zero <b>CellPadding</b>.
+                </p>
+                <p>
+                    One of a sibling row of the splitter is required to be <b>Absolute</b>.
+                </p>
+                <p>
+                    <b>RowsToTheTop</b> specifies how many rows are above this splitter.
+                    If the table has 5 rows,
+                    valid values for <b>RowsToTheTop</b> are 1 to 4.
+                </p>
+                <p>
+                    After adding a splitter to the table,
+                    it can be dragged by a mouse to adjust the size of an <b>Absolute</b> row around the splitter.
+                </p>
+            </topic>
+            <topic>
+                <title>&lt;ColumnSplitter&gt;</title>
+                <p>
+                    A <b>&lt;ColumnSplitter/&gt;</b> takes the space between two columns.
+                    This requires the table to have a non-zero <b>CellPadding</b>.
+                </p>
+                <p>
+                    One of a sibling column of the splitter is required to be <b>Absolute</b>.
+                </p>
+                <p>
+                    <b>ColumnsToTheLeft</b> specifies how many columns are above this splitter.
+                    If the table has 5 columns,
+                    valid values for <b>ColumnsToTheLeft</b> are 1 to 4.
+                </p>
+                <p>
+                    After adding a splitter to the table,
+                    it can be dragged by a mouse to adjust the size of an <b>Absolute</b> column around the splitter.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Table">
+                    this tutorial project
+                </a>
+                .
+            </p>
+        </topic>
+    </topic>
+</article>

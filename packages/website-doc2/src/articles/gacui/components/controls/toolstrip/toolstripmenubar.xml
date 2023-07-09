@@ -1,0 +1,40 @@
+<article index="true">
+    <topic>
+        <title>&lt;ToolstripMenuBar&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ToolstripMenuBar/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripMenuBar*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: MenuBar</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            A menu bar is a toolstrip button containers for menus.
+            Typically all toolstrip buttons in the menu bar must have their sub menus.
+        </p>
+        <p>
+            Multiple <b>&lt;ToolstripGroupContainer/&gt;</b> in the menu
+            will be separated by vertical splitters.
+        </p>
+        <p>
+            Expected button types inside this control are:
+            <ul>
+                <li><b>&lt;MenuBarButton/&gt;</b></li>
+            </ul>
+            Such toolstrip buttons only render titles.
+        </p>
+        <p>
+            Please check out
+            <a href="/gacui/components/controls/toolstrip/grouping.html">
+                this page
+            </a>
+            for details about <b>ToolstripItems</b>,
+            which provides automatic layout for toolstrip buttons inside this control.
+        </p>
+    </topic>
+</article>

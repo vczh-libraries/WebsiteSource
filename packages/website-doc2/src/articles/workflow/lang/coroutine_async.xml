@@ -1,0 +1,414 @@
+<article index="true">
+    <topic>
+        <title>Async Coroutine</title>
+        <p>
+            This coroutine provider is <b>system::AsyncCoroutine</b>.
+            <ul>
+                <li>
+                    It has a <b>Create</b> method,
+                    so this coroutine function declaration is <b>legal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): Async^
+                        ${
+                            /* legal */
+                        }
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>CreateAndRun</b> method,
+                    so this coroutine function declaration is <b>legal</b>:
+                    <program><code><![CDATA[
+                        using system::*;
+
+                        func GetNumbers(): void
+                        $Async{
+                            /* legal */
+                        }
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It does not have a <b>AwaitAndPause</b> method,
+                    but it has a <b>AwaitAndRead</b> method,
+                    so both statements in the coroutine are <b>legal</b>:
+                    <program><code><![CDATA[
+                        $Await EXPR; /* legal */
+                        var NAME = $YieAwaitld EXPR; /* legal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>ReturnAndExit</b> method,
+                    which has a parameter,
+                    so this statement in the coroutine is <b>illegal</b>:
+                    <program><code><![CDATA[
+                        $return; /* illegal */
+                    ]]></code></program>
+                    but this statement in the coroutine is <b>legal</b>:
+                    <program><code><![CDATA[
+                        $return EXPR; /* legal */
+                    ]]></code></program>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    It has a <b>QueryContext</b> method,
+                    which has no parameter,
+                    so the <b>$</b> expression is available in the coroutine.
+                </li>
+            </ul>
+        </p>
+        <topic>
+            <title>Using return</title>
+            <p>
+                <b>return EXPR;</b> stops a <b>$Async</b> coroutine and generates a return value.
+            </p>
+            <p>
+                If there is a <b>static func StoreResult</b> in the return type of the function,
+                the return value becomes <b>TYPE::StoreResult(EXPR)</b>.
+            </p>
+            <p>
+                If this <b>$Async</b> does not have a meaningful return value,
+                like when the coroutine function returns <b>void</b> or <b>system::Async^</b>,
+                it should return <b>null</b>.
+            </p>
+            <p>
+                Since a function exists without a <b>return</b> statement also returns <b>null</b>,
+                so the <b>return</b> statement is not always necessary.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    using system::*;
+
+                    func Do1(): void
+                    $Async {
+                        return null;
+                    }
+
+                    func Do2(): Async^
+                    ${
+                        return null;
+                    }
+
+                    $interface StringAsync : Async<string>;
+
+                    func Do3(): StringAsync^
+                    ${
+                        return "Text";
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>
+                        <b>Do1</b> creates an <b>system::Async^</b> that will eventually generates <b>null</b>,
+                        because this function returns <b>void</b>.
+                        Calling <b>Do1</b> results in executing the created <b>system::Async^</b> immediately,
+                        but since it returns <b>void</b>,
+                        so the created <b>system::Async^</b> cannot be retrived.
+                    </li>
+                    <li>
+                        <b>Do2</b> creates an <b>system::Async^</b> that will eventually generates <b>null</b>,
+                        because this function returns <b>system::Async^</b>.
+                        Calling <b>Do1</b> gets the created <b>system::Async^</b>,
+                        but it is not automatically executed.
+                    </li>
+                    <li>
+                        <b>Do3</b> creates an <b>StringAsync^</b> that will eventually generates <b>"Text"</b>.
+                        The return type <b>StringAsync^</b> has a <b>static func StoreResult</b>,
+                        having one argument of <b>string</b>.
+                        This cause the compiler to generate an error when the return value cannot be implicitly converted to <b>string</b>.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Using $Await</title>
+            <p>
+                <b>$Await AnotherTask;</b> executes <b>AnotherTask</b>
+                and pauses the current <b>$Async</b> coroutine.
+                It will be resumed when <b>AnotherTask</b> finishes.
+            </p>
+            <p>
+                <b>var NAME = $Await AnotherTask;</b> executes <b>AnotherTask</b>
+                and pauses the current <b>$Async</b> coroutine.
+                It will be resumed when <b>AnotherTask</b> finishes,
+                and the return value from <b>AnotherTask</b> will be stored in <b>NAME</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Using the $ expression</title>
+            <p>
+                The <b>$</b> expression in a <b>$Async</b> coroutine returns <b>system::AsyncContext^</b>.
+            </p>
+            <p>
+                When an <b>system::Async^</b> is executed outside from a <b>$Async</b> coroutine,
+                an <b>system::AsyncContext^</b> is required to be passed to the <b>Async::Execute</b> method.
+            </p>
+            <p>
+                It could be null, which is also the default value for this parameter.
+            </p>
+            <p>
+                <b>$Await</b> will pass this <b>system::AsyncContext^</b> object to all nested <b>system::Async^</b> values.
+            </p>
+            <p>
+                The <b>$</b> expression returns this particular <b>system::AsyncContext^</b> object,
+                which has two members:
+                <ul>
+                    <li>
+                        <b>func Cancel(): bool</b>, makes <b>$.IsCancelled()</b> returns <b>true</b>.
+                    </li>
+                    <li>
+                        <b>func IsCancelled(): bool</b> is designed to be called in any <b>$Async</b> coroutine.
+                        If a <b>$Async</b> coroutine has many steps,
+                        it could check <b>$.IsCancelled()</b> frequently and stops the coroutine when it is required.
+                        This does not happen automatically,
+                        a <b>$Async</b> can ignore <b>$.IsCancelled()</b>.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Executing system::Async^</title>
+            <p>
+                <b>system::Async::Delay</b> function creates a task that ends after a specific period of time.
+            </p>
+            <p>
+                <b>system::Async::Execute</b> executes an task in a background thread.
+                The first argument is a callback that will be triggered when the task is end.
+                The second argument is an optional object that becomes <b>$</b> in a <b>$Async</b> coroutine.
+            </p>
+            <p>
+                If <b>system::Async::Execute</b> is not called for the first time for that particular object,
+                it fails and returns <b>false</b>.
+            </p>
+            <p>
+                Calling a <b>$Async</b> function which returning <b>void</b>,
+                result in starting the task immediately.
+            </p>
+        </topic>
+        <topic>
+            <title>Hosting system::Async^</title>
+            <p>
+                Calling <b>system::AsyncScheduler::RegisterDefaultScheduler</b> or
+                <b>system::AsyncScheduler::RegisterSchedulerForCurrentThread</b>
+                are required before executing a task in a particular thread.
+            </p>
+            <p>
+                You are recommended to call
+                <b>system::AsyncScheduler::UnregisterDefaultScheduler</b> or
+                <b>system::AsyncScheduler::UnregisterSchedulerForCurrentThread</b>
+                when no task is needed to run in a particular thread.
+            </p>
+            <p>
+                <b>system::Async::Execute</b> use the caller thread's scheduler to run itself.
+                If <b>RegisterSchedulerForCurrentThread</b> is called for this thread,
+                it will not use the scheduler that is registered by <b>RegisterDefaultScheduler</b>.
+            </p>
+            <p>
+                Usually this interface is implemented in C++,
+                which should use <b>vl::reflection::description::IAsyncScheduler</b> as the name of the interface.
+            </p>
+            <p>
+                There are 3 methods that need to be implemented:
+                <ul>
+                    <li>
+                        <p>
+                            <b>Execute</b>:
+                            This function runs a callback in any thread it likes.
+                        </p>
+                        <p>
+                            This function is called after <b>$Await</b> finishes waiting.
+                        </p>
+                        <p>
+                            For GacUI, the scheduler for the UI thread is different from other thread,
+                            because <b>Execute</b> of the UI thread's scheduler runs callbacks in the UI thread.
+                        </p>
+                        <p>
+                            This means that,
+                            for any <b>$Async</b> that is called from the UI thread,
+                            all code will eventually be executed in the UI thread,
+                            including tasks that are awaited using <b>$Await</b>.
+                        </p>
+                        <p>
+                            If a task don't want to be executed in the UI thread even when it is scheculed by the UI thread,
+                            it needs to explicitly call <b>AsyncScheduler::ExecuteInBackground</b>,
+                            which means thiat task cannot be implemented using coroutine.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>ExecuteInBackground</b>:
+                            This function runs a callback in any thread it likes.
+                        </p>
+                        <p>
+                            It will not be called by generated code from <b>$Async</b> coroutines.
+                        </p>
+                        <p>
+                            For GacUI, <b>ExecuteInBackground</b> runs callbacks in a random non-UI thread.
+                            It doesn't matter whether this scheduler is for the UI thread or not.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>DelayExecute</b>:
+                            This function runs a callback in any thread it likes
+                            after a specified period of time.
+                        </p>
+                        <p>
+                            It will not be called by generated code from <b>$Async</b> coroutines.
+                        </p>
+                        <p>
+                            For GacUI, the scheduler for the UI thread is different from other thread,
+                            because <b>DelayExecute</b> of the UI thread's scheduler runs callbacks in the UI thread.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                There is no default scheduler provided by Workflow script.
+                If you don't implement any scheduler,
+                <b>$Async</b> coroutine fails.
+            </p>
+        </topic>
+        <topic>
+            <title>Example</title>
+            <p>
+                Let's see an example of a scheduler.
+                <b>$Async</b> doesn't necessary mean multi-threading,
+                everything could be synchronized.
+                The following scheduler queued all tasks
+                that will be executed on by one when it is required.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    class SyncScheduler : public Object, public IAsyncScheduler, public Description<SyncScheduler>
+                    {
+                    public:
+                        List<Func<void()>>		tasks;
+
+                        void Run(const Func<void()>& callback)
+                        {
+                            auto scheduler = MakePtr<SyncScheduler>();
+                            IAsyncScheduler::RegisterDefaultScheduler(scheduler);
+                            callback();
+                            while (scheduler->tasks.Count() > 0)
+                            {
+                                auto firstTask = scheduler->tasks[0];
+                                scheduler->tasks.RemoveAt(0);
+                                firstTask();
+                            }
+                            IAsyncScheduler::UnregisterDefaultScheduler();
+                        }
+
+                        void Execute(const Func<void()>& callback) override
+                        {
+                            tasks.Add(callback);
+                        }
+
+                        void ExecuteInBackground(const Func<void()>& callback) override
+                        {
+                            tasks.Add(callback);
+                        }
+
+                        void DelayExecute(const Func<void()>& callback, vint milliseconds) override
+                        {
+                            // the required waiting time is ignored
+                            tasks.Add(callback);
+                        }
+                    };
+                ]]></code></program>
+                Assume that this class is registered using this name: <b>test::SyncScheduler</b>.
+            </p>
+            <p>
+                By calling <b>SyncScheduler::Run</b>,
+                the scheduler registers itself as a global task scheduler,
+                executes the callback in the caller's thread,
+                executes all generated new tasks in the caller's thread until they are all cleared,
+                unregisters itself.
+            </p>
+            <p>
+                The following Workflow script creates some <b>Async</b> objects
+                by using coroutines or implementing the interface,
+                and then call <b>SyncScheduler::Run</b> to run all code.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    using system::*;
+                    using test::*;
+
+                    var s = "";
+
+                    $interface IStringAsync : Async<string>;
+
+                    func GetStringAsync(x : int) : IStringAsync^
+                    ${
+                        s = $"$(s)[$(x)]";
+                        return cast string x;
+                    }
+
+                    func GetStringAsync2(x : int) : IStringAsync^
+                    {
+                        var future = Future::Create();
+                        AsyncScheduler::GetSchedulerForCurrentThread().ExecuteInBackground(func():void
+                        {
+                            s = $"$(s)[$(x)]";
+                            future.Promise.SendResult(cast string x);
+                        });
+                        
+                        return new IStringAsync^(using future of Async^);
+                    }
+
+                    func GetMultipleStrings() : void
+                    $Async{
+                        for(i in range[0, 1])
+                        {
+                            var x = $Await GetStringAsync(i);
+                            s = $"$(s)[+$(x)]";
+                            var y = $Await GetStringAsync2(i);
+                            s = $"$(s)[-$(y)]";
+                            $Await Async::Delay(0);
+                            s = $"$(s)!";
+                        }
+                    }
+
+                    func main():string
+                    {
+                        SyncScheduler::Run(GetMultipleStrings);
+                        return s;
+                    }
+                ]]></code></program>
+                <ul>
+                    <li>
+                        The <b>main</b> main function starts the task scheduler,
+                        asking it to call <b>GetMultipleStrings</b>.
+                    </li>
+                    <li>
+                        <b>GetMultipleStrings</b> calls both <b>GetStringAsync</b> and <b>GetStringAsync2</b> for twice.
+                    </li>
+                    <li>
+                        <b>GetStringAsync</b> implements <b>Async</b> using coroutine.
+                    </li>
+                    <li>
+                        <b>GetStringAsync2</b> implements <b>Async</b> using <b>Future</b> and <b>Promise</b>.
+                    </li>
+                    <li>
+                        Eventually <b>"[0][+0][0][-0]![1][+1][1][-1]!"</b> is written to <b>s</b>,
+                        which is also the return value from <b>main</b>.
+                    </li>
+                </ul>
+                The difference between <b>GetStringAsync</b> and <b>GetStringAsync2</b> is that,
+                <b>GetStringAsync</b> starts the task by calling <b>AsyncScheduler::Execute</b>,
+                while <b>GetStringAsync2</b> starts the task by calling <b>AsyncScheduler::ExecuteInBackground</b>.
+                Both scheduler functions are the same in this example.
+            </p>
+        </topic>
+    </topic>
+</article>

@@ -1,0 +1,42 @@
+<article index="true">
+    <topic>
+        <title>&lt;Label&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;Label/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiLabel*</li>
+                        <li><b>Template Tag</b>: &lt;LabelTemplate/&gt;</li>
+                        <li><b>Template Name</b>: Label</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;Label/&gt;</b> displays text in a specified font and color.
+        </p>
+        <p>
+            <b>&lt;Label/&gt;</b> uses <b>Text</b> and <b>Font</b> properties to display text.
+            If no minimum size is specified for <b>&lt;Label/&gt;</b>,
+            the control always resize itself just enough to display all characters.
+            Multiple lines of text are allowed,
+            but one line doesn't wrap to multiple lines if the width of the control is not long enough.
+        </p>
+        <p>
+            <b>TextColor</b> defines the color of the text,
+            the default value is the <b>DefaultTextColor</b> from its control template.
+            You can change <b>&lt;Label/&gt;::TextColor</b> to override <b>&lt;LabelTemplate/&gt;::DefaultTextColor</b>,
+            but if <b>TextColor</b> have the same value of <b>DefaultTextColor</b>,
+            it is marked as "not overriding",
+            and it changes if the control switch to another control template with a different <b>DefaultTextColor</b>.
+        </p>
+        <p>
+            Please check out
+            <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Xml/Instance_Window/UI/Resource.xml">
+                this tutorial project
+            </a>
+            for details.
+        </p>
+    </topic>
+</article>

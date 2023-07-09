@@ -1,0 +1,139 @@
+<article index="true">
+    <topic>
+        <title>&lt;GridVisualizerTemplate&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;GridVisualizerTemplate/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::templates::GuiGridVisualizerTemplate*</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;GridVisualizerTemplate/&gt;</b> derives from <b>&lt;ControlTemplate/&gt;</b>.
+            It has the following properties additional to its base class:
+        </p>
+        <topic>
+            <title>Input Property</title>
+            <topic>
+                <title>PrimaryTextColor</title>
+                <p>
+                    This property is assigned by the list control.
+                    It comes from the <b>PrimaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b> that applied to the list control.
+                </p>
+                <p>
+                    The list control does not track the changing of the <b>PrimaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b>.
+                    If it is changed,
+                    <b>PrimaryTextColor</b> of item templates are not changed automatically.
+                    But when a list control is assigned with a new control template,
+                    <b>PrimaryTextColor</b> of item templates will be updated as well.
+                </p>
+            </topic>
+            <topic>
+                <title>SecondaryTextColor</title>
+                <p>
+                    This property is assigned by the list control.
+                    It comes from the <b>SecondaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b> that applied to the list control.
+                </p>
+                <p>
+                    The list control does not track the changing of the <b>SecondaryTextColor</b> property of <b>&lt;ListViewTemplate/&gt;</b>.
+                    If it is changed,
+                    <b>SecondaryTextColor</b> of item templates are not changed automatically.
+                    But when a list control is assigned with a new control template,
+                    <b>SecondaryTextColor</b> of item templates will be updated as well.
+                </p>
+            </topic>
+            <topic>
+                <title>ItemSeparatorColor</title>
+                <p>
+                    This property is assigned by the list control.
+                    It comes from the <b>ItemSeparatorColor</b> property of <b>&lt;ListViewTemplate/&gt;</b> that applied to the list control.
+                </p>
+                <p>
+                    The list control does not track the changing of the <b>ItemSeparatorColor</b> property of <b>&lt;ListViewTemplate/&gt;</b>.
+                    If it is changed,
+                    <b>ItemSeparatorColor</b> of item templates are not changed automatically.
+                    But when a list control is assigned with a new control template,
+                    <b>ItemSeparatorColor</b> of item templates will be updated as well.
+                </p>
+            </topic>
+            <topic>
+                <title>LargeImage</title>
+                <p>
+                    This property is assigned by the list control.
+                    It is the large image of the item.
+                </p>
+            </topic>
+            <topic>
+                <title>SmallImage</title>
+                <p>
+                    This property is assigned by the list control.
+                    It is the small image of the item.
+                </p>
+            </topic>
+            <topic>
+                <title>RowValue</title>
+                <p>
+                    This property is assigned by the list control.
+                    This is the row object for the item.
+                </p>
+            </topic>
+            <topic>
+                <title>CellValue</title>
+                <p>
+                    This property is assigned by the list control.
+                    This is the cell object for the cell.
+                </p>
+                <p>
+                    This property could be changed
+                    especially when this cell is edited.
+                </p>
+            </topic>
+            <topic>
+                <title>Selected</title>
+                <p>
+                    This property is assigned by the list control.
+                    When the cell is selected,
+                    this property becomes <b>true</b>.
+                    When the cell is unselected,
+                    this property becomes <b>false</b>.
+                </p>
+                <p>
+                    Only zero or one cell of an selected row will be selected.
+                    No cell will be selected of an unselected row.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Output Property</title>
+            <topic>
+                <title>ContainerComposition</title>
+                <p>
+                    This property is assigned by the item template.
+                    It is derives from <b>&lt;ControlTemplate/&gt;</b>.
+                </p>
+                <p>
+                    This property is very important.
+                    When an embedded visualizer is put inside this visualizer,
+                    it is added to the <b>ContainerComposition</b> property of this visualizer.
+                </p>
+                <p>
+                    In this case,
+                    if this property is not assigned during construction,
+                    it will crash.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_datagrid_visualizer"/>
+            </p>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml" image="kb_controls_datagrid.gif"/>
+            </p>
+        </topic>
+    </topic>
+</article>

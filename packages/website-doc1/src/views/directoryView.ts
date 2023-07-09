@@ -44,7 +44,7 @@ export const viewExport = {
     <tr>
         <td valign="top">
             <div class="TreeView">
-                <h1>Index</h1>
+                <h1>Index (1.0-rc3)</h1>
                 ${renderDirectory(dinfo, hrefPrefix, dinfo.subNodes)}
             </div>
         </td>

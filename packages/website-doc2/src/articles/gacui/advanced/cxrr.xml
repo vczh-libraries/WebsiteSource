@@ -1,0 +1,178 @@
+<article index="true">
+    <topic>
+        <title>Cross XML Resource References</title>
+        <p>
+            A GacUI XML Resource could
+            <a href="/gacui/xmlres/cxrr.html">
+                use some resources in another XML
+            </a>.
+            There are 3 types of resources:
+            <ul>
+                <li>Resource files: They could be accessed using <b>import-res://RESOURCE-NAME/...</b> in the <b>-uri binding</b>.</li>
+                <li>Objects that compiled to Workflow: They could be accessed using their generated class or interface names.</li>
+                <li>Everything else: They could not be accessed from another XML.</li>
+            </ul>
+        </p>
+        <topic>
+            <title>XML Resource Header</title>
+            <p>
+                To make a GacUI XML Resource be able to depend on or be depended by another resource,
+                a header is required in <b>GacGenConfig/Metadata</b> like this:
+                <program><code><![CDATA[
+                    <Resource>
+                      <Folder name="GacGenConfig">
+                        <Xml name="Metadata">
+                          <ResourceMetadata Name="EditorRibbon" Version="1.0">
+                            <Dependencies>
+                              <Resource Name="EditorBase"/>
+                            </Dependencies>
+                          </ResourceMetadata>
+                        </Xml>
+                        ...
+                      </Folder>
+                      ...
+                    </Resource>
+                ]]></code></program>
+                <ul>
+                    <li>
+                        <b>/ResourceMetadata/@Name</b>:
+                        The name of the resource.
+                        All resources that loaded into an application should either have a unique name or have no name.
+                        If a resource want to depend on or to be depended by another resource,
+                        it should have a name.
+                    </li>
+                    <li>
+                        <b>/ResourceMetadata/@Version</b>:
+                        The only legal value is <b>1.0</b>.
+                        It is bounded to the GacUI XML Resource Compiler (GacGen32.exe or GacGen64.exe).
+                        To ensure that all depended resources are compiled using a compatible version of compiler,
+                        an resource could only depend on another resource that has exactly the same version.
+                    </li>
+                    <li>
+                        <b>/ResourceMetadata/Dependencies/Resource/@Name</b>:
+                        Here are all resources that the current resource depends on.
+                        The name must match their <b>/ResourceMetadata/@Name</b> in their metadata.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Compile Resource with Dependencies</title>
+            <p>
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tools">GacBuild.ps1</a>
+                is the only tool to properly compile resources with dependencies.
+            </p>
+            <p>
+                You need to have a file called <b>GacUI.xml</b>:
+                <program><code><![CDATA[
+                    <GacUI/>
+                ]]></code></program>
+                A GacUI XML Resource and all its dependeices must be put inside the folder containing <b>GacUI.xml</b>.
+                Resource files could be put in any level of sub folders.
+            </p>
+            <p>
+                Then you could call <b>GacBuild.ps1 -FileName path/to/GacUI.xml</b> in <b>PowerShell</b>.
+                All resource files in the folder containing <b>GacUI.xml</b> will be found and compiled in the dependency order.
+            </p>
+            <p>
+                <b>GacBuild.ps1</b> forces incremental build.
+                If a resource is not changed,
+                and all its dependencies are not changed,
+                then the resource will not be compiled again.
+                You could use <b>GacClear.ps1 -FileName path/to/GacUI.xml</b> to clear all cache,
+                the next time <b>GacBuild.ps1</b> will recompile every resource files.
+            </p>
+            <p>
+                Generated resource binaries, workflow binaries and C++ code will be put in places
+                <a href="/gacui/xmlres/cgc.html">
+                    specified in each GacUI XML Resource
+                </a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Loading Resource Dependencies in your C++ Application</title>
+            <p>
+                <b>vl::presentation::GetResourceManager()->LoadResourceOrPending(fileStream[, errors][, usage]);</b>
+                is the only function to load compiled resource binaries:
+                <ul>
+                    <li>
+                        <b>fileStream</b>:
+                        It could be any <a href="/vlppos/using-streams.html">vl::stream::IStream</a>,
+                        you could use <b>FileStream</b> here to load a resource from file.
+                    </li>
+                    <li>
+                        <b>errors</b>:
+                        If the resource could not be loaded,
+                        errors will be stored in this list.
+                        An empty error list after calling this function means the resource is loaded properly.
+                        If the <b>errors</b> argument is not use,
+                        then the function will crash if there is any error.
+                    </li>
+                    <li>
+                        <b>usage</b>:
+                        It could be <b>InstanceClass</b> if you include all Workflow binaries into this resource file,
+                        and <b>DataOnly</b> if not.
+                        A resource binary containing Workflow binaries could be produced using
+                        <a href="/gacui/xmlres/cgc.html">
+                            <b>res://GacGenCppConfig/ResX86/Resource</b> and <b>res://GacGenCppConfig/ResX/Resource</b>
+                        </a>
+                        <b>The content of Workflow binaries is different for x86 or x64</b>,
+                        you need to load the correct one.
+                    </li>
+                </ul>
+                Typically,
+                if you use compiled resource with generated C++ files instead of Workflow binaries,
+                you only need the first argument.
+            </p>
+            <p>
+                You don't need to worry about the order to load resource files,
+                they will be taken care of in this function,
+                just call <b>LoadResourceOrPending</b> for all of them.
+            </p>
+            <p>
+                Calling <b>LoadResourceOrPending</b> without all depended resources prepared
+                results in delay loading.
+                Such resource will be automatically loaded after all depended resources are loaded.
+                You could call <b>GetResource</b> to see if a resource has already been loaded or not.
+                If it returns <b>null</b> but <b>LoadResourceOrPending</b> succeeded,
+                it means some depended resources are not prepared yet,
+                and the loading is delayed.
+            </p>
+        </topic>
+        <topic>
+            <title>Get Rid of Resource Files</title>
+            <p>
+                By using
+                <a href="/gacui/xmlres/cgc.html">
+                    <b>CppResource</b> or <b>CppCompressed</b>
+                </a>
+                in <b>res://GacGenConfig/Cpp</b>,
+                you will get multiple cpp files for each GacUI XML Resource.
+                Link all these cpp files to your project,
+                resource binaries will be compiled into your executable file.
+                When your application starts,
+                all resources will be properly loaded before <b>GuiMain</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Using Resource in Dependedcies</title>
+            <p>
+                If there is a resource object <b>res://path/to/the/resource</b>
+                in a GacUI XML Resource called <b>BaseResource</b>,
+                another GacUI XML Resource depending on it could use
+                <b>import-res://BaseResource/path/to/the/resource</b>.
+                Such resource path could be use in <b>-uri binding</b>,
+                or in the <b>ResolveResource</b> method in all
+                <a href="/gacui/xmlres/instance/root_instance.html">root UI instance</a>.
+            </p>
+            <p>
+                If a resource is compiled to Workflow classes or instances,
+                just use the class or interface names directly.
+                But if the resource is not in the dependency list
+                (<b>/ResourceMetadata/Dependencies/Resource/@Name</b>),
+                the class or interface name will not be found when running <b>GacBuild.ps1</b>,
+                errors will be generated and the resource cannot be compiled.
+            </p>
+        </topic>
+    </topic>
+</article>

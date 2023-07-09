@@ -1,0 +1,43 @@
+<article index="true">
+    <topic>
+        <title>&lt;RibbonTab&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;RibbonTab/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiRibbonTab*</li>
+                        <li><b>Template Tag</b>: &lt;RibbonTabTemplate/&gt;</li>
+                        <li><b>Template Name</b>: RibbonTab</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            A <b>&lt;RibbonTab/&gt;</b> is a <b>&lt;Tab/&gt;</b> with two more properties:
+            <ul>
+                <li><b>BeforeHeaders</b>: A composition as a container that is put before tab page headers.</li>
+                <li><b>AfterHeaders</b>: A composition as a container that is put after tab page headers.</li>
+            </ul>
+            Multiple <b>&lt;RibbonTabPage/&gt;</b> are expected in its <b>Pages</b> property.
+        </p>
+        <p>
+            Usually,
+            a <b>&lt;RibbonTab/&gt;</b> is put on the top of a window.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditorRibbon/UI">
+                    this tutorial project
+                </a>
+                for details of ribbon controls.
+            </p>
+            <p>
+                Here is a simplified version about how to build a ribbon application:
+                <sample name="control_ribbon_empty"/>
+            </p>
+        </topic>
+    </topic>
+</article>

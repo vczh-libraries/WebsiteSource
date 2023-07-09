@@ -1,0 +1,23 @@
+<article index="true">
+    <topic>
+        <title>Grouping Multiple &lt;ToolstripButton&gt;</title>
+        <p>
+            Unlike toolstrip controls,
+            there is no need to add nested grouping in ribbon.
+        </p>
+        <p>
+            <b>&lt;RibbonButtons/&gt;</b> makes every three buttons in one group but without a splitters.
+            splitters could be provided by <b>&lt;RibbonGroup/&gt;</b>.
+        </p>
+        <p>
+            <b>&lt;RibbonToolstrips/&gt;</b> requires buttons to be in groups.
+            But since the area is limited,
+            you are not expected to put too many buttons in one <b>&lt;RibbonToolstrips/&gt;</b>.
+            Multiple <b>&lt;RibbonToolstrips/&gt;</b> could be separated by <b>&lt;RibbonGroup/&gt;</b>.
+        </p>
+        <p>
+            <b>&lt;RibbonSplitter/&gt;</b> could be added in <b>&lt;RibbonGroup/&gt;</b>
+            if really needed.
+        </p>
+    </topic>
+</article>

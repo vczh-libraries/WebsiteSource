@@ -1,0 +1,62 @@
+<article>
+    <topic>
+        <title>Compositions</title>
+        <p>
+            GacUI offer a rich set of predefined compositions including:
+            <ul>
+                <li><b>Bounds</b>: Allow specifying absolute or relation location to the parent.</li>
+                <li><b>Stack</b> + <b>StackItem</b>: Locate children from one side to another.</li>
+                <li><b>Flow</b> + <b>FlowItem</b>: Locale children from one side to another, and create a new line when the space is not enough.</li>
+                <li><b>RepeatStack</b> and <b>RepeatFlow</b>: <b>Stack</b> and <b>Flow</b> with data binding, which maintain <b>StackItem</b> and <b>FlowItem</b> in real-time by observing a collection.</li>
+                <li><b>Table</b> + <b>Cell</b> + <b>RowSplitter</b> + <b>ColumnSplitter</b>: Local children inside a table with sizing configuration of rows and columns.</li>
+                <li><b>SharedSizeRoot</b> + <b>SharedSizeItem</b>: Categorize items inside a root, and keep items in the same size if they are in the same category</li>
+                <li><b>Responsive</b> series: Locale children in different ways according to the size of the parent.</li>
+            </ul>
+        </p>
+        <topic>
+            <title>Bounds</title>
+            <p>
+                <sample name="kb_compositions" file="Bounds" image="kb_compositions_bounds.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Stack</title>
+            <p>
+                <sample name="kb_compositions" file="Stack" image="kb_compositions_stack.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Flow</title>
+            <p>
+                <sample name="kb_compositions" file="Flow" image="kb_compositions_flow.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Table</title>
+            <p>
+                <sample name="kb_compositions" file="Table" image="kb_compositions_table.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>SharedSize</title>
+            <p>
+                <sample name="kb_compositions" file="SharedSize" image="kb_compositions_sharedsize.gif"/>
+            </p>
+        </topic>
+        <topic>
+            <title>Responsive series</title>
+            <p>
+                Ribbon:
+            </p>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_ControlTemplate/BlackSkin/UI/FullControlTest/DocumentEditorRibbon.xml" image="kb_compositions_responsive_2.gif"/>
+            </p>
+            <p>
+                Responsive Layout:
+            </p>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Layout/Responsive2/UI/Resource.xml" image="kb_compositions_responsive_2.gif"/>
+            </p>
+        </topic>
+    </topic>
+</article>

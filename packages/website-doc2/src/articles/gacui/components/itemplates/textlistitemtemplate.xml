@@ -1,0 +1,52 @@
+<article index="true">
+    <topic>
+        <title>&lt;TextListItemTemplate&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;TextListItemTemplate/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::templates::GuiTextListItemTemplate*</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;TextListItemTemplate/&gt;</b> derives from <b>&lt;ListItemTemplate/&gt;</b>.
+            It has the following properties additional to its base class:
+        </p>
+        <topic>
+            <title>Input Property</title>
+            <topic>
+                <title>TextColor</title>
+                <p>
+                    This property is assigned by the list control.
+                    It comes from the <b>TextColor</b> property of <b>&lt;TextListTemplate/&gt;</b> that applied to the list control.
+                </p>
+                <p>
+                    The list control does not track the changing of the <b>TextColor</b> property of <b>&lt;TextListTemplate/&gt;</b>.
+                    If it is changed,
+                    <b>TextColor</b> of item templates are not changed automatically.
+                    But when a list control is assigned with a new control template,
+                    <b>TextColor</b> of item templates will be updated as well.
+                </p>
+            </topic>
+            <topic>
+                <title>Checked</title>
+                <p>
+                    This property is assigned by the list control.
+                    When the item is checked,
+                    this property becomes <b>true</b>.
+                    When the item is unchecked,
+                    this property becomes <b>false</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/ColorPicker/UI/Resource.xml" image="kb_itemplates_colorpicker.gif"/>
+            </p>
+        </topic>
+    </topic>
+</article>

@@ -1,0 +1,27 @@
+<control-template-document name="SelectableButtonTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;CheckBox/&gt;</b> and <b>&lt;RadioButton/&gt;</b>.
+      It is also used for the following themes:
+      <ul>
+        <li><b>ListItemBackground</b>: Default item background button, <b>Selected</b> becomes <b>true</b> when an item is selected.</li>
+        <li><b>TreeItemExpander</b>: Default tree item expander, <b>Selected</b> becomes <b>true</b> when an item is expanded.</li>
+        <li><b>CheckTextListItem</b>: Default check list bullet, <b>Selected</b> becomes <b>true</b> when an item is checked.</li>
+        <li><b>RadioTextListItem</b>: Default radio list bullet, <b>Selected</b> becomes <b>true</b> when an item is checked.</li>
+      </ul>
+    </p>
+  </introduction>
+  <inputs>
+    <prop name="Selected">
+      <p>
+        This property becomes <b>true</b> when the button is selected.
+      </p>
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

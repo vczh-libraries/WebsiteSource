@@ -1,0 +1,117 @@
+<reference>
+  <article name="Elements" file="elements/home"/>
+  <article name="Compositions" file="compositions/home">
+    <article name="&lt;Bounds&gt;" file="compositions/bounds"/>
+    <article name="&lt;Stack&gt; and &lt;StackItem&gt;" file="compositions/stack"/>
+    <article name="&lt;Flow&gt; and &lt;Flow&gt;" file="compositions/flow"/>
+    <article name="&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt; and &lt;ColumnSplitter&gt;" file="compositions/table"/>
+    <article name="&lt;RepeatStack&gt; and &lt;RepeatFlow&gt;" file="compositions/repeat"/>
+    <article name="&lt;SharedSizeRoot&gt; and &lt;SharedSizeItem&gt;" file="compositions/sharedsize"/>
+    <article name="&lt;SideAligned&gt;" file="compositions/sidealigned"/>
+    <article name="&lt;PartialView&gt;" file="compositions/partialview"/>
+    <article name="Responsive Design Series" file="compositions/responsive">
+      <article name="&lt;ResponsiveContainer&gt;" file="compositions/responsive_container"/>
+      <article name="&lt;ResponsiveView&gt;" file="compositions/responsive_view">
+        <article name="&lt;ResponsiveFixed&gt;" file="compositions/responsive_fixed"/>
+        <article name="&lt;ResponsiveShared&gt;" file="compositions/responsive_shared"/>
+      </article>
+      <article name="&lt;ResponsiveStack&gt;" file="compositions/responsive_stack"/>
+      <article name="&lt;ResponsiveGroup&gt;" file="compositions/responsive_group"/>
+    </article>
+    <article name="Handling Input Events" file="compositions/events"/>
+  </article>
+  <article name="Controls" file="controls/home">
+    <article name="Basic Controls" file="controls/basic/home">
+      <article name="ControlHost and &lt;Window&gt;" file="controls/basic/window"/>
+      <article name="&lt;CustomControl&gt;" file="controls/basic/customcontrol"/>
+      <article name="&lt;Label&gt;" file="controls/basic/label"/>
+      <article name="&lt;Button&gt;" file="controls/basic/Button"/>
+      <article name="GuiSelectableButton" file="controls/basic/selectableButton"/>
+      <article name="GuiScroll" file="controls/basic/scroll"/>
+      <article name="&lt;DatePicker&gt;" file="controls/basic/datepicker"/>
+      <article name="&lt;DateComboBox&gt;" file="controls/basic/datecombobox"/>
+    </article>
+    <article name="Container Controls" file="controls/container/home">
+      <article name="&lt;GroupBox&gt;" file="controls/container/groupbox"/>
+      <article name="GuiScrollView and &lt;ScrollContainer&gt;" file="controls/container/scrollcontainer"/>
+      <article name="&lt;Tab&gt; and &lt;TabPage&gt;" file="controls/container/tab"/>
+    </article>
+    <article name="Editor Controls" file="controls/editor/home">
+      <article name="Document Editor Controls" file="controls/editor/document">
+        <article name="&lt;DocumentViewer&gt;" file="controls/editor/documentviewer"/>
+        <article name="&lt;DocumentLabel&gt; and &lt;DocumentTextBox&gt;" file="controls/editor/documentlabel"/>
+      </article>
+      <article name="Text Editor Controls" file="controls/editor/text">
+        <article name="&lt;SinglelineTextBox&gt;" file="controls/editor/singlelinetextbox"/>
+        <article name="&lt;MultilineTextBox&gt;" file="controls/editor/multilinetextbox"/>
+        <article name="Colorizer" file="controls/editor/textcolorizer"/>
+        <article name="Auto Complete" file="controls/editor/textautocomplete"/>
+        <article name="Programming Language Service" file="controls/editor/textgrammar"/>
+      </article>
+    </article>
+    <article name="List Controls" file="controls/list/home">
+      <article name="GuiListControl and GuiSelectableListControl" file="controls/list/guilistcontrol"/>
+      <article name="&lt;TextList&gt;" file="controls/list/textlist"/>
+      <article name="&lt;TreeView&gt;" file="controls/list/treeview"/>
+      <article name="&lt;ListView&gt;" file="controls/list/listview"/>
+      <article name="&lt;ComboBox&gt;" file="controls/list/combobox"/>
+      <article name="Bindable List Controls" file="controls/list/bindable">
+        <article name="&lt;BindableTextList&gt;" file="controls/list/bindabletextlist"/>
+        <article name="&lt;BindableTreeView&gt;" file="controls/list/bindabletreeview"/>
+        <article name="&lt;BindableListView&gt;" file="controls/list/bindablelistview"/>
+        <article name="&lt;BindableDataGrid&gt;" file="controls/list/bindabledatagrid">
+          <article name="Column Configuration" file="controls/list/datagrid_column"/>
+          <article name="Filter" file="controls/list/datagrid_filter"/>
+          <article name="Sorter" file="controls/list/datagrid_sorter"/>
+          <article name="Visualizer" file="controls/list/datagrid_visualizer"/>
+          <article name="Editor" file="controls/list/datagrid_editor"/>
+        </article>
+      </article>
+    </article>
+    <article name="Toolstrip Controls" file="controls/toolstrip/home">
+      <article name="&lt;ToolstripButton&gt;" file="controls/toolstrip/toolstripbutton">
+        <article name="Grouping Multiple &lt;ToolstripButton&gt;" file="controls/toolstrip/grouping"/>
+      </article>
+      <article name="&lt;ToolstripMenuBar&gt;" file="controls/toolstrip/toolstripmenubar"/>
+      <article name="&lt;ToolstripMenu&gt;" file="controls/toolstrip/toolstripmenu"/>
+      <article name="&lt;ToolstripToolBar&gt;" file="controls/toolstrip/toolstriptoolbar"/>
+    </article>
+    <article name="Ribbon Controls" file="controls/ribbon/home">
+      <article name="&lt;ToolstripButton&gt;" file="controls/ribbon/toolstripbutton">
+        <article name="Grouping Multiple &lt;ToolstripButton&gt;" file="controls/ribbon/grouping"/>
+      </article>
+      <article name="&lt;RibbonTab&gt;" file="controls/ribbon/tab"/>
+      <article name="&lt;RibbonTabPage&gt;" file="controls/ribbon/tabpage"/>
+      <article name="&lt;RibbonGroup&gt;" file="controls/ribbon/group">
+        <article name="&lt;RibbonSplitter&gt;" file="controls/ribbon/splitter"/>
+        <article name="&lt;RibbonButtons&gt;" file="controls/ribbon/buttons">
+          <article name="&lt;RibbonIconLabel&gt;" file="controls/ribbon/iconlabel"/>
+        </article>
+        <article name="&lt;RibbonToolstrips&gt;" file="controls/ribbon/toolstrips"/>
+        <article name="&lt;BindableRibbonGalleryList&gt;" file="controls/ribbon/gallerylist">
+          <article name="&lt;RibbonToolstripHeader&gt;" file="controls/ribbon/header"/>
+        </article>
+      </article>
+    </article>
+  </article>
+  <article name="Control Templates" file="ctemplates/home">
+    <link pathPrefix="ctemplates" filePrefix="documents/" file="ctemplates/entry.xml"/>
+    <article name="&lt;CommonScrollBehavior&gt;" file="ctemplates/commonscrollbehavior"/>
+    <article name="&lt;CommonScrollViewLook&gt;" file="ctemplates/commonscrollviewlook"/>
+    <article name="&lt;CommonDatePicker&gt;" file="ctemplates/commondatepickerlook"/>
+  </article>
+  <article name="Item Templates" file="itemplates/home">
+    <article name="&lt;ListItemTemplate&gt;" file="itemplates/listitemtemplate"/>
+    <article name="&lt;TextListItemTemplate&gt;" file="itemplates/textlistitemtemplate"/>
+    <article name="&lt;TreeItemTemplate&gt;" file="itemplates/treeitemtemplate"/>
+    <article name="&lt;GridVisualizerTemplate&gt;" file="itemplates/gridvisualizertemplate"/>
+    <article name="&lt;GridEditorTemplate&gt;" file="itemplates/grideditortemplate"/>
+  </article>
+  <article name="Components" file="components/home">
+    <article name="&lt;MessageDialog&gt;" file="components/messagedialog"/>
+    <article name="&lt;ColorDialog&gt;" file="components/colordialog"/>
+    <article name="&lt;FontDialog&gt;" file="components/fontdialog"/>
+    <article name="&lt;OpenFileDialog&gt;" file="components/openfiledialog"/>
+    <article name="&lt;SaveFileDialog&gt;" file="components/savefiledialog"/>
+  </article>
+</reference>

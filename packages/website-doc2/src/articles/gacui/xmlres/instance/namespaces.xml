@@ -1,0 +1,101 @@
+<article>
+    <topic>
+        <title>Namespaces</title>
+        <p>
+            Object types must be registered before using in XML.
+            For <b>GacBuild.ps1</b>,
+            <a href="/home/registered.html">registered types</a> are hardcoded.
+        </p>
+        <p>
+            There are two ways to use your own types in XML:
+            <ul>
+                <li>
+                    Declare your interfaces in <b>&lt;Script/&gt;</b>.
+                    You can implement them in C++ and pass them to <b>&lt;ref.Parameter/Windowgt;</b>.
+                </li>
+                <li>
+                    Declare your classes in <b>&lt;Script/&gt;</b>.
+                    These classes will be immediately available in XML.
+                    Using <a href="/workflow/codegen.html">code generation attributes</a> correctly
+                    and you will be able to implement them in C++.
+                </li>
+                <li>
+                    <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">Register</a> your types in C++,
+                    and either call the <b>GacUI XML Resource</b> compiler defined in <b>GacUICompiler.h</b>,
+                    or guild your own <b>GacGen.exe</b> to replace the on in release for both x86 and x64.
+                </li>
+            </ul>
+        </p>
+        <p>
+            Registered classes are named like <b>presentation::controls::GuiWindow</b>.
+            As described in <a href="/gacui/xmlres/tag_instance.html">&lt;Instance&gt;</a>,
+            the default namespace is
+            <program><code><![CDATA[
+                presentation::controls::GuiWindow;
+                presentation::elements::GuiWindowElement;
+                presentation::compositions::GuiWindowComposition;
+                presentation::compositions::GuiWindow;
+                presentation::templates::GuiWindow;
+                system::Window;
+                system::reflection::Window;
+                presentation::Window;
+                presentation::GuiWindow;
+                presentation::controls::Window;
+                presentation::controls::list::Window;
+                presentation::controls::tree::Window;
+                presentation::elements::Window;
+                presentation::elements::GuiWindow;
+                presentation::elements::text::Window;
+                presentation::compositions::Window;
+                presentation::templates::Window;
+                presentation::theme::Window
+            ]]></code></program>
+            When you write <b>&lt;Window/&gt;</b>,
+            it replaces <b>*</b> by <b>Window</b> in the list and results in:
+            <program><code><![CDATA[
+                presentation::controls::GuiWindow;
+                presentation::elements::GuiWindowElement;
+                presentation::compositions::GuiWindowComposition;
+                presentation::compositions::GuiWindow;
+                presentation::templates::GuiWindow;
+                system::Window;
+                system::reflection::Window;
+                presentation::Window;
+                presentation::GuiWindow;
+                presentation::controls::Window;
+                presentation::controls::list::Window;
+                presentation::controls::tree::Window;
+                presentation::elements::Window;
+                presentation::elements::GuiWindow;
+                presentation::elements::text::Window;
+                presentation::compositions::Window;
+                presentation::templates::Window;
+                presentation::theme::Window
+            ]]></code></program>
+            Now only <b>presentation::controls::GuiWindow</b> exist,
+            so <b>&lt;Window/&gt;</b> is <b>presentation::controls::GuiWindow</b>.
+            An error will be generated if zero or multiple of them exist.
+         </p>
+         <p>
+            For types that are not able to be found in the default namespace,
+            like <b>presentation::controls::GuiSelectableButton::MutexGroupController</b>
+            which is a very useful component to define a group of <b>&lt;RadioButton/&gt;</b>,
+            you need to define your own namespace like:
+            <program><code><![CDATA[
+                <Instance ref.Class="sample::MainWindow" xmlns:x="presentation::controls::GuiSelectableButton::*">
+                  ...
+                </Instance>
+            ]]></code></program>
+            Now <b>&lt;x:MutexGroupController/&gt;</b> becomes available,
+            it is pointing to <b>presentation::controls::GuiSelectableButton::MutexGroupController</b>.
+         </p>
+         <p>
+            <b>xmlns:NAMESPACE</b> only apply to the current <b>&lt;Instance/&gt;</b>.
+         </p>
+         <p>
+            Besides of tag names,
+            <b>NAMESPACE:TYPE</b> is also available in
+            <a href="/gacui/xmlres/instance/properties.html">properties that expect type names as their values</a>.
+         </p>
+    </topic>
+</article>

@@ -1,0 +1,203 @@
+<article index="true">
+    <topic>
+        <title>&lt;BindableDataGrid&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ComboBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableDataGrid*</li>
+                        <li><b>Template Tag</b>: &lt;ListViewTemplate/&gt;</li>
+                        <li><b>Template Name</b>: ListView</li>
+                        <li>
+                            <b>Predefined Item Template</b>:
+                            <ul>
+                                <li><b>SetViewToDefault()</b> (default): list::DefaultDataGridItemTemplate + list::ListViewColumnItemArranger</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;BindableDataGrid/&gt;</b> is an extension to the <b>Detail</b> view of list controls.
+            But since it uses different item templates,
+            the <b>View</b> property will be <b>Unknown</b> by default.
+            You can still switch <b>View</b> to other views (including <b>Detail</b>)
+            and <b>&lt;BindableDataGrid/&gt;</b> will just look like a list view.
+            To re-enable data grid features,
+            just call <b>SetViewToDefault</b> and <b>View</b> will become <b>Unknown</b> again.
+        </p>
+        <topic>
+            <title>DataGrid Features</title>
+            <p>
+                <b>&lt;BindableDataGrid/&gt;</b> provides the following features:
+                <ul>
+                    <li>
+                        <p>
+                            <b>
+                                <a href="/gacui/components/controls/list/datagrid_filter.html">
+                                    Filtering
+                                </a>
+                            </b>:
+                            Each column could be attached a <b>list::IDataFilter</b>,
+                            the data grid itself could be attached a <b>list::IDataFilter</b>,
+                            all filters will be connected together using <b>list::DataAndFilter</b>
+                            which works like the C++ <b>&amp;&amp;</b> operator.
+                        </p>
+                        <p>
+                            There are also <b>list::DataOrFilter</b> and <b>list::DataNotFilter</b>
+                            to help making a complex filter from other filters.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>
+                                <a href="/gacui/components/controls/list/datagrid_sorter.html">
+                                    Sorting
+                                </a>
+                            </b>:
+                            Each column could be attached a <b>list::IDataSorter</b>.
+                            If a column has a sorter,
+                            it is sortable and clicking it will sort data ascendingly, descendingly or cancel the sorting.
+                        </p>
+                        <p>
+                            To sort by column or cancel sorting by code,
+                            you could request the <b>list::IDataGridView</b> view from the <b>ItemProvider</b>,
+                            and there will be <b>IsColumnSortable</b>, <b>SortByColumn</b>, <b>GetSortedColumn</b> and <b>IsSortOrderAscending</b> to help.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>
+                                <a href="/gacui/components/controls/list/datagrid_visualizer.html">
+                                    Visualizer
+                                </a>
+                            </b>:
+                            Each column could be attached a visualizer factory.
+                            There are predefined visualizers:
+                            <ul>
+                                <li>MainColumnVisualizerTemplate</li>
+                                <li>SubColumnVisualizerTemplate</li>
+                                <li>HyperlinkVisualizerTemplate</li>
+                            </ul>
+                            and visualizer decorators:
+                            <ul>
+                                <li>FocusRectangleVisualizerTemplate</li>
+                                <li>CellBorderVisualizerTemplate</li>
+                            </ul>
+                            A visualizer decorator is still a visualizer,
+                            but the data grid control will install other visualizer inside its <b>ContainerComposition</b>.
+                        </p>
+                        <p>
+                            The default visualizer factory for cells in the first column is:
+                            <b>
+                                MainColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
+                            </b>
+                        </p>
+                        <p>
+                            The default visualizer factory for cells in the other columns is:
+                            <b>
+                                SubColumnVisualizerTemplate;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate
+                            </b>
+                        </p>
+                        <p>
+                            It is recommended to use
+                            <b>YOUR_VISUALIZER;FocusRectangleVisualizerTemplate;CellBorderVisualizerTemplate</b>
+                            so that a cell automatically renders a focus rectangle and a border
+                            just like other cells.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <b>
+                                <a href="/gacui/components/controls/list/datagrid_editor.html">
+                                    Editor
+                                </a>
+                            </b>:
+                            Each column could be attached an editor factory.
+                            If a column has an editor,
+                            clicking any cell in this column will activate the editor.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Tutorial Project</title>
+            <p>
+                Please check out
+                <a href="/gacui/xmlres/instance/properties.html#-BindableDataGrid-column-properties">
+                    this page
+                </a>
+                about GacUI XML Resource syntax for properties mentioned above.
+            </p>
+            <p>
+                Please also checkout
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/DataGrid/UI/Resource.xml">
+                    this tutorial project
+                </a>
+                about using <b>&lt;BindableDataGrid/&gt;</b> features.
+                This project customizes visualizers and editors for different data types,
+                defines sorters for each column,
+                and even implements a data filter in a column drop down.
+            </p>
+        </topic>
+        <topic>
+            <title>Step-by-Step Sample</title>
+            <p>
+                <a href="https://github.com/vczh-libraries/Release/blob/master/SampleForDoc/GacUI/XmlRes/control_datagrid_base/Resource.xml">
+                    control_datagrid_base
+                </a>
+                is a sample for using <b>&lt;BindableDataGrid/&gt;</b>.
+                It defines a window base class containing a data grid,
+                exposing all <b>&lt;DataColumn/&gt;</b> for derived window classes to add more configuration.
+            </p>
+            <p>
+                By specifying <b>control_datagrid_base;control_datagrid_plaintext</b> in the
+                <a href="https://github.com/vczh-libraries/Release/tree/master/SampleForDoc/GacUI/RunResource">
+                    RunResource
+                </a>
+                command line argument,
+                you could run this sample without any data grid feature enabled for a baseline.
+            </p>
+            <p>
+                <b>control_datagrid_base</b> is porting from <b>control_list_listview_bindable</b>,
+                it is very easy to find all changes:
+                <ul>
+                    <li><b>&lt;BindableListView/&gt;</b> is replaced by <b>&lt;BindableListView/&gt;</b>.</li>
+                    <li><b>&lt;ListViewColumn/&gt;</b> is replaced by <b>&lt;DataColumn/&gt;</b>, each column is given a <b>ref.Name</b>.</li>
+                    <li>Adding <b>ValueProperty</b> for each column.</li>
+                    <li>The <b>SelectedItem</b> property is replaced by <b>SelectedRowValue</b>.</li>
+                    <li>Handling <b>SelectedCellChanged</b> instead of <b>SelectionChanged</b>.</li>
+                    <li>The combo box for changing view is removed.</li>
+                </ul>
+                It is very straightforward to move your application from list view to data grid.
+            </p>
+            <p>
+                In <b>control_datagrid_plaintext</b> there is almost nothing,
+                it just creates a <b>sample::MainWindow</b> inheriting from <b>sample::DataGridWindowBase</b>.
+                In order to reference types created in another resource,
+                <b>GacGenConfig/Metadata</b> is required in the GacUI XML Resource.
+                Please check out
+                <a href="/gacui/xmlres/cgc.html">
+                    Code Generation Configuration
+                </a>
+                and
+                <a href="/gacui/xmlres/cxrr.html">
+                    Cross XML Resource References
+                </a>
+                for details.
+            </p>
+            <p>
+                In the following feature document pages,
+                different <b>&lt;DataColumn/&gt;</b> features will be demonstrated
+                by creating different derived window class
+                to add configuration to columns.
+            </p>
+            <p>
+                <sample name="control_datagrid_plaintext"/>
+            </p>
+        </topic>
+    </topic>
+</article>

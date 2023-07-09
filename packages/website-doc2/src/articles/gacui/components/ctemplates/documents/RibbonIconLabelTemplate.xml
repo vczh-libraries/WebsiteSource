@@ -1,0 +1,32 @@
+<control-template-document name="RibbonIconLabelTemplate">
+  <introduction>
+    <p>
+      This control template is for the <b>RibbonIconLabel</b> and the <b>RibbonSmallIconLabel</b> theme.
+      Typically,
+      the title of the control is required to render for <b>RibbonSmallIconLabel</b>,
+      and it is required to not render for <b>RibbonIconLabel</b>,
+      which makes <b>RibbonIconLabel</b> smaller than <b>RibbonSmallIconLabel</b> in size.
+    </p>
+    <p>
+      When <b>&lt;RibbonIconLabel/&gt;</b> is put inside a <b>&lt;RibbonRibbons/&gt;</b>,
+      the control template of <b>&lt;RibbonIconLabel/&gt;</b> will be changed when space become larger or smaller.
+    </p>
+    <p>
+      The <b>ContainerComposition</b> property must be set to contain objects,
+      which are typically behind the icon and the title.
+    </p>
+  </introduction>
+  <inputs>
+    <prop name="Image">
+      <p>
+        This property defines the icon for the control.
+      </p>
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

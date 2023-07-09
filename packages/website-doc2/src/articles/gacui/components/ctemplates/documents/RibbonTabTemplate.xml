@@ -1,0 +1,38 @@
+<control-template-document name="RibbonTabTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;RibbonTab/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="BeforeHeadersContainer">
+      <p>
+        This property defines a container put before tab page headers in the visual order.
+        When objects are put in the <b>BeforeHeaders</b> property of the ribbon tab control,
+        they will show up in this container.
+      </p>
+      <p>
+        If this property is <b>null</b>,
+        objects in <b>BeforeHeaders</b> are invisible.
+      </p>
+    </prop>
+
+    <prop name="AfterHeadersContainer">
+      <p>
+        This property defines a container put after tab page headers in the visual order.
+        When objects are put in the <b>AfterHeaders</b> property of the ribbon tab control,
+        they will show up in this container.
+      </p>
+      <p>
+        If this property is <b>null</b>,
+        objects in <b>AfterHeaders</b> are invisible.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

@@ -1,0 +1,555 @@
+<article index="true">
+    <topic>
+        <title>Data Bindings</title>
+        <p>
+            A data binding expressions <b>bind(EXPR)</b> observes the changing of <b>EXPR</b>
+            by attaching callbacks to all involved events that are associated with properties.
+        </p>
+        <topic>
+            <title>Defining a data binding</title>
+            <p>
+                When we say property <b>A</b> is associated with event <b>AChanged</b>,
+                it means that the property must be declared in one of the following ways:
+                <ul>
+                    <li><b>prop A: Type {}</b></li>
+                    <li><b>prop A: Type {const}</b></li>
+                    <li><b>prop A: Type {getter, AChanged}</b></li>
+                    <li><b>prop A: Type {getter, setter, AChanged}</b></li>
+                </ul>
+            </p>
+            <p>
+                <b>bind</b> and <b>this</b> are not allowed in <b>bind</b>,
+                unless they are in a function body of a lambda expression or a new interface expression inside <b>bind</b>.
+            </p>
+            <p>
+                Any event that is associated with properties that
+                are used in a function body of a lambda expression or a new interface expressions
+                will not be observed.
+            </p>
+            <p>
+                Properties that need to be observed
+                must be written in <b>EXPR.PROP</b>.
+                For example:
+                <program><code><![CDATA[
+                    class C
+                    {
+                        prop A: int = 0; {}
+
+                        new()
+                        {
+                            var x = bind(A + 1);
+                            var self = this;
+                            var y = bind(self.A + 1);
+                        }
+                    }
+                ]]></code></program>
+                <ul>
+                    <li><b>x</b> doesn't observe <b>A</b>, because it is not in the <b>EXPR.PROP</b> form.</li>
+                    <li><b>y</b> observes <b>A</b>, but since <b>this</b> is not allowed in <b>bind</b>, it needs to be stored in a variable.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Listening to a data binding</title>
+            <p>
+                A <b>bind</b> expression returns <b>system::Subscription^</b>.
+            </p>
+            <p>
+                The <b>Open</b> method needs to be called before the observation takes effect.
+            </p>
+            <p>
+                The <b>Close</b> method needs to be called when the observation is no longer needed.
+            </p>
+            <p>
+                <b>ValueChanged</b> is called when observed events are triggered.
+            </p>
+            <p>
+                When a subscription observes some objects,
+                the reference of this subscription is captured by event handlers that are attached on properties,
+                and these objects are also stored in this subscription because <b>detach</b> needs to be called later,
+                which makes cycle referencing.
+            </p>
+            <p>
+                By calling <b>Close</b>,
+                these cycle referencing are removed,
+                so that memory leaks don't happen.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Numbers
+                    {
+                        prop A: int = 0 {}
+                        prop B: int = 0 {}
+                        prop C: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var numbers = new Numbers^();
+                        var sub = bind(numbers.A + numbers.B + numbers.C);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        numbers.A = 1;
+                        numbers.B = 2;
+                        numbers.C = 3;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"1; 3; 6; "</b>,
+                because by assigning to properties,
+                <b>AChanged</b>, <b>BChanged</b> and <b>CChanged</b> are all triggered,
+                so the <b>bind</b> expression observes 3 changes,
+                and the callback is executed 3 times.
+            </p>
+        </topic>
+        <topic>
+            <title>Observing property chains</title>
+            <p>
+                Property chains are also observable,
+                all related events will be attached.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class ClassA
+                    {
+                        prop B: ClassB^ = new ClassB^() {}
+                    }
+
+                    class ClassB
+                    {
+                        prop C: ClassC^ = new ClassC^() {}
+                    }
+
+                    class ClassC
+                    {
+                        prop X: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var a = new ClassA^();
+                        var sub = bind(a.B.C.X);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        {
+                            a.B.C.X = 100;
+                        }
+                        {
+                            var c = new ClassC^();
+                            c.X = 200;
+                            a.B.C = c;
+                        }
+                        {
+                            var b = new ClassB^();
+                            b.C.X = 300;
+                            a.B = b;
+                        }
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"100; 200; 300; "</b>,
+                because assigned to <b>a.B</b>, <b>a.B.C</b> and <b>a.B.C.X</b> all trigger attached events.
+            </p>
+        </topic>
+        <topic>
+            <title>Capturing values</title>
+            <p>
+                Values captured in <b>bind</b> expressions just like lambda expressions and new interface expressions,
+                they are shallow copied.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Numbers
+                    {
+                        prop A: int = 0 {}
+                        prop B: int = 0 {}
+                        prop C: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var init = 0;
+                        var numbers = new Numbers^();
+                        var sub = bind(init + numbers.A + numbers.B + numbers.C);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        init = 100;
+                        numbers.A = 1;
+                        init = 200;
+                        numbers.B = 2;
+                        init = 300;
+                        numbers.C = 3;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"1; 3; 6; "</b>,
+                because the change of <b>init</b> is not visible in <b>bind</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Using unobservable properties</title>
+            <p>
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Numbers
+                    {
+                        prop A: int = 0 {not observe}
+                        prop B: int = 0 {not observe}
+                        prop C: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var numbers = new Numbers^();
+                        var sub = bind(numbers.A + numbers.B + numbers.C);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        numbers.A = 1;
+                        numbers.B = 2;
+                        numbers.C = 3;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"6; "</b>,
+                because <b>A</b> and <b>B</b> is not observable,
+                the callback is triggered only when <b>C</b> is changed.
+            </p>
+            <p>
+                But we can manually trigger the callback by calling <b>Update</b>:
+                <program><code><![CDATA[
+                    numbers.A = 1;
+                    sub.Update();
+                    numbers.B = 2;
+                    sub.Update();
+                    numbers.C = 3;
+                ]]></code></program>
+                Not it returns <b>"1; 3; 6; "</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Be carefule about unobservable properties in property chains</title>
+            <p>
+                Objects that own observed properties will be stored inside <b>bind</b>,
+                because <b>detach</b> needs to be called.
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class ClassA
+                    {
+                        prop B: ClassB^ = new ClassB^() {not observe}
+                    }
+
+                    class ClassB
+                    {
+                        prop C: ClassC^ = new ClassC^() {not observe}
+                    }
+
+                    class ClassC
+                    {
+                        prop X: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var a = new ClassA^();
+                        var sub = bind(a.B.C.X);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        var oldC = a.B.C;
+                        {
+                            a.B.C.X = 100;
+                        }
+                        {
+                            var c = new ClassC^();
+                            c.X = 200;
+                            a.B.C = c;
+                        }
+                        {
+                            var b = new ClassB^();
+                            b.C.X = 300;
+                            a.B = b;
+                        }
+                        oldC.X = 400;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"100; 400; "</b>.
+            </p>
+            <p>
+                <b>a.B</b> and <b>a.B.C</b> is not observable,
+                so assigning to them don't trigger the callback.
+            </p>
+            <p>
+                But when <b>oldC.X = 400;</b> is called,
+                the callback is triggered with <b>400</b>,
+                which is obviously not the actually value of <b>a.B.C.X</b> that is specified in <b>bind</b>.
+            </p>
+            <p>
+                Because <b>a.B.C</b> is cached.
+            </p>
+            <p>
+                <b>a.B</b> and <b>a.B.C</b> is not observable,
+                so when we write <b>bind(a.B.C.X)</b>,
+                it is actually <b>let cachedObject = a.B.C in (bind(cachedObject.X))</b>.
+            </p>
+            <p>
+                When <b>a.B</b> becomes observable but <b>a.B.C</b> still not,
+                <b>a.B.C</b> will be updated when <b>a.B</b> is changed.
+                If <b>a.B</b> is not changed when <b>a.B.C</b> is reassigned,
+                the evaluation of the observed expression is still using the old previous <b>a.B.C</b> value.
+            </p>
+            <p>
+                In the previous example,
+                remove <b>not observe</b> in <b>prop B</b>,
+                and change some code between <b>sub.Open()</b> and <b>sub.Close</b> like this:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class ClassA
+                    {
+                        prop B: ClassB^ = new ClassB^() {}
+                    }
+
+                    class ClassB
+                    {
+                        prop C: ClassC^ = new ClassC^() {not observe}
+                    }
+
+                    class ClassC
+                    {
+                        prop X: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var a = new ClassA^();
+                        var sub = bind(a.B.C.X);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        {
+                            var b = new ClassB^();
+                            b.C.X = 100;
+                            a.B = b;
+                        }
+                        {
+                            a.B.C.X = 200;
+                        }
+                        var oldC = a.B.C;
+                        {
+                            var c = new ClassC^();
+                            c.X = 300;
+                            a.B.C = c;
+                        }
+                        oldC.X = 400;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"100; 200; 400; "</b>.
+            </p>
+            <p>
+                Changing <b>a.B.C</b> doesn't trigger the event,
+                because <b>C</b> is not observable.
+            </p>
+            <p>
+                Changing <b>oldC.X</b> triggers the event,
+                because the previous <b>a.B.C</b> is cached in the subscription
+                even after <b>a.B.C</b> is changed.
+                So it doesn't actually evaluate <b>a.B.C.X</b>.
+                Instead, it evaluate <b>oldC.X</b>.
+            </p>
+            <p>
+                But if we change <b>a.B</b> again,
+                the cached <b>ClassC^</b> object will be refreshed,
+                and it is not <b>oldC</b> anymore.
+            </p>
+        </topic>
+        <topic>
+            <title>A ? B : C</title>
+            <p>
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Cond
+                    {
+                        prop Value: bool = false {}
+                    }
+
+                    class Int
+                    {
+                        prop Value: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var c = new Cond^();
+                        var a = new Int^();
+                        var b = new Int^();
+                        var sub = bind(c.Value ? a.Value : b.Value);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        c.Value = true;
+                        a.Value = 100;
+                        b.Value = 200;
+                        c.Value = false;
+                        a.Value = 300;
+                        b.Value = 400;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"0; 100; 100; 200; 200; 400; "</b>.
+            </p>
+            <p>
+                Even if <b>a</b> and <b>b</b> are in different branches of the if-expression,
+                their events are all attached.
+                When <b>a.Value</b> or <b>b.Value</b> is changed,
+                even if it is not involved in evaluation,
+                it still triggers the callback.
+            </p>
+            <p>
+                If there are property chains in branches of an if-expression,
+                all <b>attach</b> and <b>detach</b> will happen when up-stream properties are changed,
+                caching of objects that own observable properties are evaluated,
+                related property getters will are called,
+                regardless of what is evaluated from the condition expression.
+            </p>
+            <p>
+                Let's see a more complex example:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class Cond
+                    {
+                        prop Value: bool = false {}
+                    }
+
+                    class Holder
+                    {
+                        prop Value: Int^ = new Int^() {}
+                    }
+
+                    class Int
+                    {
+                        prop Value: int = 0 {}
+                    }
+
+                    func main(): string
+                    {
+                        var c = new Cond^();
+                        var a = new Holder^();
+                        var b = new Holder^();
+                        var sub = bind((c.Value ? a.Value : b.Value).Value);
+
+                        var r = {""};
+                        attach(sub.ValueChanged, func(newValue: object): void
+                        {
+                            r[0] = $"$(r[0])$(cast int newValue); ";
+                        });
+                        sub.Open();
+
+                        c.Value = true;
+                        a.Value.Value = 100;
+                        b.Value.Value = 200;
+                        c.Value = false;
+                        a.Value.Value = 300;
+                        b.Value.Value = 400;
+
+                        sub.Close();
+                        return r[0];
+                    }
+                ]]></code></program>
+                This function returns <b>"0; 100; 200; 400; "</b>.
+            </p>
+            <p>
+                When <b>c.Value = true;</b> is executed,
+                <b>0;</b> is printed.
+                <b>(c.Value ? a.Value : b.Value)</b> becomes <b>a.Value</b>,
+                so <b>a.Value.ValueChanged</b> is attached,
+                <b>b.Value.ValueChanged</b> is detached.
+            </p>
+            <p>
+                When <b>a.Value.Value = 100;</b> is executed,
+                <b>100;</b> is printed, obviously.
+            </p>
+            <p>
+                When <b>b.Value.Value = 200;</b> is executed,
+                nothing happens,
+                because <b>b.Value.ValueChanged</b> has already been detached.
+            </p>
+            <p>
+                When <b>c.Value = false;</b> is executed,
+                <b>200;</b> is printed.
+                <b>(c.Value ? a.Value : b.Value)</b> becomes <b>b.Value</b>,
+                so <b>a.Value.ValueChanged</b> is detached,
+                <b>b.Value.ValueChanged</b> is attached.
+            </p>
+            <p>
+                When <b>a.Value.Value = 300;</b> is executed,
+                nothing happens,
+                because <b>a.Value.ValueChanged</b> has already been detached.
+            </p>
+            <p>
+                When <b>b.Value.Value = 400;</b> is executed,
+                <b>400;</b> is printed, obviously.
+            </p>
+        </topic>
+    </topic>
+</article>

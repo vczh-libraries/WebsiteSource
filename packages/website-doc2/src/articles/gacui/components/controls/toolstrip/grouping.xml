@@ -1,0 +1,115 @@
+<article index="true">
+    <topic>
+        <title>Grouping Multiple &lt;ToolstripButton&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiControl*</li>
+                <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                <li>
+                    <b>&lt;MenuSplitter/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: MenuSplitter</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ToolstripSplitter/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripSplitter</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ToolstripGroupContainer/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripGroupContainer*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;ToolstripGroup/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripGroup*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            All toolstrip button containers have a <b>ToolstripItems</b> property.
+            This property is the default property for them in GacUI XML Resource,
+            which means direct child controls inside these containers are all added to this property.
+        </p>
+        <p>
+            Invisible toolstrip items in <b>ToolstripItems</b> are not rendered and take zero space,
+            but they are in the toolstrip button container.
+        </p>
+        <p>
+            Predefined toolstrip button containers are:
+            <ul>
+                <li><b>&lt;ToolstripMenu/&gt;</b></li>
+                <li><b>&lt;ToolstripMenuBar/&gt;</b></li>
+                <li><b>&lt;ToolstripToolBar/&gt;</b></li>
+                <li><b>&lt;ToolstripGroupContainer/&gt;</b></li>
+                <li><b>&lt;ToolstripGroup/&gt;</b></li>
+            </ul>
+            Recommended controls in these containers are:
+            <ul>
+                <li><b>&lt;ToolstripButton/&gt;</b> or proper virtual controls</li>
+                <li><b>&lt;ToolstripGroupContainer/&gt;</b></li>
+                <li><b>&lt;ToolstripGroup/&gt;</b></li>
+            </ul>
+        </p>
+        <p>
+            A <b>&lt;ToolstripGroup/&gt;</b> organizes toolstrip items horizontally or vertically
+            according to which toolstrip button container it is in.
+        </p>
+        <p>
+            A <b>&lt;ToolstripGroupContainer/&gt;</b> organizes toolstrip items horizontally or vertically
+            according to which toolstrip button container it is in.
+            It will choose a proper theme to create splitters between items,
+            unless <b>SplitterTemplate</b> is assigned.
+        </p>
+        <p>
+            When a toolstrip button is put inside a toolstrip button container,
+            their relation is built,
+            and features are automatically available,
+            like <b>ALT</b> sequence handling,
+            or open sub menu when moving the mouse cursor
+            while a ancestor toolstrip button is clicked and activated.
+        </p>
+        <p>
+            So it doesn't need to worry about how a toolstrip button is put inside a toolstrip button container.
+            For example,
+            you could wrap a toolstrip button in an item template,
+            and assign this item template to a <b>&lt;RepeatFlow/&gt;</b> inside a <b>&lt;CustomControl/&gt;</b>,
+            and finally add the <b>&lt;CustomControl/&gt;</b> to the <b>ToolstripItems</b> property
+            of a toolstrip button container
+            (in GacUI XML Resource you don't need to use <b>ToolstripItems</b> explicitly).
+            Now you created a bindable menu item list in a menu!
+        </p>
+        <p>
+            <b>IMPORTANT</b>:
+            <b>&lt;ToolstripGroupContainer/&gt;</b> will always create splitters no matter
+            whether some toolstrip items are visible or invisible.
+            When there is an item in <b>&lt;ToolstripGroupContainer/&gt;</b>
+            that consist only bindable menu item list,
+            you need to remove it from <b>&lt;ToolstripGroupContainer/&gt;</b> if it contains no item,
+            just setting its <b>Visible</b> to <b>false</b> doesn't work.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_toolstrip_menu_binding"/>
+            </p>
+        </topic>
+    </topic>
+</article>

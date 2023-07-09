@@ -14,7 +14,7 @@ import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
 import { DirectoryInfo, views } from './views';
 
-const pathPrefix = `/doc/current`;
+const pathPrefix = `/doc/ver1`;
 
 const router = createRouter<MvcRouterResult>(pathPrefix);
 registerFolder(router, path.join(__dirname, `./dist`));

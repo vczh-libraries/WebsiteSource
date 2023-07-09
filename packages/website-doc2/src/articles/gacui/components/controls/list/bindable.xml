@@ -1,0 +1,139 @@
+<article index="true">
+    <topic>
+        <title>Bindable List Controls</title>
+        <p>
+            Instead of using a certain fixed type for items in a certain list control,
+            bindable list controls allow items to be any class or interface type.
+        </p>
+        <topic>
+            <title>ItemSource property</title>
+            <p>
+                All bindable list controls have a <b>ItemSource</b> property.
+                This property could be any collection type.
+                But if it is an <b>observe T[]</b>,
+                or <b>Ptr&lt;IValueObservableList&gt;</b> in C++,
+                the bindable list control will keep itself always sync to the collection.
+            </p>
+            <p>
+                Creating a <b>Ptr&lt;IValueObservableList&gt;</b> in C++ is easy.
+                Use <b>vl::collections::ObservableList&lt;T&gt;</b> instead of <b>vl::collections::List&lt;T&gt;</b>,
+                you can get a <b>Ptr&lt;IValueObservableList&gt;</b> by calling the <b>GetWrapper</b> method.
+            </p>
+        </topic>
+        <topic>
+            <title>Property and Writable Property</title>
+            <p>
+                After assigning a collection to a bindable list control,
+                you also needs to teach the control how to read/write your item object.
+            </p>
+            <p>
+                For the most common cases,
+                if a property in items in <b>ItemSource</b> is exactly what you need,
+                for example a <b>Name</b> property returning <b>string</b> in <b>YOUR_ITEM_CLASS</b>
+                will be displayed directly in a <b>&lt;BindableTextList/&gt;</b>,
+                just write the property name in the XML for <b>TextProperty</b> like:
+                <program>
+                    <code><![CDATA[
+                      <BindableTextList env.ItemType="YOUR_ITEM_CLASS^" ...>
+                        <att.TextProperty>Name</att.TextProperty>
+                        <att.ItemSource-eval>COLLECTION_CONTAINING_MANY_YOUR_ITEM_CLASS</att.ItemSource-eval>
+                        ...
+                      </BindableTextList>
+                    ]]></code>
+                </program>
+            </p>
+            <p>
+                By doing this,
+                <b>&lt;BindableTextList/&gt;</b> will read the <b>Name</b> property
+                in all <b>YOUR_CLASS_CLASS</b> in its <b>ItemSource</b>,
+                and shows all names in the list control.
+                <b>IMPORTANT</b>:
+                If there are items in <b>ItemSource</b> that is not <b>YOUR_ITEM_CLASS</b>,
+                which is specified in <b>env.ItemType</b>,
+                it will crash.
+            </p>
+            <p>
+                <b>env.ItemType</b> and <b>env.ItemName</b> can be put in any tag inside <b>&lt;Instance/&gt;</b>.
+                These attributes only control how to interpret the string for <b>Property and Writable Property</b>.
+                In this case they control what does <b>Name</b> mean for <b>TextProperty</b>:
+            </p>
+            <p>
+                assume all items in <b>ItemSource</b> is or inherits from <b>YOUR_ITEM_CLASS</b>,
+                <ul>
+                    <li>call <b>(case (YOUR_ITEM_CLASS^) item).GetName()</b> if <b>Name</b> is a property.</li>
+                    <li>call <b>(case (YOUR_ITEM_CLASS^) item).Name</b> if <b>Name</b> is a field.</li>
+                </ul>
+            </p>
+            <p>
+                Different bindable list controls have different requirements.
+                For example,
+                <b>&lt;BindableTextList/&gt;</b> has <b>TextProperty</b> and <b>CheckedProperty</b> properties.
+                <b>TextProperty</b> is a
+                <a href="/gacui/xmlres/instance/properties.html#Property-Name-func-data-Object-PROPERTY-TYPE">
+                    readable property
+                </a>,
+                which means the control will read a text from an item.
+                <b>CheckedProperty</b> is a
+                <a href="/gacui/xmlres/instance/properties.html#Writable-Property-Name-func-data-Object-value-PROPERTY-TYPE-isWrite-bool-PROPERTY-TYPE">
+                    writable property
+                </a>,
+                which means the control will not only read a checked mark from an item,
+                it will also set a checked mark to an item.
+            </p>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Controls/ColorPicker/UI/Resource.xml">
+                    this tutorial project
+                </a>
+                for details about using <b>TextProperty</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Updating Items</title>
+            <p>
+                If <b>ItemSource</b> is an observable collection,
+                when you add an item to the collection,
+                or remove an item from the collection,
+                or replace an item in the collection,
+                the list control will know and show the latest result.
+                But changing properties in items will not trigger refreshing the list control,
+                because <b>Property and Write Property are not data binding</b>.
+            </p>
+            <p>
+                When data in an item is modified,
+                there are 3 ways to notify the list control:
+                <ul>
+                    <li>
+                        When using <b>vl::collections::ObservableList&lt;T&gt;</b>,
+                        call <b>NotifyUpdate</b> to notify the list control.
+                        This method accepts a range of indices,
+                        all items in that range will be treated like they are changed.
+                    </li>
+                    <li>
+                        Trigger the <b>IValueObservableList::ItemChanged</b> event to notify the list control.
+                        When data in items are modified,
+                        it means there is no adding to or removing from the collection,
+                        so always keep the second and the third argument having the same value.
+                        This event accepts a range of indices,
+                        all items in that range will be treated like they are changed.
+                    </li>
+                    <li>
+                        When using <b>vl::collections::ObservableList&lt;T&gt;</b>,
+                        or when the observable collection is created using <b>Workflow</b> script,
+                        replacing an item with itself also notify the list control.
+                    </li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>ItemTemplate Property</title>
+            <p>
+                Item objects in <b>ItemSource</b> will be used to create instances from <b>ItemTemplate</b>.
+                Some properties of the item template will be assigned to values
+                that are read from the item object using <b>Property and Writable Property</b>.
+                But since the item template already knows the item object,
+                it could read from the object directly.
+            </p>
+        </topic>
+    </topic>
+</article>

@@ -1,0 +1,94 @@
+<article>
+    <topic>
+        <title>API References for GacUI</title>
+        <topic>
+            <title>Resources</title>
+            <p>
+                <ul>
+                    <li><a href="/gacui/running.html">Tutorial</a>: build your first GacUI application.</li>
+                    <li><a href="/home/download.html">Download</a>: download this library.</li>
+                </ul>
+            </p>
+            <p>
+                If you don't need runtime reflection on C++ classes,
+                it is recommended to add <b>VCZH_DEBUG_NO_REFLECTION</b> to <a href="https://docs.microsoft.com/en-us/cpp/build/reference/d-preprocessor-definitions">preprocessor definitions</a>.
+                By doing this, unnecessary code are eliminated, which significantly reduces both executable size and object sizes, and improves performance.
+            </p>
+        </topic>
+        <topic>
+            <title>Source Files for GacUI</title>
+            <topic>
+                <title>for typical GacUI applications</title>
+                <p>
+                    <ul>
+                        <li><b>GacUI.h</b> and <b>GacUI.cpp</b></li>
+                        <li><b>GacUIWindows.h</b> and <b>GacUIWindows.cpp</b></li>
+                        <li><b>DarkSkin.h</b> and <b>DarkSkin.cpp</b></li>
+                    </ul>
+                </p>
+                <p>
+                    It is highly recommended to use generated C++ code from GacUI XML resource compiled using <b>GacBuild.ps1</b> (see the <a href="/gacui/running.html">tutorial</a>).
+                    By not using reflection, it reduces about 90% of the execution size, which significantly improves performance.
+                </p>
+            </topic>
+            <topic>
+                <title>for loading compiled GacUI XML resource without using generated C++ code</title>
+                <p>
+                    <ul>
+                        <li>(all source files above)</li>
+                        <li><b>GacUIReflection.h</b> and <b>GacUIReflection.cpp</b></li>
+                        <li><b>DarkSkinReflection.h</b> and <b>DarkSkinReflection.cpp</b></li>
+                    </ul>
+                </p>
+                <p>
+                    If you need to dynamically load UI from other sources,
+                    reflection is always needed because classes for windows and controls are generated using Workflow script.
+                    After compiling, they are stores in multiple binary files (or in memory) for different platforms.
+                </p>
+            </topic>
+            <topic>
+                <title>for compileing GacUI XML resource at runtime</title>
+                <p>
+                    <ul>
+                        <li>(all source files above)</li>
+                        <li><b>GacUICompiler.h</b> and <b>GacUICompiler.cpp</b></li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Dependencies</title>
+            <topic>
+                <title>for typical GacUI applications</title>
+                <p>
+                    <ul>
+                        <li><b>Vlpp.h</b> and <b>Vlpp.cpp</b></li>
+                        <li><b>VlppOS.h</b> and <b>VlppOS.cpp</b></li>
+                        <li><b>VlppRegex.h</b> and <b>VlppRegex.cpp</b></li>
+                        <li><b>VlppReflection.h</b> and <b>VlppReflection.cpp</b></li>
+                        <li><b>VlppParser.h</b> and <b>VlppParser.cpp</b></li>
+                        <li><b>VlppWorkflowCompiler.h</b> and <b>VlppWorkflowCompiler.cpp</b></li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>for loading compiled GacUI XML resource without using generated C++ code</title>
+                <p>
+                    <ul>
+                        <li>(all source files above)</li>
+                        <li><b>VlppWorkflowRuntime.h</b> and <b>VlppWorkflowRuntime.cpp</b></li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>for compileing GacUI XML resource at runtime</title>
+                <p>
+                    <ul>
+                        <li>(all source files above)</li>
+                        <li><b>VlppWorkflowCompiler.h</b> and <b>VlppWorkflowCompiler.cpp</b></li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

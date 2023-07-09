@@ -1,0 +1,63 @@
+<article index="true">
+    <topic>
+        <title>&lt;ColorDialog&gt;</title>
+        <p>
+            <b>&lt;ColorDialog/&gt;</b> displays a OS native color dialog.
+        </p>
+        <topic>
+            <title>Input / Output Properties</title>
+            <p>
+                Set these properties before calling <b>ShowDialog</b> to create a default user input.
+                These properties will be changed after calling <b>ShowDialog</b> if the user change the default input.
+            </p>
+            <topic>
+                <title>SelectedColor</title>
+                <p>
+                    This property defines the selected color.
+                    If <b>ShowDialog</b> returns <b>false</b>,
+                    the value of this property is undefined.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Input Properties</title>
+            <p>
+                Set these properties before calling <b>ShowDialog</b> to define the content of the dialog.
+            </p>
+            <topic>
+                <title>EnabledCustomColor</title>
+                <p>
+                    Set this property to <b>true</b> to enable an extended area,
+                    allowing the user to choose a color that is not in the predefined color list.
+                </p>
+            </topic>
+            <topic>
+                <title>OpenedCustomColor</title>
+                <p>
+                    Set this property to <b>true</b> to display the custom color area by default.
+                    Otherwise the area is collapsed,
+                    but the user could still open it in the dialog.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>ShowDialog Method</title>
+            <p>
+                Call this function to display a dialog,
+                and return <b>true</b> if a color is selected.
+            </p>
+        </topic>
+        <topic>
+            <title>Output Properties</title>
+            <p>
+                Read these properties after calling <b>ShowDialog</b> for user input.
+            </p>
+            <topic>
+                <title>CustomColors</title>
+                <p>
+                    This property returns all colors in the custom color area.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

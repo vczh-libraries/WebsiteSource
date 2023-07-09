@@ -1,0 +1,57 @@
+<article index="true">
+    <topic>
+        <title>&lt;BindableTreeView&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;BindableTreeView/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiBindableTreeView*</li>
+                        <li><b>Template Tag</b>: &lt;TreeViewTemplate/&gt;</li>
+                        <li><b>Template Name</b>: TreeView</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;BindableTreeView/&gt;</b> is very simlar to <b>&lt;TreeView/&gt;</b>,
+            but it accepts any classes or interfaces instead of just <b>tree::TreeViewItem</b> in <b>tree::MemoryNodeProvider</b>.
+        </p>
+        <p>
+            <b>IMPORTANT</b>:
+            Unlike other list controls,
+            the <b>ItemSource</b> in <b>&lt;BindableTreeView/&gt;</b> accepts an root node object,
+            instead of a collection of nodes.
+            The type of the root node object is expected to be what is specified in <b>env.ItemType</b> or any of its sub classes or interfaces.
+        </p>
+        <p>
+            The <b>SelectedItem (SelectionChanged)</b> property returns the selected item in <b>ItemSource</b>.
+            But if no item is selected,
+            or multiple items are selected,
+            it returns <b>null</b>.
+        </p>
+        <p>
+            <b>TextProperty (TextPropertyChanged)</b> defines a readable property in an item,
+            to replace <b>tree::TreeViewItem::text</b>.
+        </p>
+        <p>
+            <b>ImageProperty (ImagePropertyChanged)</b> defines a readable property in an item,
+            to replace <b>tree::TreeViewItem::image</b>.
+        </p>
+        <p>
+            <b>ChildrenProperty (ChildrenPropertyChanged)</b> defines a readable property in an item,
+            to replace <b>tree::MemoryNodeProvider::Children</b>.
+            If it reads a observable collection out of an item,
+            data binding applies.
+            In this case,
+            when this observable collection is changed,
+            <b>&lt;BindableTreeView/&gt;</b> knows that child nodes for this node is changed.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_list_treeview_bindable"/>
+            </p>
+        </topic>
+    </topic>
+</article>

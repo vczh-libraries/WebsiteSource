@@ -1,0 +1,41 @@
+<control-template-document name="ScrollViewTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;ScrollView/&gt;</b>.
+    </p>
+    <p>
+      <a href="/gacui/components/ctemplates/commonscrollviewlook.html">
+        <b>&lt;CommonScrollViewLook/&gt;</b>
+      </a>
+      is recommended to use when implementing this control template.
+    </p>
+    <p>
+      The <b>ContainerComposition</b> property must be set to contain objects.
+      Scroll bars will be controlled by the control itself.
+      The control template doesn't need to worry about moving contained objects.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="HorizontalScroll">
+      <p>
+        This property must be assigned in the constructor of the control template,
+        and should not be changed during the life cycle.
+        It is the <b>&lt;HScroll/&gt;</b> control in the control template.
+      </p>
+    </prop>
+
+    <prop name="VerticalScroll">
+      <p>
+        This property must be assigned in the constructor of the control template,
+        and should not be changed during the life cycle.
+        It is the <b>&lt;VScroll/&gt;</b> control in the control template.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

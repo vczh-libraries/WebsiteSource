@@ -1,0 +1,43 @@
+<control-template-document name="DocumentViewerTemplate">
+  <introduction>
+    <p>
+      This control template is for <b>&lt;DocumentViewer/&gt;</b>.
+    </p>
+  </introduction>
+  <inputs>
+  </inputs>
+  <outputs>
+    <prop name="BaselineDocument">
+      <p>
+        This property defines the default content for the control.
+        Typically this document should contain no text but default colors.
+        An example for the value of this property is:
+        <program><code><![CDATA[
+          <Doc>
+            <Content/>
+            <Styles>
+              <Style name="#Default-Override">
+                <color>#FFFFFF</color>
+              </Style>
+              <Style name="#Selection-Override">
+                <color>#FFFFFF</color>
+                <bkcolor>#007ACC</bkcolor>
+              </Style>
+            </Styles>
+          </Doc>
+        ]]></code></program>
+        It defines a default text color (white) and the selection color (blue) for a control in black background color.
+      </p>
+    </prop>
+
+    <prop name="CaretColor">
+      <p>
+        This color defines the default caret color for the control.
+      </p>
+    </prop>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

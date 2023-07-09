@@ -1,0 +1,69 @@
+<article index="true">
+    <topic>
+        <title>Events</title>
+        <p>
+            There are two ways to handle an event:
+            <program><code><![CDATA[
+                <Object ev.EVENT1="FUNCTION_NAME">
+                    <ev.EVENT2>FUNCTION_NAME</ev.EVENT2>
+                </Object>
+            ]]></code></program>
+            Or using data binding:
+            <program><code><![CDATA[
+                <Object ev.EVENT1-eval="{ ... }">
+                    <ev.EVENT2-eval><![CDATA[
+                        { ... }
+                    ]]<![CDATA[>]]><![CDATA[</ev.EVENT2-eval>
+                </Object>
+            ]]></code></program>
+        </p>
+        <topic>
+            <title>By Function</title>
+            <p>
+                If a function name is assigned to an event,
+                an empty C++ function will be generated.
+            </p>
+            <p>
+                You are recommended to use <b>ref.CodeBehind="true"</b> on the <b>&lt;Instance/&gt;</b>.
+                By doing this,
+                you will get a separated pair of C++ files for this <b>&lt;Instance/&gt;</b>.
+                In the cpp file you will see an very obvious place holder for <b>FUNCTION_NAME</b>.
+                You can insert anything you want inside this function.
+            </p>
+            <p>
+                When you change the XML later,
+                <b>GacBuild.ps1</b> will recognize your change and merge new generated code with your change.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                <ul>
+                    <li>
+                        Only changing code in expected places,
+                        which will be marked using obvious comments in generated C++ code.
+                        Changing to all other places will be lost after running <b>GacBuild.ps1</b>.
+                    </li>
+                    <li>
+                        <b>GacBuild.ps1</b> expects "{" and "}" to take the whole line.
+                        <b>DO NOT</b> put "{" after the previous line.
+                    </li>
+                </ul>
+            </p>
+            <p>
+                Please check out <a href="/workflow/codegen.html">C++ Code Generation</a> for details.
+            </p>
+        </topic>
+        <topic>
+            <title>By Workflow Statement</title>
+            <p>
+                <b>-eval</b> must be used if a <a href="/workflow/lang/stat.html">Workflow statement</a> is assigned to an event.
+            </p>
+            <p>
+                If the event is assigned using a tag,
+                <b>&lt;![CDATA[ ]]&gt;</b> is required to contain the code.
+            </p>
+            <p>
+                Use a block statement if multiple statements need to be executed for this event.
+            </p>
+        </topic>
+    </topic>
+</article>

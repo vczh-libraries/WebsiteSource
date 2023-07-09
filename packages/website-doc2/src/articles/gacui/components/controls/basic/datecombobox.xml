@@ -1,0 +1,45 @@
+<article index="true">
+    <topic>
+        <title>&lt;DateComboBox&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;DateComboBox/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiDateComboBox*</li>
+                        <li><b>Template Tag</b>: &lt;DateComboBoxTemplate/&gt;</li>
+                        <li><b>Template Name</b>: DateComboBox</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;DateComboBox/&gt;</b> is a combo box control with a <b>&lt;DatePicker/&gt;</b> in the dropdown container.
+        </p>
+        <topic>
+            <title>&lt;DateComboBox&gt; Properties</title>
+            <topic>
+                <title>SelectedDate (SelectedDateChanged)</title>
+                <p>
+                    The default value is the today provided by the OS.
+                </p>
+                <p>
+                    When a day is selected from the <b>&lt;DatePicker/&gt;</b> in the dropdown container,
+                    <b>SelectedDate</b> and <b>Text</b> will be updated,
+                </p>
+            </topic>
+            <topic>
+                <title>DatePicker</title>
+                <p>
+                    The <b>&lt;DatePicker/&gt;</b> control in the dropdown container.
+                </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        <sample name="control_basic_datecombo"/>
+                    </p>
+                </topic>
+            </topic>
+        </topic>
+    </topic>
+</article>

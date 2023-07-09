@@ -1,0 +1,174 @@
+<article index="true">
+    <topic>
+        <title>&lt;ToolstripButton&gt;</title>
+        <p>
+            <ul>
+                <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiToolstripButton*</li>
+                <li><b>Template Tag</b>: &lt;ToolstripButtonTemplate/&gt;</li>
+                <li>
+                    <b>&lt;ToolstripButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;MenuBarButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: MenuBarButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;MenuItemButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: MenuItemButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ToolstripDropdownButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripDropdownButton</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;ToolstripSplitButton/&gt;</b>
+                    <ul>
+                        <li><b>Template Name</b>: ToolstripSplitButton</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;ToolstripButton/&gt;</b> is the button control for toolstrips and ribbons.
+        </p>
+        <topic>
+            <title>Connecting to a &lt;ToolstripCommand/&gt;</title>
+            <p>
+                Multiple toolstrip buttons could be connected to the same toolstrip command
+                by assigning the command to the <b>Command</b> property of the button.
+                When a toolstrip button is clicked,
+                the <b>Executed</b> event in the connected toolstrip command will be raised.
+            </p>
+            <p>
+                The following properties in <b>&lt;ToolstripButton/&gt;</b> is automatically
+                synced to the assigned command:
+                <ul>
+                    <li><b>LargeImage (LargeImageChanged)</b>: The large version of icon of the button. Used in ribbons.</li>
+                    <li><b>Image (ImageChanged)</b>: The icon of the button. Used in toolstrips and ribbons.</li>
+                    <li><b>ShortcutText (ShortcutTextChanged)</b>: The text representation of the key combination, rendered in menus.</li>
+                    <li><b>Text (TextChanged)</b>: The title of the menu.</li>
+                    <li><b>Enabled (EnabledChanged)</b></li>
+                    <li><b>Selected (SelectedChanged)</b></li>
+                </ul>
+                Synchronizable properties in <b>&lt;ToolstripButton/&gt;</b> and <b>&lt;ToolstripCommand/&gt;</b> shares the same name,
+                except that <b>ShortcutBuilder</b> in <b>&lt;ToolstripCommand/&gt;</b> controls <b>ShortcutText</b> in <b>&lt;ToolstripButton/&gt;</b>.
+            </p>
+            <p>
+                When a <b>&lt;ToolstripCommand/&gt;</b> is connected to a <b>&lt;ToolstripButton/&gt;</b>,
+                <b>DO NOT</b> update these properties the <b>&lt;ToolstripButton/&gt;</b> directly,
+                <b>DO</b> update these properties in the <b>&lt;ToolstripCommand/&gt;</b>,
+                property values will be synced to all connected toolstrip buttons.
+                For example,
+                after disabling a toolstrip command,
+                all connected toolstrip buttons will also be disabled.
+            </p>
+        </topic>
+        <topic>
+            <title>Shortcut Key</title>
+            <p>
+                Setting a correct key combination to <b>&lt;ToolstripCommand/&gt;</b>::<b>ShortcutBuilder</b>
+                will actually combine the command to this shortcut key in the current window.
+                While setting <b>&lt;ToolstripButton/&gt;</b>::<b>ShortcutText</b> only affect rendering.
+            </p>
+            <p>
+                The value of the <b>ShortcutBuilder</b> property must be in this format:
+                <program><code><![CDATA[
+                    Ctrl+Shift+Alt+KEY
+                ]]></code></program>
+                <b>Ctrl+</b>, <b>Shift+</b> and <b>Alt+</b> are optional.
+                And <b>KEY</b> must be one of a value returning from <b>vl::presentation::GetCurrentController()->InputService()->GetKeyName(VKEY)</b>.
+            </p>
+            <p>
+                A valid <b>KEY</b> must be one of the following values:
+                <ul>
+                    <li>A to Z</li>
+                    <li>0 to 9</li>
+                    <li>F1 to F12</li>
+                    <li>Num +, Num -, Num *, Num Del, Num 0 to Num 9</li>
+                    <li>Home, End, Insert, Delete, Page Up, Page Down</li>
+                    <li>Tab, Caps Lock, Backspace, Space</li>
+                    <li>Esc, Enter, Pause, Scroll Lock, Sys Req (the name of Print Screen)</li>
+                    <li>Left, Right, Up, Down</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Accessing SubMenu</title>
+            <p>
+                The <b>ToolstripSubMenu</b> property returns the attached sub menu of the button.
+                It is <b>null</b> by default,
+                until <b>EnsureToolstripSubMenu</b> or <b>CreateToolstripSubMenu</b> is called.
+            </p>
+            <p>
+                In GacUI XML Resource,
+                accessing the <b>SubMenu</b> property automatically get <b>EnsureToolstripSubMenu</b> called,
+                so there is always a valid <b>&lt;ToolstripMenu/&gt;</b>.
+            </p>
+            <p>
+                Sometimes you might want to add other controls instead of menu items.
+                The following methods are for this scenario:
+                <ul>
+                    <li><b>IsSubMenuExists</b></li>
+                    <li><b>CreateSubMenu</b></li>
+                    <li><b>DestroySubMenu</b></li>
+                    <li><b>SubMenu</b> property</li>
+                    <li><b>SubMenuOpening</b> property</li>
+                    <li><b>PreferredMenuClientSize</b> property</li>
+                </ul>
+                When calling <b>SetSubMenu</b>,
+                set the second argument (which is remembered by the <b>OwnedSubMenu</b> property) to <b>true</b>
+                so that the sub menu is owned by the toolstrip button.
+                In this case,
+                when the toolstrip button is deleted,
+                the sub menu will also be deleted.
+            </p>
+            <p>
+                <b>NOTE</b>:
+                <b>CreateSubMenu</b>, <b>EnsureToolstripSubMenu</b> and <b>CreateToolstripSubMenu</b>
+                make the created sub menu <b>owned</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ToolstripMenu/&gt; v.s. &lt;Menu/&gt;</title>
+            <p>
+                The biggest difference between these two controls is that,
+                like other toolstrip button containers,
+                toolstrip controls put in the <b>&lt;ToolstripMenu/&gt;::ToolstripItems</b> property get a proper layout.
+                Although you can put same controls in <b>&lt;Menu/&gt;</b>,
+                but you need to worry about the layout by yourself.
+            </p>
+            <p>
+                Please check out
+                <a href="/gacui/components/controls/toolstrip/grouping.html">
+                    this page
+                </a>
+                for details about <b>ToolstripItems</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Reacting to ALT sequence</title>
+            <p>
+                When a toolstrip button is executed by an <b>ALT</b> sequence,
+                if it has a sub menu,
+                the sub menu will be opened instead of executing the button.
+            </p>
+            <p>
+                This will make split buttons inaccessible.
+                For keeping a good accessibility for your application,
+                please make sure that the same command can be executed by another <b>ALT</b> sequence,
+                e.g.
+                the sub menu has a menu item for the same task,
+                or it can be accessed from the menu bar.
+            </p>
+        </topic>
+    </topic>
+</article>

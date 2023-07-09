@@ -1,0 +1,61 @@
+<article index="true">
+    <topic>
+        <title>&lt;TextList&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;TextList/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiTextList*</li>
+                        <li><b>Template Tag</b>: &lt;TextListTemplate/&gt;</li>
+                        <li><b>Item Template Tag</b>: &lt;TextListItemTemplate/&gt;</li>
+                        <li><b>Template Name</b>: TextList</li>
+                        <li><b>Default Item Arranger</b>: list::FixedHeightItemArranger</li>
+                        <li>
+                            <b>Predefined Item Template</b>:
+                            <ul>
+                                <li><b>SetView(Text)</b> (default): list::DefaultTextListItemTemplate</li>
+                                <li><b>SetView(Check)</b>: list::DefaultCheckTextListItemTemplate</li>
+                                <li><b>SetView(Radio)</b>: list::DefaultRadioTextListItemTemplate</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            The <b>CheckTextListItem</b> and <b>RadioTextListItem</b> themes are for check or radio bullets,
+            which are <b>&lt;SelectableButtonTemplate/&gt;</b>.
+            But they will be overrides by <b>CheckBulletTemplate</b> and <b>RadioBulletTemplate</b>
+            in <b>&lt;TextListTheme/&gt;</b>.
+        </p>
+        <p>
+            <b>&lt;TextList/&gt;</b> stores a list of <b>list::TextItem</b> and display them.
+            In <b>list::TextItem</b> there are <b>Text</b> and <b>Checked</b> properties,
+            changing these properties also immediately causes changing in the list control.
+        </p>
+        <p>
+            You can add, remove or change items in the <b>Items</b> property to change content in the list control.
+        </p>
+        <p>
+            The <b>SelectedItem</b> property returns the currently selected item in <b>list::TextItem</b>.
+            If no item is selected,
+            or multiple items are selected,
+            this property returns <b>null</b>.
+        </p>
+        <p>
+            The <b>View</b> property defines all predefined view in <b>&lt;TextList/&gt;</b>.
+            Valid values are listed at the beginning of this page.
+            You could ignore this property and change <b>ItemTemplate</b> and <b>Arranger</b>
+            by assigning new values to these properties
+            or calling the protected method <b>SetStyleAndArranger</b> to set them at the same time.
+            Doing this makes <b>View</b> become <b>Unknown</b>.
+        </p>
+        <topic>
+            <title>Sample</title>
+            <p>
+                <sample name="control_list_textlist"/>
+            </p>
+        </topic>
+    </topic>
+</article>

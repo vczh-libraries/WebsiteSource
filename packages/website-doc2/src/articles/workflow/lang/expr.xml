@@ -1,0 +1,429 @@
+<article index="true">
+    <topic>
+        <title>Expressions</title>
+        <p>
+            All supported expressions are listed below.
+        </p>
+        <topic>
+            <title>null, true, false</title>
+            <p>
+                <ul>
+                    <li><b>null</b> could be <b>T*</b>, <b>T^</b> or <b>T?</b>.</li>
+                    <li><b>true</b> is <b>bool</b>.</li>
+                    <li><b>false</b> is <b>bool</b>.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>1024, 10.24</title>
+            <p>
+                For <b>/d+</b>, if the place receiving an interger does not have an explicit type,
+                it is <b>int</b>,
+                which is <b>Int32</b> when the Workflow compiler is running in a 32-bits process,
+                which is <b>Int64</b> when the Workflow compiler is running in a 64-bits process.
+                An error is generated if the number exceeds the range supported by the expected type.
+            </p>
+            <p>
+                It is very easy to specify an expected integer type like: <b>0 of UInt64</b>.
+            </p>
+            <p>
+                For <b>/d+./d+</b>, if the place receiving an interger does not have an explicit type,
+                it is <b>double</b> when the Workflow compiler is running in a 64-bits process.
+                An error is generated if the number exceeds the range supported by the expected type.
+            </p>
+        </topic>
+        <topic>
+            <title>"string"</title>
+            <p>
+                A string can be contained in a pair of <b>'</b> or <b>"</b>.
+            </p>
+            <p>
+                If a string is contained in <b>'</b>, <b>\'</b> represents the <b>'</b> character.
+            </p>
+            <p>
+                If a string is contained in <b>"</b>, <b>\"</b> represents the <b>"</b> character.
+            </p>
+            <p>
+                Character escaping only accepts <b>\r</b>, <b>\n</b> and <b>\t</b> for 3 different space characters just like in C++.
+            </p>
+            <p>
+                For other characters that is following <b>\</b>, it escapes to itself without the <b>\</b> prefix.
+                For example, <b>\\</b> becomes <b>\</b>, <b>\X</b> becomes <b>X</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>$"$(formatted) string"</title>
+            <p>
+                If <b>$</b> is put before a string,
+                then multiple <b>$(EXPRESSION)</b> could be used inside the string.
+            </p>
+            <p>
+                All these expressions must return a value of types that can be implicitly cast to <b>string</b>.
+            </p>
+            <p>
+                After casting all of them to strings,
+                these strings will be put inside the specified position to form a string.
+                For example, <b>$"1 + 1 = $(1 + 1)"</b> becomse <b>"1 + 1 = 2"</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Unary operator expression: op VALUE</title>
+            <p>
+                See <a href="/workflow/lang/expr_unary.html">Unary Operators</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Binary operator expression: VALUE op VALUE</title>
+            <p>
+                See <a href="/workflow/lang/expr_binary.html">Binary Operators</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>If expression: CONDITION ? VALUE : VALUE</title>
+            <p>
+                <b>C ? A : B</b> returns <b>A</b> when <b>C</b> is <b>true</b>.
+            </p>
+            <p>
+                <b>C ? A : B</b> returns <b>B</b> when <b>A</b> is <b>true</b>.
+            </p>
+            <p>
+                Only one of <b>A</b> or <b>B</b> will be evaluated according to the value of <b>C</b>.
+            </p>
+            <p>
+                If <b>A</b> and <b>B</b> are not in the same type,
+                then it requires that one must be able to be implicitly cast to another.
+            </p>
+        </topic>
+        <topic>
+            <title>Try expression: VALUE ?? DEFAULT</title>
+            <p>
+                <b>A ?? B</b> returns <b>A</b>.
+                If evaluating <b>A</b> results in throwing an exception,
+                <b>B</b> is returned instead.
+            </p>
+            <p>
+                If <b>A</b> and <b>B</b> are not in the same type,
+                then it requires that one must be able to be implicitly cast to another.
+            </p>
+        </topic>
+        <topic>
+            <title>Assignment expression: DESTINATION = VALUE</title>
+            <p>
+                <b>A = B</b> assigns <b>B</b> to <b>A</b>.
+            </p>
+            <p>
+                If <b>A</b> is a property,
+                then the setter function will be called.
+            </p>
+            <p>
+                The result of this expresison is from the evaluation of <b>B</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Ordered lambda expression: [$1 + $2]</title>
+            <p>
+                This expression builds a lambda expression,
+                it returns the expression in the square parentheses,
+                with argument types and return type automatically inferred
+                by the explicit type specified in the place receiving this expression.
+            </p>
+            <p>
+                You can use multiple arguments from <b>$1</b> to any number,
+                but all numbers must be consecutive.
+            </p>
+            <p>
+                For example:
+                <program><code><![CDATA[
+                    var f: func(string, string):string = [$`Hello, $($1) and $($2)!`];
+                ]]></code></program>
+                is exactly the same as
+                <program><code><![CDATA[
+                    var f = func(a: string, b: string): string
+                    {
+                        return `Hello, $(a) and $(b)!`;
+                    }
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Lambda expression: func(x: int, y: int): int{ return x + y; }</title>
+            <p>
+                This expression creates a function,
+                with argument types and return type specified explicitly.
+            </p>
+            <p>
+                Multiple arguments are allowed.
+            </p>
+            <p>
+                All used local variables from outside scopes are captured by shallow copying.
+            </p>
+            <p>
+                This means that,
+                if variable holding a class instance is captured by a lambda expression,
+                you cannot reassign another object to this variable,
+                but you can change properties of this object.
+            </p>
+            <p>
+                This also means that,
+                changing a captured variable outside of the lambda expression after it is created
+                takes no effect inside the lambda expression.
+                <program><code><![CDATA[
+                    func main(): int
+                    {
+                        var x = 1;
+                        var f = func():int { return x + 1; };
+                        x = 2;
+                        return f();
+                    }
+                ]]></code></program>
+                This function returns <b>2</b>.
+            </p>
+            <p>
+                Global variables are not used by capturing,
+                they can always be reassigned in lambda expressions.
+                <program><code><![CDATA[
+                    var x = 1;
+
+                    func main(): int
+                    {
+                        var f = func():int { return x + 1; };
+                        x = 2;
+                        return f();
+                    }
+                ]]></code></program>
+                This function returns <b>3</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Let expression: let x = 1, y = 2 in (x + y)</title>
+            <p>
+                This expression creates a new scope for readonly local varaibles,
+                which are accessible in the last expression that is in the round parentheses.
+            </p>
+            <p>
+                Multiple variables are allowed, they are separated by "<b>,</b>"".
+            </p>
+            <p>
+                The round parentheses for the last expression must not be omitted.
+            </p>
+            <p>
+                <program><code><![CDATA[
+                    func main(): int
+                    {
+                        return let x = 1, y = 2 in (x + y);
+                    }
+                ]]></code></program>
+                This function returns <b>3</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Range expression: range (1, 10)</title>
+            <p>
+                See <b>Collection types</b> in <a href="/workflow/lang/type.html#Collection-types">Types</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Set testing expression: VALUE in OBJECT, VALUE not in OBJECT</title>
+            <p>
+                See <b>Collection types</b> in <a href="/workflow/lang/type.html#Collection-types">Types</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Constructor expression: {a b c}, {a:x b:y c:z}</title>
+            <p>
+                See <b>Collection types</b> in <a href="/workflow/lang/type.html#Collection-types">Types</a>.
+            </p>
+            <p>
+                See <b>Allocating a struct</b> in <a href="/workflow/lang/struct.html#Allocating-a-struct">Structs</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>New class expression: new TYPE(ARGUMENTS)</title>
+            <p>
+                See <a href="/workflow/lang/class_new.html">Allocating (class)</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>New interface expression: new TYPE{ MEMBERS }</title>
+            <p>
+                See <a href="/workflow/lang/interface_new.html">Implementing (interface)</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Mixin new interface expression: new TYPE(using OBJECT)</title>
+            <p>
+                See <a href="/workflow/lang/interface_using.html">Generic (interface)</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Call expression: FUNCTION(ARGUMENTS)</title>
+            <p>
+                See <b>Function</b> in <a href="/workflow/lang/funcvar.html#Function">Functions and Variables</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Instance member accessing: OBJECT.MEMBER</title>
+            <p>
+                <b>A.B</b> uses a member called <b>B</b> in an object that is held by a value <b>A</b>.
+            </p>
+            <p>
+                It doesn't matter whether <b>A</b> is a shared pointer or a raw pointer.
+            </p>
+            <p>
+                When <b>B</b> are a group of overloading functions,
+                the place receiving this expression is required to have an explicit type.
+                For example:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class C
+                    {
+                        var x: int = 100;
+                        func F():int    { return x; }
+                        func F():string { return x; }
+                    }
+
+                    func main(): string
+                    {
+                        var f = new C^().F;
+                        return f();
+                    }
+                ]]></code></program>
+                generates an error,
+                because it is not able to determine which <b>F</b> is expected.
+                But:
+                <program><code><![CDATA[
+                    module sampleModule;
+
+                    class C
+                    {
+                        var x: int = 100;
+                        func F():int    { return x; }
+                        func F():string { return x; }
+                    }
+
+                    func main(): string
+                    {
+                        var f: func(): string = new C^().F;
+                        return f();
+                    }
+                ]]></code></program>
+                obviously uses the second <b>F</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Static member accessing: OBJECT::MEMBER, ::MEMBER</title>
+            <p>
+                See <a href="/workflow/lang/module.html">Module</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Index expression: CONTAINER[KEY]</title>
+            <p>
+                See <b>Collection types</b> in <a href="/workflow/lang/type.html#Collection-types">Types</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Null testing expression: OBJECT is null, OBJECT is not null</title>
+            <p>
+                <ul>
+                    <li><b>A is null</b> returns true when <b>A</b> is null.</li>
+                    <li><b>A is not null</b> returns true when <b>A</b> is not null.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Type testing expression: OBJECT is TYPE, OBJECT is not TYPE</title>
+            <p>
+                <ul>
+                    <li><b>A is T</b> returns true when <b>A</b> is <b>T</b>.</li>
+                    <li><b>A is not T</b> returns true when <b>A</b> is not <b>T</b>.</li>
+                </ul>
+            </p>
+            <p>
+                <b>T</b> can be any type.
+                If T is a class or an interface,
+                it tests if the variable <b>A</b> is holding an object of or inherits that type.
+                For example, <b>new C^() is C</b> returns <b>true</b>.
+            </p>
+            <p>
+                If <b>T</b> is a non-reference type,
+                then typically <b>A</b> is <b>object</b>,
+                this is the only case when you need to test such type.
+            </p>
+            <p>
+                When <b>T</b> is a shared pointer type or a raw pointer type,
+                the type of the pointer is also considered.
+                For example, <b>new C^() is C*</b> returns <b>false</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Strong casting expression: cast TYPE OBJECT, cast * OBJECT</title>
+            <p>
+                For class types or interface types,
+                <b>TYPE</b> must be a pointer type.
+            </p>
+            <p>
+                These expressions can cast objects between shared pointers and raw pointers.
+            </p>
+            <p>
+                These expressions also test if <b>OBJECT</b> is actually or inherits <b>TYPE</b>,
+                if not, then the expression fails.
+            </p>
+            <p>
+                When <b>cast TYPE OBJECT</b> fails, it throws an expression.
+            </p>
+            <p>
+                When <b>TYPE</b> is <b>*</b>,
+                it is inferred by the place receiving this expression.
+            </p>
+        </topic>
+        <topic>
+            <title>Weak casting expression: OBJECT as TYPE, OBJECT as *</title>
+            <p>
+                For class types or interface types,
+                <b>TYPE</b> must be a pointer type.
+            </p>
+            <p>
+                <b>TYPE</b> must be compatible to <b>null</b>,
+                this requires <b>TYPE</b> to be either a pointer type or an optional type.
+            </p>
+            <p>
+                These expressions can objects cast between shared pointers and raw pointers.
+            </p>
+            <p>
+                These expressions also test if <b>OBJECT</b> is actually or inherits <b>TYPE</b>,
+                if not, then the expression fails.
+            </p>
+            <p>
+                When <b>OBJECT as TYPE</b> fails, it returns <b>null</b>.
+            </p>
+            <p>
+                When <b>TYPE</b> is <b>*</b>,
+                it is inferred by the place receiving this expression.
+            </p>
+        </topic>
+        <topic>
+            <title>Infer expression: OBJECT of TYPE</title>
+            <p>
+                This expression gives an explicit type <b>TYPE</b> to the expression <b>OBJECT</b>.
+            </p>
+            <p>
+                It generates an error when it is not possible to do that.
+            </p>
+            <p>
+                <b>null of int</b> generates such error,
+                because <b>null</b> can never be <b>int</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Event expression: attach(EVENT, FUNCTION), detach(EVENT, HANDLER)</title>
+            <p>
+                See <b>Using events</b> in <a href="/workflow/lang/interface_prop.html#Using-events">Properties and Events (interface)</a>.
+            </p>
+            <p>
+                See <b>Using events</b> in <a href="/workflow/lang/class_prop.html#Using-events">Properties and Events (class)</a>.
+            </p>
+        </topic>
+    </topic>
+</article>

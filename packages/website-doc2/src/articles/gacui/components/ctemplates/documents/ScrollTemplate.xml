@@ -1,0 +1,53 @@
+<control-template-document name="ScrollTemplate">
+  <introduction>
+    <p>
+      This control template is for
+      <b>&lt;HScroll/&gt;</b>,
+      <b>&lt;VScroll/&gt;</b>,
+      <b>&lt;HTracker/&gt;</b>,
+      <b>&lt;VTracker/&gt;</b> and
+      <b>&lt;ProgressBar/&gt;</b>.
+    </p>
+    <p>
+      <a href="/gacui/components/ctemplates/commonscrollbehavior.html">
+        <b>&lt;CommonScrollBehavior/&gt;</b>
+      </a>
+      is recommended to use when implementing this control template.
+    </p>
+  </introduction>
+  <inputs>
+    <prop name="Commands">
+      <p>
+        The type of this property is <b>(vl::)presentation::controls::IScrollCommandExecutor*</b>.
+      </p>
+      <p>
+        This property is set after this control template is applied to a control.
+        It offers a way for this control template to communicate with the control.
+      </p>
+    </prop>
+
+    <prop name="TotalSize">
+      <p>
+        This property defines the size of the content to scroll in a virtual unit.
+      </p>
+    </prop>
+
+    <prop name="PageSize">
+      <p>
+        This property defines the size of the view port in a virtual unit.
+      </p>
+    </prop>
+
+    <prop name="Position">
+      <p>
+        This property defines the position in the content of where the view port begins in a virtual unit.
+      </p>
+    </prop>
+  </inputs>
+  <outputs>
+  </outputs>
+  <exchanges>
+  </exchanges>
+  <samples>
+  </samples>
+</control-template-document>

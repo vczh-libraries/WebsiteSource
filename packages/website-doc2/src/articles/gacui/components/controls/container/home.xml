@@ -1,0 +1,36 @@
+<article index="true">
+    <topic>
+        <title>Container Controls</title>
+        <p>
+            Unlike compositions that only layout multiple other objects in groups,
+            container controls offer more features in user interaction.
+        </p>
+        <p>
+            <b>&lt;GroupBox/&gt;</b> is the simplest container composition
+            which displays its <b>Text</b> with its content.
+            Controls serving a same purpose could be grouped
+            in a <b>&lt;GroupBox/&gt;</b>.
+        </p>
+        <p>
+            <b>&lt;ScrollContainer/&gt;</b> is a container with built-in scroll bars.
+            When the size of the container is too small to display all its content,
+            scroll bars will be enabled or shown.
+        </p>
+        <p>
+            Scroll bars are provided in <b>GuiScrollView</b>,
+            which is the base class of <b>&lt;ScrollContainer/&gt;</b>
+            and also all other list controls and some editor controls.
+            <b>HorizontalAlwaysVisible</b> and <b>VerticalAlwaysVisible</b> properties
+            also exist in list controls and some editor controls,
+            so that their scroll bars can be optionally hidden
+            when list items are not too many.
+        </p>
+        <p>
+            <b>&lt;Tab/&gt;</b> is a container of multiple <b>&lt;TabPage/&gt;</b>.
+            Differet controls can be organized in different <b>&lt;TabPage/&gt;</b> in one <b>&lt;Tab/&gt;</b>.
+            When a <b>&lt;TabPage/&gt;</b> is activated by the user,
+            only contents in this page are visible,
+            contents in other pages are hidden but still contribute to the minimum size of the <b>&lt;Tab/&gt;</b>.
+        </p>
+    </topic>
+</article>

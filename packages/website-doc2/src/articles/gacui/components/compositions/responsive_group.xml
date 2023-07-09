@@ -1,0 +1,79 @@
+<article index="true">
+    <topic>
+        <title>&lt;ResponsiveGroup&gt;</title>
+        <p>
+            <b>&lt;ResponsiveGroup/&gt;</b> tells its managed <b>GuiResponsiveCompositionBase</b> to switch view at the same time
+            when itself is required to do so. 
+        </p>
+        <p>
+            <b>&lt;ResponsiveGroup/&gt;</b> is a <b>GuiResponsiveCompositionBase</b> and a <b>&lt;Bounds/&gt;</b>.
+        </p>
+        <topic>
+            <title>Managing child GuiResponsiveCompositionBase</title>
+            <p>
+                When things inside a <b>&lt;ResponsiveGroup/&gt;</b> are changed,
+                <b>&lt;ResponsiveGroup/&gt;</b> will search for any child composition that is a <b>GuiResponsiveCompositionBase</b>.
+                If a child composition is not,
+                it will search into this child composition and see if there are any <b>GuiResponsiveCompositionBase</b> recursively.
+                When a <b>GuiResponsiveCompositionBase</b> is found,
+                it stops searching for child compositions inside this <b>GuiResponsiveCompositionBase</b>.
+            </p>
+            <p>
+                Eventually <b>&lt;ResponsiveGroup/&gt;</b> knows all child <b>GuiResponsiveCompositionBase</b> inside it.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                If a child <b>GuiResponsiveCompositionBase</b> has a different <b>Direction</b> than <b>&lt;ResponsiveGroup/&gt;</b>,
+                it is not a managed <b>GuiResponsiveCompositionBase</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveGroup&gt;::Direction</title>
+            <p>
+                The default value for this property is <b>Both</b>.
+            </p>
+            <p>
+                Valid values for this property are <b>Horizontal</b>, <b>Vertical</b> and <b>Both</b>.
+            </p>
+            <p>
+                When <b>Direction</b> is <b>Horizontal</b>,
+                it only reacts to changing to its width.
+                When <b>Direction</b> is <b>Vertical</b>,
+                it only reacts to changing to its height.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveGroup&gt;::LevelCount</title>
+            <p>
+                This property represents how many different view it could have.
+                It is the largest <b>LevelCount</b> of all managed <b>GuiResponsiveCompositionBase</b>.
+            </p>
+            <p>
+                If there is no managed <b>GuiResponsiveCompositionBase</b>,
+                <b>LevelCount</b> is 1.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveGroup&gt;::CurrentLevel</title>
+            <p>
+                This property represents the current view of a <b>&lt;ResponsiveGroup/&gt;</b>.
+            </p>
+            <p>
+                The smallest view is 0,
+                the largest view is <b>LevelCount</b> - 1.
+            </p>
+        </topic>
+        <topic>
+            <title>Choosing a view</title>
+            <p>
+                When a <b>&lt;ResponsiveGroup/&gt;</b> is required to switch to a larger view
+                (increasing <b>CurrentLevel</b> by 1),
+                or when a <b>&lt;ResponsiveGroup/&gt;</b> is required to switch to a smaller view
+                (decreasing <b>CurrentLevel</b> by 1),
+                it tells all managed <b>GuiResponsiveCompositionBase</b> to synchronize with that new <b>CurrentLevel</b>.
+                If any <b>GuiResponsiveCompositionBase</b>'s <b>LevelCount</b> is not large enough,
+                it stays with its largest view.
+            </p>
+        </topic>
+    </topic>
+</article>

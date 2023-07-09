@@ -1,0 +1,57 @@
+<article>
+    <topic>
+        <title>Cross XML Resource References</title>
+        <p>
+            A <b>GacUI XML Resource</b> can import types from other resource files.
+            These resource files should satisfy the following conditions:
+            <ul>
+                <li>They should be able to be discovered under one <b>GacUI.xml</b>.</li>
+                <li>The resource file being imported must have a name in its metadata.</li>
+                <li>The resource file importing others must specify dependencies in its metadata.</li>
+            </ul>
+        </p>
+        <p>
+            These items will be removed from the resource binary and cannot be imported:
+            <ul>
+                <li>&lt;InstanceStyle/&gt;</li>
+            </ul>
+            These items can be imported by URI like <b>import-res://RESOURCE-NAME/path/to/the/resource/item</b>:
+            <ul>
+                <li>&lt;Text/&gt;</li>
+                <li>&lt;Image/&gt;</li>
+                <li>&lt;Xml/&gt;</li>
+                <li>&lt;Doc/&gt;</li>
+            </ul>
+            These items will be removed from the resource binary, but their generated types can be used in resource files that import them:
+            <ul>
+                <li>&lt;Script/&gt;</li>
+                <li>&lt;Instance/&gt;</li>
+                <li>&lt;Animation/&gt;</li>
+                <li>&lt;LocalizedStrings/&gt;</li>
+            </ul>
+        </p>
+        <p>
+            Note: in &lt;Script/&gt; only types can be exported,
+            global variables and functions are invisible to other resource files.
+            Names in resource files that are eventually loaded to the same GacUI application process must be unique.
+            All created Workflow types must be unique too.
+        </p>
+        <p>
+            Here are some examples:
+            <ul>
+                <li>
+                    <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditor">DocumentEditor</a>:
+                    A custom control which provides functionalities of rich text document editing and shared UIs.
+                </li>
+                <li>
+                    <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditorToolstrip">DocumentEditorToolstrip</a>:
+                    A document editor using toolstrip, with the above custom control being imported.
+                </li>
+                <li>
+                    <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/DocumentEditorRibbon">DocumentEditorRibbon</a>:
+                    A document editor using ribbon, with the above custom control being imported.
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>

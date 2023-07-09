@@ -1,0 +1,53 @@
+<article>
+    <topic>
+        <title>Components</title>
+        <p>
+             Components offer other features that are not involved in rendering.
+        </p>
+        <p>
+            Here are all predefined components in GacUI:
+            <ul>
+                <li>
+                    <a href="/gacui/components/controls/basic/selectableButton.html#GroupController-GroupControllerChanged-">
+                        <b>GuiSelectableButton::MutexGroupController</b>
+                    </a>
+                </li>
+                <li>
+                    <a href="/gacui/components/controls/toolstrip/toolstripbutton.html#Connecting-to-a-ToolstripCommand-">
+                        <b>&lt;ToolstripCommand/&gt;</b>
+                    </a>
+                </li>
+                <li>
+                    <b>GuiDialogBase</b>
+                    <ul>
+                        <li>
+                            <a href="/gacui/components/components/messagedialog.html">
+                                <b>&lt;MessageDialog/&gt;</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/gacui/components/components/colordialog.html">
+                                <b>&lt;ColorDialog/&gt;</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/gacui/components/components/fontdialog.html">
+                                <b>&lt;FontDialog/&gt;</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/gacui/components/components/openfiledialog.html">
+                                <b>&lt;OpenFileDialog/&gt;</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/gacui/components/components/savefiledialog.html">
+                                <b>&lt;SaveFileDialog/&gt;</b>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+    </topic>
+</article>

@@ -1,0 +1,37 @@
+{
+    "name": "gaclib-website-doc2",
+    "version": "0.0.1",
+    "description": "Gaclib Website Document for GacUI 2.0: http://gaclib.net/doc/current/home.html",
+    "main": "./lib/index.js",
+    "scripts": {
+        "build": "rimraf ./lib && tslint --project tsconfig.json && tsc && copyfiles -u 1 assest/**/* lib/dist/ && webpack --config ./lib/Webpack.js",
+        "fullbuild": "cls & pushd ..\\.. && yarn build && popd",
+        "start": "node ./lib/index.js",
+        "download": "node ./lib/index.js -d"
+    },
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@types/node": "^12.6.9",
+        "@types/website-scraper": "^1.2.3",
+        "@types/terser-webpack-plugin": "^3.0.0",
+        "copyfiles": "^2.1.1",
+        "rimraf": "^2.6.3",
+        "tslint": "^5.18.0",
+        "tslint-shared": "^1.0.0",
+        "typescript": "^3.6.3",
+        "webpack": "^4.39.1",
+        "webpack-cli": "^3.3.6"
+    },
+    "dependencies": {
+        "gaclib-article": "^0.0.1",
+        "gaclib-article-document": "^0.0.1",
+        "gaclib-mvc": "^0.0.1",
+        "gaclib-render": "^0.0.1",
+        "gaclib-host": "^0.0.1",
+        "gaclib-spider": "^0.0.1",
+        "lit-html": "^1.1.2",
+        "terser-webpack-plugin": "^3.0.6",
+        "website-scraper": "^4.0.1",
+        "xml-js": "^1.6.11"
+    }
+}

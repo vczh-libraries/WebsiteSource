@@ -1,0 +1,129 @@
+<article index="true">
+    <topic>
+        <title>&lt;DatePicker&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;DatePicker/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiDatePicker*</li>
+                        <li><b>Template Tag</b>: &lt;DatePickerTemplate/&gt;</li>
+                        <li><b>Template Name</b>: DatePicker</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;DatePicker/&gt;</b> is a control that looks like a calendar.
+            In the default control templates,
+            year and month can be chosen in two combo box controls.
+            When a specific month is selected,
+            a calender will display days in their correct positions.
+        </p>
+        <p>
+            A calendar-like control template is not easy to implement in GacUI XML Resource for <b>&lt;DatePicker/&gt;</b>,
+            so <b>&lt;CommonDatePickerLook/&gt;</b> is provided for writing such control templates.
+            Please check out
+            <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Skins/DarkSkin/Template_Misc.xml">
+                the default control templates
+            </a>
+            for details.
+        </p>
+        <topic>
+            <title>&lt;DatePicker&gt; Properties</title>
+            <topic>
+                <title>Date (DateChanged)</title>
+                <p>
+                    The default value is the today provided by the OS.
+                </p>
+            </topic>
+            <topic>
+                <title>DateFormat (DateFormatChanged)</title>
+                <p>
+                    The default value is first value in
+                    <b>
+                        <a href="/vlppos/ref/VL__LOCALE__USERDEFAULT@__VL__LOCALE().html">
+                            Locale::UserDefault()
+                        </a>.
+                        <a href="/vlppos/ref/VL__LOCALE__GETLONGDATEFORMATS@VOID(__VL__COLLECTIONS__LIST___VL.html">
+                            GetLongDateFormats()
+                        </a>
+                    </b>.
+                </p>
+                <p>
+                    A valid value for this property must satisfy
+                    <a href="/vlppos/ref/VL__LOCALE__FORMATDATE@__VL__WSTRING(__VL__WSTRING_CONST_&amp;,___VL.html">
+                        <b>FormatDate</b>
+                    </a>
+                    of the current <b>DateLocale</b> value.
+                </p>
+            </topic>
+            <topic>
+                <title>DateLocale (DateLocaleChanged)</title>
+                <p>
+                    The default value is first value in
+                    <a href="/vlppos/ref/VL__LOCALE__USERDEFAULT@__VL__LOCALE().html">
+                        <b>Locale::UserDefault()</b>
+                    </a>.
+                </p>
+                <p>
+                    A valid value for this property must be either:
+                    <ul>
+                        <li><a href="/vlppos/ref/VL__LOCALE__$__CTOR@(__VL__WSTRING_CONST_&amp;).html">Locale::Locale()</a></li>
+                        <li><a href="/vlppos/ref/VL__LOCALE__USERDEFAULT@__VL__LOCALE().html">Locale::UserDefault()</a></li>
+                        <li><a href="/vlppos/ref/VL__LOCALE__SYSTEMDEFAULT@__VL__LOCALE().html">Locale::SystemDefault()</a></li>
+                        <li>Any values in <a href="/vlppos/ref/VL__LOCALE__ENUMERATE@VOID(__VL__COLLECTIONS__LIST___VL__LOCALE_.html">Locale::Enumerate()</a></li>
+                    </ul>
+                </p>
+                <p>
+                    When <b>DateLocale</b> is changed,
+                    <b>DateFormat</b> will also be changed.
+                </p>
+                <topic>
+                    <title>Sample</title>
+                    <p>
+                        <sample name="control_basic_datepicker"/>
+                    </p>
+                </topic>
+            </topic>
+            <topic>
+                <title>Text</title>
+                <p>
+                    This is a read-only property,
+                    calling <b>SetText</b> does nothing.
+                </p>
+                <p>
+                    The value is <b>DateLocale.FormatDate(Date, DateFormat)</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>&lt;DatePicker&gt; Events</title>
+            <topic>
+                <title>DateChanged</title>
+                <p>
+                    This event raises when <b>Date</b> is changed.
+                </p>
+                <p>
+                    In the default control templates,
+                    <b>Date</b> will also be changed when <b>DateNavigated</b> or <b>DateSelected</b> raises.
+                </p>
+            </topic>
+            <topic>
+                <title>DateNavigated</title>
+                <p>
+                    In the default control template,
+                    this event raises when users choose a different value
+                    in the year or month combo box.
+                </p>
+            </topic>
+            <topic>
+                <title>DateSelected</title>
+                <p>
+                    In the default control template,
+                    this event raises when users choose a specific day from the calendar.
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

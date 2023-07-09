@@ -1,0 +1,129 @@
+<article>
+    <topic>
+        <title>Introduction to VlppReflection</title>
+        <p>
+            VlppReflection provides runtime reflection for C++ types.
+        </p>
+        <p>
+            If a project includes VlppReflection source code,
+            it doesn't necessarily mean that the project uses reflection at runtime,
+            because reflectable class must inherits from <b>Description&lt;T&gt;</b> or <b>AggregatableDescription&lt;T&gt;</b>,
+            which are defined in VlppReflection.
+        </p>
+        <p>
+            The same source code could be used in compilers or code generators,
+            typically these kind of tools uses reflection at runtime,
+            so source code that defines reflectable C++ types are required to compile
+            regardless weather <b>VCZH_DEBUG_NO_REFLECTION</b> is on or off,
+            so that to share the same code to consumers which don't need runtime reflection.
+        </p>
+        <topic>
+            <title>Projects in Gaclib that use reflection</title>
+            <p>
+                In <b>VlppParser</b> project, generated C++ code from <b>ParserGen.exe</b> will remove type registration code
+                when <b>VCZH_DEBUG_NO_REFLECTION</b> is on.
+                All generated AST classes from the grammar is reflectable.
+            </p>
+            <p>
+                In <b>Workflow</b> project, compiling and running Workflow script relies on reflection,
+                so they are moved to separated files.
+                When you only uses generated C++ code from Workflow script,
+                only include part of the file and set <b>VCZH_DEBUG_NO_REFLECTION</b> on.
+            </p>
+            <p>
+                In <b>GacUI</b> project, type registration and GacUI XML resource compiler uses reflection,
+                so they are moved to separated files.
+                When you don't need dynamic resource loading for controls,
+                only include part of the file and set <b>VCZH_DEBUG_NO_REFLECTION</b> on.
+            </p>
+            <p>
+                Setting <b>VCZH_DEBUG_NO_REFLECTION</b> on reduces size of reflectable C++ types,
+                and significantly reduces 90% of the executable size for GacUI applications.
+                This improves performance a lot.
+            </p>
+        </topic>
+        <topic>
+            <title>Authoring reflectable C++ types</title>
+            <p>In namespace <b>::vl::reflection</b>.</p>
+            <p>
+                In API naming convention, <b>VlppReflection</b> uses <b>class</b> for reference types, and <b>struct</b> for data type.
+                A reference type can only be created and stored in a pointer, it contains fields, methods, properties, events, it also allow inheritance.
+                A data type contains only data, there is no methods and events, and inheritance is not allowed.
+            </p>
+            <p>
+                C++ primitive types, important types and containers from <b>Vlpp</b> are all reflectable.
+            </p>
+            <p>
+                A reflectable C++ class must inherit from <b>Description&lt;T&gt;</b> or <b>AggregatableDescription&lt;T&gt;</b>.
+                To make a class member reflectable, types that are used in that member should also be reflectable.
+            </p>
+        </topic>
+        <topic>
+            <title>Functors and containers</title>
+            <p>In namespace <b>::vl::reflection::description</b>.</p>
+            <p>
+                For functors, only <b>Func&lt;T&gt;</b> is reflectable. Most containers are reflectable.
+            </p>
+            <p>
+                When a functor is boxed, an instance of <b>IValueFunctionProxy</b> is created.
+                When a boxed functor is unboxed,
+                you don't get the <b>Func&lt;T&gt;</b> object before boxing,
+                instead you get a new <b>Func&lt;T&gt;</b> object that calls this <b>IValueFunctionProxy</b> instance.
+            </p>
+            <p>
+                When a container is boxed, an instance of <b>IValueEnumerable</b>, <b>IValueList</b> or <b>IValueDictionary</b> is created.
+                It depends on the type of the container.
+                This instance references the container before boxing,
+                it can update the container,
+                so when the container is deleted, calling this instance will crash.
+                When a boxed container is unboxed,
+                you get a copy of the container.
+            </p>
+        </topic>
+        <topic>
+            <title>Boxing and unboxing</title>
+            <p>In namespace <b>::vl::reflection::description</b>.</p>
+            <p>
+                For non-generic types and <b>WString</b>,
+                <b>BoxValue</b> and <b>UnboxValue</b> is recommended.
+            </p>
+            <p>
+                For functors and containers,
+                <b>BoxParameter</b> and <b>UnboxParameter</b> is required.
+                These two function can also box and unbox non-generic types and <b>WString</b>,
+                but it is not as convenient as <b>BoxValue</b> and <b>UnboxValue</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>When to use reflection</title>
+            <p>
+                You are recommended not to use reflection at runtime if you can.
+            </p>
+            <p>
+                Reflection are mostly built for compiling and running Workflow script.
+                A Workflow script class can even inherit from multiple reflectable C++ classes (must inherit from <b>AggregatableDescription</b>).
+                In order to do <b>dynamic_cast</b> correctly,
+                you are recommended to use the <b>SafeAggregationCast&lt;T&gt;</b> function, which exist in all reflectable C++ classes.
+            </p>
+            <p>
+                Running Workflow script requires reflection to be available,
+                while running the generated C++ code from Workflow script does not.
+            </p>
+            <p>
+                In <b>GacUI</b>, all controls in GacUI XML resource files are converted to workflow script files during compiling.
+                In order to create these controls,
+                you are recommended to use generated C++ code from them directly.
+                These are all done by <b>GacBuild.ps1</b>
+            </p>
+            <p>
+                You can load compiled resource files and script files at runtime to create controls,
+                but this is not recommended.
+            </p>
+            <p>
+                When runtime reflection is not needed, you must set <b>VCZH_DEBUG_NO_REFLECTION</b> on.
+                This is a preprocessor definition for C++ compiler.
+                You can also detect this option using <b>#ifdef VCZH_DEBUG_NO_REFLECTION</b> or <b>#ifndef VCZH_DEBUG_NO_REFLECTION</b>.
+            </p>
+        </topic>
+    </topic>
+</article>

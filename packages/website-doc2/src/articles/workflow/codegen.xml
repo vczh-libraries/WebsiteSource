@@ -1,0 +1,263 @@
+<article>
+    <topic>
+        <title>C++ Code Generation</title>
+        <p>
+            Attributies can be applied to Workflow classes, functions and members to control the result of C++ code generation.
+        </p>
+        <topic>
+            <title>@cpp:File("YourFile")</title>
+            <p>
+                This attribute applies to <b>classes</b>.
+                It creates a new pair of file <b>YourFile.h</b> and <b>YourFile.cpp</b> to 
+            </p>
+            <p>
+                Since internal classes in Workflow get translated to internal classes in C++,
+                if you assign different file name to class A and B when B is defined inside A,
+                it causes an error.
+            </p>
+            <p>
+                This attribute is useful when the class has methods with <b>@cpp:UserImpl</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>@cpp:UserImpl</title>
+            <p>
+                This attribute applies to <b>constructors, destructors and functions</b> in classes.
+            </p>
+            <p>
+                Bodies of functions with <b>@cpp:UserImpl</b> are ignored,
+                they are left blank in the generated file,
+                allowing users to add custom code lines
+                between:
+                <ul>
+                    <li><b>/* USER_CONTENT_BEGIN(CLASS-NAME) */</b></li>
+                    <li><b>/* USER_CONTENT_END() */</b></li>
+                </ul>
+            </p>
+            <p>
+                When a class contains methods with <b>@cpp:UserImpl</b>,
+                custom members can also be added to the generated header file for this class
+                between:
+                <ul>
+                    <li><b>/* USER_CONTENT_BEGIN(custom members of CLASS-NAME) */</b></li>
+                    <li><b>/* USER_CONTENT_END() */</b></li>
+                </ul>
+            </p>
+            <p>
+                When a file contains methods with <b>@cpp:UserImpl</b>,
+                custom global declarations can also be added to the generated header file for this class
+                between:
+                <ul>
+                    <li><b>/* USER_CONTENT_BEGIN(custom global declarations) */</b></li>
+                    <li><b>/* USER_CONTENT_END() */</b></li>
+                </ul>
+            </p>
+            <p>
+                When the Workflow script is modified and re-generated,
+                new generated code and custom code lines in specific locations will be merged together,
+                so your work doesn't lost.
+            </p>
+            <p>
+                <b>IMPORTANT</b>:
+                If there are braces (<b>{</b> and <b>}</b>) in custom code lines,
+                they must take the whole line,
+                or the code merging will report errors.
+            </p>
+        </topic>
+        <topic>
+            <title>@cpp:Protected and @cpp:Private</title>
+            <p>
+                These attributes apply to <b>any members</b> in classes, except non-auto properties.
+            </p>
+            <p>
+                When a class member is annotated by <b>@cpp:Protected</b>,
+                this part of the C++ code will be generated with <b>protected:</b>.
+                So as <b>@cpp:Private</b>.
+            </p>
+            <p>
+                <b>NOTE</b>: these attributes don't affect the Workflow compiler,
+                Workflow script treats all members as public members.
+            </p>
+        </topic>
+        <topic>
+            <title>@cpp:Friend(typeof(YourType))</title>
+            <p>
+                This attribute applies to <b>classes</b>.
+                It generates <b>friend</b> declaration in C++ code,
+                allowing <b>YourType</b> to access protected or private members of the current class. 
+            </p>
+        </topic>
+        <topic>
+            <title>Example</title>
+            <topic>
+                <title>Workflow Script</title>
+                <p>
+                    <program><code><![CDATA[
+                        module SampleModule;
+
+                        class DummyClass
+                        {
+                            func CallPrivateMethod(my: MyClass^): void
+                            {
+                                my.Method();
+                            }
+                        }
+
+                        @cpp:File("MyClass")
+                        @cpp:Friend(typeof(DummyClass))
+                        class MyClass
+                        {
+                            @cpp:UserImpl
+                            @cpp:Private
+                            func Method(): void
+                            {
+                                raise "Not Implemented!";
+                            }
+                        }
+                    ]]></code></program>
+                </p>
+            </topic>
+            <topic>
+                <title>Generated C++ Files</title>
+                <p>
+                    <b>IMPORTANT</b>:
+                    <ul>
+                        <li>
+                            The default file name is configurable,
+                            here we assume that it is <b>SampleModule</b>.
+                        </li>
+                        <li>
+                            This is not the full content of generated files.
+                            By following <a href="/workflow/running/generating.html">Generating C++ Code</a> you will see everything.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    <b>SampleModule.h</b>
+                    <program><code><![CDATA[
+                        class DummyClass;
+                        class MyClass;
+
+                        class DummyClass : public ::vl::Object, public ::vl::reflection::Description<DummyClass>
+                        {
+                        #ifndef VCZH_DEBUG_NO_REFLECTION
+                            friend struct ::vl::reflection::description::CustomTypeDescriptorSelector<DummyClass>;
+                        #endif
+                        public:
+                            void CallPrivateMethod(::vl::Ptr<::MyClass> my);
+                            DummyClass();
+                        };
+
+                        /***********************************************************************
+                        Global Variables and Functions
+                        ***********************************************************************/
+
+                        namespace vl_workflow_global
+                        {
+                            class W05Script
+                            {
+                            public:
+
+                                static W05Script& Instance();
+                            };
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>SampleModule.cpp</b>
+                    <program><code><![CDATA[
+                        #define GLOBAL_SYMBOL ::vl_workflow_global::W05Script::
+                        #define GLOBAL_NAME ::vl_workflow_global::W05Script::Instance().
+                        #define GLOBAL_OBJ &::vl_workflow_global::W05Script::Instance()
+
+                        /***********************************************************************
+                        Global Variables
+                        ***********************************************************************/
+
+                        BEGIN_GLOBAL_STORAGE_CLASS(vl_workflow_global_W05Script)
+                            vl_workflow_global::W05Script instance;
+                            INITIALIZE_GLOBAL_STORAGE_CLASS
+                            FINALIZE_GLOBAL_STORAGE_CLASS
+                        END_GLOBAL_STORAGE_CLASS(vl_workflow_global_W05Script)
+
+                        namespace vl_workflow_global
+                        {
+                        /***********************************************************************
+                        Global Functions
+                        ***********************************************************************/
+
+                            W05Script& W05Script::Instance()
+                            {
+                                return Getvl_workflow_global_W05Script().instance;
+                            }
+                        }
+
+                        /***********************************************************************
+                        Class (::DummyClass)
+                        ***********************************************************************/
+
+                        void DummyClass::CallPrivateMethod(::vl::Ptr<::MyClass> my)
+                        {
+                            ::vl::__vwsn::This(my.Obj())->Method();
+                        }
+
+                        DummyClass::DummyClass()
+                        {
+                        }
+
+                        #undef GLOBAL_SYMBOL
+                        #undef GLOBAL_NAME
+                        #undef GLOBAL_OBJ
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>MyClass.h</b>
+                    <program><code><![CDATA[
+                        class MyClass : public ::vl::Object, public ::vl::reflection::Description<MyClass>
+                        {
+                            friend class ::DummyClass;
+                        #ifndef VCZH_DEBUG_NO_REFLECTION
+                            friend struct ::vl::reflection::description::CustomTypeDescriptorSelector<MyClass>;
+                        #endif
+                        private:
+                            void Method();
+                        public:
+                            MyClass();
+
+                        /* USER_CONTENT_BEGIN(custom members of ::MyClass) */
+                        /* USER_CONTENT_END() */
+                        };
+                    ]]></code></program>
+                </p>
+                <p>
+                    <b>MyClass.cpp</b>
+                    <program><code><![CDATA[
+                        #define GLOBAL_SYMBOL ::vl_workflow_global::W05Script::
+                        #define GLOBAL_NAME ::vl_workflow_global::W05Script::Instance().
+                        #define GLOBAL_OBJ &::vl_workflow_global::W05Script::Instance()
+
+                        /* USER_CONTENT_BEGIN(custom global declarations) */
+                        /* USER_CONTENT_END() */
+
+                        /***********************************************************************
+                        Class (::MyClass)
+                        ***********************************************************************/
+
+                        void MyClass::Method()
+                        {/* USER_CONTENT_BEGIN(::MyClass) */
+                            throw ::vl::Exception(L"You should implement this function.");
+                        }/* USER_CONTENT_END() */
+
+                        MyClass::MyClass()
+                        {
+                        }
+
+                        #undef GLOBAL_SYMBOL
+                        #undef GLOBAL_NAME
+                        #undef GLOBAL_OBJ
+                    ]]></code></program>
+                </p>
+            </topic>
+        </topic>
+    </topic>
+</article>

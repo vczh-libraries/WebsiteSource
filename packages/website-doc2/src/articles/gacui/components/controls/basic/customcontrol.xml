@@ -1,0 +1,58 @@
+<article index="true">
+    <topic>
+        <title>&lt;CustomControl&gt;</title>
+        <p>
+            <ul>
+                <li>
+                    <b>&lt;CustomControl/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiCustomControl*</li>
+                        <li><b>Template Tag</b>: &lt;ControlTemplate/&gt;</li>
+                        <li><b>Template Name</b>: CustomControl</li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <b>&lt;CustomControl/&gt;</b> is a control for making new controls in GacUI XML Resource.
+            <program>
+                <code><![CDATA[
+                    <Instance ref.CodeBehind="false" ref.Class="demo::MyControl>
+                      <CustomControl/>
+                    </Instance>
+                ]]></code>
+            </program>
+            <b>&lt;CustomControl/&gt;</b> is usually a base class of an
+            <a href="/gacui/xmlres/tag_instance.html">
+                &lt;Instance&gt;
+            </a>.
+            Here we create a class <b>demo::MyControl</b> inheriting from <b>&lt;CustomControl/&gt;</b>.
+        </p>
+        <p>
+            To add new properties and other members to the new control,
+            just define them in <b>Workflow</b> and put all of them in
+            <a href="/gacui/xmlres/tag_instance.html">
+                <b>&lt;ref.Members/&gt;</b>
+            </a>.
+        </p>
+        <topic>
+            <title>Adding something to a custom control</title>
+            <p>
+                <b>&lt;CustomControl/&gt;</b> is just a control.
+                Compositions and controls in the window will be added to its <b>ContainerComposition</b>.
+                You don't have to explicitly use <b>att.ContainerComposition</b>.
+            </p>
+            <p>
+                As a <b>GuiInstanceRootObject</b>,
+                components can also be added to a window.
+            </p>
+            <p>
+                Please check out
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Controls/TriplePhaseImageButton">
+                    this tutorial project
+                </a>
+                for details.
+            </p>
+        </topic>
+    </topic>
+</article>
