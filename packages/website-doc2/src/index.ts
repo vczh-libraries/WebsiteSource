@@ -45,6 +45,17 @@ router.register(
 
         try {
             switch (dnode.kind) {
+                case 'unfinished': {
+                    const generatedHtml = generateHtml(
+                        info,
+                        views,
+                        'Gaclib-UnfinishedView',
+                        model,
+                        '',
+                        res
+                    );
+                    return ['text/html', generatedHtml];
+                }
                 case 'registeredTypes': {
                     res.projectName = dnode.name;
                     //res.registeredTypesInfo = getRegisteredTypes(dnode.name);

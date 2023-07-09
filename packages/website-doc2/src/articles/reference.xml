@@ -16,6 +16,7 @@
   <article name="Vlpp" file="vlpp/home">
     <article name="References" file="vlpp/ref">
       <!--link pathPrefix="vlpp/ref" filePrefix="VLPP/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPP.xml"/-->
+      <unfinished name="Namespaces" file="vlpp/ref/namespaces"/>
     </article>
   </article>
   <article name="Vlpp OS" file="vlppos/home">
@@ -23,26 +24,31 @@
     <article name="Using Threads and Locks" file="vlppos/using-threads"/>
     <article name="References" file="vlppos/ref">
       <!--link pathPrefix="vlppos/ref" filePrefix="VLPPOS/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPOS.xml"/-->
+      <unfinished name="Namespaces" file="vlppos/ref/namespaces"/>
     </article>
   </article>
   <article name="Vlpp Regex" file="vlppregex/home">
     <article name="References" file="vlppregex/ref">
       <!--link pathPrefix="vlppregex/ref" filePrefix="VLPPREGEX/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREGEX.xml"/-->
+      <unfinished name="Namespaces" file="vlppregex/ref/namespaces"/>
     </article>
   </article>
   <article name="Vlpp Reflection" file="vlppreflection/home">
     <article name="References" file="vlppreflection/ref">
       <!--link pathPrefix="vlppreflection/ref" filePrefix="VLPPREFLECTION/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREFLECTION.xml"/-->
+      <unfinished name="Namespaces" file="vlppreflection/ref/namespaces"/>
     </article>
   </article>
   <article name="Vlpp Parser" file="vlppparser/home">
     <article name="References" file="vlppparser/ref">
       <!--link pathPrefix="vlppparser/ref" filePrefix="VLPPPARSER/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER.xml"/-->
+      <unfinished name="Namespaces" file="vlppparser/ref/namespaces"/>
     </article>
   </article>
   <article name="Vlpp Parser2" file="vlppparser2/home">
     <article name="References" file="vlppparser2/ref">
       <!--link pathPrefix="vlppparser/ref" filePrefix="VLPPPARSER2/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER2.xml"/-->
+      <unfinished name="Namespaces" file="vlppparser2/ref/namespaces"/>
     </article>
   </article>
   <article name="Workflow Script" file="workflow/home">
@@ -56,6 +62,7 @@
     <article name="C++ Code Generation" file="workflow/codegen"/>
     <article name="References" file="workflow/ref">
       <!--link pathPrefix="workflow/ref" filePrefix="WORKFLOW/" file="../../../../../Document/Tools/Demos/Gaclib/References/WORKFLOW.xml"/-->
+      <unfinished name="Namespaces" file="workflow/ref/namespaces"/>
     </article>
   </article>
   <article name="GacUI" file="gacui/home">
@@ -74,6 +81,7 @@
     </article>
     <article name="References" file="gacui/ref">
       <!--link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/-->
+      <unfinished name="Namespaces" file="gacui/ref/namespaces"/>
     </article>
   </article>
 </reference>
