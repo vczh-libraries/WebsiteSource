@@ -1,0 +1,11 @@
+<article>
+    <topic>
+        <title>Upgrading from 1.0</title>
+        <topic>
+            <title>UnboxParameter&lt;T&gt; function</title>
+            <p>
+                It returns <b>Unboxed&lt;T&gt;</b> instead of updating the second argument.
+            </p>
+        </topic>
+    </topic>
+</article>

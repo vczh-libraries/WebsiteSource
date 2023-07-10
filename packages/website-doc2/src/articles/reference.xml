@@ -36,6 +36,7 @@
     </article>
   </article>
   <article name="Vlpp Reflection" file="vlppreflection/home">
+    <article name="Upgrading from 1.0" file="vlppreflection/upgrade"/>
     <article name="References" file="vlppreflection/ref">
       <!--link pathPrefix="vlppreflection/ref" filePrefix="VLPPREFLECTION/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREFLECTION.xml"/-->
       <unfinished name="Namespaces" file="vlppreflection/ref/namespaces"/>
