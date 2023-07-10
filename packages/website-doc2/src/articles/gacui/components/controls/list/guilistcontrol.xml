@@ -82,7 +82,7 @@
                 </p>
                 <p>
                     When reflection is turned off (which is recommended)
-                    by using <b>VCZH_DEBUG_NO_REFLECTION </b>,
+                    by using <b>VCZH_DEBUG_NO_REFLECTION</b>,
                     you cannot access member via reflection in each item,
                     but you can still do type testing or conversion.
                 </p>

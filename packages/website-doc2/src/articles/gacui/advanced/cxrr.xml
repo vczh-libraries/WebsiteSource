@@ -44,7 +44,7 @@
                     <li>
                         <b>/ResourceMetadata/@Version</b>:
                         The only legal value is <b>1.0</b>.
-                        It is bounded to the GacUI XML Resource Compiler (GacGen32.exe or GacGen64.exe).
+                        It is bounded to the GacUI XML Resource Compiler (GacGen.exe).
                         To ensure that all depended resources are compiled using a compatible version of compiler,
                         an resource could only depend on another resource that has exactly the same version.
                     </li>

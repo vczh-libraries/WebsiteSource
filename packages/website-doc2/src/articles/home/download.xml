@@ -115,7 +115,7 @@
                 </p>
                 <p>
                     This is the GacUI XML resource compiler.
-                    <b>GacGen32.exe</b> and <b>GacGen64.exe</b> are the executable version of this file.
+                    <b>GacGen.exe</b> is the executable version of this file.
                 </p>
             </topic>
         </topic>
@@ -123,6 +123,7 @@
             <title>Using Build Tools</title>
             <p>
                 Tools can be found in the <b>Tools</b> folder.
+                Build <b>Tools\Executables\Executables.sln</b> and run <b>CopyExecutables.ps1</b> to make sure all exe files appear under the <b>Tools</b> folder.
             </p>
             <p>
                 You only need <b>GacBuild.ps1</b> and <b>GacClear.ps1</b>.
