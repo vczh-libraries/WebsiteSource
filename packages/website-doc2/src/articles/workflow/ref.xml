@@ -70,11 +70,11 @@
             <title>Dependencies</title>
             <p>
                 <ul>
-                    <li><b>Vlpp.h</b> and <b>Vlpp.cpp</b></li>
-                    <li><b>VlppOS.h</b> and <b>VlppOS.cpp</b></li>
-                    <li><b>VlppRegex.h</b> and <b>VlppRegex.cpp</b></li>
-                    <li><b>VlppReflection.h</b> and <b>VlppReflection.cpp</b></li>
-                    <li><b>VlppParser2.h</b> and <b>VlppParser2.cpp</b></li>
+                    <li><b>Vlpp</b></li>
+                    <li><b>VlppOS</b></li>
+                    <li><b>VlppRegex</b></li>
+                    <li><b>VlppReflection</b></li>
+                    <li><b>VlppParser2</b></li>
                 </ul>
             </p>
         </topic>

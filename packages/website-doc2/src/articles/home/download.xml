@@ -8,16 +8,21 @@
                 <li><b>Linux</b>: <a href="https://github.com/vczh-libraries/gGac">vczh-libraries/gGac</a></li>
                 <li><b>macOS</b>: <a href="https://github.com/vczh-libraries/iGac">vczh-libraries/iGac</a></li>
             </ul>
-            At this moment,
-            the Linux port and the macOS port have not been merged into the release repo yet,
-            but it will soon be done.
+            If cross-platforms are needed,
+            please check out the <a href="https://github.com/vczh-libraries/Release">Release repo</a>
+            about aligned versions of releases from above repos.
         </p>
         <topic>
             <title>Using C++ Source Code</title>
             <p>
                 Here are dependencies of the source code.
-                Each box means a pair of .h and .cpp file.
-                For example, <b>Vlpp</b> means <b>Vlpp.h</b> and <b>Vlpp.cpp</b>.
+                Each box means a pair of .h and .cpp file, with platform specific files if exists.
+                For example, <b>Vlpp</b> means:
+                <ul>
+                    <li><b>Vlpp.h</b></li>
+                    <li><b>Vlpp.cpp</b></li>
+                    <li><b>Vlpp.Windows.cpp</b> or <b>Vlpp.Linux.cpp</b></li>
+                </ul>
             </p>
             <p>
                 <img src="/Dependencies.png"/>
@@ -26,12 +31,15 @@
                 Source code can be found in the <b>Import</b> folder.
             </p>
             <topic>
-                <title>Vlpp, VlppOS, VlppRegex, VlppReflection, VlppParser</title>
+                <title>Vlpp, VlppOS, VlppRegex, VlppReflection, VlppParser, VlppParser2</title>
                 <p>
                     These files are basic C++ constructions.
                     GacUI is built on these libraries.
                     In most of the cases,
                     you only need functions and classes from <b>Vlpp</b> and <b>VlppOs</b>.
+                </p>
+                <p>
+                    <b>VlppParser</b> is deprecating, it will be removed later after all <b>GacUI</b> features are upgraded to <b>VlppParser2</b>.
                 </p>
             </topic>
             <topic>

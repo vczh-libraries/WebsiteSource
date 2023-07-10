@@ -22,7 +22,7 @@
                 <p>
                     <ul>
                         <li><b>GacUI.h</b> and <b>GacUI.cpp</b></li>
-                        <li><b>GacUIWindows.h</b> and <b>GacUIWindows.cpp</b></li>
+                        <li><b>GacUI.Windows.h</b> and <b>GacUI.Windows.cpp</b></li>
                         <li><b>DarkSkin.h</b> and <b>DarkSkin.cpp</b></li>
                     </ul>
                 </p>
@@ -62,13 +62,13 @@
                 <title>for typical GacUI applications</title>
                 <p>
                     <ul>
-                        <li><b>Vlpp.h</b> and <b>Vlpp.cpp</b></li>
-                        <li><b>VlppOS.h</b> and <b>VlppOS.cpp</b></li>
-                        <li><b>VlppRegex.h</b> and <b>VlppRegex.cpp</b></li>
-                        <li><b>VlppReflection.h</b> and <b>VlppReflection.cpp</b></li>
-                        <li><b>VlppParser.h</b> and <b>VlppParser.cpp</b> (this dependency will be removed in the future)</li>
-                        <li><b>VlppParser2.h</b> and <b>VlppParser2.cpp</b></li>
-                        <li><b>VlppWorkflowCompiler.h</b> and <b>VlppWorkflowCompiler.cpp</b></li>
+                        <li><b>Vlpp</b></li>
+                        <li><b>VlppOS</b></li>
+                        <li><b>VlppRegex</b></li>
+                        <li><b>VlppReflection</b></li>
+                        <li><b>VlppParser</b> (this dependency will be removed in the future)</li>
+                        <li><b>VlppParser2</b></li>
+                        <li><b>VlppWorkflowLibrary</b></li>
                     </ul>
                 </p>
             </topic>
@@ -77,7 +77,7 @@
                 <p>
                     <ul>
                         <li>(all source files above)</li>
-                        <li><b>VlppWorkflowRuntime.h</b> and <b>VlppWorkflowRuntime.cpp</b></li>
+                        <li><b>VlppWorkflowRuntime</b></li>
                     </ul>
                 </p>
             </topic>
@@ -86,7 +86,7 @@
                 <p>
                     <ul>
                         <li>(all source files above)</li>
-                        <li><b>VlppWorkflowCompiler.h</b> and <b>VlppWorkflowCompiler.cpp</b></li>
+                        <li><b>VlppWorkflowCompiler</b></li>
                     </ul>
                 </p>
             </topic>
