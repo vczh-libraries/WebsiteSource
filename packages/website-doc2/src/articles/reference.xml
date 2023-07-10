@@ -14,6 +14,7 @@
     </article>
   </article>
   <article name="Vlpp" file="vlpp/home">
+    <article name="Upgrading from 1.0" file="vlpp/upgrade"/>
     <article name="References" file="vlpp/ref">
       <!--link pathPrefix="vlpp/ref" filePrefix="VLPP/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPP.xml"/-->
       <unfinished name="Namespaces" file="vlpp/ref/namespaces"/>

@@ -1,0 +1,93 @@
+<article>
+    <topic>
+        <title>Upgrading from 1.0</title>
+        <topic>
+            <title>FOREACH macro</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                <b>FOREACH(TYPE, VAR, COLLECTION)</b> is replaced by <b>for (auto VAR : COLLECTION)</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>FOREACH_INDEXER macro</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                <b>FOREACH(TYPE, VAR, INDEX, COLLECTION)</b> is replaced by <b>for (auto [VAR, INDEX] : indexed(COLLECTION))</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>LAMBDA macro</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                <b>LAMBDA([]...)</b> is replaced by <b>Func([]...)</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>NotCopyable class</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                Please use <b>=delete;</b> on constructors, copy constructors, move constructors, copy assignment operator and move assignment operator accordingly.
+            </p>
+        </topic>
+        <topic>
+            <title>ObjectBox&lt;T&gt; and Lazy&lt;T&gt; class</title>
+            <p>
+                Removed.
+            </p>
+        </topic>
+        <topic>
+            <title>Ptr&lt;T&gt; and ComPtr&lt;T&gt; class</title>
+            <p>
+                Constructors taking an <b>T*</b> argument become explicit.
+            </p>
+        </topic>
+        <topic>
+            <title>String classes</title>
+            <p>
+                Non-trivial constructors are removed replaced by following static functions:
+                <ul>
+                    <li>TakeOver</li>
+                    <li>FromChar</li>
+                    <li>CopyFrom</li>
+                    <li>Unmanaged</li>
+                    <li>UnsafeCastFrom</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>MoveValue&lt;T&gt; and ForwardValue&lt;T&gt; function</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                Please use <b>std::move</b> and <b>std::forward</b> instead.
+            </p>
+        </topic>
+        <topic>
+            <title>MakePtr&lt;T&gt; function</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                <b>MakePtr&lt;T&gt;(...)</b> is replaced by <b>Ptr(new T(...))</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Type traits</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                Please use <b>#include &lt;type_traits&gt;</b> instead.
+            </p>
+        </topic>
+    </topic>
+</article>
