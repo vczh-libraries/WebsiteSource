@@ -1,0 +1,17 @@
+<article>
+    <topic>
+        <title>Upgrading from 1.0</title>
+        <topic>
+            <title>struct</title>
+            <p>
+                A struct is not allowed to have its nullable type as a direct or indirect field.
+            </p>
+        </topic>
+        <topic>
+            <title>static {}</title>
+            <p>
+                New syntax for <a href="/workflow/lang/module.html">Module initialization</a>.
+            </p>
+        </topic>
+    </topic>
+</article>

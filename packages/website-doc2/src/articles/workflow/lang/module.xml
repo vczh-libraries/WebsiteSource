@@ -97,5 +97,21 @@
                 right below the module name.
             </p>
         </topic>
+        <topic>
+            <title>Static Initialization</title>
+            <p>
+                Static initialization are statements in <b>static {}</b> declarations.
+                Multiple <b>static {}</b> declarations could appear in a module or a namespace.
+                Statemenets inside them will be executed when the module is loaded.
+            </p>
+            <p>
+                When loading and executing workflow script in runtime,
+                such initialization happens when running the <a href="/workflow/running/running.html"><b>&lt;initialize&gt;</b></a> function,
+                after global variables are initialized.
+            </p>
+            <p>
+                The execution order between multiple <b>static {}</b> declarations are not defined.
+            </p>
+        </topic>
     </topic>
 </article>

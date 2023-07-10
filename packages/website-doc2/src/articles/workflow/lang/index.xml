@@ -51,6 +51,7 @@
                 <li><b>reversed</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>shl</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
                 <li><b>shr</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
+                <li><b>static</b>: Static methods in <a href="/workflow/lang/interface.html">Interfaces</a> and <a href="/workflow/lang/class.html">Classes</a>, <a href="/workflow/lang/module.html">Module initialization</a></li>
                 <li><b>string</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>struct</b>: <a href="/workflow/lang/struct.html">Structs</a></li>
                 <li><b>true</b>: <a href="/workflow/lang/type.html">Types</a></li>

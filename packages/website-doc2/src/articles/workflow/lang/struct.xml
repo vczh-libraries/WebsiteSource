@@ -21,6 +21,7 @@
                 <li>primitive types</li>
                 <li>nullable types</li>
             </ul>
+            A struct is not allowed to have itself or its nullable type as a direct or indirect field.
         </p>
         <p>
             Structs cannot inherit from other structs.

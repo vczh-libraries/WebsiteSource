@@ -63,6 +63,7 @@
     </article>
     <article name="Runtime Instructions" file="workflow/ins"/>
     <article name="C++ Code Generation" file="workflow/codegen"/>
+    <article name="Upgrading from 1.0" file="workflow/upgrade"/>
     <article name="References" file="workflow/ref">
       <!--link pathPrefix="workflow/ref" filePrefix="WORKFLOW/" file="../../../../../Document/Tools/Demos/Gaclib/References/WORKFLOW.xml"/-->
       <unfinished name="Namespaces" file="workflow/ref/namespaces"/>
