@@ -95,11 +95,22 @@
                 Click <a href="/vlppparser/ref.html">here</a> for API references.
             </p>
             <p>
-                This library will be re-shaped in GacUI 2.0.
+                This library is deprecated but still included in GacUI 2.0, please use <b>VlppParser2</b> instead.
             </p>
             <p>
                 You are able to write the syntax in a text file,
                 and then run <name>ParserGen.exe</name> to generated parser, AST with traverse algorithms in C++.
+                You also automatically get predefined parsers and printers for <b>XML and JSON</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>VlppParser2: GLR Parser Generator</title>
+            <p>
+                Click <a href="/vlppparser2/ref.html">here</a> for API references.
+            </p>
+            <p>
+                You are able to write the syntax in a text file,
+                and then run <name>GlrParserGen.exe</name> to generated parser, AST with traverse algorithms in C++.
                 You also automatically get predefined parsers and printers for <b>XML and JSON</b>.
             </p>
         </topic>
