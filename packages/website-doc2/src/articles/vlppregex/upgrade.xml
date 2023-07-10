@@ -1,0 +1,20 @@
+<article>
+    <topic>
+        <title>Upgrading from 1.0</title>
+        <topic>
+            <title>vl::ParsingException class</title>
+            <p>
+                Removed.
+            </p>
+            <p>
+                <b>vl::ParsingException</b> is replaced by <b>vl::regex_internal::RegexException</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Regex, RegexLexer, RegexTokens, RegexLexerWalker, RegexLexerColorizer classes</title>
+            <p>
+                They are no longer classes but <b>typedef</b> to template classes.
+            </p>
+        </topic>
+    </topic>
+</article>

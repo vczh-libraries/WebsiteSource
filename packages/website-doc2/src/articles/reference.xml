@@ -29,6 +29,7 @@
     </article>
   </article>
   <article name="Vlpp Regex" file="vlppregex/home">
+    <article name="Upgrading from 1.0" file="vlppregex/upgrade"/>
     <article name="References" file="vlppregex/ref">
       <!--link pathPrefix="vlppregex/ref" filePrefix="VLPPREGEX/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPREGEX.xml"/-->
       <unfinished name="Namespaces" file="vlppregex/ref/namespaces"/>

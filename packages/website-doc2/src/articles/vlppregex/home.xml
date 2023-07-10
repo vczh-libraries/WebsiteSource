@@ -9,7 +9,7 @@
             <p>In namespace <b>::vl::regex</b>,</p>
             <p>
                 <ul>
-                    <li><b>Regex</b>: A regular expression class with string matching and other features.</li>
+                    <li><b>Regex_&lt;T&gt;</b>: A regular expression class with string matching and other features.</li>
                 </ul>
             </p>
         </topic>
@@ -18,15 +18,71 @@
             <p>In namespace <b>::vl::regex</b>,</p>
             <p>
                 <ul>
-                    <li><b>RegexLexer</b>: The lexical analyzer.</li>
-                    <li><b>RegexTokens</b>: Token iterator for lexical analyzed text, from <b>RegexLexer::Parse</b>.</li>
-                    <li><b>RegexLexerWalker</b>: Lexical analyzer that provides information when consuming each character, from <b>RegexLexer::Walk</b>.</li>
-                    <li><b>RegexLexerColorizer</b>: Text colorizer for lexical analyzed text, from <b>RegexLexer::Colorize</b>.</li>
+                    <li><b>RegexLexer_&lt;T&gt;</b>: The lexical analyzer.</li>
+                    <li><b>RegexTokens_&lt;T&gt;</b>: Token iterator for lexical analyzed text, from <b>RegexLexer_&lt;T&gt;::Parse</b>.</li>
+                    <li><b>RegexLexerWalker_&lt;T&gt;</b>: Lexical analyzer that provides information when consuming each character, from <b>RegexLexer_&lt;T&gt;::Walk</b>.</li>
+                    <li><b>RegexLexerColorizer_&lt;T&gt;</b>: Text colorizer for lexical analyzed text, from <b>RegexLexer_&lt;T&gt;::Colorize</b>.</li>
                 </ul>
             </p>
             <p>
                 This lexical analyzer also supports context-sensitive token,
                 which requires user-provided callbacks instead of just setting regular expressions.
+            </p>
+        </topic>
+        <topic>
+            <title>Using wchar_t</title>
+            <p>
+                <b>Regex</b>, <b>RegexLexer</b>, <b>RegexTokens</b>, <b>RegexLexerWalker</b> and <b>RegexLexerColorizer</b> are still there.
+            </p>
+        </topic>
+        <topic>
+            <title>Using other unicode character types</title>
+            <p>
+                When the regular expression is not <b>WString</b>, please use:
+                <ul>
+                    <li><b>Regex_&lt;char8_t&gt;</b></li>
+                    <li><b>Regex_&lt;char16_t&gt;</b></li>
+                    <li><b>Regex_&lt;char32_t&gt;</b></li>
+                </ul>
+            </p>
+            <p>
+                When the text to parse is not <b>WString</b>, please use:
+                <ul>
+                    <li><b>RegexLexer_&lt;char8_t&gt;</b></li>
+                    <li><b>RegexLexer_&lt;char16_t&gt;</b></li>
+                    <li><b>RegexLexer_&lt;char32_t&gt;</b></li>
+                </ul>
+                <ul>
+                    <li><b>RegexTokens_&lt;char8_t&gt;</b></li>
+                    <li><b>RegexTokens_&lt;char16_t&gt;</b></li>
+                    <li><b>RegexTokens_&lt;char32_t&gt;</b></li>
+                </ul>
+                <ul>
+                    <li><b>RegexLexerWalker_&lt;char8_t&gt;</b></li>
+                    <li><b>RegexLexerWalker_&lt;char16_t&gt;</b></li>
+                    <li><b>RegexLexerWalker_&lt;char32_t&gt;</b></li>
+                </ul>
+                <ul>
+                    <li><b>RegexLexerColorizer_&lt;char8_t&gt;</b></li>
+                    <li><b>RegexLexerColorizer_&lt;char16_t&gt;</b></li>
+                    <li><b>RegexLexerColorizer_&lt;char32_t&gt;</b></li>
+                </ul>
+            </p>
+            <p>
+                When the regular expression and the text to parse is in different format,
+                it doesn't matter,
+                just use the correct <b>Regex_&lt;T&gt;</b> according to the regular expression.
+                Whatever <b>T</b> you choose,
+                you can use <b>WString</b>, <b>U8String</b>, <b>U16String</b> and <b>U32String</b> in all following functions:
+                <ul>
+                    <li>MatchHead</li>
+                    <li>Match</li>
+                    <li>TestHead</li>
+                    <li>Test</li>
+                    <li>Search</li>
+                    <li>Split</li>
+                    <li>Cut</li>
+                </ul>
             </p>
         </topic>
     </topic>
