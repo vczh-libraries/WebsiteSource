@@ -23,6 +23,7 @@
   <article name="Vlpp OS" file="vlppos/home">
     <article name="Using Streams" file="vlppos/using-streams"/>
     <article name="Using Threads and Locks" file="vlppos/using-threads"/>
+    <article name="Upgrading from 1.0" file="vlppos/upgrade"/>
     <article name="References" file="vlppos/ref">
       <!--link pathPrefix="vlppos/ref" filePrefix="VLPPOS/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPOS.xml"/-->
       <unfinished name="Namespaces" file="vlppos/ref/namespaces"/>
@@ -43,6 +44,7 @@
     </article>
   </article>
   <article name="Vlpp Parser" file="vlppparser/home">
+    <article name="Upgrading from 1.0" file="vlppparser/upgrade"/>
     <article name="References" file="vlppparser/ref">
       <!--link pathPrefix="vlppparser/ref" filePrefix="VLPPPARSER/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER.xml"/-->
       <unfinished name="Namespaces" file="vlppparser/ref/namespaces"/>
@@ -83,6 +85,7 @@
     <article name="Advanced Topics" file="gacui/advanced/home">
       <link pathPrefix="gacui/advanced" filePrefix="" file="gacui/advanced/entry.xml"/>
     </article>
+    <article name="Upgrading from 1.0" file="gacui/upgrade"/>
     <article name="References" file="gacui/ref">
       <!--link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/-->
       <unfinished name="Namespaces" file="gacui/ref/namespaces"/>
