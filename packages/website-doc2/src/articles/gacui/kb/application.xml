@@ -8,8 +8,14 @@
             <ul>
                 <li>
                     For Windows,
-                    <b>SetupWindowsDirect2DRenderer</b> or <b>SetupWindowsGDIRenderer</b> must be called in <b>WinMain</b>,
-                    which initialize necessary objects and call <b>GuiMain</b> with different rendering techniques.
+                    One of the following functions must be called in <b>WinMain</b> to start the application:
+                    <ul>
+                        <li>SetupWindowsDirect2DRenderer</li>
+                        <li>SetupHostedWindowsDirect2DRenderer</li>
+                        <li>SetupWindowsGDIRenderer</li>
+                        <li>SetupHostedWindowsGDIRenderer</li>
+                    </ul>
+                    They initialize necessary objects and call <b>GuiMain</b> with different rendering techniques.
                 </li>
                 <li>
                     For macOS,

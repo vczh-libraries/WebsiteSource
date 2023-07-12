@@ -193,6 +193,13 @@
                 </p>
             </topic>
             <topic>
+                <title>WindowReadyToClose</title>
+                <p>
+                    This event is raised right before a window is closed
+                    when <b>WindowClosing</b> does not cancel the operation.
+                </p>
+            </topic>
+            <topic>
                 <title>WindowClosed</title>
                 <p>
                     This event is raised right after a window is closed.

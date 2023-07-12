@@ -102,6 +102,24 @@
             </p>
         </topic>
         <topic>
+            <title>Global Shortcut Key</title>
+            <p>
+                If you want to bind a <b>&lt;ToolstripCommand/&gt;</b> to a global shortcut key,
+                which affects the entire operating system instead of just the application,
+                add <b>global:</b> before the shortcut key combination.
+            </p>
+            <p>
+                For example:
+                <program><code><![CDATA[
+                    <ToolstripCommand Shortcut="global:Ctrl+Shift+C"/>
+                ]]></code></program>
+                It binds the command to the global shortcut key <b>Ctrl+Shift+C</b>.
+                Whenever you press this key combination,
+                regardless your application has the focus or not,
+                the command will be executed.
+            </p>
+        </topic>
+        <topic>
             <title>Accessing SubMenu</title>
             <p>
                 The <b>ToolstripSubMenu</b> property returns the attached sub menu of the button.

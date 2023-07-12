@@ -1,8 +1,20 @@
 <article>
     <topic>
         <title>Upgrading from 1.0</title>
-        <p>
-            The page is under construction.
-        </p>
+        <topic>
+            <title>GuiControl</title>
+            <p>
+                <b>SetFocus</b> and <b>GetFocus</b> are renamed to <b>SetFocused</b> and <b>GetFocused</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>GuiControlHost</title>
+            <p>
+                <b>WindowReadyToClose</b> event is added.
+                <b>WindowClosing</b> is called first,
+                and if it does not cancel the operation,
+                <b>WindowReadyToClose</b> is close, then the window is close, then <b>WindowClosed</b> is called.
+            </p>
+        </topic>
     </topic>
 </article>

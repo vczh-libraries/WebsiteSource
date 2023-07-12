@@ -5,6 +5,10 @@
             The GacUI XML <a href="/gacui/xmlres/tag_localizedstrings.html"><b>&lt;LocalizedStrings/&gt;</b></a> resource
             creates multi-language string template as bindable objects.
         </p>
+        <p>
+            The GacUI XML <a href="/gacui/xmlres/tag_localizedstringsinjection.html"><b>&lt;LocalizedStringsInjection/&gt;</b></a> resource
+            adds more languages to an existing <b>&lt;LocalizedStrings/&gt;</b>.
+        </p>
         <topic>
             <title>&lt;ref.LocalizedStrings/&gt;</title>
             <p>

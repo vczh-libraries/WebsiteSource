@@ -18,4 +18,5 @@
   <article name="<InstanceStyle>" file="tag_instancestyle"/>
   <article name="<Animation>" file="tag_animation"/>
   <article name="<LocalizedStrings>" file="tag_localizedstrings"/>
+  <article name="<LocalizedStringsInjection>" file="tag_localizedstringsinjection"/>
 </reference>
