@@ -139,13 +139,9 @@
                     The default value for this property is <b>null</b>.
                 </p>
                 <p>
-                    This property offers a way to communicate between a window and control templates of child controls.
-                    A typically scenario for this property is to assign an object.
-                    The control template will get the same object and subscribe to its events.
-                    A window can than talk to this object and except the control template to change something.
-                </p>
-                <p>
-                    <b>Context</b> of the control template automatically updates when this property is changed.
+                    This property offers a way to communicate between a control and its control template or item templates.
+                    When the value is changed,
+                    the <b>Context</b> property of its control template or item templates will be changed to that value.
                 </p>
                 <p>
                     Please check out

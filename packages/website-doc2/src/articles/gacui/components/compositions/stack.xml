@@ -20,7 +20,7 @@
             </p>
             <p>
                 <b>&lt;StackItem/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
-                there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;StackItem/&gt;</b>.
+                there is no writable <b>ExpectedBounds</b> and <b>AlignmentToParent</b> in <b>&lt;StackItem/&gt;</b>.
             </p>
             <topic>
                 <title>&lt;Stack&gt;::Direction</title>

@@ -19,29 +19,22 @@
             </p>
         </topic>
         <topic>
-            <title>Bounds</title>
+            <title>ExpectedBounds</title>
             <p>
                 To set a relative position,
                 the default value is 0 for all its components.
             </p>
             <p>
                 <b>IMPORTANT</b>:
-                The relative position of a composition does not always listen to the value of <b>Bounds</b>.
+                The relative position of a composition does not always listen to the value of <b>ExpectedBounds</b>.
             </p>
             <p>
-                <b>Bounds</b> is only a suggestion.
-                To decide a position of a composition,
-                one component will be calculated by looking at other properties,
-                only when nothing is provided for this component,
-                the component of <b>Bounds</b> will be used.
+                <b>ExpectedBounds</b> is only a suggestion.
+                If any component of <b>AlignmentToParent</b> is not <b>-1</b>,
+                the result will be affected accordingly.
             </p>
             <p>
-                For example,
-                to decide the width of a composition,
-                <b>AlignmentToParent</b> will first be examined.
-                But sometimes <b>left</b> and <b>right</b> are both -1 in <b>AlignmentToParent</b>,
-                and there is enough room for the composition to grow bigger than its minimum width,
-                then <b>width</b> of <b>Bounds</b> is used.
+                The size of <b>ExpectedBounds</b> limits the composition's minimum size.
             </p>
         </topic>
         <topic>

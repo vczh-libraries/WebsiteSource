@@ -95,7 +95,7 @@
                 Properties of <b>GuiTemplate</b> are all <b>input property</b>:
                 <ul>
                     <li><b>Font</b>: Always sync to the <b>Font</b> property of the list control.</li>
-                    <li><b>Context</b>: Always sync to the <b>Context</b> property of the list control.</li>
+                    <li><b>Context</b>: Always sync to the <b>Context</b> property of the <a href="/gacui/components/controls/list/home.html">list control</a> or <a href="/gacui/components/compositions/repeat.html">the repeat composition</a>.</li>
                     <li><b>VisuallyEnabled</b>: Always sync to the <b>VisuallyEnabled</b> property of the list control.</li>
                     <li><b>Text</b>: The text representation of a list item.</li>
                 </ul>

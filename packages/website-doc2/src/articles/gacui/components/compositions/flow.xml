@@ -16,7 +16,7 @@
             </p>
             <p>
                 <b>&lt;FlowItem/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
-                there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;FlowItem/&gt;</b>.
+                there is no writable <b>ExpectedBounds</b> and <b>AlignmentToParent</b> in <b>&lt;FlowItem/&gt;</b>.
             </p>
             <topic>
                 <title>&lt;Flow&gt;::Axis</title>
@@ -45,7 +45,7 @@
                     The default value is <b>Left</b>.
                 </p>
                 <p>
-                    <b>Left</b>, <b>Center</b> and <b>Extend</b>
+                    <b>Left</b>, <b>Center</b>, <b>Right</b> and <b>Extend</b>
                     are all valid values for the this property.
                 </p>
                 <p>

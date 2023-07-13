@@ -43,6 +43,8 @@
             <title>GuiBoundsComposition</title>
             <p>
                 <b>Bounds</b> property is renamed to <b>ExpectedBounds</b>.
+            </p>
+            <p>
                 <b>AlignmentToParent</b> property will no longer consider parent's <b>InternalMargin</b> property in layout.
             </p>
         </topic>
@@ -50,6 +52,9 @@
             <title>GuiTableComposition</title>
             <p>
                 Removed <b>GetCellArea</b> and <b>UpdateCellBounds</b> functions.
+            </p>
+            <p>
+                When <b>MinSizeLimitation</b> is not <b>LimitToElementAndChildren</b>, layout of cells is not considered in the table's minimum size.
             </p>
         </topic>
     </topic>

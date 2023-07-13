@@ -6,7 +6,7 @@
         </p>
         <p>
             <b>&lt;PartialView/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
-            there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in this composition.
+            there is no writable <b>ExpectedBounds</b> and <b>AlignmentToParent</b> in this composition.
         </p>
         <p>
             <b>Margin</b> of this composition and <b>InternalMargin</b> of its parent composition are ignored.

@@ -16,7 +16,7 @@
             </p>
             <p>
                 <b>&lt;Cell/&gt;</b> is not a <b>&lt;Bounds/&gt;</b>,
-                there is no writable <b>Bounds</b> and <b>AlignmentToParent</b> in <b>&lt;Cell/&gt;</b>.
+                there is no writable <b>ExpectedBounds</b> and <b>AlignmentToParent</b> in <b>&lt;Cell/&gt;</b>.
             </p>
             <topic>
                 <title>&lt;Table&gt;::Rows and &lt;Table&gt;::Columns</title>

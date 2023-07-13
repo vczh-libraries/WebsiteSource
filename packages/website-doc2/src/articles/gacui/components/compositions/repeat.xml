@@ -111,6 +111,12 @@
             </p>
         </topic>
         <topic>
+            <title>Context property</title>
+            <p>
+                <b>Context</b> property of any living <b>ItemTemplate</b> instance will always sync to <b>Context</b> property of the repeat composition.
+            </p>
+        </topic>
+        <topic>
             <title>Accessing auto-managed &lt;StackItem/&gt; or &lt;FlowItem/&gt;</title>
             <p>
                 <b>&lt;RepeatStack/&gt;::StackItems</b> property
