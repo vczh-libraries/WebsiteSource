@@ -16,5 +16,41 @@
                 <b>WindowReadyToClose</b> is close, then the window is close, then <b>WindowClosed</b> is called.
             </p>
         </topic>
+        <topic>
+            <title>GuiGraphicsComposition</title>
+            <p>
+                Removed:
+                <ul>
+                    <li><b>Margin</b> property</li>
+                    <li><b>IsTrivialComposition</b> function</li>
+                    <li><b>PreferredBounds</b> property</li>
+                </ul>
+                Renamed:
+                <ul>
+                    <li><b>ClientArea</b> property to <b>CachedClientArea</b> property</li>
+                    <li><b>MinPreferredMinSize</b> property to <b>CachedMinSize</b> and <b>CachedMinClientSize</b> property</li>
+                    <li><b>Bounds</b> and <b>PreviousCalculatedBounds</b> property to <b>CachedBounds</b> property</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>GuiGraphicsSite</title>
+            <p>
+                This class is removed, members are merged to its base class <b>GuiGraphicsComposition</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>GuiBoundsComposition</title>
+            <p>
+                <b>Bounds</b> property is renamed to <b>ExpectedBounds</b>.
+                <b>AlignmentToParent</b> property will no longer consider parent's <b>InternalMargin</b> property in layout.
+            </p>
+        </topic>
+        <topic>
+            <title>GuiTableComposition</title>
+            <p>
+                Removed <b>GetCellArea</b> and <b>UpdateCellBounds</b> functions.
+            </p>
+        </topic>
     </topic>
 </article>
