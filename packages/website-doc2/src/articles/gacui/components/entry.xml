@@ -54,7 +54,7 @@
       <article name="&lt;TextList&gt;" file="controls/list/textlist"/>
       <article name="&lt;TreeView&gt;" file="controls/list/treeview"/>
       <article name="&lt;ListView&gt;" file="controls/list/listview"/>
-      <article name="&lt;ComboBox&gt;" file="controls/list/combobox"/>
+      <article name="&lt;ComboButton&gt; and &lt;ComboBox&gt;" file="controls/list/combobox"/>
       <article name="Bindable List Controls" file="controls/list/bindable">
         <article name="&lt;BindableTextList&gt;" file="controls/list/bindabletextlist"/>
         <article name="&lt;BindableTreeView&gt;" file="controls/list/bindabletreeview"/>
