@@ -41,7 +41,7 @@
                 </li>
                 <li>
                     <p>
-                        C++/14 C++ files translated from above assemblies. <b>(recommended)</b>
+                        C++20 files translated from above assemblies. <b>(recommended)</b>
                     </p>
                     <p>
                         These C++ files are compiled from XML descripted

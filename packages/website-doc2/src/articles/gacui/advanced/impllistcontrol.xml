@@ -327,7 +327,7 @@
                     </li>
                     <li>
                         <b>GetStylePreferredSize</b>:
-                        Read the size of the <b>PreferredBounds</b> property of a compositon contained by list control.
+                        Read the size of the <b>CachedMinSize</b> property of a compositon contained by list control.
                         <b>IMPORTANT</b>: the result is <b>virtual</b>.
                         Do not use this property directly,
                         use this method instead.

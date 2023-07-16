@@ -157,9 +157,14 @@
                 <p>
                     The minimum size is controlled by the following properties:
                     <ul>
-                        <li><b>OwnedElement</b></li>
-                        <li><b>MinSizeLimitation</b></li>
                         <li><b>PreferredMinSize</b></li>
+                        <li><b>OwnedElement</b> when <b>MinSizeLimitation</b> is <b>LimitToElement</b> or <b>LimitToElementAndChildren</b></li>
+                        <li><b>Children</b> when <b>MinSizeLimitation</b> is <b>LimitToElementAndChildren</b></li>
+                    </ul>
+                    And also by the following properties that only exist in <b>GuiBoundsComposition</b> and its derived classes:
+                    <ul>
+                        <li><b>ExpectedBounds</b>'s size</li>
+                        <li>Children's <b>AlignmentToParent</b> when <b>MinSizeLimitation</b> is <b>LimitToElementAndChildren</b></li>
                     </ul>
                 </p>
                 <p>
@@ -174,7 +179,7 @@
                     Sometimes the element requires a minimum size to render its full content
                     (typically for <b>SolidLabel</b> without enabling trailing ellipses).
                     To assign the minimum size to this composition,
-                    simply just set <b>MinSizeLimitation</b> to <b>LimitToElement</b>.
+                    simply just set <b>MinSizeLimitation</b> to <b>LimitToElement</b> or <b>LimitToElementAndChildren</b>.
                 </p>
                 <p>
                     If this composition has children,
@@ -183,20 +188,7 @@
                     simply just set <b>MinSizeLimitation</b> to <b>LimitToElementAndChildren</b>.
                 </p>
                 <p>
-                    You can also assign a specific minimum size to this composition using the <b>PreferredMinSize</b> property.
-                </p>
-                <p>
-                    Now a composition has 3 minimum sizes (element, children, specified assigned).
-                    It will choose a maximum value among this three in each dimension,
-                    the result becomes the minimum size of this composition.
-                </p>
-                <p>
-                    <b>NOTE</b>:
-                    the required size of the element is calculated when it is being rendered.
-                    So it is obvious that,
-                    when an element has never been rendered (e.g. a window is created but not yet display),
-                    or when properties of this element is changed but the window is not yet refreshed,
-                    you could get a wrong minimum size by calling the composition's member functions.
+                    You can also assign a minimum size to this composition using the <b>PreferredMinSize</b> property.
                 </p>
             </topic>
             <topic>
@@ -204,42 +196,46 @@
                 <p>
                     The position is controlled by the following properties:
                     <ul>
-                        <li><b>Margin</b>, defaults to (0,0,0,0)</li>
-                        <li><b>AlignmentToParent</b>, defaults to (-1,-1,-1,-1)</li>
-                        <li><b>InternalMargin</b> of the parent composition, defaults to (0,0,0,0)</li>
+                        <li>
+                            <b>AlignmentToParent</b>, defaults to (-1,-1,-1,-1).
+                            Any component of <b>AlignmentToParent</b> must be -1 or non-negative.
+                            <b>AlignmentToParent</b> is the gap between this composition and its parent compositon.
+                        </li>
+                        <li>
+                            <b>ExpectedBounds</b>, defaults to (0,0,0,0).
+                        </li>
+                        <li>
+                            <b>InternalMargin</b> of the parent composition, defaults to (0,0,0,0).
+                            Any component of <b>InternalMargin</b> must be non-negative.
+                            <b>InternalMargin</b> adds a gap between this component and its children compositions.
+                            A component of <b>InternalMargin</b> is considered when the corresponding component of <b>AlignmentToParent</b> of a child composition is <b>-1</b>.
+                        </li>
                     </ul>
                 </p>
                 <p>
-                    <b>Any component of Margin and InternalMargin must be 0 or positive.</b>
-                </p>
-                <p>
-                    <b>Any component of AlignmentToParent must be -1, 0 or positive.</b>
-                </p>
-                <p>
-                    <b>AlignmentToParent</b> (white) is the gap between this composition and its parent compositon.
-                    <b>Margin</b> (pink) adds an invisible border to this composition,
-                    <b>InternalMargin</b> (pink) adds an invisible internal border to the parent composition.
-                </p>
-                <p>
-                    The position and size of this composition doesn't include its <b>Margin</b>,
-                    but the position and size of the parent composition includes its <b>InternalMargin</b>.
-                </p>
-                <p>
-                    <b>AlignmentToParent</b> controls how this composition is placed in the parent composition.
-                    If any component of <b>AlignmentToParent</b> is not -1,
-                    this composition will try its best to keep the gap to the parent composition to be the specified value.
-                    When the parent composition grows, this composition also grows.
-                </p>
-                <p>
-                    But the gap is not guarenteed,
-                    one of a typical reason is that,
-                    the parent composition doesn't have enough space to satisfy both the gap and the minimum size of this composition.
-                    In this case:
+                    Considering <b>left</b> and <b>right</b> of <b>AlignmentToParent</b>.
                     <ul>
-                        <li>The minimum size wins</li>
-                        <li>AlignmentToParent.left wins if both it and AlignmentToParent.right is not -1</li>
-                        <li>AlignmentToParent.top wins if both it and AlignmentToParent.bottom is not -1</li>
+                        <li>
+                            If both are not -1,
+                            the gap between this composition and its parent is defined by <b>AlignmentToParent</b>.
+                        </li>
+                        <li>
+                            If <b>left</b> is -1 and <b>right</b> is not,
+                            the right gap is defined by <b>AlignmentToParent</b>,
+                            the left gap is decided by the component's width.
+                        </li>
+                        <li>
+                            If <b>left</b> is not -1 and <b>right</b> is not,
+                            the left gap is defined by <b>AlignmentToParent</b>,
+                            the right gap is decided by the component's width.
+                        </li>
+                        <li>
+                            If both are -1,
+                            the left gap is defined by <b>ExpectedBounds</b> combining with its parent's <b>InternalMargin</b>,
+                            the right gap is decided by the component's width.
+                        </li>
                     </ul>
+                    <b>top</b>, <b>bottom</b> and height are similar to what is described above.
                 </p>
                 <p>
                     <b>AlignmentToParent</b> also affects the minimum size of the parent composition
@@ -248,7 +244,7 @@
                 <p>
                     <b>NOTE</b>:
                     some compositions like <b>&lt;SideAligned/&gt;</b> or <b>&lt;PartialView/&gt;</b>
-                    ignores <b>AlignmentToParent</b> and <b>Margin</b>.
+                    ignores <b>AlignmentToParent</b>.
                 </p>
             </topic>
             <topic>
@@ -330,44 +326,64 @@
                     Or the control has not been put in a window yet.
                 </p>
             </topic>
-            <topic>
-                <title>MinPreferredClientSize</title>
-                <p>
-                    This property returns the smallest possible size of this composition.
-                </p>
-                <p>
-                    This property is a readonly property.
-                    Unlike <b>PreferredMinSize</b> which is customizable constraint for calculating the minimum size,
-                    this property returns the calculated result.
-                </p>
-            </topic>
-            <topic>
-                <title>PreferredBounds</title>
-                <p>
-                    This property returns the perfect position and size for this composition.
-                </p>
-                <p>
-                    This is not the final result,
-                    it could be inaccurate because the calculation is based on information that could be outdated,
-                    when properties of some elements are changed after the previous rendering.
-                </p>
-            </topic>
-            <topic>
-                <title>Bounds</title>
-                <p>
-                    This property returns the relative position of this composition in its parent composition.
-                </p>
-            </topic>
         </topic>
         <topic>
-            <title>ForceCalculateSizeImmediately Method</title>
+            <title>The timing of layout calculation</title>
             <p>
-                This function makes this property refresh its size based on constraints immediately.
-                But if elements in this composition have not been rendered yet,
-                or have not been rendered since some properties of elements are changed,
-                this function could return an inaccurate result.
-                This depends on the implementation of element renderers.
+                GacUI will trigger layout calculation automatically,
+                once on each frame until calculation becomes table,
+                and it stops.
             </p>
+            <p>
+                It can also be triggered by calling the <b>ForceCalculateSizeImmediately</b> method on a composition you want to process.
+                It calculates the layout of the composition and all its direct and indirect child compositions.
+            </p>
+            <p>
+                Only when the calculation is completed,
+                the following properties of a composition are updated:
+                <ul>
+                    <li><b>CachedMinSize</b>, triggering the <b>CachedMinSizeChanged</b> property.</li>
+                    <li><b>CachedMinClientSize</b>, triggering the <b>CachedMinSizeChanged</b> property.</li>
+                    <li><b>CachedBounds</b>, triggering the <b>CachedBoundsChanged</b> property.</li>
+                    <li><b>CachedClientArea</b>, triggering the <b>CachedBoundsChanged</b> property.</li>
+                </ul>
+            </p>
+            <topic>
+                <title>ForceCalculateSizeImmediately Method</title>
+                <p>
+                    This function makes this property refresh its size based on constraints immediately.
+                    But if elements in this composition have not been rendered yet,
+                    or have not been rendered since some properties of elements are changed,
+                    this function could return an inaccurate result.
+                    This depends on the implementation of element renderers.
+                </p>
+            </topic>
+            <topic>
+                <title>CachedMinSize property</title>
+                <p>
+                    The minimum size of a composition.
+                </p>
+            </topic>
+            <topic>
+                <title>CachedMinClientSize property</title>
+                <p>
+                    The minimum client size of a composition,
+                    which is <b>CachedMinSize</b> but the area of <b>InternalMargin</b> is excluded.
+                </p>
+            </topic>
+            <topic>
+                <title>CachedBounds property</title>
+                <p>
+                    The position and actual size of a composition in its parent's coordinate space.
+                </p>
+            </topic>
+            <topic>
+                <title>CachedClientArea property</title>
+                <p>
+                    The position and actual size of a composition's client area in its parent's coordinate space,
+                    which is <b>CachedBounds</b> but the area of <b>InternalMargin</b> is excluded.
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>

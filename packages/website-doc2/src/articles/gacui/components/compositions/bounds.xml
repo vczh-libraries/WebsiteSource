@@ -9,16 +9,6 @@
             Three properties are provided by <b>&lt;Bounds/&gt;</b>:
         </p>
         <topic>
-            <title>SizeAffectParent</title>
-            <p>
-                The default value of <b>SizeAffectParent</b> is <b>true</b>.
-            </p>
-            <p>
-                When it is <b>true</b>,
-                its <b>PreferredBounds</b> will be considered while calculating <b>MinPreferredClientSize</b> of its parent composition.
-            </p>
-        </topic>
-        <topic>
             <title>ExpectedBounds</title>
             <p>
                 To set a relative position,
@@ -35,6 +25,11 @@
             </p>
             <p>
                 The size of <b>ExpectedBounds</b> limits the composition's minimum size.
+            </p>
+            <p>
+                Please check out
+                <a href="/gacui/components/compositions/home.html#Position-of-the-composition">this page</a>
+                for more information.
             </p>
         </topic>
         <topic>
