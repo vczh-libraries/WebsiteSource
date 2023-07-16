@@ -36,6 +36,21 @@
                 <b>&lt;Tab/&gt;</b> and <b>&lt;RibbonTab/&gt;</b> looks exactly the same,
                 there is no reason to write two control template implementations.
             </p>
+            <topic>
+                <title>The Window Theme name</title>
+                <p>
+                    <b>Window</b> theme name is special,
+                    it points to the following theme names in different condition:
+                    <ul>
+                        <li><b>CustomFrameWindow</b>, when <b>ThemeProperties::PreferCustomFrameWindow</b> is <b>true</b> or <b>null</b>.</li>
+                        <li><b>SystemFrameWindow</b>, when <b>ThemeProperties::PreferCustomFrameWindow</b> is <b>false</b>.</li>
+                    </ul>
+                </p>
+                <p>
+                    In hosted mode,
+                    non-main windows must use a window template that offers custom frame (<b>CustomFrameEnabled</b> is <b>true</b>).
+                </p>
+            </topic>
         </topic>
         <topic>
             <title>Control Templates</title>
