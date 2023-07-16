@@ -252,7 +252,7 @@
                 The following properties and events provide access of the control's context.
             </p>
             <topic>
-                <title>Parent (ControlSignalTrigerred)</title>
+                <title>Parent (ControlSignalTrigerred with ParentLineChanged)</title>
                 <p>
                     A control appears inside its <b>Parent</b>,
                     otherwise this property returns <b>null</b> (usually for windows and menus).
@@ -268,7 +268,7 @@
                 </p>
             </topic>
             <topic>
-                <title>RelatedControlHost (ControlSignalTrigerred)</title>
+                <title>RelatedControlHost (ControlSignalTrigerred with ParentLineChanged)</title>
                 <p>
                     <b>RelatedControlHost</b> is the root parent control for a control,
                     which is usually a window or a menu.
@@ -358,7 +358,7 @@
         <topic>
             <title>Service Objects</title>
             <p>
-                <b>AddService</b> associates a nullable service object to this control with an identifier that could be any string.
+                <b>AddService</b> (ControlSignalTrigerred with ServiceAdded) associates a nullable service object to this control with an identifier that could be any string.
             </p>
             <p>
                 <b>QueryService</b> or <b>QueryTypedService&lt;T&gt;</b> searches for a service object using an identifier all the way up to the top-level control.
