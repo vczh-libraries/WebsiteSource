@@ -147,8 +147,8 @@ export const homePageDynamicUrls = categoryArticleUrls.concat(categoryFeatureUrl
 const homeArticle = loadArticle('home.xml');
 
 export function registerHomePages(router: MvcRouter): void {
-    router.register([], route`/`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryArticleView', homePageConfig));
-    router.register([], route`/index.html`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryArticleView', homePageConfig));
+    // router.register([], route`/`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryArticleView', homePageConfig));
+    router.register([], route`/home/index.html`, litHtmlViewCallback(views, 'Gaclib-HomeCategoryArticleView', homePageConfig));
 
     router.register(
         [],

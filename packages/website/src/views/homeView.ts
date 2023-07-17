@@ -4,7 +4,7 @@ import { renderArticle } from 'gaclib-article/lib/src/rendering';
 import { html, render, TemplateResult } from 'lit-html';
 
 const buttons: [string, string, string][] = [
-    ['Hello', 'index', 'Hello'],
+    ['Hello', 'home/index', 'Hello'],
     ['GacUI', 'home/gacui', 'GacUI !'],
     ['Data', 'home/data-processing', 'Data'],
     ['String', 'home/string-processing', 'Text'],

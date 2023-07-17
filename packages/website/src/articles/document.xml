@@ -11,75 +11,24 @@
             </p>
             <p>
                 Gaclib 2.0 has been upgraded to use C++20.
-                I need to update
+                Document pages that automatically generated from source files will be available after
                 <a href="https://github.com/vczh-libraries/VlppParser2">VlppParser2</a> and
-                <a href="https://github.com/vczh-libraries/Document">Document</a> repo before being able to generate document for the new code.
-            </p>
-            <p>
-                Please checkout <a href="https://github.com/vczh-libraries/Release/releases">the latest release</a> if you are interested in it and able to use it by the help of unit tests in repos.
+                <a href="https://github.com/vczh-libraries/Document">Document</a> is ready.
             </p>
             <topic>
-                <title>Updates from Gaclib 1.0</title>
-                <topic>
-                    <title>Gaclib 1.2.6.0</title>
-                    <p>
-                        <ul>
-                            <li>Add <b>ThemeName::SystemFrameWindow</b> and <b>ThemeName::CustomFrameWindow</b>.</li>
-                            <li>Add global hot key.</li>
-                            <li>Replace OS dialogs with GacUI created dialogs for hosted mode.</li>
-                            <li>Add <b>SharedCallbackService</b>.</li>
-                            <li>Add <b>GetCursorFromHitTest</b> function.</li>
-                            <li>DarkSkin types are included in GacUI XML Compiler as predefined types.</li>
-                            <li>New <b>static{}</b> Workflow Script syntax for module initialization.</li>
-                            <li>Adapt C++20's <b>operator&lt;=&gt;</b>.</li>
-                            <li>Add <b>LazyList&lt;T&gt;::OrderBySelf</b> and <b>LazyList&lt;T&gt;::OrderByKey</b></li>
-                            <li>Refactor <b>Tuple</b> (breaking change), <b>Pair</b> and <b>Nullable</b> (affected Workflow Script).</li>
-                            <li>Remove <b>Lazy&lt;T&gt;</b>.</li>
-                        </ul>
-                    </p>
-                </topic>
-                <topic>
-                    <title>Gaclib 1.2.0.0</title>
-                    <p>
-                        <ul>
-                            <li>Add <b>SetupHostedWindowsGDIRenderer</b> and <b>SetHostedWindowsDirect2DRenderer</b> for hosted mode on Windows.</li>
-                            <li>Small breaking changes in <b>IGuiGraphicsRenderTarget</b>, <b>INativeWindow</b>, <b>INativeWindowListener</b>, <b>GuiControl</b>, <b>GuiControlHost</b>.</li>
-                            <li>Add <b>SharedAsyncService</b>.</li>
-                            <li>Remove key type arguments from containers.</li>
-                            <li><b>LAMBDA</b> macro is removed, please change <b>LAMBDA([]...)</b> to <b>Func([]...)</b>.</li>
-                            <li><b>MakePtr</b> function is removed, please use <b>Ptr(new T(...))</b> instead.</li>
-                            <li>The contructor from <b>T*</b> to <b>Ptr&lt;T&gt;</b> becomes explicit.</li>
-                            <li>Add more features for <b>VlppParser2</b>.</li>
-                            <li>Fixed layout glitch.</li>
-                            <li>Fixed unusual crashes on Direct2D in x64.</li>
-                            <li>Added ARM intrinsic.</li>
-                        </ul>
-                    </p>
-                </topic>
-                <topic>
-                    <title>Gaclib 1.1.0.0</title>
-                    <p>
-                        <ul>
-                            <li>Added <b>U8String</b> for <b>char8_t</b>, <b>U16String</b> for <b>char16_t</b>, <b>U32String</b> for <b>char32_t</b>, with string conversion functions between all kinds of string types.</li>
-                            <li><b>Regex</b>, <b>RegexLexer</b>, <b>RegexLexerWalker</b> and <b>RegexLexerColorizer</b> supports all new string types.</li>
-                            <li><b>vl::ParsingException</b> is deleted and replaced by <b>vl::regex_internal::RegexException</b>.</li>
-                            <li>Added <b>Utf32Encoder</b> and <b>Utf32Decoder</b>.</li>
-                            <li><b>FOREACH</b> macro is removed, FOREACH(TYPE, VAR, COLLECTION) is replaced by for(auto VAR : COLLECTION).</li>
-                            <li><b>FOREACH_INDEXED</b> macro is removed, FOREACH_INDEXED(TYPE, VAR, INDEX, COLLECTION) is replaced by for(auto [VAR, INDEX] : indexed(COLLECTION)).</li>
-                            <li>All type traits invented in the library are removed, please use C++ standard type traits.</li>
-                            <li>Linq supports generic lambda.</li>
-                            <li>Calling <b>BoxParameter</b> multiple times on the same collection object returns the same <b>Ptr&lt;IValueXXX&gt;</b> pointer.</li>
-                            <li>Calling <b>UnboxParameter</b> returns <b>Unboxed&lt;T&gt;</b> instead of filling the second argument.</li>
-                            <li>Added <b>IValueArray</b>.</li>
-                            <li>Improved Workflow script on collection behaviors.</li>
-                            <li>Application for Windows need to link <b>Vlpp.Windows.cpp</b>, <b>VlppOS.Windows.cpp</b> and <b>GacUI.Windows.cpp</b> (which was <b>GacUIWindows.cpp</b>).</li>
-                            <li>Application for other platforms need to link <b>Vlpp.Linux.cpp</b> and <b>VlppOS.Linux.cpp</b>.</li>
-                            <li>New <b>VlppGlrParser.h</b> to deprecate <b>VlppParser.h</b>, <b>GlrParserGen.exe</b> to replace <b>ParserGen.exe</b>. The new parser library is highly recommended.</li>
-                            <li><b>vl::parsing::xml</b> is renamed to <b>vl::glr::xml</b>.</li>
-                            <li><b>vl::parsing::json</b> is renamed to <b>vl::glr::json</b>.</li>
-                        </ul>
-                    </p>
-                </topic>
+                <title>Breaking changes from Gaclib 1.0</title>
+                <p>
+                    <ul>
+                        <li><a href="/doc/current/vlpp/upgrade.html">Vlpp</a></li>
+                        <li><a href="/doc/current/vlppos/upgrade.html">VlppOS</a></li>
+                        <li><a href="/doc/current/vlppregex/upgrade.html">VlppRegex</a></li>
+                        <li><a href="/doc/current/vlppreflection/upgrade.html">VlppReflection</a></li>
+                        <li>VlppParser: This library is being deprecated</li>
+                        <li>VlppParser2: This library is created since Gaclib 2.0</li>
+                        <li><a href="/doc/current/workflow/upgrade.html">Workflow</a></li>
+                        <li><a href="/doc/current/gacui/upgrade.html">GacUI</a></li>
+                    </ul>
+                </p>
             </topic>
         </topic>
         <topic>

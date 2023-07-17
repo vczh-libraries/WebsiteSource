@@ -7,7 +7,7 @@ import { registerTopLevelPages, topLevelPageDynamicUrls } from './topLevelPages'
 
 const router = createRouter<MvcRouterResult>();
 registerFolder(router, path.join(__dirname, `./dist`));
-registerHomePages(router);
+registerHomePages(router); // temporarily disabled by not giving any link from the home page
 registerTopLevelPages(router);
 
 console.log(JSON.stringify(process.argv, undefined, 4));
