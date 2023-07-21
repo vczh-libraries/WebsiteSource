@@ -64,8 +64,8 @@
             These platforms are supported at this moment:
             <ul>
                 <li><b>Win32 Subsystem</b>: You could use either GDI or Direct2D 1.0/1.1 to render UI.</li>
-                <li><b>Linux</b>: Experimental but it is working. (<a href="https://github.com/vczh-libraries/gGac">https://github.com/vczh-libraries/gGac</a>)</li>
-                <li><b>macOS</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)</li>
+                <li><b>Linux</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/gGac">https://github.com/vczh-libraries/gGac</a>)</li>
+                <li><b>macOS</b>: Finished but still in 1.0, not catching up with the latest version at this moment. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)</li>
             </ul>
             In the future, more platforms will be included in GacUI like:
             <ul>
