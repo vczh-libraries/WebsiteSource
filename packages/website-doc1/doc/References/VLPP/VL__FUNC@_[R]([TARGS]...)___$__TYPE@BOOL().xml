@@ -1,0 +1,2 @@
+<Document accessor="public" category="Function" name="$__type"><summary>Test is the functor is non-null.</summary><returns>Returns true if the functor is non-null.</returns><signature><![CDATA[operator bool();
+]]></signature></Document>

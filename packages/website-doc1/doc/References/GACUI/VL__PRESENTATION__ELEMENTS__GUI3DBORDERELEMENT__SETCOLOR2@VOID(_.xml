@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetColor2"><summary>
+ Set the border color.
+ </summary><param name="value">The new right-bottom color.</param><signature><![CDATA[void SetColor2(
+    Color value
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

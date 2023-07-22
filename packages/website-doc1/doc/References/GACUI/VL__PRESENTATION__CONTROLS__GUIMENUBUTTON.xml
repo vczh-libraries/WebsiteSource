@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiMenuButton"><summary>Menu item.</summary><signature><![CDATA[class GuiMenuButton
+    : GuiSelectableButton
+    , IGuiMenuDropdownProvider
+    , Description<GuiMenuButton>;
+]]></signature><seealsos><symbol name="GuiMenuButton" docId="vl::presentation::controls::GuiMenuButton"/></seealsos><basetypes><symbol name="GuiSelectableButton" docId="vl::presentation::controls::GuiSelectableButton"/><symbol name="IGuiMenuDropdownProvider" docId="vl::presentation::controls::IGuiMenuDropdownProvider"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

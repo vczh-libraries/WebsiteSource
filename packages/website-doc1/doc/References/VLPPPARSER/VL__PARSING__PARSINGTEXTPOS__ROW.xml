@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="row"><summary>Row number, begins at 0.</summary><signature><![CDATA[vint row;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

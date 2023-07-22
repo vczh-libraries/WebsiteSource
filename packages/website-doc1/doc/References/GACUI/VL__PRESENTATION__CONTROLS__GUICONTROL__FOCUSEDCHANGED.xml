@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="FocusedChanged"><summary>Focused event. This event raises when the focusing state of the control is changed.</summary><signature><![CDATA[compositions::GuiNotifyEvent FocusedChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

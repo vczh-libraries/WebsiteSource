@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="styles"><summary>All available styles. These will not be persistant.</summary><signature><![CDATA[StyleMap styles;
+]]></signature><seealsos><symbol name="StyleMap"/></seealsos></Document>

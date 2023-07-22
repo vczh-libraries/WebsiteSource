@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentRun"><summary>Pepresents a logical run of a rich content document.</summary><signature><![CDATA[class DocumentRun
+    : Object
+    , Description<DocumentRun>;
+]]></signature><seealsos><symbol name="DocumentRun" docId="vl::presentation::DocumentRun"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

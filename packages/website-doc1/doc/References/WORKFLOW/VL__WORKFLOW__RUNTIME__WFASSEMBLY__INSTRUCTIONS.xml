@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="instructions"><summary>Instructions.</summary><signature><![CDATA[collections::List<WfInstruction> instructions;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="WfInstruction"/></seealsos></Document>

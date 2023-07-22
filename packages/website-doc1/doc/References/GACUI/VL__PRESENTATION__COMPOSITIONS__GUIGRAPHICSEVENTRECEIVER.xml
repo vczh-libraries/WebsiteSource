@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiGraphicsEventReceiver"><summary>
+ Contains all available user input events for a <symbol name="GuiGraphicsComposition" docId="vl::presentation::compositions::GuiGraphicsComposition"/>. Almost all events are routed events. Routed events means, not only the activated composition receives the event, all it direct or indirect parents receives the event. The argument(all derives from <symbol name="GuiEventArgs" docId="vl::presentation::compositions::GuiEventArgs"/>) for the event will store the original event raiser composition.
+ </summary><signature><![CDATA[class GuiGraphicsEventReceiver
+    : Object;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/></basetypes></Document>

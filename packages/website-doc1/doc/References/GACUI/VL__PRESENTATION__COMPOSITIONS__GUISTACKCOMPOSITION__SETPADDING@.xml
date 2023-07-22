@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetPadding"><summary>Set the stack item padding.</summary><param name="value">The stack item padding.</param><signature><![CDATA[void SetPadding(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

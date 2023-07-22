@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="paragraphs"><summary>All paragraphs.</summary><signature><![CDATA[ParagraphList paragraphs;
+]]></signature><seealsos><symbol name="ParagraphList"/></seealsos></Document>

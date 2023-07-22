@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="resolver"><summary>The path resolver. This is only for delay load resource.</summary><signature><![CDATA[Ptr<GuiResourcePathResolver> resolver;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiResourcePathResolver" docId="vl::presentation::GuiResourcePathResolver"/></seealsos></Document>

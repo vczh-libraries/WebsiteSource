@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="operator ="><summary>Replace the boxed data by moving from another reference object.</summary><returns>The reference object itself.</returns><param name="value">The reference object to move.</param><signature><![CDATA[ObjectBox<T> & operator =(
+    ObjectBox<T> && value
+);
+]]></signature><seealsos><symbol name="ObjectBox" docId="vl::ObjectBox"/></seealsos></Document>

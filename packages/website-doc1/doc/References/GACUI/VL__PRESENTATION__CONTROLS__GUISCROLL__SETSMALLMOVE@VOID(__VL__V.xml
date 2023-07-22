@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSmallMove"><summary>Set the small move.</summary><param name="value">The small move.</param><signature><![CDATA[void SetSmallMove(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

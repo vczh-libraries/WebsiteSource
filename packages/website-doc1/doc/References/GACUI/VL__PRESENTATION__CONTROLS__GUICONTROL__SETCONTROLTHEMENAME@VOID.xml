@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetControlThemeName"><summary>Set the associated control theme name.</summary><param name="value">The theme name.</param><signature><![CDATA[void SetControlThemeName(
+    theme::ThemeName value
+);
+]]></signature><seealsos><symbol name="ThemeName"/></seealsos></Document>

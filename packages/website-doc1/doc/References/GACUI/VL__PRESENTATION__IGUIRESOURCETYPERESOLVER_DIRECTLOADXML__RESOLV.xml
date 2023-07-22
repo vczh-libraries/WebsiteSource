@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="ResolveResource"><summary>Load a resource for a type inside an xml element.</summary><returns>The resource.</returns><param name="resource">The resource item containing the resource.</param><param name="element">The xml element.</param><param name="errors">All collected errors during loading a resource.</param><signature><![CDATA[Ptr<DescriptableObject> ResolveResource(
+    Ptr<GuiResourceItem> resource,
+    Ptr<parsing::xml::XmlElement> element,
+    GuiResourceError::List & errors
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="XmlElement" docId="vl::parsing::xml::XmlElement"/><symbol name="List"/><symbol name="GuiResourceItem" docId="vl::presentation::GuiResourceItem"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

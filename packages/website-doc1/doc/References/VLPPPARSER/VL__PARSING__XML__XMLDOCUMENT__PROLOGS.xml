@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="prologs"><summary>Prologue nodes, for instructions and comments.</summary><signature><![CDATA[vl::collections::List<vl::Ptr<XmlNode>> prologs;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List" docId="vl::collections::List"/><symbol name="XmlNode" docId="vl::parsing::xml::XmlNode"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="AltChanged"><summary>Alt changed event. This event raises when the associated Alt-combined shortcut key of the control is changed.</summary><signature><![CDATA[compositions::GuiNotifyEvent AltChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

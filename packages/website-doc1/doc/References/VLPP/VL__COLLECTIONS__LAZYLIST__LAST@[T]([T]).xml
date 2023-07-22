@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Last"><summary>Get the last value in the lazy list.</summary><returns>The last value. If the lazy list is empty, the argument is returned.</returns><param name="defaultValue">The argument to return if the lazy list is empty.</param><signature><![CDATA[T Last(
+    T defaultValue
+) const;
+]]></signature></Document>

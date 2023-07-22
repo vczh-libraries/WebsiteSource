@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="Clicked"><summary>Mouse click event.</summary><signature><![CDATA[compositions::GuiNotifyEvent Clicked;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

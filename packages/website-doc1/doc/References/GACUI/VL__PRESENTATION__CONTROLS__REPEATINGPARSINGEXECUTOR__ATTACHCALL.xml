@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="AttachCallback"><summary>Detach callback.</summary><returns>Returns true if this operation succeeded.</returns><param name="value">The callback.</param><signature><![CDATA[bool AttachCallback(
+    ICallback * value
+);
+]]></signature><seealsos><symbol name="ICallback" docId="vl::presentation::controls::RepeatingParsingExecutor::ICallback"/></seealsos></Document>

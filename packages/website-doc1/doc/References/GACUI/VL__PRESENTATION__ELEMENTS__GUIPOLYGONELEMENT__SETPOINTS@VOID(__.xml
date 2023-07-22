@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="SetPoints"><summary>
+ Set all points to the polygon element.
+ </summary><param name="p">A pointer to a buffer that stores all points.</param><param name="count">The number of points.</param><signature><![CDATA[void SetPoints(
+    Point const * p,
+    vint count
+);
+]]></signature><seealsos><symbol name="Point"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="" category="Function" name="LoremIpsum"><summary>Get some random text.</summary><returns>The generated random text. It may not exactly in the expected size.</returns><param name="bestLength">The expected size.</param><param name="casing">The expected casing.</param><signature><![CDATA[WString LoremIpsum(
+    vint bestLength,
+    LoremIpsumCasing casing
+);
+]]></signature><seealsos><symbol name="LoremIpsumCasing" docId="vl::LoremIpsumCasing"/><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

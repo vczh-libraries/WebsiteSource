@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create the transformer with a specified axis direction.</summary><param name="_axisDirection">The specified axis direction.</param><signature><![CDATA[ GuiAxis(
+    AxisDirection _axisDirection
+);
+]]></signature><seealsos><symbol name="AxisDirection" docId="vl::presentation::AxisDirection"/></seealsos></Document>

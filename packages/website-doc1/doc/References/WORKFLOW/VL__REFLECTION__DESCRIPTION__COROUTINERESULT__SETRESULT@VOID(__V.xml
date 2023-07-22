@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetResult"><summary>Set the object provided to the coroutine.</summary><param name="value">The object provided to the coroutine.</param><signature><![CDATA[void SetResult(
+    Value const & value
+);
+]]></signature><seealsos><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

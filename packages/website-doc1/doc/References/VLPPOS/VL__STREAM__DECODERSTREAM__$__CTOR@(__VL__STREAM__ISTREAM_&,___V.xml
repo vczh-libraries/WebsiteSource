@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a decoder stream.</summary><param name="_stream">The input stream to read.</param><param name="_decoder">The decoder to transform content.</param><signature><![CDATA[ DecoderStream(
+    IStream & _stream,
+    IDecoder & _decoder
+);
+]]></signature><seealsos><symbol name="IDecoder" docId="vl::stream::IDecoder"/><symbol name="IStream" docId="vl::stream::IStream"/></seealsos></Document>

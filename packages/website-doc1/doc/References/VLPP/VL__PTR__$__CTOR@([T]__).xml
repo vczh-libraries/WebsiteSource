@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Convert a pointer to an object to a shared pointer.</summary><param name="pointer">The pointer to the object.</param><signature><![CDATA[ Ptr(
+    T * pointer
+);
+]]></signature></Document>

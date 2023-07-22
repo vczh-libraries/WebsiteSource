@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="query"><summary>Query of the request, like &quot;/index.html&quot;.</summary><signature><![CDATA[WString query;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

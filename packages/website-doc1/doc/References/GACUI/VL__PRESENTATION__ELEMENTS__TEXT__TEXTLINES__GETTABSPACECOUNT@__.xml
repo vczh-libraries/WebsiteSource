@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetTabSpaceCount"><summary>
+ Returns the number of spaces to replace a tab character for rendering.
+ </summary><returns>The number of spaces to replace a tab character for rendering.</returns><signature><![CDATA[vint GetTabSpaceCount(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

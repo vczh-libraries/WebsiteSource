@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetInternalState"><summary>Restore the colorizer to a specified state.</summary><param name="state">The state to restore.</param><signature><![CDATA[void SetInternalState(
+    InternalState state
+);
+]]></signature><seealsos><symbol name="InternalState"/></seealsos></Document>

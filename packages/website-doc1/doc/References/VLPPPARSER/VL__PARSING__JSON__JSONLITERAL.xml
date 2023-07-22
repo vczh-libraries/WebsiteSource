@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="JsonLiteral"><summary>Literal value node that is not number or string.</summary><signature><![CDATA[class JsonLiteral
+    : JsonNode
+    , vl::reflection::Description<JsonLiteral>;
+]]></signature><seealsos><symbol name="JsonLiteral" docId="vl::parsing::json::JsonLiteral"/></seealsos><basetypes><symbol name="JsonNode" docId="vl::parsing::json::JsonNode"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="name"><summary>Element name of the open element node.</summary><signature><![CDATA[vl::parsing::ParsingToken name;
+]]></signature><seealsos><symbol name="ParsingToken" docId="vl::parsing::ParsingToken"/></seealsos></Document>

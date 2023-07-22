@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetResponsiveTarget"><summary>Get the responsive composition to control.</summary><param name="value">The responsive composition to control.</param><signature><![CDATA[void SetResponsiveTarget(
+    GuiResponsiveCompositionBase * value
+);
+]]></signature><seealsos><symbol name="GuiResponsiveCompositionBase" docId="vl::presentation::compositions::GuiResponsiveCompositionBase"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetResourceResolver"><summary>Set the resource resolver to connect the current root object to the resource creating it.</summary><param name="resolver">The resource resolver</param><signature><![CDATA[void SetResourceResolver(
+    Ptr<GuiResourcePathResolver> resolver
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiResourcePathResolver" docId="vl::presentation::GuiResourcePathResolver"/></seealsos></Document>

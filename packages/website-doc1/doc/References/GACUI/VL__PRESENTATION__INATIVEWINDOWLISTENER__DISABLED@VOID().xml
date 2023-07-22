@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Disabled"><summary>
+ Called when the window is disabled.
+ </summary><signature><![CDATA[void Disabled(
+);
+]]></signature></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="InvokeAsync"><summary>Invoke a specified function asynchronously.</summary><param name="proc">The specified function.</param><signature><![CDATA[void InvokeAsync(
+    Func<void(
+)> const & proc
+);
+]]></signature><seealsos><symbol name="Func"/></seealsos></Document>

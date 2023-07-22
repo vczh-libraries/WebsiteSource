@@ -1,0 +1,4 @@
+<Document accessor="" category="Function" name="NotifyFinalizeInstance"><summary>Call <symbol name="FinalizeInstance" docId="vl::presentation::controls::GuiInstanceRootObject::FinalizeInstance@void()"/> in all child root objects.</summary><param name="value">The container control to notify.</param><signature><![CDATA[void NotifyFinalizeInstance(
+    controls::GuiControl * value
+);
+]]></signature><seealsos><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/></seealsos></Document>

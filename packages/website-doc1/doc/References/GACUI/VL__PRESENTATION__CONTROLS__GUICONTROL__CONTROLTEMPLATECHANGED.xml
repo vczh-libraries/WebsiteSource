@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ControlTemplateChanged"><summary>Control template changed event. This event raises when the control template is changed.</summary><signature><![CDATA[compositions::GuiNotifyEvent ControlTemplateChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

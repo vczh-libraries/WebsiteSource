@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="SmallMoveChanged"><summary>Small move changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent SmallMoveChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

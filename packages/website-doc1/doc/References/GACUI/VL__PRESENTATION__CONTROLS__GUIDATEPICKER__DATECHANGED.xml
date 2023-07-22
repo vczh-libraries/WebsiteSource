@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="DateChanged"><summary>Date changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent DateChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

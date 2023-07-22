@@ -1,0 +1,5 @@
+<Document accessor="public" category="Variable" name="firstNode"><summary>
+ Pointer to the array of all indexes of nodes in this component.
+ Index is used in <symbol name="nodes" docId="vl::collections::PartialOrderingProcessor::nodes"/>.
+ </summary><signature><![CDATA[vint const * firstNode;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

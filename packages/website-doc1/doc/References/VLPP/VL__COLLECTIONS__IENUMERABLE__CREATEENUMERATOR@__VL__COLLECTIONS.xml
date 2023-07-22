@@ -1,0 +1,8 @@
+<Document accessor="public" category="Function" name="CreateEnumerator"><summary>
+ Create an enumerator. <symbol name="Next" docId="vl::collections::IEnumerator::Next@bool()"/> should be called before reading the first value.
+ </summary><remarks>
+ In most of the cases, you do not need to call this function.
+ &quot;FOREACH&quot;, &quot;FOREACH_INDEXER&quot;, <symbols><symbol name="CopyFrom" docId="vl::collections::CopyFrom@void([Ds] &amp;, [Ss] const &amp;, bool)"/><symbol name="CopyFrom" docId="vl::collections::CopyFrom@void([Ds] &amp;, [S] const *, ::vl::vint, bool)"/><symbol name="CopyFrom" docId="vl::collections::CopyFrom@void([Ds] &amp;, [S] const *, [S] const *, bool)"/><symbol name="CopyFrom" docId="vl::collections::CopyFrom@void([Ds] &amp;, ::vl::ObjectString&lt;[S]&gt; const &amp;, bool)"/><symbol name="CopyFrom" docId="vl::collections::CopyFrom@void(::vl::ObjectString&lt;[D]&gt; &amp;, [Ss] const &amp;, bool)"/></symbols> and <symbol name="LazyList" docId="vl::collections::LazyList"/> do all the jobs for you.
+ </remarks><returns>The enumerator.</returns><signature><![CDATA[IEnumerator<T> * CreateEnumerator(
+) const;
+]]></signature><seealsos><symbol name="IEnumerator" docId="vl::collections::IEnumerator"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="NodeMiddleButtonDown"><summary>Node middle mouse button down event.</summary><signature><![CDATA[compositions::GuiNodeMouseEvent NodeMiddleButtonDown;
+]]></signature><seealsos><symbol name="GuiNodeMouseEvent"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="ParsingError"><summary>Error.</summary><signature><![CDATA[class ParsingError
+    : Object
+    , reflection::Description<ParsingError>;
+]]></signature><seealsos><symbol name="ParsingError" docId="vl::parsing::ParsingError"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

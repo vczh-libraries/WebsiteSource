@@ -1,0 +1,15 @@
+<Document accessor="" category="Class" name="CriticalSection"><summary>
+ Critical section.
+ The macro &quot;CS_LOCK&quot; is recommended instead of calling <symbol name="Enter" docId="vl::CriticalSection::Enter@void()"/> and <symbol name="Leave" docId="vl::CriticalSection::Leave@void()"/> like this:
+ <program><code><![CDATA[
+ CS_LOCK(yourCriticalSection)
+ {
+     // do something
+ }
+ ]]></code></program></summary><remarks>
+ In Windows, enter a owned critical section will not result in dead lock.
+ In Linux and macOS, it works like a mutex.
+ </remarks><signature><![CDATA[class CriticalSection
+    : Object
+    , NotCopyable;
+]]></signature><basetypes><symbol name="NotCopyable" docId="vl::NotCopyable"/><symbol name="Object" docId="vl::Object"/></basetypes></Document>

@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="MeasureRow"><summary>
+ Measure all characters in a specified row.
+ </summary><param name="row">The specified row number.</param><signature><![CDATA[void MeasureRow(
+    vint row
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="WindowDeactivated"><summary>Window deactivated event.</summary><signature><![CDATA[compositions::GuiNotifyEvent WindowDeactivated;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

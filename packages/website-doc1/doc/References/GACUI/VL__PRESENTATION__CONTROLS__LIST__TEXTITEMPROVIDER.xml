@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="TextItemProvider"><summary>Item provider for <symbol name="GuiVirtualTextList" docId="vl::presentation::controls::GuiVirtualTextList"/> or <symbol name="GuiSelectableListControl" docId="vl::presentation::controls::GuiSelectableListControl"/>.</summary><signature><![CDATA[class TextItemProvider
+    : ListProvider<Ptr<TextItem>>
+    , ITextItemView
+    , Description<TextItemProvider>;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="TextItem" docId="vl::presentation::controls::list::TextItem"/><symbol name="TextItemProvider" docId="vl::presentation::controls::list::TextItemProvider"/></seealsos><basetypes><symbol name="ITextItemView" docId="vl::presentation::controls::list::ITextItemView"/><symbol name="ListProvider"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

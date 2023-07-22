@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetPointsArray"><summary>
+ Get all points.
+ </summary><returns>All points</returns><signature><![CDATA[PointArray const & GetPointsArray(
+);
+]]></signature><seealsos><symbol name="PointArray"/></seealsos></Document>

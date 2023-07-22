@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="dataLength"><summary>
+ The number of available characters in the buffer.
+ </summary><signature><![CDATA[vint dataLength;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

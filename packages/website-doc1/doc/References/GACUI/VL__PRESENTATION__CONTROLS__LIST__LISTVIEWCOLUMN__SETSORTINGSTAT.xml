@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSortingState"><summary>Set the sorting state of this item.</summary><param name="value">The sorting state of this item.</param><signature><![CDATA[void SetSortingState(
+    ColumnSortingState value
+);
+]]></signature><seealsos><symbol name="ColumnSortingState" docId="vl::presentation::controls::ColumnSortingState"/></seealsos></Document>

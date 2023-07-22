@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Read"><summary>Read from the target stream and transform the content.</summary><returns>Returns the actual size of the content has read after transforming.</returns><param name="_buffer">A buffer to store the content.</param><param name="_size">The expected size of the content in bytes in &quot;_buffer&quot; to receive.</param><signature><![CDATA[vint Read(
+    void * _buffer,
+    vint _size
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

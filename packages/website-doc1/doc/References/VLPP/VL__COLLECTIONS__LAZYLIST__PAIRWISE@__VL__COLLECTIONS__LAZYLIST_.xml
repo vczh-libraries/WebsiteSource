@@ -1,0 +1,10 @@
+<Document accessor="public" category="Function" name="Pairwise"><summary>Create a new lazy list of pairs from elements from two containers.</summary><typeparam name="U">Type of all elements in the second container.</typeparam><returns>
+ The created lazy list, which contains pairs of elements from two containers at the same position.
+ If the two container have different sizes, the created lazy list has the size of the shorter one.
+ </returns><param name="remains">The second container.</param><example index="0"/><signature><![CDATA[template <
+    typename U
+>
+LazyList<Pair<T, U>> Pairwise(
+    IEnumerable<U> const & remains
+) const;
+]]></signature><seealsos><symbol name="IEnumerable" docId="vl::collections::IEnumerable"/><symbol name="LazyList" docId="vl::collections::LazyList"/><symbol name="Pair" docId="vl::collections::Pair"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="OnInitialize"><summary>2nd step: Called before compiling.</summary><param name="manager">The scope manager object for storing all information generated from Workflow modules during compiling.</param><signature><![CDATA[void OnInitialize(
+    analyzer::WfLexicalScopeManager * manager
+);
+]]></signature><seealsos><symbol name="WfLexicalScopeManager" docId="vl::workflow::analyzer::WfLexicalScopeManager"/></seealsos></Document>

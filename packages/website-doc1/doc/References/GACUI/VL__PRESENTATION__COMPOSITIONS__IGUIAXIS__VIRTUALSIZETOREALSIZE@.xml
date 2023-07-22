@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="VirtualSizeToRealSize"><summary>Translate virtual size to real size.</summary><returns>The real size.</returns><param name="size">The virtual size.</param><signature><![CDATA[Size VirtualSizeToRealSize(
+    Size size
+);
+]]></signature><seealsos><symbol name="Size"/></seealsos></Document>

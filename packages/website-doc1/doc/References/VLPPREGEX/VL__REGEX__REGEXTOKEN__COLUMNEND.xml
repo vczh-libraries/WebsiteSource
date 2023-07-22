@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="columnEnd"><summary>Column number of the last character, begins at 0.</summary><signature><![CDATA[vint columnEnd;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

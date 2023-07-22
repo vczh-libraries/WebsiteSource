@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="OnGenerateMetadata"><summary>4th step: Called before generating metadata for functions and types created by given Workflow modules.</summary><signature><![CDATA[void OnGenerateMetadata(
+);
+]]></signature></Document>

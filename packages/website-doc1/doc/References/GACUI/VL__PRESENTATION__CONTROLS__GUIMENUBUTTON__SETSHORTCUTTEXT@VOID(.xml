@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetShortcutText"><summary>Set the shortcut key text for the menu button.</summary><param name="value">The shortcut key text for the menu button.</param><signature><![CDATA[void SetShortcutText(
+    WString const & value
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

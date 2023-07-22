@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="GuiItemEventArgs"><summary>Item event arguments.</summary><signature><![CDATA[struct GuiItemEventArgs
+    : GuiEventArgs
+    , Description<GuiItemEventArgs>;
+]]></signature><seealsos><symbol name="GuiItemEventArgs" docId="vl::presentation::compositions::GuiItemEventArgs"/></seealsos><basetypes><symbol name="GuiEventArgs" docId="vl::presentation::compositions::GuiEventArgs"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

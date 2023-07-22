@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiTextList"><summary>Text list control.</summary><signature><![CDATA[class GuiTextList
+    : GuiVirtualTextList
+    , Description<GuiTextList>;
+]]></signature><seealsos><symbol name="GuiTextList" docId="vl::presentation::controls::GuiTextList"/></seealsos><basetypes><symbol name="GuiVirtualTextList" docId="vl::presentation::controls::GuiVirtualTextList"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

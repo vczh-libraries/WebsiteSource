@@ -1,0 +1,7 @@
+<Document accessor="" category="Class" name="ArrayBase"><summary>Base type of all linear container.</summary><typeparam name="T">Type of elements.</typeparam><signature><![CDATA[template <
+    typename T
+>
+class ArrayBase
+    : ListStore<T, expr>
+    , IEnumerable<T>;
+]]></signature><basetypes><symbol name="IEnumerable" docId="vl::collections::IEnumerable"/><symbol name="ListStore"/></basetypes></Document>

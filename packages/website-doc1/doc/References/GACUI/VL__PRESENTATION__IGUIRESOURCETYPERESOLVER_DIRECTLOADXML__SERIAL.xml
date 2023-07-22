@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Serialize"><summary>Serialize a resource to an xml element. This function is called if this type resolver does not have a preload type.</summary><returns>The serialized xml element.</returns><param name="resource">The resource item containing the resource.</param><param name="content">The object to serialize.</param><signature><![CDATA[Ptr<parsing::xml::XmlElement> Serialize(
+    Ptr<GuiResourceItem> resource,
+    Ptr<DescriptableObject> content
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="XmlElement" docId="vl::parsing::xml::XmlElement"/><symbol name="GuiResourceItem" docId="vl::presentation::GuiResourceItem"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

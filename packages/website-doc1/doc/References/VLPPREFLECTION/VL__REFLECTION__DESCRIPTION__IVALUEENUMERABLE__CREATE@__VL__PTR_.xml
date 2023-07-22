@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Create"><summary>Create an enumerable from another lazy list.</summary><returns>The created enumerable.</returns><param name="values">The lazy list to wrap.</param><signature><![CDATA[static Ptr<IValueEnumerable> Create(
+    collections::LazyList<Value> values
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="LazyList" docId="vl::collections::LazyList"/><symbol name="IValueEnumerable" docId="vl::reflection::description::IValueEnumerable"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

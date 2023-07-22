@@ -1,0 +1,9 @@
+<Document accessor="public" category="Function" name="DelayExecute"><summary>Called when a callback needs to be executed in any thread after a specified moment of time.</summary><param name="callback">The callback to execute.</param><param name="milliseconds">The time in milliseconds to wait.</param><remarks>
+ You can decide which thread to execute.
+ For GacUI, the scheduler that attached to the UI thread will execute this callback in the UI thread.
+ </remarks><signature><![CDATA[void DelayExecute(
+    Func<void(
+)> const & callback,
+    vint milliseconds
+);
+]]></signature><seealsos><symbol name="Func"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

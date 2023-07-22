@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetPointsArray"><summary>
+ Set all points.
+ </summary><param name="value">All points</param><signature><![CDATA[void SetPointsArray(
+    PointArray const & value
+);
+]]></signature><seealsos><symbol name="PointArray"/></seealsos></Document>

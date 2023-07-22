@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="statusCode"><summary>Status code, like 200.</summary><signature><![CDATA[vint statusCode;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="globalVariables"><summary>Global variable storages.</summary><signature><![CDATA[Ptr<WfRuntimeVariableContext> globalVariables;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WfRuntimeVariableContext" docId="vl::workflow::runtime::WfRuntimeVariableContext"/></seealsos></Document>

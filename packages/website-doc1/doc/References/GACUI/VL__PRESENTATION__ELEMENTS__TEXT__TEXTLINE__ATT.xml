@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="att"><summary>
+ A extra information buffer starts from the first character of this line.
+ </summary><signature><![CDATA[CharAtt * att;
+]]></signature><seealsos><symbol name="CharAtt" docId="vl::presentation::elements::text::CharAtt"/></seealsos></Document>

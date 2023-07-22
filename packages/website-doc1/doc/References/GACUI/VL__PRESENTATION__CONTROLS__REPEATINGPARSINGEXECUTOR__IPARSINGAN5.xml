@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Detach"><summary>Called when a <symbol name="RepeatingParsingExecutor" docId="vl::presentation::controls::RepeatingParsingExecutor"/> is destroyed.</summary><param name="executor">The releated <symbol name="RepeatingParsingExecutor" docId="vl::presentation::controls::RepeatingParsingExecutor"/>.</param><signature><![CDATA[void Detach(
+    RepeatingParsingExecutor * executor
+);
+]]></signature><seealsos><symbol name="RepeatingParsingExecutor" docId="vl::presentation::controls::RepeatingParsingExecutor"/></seealsos></Document>

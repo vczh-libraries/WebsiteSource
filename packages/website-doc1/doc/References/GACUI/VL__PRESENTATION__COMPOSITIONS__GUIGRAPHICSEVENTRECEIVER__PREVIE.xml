@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="previewCharInput"><summary>Preview char input event.</summary><signature><![CDATA[GuiCharEvent previewCharInput;
+]]></signature><seealsos><symbol name="GuiCharEvent"/></seealsos></Document>

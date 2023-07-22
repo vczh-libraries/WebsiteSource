@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="AfterSubMenuOpening"><summary>After sub menu opening event.</summary><signature><![CDATA[compositions::GuiNotifyEvent AfterSubMenuOpening;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

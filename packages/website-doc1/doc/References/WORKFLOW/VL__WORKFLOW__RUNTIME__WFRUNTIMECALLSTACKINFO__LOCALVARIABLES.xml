@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="localVariables"><summary>Local variable values.</summary><signature><![CDATA[Ptr<WfRuntimeVariableContext> localVariables;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WfRuntimeVariableContext" docId="vl::workflow::runtime::WfRuntimeVariableContext"/></seealsos></Document>

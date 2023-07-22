@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an encoder with a specified encoding.</summary><param name="_encoding">The specified encoding.</param><signature><![CDATA[ BomEncoder(
+    Encoding _encoding
+);
+]]></signature><seealsos><symbol name="Encoding" docId="vl::stream::BomEncoder::Encoding"/></seealsos></Document>

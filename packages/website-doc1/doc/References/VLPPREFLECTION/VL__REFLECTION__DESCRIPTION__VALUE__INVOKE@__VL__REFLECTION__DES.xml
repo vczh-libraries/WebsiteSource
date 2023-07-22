@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Invoke"><summary>Call a non-static method.</summary><returns>The return value from that method.</returns><param name="name">The registered name for the method.</param><remarks><p>Only available when <b>VCZH_DEBUG_NO_REFLECTION</b> is <b>off</b>.</p></remarks><signature><![CDATA[Value Invoke(
+    WString const & name
+) const;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

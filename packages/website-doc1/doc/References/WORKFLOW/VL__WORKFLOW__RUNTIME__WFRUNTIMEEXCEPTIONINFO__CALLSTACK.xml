@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="callStack"><summary>All call stack items.</summary><signature><![CDATA[CallStackList callStack;
+]]></signature><seealsos><symbol name="CallStackList"/></seealsos></Document>

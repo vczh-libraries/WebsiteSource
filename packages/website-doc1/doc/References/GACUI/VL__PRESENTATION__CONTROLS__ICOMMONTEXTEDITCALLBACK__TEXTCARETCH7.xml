@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="oldEnd"><summary>The end position of the selection before caret changing.</summary><signature><![CDATA[TextPos oldEnd;
+]]></signature><seealsos><symbol name="TextPos" docId="vl::presentation::TextPos"/></seealsos></Document>

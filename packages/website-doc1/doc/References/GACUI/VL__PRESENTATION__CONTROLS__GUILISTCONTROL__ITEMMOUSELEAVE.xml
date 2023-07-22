@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemMouseLeave"><summary>Item mouse leave event.</summary><signature><![CDATA[compositions::GuiItemNotifyEvent ItemMouseLeave;
+]]></signature><seealsos><symbol name="GuiItemNotifyEvent"/></seealsos></Document>

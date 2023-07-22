@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="RedrawContent"><summary>
+ Redraw the content of the window.
+ </summary><signature><![CDATA[void RedrawContent(
+);
+]]></signature></Document>

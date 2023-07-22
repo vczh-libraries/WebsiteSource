@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetColor2"><summary>
+ Get the right-bottom color.
+ </summary><returns>The right-bottom color.</returns><signature><![CDATA[Color GetColor2(
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

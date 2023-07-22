@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="image"><summary>The image.</summary><signature><![CDATA[Ptr<INativeImage> image;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INativeImage" docId="vl::presentation::INativeImage"/></seealsos></Document>

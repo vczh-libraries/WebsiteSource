@@ -1,0 +1,2 @@
+<Document accessor="public" category="TypeAlias" name="Type"><summary>The type of the representative value.</summary><signature><![CDATA[using Type = T;
+]]></signature></Document>

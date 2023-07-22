@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentModel"><summary>Represents a rich content document model.</summary><signature><![CDATA[class DocumentModel
+    : Object
+    , Description<DocumentModel>;
+]]></signature><seealsos><symbol name="DocumentModel" docId="vl::presentation::DocumentModel"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="GuiComponent"><summary>
+ Represnets a component.
+ </summary><signature><![CDATA[class GuiComponent
+    : Object
+    , Description<GuiComponent>;
+]]></signature><seealsos><symbol name="GuiComponent" docId="vl::presentation::controls::GuiComponent"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="body"><summary>Request body. This is a byte array.</summary><signature><![CDATA[BodyBuffer body;
+]]></signature><seealsos><symbol name="BodyBuffer"/></seealsos></Document>

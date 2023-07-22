@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Rename"><summary>Rename the file.</summary><returns>Returns true if this operation succeeded.</returns><param name="newName">The new file name.</param><signature><![CDATA[bool Rename(
+    WString const & newName
+) const;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a lazy list from an enumerator.</summary><param name="enumerator">The enumerator.</param><signature><![CDATA[ LazyList(
+    Ptr<IEnumerator<T>> enumerator
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IEnumerator" docId="vl::collections::IEnumerator"/></seealsos></Document>

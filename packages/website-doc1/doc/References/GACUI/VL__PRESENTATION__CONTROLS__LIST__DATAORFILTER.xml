@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DataOrFilter"><summary>A filter that keep a row if one of all sub filters agrees.</summary><signature><![CDATA[class DataOrFilter
+    : DataMultipleFilter
+    , Description<DataOrFilter>;
+]]></signature><seealsos><symbol name="DataOrFilter" docId="vl::presentation::controls::list::DataOrFilter"/></seealsos><basetypes><symbol name="DataMultipleFilter" docId="vl::presentation::controls::list::DataMultipleFilter"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create the colorizer with a specified grammar and start rule to create a <symbol name="RepeatingParsingExecutor" docId="vl::presentation::controls::RepeatingParsingExecutor"/>.</summary><param name="_grammarParser">Parser generated from a grammar.</param><param name="_grammarRule"/><signature><![CDATA[ GuiGrammarColorizer(
+    Ptr<parsing::tabling::ParsingGeneralParser> _grammarParser,
+    WString const & _grammarRule
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="ParsingGeneralParser" docId="vl::parsing::tabling::ParsingGeneralParser"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiColorDialog"><summary>Color dialog.</summary><signature><![CDATA[class GuiColorDialog
+    : GuiDialogBase
+    , Description<GuiColorDialog>;
+]]></signature><seealsos><symbol name="GuiColorDialog" docId="vl::presentation::controls::GuiColorDialog"/></seealsos><basetypes><symbol name="GuiDialogBase" docId="vl::presentation::controls::GuiDialogBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

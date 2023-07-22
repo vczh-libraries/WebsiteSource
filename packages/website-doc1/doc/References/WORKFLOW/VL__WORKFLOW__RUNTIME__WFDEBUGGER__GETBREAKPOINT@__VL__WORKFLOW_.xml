@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetBreakPoint"><summary>Get a specified break point. For unavailable break points, <symbol name="available"/> is false.</summary><returns>The break point.</returns><param name="index">The index of the break point.</param><signature><![CDATA[WfBreakPoint const & GetBreakPoint(
+    vint index
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/><symbol name="WfBreakPoint" docId="vl::workflow::runtime::WfBreakPoint"/></seealsos></Document>

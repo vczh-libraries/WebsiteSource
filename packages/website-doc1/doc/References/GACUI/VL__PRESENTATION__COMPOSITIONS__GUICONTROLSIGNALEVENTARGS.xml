@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="GuiControlSignalEventArgs"><summary>Control signal event arguments.</summary><signature><![CDATA[struct GuiControlSignalEventArgs
+    : GuiEventArgs
+    , Description<GuiControlSignalEventArgs>;
+]]></signature><seealsos><symbol name="GuiControlSignalEventArgs" docId="vl::presentation::compositions::GuiControlSignalEventArgs"/></seealsos><basetypes><symbol name="GuiEventArgs" docId="vl::presentation::compositions::GuiEventArgs"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

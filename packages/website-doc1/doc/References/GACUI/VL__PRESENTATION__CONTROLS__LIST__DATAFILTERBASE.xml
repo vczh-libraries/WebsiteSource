@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="DataFilterBase"><summary>Base class for <symbol name="IDataFilter"/>.</summary><signature><![CDATA[class DataFilterBase
+    : Object
+    , IDataFilter
+    , Description<DataFilterBase>;
+]]></signature><seealsos><symbol name="DataFilterBase" docId="vl::presentation::controls::list::DataFilterBase"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IDataFilter"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

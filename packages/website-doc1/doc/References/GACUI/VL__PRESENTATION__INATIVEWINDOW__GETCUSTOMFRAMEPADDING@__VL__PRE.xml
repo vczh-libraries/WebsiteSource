@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetCustomFramePadding"><summary>
+ Get the amount of the border. The window template may need this value to calculate where to put the client area.
+ </summary><returns>Returns the amount of the border.</returns><signature><![CDATA[NativeMargin GetCustomFramePadding(
+);
+]]></signature><seealsos><symbol name="NativeMargin"/></seealsos></Document>

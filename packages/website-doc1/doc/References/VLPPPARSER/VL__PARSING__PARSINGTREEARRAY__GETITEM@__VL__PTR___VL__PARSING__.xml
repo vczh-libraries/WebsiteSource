@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetItem"><summary>Get a specified element in this array by the index.</summary><returns>The element.</returns><param name="index">The index of the element.</param><signature><![CDATA[Ptr<ParsingTreeNode> GetItem(
+    vint index
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="ParsingTreeNode" docId="vl::parsing::ParsingTreeNode"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

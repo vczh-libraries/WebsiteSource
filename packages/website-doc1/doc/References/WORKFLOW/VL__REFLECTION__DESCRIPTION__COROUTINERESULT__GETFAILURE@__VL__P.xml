@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetFailure"><summary>Get the error provided to the coroutine. When it is not nullptr, the return value of <symbol name="GetResult" docId="vl::reflection::description::CoroutineResult::GetResult@::vl::reflection::description::Value()"/> is ignored.</summary><returns>The error provided to the coroutine.</returns><signature><![CDATA[Ptr<IValueException> GetFailure(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IValueException"/></seealsos></Document>

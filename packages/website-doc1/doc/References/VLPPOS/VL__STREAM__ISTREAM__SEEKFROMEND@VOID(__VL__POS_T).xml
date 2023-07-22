@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SeekFromEnd"><summary>Step backward from the end. It will crash if the stream is <b>unseekable</b> or <b>unavailable</b>.</summary><param name="_size">The length to step backward.</param><signature><![CDATA[void SeekFromEnd(
+    pos_t _size
+);
+]]></signature><seealsos><symbol name="pos_t" docId="vl::pos_t"/></seealsos></Document>

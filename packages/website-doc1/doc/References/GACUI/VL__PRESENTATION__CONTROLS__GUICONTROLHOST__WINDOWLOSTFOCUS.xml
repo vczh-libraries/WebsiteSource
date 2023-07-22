@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="WindowLostFocus"><summary>Window lost focus event.</summary><signature><![CDATA[compositions::GuiNotifyEvent WindowLostFocus;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

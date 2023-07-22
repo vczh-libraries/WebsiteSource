@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetIcon"><summary>Get the icon that appears on the dialog.</summary><returns>The icon.</returns><signature><![CDATA[INativeDialogService::MessageBoxIcons GetIcon(
+);
+]]></signature><seealsos><symbol name="MessageBoxIcons" docId="vl::presentation::INativeDialogService::MessageBoxIcons"/></seealsos></Document>

@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetControlTemplateObject"><summary>Get the associated style controller.</summary><returns>The associated style controller.</returns><signature><![CDATA[templates::GuiControlTemplate * GetControlTemplateObject(
+);
+]]></signature><seealsos><symbol name="GuiControlTemplate"/></seealsos></Document>

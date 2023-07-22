@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="BigMoveChanged"><summary>Big move changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent BigMoveChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

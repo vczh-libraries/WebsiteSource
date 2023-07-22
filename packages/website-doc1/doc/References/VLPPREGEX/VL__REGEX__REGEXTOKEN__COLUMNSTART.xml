@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="columnStart"><summary>Column number of the first character, begins at 0.</summary><signature><![CDATA[vint columnStart;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

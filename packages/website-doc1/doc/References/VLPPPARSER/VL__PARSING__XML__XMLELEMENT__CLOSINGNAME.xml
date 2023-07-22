@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="closingName"><summary>(Optional): Element name of the closing element node. The name is ignored when serializing XML to text.</summary><signature><![CDATA[vl::parsing::ParsingToken closingName;
+]]></signature><seealsos><symbol name="ParsingToken" docId="vl::parsing::ParsingToken"/></seealsos></Document>

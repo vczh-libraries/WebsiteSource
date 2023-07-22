@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an event arguments with <symbol name="compositionSource" docId="vl::presentation::compositions::GuiEventArgs::compositionSource"/> and <symbol name="eventSource" docId="vl::presentation::compositions::GuiEventArgs::eventSource"/> set to null.</summary><signature><![CDATA[ GuiMouseEventArgs(
+);
+]]></signature></Document>

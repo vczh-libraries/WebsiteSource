@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetRowSpan"><summary>Get the total numbers of acrossed rows for this cell composition.</summary><returns>The total numbers of acrossed rows for this cell composition.</returns><signature><![CDATA[vint GetRowSpan(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

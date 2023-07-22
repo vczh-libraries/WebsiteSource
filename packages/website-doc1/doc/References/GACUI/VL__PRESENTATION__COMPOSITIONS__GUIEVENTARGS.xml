@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="GuiEventArgs"><summary>Notify event arguments.</summary><signature><![CDATA[struct GuiEventArgs
+    : Object
+    , AggregatableDescription<GuiEventArgs>;
+]]></signature><seealsos><symbol name="GuiEventArgs" docId="vl::presentation::compositions::GuiEventArgs"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="AggregatableDescription" docId="vl::reflection::AggregatableDescription"/></basetypes></Document>

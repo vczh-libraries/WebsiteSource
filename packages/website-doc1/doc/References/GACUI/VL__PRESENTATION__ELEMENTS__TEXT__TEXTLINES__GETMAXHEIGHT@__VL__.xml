@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetMaxHeight"><summary>
+ Returns the total height of the text lines.
+ </summary><returns>The height of the text lines, in pixel.</returns><signature><![CDATA[vint GetMaxHeight(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

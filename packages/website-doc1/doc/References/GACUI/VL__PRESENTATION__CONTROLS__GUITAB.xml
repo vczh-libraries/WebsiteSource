@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiTab"><summary>Represents a container with multiple named tabs.</summary><signature><![CDATA[class GuiTab
+    : GuiControl
+    , Description<GuiTab>;
+]]></signature><seealsos><symbol name="GuiTab" docId="vl::presentation::controls::GuiTab"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="AfterRenderTargetChanged"><summary>Render target changed (after) event. Resources that binded to the render target can be recreated at this moment.</summary><signature><![CDATA[compositions::GuiGraphicsEvent<GuiDirect2DElementEventArgs> AfterRenderTargetChanged;
+]]></signature><seealsos><symbol name="GuiGraphicsEvent"/><symbol name="GuiDirect2DElementEventArgs" docId="vl::presentation::elements::GuiDirect2DElementEventArgs"/></seealsos></Document>

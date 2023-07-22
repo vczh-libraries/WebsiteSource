@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiToolstripMenu"><summary>Toolstrip menu.</summary><signature><![CDATA[class GuiToolstripMenu
+    : GuiMenu
+    , IToolstripUpdateLayout
+    , Description<GuiToolstripMenu>;
+]]></signature><seealsos><symbol name="GuiToolstripMenu" docId="vl::presentation::controls::GuiToolstripMenu"/></seealsos><basetypes><symbol name="GuiMenu" docId="vl::presentation::controls::GuiMenu"/><symbol name="IToolstripUpdateLayout" docId="vl::presentation::controls::IToolstripUpdateLayout"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

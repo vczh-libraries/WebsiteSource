@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetPassSupport"><summary>Get how this resolver supports precompiling.</summary><param name="passIndex">The pass index.</param><returns>Returns how this resolver supports precompiling.</returns><signature><![CDATA[PassSupport GetPassSupport(
+    vint passIndex
+);
+]]></signature><seealsos><symbol name="PassSupport"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

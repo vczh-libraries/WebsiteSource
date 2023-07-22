@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="functionIndex"><summary>The executing function.</summary><signature><![CDATA[vint functionIndex;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

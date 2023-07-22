@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a control with a specified default theme.</summary><param name="themeName">The theme name for retriving a default control template.</param><param name="_maxSize">Max allowed size.</param><param name="_minSize">Min allowed size.</param><signature><![CDATA[ GuiRibbonButtons(
+    theme::ThemeName themeName,
+    RibbonButtonSize _maxSize,
+    RibbonButtonSize _minSize
+);
+]]></signature><seealsos><symbol name="RibbonButtonSize" docId="vl::presentation::controls::RibbonButtonSize"/><symbol name="ThemeName"/></seealsos></Document>

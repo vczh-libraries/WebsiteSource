@@ -1,0 +1,8 @@
+<Document accessor="" category="Class" name="GuiControlHost"><summary>
+ Represents a control that host by a <symbol name="INativeWindow" docId="vl::presentation::INativeWindow"/>.
+ </summary><signature><![CDATA[class GuiControlHost
+    : GuiControl
+    , GuiInstanceRootObject
+    , INativeWindowListener
+    , Description<GuiControlHost>;
+]]></signature><seealsos><symbol name="GuiControlHost" docId="vl::presentation::controls::GuiControlHost"/></seealsos><basetypes><symbol name="INativeWindowListener" docId="vl::presentation::INativeWindowListener"/><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="GuiInstanceRootObject" docId="vl::presentation::controls::GuiInstanceRootObject"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

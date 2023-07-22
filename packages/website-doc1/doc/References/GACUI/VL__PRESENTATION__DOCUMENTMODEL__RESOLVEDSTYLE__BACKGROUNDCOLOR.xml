@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="backgroundColor"><summary>The background color of the text.</summary><signature><![CDATA[Color backgroundColor;
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Read"><summary>Create an global variable reading break point.</summary><returns>The created break point.</returns><param name="assembly">The assembly that contains the instruction.</param><param name="variable">The index of the global variable.</param><signature><![CDATA[static WfBreakPoint Read(
+    WfAssembly * assembly,
+    vint variable
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/><symbol name="WfAssembly" docId="vl::workflow::runtime::WfAssembly"/><symbol name="WfBreakPoint" docId="vl::workflow::runtime::WfBreakPoint"/></seealsos></Document>

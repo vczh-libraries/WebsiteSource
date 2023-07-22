@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetLocation"><summary>Set the location of the window in screen space.</summary><param name="value">The location of the window.</param><signature><![CDATA[void SetLocation(
+    NativePoint value
+);
+]]></signature><seealsos><symbol name="NativePoint"/></seealsos></Document>

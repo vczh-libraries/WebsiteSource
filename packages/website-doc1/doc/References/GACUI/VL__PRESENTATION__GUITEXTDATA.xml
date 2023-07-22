@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiTextData"><summary>Represents a text resource.</summary><signature><![CDATA[class GuiTextData
+    : Object
+    , Description<GuiTextData>;
+]]></signature><seealsos><symbol name="GuiTextData" docId="vl::presentation::GuiTextData"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

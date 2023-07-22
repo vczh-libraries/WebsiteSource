@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="XmlNode"><summary>Base class of XML nodes.</summary><signature><![CDATA[class XmlNode
+    : vl::parsing::ParsingTreeCustomBase
+    , vl::reflection::Description<XmlNode>;
+]]></signature><seealsos><symbol name="XmlNode" docId="vl::parsing::xml::XmlNode"/></seealsos><basetypes><symbol name="ParsingTreeCustomBase" docId="vl::parsing::ParsingTreeCustomBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

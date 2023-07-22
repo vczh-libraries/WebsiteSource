@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="FileNameChanged"><summary>File name changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent FileNameChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentInlineObjectRun"><summary>Pepresents a inline object run.</summary><signature><![CDATA[class DocumentInlineObjectRun
+    : DocumentContentRun
+    , Description<DocumentInlineObjectRun>;
+]]></signature><seealsos><symbol name="DocumentInlineObjectRun" docId="vl::presentation::DocumentInlineObjectRun"/></seealsos><basetypes><symbol name="DocumentContentRun" docId="vl::presentation::DocumentContentRun"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

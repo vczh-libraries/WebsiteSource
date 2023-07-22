@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="KeyDown"><summary>
+ Called a key is pressed.
+ </summary><param name="info">Detailed information to this message.</param><signature><![CDATA[void KeyDown(
+    NativeWindowKeyInfo const & info
+);
+]]></signature><seealsos><symbol name="NativeWindowKeyInfo" docId="vl::presentation::NativeWindowKeyInfo"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="DataSorterBase"><summary>Base class for <symbol name="IDataSorter"/>.</summary><signature><![CDATA[class DataSorterBase
+    : Object
+    , IDataSorter
+    , Description<DataSorterBase>;
+]]></signature><seealsos><symbol name="DataSorterBase" docId="vl::presentation::controls::list::DataSorterBase"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IDataSorter"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

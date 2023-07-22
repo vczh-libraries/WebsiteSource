@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ArrangerChanged"><summary>Arranger changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ArrangerChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

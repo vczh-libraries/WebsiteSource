@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="ParsingTreeToken"><summary>Representing a token node in an abstract syntax tree.</summary><signature><![CDATA[class ParsingTreeToken
+    : ParsingTreeNode
+    , reflection::Description<ParsingTreeToken>;
+]]></signature><seealsos><symbol name="ParsingTreeToken" docId="vl::parsing::ParsingTreeToken"/></seealsos><basetypes><symbol name="ParsingTreeNode" docId="vl::parsing::ParsingTreeNode"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Create"><summary>Create a list with elements copied from another lazy list.</summary><returns>The created list.</returns><param name="values">Elements to copy.</param><signature><![CDATA[static Ptr<IValueObservableList> Create(
+    collections::LazyList<Value> values
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="LazyList" docId="vl::collections::LazyList"/><symbol name="IValueObservableList" docId="vl::reflection::description::IValueObservableList"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

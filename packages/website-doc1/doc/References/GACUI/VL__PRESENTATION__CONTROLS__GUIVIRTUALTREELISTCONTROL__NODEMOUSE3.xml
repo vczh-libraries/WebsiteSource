@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="NodeMouseMove"><summary>Node mouse move event.</summary><signature><![CDATA[compositions::GuiNodeMouseEvent NodeMouseMove;
+]]></signature><seealsos><symbol name="GuiNodeMouseEvent"/></seealsos></Document>

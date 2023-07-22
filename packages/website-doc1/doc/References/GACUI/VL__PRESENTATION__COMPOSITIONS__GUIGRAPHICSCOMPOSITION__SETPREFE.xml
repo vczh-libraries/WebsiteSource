@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetPreferredMinSize"><summary>Set the preferred minimum size.</summary><param name="value">The preferred minimum size.</param><signature><![CDATA[void SetPreferredMinSize(
+    Size value
+);
+]]></signature><seealsos><symbol name="Size"/></seealsos></Document>

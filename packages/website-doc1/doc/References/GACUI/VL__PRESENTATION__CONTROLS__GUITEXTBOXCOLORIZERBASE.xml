@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiTextBoxColorizerBase"><summary>The base class of text box colorizer.</summary><signature><![CDATA[class GuiTextBoxColorizerBase
+    : Object
+    , ICommonTextEditCallback;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="ICommonTextEditCallback" docId="vl::presentation::controls::ICommonTextEditCallback"/></basetypes></Document>

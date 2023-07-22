@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetRowText"><summary>Get the text from a specified row number.</summary><returns>The text from a specified row number.</returns><param name="row">The specified row number.</param><signature><![CDATA[WString GetRowText(
+    vint row
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

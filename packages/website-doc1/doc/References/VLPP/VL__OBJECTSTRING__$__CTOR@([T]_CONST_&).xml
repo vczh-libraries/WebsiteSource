@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a string continaing one code point.</summary><param name="_char">The code point.</param><signature><![CDATA[ ObjectString(
+    T const & _char
+);
+]]></signature></Document>

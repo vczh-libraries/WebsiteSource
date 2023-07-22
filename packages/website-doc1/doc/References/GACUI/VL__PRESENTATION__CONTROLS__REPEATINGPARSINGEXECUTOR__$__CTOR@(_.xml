@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Initialize the parsing executor.</summary><param name="_grammarParser">Parser generated from a grammar.</param><param name="_grammarRule">The rule name to parse a complete code.</param><param name="_analyzer">The parsing analyzer to create semantic metadatas, it can be null.</param><signature><![CDATA[ RepeatingParsingExecutor(
+    Ptr<parsing::tabling::ParsingGeneralParser> _grammarParser,
+    WString const & _grammarRule,
+    Ptr<IParsingAnalyzer> _analyzer /* optional */
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="ParsingGeneralParser" docId="vl::parsing::tabling::ParsingGeneralParser"/><symbol name="IParsingAnalyzer" docId="vl::presentation::controls::RepeatingParsingExecutor::IParsingAnalyzer"/></seealsos></Document>

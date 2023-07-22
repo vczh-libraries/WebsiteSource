@@ -1,0 +1,17 @@
+<Document accessor="public" category="Function" name="InitWithSubClass"><summary>Set data for sorting, by providing a list for objects, and a group for their relationship, and a dictionary for sub classing objects.</summary><typeparam name="TList">Type of the list for objects. <symbol name="Array" docId="vl::collections::Array"/>, <symbol name="List" docId="vl::collections::List"/> or <symbol name="SortedList" docId="vl::collections::SortedList"/> are recommended.</typeparam><typeparam name="TSubClass">Type of a sub class.</typeparam><param name="items">List of objects for sorting.</param><param name="depGroup">Relationship of objects for sorting in <symbol name="Group" docId="vl::collections::Group"/>. Both keys and values are elements in &quot;items&quot;. To say that a depends on b, do depGroup.Add(a, b).</param><param name="subClasses">Sub classing objects. Keys are elements in &quot;items&quot;. If multiple keys have the same value in this dictionary, then these objects are in the same sub class.</param><remarks>
+ Relationships are defined on objects.
+ By sub classing objects,
+ relationships of sub classes are calculated from &quot;depGroup&quot;.
+ If object A in sub class X depends on object B in sub class Y, then sub class X depends on sub class Y.
+ It is allowed that relatipnships on sub classes are not completely partial ordered,
+ in this case, some components may contain multiple sub classes.
+ </remarks><example index="0"/><signature><![CDATA[template <
+    typename TList, 
+    typename TSubClass
+>
+void InitWithSubClass(
+    TList const & items,
+    GroupOf<TList> const & depGroup,
+    Dictionary<TList::ElementType, TSubClass> const & subClasses
+);
+]]></signature><seealsos><symbol name="Dictionary" docId="vl::collections::Dictionary"/><symbol name="GroupOf"/></seealsos></Document>

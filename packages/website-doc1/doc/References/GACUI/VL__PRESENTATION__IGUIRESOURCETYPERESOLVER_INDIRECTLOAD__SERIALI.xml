@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Serialize"><summary>Serialize a resource to a resource in preload type.</summary><returns>The serialized resource.</returns><param name="resource">The resource item containing the resource.</param><param name="content">The object to serialize.</param><signature><![CDATA[Ptr<DescriptableObject> Serialize(
+    Ptr<GuiResourceItem> resource,
+    Ptr<DescriptableObject> content
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiResourceItem" docId="vl::presentation::GuiResourceItem"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

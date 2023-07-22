@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="foundToken"><summary>Token syntax tree for the selected token.</summary><signature><![CDATA[parsing::ParsingTreeToken * foundToken;
+]]></signature><seealsos><symbol name="ParsingTreeToken" docId="vl::parsing::ParsingTreeToken"/></seealsos></Document>

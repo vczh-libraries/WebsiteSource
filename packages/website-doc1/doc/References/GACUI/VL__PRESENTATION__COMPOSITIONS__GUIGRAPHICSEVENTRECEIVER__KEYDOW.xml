@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="keyDown"><summary>Key down event.</summary><signature><![CDATA[GuiKeyEvent keyDown;
+]]></signature><seealsos><symbol name="GuiKeyEvent"/></seealsos></Document>

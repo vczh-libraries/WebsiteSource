@@ -1,0 +1,3 @@
+<Document accessor="public" category="Class" name="IParsingAnalyzer"><summary>Parsing analyzer.</summary><signature><![CDATA[class IParsingAnalyzer
+    : Interface;
+]]></signature><basetypes><symbol name="Interface" docId="vl::Interface"/></basetypes></Document>

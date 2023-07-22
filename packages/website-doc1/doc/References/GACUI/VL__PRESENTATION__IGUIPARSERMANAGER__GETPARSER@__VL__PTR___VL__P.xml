@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetParser"><summary>Get a parser.</summary><returns>The parser.</returns><param name="name">The name.</param><signature><![CDATA[Ptr<IGuiGeneralParser> GetParser(
+    WString const & name
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="IGuiGeneralParser" docId="vl::presentation::IGuiGeneralParser"/></seealsos></Document>

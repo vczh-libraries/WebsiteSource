@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="cache"><summary>The cache created from <symbol name="IParsingAnalyzer" docId="vl::presentation::controls::RepeatingParsingExecutor::IParsingAnalyzer"/>.</summary><signature><![CDATA[Ptr<DescriptableObject> cache;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

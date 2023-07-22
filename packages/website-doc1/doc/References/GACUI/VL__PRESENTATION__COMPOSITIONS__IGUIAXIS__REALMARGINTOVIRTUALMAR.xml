@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="RealMarginToVirtualMargin"><summary>Translate real margin to margin size.</summary><returns>The virtual margin.</returns><param name="margin">The real margin.</param><signature><![CDATA[Margin RealMarginToVirtualMargin(
+    Margin margin
+);
+]]></signature><seealsos><symbol name="Margin"/></seealsos></Document>

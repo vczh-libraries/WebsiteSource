@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="cookie"><summary>Returned cookie from the server.</summary><signature><![CDATA[WString cookie;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

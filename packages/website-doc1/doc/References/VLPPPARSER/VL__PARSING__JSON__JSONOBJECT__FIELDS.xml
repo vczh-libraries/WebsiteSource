@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="fields"><summary>Object properties.</summary><signature><![CDATA[vl::collections::List<vl::Ptr<JsonObjectField>> fields;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List" docId="vl::collections::List"/><symbol name="JsonObjectField" docId="vl::parsing::json::JsonObjectField"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="XmlAttribute"><summary>Attribute node.</summary><signature><![CDATA[class XmlAttribute
+    : XmlNode
+    , vl::reflection::Description<XmlAttribute>;
+]]></signature><seealsos><symbol name="XmlAttribute" docId="vl::parsing::xml::XmlAttribute"/></seealsos><basetypes><symbol name="XmlNode" docId="vl::parsing::xml::XmlNode"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

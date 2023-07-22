@@ -1,0 +1,8 @@
+<Document accessor="" category="Function" name="LoadFunction"><summary>Load a C++ friendly function from a global context, raise an exception if multiple functions are found under the same name. Function &quot;&lt;initialize&gt;&quot; should be the first to execute.</summary><typeparam name="TFunction">Type of the function.</typeparam><returns>The loaded C++ friendly function.</returns><param name="context">The context to the evaluation environment.</param><param name="name">The function name.</param><remarks>&quot;<b>&lt;initialize&gt;</b>&quot; must be the first function that is executed after an assembly is loaded. Its type is <b>void()</b>.</remarks><signature><![CDATA[template <
+    typename TFunction
+>
+Func<TFunction> LoadFunction(
+    Ptr<WfRuntimeGlobalContext> context,
+    WString const & name
+);
+]]></signature><seealsos><symbol name="Func"/><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="WfRuntimeGlobalContext" docId="vl::workflow::runtime::WfRuntimeGlobalContext"/></seealsos></Document>

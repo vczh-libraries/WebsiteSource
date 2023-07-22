@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="size"><summary>Font size.</summary><signature><![CDATA[Nullable<DocumentFontSize> size;
+]]></signature><seealsos><symbol name="Nullable" docId="vl::Nullable"/><symbol name="DocumentFontSize"/></seealsos></Document>

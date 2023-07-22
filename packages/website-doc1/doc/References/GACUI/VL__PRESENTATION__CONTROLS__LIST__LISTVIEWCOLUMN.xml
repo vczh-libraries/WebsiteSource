@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="ListViewColumn"><summary>List view column.</summary><signature><![CDATA[class ListViewColumn
+    : Object
+    , Description<ListViewColumn>;
+]]></signature><seealsos><symbol name="ListViewColumn" docId="vl::presentation::controls::list::ListViewColumn"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

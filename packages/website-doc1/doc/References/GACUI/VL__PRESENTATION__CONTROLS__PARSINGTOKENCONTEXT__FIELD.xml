@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="field"><summary>Field of the parent that contains the token.</summary><signature><![CDATA[WString field;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

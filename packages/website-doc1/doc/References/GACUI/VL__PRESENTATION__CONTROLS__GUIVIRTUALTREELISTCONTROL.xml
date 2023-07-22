@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiVirtualTreeListControl"><summary>Tree list control in virtual node.</summary><signature><![CDATA[class GuiVirtualTreeListControl
+    : GuiSelectableListControl
+    , tree::INodeProviderCallback
+    , Description<GuiVirtualTreeListControl>;
+]]></signature><seealsos><symbol name="GuiVirtualTreeListControl" docId="vl::presentation::controls::GuiVirtualTreeListControl"/></seealsos><basetypes><symbol name="GuiSelectableListControl" docId="vl::presentation::controls::GuiSelectableListControl"/><symbol name="INodeProviderCallback" docId="vl::presentation::controls::tree::INodeProviderCallback"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

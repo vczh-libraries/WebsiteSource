@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="group"><summary>Group index.</summary><signature><![CDATA[vint group;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

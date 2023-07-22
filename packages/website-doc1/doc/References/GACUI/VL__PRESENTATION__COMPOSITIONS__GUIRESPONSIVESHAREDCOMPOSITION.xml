@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiResponsiveSharedComposition"><summary>Represents a composition, which will pick up a shared control and install inside it, when it is displayed by a <symbol name="GuiResponsiveViewComposition" docId="vl::presentation::compositions::GuiResponsiveViewComposition"/></summary><signature><![CDATA[class GuiResponsiveSharedComposition
+    : GuiBoundsComposition
+    , Description<GuiResponsiveSharedComposition>;
+]]></signature><seealsos><symbol name="GuiResponsiveSharedComposition" docId="vl::presentation::compositions::GuiResponsiveSharedComposition"/></seealsos><basetypes><symbol name="GuiBoundsComposition" docId="vl::presentation::compositions::GuiBoundsComposition"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

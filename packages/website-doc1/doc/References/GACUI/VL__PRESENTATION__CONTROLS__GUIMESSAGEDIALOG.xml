@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiMessageDialog"><summary>Message dialog.</summary><signature><![CDATA[class GuiMessageDialog
+    : GuiDialogBase
+    , Description<GuiMessageDialog>;
+]]></signature><seealsos><symbol name="GuiMessageDialog" docId="vl::presentation::controls::GuiMessageDialog"/></seealsos><basetypes><symbol name="GuiDialogBase" docId="vl::presentation::controls::GuiDialogBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

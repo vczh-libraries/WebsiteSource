@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiComboBoxBase"><summary>The base class of combo box control.</summary><signature><![CDATA[class GuiComboBoxBase
+    : GuiMenuButton
+    , Description<GuiComboBoxBase>;
+]]></signature><seealsos><symbol name="GuiComboBoxBase" docId="vl::presentation::controls::GuiComboBoxBase"/></seealsos><basetypes><symbol name="GuiMenuButton" docId="vl::presentation::controls::GuiMenuButton"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

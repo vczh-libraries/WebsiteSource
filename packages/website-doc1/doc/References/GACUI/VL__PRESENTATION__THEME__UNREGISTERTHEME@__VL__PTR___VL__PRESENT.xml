@@ -1,0 +1,4 @@
+<Document accessor="" category="Function" name="UnregisterTheme"><summary>Unregister a control template collection object.</summary><returns>The registered object. Returns null if it does not exist.</returns><param name="name">The name of the theme.</param><signature><![CDATA[Ptr<ThemeTemplates> UnregisterTheme(
+    WString const & name
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="ThemeTemplates" docId="vl::presentation::theme::ThemeTemplates"/></seealsos></Document>

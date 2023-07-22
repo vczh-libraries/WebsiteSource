@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="SetStyleAlignmentToParent"><summary>Set the alignment of an item control.</summary><param name="style">The item control.</param><param name="margin">The new alignment.</param><signature><![CDATA[void SetStyleAlignmentToParent(
+    compositions::GuiBoundsComposition * style,
+    Margin margin
+);
+]]></signature><seealsos><symbol name="Margin"/><symbol name="GuiBoundsComposition" docId="vl::presentation::compositions::GuiBoundsComposition"/></seealsos></Document>

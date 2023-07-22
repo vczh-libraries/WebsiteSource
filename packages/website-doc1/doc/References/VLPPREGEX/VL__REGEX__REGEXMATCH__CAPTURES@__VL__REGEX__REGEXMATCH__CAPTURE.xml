@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="Captures"><summary>Get all sub strings that are captured anonymously.</summary><returns>All sub strings that are captured anonymously.</returns><example index="0"/><signature><![CDATA[CaptureList const & Captures(
+) const;
+]]></signature><seealsos><symbol name="CaptureList"/></seealsos></Document>

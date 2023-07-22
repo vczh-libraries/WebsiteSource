@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Visit"><summary>Visit operation for <symbol name="DocumentTextRun" docId="vl::presentation::DocumentTextRun"/>.</summary><param name="run">The run object.</param><signature><![CDATA[void Visit(
+    DocumentTextRun * run
+);
+]]></signature><seealsos><symbol name="DocumentTextRun" docId="vl::presentation::DocumentTextRun"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentStyle"><summary>Represents a text style.</summary><signature><![CDATA[class DocumentStyle
+    : Object
+    , Description<DocumentStyle>;
+]]></signature><seealsos><symbol name="DocumentStyle" docId="vl::presentation::DocumentStyle"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

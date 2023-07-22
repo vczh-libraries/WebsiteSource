@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="FormatCurrency"><summary>Convert a currency (money) to a formatted string according to the locale.</summary><returns>The formatted string.</returns><param name="currency">The currency to convert.</param><signature><![CDATA[WString FormatCurrency(
+    WString const & currency
+) const;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

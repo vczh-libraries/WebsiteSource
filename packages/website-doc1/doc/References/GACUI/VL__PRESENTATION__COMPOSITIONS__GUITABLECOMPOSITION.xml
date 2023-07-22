@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="GuiTableComposition"><summary>
+ Represents a table composition.
+ </summary><signature><![CDATA[class GuiTableComposition
+    : GuiBoundsComposition
+    , Description<GuiTableComposition>;
+]]></signature><seealsos><symbol name="GuiTableComposition" docId="vl::presentation::compositions::GuiTableComposition"/></seealsos><basetypes><symbol name="GuiBoundsComposition" docId="vl::presentation::compositions::GuiBoundsComposition"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

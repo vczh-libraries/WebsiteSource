@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="GetTextPosFromPoint"><summary>
+ Get the text position near to specified point.
+ </summary><returns>The text position.</returns><param name="point">The specified point, in pixel.</param><signature><![CDATA[TextPos GetTextPosFromPoint(
+    Point point
+);
+]]></signature><seealsos><symbol name="Point"/><symbol name="TextPos" docId="vl::presentation::TextPos"/></seealsos></Document>

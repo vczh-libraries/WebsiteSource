@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a spin lock.</summary><signature><![CDATA[ SpinLock(
+);
+]]></signature></Document>

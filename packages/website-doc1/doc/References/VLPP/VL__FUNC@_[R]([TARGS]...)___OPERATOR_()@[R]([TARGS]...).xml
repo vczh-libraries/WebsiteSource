@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="operator ()"><summary>Invoke the function.</summary><returns>Returns the function result. It crashes when the functor is null.</returns><param name="args">Arguments to invoke the function.</param><signature><![CDATA[R operator ()(
+    TArgs... args
+) const;
+]]></signature></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSelectedFont"><summary>Set the selected font.</summary><param name="value">The selected font.</param><signature><![CDATA[void SetSelectedFont(
+    FontProperties const & value
+);
+]]></signature><seealsos><symbol name="FontProperties" docId="vl::presentation::FontProperties"/></seealsos></Document>

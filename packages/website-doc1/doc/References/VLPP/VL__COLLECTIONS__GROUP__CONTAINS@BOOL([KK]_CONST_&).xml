@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Contains"><summary>Test if there is any value associated to a specified key or not.</summary><returns>Returns true there is at least one value associated to this key.</returns><param name="key">The key to find.</param><signature><![CDATA[bool Contains(
+    KK const & key
+) const;
+]]></signature></Document>

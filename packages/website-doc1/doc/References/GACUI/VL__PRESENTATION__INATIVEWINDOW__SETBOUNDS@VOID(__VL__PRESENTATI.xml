@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetBounds"><summary>
+ Set the bounds of the window.
+ </summary><param name="bounds">The bounds of the window.</param><signature><![CDATA[void SetBounds(
+    NativeRect const & bounds
+);
+]]></signature><seealsos><symbol name="NativeRect"/></seealsos></Document>

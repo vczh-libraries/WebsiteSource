@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="ResolveResource"><summary>Load a resource for a type from a file.</summary><returns>The resource.</returns><param name="resource">The resource item containing the resource.</param><param name="path">The file path.</param><param name="errors">All collected errors during loading a resource.</param><signature><![CDATA[Ptr<DescriptableObject> ResolveResource(
+    Ptr<GuiResourceItem> resource,
+    WString const & path,
+    GuiResourceError::List & errors
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="List"/><symbol name="GuiResourceItem" docId="vl::presentation::GuiResourceItem"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

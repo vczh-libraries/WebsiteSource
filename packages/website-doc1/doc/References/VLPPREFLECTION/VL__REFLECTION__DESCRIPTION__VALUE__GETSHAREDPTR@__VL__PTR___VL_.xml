@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetSharedPtr"><summary>Get the stored shared pointer if <b>GetValueType()</b> returns <b>SharedPtr</b>.</summary><returns>The stored shared pointer. Returns null if failed.</returns><signature><![CDATA[Ptr<DescriptableObject> GetSharedPtr(
+) const;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

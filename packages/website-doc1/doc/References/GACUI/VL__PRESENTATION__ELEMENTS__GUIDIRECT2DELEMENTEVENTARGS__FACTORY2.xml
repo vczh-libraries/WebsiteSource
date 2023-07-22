@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="factoryDWrite"><summary>DirectWrite factory object.</summary><signature><![CDATA[IDWriteFactory * factoryDWrite;
+]]></signature><seealsos><symbol name="IDWriteFactory" docId="IDWriteFactory"/></seealsos></Document>

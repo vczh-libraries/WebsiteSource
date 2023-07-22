@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ImageChanged"><summary>Image changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ImageChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

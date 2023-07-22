@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SysKeyDown"><summary>
+ Called a system key is pressed.
+ </summary><param name="info">Detailed information to this message.</param><signature><![CDATA[void SysKeyDown(
+    NativeWindowKeyInfo const & info
+);
+]]></signature><seealsos><symbol name="NativeWindowKeyInfo" docId="vl::presentation::NativeWindowKeyInfo"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetNodeByVisibleIndex"><summary>Get a node by the index in all visible nodes. This requires <symbol name="CanGetNodeByVisibleIndex" docId="vl::presentation::controls::tree::INodeRootProvider::CanGetNodeByVisibleIndex@bool()"/> returning true.</summary><returns>The node for the index in all visible nodes.</returns><param name="index">The index in all visible nodes.</param><signature><![CDATA[Ptr<INodeProvider> GetNodeByVisibleIndex(
+    vint index
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INodeProvider" docId="vl::presentation::controls::tree::INodeProvider"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

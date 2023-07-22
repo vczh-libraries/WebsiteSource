@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetDirection"><summary>Set the stack item layout direction.</summary><param name="value">The stack item layout direction.</param><signature><![CDATA[void SetDirection(
+    Direction value
+);
+]]></signature><seealsos><symbol name="Direction" docId="vl::presentation::compositions::GuiStackComposition::Direction"/></seealsos></Document>

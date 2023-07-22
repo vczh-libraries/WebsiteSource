@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetHost"><summary>Set <symbol name="server" docId="vl::HttpRequest::server"/>, <symbol name="port" docId="vl::HttpRequest::port"/>, <symbol name="query" docId="vl::HttpRequest::query"/> and <symbol name="secure" docId="vl::HttpRequest::secure"/> fields for you using an URL.</summary><returns>Returns true if this operation succeeded.</returns><param name="inputQuery">The URL.</param><signature><![CDATA[bool SetHost(
+    WString const & inputQuery
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

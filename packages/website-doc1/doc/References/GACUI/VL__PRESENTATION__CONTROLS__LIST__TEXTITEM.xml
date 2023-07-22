@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="TextItem"><summary>Text item. This is the item data structure for <symbol name="TextItemProvider" docId="vl::presentation::controls::list::TextItemProvider"/>.</summary><signature><![CDATA[class TextItem
+    : Object
+    , Description<TextItem>;
+]]></signature><seealsos><symbol name="TextItem" docId="vl::presentation::controls::list::TextItem"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

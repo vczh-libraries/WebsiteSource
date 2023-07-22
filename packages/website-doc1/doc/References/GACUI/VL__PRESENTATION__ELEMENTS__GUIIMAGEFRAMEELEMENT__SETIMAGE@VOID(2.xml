@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="SetImage"><summary>
+ Set the containing image and the frame index.
+ </summary><param name="_image">The new containing image.</param><param name="_frameIndex">The new frameIndex.</param><signature><![CDATA[void SetImage(
+    Ptr<INativeImage> _image,
+    vint _frameIndex
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INativeImage" docId="vl::presentation::INativeImage"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

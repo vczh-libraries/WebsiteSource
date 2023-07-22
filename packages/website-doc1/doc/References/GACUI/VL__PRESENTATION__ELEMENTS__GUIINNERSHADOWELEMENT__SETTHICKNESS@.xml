@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetThickness"><summary>
+ Set the thickness.
+ </summary><param name="value">The new thickness.</param><signature><![CDATA[void SetThickness(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

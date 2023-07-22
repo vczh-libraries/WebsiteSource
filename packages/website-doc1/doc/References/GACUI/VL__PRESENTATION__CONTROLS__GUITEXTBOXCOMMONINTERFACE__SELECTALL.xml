@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="SelectAll"><summary>Select all text.</summary><signature><![CDATA[void SelectAll(
+);
+]]></signature></Document>

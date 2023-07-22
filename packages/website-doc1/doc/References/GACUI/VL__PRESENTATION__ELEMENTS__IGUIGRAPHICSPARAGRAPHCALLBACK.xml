@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="IGuiGraphicsParagraphCallback"><summary>Paragraph callback</summary><signature><![CDATA[class IGuiGraphicsParagraphCallback
+    : IDescriptable
+    , Description<IGuiGraphicsParagraphCallback>;
+]]></signature><seealsos><symbol name="IGuiGraphicsParagraphCallback" docId="vl::presentation::elements::IGuiGraphicsParagraphCallback"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

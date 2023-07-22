@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetTextColor"><summary>Set the text color.</summary><param name="value">The text color.</param><signature><![CDATA[void SetTextColor(
+    Color value
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

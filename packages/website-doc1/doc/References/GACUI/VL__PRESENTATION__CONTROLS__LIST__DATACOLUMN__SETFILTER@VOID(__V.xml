@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetFilter"><summary>Set the filter for the column.</summary><param name="value">The filter.</param><signature><![CDATA[void SetFilter(
+    Ptr<IDataFilter> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IDataFilter"/></seealsos></Document>

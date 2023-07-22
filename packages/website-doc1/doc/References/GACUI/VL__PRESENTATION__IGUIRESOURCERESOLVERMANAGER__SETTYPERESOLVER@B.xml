@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetTypeResolver"><summary>Set the <symbol name="IGuiResourceTypeResolver" docId="vl::presentation::IGuiResourceTypeResolver"/> for a resource type.</summary><returns>Returns true if this operation succeeded.</returns><param name="resolver">The resolver.</param><signature><![CDATA[bool SetTypeResolver(
+    Ptr<IGuiResourceTypeResolver> resolver
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiResourceTypeResolver" docId="vl::presentation::IGuiResourceTypeResolver"/></seealsos></Document>

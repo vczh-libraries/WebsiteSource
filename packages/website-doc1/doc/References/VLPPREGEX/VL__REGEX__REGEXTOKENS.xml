@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="RegexTokens"><summary>Token collection representing the result from the lexical analyzer. Call <symbol name="Parse" docId="vl::regex::RegexLexer::Parse@::vl::regex::RegexTokens(::vl::WString const &amp;, ::vl::vint)"/> to create this object.</summary><example index="0"/><signature><![CDATA[class RegexTokens
+    : Object
+    , collections::IEnumerable<RegexToken>;
+]]></signature><seealsos><symbol name="RegexToken" docId="vl::regex::RegexToken"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IEnumerable" docId="vl::collections::IEnumerable"/></basetypes></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="nonClient"><summary>True if the mouse is in the non-client area.</summary><signature><![CDATA[bool nonClient;
+]]></signature></Document>

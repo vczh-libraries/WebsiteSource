@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetCellText"><summary>Get the text value from an item.</summary><returns>The text value.</returns><param name="row">The row index of the item.</param><signature><![CDATA[WString GetCellText(
+    vint row
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="GetScreen"><summary>
+ Get the screen object where the main part of the specified window is inside.
+ </summary><returns>The screen object.</returns><param name="window">The specified window.</param><signature><![CDATA[INativeScreen * GetScreen(
+    INativeWindow * window
+);
+]]></signature><seealsos><symbol name="INativeScreen" docId="vl::presentation::INativeScreen"/><symbol name="INativeWindow" docId="vl::presentation::INativeWindow"/></seealsos></Document>

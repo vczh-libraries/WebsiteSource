@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="Identifier"><summary>The identifier for this service.</summary><signature><![CDATA[static wchar_t const * const Identifier;
+]]></signature><seealsos><symbol name="IToolstripUpdateLayoutInvoker" docId="vl::presentation::controls::IToolstripUpdateLayoutInvoker"/></seealsos></Document>

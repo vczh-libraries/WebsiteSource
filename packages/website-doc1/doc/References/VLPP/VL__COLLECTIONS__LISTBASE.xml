@@ -1,0 +1,7 @@
+<Document accessor="" category="Class" name="ListBase"><summary>Base type for all list containers.</summary><typeparam name="T">Type of elements.</typeparam><typeparam name="K">Type of the key type of elements. It is recommended to use the default value.</typeparam><signature><![CDATA[template <
+    typename T, 
+    typename K /* optional */
+>
+class ListBase
+    : ArrayBase<T>;
+]]></signature><basetypes><symbol name="ArrayBase" docId="vl::collections::ArrayBase"/></basetypes></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetWindowMode"><summary>
+ Get the window mode. 
+ </summary><returns>The window mode.</returns><signature><![CDATA[WindowMode GetWindowMode(
+);
+]]></signature><seealsos><symbol name="WindowMode" docId="vl::presentation::INativeWindow::WindowMode"/></seealsos></Document>

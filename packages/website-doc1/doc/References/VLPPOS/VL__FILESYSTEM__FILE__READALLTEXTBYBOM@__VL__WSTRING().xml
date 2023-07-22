@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="ReadAllTextByBom"><summary>Get the content of a text file. If there is no BOM in the file, the encoding is assumed to be aligned to the current code page.</summary><returns>The content of the file.</returns><signature><![CDATA[WString ReadAllTextByBom(
+) const;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

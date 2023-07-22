@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetAssociatedCursor"><summary>Set the associated cursor.</summary><param name="cursor">The associated cursor.</param><signature><![CDATA[void SetAssociatedCursor(
+    INativeCursor * cursor
+);
+]]></signature><seealsos><symbol name="INativeCursor" docId="vl::presentation::INativeCursor"/></seealsos></Document>

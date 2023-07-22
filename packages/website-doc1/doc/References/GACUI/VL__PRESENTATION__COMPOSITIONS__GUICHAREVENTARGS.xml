@@ -1,0 +1,5 @@
+<Document accessor="" category="Struct" name="GuiCharEventArgs"><summary>Char input event arguments.</summary><signature><![CDATA[struct GuiCharEventArgs
+    : GuiEventArgs
+    , WindowCharInfo
+    , Description<GuiCharEventArgs>;
+]]></signature><seealsos><symbol name="GuiCharEventArgs" docId="vl::presentation::compositions::GuiCharEventArgs"/></seealsos><basetypes><symbol name="WindowCharInfo"/><symbol name="GuiEventArgs" docId="vl::presentation::compositions::GuiEventArgs"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

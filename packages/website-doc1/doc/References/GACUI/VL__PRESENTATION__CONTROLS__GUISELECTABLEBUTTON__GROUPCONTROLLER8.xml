@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="GroupControllerChanged"><summary>Group controller changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent GroupControllerChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

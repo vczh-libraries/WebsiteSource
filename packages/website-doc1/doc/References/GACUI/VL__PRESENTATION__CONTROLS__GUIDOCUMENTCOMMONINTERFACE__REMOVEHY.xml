@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="RemoveHyperlink"><summary>Remove hyperlink in a specified range.</summary><param name="paragraphIndex">The index of the paragraph to edit.</param><param name="begin">The begin position of the range.</param><param name="end">The end position of the range.</param><signature><![CDATA[void RemoveHyperlink(
+    vint paragraphIndex,
+    vint begin,
+    vint end
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

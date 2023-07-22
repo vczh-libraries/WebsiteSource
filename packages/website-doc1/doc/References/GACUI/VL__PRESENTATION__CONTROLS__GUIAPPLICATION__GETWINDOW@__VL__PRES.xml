@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetWindow"><summary>Get the <symbol name="GuiWindow" docId="vl::presentation::controls::GuiWindow"/> instance that the mouse cursor are directly in.</summary><returns>The <symbol name="GuiWindow" docId="vl::presentation::controls::GuiWindow"/> instance that the mouse cursor are directly in.</returns><param name="location">The mouse cursor.</param><signature><![CDATA[GuiWindow * GetWindow(
+    NativePoint location
+);
+]]></signature><seealsos><symbol name="NativePoint"/><symbol name="GuiWindow" docId="vl::presentation::controls::GuiWindow"/></seealsos></Document>

@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetRootNode"><summary>Get the instance of the root node.</summary><returns>Returns the instance of the root node.</returns><signature><![CDATA[Ptr<INodeProvider> GetRootNode(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INodeProvider" docId="vl::presentation::controls::tree::INodeProvider"/></seealsos></Document>

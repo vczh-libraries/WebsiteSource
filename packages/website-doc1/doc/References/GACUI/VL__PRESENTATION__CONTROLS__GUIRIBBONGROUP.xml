@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiRibbonGroup"><summary>Ribbon group control, adding to the Groups property of a <symbol name="GuiRibbonTabPage" docId="vl::presentation::controls::GuiRibbonTabPage"/>.</summary><signature><![CDATA[class GuiRibbonGroup
+    : GuiControl
+    , compositions::GuiAltActionHostBase
+    , Description<GuiRibbonGroup>;
+]]></signature><seealsos><symbol name="GuiRibbonGroup" docId="vl::presentation::controls::GuiRibbonGroup"/></seealsos><basetypes><symbol name="GuiAltActionHostBase" docId="vl::presentation::compositions::GuiAltActionHostBase"/><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

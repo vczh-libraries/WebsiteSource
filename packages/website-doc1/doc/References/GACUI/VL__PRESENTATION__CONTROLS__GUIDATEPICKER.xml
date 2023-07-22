@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiDatePicker"><summary>Date picker control that display a calendar.</summary><signature><![CDATA[class GuiDatePicker
+    : GuiControl
+    , compositions::GuiAltActionHostBase
+    , Description<GuiDatePicker>;
+]]></signature><seealsos><symbol name="GuiDatePicker" docId="vl::presentation::controls::GuiDatePicker"/></seealsos><basetypes><symbol name="GuiAltActionHostBase" docId="vl::presentation::compositions::GuiAltActionHostBase"/><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

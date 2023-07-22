@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="ResolveResource"><summary>Load a resource for a type from a resource loaded by the preload type resolver.</summary><returns>The resource.</returns><param name="resource">The resource item containing the resource.</param><param name="resolver">The path resolver. This is only for delay load resource.</param><param name="errors">All collected errors during loading a resource.</param><signature><![CDATA[Ptr<DescriptableObject> ResolveResource(
+    Ptr<GuiResourceItem> resource,
+    Ptr<GuiResourcePathResolver> resolver,
+    GuiResourceError::List & errors
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List"/><symbol name="GuiResourceItem" docId="vl::presentation::GuiResourceItem"/><symbol name="GuiResourcePathResolver" docId="vl::presentation::GuiResourcePathResolver"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

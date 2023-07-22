@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="middleButtonUp"><summary>Middle mouse button up event.</summary><signature><![CDATA[GuiMouseEvent middleButtonUp;
+]]></signature><seealsos><symbol name="GuiMouseEvent"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="MemoryNodeRootProvider"><summary>An in-memory <symbol name="INodeRootProvider" docId="vl::presentation::controls::tree::INodeRootProvider"/> implementation.</summary><signature><![CDATA[class MemoryNodeRootProvider
+    : MemoryNodeProvider
+    , NodeRootProviderBase
+    , Description<MemoryNodeRootProvider>;
+]]></signature><seealsos><symbol name="MemoryNodeRootProvider" docId="vl::presentation::controls::tree::MemoryNodeRootProvider"/></seealsos><basetypes><symbol name="MemoryNodeProvider" docId="vl::presentation::controls::tree::MemoryNodeProvider"/><symbol name="NodeRootProviderBase" docId="vl::presentation::controls::tree::NodeRootProviderBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

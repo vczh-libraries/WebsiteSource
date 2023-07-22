@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="From"><summary>Create a boxed value.</summary><returns>The created value.</returns><param name="value">The boxed value to store.</param><param name="type">The type of the boxed value.</param><signature><![CDATA[static Value From(
+    Ptr<IBoxedValue> value,
+    ITypeDescriptor * type
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IBoxedValue"/><symbol name="ITypeDescriptor" docId="vl::reflection::description::ITypeDescriptor"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

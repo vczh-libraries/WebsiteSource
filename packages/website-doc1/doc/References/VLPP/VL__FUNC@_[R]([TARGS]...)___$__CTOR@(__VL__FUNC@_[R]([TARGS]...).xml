@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Copy a functor.</summary><param name="function">The functor to copy.</param><signature><![CDATA[ Func(
+    Func<R(
+TArgs...)> const & function
+);
+]]></signature><seealsos><symbol name="Func&lt;R(
+TArgs...)&gt;" docId="vl::Func@&lt;[R]([TArgs]...)&gt;"/></seealsos></Document>

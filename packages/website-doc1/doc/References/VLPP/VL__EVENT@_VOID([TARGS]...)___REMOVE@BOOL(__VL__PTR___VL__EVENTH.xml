@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Remove"><summary>Remove a callback by an event handler returns from <symbols><symbol name="Add" docId="vl::Event@&lt;void([TArgs]...)&gt;::Add@::vl::Ptr&lt;::vl::EventHandler&gt;(::vl::Func&lt;void([TArgs]...)&gt; const &amp;)"/><symbol name="Add" docId="vl::Event@&lt;void([TArgs]...)&gt;::Add@::vl::Ptr&lt;::vl::EventHandler&gt;(void([TArgs]...) *)"/></symbols>.</summary><returns>Returns true if this operation succeeded.</returns><param name="handler">The event handler representing the callback.</param><signature><![CDATA[bool Remove(
+    Ptr<EventHandler> handler
+);
+]]></signature><seealsos><symbol name="EventHandler"/><symbol name="Ptr" docId="vl::Ptr"/></seealsos></Document>

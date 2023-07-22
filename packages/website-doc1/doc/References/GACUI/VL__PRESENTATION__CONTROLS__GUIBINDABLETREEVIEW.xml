@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiBindableTreeView"><summary>A bindable Tree view control.</summary><signature><![CDATA[class GuiBindableTreeView
+    : GuiVirtualTreeView
+    , Description<GuiBindableTreeView>;
+]]></signature><seealsos><symbol name="GuiBindableTreeView" docId="vl::presentation::controls::GuiBindableTreeView"/></seealsos><basetypes><symbol name="GuiVirtualTreeView" docId="vl::presentation::controls::GuiVirtualTreeView"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

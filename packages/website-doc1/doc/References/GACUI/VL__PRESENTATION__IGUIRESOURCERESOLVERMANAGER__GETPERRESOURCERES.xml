@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetPerResourceResolverNames"><summary>Get names of all per resource resolvers for a pass.</summary><param name="passIndex">The pass index.</param><param name="names">Names of resolvers</param><signature><![CDATA[void GetPerResourceResolverNames(
+    vint passIndex,
+    collections::List<WString> & names
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="List" docId="vl::collections::List"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

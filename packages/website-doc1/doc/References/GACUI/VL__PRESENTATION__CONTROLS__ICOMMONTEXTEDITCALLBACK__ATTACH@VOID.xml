@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="Attach"><summary>Called when the callback is attached to a text box control.</summary><param name="element">The element that used in the text box control.</param><param name="elementModifyLock">The lock that pretect the element.</param><param name="ownerComposition">The owner composition of this element.</param><param name="editVersion">The current edit version.</param><signature><![CDATA[void Attach(
+    elements::GuiColorizedTextElement * element,
+    SpinLock & elementModifyLock,
+    compositions::GuiGraphicsComposition * ownerComposition,
+    vuint editVersion
+);
+]]></signature><seealsos><symbol name="SpinLock" docId="vl::SpinLock"/><symbol name="GuiGraphicsComposition" docId="vl::presentation::compositions::GuiGraphicsComposition"/><symbol name="GuiColorizedTextElement" docId="vl::presentation::elements::GuiColorizedTextElement"/><symbol name="vuint" docId="vl::vuint"/></seealsos></Document>

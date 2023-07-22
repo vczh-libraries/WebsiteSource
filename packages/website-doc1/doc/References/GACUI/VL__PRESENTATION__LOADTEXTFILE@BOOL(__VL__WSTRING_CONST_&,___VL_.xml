@@ -1,0 +1,5 @@
+<Document accessor="" category="Function" name="LoadTextFile"><summary>Load a text file.</summary><returns>Returns true if the operation succeeded.</returns><param name="filePath">The text file path.</param><param name="text">The text file content, if succeeded.</param><signature><![CDATA[bool LoadTextFile(
+    WString const & filePath,
+    WString & text
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

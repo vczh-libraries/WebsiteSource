@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetAxis"><summary>Set the item coordinate transformer</summary><param name="value">The new item coordinate transformer</param><signature><![CDATA[void SetAxis(
+    Ptr<compositions::IGuiAxis> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiAxis" docId="vl::presentation::compositions::IGuiAxis"/></seealsos></Document>

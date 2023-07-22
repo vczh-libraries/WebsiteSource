@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetDataColumnCount"><summary>Get the number of data columns.</summary><returns>The number of data columns.</returns><signature><![CDATA[vint GetDataColumnCount(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

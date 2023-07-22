@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetMaxLength"><summary>Set the maximum length of this composition.</summary><param name="value">The maximum length of this composition.</param><signature><![CDATA[void SetMaxLength(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="QueueLambda"><summary>Queue a lambda expression.</summary><typeparam name="T">The type of the lambda expression.</typeparam><param name="proc">The lambda expression.</param><signature><![CDATA[template <
+    typename T
+>
+static void QueueLambda(
+    T const & proc
+);
+]]></signature></Document>

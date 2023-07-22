@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="INodeProviderCallback"><summary>Callback object for <symbol name="INodeProvider" docId="vl::presentation::controls::tree::INodeProvider"/>. A node will invoke this callback to notify any content modification.</summary><signature><![CDATA[class INodeProviderCallback
+    : IDescriptable
+    , Description<INodeProviderCallback>;
+]]></signature><seealsos><symbol name="INodeProviderCallback" docId="vl::presentation::controls::tree::INodeProviderCallback"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

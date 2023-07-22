@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="WindowGotFocus"><summary>Window got focus event.</summary><signature><![CDATA[compositions::GuiNotifyEvent WindowGotFocus;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

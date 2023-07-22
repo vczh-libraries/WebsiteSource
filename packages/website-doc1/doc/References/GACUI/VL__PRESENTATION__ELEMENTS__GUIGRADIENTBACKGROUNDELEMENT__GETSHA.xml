@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetShape"><summary>
+ Get the shape.
+ </summary><returns>The shape.</returns><signature><![CDATA[ElementShape GetShape(
+);
+]]></signature><seealsos><symbol name="ElementShape" docId="vl::presentation::elements::ElementShape"/></seealsos></Document>

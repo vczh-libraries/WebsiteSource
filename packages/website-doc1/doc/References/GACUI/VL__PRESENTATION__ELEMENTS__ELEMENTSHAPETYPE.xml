@@ -1,0 +1,9 @@
+<Document accessor="" category="Enum" name="ElementShapeType"><summary>
+ Defines a shape for some <symbol name="IGuiGraphicsElement" docId="vl::presentation::elements::IGuiGraphicsElement"/>.
+ </summary><enumitem name="Ellipse">Ellipse shape.</enumitem><enumitem name="Rectangle">Rectangle shape.</enumitem><enumitem name="RoundRect">Round rectangle shape.</enumitem><signature><![CDATA[enum class ElementShapeType
+{
+    Rectangle,
+    Ellipse,
+    RoundRect,
+};
+]]></signature></Document>

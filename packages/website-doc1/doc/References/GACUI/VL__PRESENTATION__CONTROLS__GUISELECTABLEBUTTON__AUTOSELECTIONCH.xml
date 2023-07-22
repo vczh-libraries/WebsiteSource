@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="AutoSelectionChanged"><summary>Auto selection changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent AutoSelectionChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

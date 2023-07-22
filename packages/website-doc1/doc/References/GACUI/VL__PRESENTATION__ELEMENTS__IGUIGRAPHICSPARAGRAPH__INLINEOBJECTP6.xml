@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="callbackId"><summary>The id for callback. If the value is -1, then no callback will be received .</summary><signature><![CDATA[vint callbackId;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

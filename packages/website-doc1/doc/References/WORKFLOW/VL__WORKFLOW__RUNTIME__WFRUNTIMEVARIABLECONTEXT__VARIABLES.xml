@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="variables"><summary>Values of variables in runtime.</summary><signature><![CDATA[VariableArray variables;
+]]></signature><seealsos><symbol name="VariableArray"/></seealsos></Document>

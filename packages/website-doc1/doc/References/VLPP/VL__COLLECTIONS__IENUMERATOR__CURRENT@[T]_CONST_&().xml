@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="Current"><summary>Get the reference to the current value in the enumerator.</summary><returns>The reference to the current value.</returns><remarks>
+ After calling <symbol name="CreateEnumerator" docId="vl::collections::IEnumerable::CreateEnumerator@::vl::collections::IEnumerator&lt;[T]&gt; *()"/>, <symbol name="Next" docId="vl::collections::IEnumerator::Next@bool()"/> need to be called to make the first value available.
+ Return value of <symbol name="Current" docId="vl::collections::IEnumerator::Current@[T] const &amp;()"/> will be changed after each time <symbol name="Next" docId="vl::collections::IEnumerator::Next@bool()"/> is called.
+ If <symbol name="Next" docId="vl::collections::IEnumerator::Next@bool()"/> returns false, the behavior of <symbol name="Current" docId="vl::collections::IEnumerator::Current@[T] const &amp;()"/> is undefined.
+ </remarks><signature><![CDATA[T const & Current(
+) const;
+]]></signature></Document>

@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="GuiFlowComposition"><summary>
+ Represents a flow composition.
+ </summary><signature><![CDATA[class GuiFlowComposition
+    : GuiBoundsComposition
+    , Description<GuiFlowComposition>;
+]]></signature><seealsos><symbol name="GuiFlowComposition" docId="vl::presentation::compositions::GuiFlowComposition"/></seealsos><basetypes><symbol name="GuiBoundsComposition" docId="vl::presentation::compositions::GuiBoundsComposition"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an auto complete.</summary><param name="_autoCompleteControlProvider">A auto complete control provider. Set to null to use a default one.</param><signature><![CDATA[ GuiTextBoxAutoCompleteBase(
+    Ptr<IAutoCompleteControlProvider> _autoCompleteControlProvider /* optional */
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IAutoCompleteControlProvider" docId="vl::presentation::controls::GuiTextBoxAutoCompleteBase::IAutoCompleteControlProvider"/></seealsos></Document>

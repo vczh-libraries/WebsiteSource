@@ -1,0 +1,4 @@
+<Document accessor="" category="Function" name="XmlToString"><summary>Serialize XML to string.</summary><returns>The serialized string.</returns><param name="node">The XML node to serialize.</param><signature><![CDATA[WString XmlToString(
+    Ptr<XmlNode> node
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="XmlNode" docId="vl::parsing::xml::XmlNode"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="rootElement"><summary>Root element of the XML document.</summary><signature><![CDATA[vl::Ptr<XmlElement> rootElement;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="XmlElement" docId="vl::parsing::xml::XmlElement"/></seealsos></Document>

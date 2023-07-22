@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetRowPadding"><summary>Set the distance between rows.</summary><param name="value">The distance between rows.</param><signature><![CDATA[void SetRowPadding(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

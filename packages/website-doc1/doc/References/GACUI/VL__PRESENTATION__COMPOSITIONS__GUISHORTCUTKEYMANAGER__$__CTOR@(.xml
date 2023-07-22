@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create the shortcut key manager.</summary><signature><![CDATA[ GuiShortcutKeyManager(
+);
+]]></signature></Document>

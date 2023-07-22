@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Create"><summary>
+ Create a <symbol name="IGuiGraphicsRenderer" docId="vl::presentation::elements::IGuiGraphicsRenderer"/>.
+ </summary><returns>Returns the created graphics renderer.</returns><signature><![CDATA[IGuiGraphicsRenderer * Create(
+);
+]]></signature><seealsos><symbol name="IGuiGraphicsRenderer" docId="vl::presentation::elements::IGuiGraphicsRenderer"/></seealsos></Document>

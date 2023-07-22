@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetDirection"><summary>Set all supported directions.</summary><param name="value">All supported directions.</param><signature><![CDATA[void SetDirection(
+    ResponsiveDirection value
+);
+]]></signature><seealsos><symbol name="ResponsiveDirection"/></seealsos></Document>

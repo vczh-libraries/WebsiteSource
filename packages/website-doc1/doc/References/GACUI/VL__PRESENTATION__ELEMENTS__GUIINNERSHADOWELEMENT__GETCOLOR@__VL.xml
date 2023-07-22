@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetColor"><summary>
+ Get the shadow color.
+ </summary><returns>The shadow color.</returns><signature><![CDATA[Color GetColor(
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

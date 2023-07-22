@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetChecked"><summary>Get the check state of an item.</summary><returns>The check state of an item.</returns><param name="itemIndex">The index of an item.</param><signature><![CDATA[bool GetChecked(
+    vint itemIndex
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

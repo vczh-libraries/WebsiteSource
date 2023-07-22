@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetColumnPadding"><summary>Set the distance between columns.</summary><param name="value">The distance between columns.</param><signature><![CDATA[void SetColumnPadding(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

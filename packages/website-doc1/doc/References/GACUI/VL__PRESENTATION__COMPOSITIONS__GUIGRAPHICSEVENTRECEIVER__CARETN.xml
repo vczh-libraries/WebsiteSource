@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="caretNotify"><summary>Caret notify event. This event is raised when a caret graph need to change the visibility state.</summary><signature><![CDATA[GuiNotifyEvent caretNotify;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="Children"><summary>Get all child compositions ordered by z-order from low to high.</summary><returns>Child compositions.</returns><signature><![CDATA[CompositionList const & Children(
+);
+]]></signature><seealsos><symbol name="CompositionList"/></seealsos></Document>

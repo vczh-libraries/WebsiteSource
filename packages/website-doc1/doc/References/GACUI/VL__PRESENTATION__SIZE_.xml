@@ -1,0 +1,7 @@
+<Document accessor="" category="Struct" name="Size_"><summary>
+ Represents a size in a two dimensions space.
+ </summary><typeparam name="T">Type of the coordinate.</typeparam><signature><![CDATA[template <
+    typename T
+>
+struct Size_;
+]]></signature></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetBorderColor"><summary>
+ Get the border color.
+ </summary><returns>The border color.</returns><signature><![CDATA[Color GetBorderColor(
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

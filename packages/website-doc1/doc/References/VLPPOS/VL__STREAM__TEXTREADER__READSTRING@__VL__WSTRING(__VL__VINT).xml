@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="ReadString"><summary>Read a string of a specified size in characters.</summary><returns>The read string. It could be shorter than the expected length if the reader reaches the end.</returns><param name="length">Expected length of the string to read.</param><signature><![CDATA[WString ReadString(
+    vint length
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

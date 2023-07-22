@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="BroadcastStream"><summary>A <b>writable</b> stream that copy the written content to multiple output streams.</summary><remarks>
+ When writing happens, the boreadcast stream will only performance one write attempt to each output stream.
+ </remarks><signature><![CDATA[class BroadcastStream
+    : Object
+    , IStream;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IStream" docId="vl::stream::IStream"/></basetypes></Document>

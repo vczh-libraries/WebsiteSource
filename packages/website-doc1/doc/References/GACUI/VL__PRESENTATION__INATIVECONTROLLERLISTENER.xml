@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="INativeControllerListener"><summary>
+ Represents a global message listener to an <symbol name="INativeController" docId="vl::presentation::INativeController"/>.
+ </summary><signature><![CDATA[class INativeControllerListener
+    : Interface;
+]]></signature><basetypes><symbol name="Interface" docId="vl::Interface"/></basetypes></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="MouseLeaved"><summary>
+ Called when the mouse leaved the window.
+ </summary><signature><![CDATA[void MouseLeaved(
+);
+]]></signature></Document>

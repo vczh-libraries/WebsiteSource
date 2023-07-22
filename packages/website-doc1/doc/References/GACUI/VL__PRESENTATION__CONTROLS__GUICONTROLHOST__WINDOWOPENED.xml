@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="WindowOpened"><summary>Window opened event.</summary><signature><![CDATA[compositions::GuiNotifyEvent WindowOpened;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

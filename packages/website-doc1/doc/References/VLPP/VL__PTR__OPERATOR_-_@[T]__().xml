@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="operator -&gt;"><summary>Get the pointer to the contained object.</summary><returns>The pointer to the contained object. Returns null for an empty shared pointer.</returns><signature><![CDATA[T * operator ->(
+) const;
+]]></signature></Document>

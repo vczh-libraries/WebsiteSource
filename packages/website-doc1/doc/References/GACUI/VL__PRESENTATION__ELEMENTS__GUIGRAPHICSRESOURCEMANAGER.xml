@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiGraphicsResourceManager"><summary>
+ This is a class for managing grpahics element factories and graphics renderer factories
+ </summary><signature><![CDATA[class GuiGraphicsResourceManager
+    : Object;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/></basetypes></Document>

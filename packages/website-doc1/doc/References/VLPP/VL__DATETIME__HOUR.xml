@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="hour"><summary>The hour, from 0 to 23.</summary><signature><![CDATA[vint hour;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

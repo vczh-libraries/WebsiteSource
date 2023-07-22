@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Visit"><summary>Visit operation for <symbol name="DocumentStylePropertiesRun" docId="vl::presentation::DocumentStylePropertiesRun"/>.</summary><param name="run">The run object.</param><signature><![CDATA[void Visit(
+    DocumentStylePropertiesRun * run
+);
+]]></signature><seealsos><symbol name="DocumentStylePropertiesRun" docId="vl::presentation::DocumentStylePropertiesRun"/></seealsos></Document>

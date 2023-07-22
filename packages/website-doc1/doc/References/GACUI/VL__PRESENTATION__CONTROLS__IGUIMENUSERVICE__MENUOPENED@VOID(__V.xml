@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="MenuOpened"><summary>Called when the sub menu is opened.</summary><param name="menu">The sub menu.</param><signature><![CDATA[void MenuOpened(
+    GuiMenu * menu
+);
+]]></signature><seealsos><symbol name="GuiMenu" docId="vl::presentation::controls::GuiMenu"/></seealsos></Document>

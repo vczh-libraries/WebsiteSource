@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="ClearMeasurement"><summary>
+ Clear all cached <symbol name="rightOffset" docId="vl::presentation::elements::text::CharAtt::rightOffset"/>.
+ </summary><signature><![CDATA[void ClearMeasurement(
+);
+]]></signature></Document>

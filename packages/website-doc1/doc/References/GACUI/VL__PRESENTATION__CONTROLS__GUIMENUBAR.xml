@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiMenuBar"><summary>Menu bar.</summary><signature><![CDATA[class GuiMenuBar
+    : GuiControl
+    , IGuiMenuService
+    , Description<GuiMenuBar>;
+]]></signature><seealsos><symbol name="GuiMenuBar" docId="vl::presentation::controls::GuiMenuBar"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="IGuiMenuService" docId="vl::presentation::controls::IGuiMenuService"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

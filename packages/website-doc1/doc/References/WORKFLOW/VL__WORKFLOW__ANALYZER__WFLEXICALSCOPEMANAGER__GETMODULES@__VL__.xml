@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetModules"><summary>Get all added modules in adding order.</summary><returns>All added modules in adding order.</returns><signature><![CDATA[ModuleList & GetModules(
+);
+]]></signature><seealsos><symbol name="ModuleList"/></seealsos></Document>

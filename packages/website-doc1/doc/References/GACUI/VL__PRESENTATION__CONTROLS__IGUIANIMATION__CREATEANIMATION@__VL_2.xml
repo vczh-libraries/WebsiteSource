@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="CreateAnimation"><summary>Create an infinite animation.</summary><returns>Returns the created animation.</returns><param name="run">The animation callback for each frame.</param><signature><![CDATA[static Ptr<IGuiAnimation> CreateAnimation(
+    Func<void(
+vuint64_t)> const & run
+);
+]]></signature><seealsos><symbol name="Func"/><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiAnimation" docId="vl::presentation::controls::IGuiAnimation"/><symbol name="vuint64_t" docId="vl::vuint64_t"/></seealsos></Document>

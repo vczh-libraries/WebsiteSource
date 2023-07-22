@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a nullable value by moving from another nullable value.</summary><param name="nullable">The nullable value to move.</param><signature><![CDATA[ Nullable(
+    Nullable<T> && nullable
+);
+]]></signature><seealsos><symbol name="Nullable" docId="vl::Nullable"/></seealsos></Document>

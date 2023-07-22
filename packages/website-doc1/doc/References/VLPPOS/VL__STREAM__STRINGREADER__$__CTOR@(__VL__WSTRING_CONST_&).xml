@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a text reader.</summary><param name="_string">The string to read.</param><signature><![CDATA[ StringReader(
+    WString const & _string
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

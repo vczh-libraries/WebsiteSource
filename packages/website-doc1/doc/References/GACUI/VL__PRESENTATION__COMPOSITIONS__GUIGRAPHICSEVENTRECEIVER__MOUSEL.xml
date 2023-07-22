@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="mouseLeave"><summary>Mouse leave event.</summary><signature><![CDATA[GuiNotifyEvent mouseLeave;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

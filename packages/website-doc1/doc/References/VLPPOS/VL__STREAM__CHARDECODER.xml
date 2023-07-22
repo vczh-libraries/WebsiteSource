@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="CharDecoder"><summary>Base type of all character decoder.</summary><signature><![CDATA[class CharDecoder
+    : Object
+    , IDecoder;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IDecoder" docId="vl::stream::IDecoder"/></basetypes></Document>

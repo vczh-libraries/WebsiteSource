@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="HideInTaskBar"><summary>
+ Hide the icon in the task bar.
+ </summary><signature><![CDATA[void HideInTaskBar(
+);
+]]></signature></Document>

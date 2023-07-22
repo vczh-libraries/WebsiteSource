@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DataMultipleFilter"><summary>Base class for a <symbol name="IDataFilter"/> that contains multiple sub filters.</summary><signature><![CDATA[class DataMultipleFilter
+    : DataFilterBase
+    , Description<DataMultipleFilter>;
+]]></signature><seealsos><symbol name="DataMultipleFilter" docId="vl::presentation::controls::list::DataMultipleFilter"/></seealsos><basetypes><symbol name="DataFilterBase" docId="vl::presentation::controls::list::DataFilterBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="CreateSubMenu"><summary>Create the sub menu if necessary. The created sub menu is owned by this menu button.</summary><returns>The created sub menu.</returns><param name="subMenuTemplate">The style controller for the sub menu. Set to null to use the default control template.</param><signature><![CDATA[GuiMenu * CreateSubMenu(
+    TemplateProperty<templates::GuiMenuTemplate> subMenuTemplate /* optional */
+);
+]]></signature><seealsos><symbol name="TemplateProperty"/><symbol name="GuiMenu" docId="vl::presentation::controls::GuiMenu"/><symbol name="GuiMenuTemplate"/></seealsos></Document>

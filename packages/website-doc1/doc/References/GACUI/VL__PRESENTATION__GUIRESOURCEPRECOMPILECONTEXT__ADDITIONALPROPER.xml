@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="additionalProperties"><summary>Additional properties for resource item contents</summary><signature><![CDATA[PropertyMap additionalProperties;
+]]></signature><seealsos><symbol name="PropertyMap"/></seealsos></Document>

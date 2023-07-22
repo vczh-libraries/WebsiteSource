@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="AttachEvent"><summary>Attach a callback function for the event.</summary><returns>The event handler for this attachment. You need to keep it to detach the callback function.</returns><param name="name">The registered name for the event.</param><param name="function">The callback function.</param><remarks><p>Only available when <b>VCZH_DEBUG_NO_REFLECTION</b> is <b>off</b>.</p></remarks><example index="0"/><signature><![CDATA[Ptr<IEventHandler> AttachEvent(
+    WString const & name,
+    Value const & function
+) const;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="IEventHandler"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

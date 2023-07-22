@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="From"><summary>Create a value from a shared pointer.</summary><returns>The created value.</returns><param name="value">The shared pointer to store.</param><signature><![CDATA[static Value From(
+    Ptr<DescriptableObject> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

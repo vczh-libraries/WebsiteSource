@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="WfRuntimeExceptionInfo"><summary>Representing an raised exception.</summary><signature><![CDATA[class WfRuntimeExceptionInfo
+    : Object
+    , reflection::description::IValueException;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IValueException"/></basetypes></Document>

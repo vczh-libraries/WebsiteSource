@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Add"><summary>Add a key with an associated value.</summary><returns>Returns true if the pair is added. If will crash if the key exists.</returns><param name="key">The key to add.</param><param name="value">The value to add.</param><signature><![CDATA[bool Add(
+    KT const & key,
+    VT const & value
+);
+]]></signature></Document>

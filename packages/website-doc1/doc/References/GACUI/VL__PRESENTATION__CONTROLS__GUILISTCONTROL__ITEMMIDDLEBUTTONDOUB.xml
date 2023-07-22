@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemMiddleButtonDoubleClick"><summary>Item middle mouse button double click event.</summary><signature><![CDATA[compositions::GuiItemMouseEvent ItemMiddleButtonDoubleClick;
+]]></signature><seealsos><symbol name="GuiItemMouseEvent"/></seealsos></Document>

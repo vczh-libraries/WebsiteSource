@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiShortcutKeyManager"><summary>A default implementation for <symbol name="IGuiShortcutKeyManager" docId="vl::presentation::compositions::IGuiShortcutKeyManager"/>.</summary><signature><![CDATA[class GuiShortcutKeyManager
+    : Object
+    , IGuiShortcutKeyManager
+    , Description<GuiShortcutKeyManager>;
+]]></signature><seealsos><symbol name="GuiShortcutKeyManager" docId="vl::presentation::compositions::GuiShortcutKeyManager"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IGuiShortcutKeyManager" docId="vl::presentation::compositions::IGuiShortcutKeyManager"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

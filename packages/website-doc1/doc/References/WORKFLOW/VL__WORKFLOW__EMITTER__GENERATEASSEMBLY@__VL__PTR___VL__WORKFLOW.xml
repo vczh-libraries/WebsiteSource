@@ -1,0 +1,5 @@
+<Document accessor="" category="Function" name="GenerateAssembly"><summary>Generate an assembly from semantic analyzed modules. <symbol name="Rebuild" docId="vl::workflow::analyzer::WfLexicalScopeManager::Rebuild@void(bool, ::vl::workflow::IWfCompilerCallback *)"/> should be called before using this function.</summary><returns>The generated assembly.</returns><param name="manager">The scope manager that is used to perform semantic analyzing.</param><param name="callback">The callback to receive progress information (optional).</param><signature><![CDATA[Ptr<runtime::WfAssembly> GenerateAssembly(
+    analyzer::WfLexicalScopeManager * manager,
+    IWfCompilerCallback * callback /* optional */
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IWfCompilerCallback" docId="vl::workflow::IWfCompilerCallback"/><symbol name="WfLexicalScopeManager" docId="vl::workflow::analyzer::WfLexicalScopeManager"/><symbol name="WfAssembly" docId="vl::workflow::runtime::WfAssembly"/></seealsos></Document>

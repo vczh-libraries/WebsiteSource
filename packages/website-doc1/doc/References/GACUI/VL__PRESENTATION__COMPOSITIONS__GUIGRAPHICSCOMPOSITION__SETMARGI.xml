@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetMargin"><summary>Set the margin.</summary><param name="value">The margin.</param><signature><![CDATA[void SetMargin(
+    Margin value
+);
+]]></signature><seealsos><symbol name="Margin"/></seealsos></Document>

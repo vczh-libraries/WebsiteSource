@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiToolstripToolBar"><summary>Toolstrip tool bar.</summary><signature><![CDATA[class GuiToolstripToolBar
+    : GuiControl
+    , Description<GuiToolstripToolBar>;
+]]></signature><seealsos><symbol name="GuiToolstripToolBar" docId="vl::presentation::controls::GuiToolstripToolBar"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

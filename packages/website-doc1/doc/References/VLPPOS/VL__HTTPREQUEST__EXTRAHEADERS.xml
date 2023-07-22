@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="extraHeaders"><summary>A dictionary to contain extra headers.</summary><signature><![CDATA[HeaderMap extraHeaders;
+]]></signature><seealsos><symbol name="HeaderMap"/></seealsos></Document>

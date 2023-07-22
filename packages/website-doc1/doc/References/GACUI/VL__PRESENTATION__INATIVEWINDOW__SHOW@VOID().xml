@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="Show"><summary>
+ Show the window.
+ If the window disabled activation, this function enables it again.
+ </summary><signature><![CDATA[void Show(
+);
+]]></signature></Document>

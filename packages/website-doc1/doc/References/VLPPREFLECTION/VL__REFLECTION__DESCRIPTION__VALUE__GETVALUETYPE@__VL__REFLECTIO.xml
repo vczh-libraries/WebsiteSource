@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetValueType"><summary>Find out how the value is stored.</summary><returns>Returns How the value is stored.</returns><signature><![CDATA[ValueType GetValueType(
+) const;
+]]></signature><seealsos><symbol name="ValueType" docId="vl::reflection::description::Value::ValueType"/></seealsos></Document>

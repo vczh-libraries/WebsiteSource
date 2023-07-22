@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetRow"><summary>Get the row number for this cell composition.</summary><returns>The row number for this cell composition.</returns><signature><![CDATA[vint GetRow(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

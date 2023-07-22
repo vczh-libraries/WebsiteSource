@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="source"><summary>The image source string.</summary><signature><![CDATA[WString source;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

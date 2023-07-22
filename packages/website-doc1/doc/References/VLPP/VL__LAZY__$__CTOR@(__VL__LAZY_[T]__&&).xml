@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an evaluation by moving another one.</summary><param name="lazy">The evaluation to move.</param><signature><![CDATA[ Lazy(
+    Lazy<T> && lazy
+);
+]]></signature><seealsos><symbol name="Lazy" docId="vl::Lazy"/></seealsos></Document>

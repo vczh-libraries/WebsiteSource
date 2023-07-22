@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetBodyUtf8"><summary>Fill the text body in UTF-8.</summary><param name="bodyString">The text to fill.</param><signature><![CDATA[void SetBodyUtf8(
+    WString const & bodyString
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Disable"><summary>
+ Disable the window.
+ </summary><signature><![CDATA[void Disable(
+);
+]]></signature></Document>

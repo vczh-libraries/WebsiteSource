@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="acceptableSemanticIds"><summary>All acceptable semantic ids.</summary><signature><![CDATA[Ptr<collections::List<vint>> acceptableSemanticIds;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List" docId="vl::collections::List"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

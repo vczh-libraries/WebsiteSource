@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetHyperlinkFromPoint"><summary>Get hyperlink from point.</summary><returns>Corressponding hyperlink id. Returns -1 indicates that the point is not in a hyperlink.</returns><param name="point">The point to get the hyperlink id.</param><signature><![CDATA[Ptr<DocumentHyperlinkRun::Package> GetHyperlinkFromPoint(
+    Point point
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="Package"/><symbol name="Point"/></seealsos></Document>

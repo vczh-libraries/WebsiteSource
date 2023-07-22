@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="y"><summary>
+ Position in y dimension.
+ </summary><signature><![CDATA[T y;
+]]></signature></Document>

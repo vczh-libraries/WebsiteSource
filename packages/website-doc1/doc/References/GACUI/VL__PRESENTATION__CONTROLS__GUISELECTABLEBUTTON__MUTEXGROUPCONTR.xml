@@ -1,0 +1,4 @@
+<Document accessor="public" category="Class" name="MutexGroupController"><summary>A mutex group controller, usually for radio buttons.</summary><signature><![CDATA[class MutexGroupController
+    : GroupController
+    , Description<MutexGroupController>;
+]]></signature><seealsos><symbol name="MutexGroupController" docId="vl::presentation::controls::GuiSelectableButton::MutexGroupController"/></seealsos><basetypes><symbol name="GroupController" docId="vl::presentation::controls::GuiSelectableButton::GroupController"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

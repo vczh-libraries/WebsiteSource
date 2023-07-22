@@ -1,0 +1,4 @@
+<Document accessor="" category="Function" name="XmlGetElements"><summary>Get all sub elements in an XML element.</summary><returns>All sub elements in an XML element.</returns><param name="element">The container XML element.</param><signature><![CDATA[collections::LazyList<Ptr<XmlElement>> XmlGetElements(
+    Ptr<XmlElement> element
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="LazyList" docId="vl::collections::LazyList"/><symbol name="XmlElement" docId="vl::parsing::xml::XmlElement"/></seealsos></Document>

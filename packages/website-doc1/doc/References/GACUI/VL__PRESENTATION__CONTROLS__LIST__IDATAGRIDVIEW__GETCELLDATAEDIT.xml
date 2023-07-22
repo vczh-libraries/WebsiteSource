@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetCellDataEditorFactory"><summary>Get the data editor factory that creates data editors for editing the cell.</summary><returns>The data editor factory. Returns null to disable editing.</returns><param name="row">The row number for the cell.</param><param name="column">The column number for the cell.</param><signature><![CDATA[IDataEditorFactory * GetCellDataEditorFactory(
+    vint row,
+    vint column
+);
+]]></signature><seealsos><symbol name="IDataEditorFactory" docId="vl::presentation::controls::list::IDataEditorFactory"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

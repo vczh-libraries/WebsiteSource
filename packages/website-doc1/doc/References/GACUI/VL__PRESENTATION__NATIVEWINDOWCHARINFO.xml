@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="NativeWindowCharInfo"><summary>
+ Character message information.
+ </summary><signature><![CDATA[struct NativeWindowCharInfo;
+]]></signature></Document>

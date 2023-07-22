@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a tree view item with specified image and text.</summary><param name="_image">The specified image.</param><param name="_text">The specified text.</param><signature><![CDATA[ TreeViewItem(
+    Ptr<GuiImageData> const & _image,
+    WString const & _text
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/></seealsos></Document>

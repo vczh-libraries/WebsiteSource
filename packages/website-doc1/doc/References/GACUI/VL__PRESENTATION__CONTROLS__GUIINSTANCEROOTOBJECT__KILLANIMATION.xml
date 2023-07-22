@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="KillAnimation"><summary>Kill an animation.</summary><returns>Returns true if this operation succeeded.</returns><param name="animation">The animation.</param><signature><![CDATA[bool KillAnimation(
+    Ptr<IGuiAnimation> animation
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiAnimation" docId="vl::presentation::controls::IGuiAnimation"/></seealsos></Document>

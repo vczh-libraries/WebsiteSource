@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="GetInlineObjectFromPoint"><summary>Get the inline object from a specified position.</summary><returns>The inline object. Returns null if failed.</returns><param name="point">The point.</param><param name="start">Get the start position of this element.</param><param name="length">Get the length of this element.</param><signature><![CDATA[Nullable<InlineObjectProperties> GetInlineObjectFromPoint(
+    Point point,
+    vint & start,
+    vint & length
+);
+]]></signature><seealsos><symbol name="Nullable" docId="vl::Nullable"/><symbol name="Point"/><symbol name="InlineObjectProperties" docId="vl::presentation::elements::IGuiGraphicsParagraph::InlineObjectProperties"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

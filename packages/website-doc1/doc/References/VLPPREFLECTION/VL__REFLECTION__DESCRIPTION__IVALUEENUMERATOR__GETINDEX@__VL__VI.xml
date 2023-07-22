@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetIndex"><summary>Get the position of the current value in the enumerator.</summary><returns>The position of the current value.</returns><signature><![CDATA[vint GetIndex(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

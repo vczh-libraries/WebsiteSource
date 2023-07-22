@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="IGuiPluginManager"><summary>Represents a plugin manager.</summary><signature><![CDATA[class IGuiPluginManager
+    : IDescriptable
+    , Description<IGuiPluginManager>;
+]]></signature><seealsos><symbol name="IGuiPluginManager" docId="vl::presentation::controls::IGuiPluginManager"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

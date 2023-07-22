@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="CanPeek"><summary>Test if the stream is <b>peekable</b>.</summary><returns>Returns true if the stream is <b>peekable</b>.</returns><signature><![CDATA[bool CanPeek(
+) const;
+]]></signature></Document>

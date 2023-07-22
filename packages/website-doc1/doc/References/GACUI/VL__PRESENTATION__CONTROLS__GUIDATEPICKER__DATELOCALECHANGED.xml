@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="DateLocaleChanged"><summary>Date locale changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent DateLocaleChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

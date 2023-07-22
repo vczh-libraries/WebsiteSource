@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetFilterIndex"><summary>Get the filter index.</summary><returns>The filter index.</returns><signature><![CDATA[vint GetFilterIndex(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

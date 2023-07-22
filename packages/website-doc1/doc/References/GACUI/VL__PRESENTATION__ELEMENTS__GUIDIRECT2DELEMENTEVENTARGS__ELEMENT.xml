@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="element"><summary>The element that raised this event.</summary><signature><![CDATA[GuiDirect2DElement * element;
+]]></signature><seealsos><symbol name="GuiDirect2DElement" docId="vl::presentation::elements::GuiDirect2DElement"/></seealsos></Document>

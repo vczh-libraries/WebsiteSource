@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="DisplayFontChanged"><summary>Display font changed event. This event raises when the display font of the control is changed.</summary><signature><![CDATA[compositions::GuiNotifyEvent DisplayFontChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

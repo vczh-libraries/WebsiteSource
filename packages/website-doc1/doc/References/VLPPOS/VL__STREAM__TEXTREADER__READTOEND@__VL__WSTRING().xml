@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="ReadToEnd"><summary>Read everying remain.</summary><returns>The read string.</returns><signature><![CDATA[WString ReadToEnd(
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

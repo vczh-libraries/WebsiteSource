@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiRibbonGallery"><summary>Ribbon gallery, with scroll up, scroll down, dropdown buttons.</summary><signature><![CDATA[class GuiRibbonGallery
+    : GuiControl
+    , Description<GuiRibbonGallery>;
+]]></signature><seealsos><symbol name="GuiRibbonGallery" docId="vl::presentation::controls::GuiRibbonGallery"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Visit"><summary>A callback that is called if the node accepting this visitor is <symbol name="JsonArray" docId="vl::parsing::json::JsonArray"/>.</summary><param name="node">The strong-typed AST node in its real type.</param><signature><![CDATA[void Visit(
+    JsonArray * node
+);
+]]></signature><seealsos><symbol name="JsonArray" docId="vl::parsing::json::JsonArray"/></seealsos></Document>

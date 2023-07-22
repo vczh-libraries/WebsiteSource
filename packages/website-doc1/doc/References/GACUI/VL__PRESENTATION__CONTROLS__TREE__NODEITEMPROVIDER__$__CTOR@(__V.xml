@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an item provider using a node root provider.</summary><param name="_root">The node root provider.</param><signature><![CDATA[ NodeItemProvider(
+    Ptr<INodeRootProvider> _root
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INodeRootProvider" docId="vl::presentation::controls::tree::INodeRootProvider"/></seealsos></Document>

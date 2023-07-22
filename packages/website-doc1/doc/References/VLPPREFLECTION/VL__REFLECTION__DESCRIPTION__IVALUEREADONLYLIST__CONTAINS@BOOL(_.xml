@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Contains"><summary>Test does the list contain a value or not.</summary><returns>Returns true if the list contains the specified value.</returns><param name="value">The value to test.</param><signature><![CDATA[bool Contains(
+    Value const & value
+);
+]]></signature><seealsos><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

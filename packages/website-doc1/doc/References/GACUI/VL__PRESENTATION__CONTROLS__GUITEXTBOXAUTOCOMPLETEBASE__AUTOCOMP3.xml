@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="text"><summary>Display text for the item.</summary><signature><![CDATA[WString text;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

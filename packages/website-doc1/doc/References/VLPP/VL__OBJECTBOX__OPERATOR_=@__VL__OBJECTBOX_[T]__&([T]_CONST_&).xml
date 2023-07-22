@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="operator ="><summary>Replace the boxed data of a value type.</summary><returns>The reference object itself.</returns><param name="_object">The data to replace the original data.</param><signature><![CDATA[ObjectBox<T> & operator =(
+    T const & _object
+);
+]]></signature><seealsos><symbol name="ObjectBox" docId="vl::ObjectBox"/></seealsos></Document>

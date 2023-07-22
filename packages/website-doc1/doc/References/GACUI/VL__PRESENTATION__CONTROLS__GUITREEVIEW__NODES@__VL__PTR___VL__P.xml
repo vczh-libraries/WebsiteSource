@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="Nodes"><summary>Get the <symbol name="TreeViewItemRootProvider" docId="vl::presentation::controls::tree::TreeViewItemRootProvider"/> as a node root providerl.</summary><returns>The <symbol name="TreeViewItemRootProvider" docId="vl::presentation::controls::tree::TreeViewItemRootProvider"/> as a node root provider.</returns><signature><![CDATA[Ptr<tree::TreeViewItemRootProvider> Nodes(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="TreeViewItemRootProvider" docId="vl::presentation::controls::tree::TreeViewItemRootProvider"/></seealsos></Document>

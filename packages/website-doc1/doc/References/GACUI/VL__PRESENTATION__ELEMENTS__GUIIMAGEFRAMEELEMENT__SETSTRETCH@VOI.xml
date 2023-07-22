@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetStretch"><summary>
+ Set if stretching is enabled for this image.
+ </summary><param name="value">True if stretching is enabled for this image.</param><signature><![CDATA[void SetStretch(
+    bool value
+);
+]]></signature></Document>

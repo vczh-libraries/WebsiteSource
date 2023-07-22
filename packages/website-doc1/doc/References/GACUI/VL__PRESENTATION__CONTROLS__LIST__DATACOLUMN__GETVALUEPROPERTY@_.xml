@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetValueProperty"><summary>Get the value property name to get the cell value from an item.</summary><returns>The value property name.</returns><signature><![CDATA[WritableItemProperty<description::Value> GetValueProperty(
+);
+]]></signature><seealsos><symbol name="WritableItemProperty"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

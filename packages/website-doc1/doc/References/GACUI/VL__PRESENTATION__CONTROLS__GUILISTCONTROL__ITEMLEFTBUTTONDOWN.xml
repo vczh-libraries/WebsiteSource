@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemLeftButtonDown"><summary>Item left mouse button down event.</summary><signature><![CDATA[compositions::GuiItemMouseEvent ItemLeftButtonDown;
+]]></signature><seealsos><symbol name="GuiItemMouseEvent"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetMaxWidth"><summary>
+ Returns the total width of the text lines.
+ </summary><returns>The width of the text lines, in pixel.</returns><signature><![CDATA[vint GetMaxWidth(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetCount"><summary>
+ Returns the number of text lines.
+ </summary><returns>The number of text lines.</returns><signature><![CDATA[vint GetCount(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

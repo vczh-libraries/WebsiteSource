@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="ParsingToken"><summary>Strong typed token syntax node, for all class fields of type &quot;token&quot; in the grammar file. See <symbol name="ParsingTable" docId="vl::parsing::tabling::ParsingTable"/> for details.</summary><signature><![CDATA[class ParsingToken
+    : ParsingTreeCustomBase
+    , reflection::Description<ParsingToken>;
+]]></signature><seealsos><symbol name="ParsingToken" docId="vl::parsing::ParsingToken"/></seealsos><basetypes><symbol name="ParsingTreeCustomBase" docId="vl::parsing::ParsingTreeCustomBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

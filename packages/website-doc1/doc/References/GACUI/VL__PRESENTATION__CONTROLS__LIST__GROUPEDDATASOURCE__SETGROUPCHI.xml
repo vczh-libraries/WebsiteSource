@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetGroupChildrenProperty"><summary>Get the group children property.</summary><param name="value">The children title property.</param><signature><![CDATA[void SetGroupChildrenProperty(
+    ItemProperty<Ptr<IValueEnumerable>> const & value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="ItemProperty"/><symbol name="IValueEnumerable"/></seealsos></Document>

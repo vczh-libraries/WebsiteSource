@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a lazy list from another lazy list.</summary><param name="lazyList">The lazy list.</param><signature><![CDATA[ LazyList(
+    LazyList<T> const & lazyList
+);
+]]></signature><seealsos><symbol name="LazyList" docId="vl::collections::LazyList"/></seealsos></Document>

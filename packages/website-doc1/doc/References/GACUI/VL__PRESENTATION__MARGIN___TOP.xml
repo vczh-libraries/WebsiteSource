@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="top"><summary>
+ The top margin.
+ </summary><signature><![CDATA[T top;
+]]></signature></Document>

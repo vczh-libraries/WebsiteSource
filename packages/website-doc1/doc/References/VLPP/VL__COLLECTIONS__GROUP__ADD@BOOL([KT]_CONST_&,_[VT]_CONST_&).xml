@@ -1,0 +1,9 @@
+<Document accessor="public" category="Function" name="Add"><summary>
+ Add a key with an associated value.
+ If the key already exists, the value will be associated to the key with other values.
+ If this value has already been associated to the key, it will still be duplicated.
+ </summary><returns>Returns true if the key and the value are added.</returns><param name="key">The key to add.</param><param name="value">The value to add.</param><signature><![CDATA[bool Add(
+    KT const & key,
+    VT const & value
+);
+]]></signature></Document>

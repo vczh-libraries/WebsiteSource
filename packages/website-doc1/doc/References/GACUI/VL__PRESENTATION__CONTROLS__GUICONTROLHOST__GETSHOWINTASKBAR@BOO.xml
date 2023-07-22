@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetShowInTaskBar"><summary>Test is the window icon shown in the task bar.</summary><returns>Returns true if the window is icon shown in the task bar.</returns><signature><![CDATA[bool GetShowInTaskBar(
+);
+]]></signature></Document>

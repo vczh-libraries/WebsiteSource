@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="size"><summary>
+ Font size in pixel.
+ </summary><signature><![CDATA[vint size;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

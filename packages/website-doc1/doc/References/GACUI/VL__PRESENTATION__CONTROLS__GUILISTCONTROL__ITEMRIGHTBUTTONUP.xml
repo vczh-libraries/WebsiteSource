@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemRightButtonUp"><summary>Item right mouse button up event.</summary><signature><![CDATA[compositions::GuiItemMouseEvent ItemRightButtonUp;
+]]></signature><seealsos><symbol name="GuiItemMouseEvent"/></seealsos></Document>

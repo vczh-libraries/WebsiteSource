@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="codeIndex"><summary>Code index, refer to <symbol name="codeIndex" docId="vl::regex::RegexToken::codeIndex"/></summary><signature><![CDATA[vint codeIndex;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

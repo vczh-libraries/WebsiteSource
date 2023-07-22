@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetSubNodes"><summary>Get the child nodes. Using this function requires <symbol name="InitializeQueryCache" docId="vl::parsing::ParsingTreeNode::InitializeQueryCache@void()"/> to be called.</summary><returns>The child nodes.</returns><signature><![CDATA[NodeList const & GetSubNodes(
+);
+]]></signature><seealsos><symbol name="NodeList"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="ColorItem"><summary>
+ Represents colors of a character.
+ </summary><signature><![CDATA[struct ColorItem;
+]]></signature></Document>

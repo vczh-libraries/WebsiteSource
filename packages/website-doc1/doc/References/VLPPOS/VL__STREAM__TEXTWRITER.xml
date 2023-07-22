@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="TextWriter"><summary>Text writer.</summary><signature><![CDATA[class TextWriter
+    : Object
+    , NotCopyable;
+]]></signature><basetypes><symbol name="NotCopyable" docId="vl::NotCopyable"/><symbol name="Object" docId="vl::Object"/></basetypes></Document>

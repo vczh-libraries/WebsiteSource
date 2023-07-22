@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Create"><summary>Create an object creating break point.</summary><returns>The created break point.</returns><param name="typeDescriptor">The target object type.</param><signature><![CDATA[static WfBreakPoint Create(
+    reflection::description::ITypeDescriptor * typeDescriptor
+);
+]]></signature><seealsos><symbol name="ITypeDescriptor" docId="vl::reflection::description::ITypeDescriptor"/><symbol name="WfBreakPoint" docId="vl::workflow::runtime::WfBreakPoint"/></seealsos></Document>

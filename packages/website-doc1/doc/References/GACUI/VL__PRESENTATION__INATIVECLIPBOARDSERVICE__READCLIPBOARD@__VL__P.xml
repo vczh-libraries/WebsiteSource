@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="ReadClipboard"><summary>Read clipboard.</summary><returns>The clipboard reader.</returns><signature><![CDATA[Ptr<INativeClipboardReader> ReadClipboard(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INativeClipboardReader" docId="vl::presentation::INativeClipboardReader"/></seealsos></Document>

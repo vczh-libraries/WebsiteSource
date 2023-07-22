@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetItemSource"><summary>Set the item source.</summary><param name="_itemSource">The item source. Null is acceptable if you want to clear all data.</param><signature><![CDATA[void SetItemSource(
+    Ptr<description::IValueEnumerable> _itemSource
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IValueEnumerable" docId="vl::reflection::description::IValueEnumerable"/></seealsos></Document>

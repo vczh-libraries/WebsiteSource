@@ -1,0 +1,45 @@
+<Document accessor="public" category="Enum" name="SystemCursorType"><summary>
+ Represents a predefined cursor type.
+ </summary><enumitem name="Arrow">
+ Arrow cursor.
+ </enumitem><enumitem name="Cross">
+ Cross cursor.
+ </enumitem><enumitem name="Hand">
+ Hand cursor.
+ </enumitem><enumitem name="Help">
+ Help cursor.
+ </enumitem><enumitem name="IBeam">
+ I beam cursor.
+ </enumitem><enumitem name="LargeWaiting">
+ large waiting cursor.
+ </enumitem><enumitem name="LastSystemCursor">
+ Number of available cursors, this is not an available cursor by itself.
+ </enumitem><enumitem name="SizeAll">
+ Sizing in all direction cursor.
+ </enumitem><enumitem name="SizeNESW">
+ Sizing NE-SW cursor.
+ </enumitem><enumitem name="SizeNS">
+ Sizing N-S cursor.
+ </enumitem><enumitem name="SizeNWSE">
+ Sizing NW-SE cursor.
+ </enumitem><enumitem name="SizeWE">
+ Sizing W-E cursor.
+ </enumitem><enumitem name="SmallWaiting">
+ Small waiting cursor.
+ </enumitem><signature><![CDATA[enum SystemCursorType
+{
+    SmallWaiting,
+    LargeWaiting,
+    Arrow,
+    Cross,
+    Hand,
+    Help,
+    IBeam,
+    SizeAll,
+    SizeNESW,
+    SizeNS,
+    SizeNWSE,
+    SizeWE,
+    LastSystemCursor,
+};
+]]></signature></Document>

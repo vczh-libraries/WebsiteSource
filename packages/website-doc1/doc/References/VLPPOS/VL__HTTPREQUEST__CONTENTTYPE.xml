@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="contentType"><summary>Content type, like &quot;text/xml&quot;.</summary><signature><![CDATA[WString contentType;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

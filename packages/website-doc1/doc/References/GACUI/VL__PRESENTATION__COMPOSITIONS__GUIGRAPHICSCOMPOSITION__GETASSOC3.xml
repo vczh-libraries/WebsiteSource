@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetAssociatedHitTestResult"><summary>Get the associated hit test result.</summary><returns>The associated hit test result.</returns><signature><![CDATA[INativeWindowListener::HitTestResult GetAssociatedHitTestResult(
+);
+]]></signature><seealsos><symbol name="HitTestResult" docId="vl::presentation::INativeWindowListener::HitTestResult"/></seealsos></Document>

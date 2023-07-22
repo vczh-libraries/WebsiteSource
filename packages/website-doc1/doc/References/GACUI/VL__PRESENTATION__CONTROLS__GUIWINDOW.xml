@@ -1,0 +1,7 @@
+<Document accessor="" category="Class" name="GuiWindow"><summary>
+ Represents a normal window.
+ </summary><signature><![CDATA[class GuiWindow
+    : GuiControlHost
+    , compositions::GuiAltActionHostBase
+    , AggregatableDescription<GuiWindow>;
+]]></signature><seealsos><symbol name="GuiWindow" docId="vl::presentation::controls::GuiWindow"/></seealsos><basetypes><symbol name="GuiAltActionHostBase" docId="vl::presentation::compositions::GuiAltActionHostBase"/><symbol name="GuiControlHost" docId="vl::presentation::controls::GuiControlHost"/><symbol name="AggregatableDescription" docId="vl::reflection::AggregatableDescription"/></basetypes></Document>

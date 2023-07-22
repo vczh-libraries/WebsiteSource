@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetPathResolverFactory"><summary>Set the <symbol name="IGuiResourcePathResolverFactory" docId="vl::presentation::IGuiResourcePathResolverFactory"/> for a protocol.</summary><returns>Returns true if this operation succeeded.</returns><param name="factory">The factory.</param><signature><![CDATA[bool SetPathResolverFactory(
+    Ptr<IGuiResourcePathResolverFactory> factory
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiResourcePathResolverFactory" docId="vl::presentation::IGuiResourcePathResolverFactory"/></seealsos></Document>

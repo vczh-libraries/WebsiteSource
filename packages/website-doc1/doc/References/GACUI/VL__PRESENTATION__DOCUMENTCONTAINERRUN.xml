@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentContainerRun"><summary>Pepresents a container run.</summary><signature><![CDATA[class DocumentContainerRun
+    : DocumentRun
+    , Description<DocumentContainerRun>;
+]]></signature><seealsos><symbol name="DocumentContainerRun" docId="vl::presentation::DocumentContainerRun"/></seealsos><basetypes><symbol name="DocumentRun" docId="vl::presentation::DocumentRun"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

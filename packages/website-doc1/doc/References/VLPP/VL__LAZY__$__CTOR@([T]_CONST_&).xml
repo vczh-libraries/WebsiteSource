@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an evaluation with the immediate result.</summary><param name="value">The result.</param>0
+<signature><![CDATA[ Lazy(
+    T const & value
+);
+]]></signature></Document>

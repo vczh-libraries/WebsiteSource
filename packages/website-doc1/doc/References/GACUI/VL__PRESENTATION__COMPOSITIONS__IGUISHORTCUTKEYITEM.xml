@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="IGuiShortcutKeyItem"><summary>Shortcut key item.</summary><signature><![CDATA[class IGuiShortcutKeyItem
+    : IDescriptable
+    , Description<IGuiShortcutKeyItem>;
+]]></signature><seealsos><symbol name="IGuiShortcutKeyItem" docId="vl::presentation::compositions::IGuiShortcutKeyItem"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

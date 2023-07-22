@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="year"><summary>The year.</summary><signature><![CDATA[vint year;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="LoadFromXml"><summary>Load a resource from an xml file. If the xml file refers other files, they will be loaded as well.</summary><returns>The loaded resource.</returns><param name="filePath">The file path of the xml file.</param><param name="errors">All collected errors during loading a resource.</param><signature><![CDATA[static Ptr<GuiResource> LoadFromXml(
+    WString const & filePath,
+    GuiResourceError::List & errors
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="GuiResource" docId="vl::presentation::GuiResource"/><symbol name="List"/></seealsos></Document>

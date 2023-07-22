@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiFileDialogBase"><summary>Base class for file dialogs.</summary><signature><![CDATA[class GuiFileDialogBase
+    : GuiDialogBase
+    , Description<GuiFileDialogBase>;
+]]></signature><seealsos><symbol name="GuiFileDialogBase" docId="vl::presentation::controls::GuiFileDialogBase"/></seealsos><basetypes><symbol name="GuiDialogBase" docId="vl::presentation::controls::GuiDialogBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

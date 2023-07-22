@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="SetControlThemeNameAndTemplate"><summary>Set the associated control theme name and template and the same time.</summary><param name="themeNameValue">The theme name.</param><param name="controlTemplateValue">The control template.</param><signature><![CDATA[void SetControlThemeNameAndTemplate(
+    theme::ThemeName themeNameValue,
+    ControlTemplatePropertyType const & controlTemplateValue
+);
+]]></signature><seealsos><symbol name="ControlTemplatePropertyType"/><symbol name="ThemeName"/></seealsos></Document>

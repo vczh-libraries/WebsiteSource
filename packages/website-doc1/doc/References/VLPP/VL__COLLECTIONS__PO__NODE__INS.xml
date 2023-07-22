@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ins"><summary>All nodes that this node depends on.</summary><signature><![CDATA[List<vint> const * ins;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

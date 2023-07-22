@@ -1,0 +1,5 @@
+<Document accessor="" category="Function" name="JsonPrint"><summary>Serialize JSON to string.</summary><param name="node">The JSON node to serialize.</param><param name="writer">The text writer to receive the string.</param><signature><![CDATA[void JsonPrint(
+    Ptr<JsonNode> node,
+    stream::TextWriter & writer
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="JsonNode" docId="vl::parsing::json::JsonNode"/><symbol name="TextWriter" docId="vl::stream::TextWriter"/></seealsos></Document>

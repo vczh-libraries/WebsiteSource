@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="day"><summary>The day, from 1 to 31.</summary><signature><![CDATA[vint day;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="normalStyleName"><summary>Style name for normal state.</summary><signature><![CDATA[WString normalStyleName;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

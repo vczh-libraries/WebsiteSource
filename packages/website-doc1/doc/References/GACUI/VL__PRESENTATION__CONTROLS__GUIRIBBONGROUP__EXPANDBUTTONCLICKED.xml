@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ExpandButtonClicked"><summary>Expand button clicked event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ExpandButtonClicked;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

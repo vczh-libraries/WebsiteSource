@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetPreferredMenuClientSize"><summary>Get the preferred client size for the sub menu.</summary><returns>The preferred client size for the sub menu.</returns><signature><![CDATA[Size GetPreferredMenuClientSize(
+);
+]]></signature><seealsos><symbol name="Size"/></seealsos></Document>

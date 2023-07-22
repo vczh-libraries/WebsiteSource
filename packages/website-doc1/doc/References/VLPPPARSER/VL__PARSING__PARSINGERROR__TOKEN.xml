@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="token"><summary>Token at which the error happens.</summary><signature><![CDATA[regex::RegexToken const * token;
+]]></signature><seealsos><symbol name="RegexToken" docId="vl::regex::RegexToken"/></seealsos></Document>

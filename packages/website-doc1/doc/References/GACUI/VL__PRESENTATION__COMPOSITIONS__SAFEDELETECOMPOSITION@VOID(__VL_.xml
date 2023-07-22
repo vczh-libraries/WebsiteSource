@@ -1,0 +1,4 @@
+<Document accessor="" category="Function" name="SafeDeleteComposition"><summary>Safely remove and delete a composition. If some sub compositions are controls, those controls will be deleted too.</summary><param name="value">The composition to delete.</param><signature><![CDATA[void SafeDeleteComposition(
+    GuiGraphicsComposition * value
+);
+]]></signature><seealsos><symbol name="GuiGraphicsComposition" docId="vl::presentation::compositions::GuiGraphicsComposition"/></seealsos></Document>

@@ -1,0 +1,9 @@
+<Document accessor="public" category="Function" name="Add"><summary>Add a method callback to the event.</summary><typeparam name="C">Type of the class that the callback belongs to.</typeparam><returns>The event handler representing the callback.</returns><param name="sender">The object that the callback belongs to.</param><param name="function">The method callback.</param><signature><![CDATA[template <
+    typename C
+>
+Ptr<EventHandler> Add(
+    C * sender,
+    void( C:: * function)(
+TArgs...)
+);
+]]></signature><seealsos><symbol name="EventHandler"/><symbol name="Ptr" docId="vl::Ptr"/></seealsos></Document>

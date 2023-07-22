@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="LevelCountChanged"><summary>LevelCount changed event.</summary><signature><![CDATA[GuiNotifyEvent LevelCountChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

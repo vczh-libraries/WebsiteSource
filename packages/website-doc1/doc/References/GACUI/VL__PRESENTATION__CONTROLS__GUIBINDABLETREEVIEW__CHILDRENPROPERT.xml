@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ChildrenPropertyChanged"><summary>Children property name changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ChildrenPropertyChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

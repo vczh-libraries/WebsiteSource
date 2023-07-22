@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ActiveHyperlinkExecuted"><summary>Active hyperlink executed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ActiveHyperlinkExecuted;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

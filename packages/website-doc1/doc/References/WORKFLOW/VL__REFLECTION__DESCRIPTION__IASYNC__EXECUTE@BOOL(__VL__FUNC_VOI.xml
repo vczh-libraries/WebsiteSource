@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="Execute"><summary>Run this async operation.</summary><returns>Returns true when this operation succeeded. This function cannot be called twice on the same object.</returns><param name="callback">A callback to execute when the async operation finished.</param><param name="context">A context object that is accessible in Workflow script by &quot;$&quot; in an $Async coroutine (optional).</param><signature><![CDATA[bool Execute(
+    Func<void(
+Ptr<CoroutineResult>)> const & callback,
+    Ptr<AsyncContext> context /* optional */
+);
+]]></signature><seealsos><symbol name="Func"/><symbol name="Ptr" docId="vl::Ptr"/><symbol name="AsyncContext" docId="vl::reflection::description::AsyncContext"/><symbol name="CoroutineResult" docId="vl::reflection::description::CoroutineResult"/></seealsos></Document>

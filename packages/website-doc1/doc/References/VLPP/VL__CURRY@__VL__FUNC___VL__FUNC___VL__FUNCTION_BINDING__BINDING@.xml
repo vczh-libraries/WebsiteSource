@@ -1,0 +1,13 @@
+<Document accessor="" category="Function" name="Curry"><summary>
+ Currize a function pointer.
+ Currizing means to create a new functor whose argument is the first argument of the original function.
+ Calling this functor will return another functor whose arguments are all remaining arguments of the original function.
+ Calling the returned function will call the original function.
+ </summary><typeparam name="T">Type of the function pointer.</typeparam><returns>The currized functor.</returns><param name="function">The function pointer to currize.</param><signature><![CDATA[template <
+    typename T
+>
+Func<Func<function_binding::Binding<T>::CurriedType>(
+function_binding::Binding<T>::FirstParameterType)> Curry(
+    T * function
+);
+]]></signature><seealsos><symbol name="Func"/><symbol name="CurriedType"/><symbol name="FirstParameterType"/></seealsos></Document>

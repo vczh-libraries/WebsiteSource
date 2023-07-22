@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetMinimizedBox"><summary>
+ Make the minimize box visible or invisible.
+ </summary><param name="visible">True to make the minimize box visible.</param><signature><![CDATA[void SetMinimizedBox(
+    bool visible
+);
+]]></signature></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSelectionTextAsKeyInput"><summary>Set the selected text and let to text box treat this changing as input by the keyboard.</summary><param name="value">The selected text.</param><signature><![CDATA[void SetSelectionTextAsKeyInput(
+    WString const & value
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

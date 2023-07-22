@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiSelectableButton"><summary>A <symbol name="GuiButton" docId="vl::presentation::controls::GuiButton"/> with a selection state.</summary><signature><![CDATA[class GuiSelectableButton
+    : GuiButton
+    , Description<GuiSelectableButton>;
+]]></signature><seealsos><symbol name="GuiSelectableButton" docId="vl::presentation::controls::GuiSelectableButton"/></seealsos><basetypes><symbol name="GuiButton" docId="vl::presentation::controls::GuiButton"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

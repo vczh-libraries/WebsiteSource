@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="fatal"><summary>Fatal error flag.</summary><signature><![CDATA[bool fatal;
+]]></signature></Document>

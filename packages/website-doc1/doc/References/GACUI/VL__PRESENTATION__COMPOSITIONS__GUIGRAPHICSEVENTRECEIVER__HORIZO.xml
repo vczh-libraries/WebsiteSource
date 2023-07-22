@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="horizontalWheel"><summary>Horizontal wheel scrolling event.</summary><signature><![CDATA[GuiMouseEvent horizontalWheel;
+]]></signature><seealsos><symbol name="GuiMouseEvent"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="tokenParent"><summary>The object syntax tree parent of the token.</summary><signature><![CDATA[parsing::ParsingTreeObject * tokenParent;
+]]></signature><seealsos><symbol name="ParsingTreeObject" docId="vl::parsing::ParsingTreeObject"/></seealsos></Document>

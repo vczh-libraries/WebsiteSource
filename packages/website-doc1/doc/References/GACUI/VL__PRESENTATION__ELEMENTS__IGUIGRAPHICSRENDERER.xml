@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="IGuiGraphicsRenderer"><summary>
+ This is the interface for graphics renderers.
+ </summary><signature><![CDATA[class IGuiGraphicsRenderer
+    : Interface;
+]]></signature><basetypes><symbol name="Interface" docId="vl::Interface"/></basetypes></Document>

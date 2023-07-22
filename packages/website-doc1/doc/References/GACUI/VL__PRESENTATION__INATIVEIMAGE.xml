@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="INativeImage"><summary>
+ Represents an image.
+ </summary><signature><![CDATA[class INativeImage
+    : IDescriptable
+    , Description<INativeImage>;
+]]></signature><seealsos><symbol name="INativeImage" docId="vl::presentation::INativeImage"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

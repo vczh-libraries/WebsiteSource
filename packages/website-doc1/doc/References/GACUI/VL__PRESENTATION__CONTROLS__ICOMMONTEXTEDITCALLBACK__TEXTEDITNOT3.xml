@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="editVersion"><summary>The created edit version.</summary><signature><![CDATA[vuint editVersion;
+]]></signature><seealsos><symbol name="vuint" docId="vl::vuint"/></seealsos></Document>

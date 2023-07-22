@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetColor"><summary>
+ Set the shadow color.
+ </summary><param name="value">The new shadow color.</param><signature><![CDATA[void SetColor(
+    Color value
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

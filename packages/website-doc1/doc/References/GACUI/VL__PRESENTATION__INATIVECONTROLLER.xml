@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="INativeController"><summary>
+ Global native system service controller. Use <symbol name="GetCurrentController" docId="vl::presentation::GetCurrentController@::vl::presentation::INativeController *()"/> to access this controller.
+ </summary><signature><![CDATA[class INativeController
+    : IDescriptable
+    , Description<INativeController>;
+]]></signature><seealsos><symbol name="INativeController" docId="vl::presentation::INativeController"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

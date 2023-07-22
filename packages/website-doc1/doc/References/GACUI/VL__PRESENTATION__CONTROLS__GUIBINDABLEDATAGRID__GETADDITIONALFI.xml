@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetAdditionalFilter"><summary>Get the additional filter.</summary><returns>The additional filter.</returns><signature><![CDATA[Ptr<list::IDataFilter> GetAdditionalFilter(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IDataFilter"/></seealsos></Document>

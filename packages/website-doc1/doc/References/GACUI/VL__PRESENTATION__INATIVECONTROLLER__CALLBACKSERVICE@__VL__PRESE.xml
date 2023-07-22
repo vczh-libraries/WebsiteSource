@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="CallbackService"><summary>
+ Get the callback service.
+ </summary><returns>The callback service</returns><signature><![CDATA[INativeCallbackService * CallbackService(
+);
+]]></signature><seealsos><symbol name="INativeCallbackService" docId="vl::presentation::INativeCallbackService"/></seealsos></Document>

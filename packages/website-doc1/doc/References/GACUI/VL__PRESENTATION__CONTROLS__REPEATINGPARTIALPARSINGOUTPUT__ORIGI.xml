@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="originalNode"><summary>The original context in the syntax tree.</summary><signature><![CDATA[Ptr<parsing::ParsingTreeObject> originalNode;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="ParsingTreeObject" docId="vl::parsing::ParsingTreeObject"/></seealsos></Document>

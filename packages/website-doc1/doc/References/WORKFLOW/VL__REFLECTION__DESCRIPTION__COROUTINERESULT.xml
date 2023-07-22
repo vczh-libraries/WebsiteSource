@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="CoroutineResult"><summary>An object providing input information when resuming a coroutine.</summary><signature><![CDATA[class CoroutineResult
+    : IDescriptable
+    , Description<CoroutineResult>;
+]]></signature><seealsos><symbol name="CoroutineResult" docId="vl::reflection::description::CoroutineResult"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

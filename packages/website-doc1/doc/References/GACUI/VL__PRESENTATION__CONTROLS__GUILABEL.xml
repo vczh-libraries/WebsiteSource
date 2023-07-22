@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiLabel"><summary>A control to display a text.</summary><signature><![CDATA[class GuiLabel
+    : GuiControl
+    , Description<GuiLabel>;
+]]></signature><seealsos><symbol name="GuiLabel" docId="vl::presentation::controls::GuiLabel"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

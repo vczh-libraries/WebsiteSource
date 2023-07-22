@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetDirectory"><summary>Set the default folder.</summary><param name="value">The default folder.</param><signature><![CDATA[void SetDirectory(
+    WString const & value
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="subNodes"><summary>Sub nodes for element nodes, text nodes, cdata nodes and comment nodes.</summary><signature><![CDATA[vl::collections::List<vl::Ptr<XmlNode>> subNodes;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List" docId="vl::collections::List"/><symbol name="XmlNode" docId="vl::parsing::xml::XmlNode"/></seealsos></Document>

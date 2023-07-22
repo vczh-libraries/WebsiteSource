@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Add"><summary>Add a callback to the event.</summary><returns>The event handler representing the callback.</returns><param name="function">The callback.</param><signature><![CDATA[Ptr<EventHandler> Add(
+    Func<void(
+TArgs...)> const & function
+);
+]]></signature><seealsos><symbol name="EventHandler"/><symbol name="Func"/><symbol name="Ptr" docId="vl::Ptr"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiRibbonToolstrips"><summary>Auto resizable ribbon toolstrips.</summary><signature><![CDATA[class GuiRibbonToolstrips
+    : GuiControl
+    , Description<GuiRibbonToolstrips>;
+]]></signature><seealsos><symbol name="GuiRibbonToolstrips" docId="vl::presentation::controls::GuiRibbonToolstrips"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

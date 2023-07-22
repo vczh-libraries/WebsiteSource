@@ -1,0 +1,5 @@
+<Document accessor="" category="Struct" name="GuiKeyEventArgs"><summary>Keyboard event arguments.</summary><signature><![CDATA[struct GuiKeyEventArgs
+    : GuiEventArgs
+    , WindowKeyInfo
+    , Description<GuiKeyEventArgs>;
+]]></signature><seealsos><symbol name="GuiKeyEventArgs" docId="vl::presentation::compositions::GuiKeyEventArgs"/></seealsos><basetypes><symbol name="WindowKeyInfo"/><symbol name="GuiEventArgs" docId="vl::presentation::compositions::GuiEventArgs"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

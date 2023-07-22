@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="INativeWindow"><summary>
+ Represents a window.
+ </summary><signature><![CDATA[class INativeWindow
+    : Interface
+    , Description<INativeWindow>;
+]]></signature><seealsos><symbol name="INativeWindow" docId="vl::presentation::INativeWindow"/></seealsos><basetypes><symbol name="Interface" docId="vl::Interface"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

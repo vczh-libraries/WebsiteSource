@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetLongMonthName"><summary>Get the long display string of a month according to the locale.</summary><returns>The display string.</returns><param name="month">Month, begins from 1 as January.</param><signature><![CDATA[WString GetLongMonthName(
+    vint month
+) const;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

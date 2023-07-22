@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ControlThemeNameChanged"><summary>Theme name changed event. This event raises when the theme name is changed.</summary><signature><![CDATA[compositions::GuiNotifyEvent ControlThemeNameChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

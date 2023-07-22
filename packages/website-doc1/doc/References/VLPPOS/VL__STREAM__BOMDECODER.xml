@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="BomDecoder"><summary>Decoder to read text. This decoder depends on BOM at the beginning to decide the format of the input.</summary><signature><![CDATA[class BomDecoder
+    : Object
+    , IDecoder;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IDecoder" docId="vl::stream::IDecoder"/></basetypes></Document>

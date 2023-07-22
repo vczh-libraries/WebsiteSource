@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="HighlightedChanged"><summary>Highlighted changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent HighlightedChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

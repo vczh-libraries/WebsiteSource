@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetText"><summary>Get the text for the dialog.</summary><returns>The text.</returns><signature><![CDATA[WString const & GetText(
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

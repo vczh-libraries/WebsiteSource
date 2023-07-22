@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetCellValue"><summary>Get the cell value from an item.</summary><returns>The cell value.</returns><param name="row">The row index of the item.</param><signature><![CDATA[description::Value GetCellValue(
+    vint row
+);
+]]></signature><seealsos><symbol name="Value" docId="vl::reflection::description::Value"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="GuiNodeMouseEventArgs"><summary>Node mouse event arguments.</summary><signature><![CDATA[struct GuiNodeMouseEventArgs
+    : GuiMouseEventArgs
+    , Description<GuiNodeMouseEventArgs>;
+]]></signature><seealsos><symbol name="GuiNodeMouseEventArgs" docId="vl::presentation::compositions::GuiNodeMouseEventArgs"/></seealsos><basetypes><symbol name="GuiMouseEventArgs" docId="vl::presentation::compositions::GuiMouseEventArgs"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

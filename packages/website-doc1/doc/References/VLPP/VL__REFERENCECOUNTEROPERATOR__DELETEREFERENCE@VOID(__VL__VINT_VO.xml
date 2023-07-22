@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="DeleteReference"><summary>Delete the reference counter from an object.</summary><param name="counter">The pointer to the reference counter.</param><param name="reference">The object.</param><signature><![CDATA[static void DeleteReference(
+    vint volatile * counter,
+    void * reference
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

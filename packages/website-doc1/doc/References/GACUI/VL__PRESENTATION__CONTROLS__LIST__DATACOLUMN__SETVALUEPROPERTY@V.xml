@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetValueProperty"><summary>Set the value property name to get the cell value from an item.</summary><param name="value">The value property name.</param><signature><![CDATA[void SetValueProperty(
+    WritableItemProperty<description::Value> const & value
+);
+]]></signature><seealsos><symbol name="WritableItemProperty"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

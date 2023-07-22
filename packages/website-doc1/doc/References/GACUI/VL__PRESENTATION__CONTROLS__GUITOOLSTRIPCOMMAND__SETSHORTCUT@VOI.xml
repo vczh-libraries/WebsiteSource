@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetShortcut"><summary>Set the shortcut key item for this command.</summary><param name="value">The shortcut key item for this command.</param><signature><![CDATA[void SetShortcut(
+    compositions::IGuiShortcutKeyItem * value
+);
+]]></signature><seealsos><symbol name="IGuiShortcutKeyItem" docId="vl::presentation::compositions::IGuiShortcutKeyItem"/></seealsos></Document>

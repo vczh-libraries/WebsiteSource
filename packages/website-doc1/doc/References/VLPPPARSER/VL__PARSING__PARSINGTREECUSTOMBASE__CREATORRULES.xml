@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="creatorRules"><summary>Names of all rules that return this object.</summary><signature><![CDATA[collections::List<WString> creatorRules;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="List" docId="vl::collections::List"/></seealsos></Document>

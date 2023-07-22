@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="RemoveDocumentItem"><summary>Remove a document item.</summary><param name="value">The document item.</param><returns>Returns true if this operation succeeded.</returns><signature><![CDATA[bool RemoveDocumentItem(
+    Ptr<GuiDocumentItem> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiDocumentItem" docId="vl::presentation::controls::GuiDocumentItem"/></seealsos></Document>

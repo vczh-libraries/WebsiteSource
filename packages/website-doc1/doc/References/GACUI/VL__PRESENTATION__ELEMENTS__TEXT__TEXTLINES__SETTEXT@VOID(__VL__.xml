@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetText"><summary>
+ Set the string to the text lines. This operation will modified every <symbol name="TextLine" docId="vl::presentation::elements::text::TextLine"/> objects.
+ </summary><param name="value">The string to set into the text lines.</param><signature><![CDATA[void SetText(
+    WString const & value
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

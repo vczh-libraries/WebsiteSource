@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="INativeWindowService"><summary>
+ Window service. To access this service, use <symbol name="WindowService" docId="vl::presentation::INativeController::WindowService@::vl::presentation::INativeWindowService *()"/>.
+ </summary><signature><![CDATA[class INativeWindowService
+    : Interface;
+]]></signature><basetypes><symbol name="Interface" docId="vl::Interface"/></basetypes></Document>

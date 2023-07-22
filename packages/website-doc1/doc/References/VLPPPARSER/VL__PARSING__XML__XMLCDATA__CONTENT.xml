@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="content"><summary>Content of the cdata node</summary><signature><![CDATA[vl::parsing::ParsingToken content;
+]]></signature><seealsos><symbol name="ParsingToken" docId="vl::parsing::ParsingToken"/></seealsos></Document>

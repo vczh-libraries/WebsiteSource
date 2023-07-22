@@ -1,0 +1,7 @@
+<Document accessor="" category="Function" name="GetLazyList"><summary>Convert a reflectable container to a lazy list to the known element type.</summary><returns>The created lazy list.</returns><typeparam name="T">The expected element type.</typeparam><param name="value">The reflectable container.</param><signature><![CDATA[template <
+    typename T
+>
+collections::LazyList<T> GetLazyList(
+    Ptr<IValueObservableList> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="LazyList" docId="vl::collections::LazyList"/><symbol name="IValueObservableList" docId="vl::reflection::description::IValueObservableList"/></seealsos></Document>

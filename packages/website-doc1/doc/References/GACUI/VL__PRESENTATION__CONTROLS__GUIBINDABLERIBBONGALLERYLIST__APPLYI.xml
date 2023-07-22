@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="ApplyItem"><summary>Select an item with <symbol name="ItemApplied" docId="vl::presentation::controls::GuiBindableRibbonGalleryList::ItemApplied"/> event raised.</summary><param name="index">The index of the item to select. Set to -1 to clear the selection.</param><signature><![CDATA[void ApplyItem(
+    vint index
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

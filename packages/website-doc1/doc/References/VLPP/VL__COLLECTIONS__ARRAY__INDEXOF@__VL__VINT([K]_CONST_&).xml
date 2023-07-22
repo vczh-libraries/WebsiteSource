@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="IndexOf"><summary>Get the position of a value in this array.</summary><returns>Returns the position of first element that equals to the specified value. Returns -1 if failed to find.</returns><param name="item">The value to find.</param><signature><![CDATA[vint IndexOf(
+    K const & item
+) const;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

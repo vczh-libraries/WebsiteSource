@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="rootResource"><summary>The root resource object.</summary><signature><![CDATA[GuiResource * rootResource;
+]]></signature><seealsos><symbol name="GuiResource" docId="vl::presentation::GuiResource"/></seealsos></Document>

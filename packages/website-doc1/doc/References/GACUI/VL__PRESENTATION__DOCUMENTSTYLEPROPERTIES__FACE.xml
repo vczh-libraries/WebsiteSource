@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="face"><summary>Font face.</summary><signature><![CDATA[Nullable<WString> face;
+]]></signature><seealsos><symbol name="Nullable" docId="vl::Nullable"/><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetToolstripSubMenu"><summary>Get the toolstrip sub menu. If the sub menu is not created, it returns null.</summary><returns>The toolstrip sub menu.</returns><signature><![CDATA[GuiToolstripMenu * GetToolstripSubMenu(
+);
+]]></signature><seealsos><symbol name="GuiToolstripMenu" docId="vl::presentation::controls::GuiToolstripMenu"/></seealsos></Document>

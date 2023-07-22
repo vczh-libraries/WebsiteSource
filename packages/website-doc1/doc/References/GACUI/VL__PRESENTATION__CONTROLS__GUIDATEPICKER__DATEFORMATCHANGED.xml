@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="DateFormatChanged"><summary>Date format changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent DateFormatChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiResourceItem"><summary>Resource item.</summary><signature><![CDATA[class GuiResourceItem
+    : GuiResourceNodeBase
+    , Description<GuiResourceItem>;
+]]></signature><seealsos><symbol name="GuiResourceItem" docId="vl::presentation::GuiResourceItem"/></seealsos><basetypes><symbol name="GuiResourceNodeBase" docId="vl::presentation::GuiResourceNodeBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

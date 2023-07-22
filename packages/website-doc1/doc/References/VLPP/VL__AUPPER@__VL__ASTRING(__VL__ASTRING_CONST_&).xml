@@ -1,0 +1,4 @@
+<Document accessor="" category="Function" name="aupper"><summary>Convert all letters to upper case letters.</summary><returns>The converted string.</returns><param name="string">The string to convert.</param><signature><![CDATA[AString aupper(
+    AString const & string
+);
+]]></signature><seealsos><symbol name="AString" docId="vl::AString"/></seealsos></Document>

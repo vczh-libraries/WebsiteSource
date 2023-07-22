@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentParagraphRun"><summary>Pepresents a paragraph run.</summary><signature><![CDATA[class DocumentParagraphRun
+    : DocumentContainerRun
+    , Description<DocumentParagraphRun>;
+]]></signature><seealsos><symbol name="DocumentParagraphRun" docId="vl::presentation::DocumentParagraphRun"/></seealsos><basetypes><symbol name="DocumentContainerRun" docId="vl::presentation::DocumentContainerRun"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

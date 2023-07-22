@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiToolstripButton"><summary>Toolstrip button that can connect with a <symbol name="GuiToolstripCommand" docId="vl::presentation::controls::GuiToolstripCommand"/>.</summary><signature><![CDATA[class GuiToolstripButton
+    : GuiMenuButton
+    , IToolstripUpdateLayoutInvoker
+    , Description<GuiToolstripButton>;
+]]></signature><seealsos><symbol name="GuiToolstripButton" docId="vl::presentation::controls::GuiToolstripButton"/></seealsos><basetypes><symbol name="GuiMenuButton" docId="vl::presentation::controls::GuiMenuButton"/><symbol name="IToolstripUpdateLayoutInvoker" docId="vl::presentation::controls::IToolstripUpdateLayoutInvoker"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

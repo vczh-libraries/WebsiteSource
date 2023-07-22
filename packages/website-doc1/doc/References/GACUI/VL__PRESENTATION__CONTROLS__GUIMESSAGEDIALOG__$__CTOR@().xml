@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a message dialog.</summary><signature><![CDATA[ GuiMessageDialog(
+);
+]]></signature></Document>

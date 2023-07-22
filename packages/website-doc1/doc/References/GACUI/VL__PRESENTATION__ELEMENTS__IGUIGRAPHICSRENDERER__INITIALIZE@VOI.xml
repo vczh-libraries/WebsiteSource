@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="Initialize"><summary>
+ Initialize the grpahics renderer by binding a <symbol name="IGuiGraphicsElement" docId="vl::presentation::elements::IGuiGraphicsElement"/> to it.
+ </summary><param name="element">The graphics element to bind.</param><signature><![CDATA[void Initialize(
+    IGuiGraphicsElement * element
+);
+]]></signature><seealsos><symbol name="IGuiGraphicsElement" docId="vl::presentation::elements::IGuiGraphicsElement"/></seealsos></Document>

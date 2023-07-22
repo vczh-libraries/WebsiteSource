@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="port"><summary>Port of the server, like 80.</summary><signature><![CDATA[vint port;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

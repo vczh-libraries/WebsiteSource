@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="CreateVisualizer"><summary>Create a data visualizer.</summary><returns>The created data visualizer.</returns><param name="dataGridContext">Context information of the data grid.</param><signature><![CDATA[Ptr<IDataVisualizer> CreateVisualizer(
+    IDataGridContext * dataGridContext
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IDataGridContext" docId="vl::presentation::controls::list::IDataGridContext"/><symbol name="IDataVisualizer" docId="vl::presentation::controls::list::IDataVisualizer"/></seealsos></Document>

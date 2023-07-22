@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="code"><summary>Character that sends this message.</summary><signature><![CDATA[wchar_t code;
+]]></signature></Document>

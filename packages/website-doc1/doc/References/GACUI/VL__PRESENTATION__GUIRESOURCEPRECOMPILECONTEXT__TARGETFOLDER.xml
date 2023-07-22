@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="targetFolder"><summary>The folder to contain compiled objects.</summary><signature><![CDATA[Ptr<GuiResourceFolder> targetFolder;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiResourceFolder" docId="vl::presentation::GuiResourceFolder"/></seealsos></Document>

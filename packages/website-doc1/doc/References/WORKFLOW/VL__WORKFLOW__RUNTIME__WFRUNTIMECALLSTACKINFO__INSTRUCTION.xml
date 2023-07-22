@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="instruction"><summary>The executing instruction.</summary><signature><![CDATA[vint instruction;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

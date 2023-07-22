@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Render"><summary>Render the graphics element using a specified bounds.</summary><param name="bounds">Bounds to decide the size and position of the binded graphics element.</param><signature><![CDATA[void Render(
+    Rect bounds
+);
+]]></signature><seealsos><symbol name="Rect"/></seealsos></Document>

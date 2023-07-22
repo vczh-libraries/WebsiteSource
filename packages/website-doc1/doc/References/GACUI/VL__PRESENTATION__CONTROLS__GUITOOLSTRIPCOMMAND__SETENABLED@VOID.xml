@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetEnabled"><summary>Set the enablility for this command.</summary><param name="value">The enablility for this command.</param><signature><![CDATA[void SetEnabled(
+    bool value
+);
+]]></signature></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="baseline"><summary>The baseline of the inline object.If the baseline is at the bottom, then set the baseline to -1.</summary><signature><![CDATA[vint baseline;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Function" name="$__type"><summary>Test if this nullable value is non-null.</summary><returns>Returns true if it is non-null.</returns><signature><![CDATA[operator bool();
+]]></signature></Document>

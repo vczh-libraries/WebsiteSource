@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetEditMode"><summary>Set the edit mode of this control.</summary><param name="value">The edit mode.</param><signature><![CDATA[void SetEditMode(
+    EditMode value
+);
+]]></signature><seealsos><symbol name="EditMode" docId="vl::presentation::controls::GuiDocumentCommonInterface::EditMode"/></seealsos></Document>

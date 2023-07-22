@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Destroying"><summary>
+ Called when the window is destroying.
+ </summary><signature><![CDATA[void Destroying(
+);
+]]></signature></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="LargeImagePropertyChanged"><summary>Large image property name changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent LargeImagePropertyChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

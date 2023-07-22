@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="OnAttach"><summary>
+ Called when this cache object is attached to an image frame.
+ </summary><param name="frame">The image frame that attached to.</param><signature><![CDATA[void OnAttach(
+    INativeImageFrame * frame
+);
+]]></signature><seealsos><symbol name="INativeImageFrame" docId="vl::presentation::INativeImageFrame"/></seealsos></Document>

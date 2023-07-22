@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="IsAvailable"><summary>Test if the stream is <b>available</b>. For example, if you create a readable <symbol name="FileStream" docId="vl::stream::FileStream"/> giving a wrong file name, it will be unavailable.</summary><returns>Returns true if the stream is <b>available</b>.</returns><signature><![CDATA[bool IsAvailable(
+) const;
+]]></signature></Document>

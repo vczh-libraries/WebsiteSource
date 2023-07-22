@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="Convert"><summary>
+ Convert point from GUI coordinate to native coordinate.
+ </summary><returns>The converted result.</returns><param name="value">The coordinate to convert.</param><signature><![CDATA[NativePoint Convert(
+    Point value
+);
+]]></signature><seealsos><symbol name="NativePoint"/><symbol name="Point"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="WindowClosed"><summary>Window closed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent WindowClosed;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

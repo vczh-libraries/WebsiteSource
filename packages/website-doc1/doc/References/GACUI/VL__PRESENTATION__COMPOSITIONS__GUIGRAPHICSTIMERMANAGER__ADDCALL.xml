@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="AddCallback"><summary>Add a new callback.</summary><param name="callback">The new callback to add.</param><signature><![CDATA[void AddCallback(
+    Ptr<IGuiGraphicsTimerCallback> callback
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiGraphicsTimerCallback" docId="vl::presentation::compositions::IGuiGraphicsTimerCallback"/></seealsos></Document>

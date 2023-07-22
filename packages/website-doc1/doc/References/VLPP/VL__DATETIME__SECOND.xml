@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="second"><summary>The second, from 0 to 60.</summary><signature><![CDATA[vint second;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetContentComposition"><summary>Get the composition representing the space above of menu items.</summary><returns>The composition representing the space above of menu items.</returns><signature><![CDATA[compositions::GuiGraphicsComposition * GetContentComposition(
+);
+]]></signature><seealsos><symbol name="GuiGraphicsComposition" docId="vl::presentation::compositions::GuiGraphicsComposition"/></seealsos></Document>

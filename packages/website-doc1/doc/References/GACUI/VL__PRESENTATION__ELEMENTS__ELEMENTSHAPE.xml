@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="ElementShape"><summary>
+ Defines a shape for some <symbol name="IGuiGraphicsElement" docId="vl::presentation::elements::IGuiGraphicsElement"/>.
+ </summary><signature><![CDATA[struct ElementShape;
+]]></signature></Document>

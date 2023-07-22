@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="color"><summary>Font color.</summary><signature><![CDATA[Nullable<Color> color;
+]]></signature><seealsos><symbol name="Nullable" docId="vl::Nullable"/><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

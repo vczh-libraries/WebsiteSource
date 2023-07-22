@@ -1,0 +1,11 @@
+<Document accessor="public" category="Function" name="GetWrapper"><summary>
+ Get the maintained observable list.
+ <symbol name="ItemChanged" docId="vl::reflection::description::IValueObservableList::ItemChanged"/> of the observable list
+ will be automatically triggered when any changing happens.
+ </summary><returns>The maintained observable list.</returns><remarks><p><symbol name="BoxParameter" docId="vl::reflection::description::BoxParameter@::vl::reflection::description::Value(::vl::reflection::description::TypeInfoRetriver::ResultReferenceType, ::vl::reflection::description::ITypeDescriptor *)"/>
+ cannot turn any predefined C++ object to an reflectable observable list
+ and keep it binding to the C++ object.
+ When an reflectable observable list is required, ObservableList is strongly recommended.
+ </p></remarks><signature><![CDATA[Ptr<reflection::description::IValueObservableList> GetWrapper(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IValueObservableList" docId="vl::reflection::description::IValueObservableList"/></seealsos></Document>

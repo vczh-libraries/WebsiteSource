@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="VirtualRectToRealRect"><summary>Translate virtual bounds to real bounds.</summary><returns>The real bounds.</returns><param name="realFullSize">The real full size.</param><param name="rect">The virtual bounds.</param><signature><![CDATA[Rect VirtualRectToRealRect(
+    Size realFullSize,
+    Rect rect
+);
+]]></signature><seealsos><symbol name="Rect"/><symbol name="Size"/></seealsos></Document>

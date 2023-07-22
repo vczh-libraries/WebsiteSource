@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="captured"><summary>Captured variable values.</summary><signature><![CDATA[Ptr<WfRuntimeVariableContext> captured;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WfRuntimeVariableContext" docId="vl::workflow::runtime::WfRuntimeVariableContext"/></seealsos></Document>

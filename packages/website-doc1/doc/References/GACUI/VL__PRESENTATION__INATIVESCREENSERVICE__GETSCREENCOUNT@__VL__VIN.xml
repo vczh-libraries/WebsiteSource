@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetScreenCount"><summary>
+ Get the number of all available screens.
+ </summary><returns>The number of all available screens.</returns><signature><![CDATA[vint GetScreenCount(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

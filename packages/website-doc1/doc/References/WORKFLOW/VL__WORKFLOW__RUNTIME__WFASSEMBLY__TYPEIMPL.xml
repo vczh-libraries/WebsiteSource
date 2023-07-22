@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="typeImpl"><summary>Custom types.</summary><signature><![CDATA[Ptr<typeimpl::WfTypeImpl> typeImpl;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WfTypeImpl"/></seealsos></Document>

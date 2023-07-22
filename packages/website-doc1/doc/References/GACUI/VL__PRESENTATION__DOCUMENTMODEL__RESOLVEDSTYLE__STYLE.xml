@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="style"><summary>The style of the text.</summary><signature><![CDATA[FontProperties style;
+]]></signature><seealsos><symbol name="FontProperties" docId="vl::presentation::FontProperties"/></seealsos></Document>

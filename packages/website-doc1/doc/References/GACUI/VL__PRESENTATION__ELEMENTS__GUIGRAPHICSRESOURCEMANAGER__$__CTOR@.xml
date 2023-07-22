@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>
+ Create a graphics resource manager without any predefined factories
+ </summary><signature><![CDATA[ GuiGraphicsResourceManager(
+);
+]]></signature></Document>

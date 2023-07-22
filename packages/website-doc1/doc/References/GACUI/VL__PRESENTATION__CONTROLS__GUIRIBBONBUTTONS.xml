@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiRibbonButtons"><summary>Auto resizable ribbon buttons.</summary><signature><![CDATA[class GuiRibbonButtons
+    : GuiControl
+    , Description<GuiRibbonButtons>;
+]]></signature><seealsos><symbol name="GuiRibbonButtons" docId="vl::presentation::controls::GuiRibbonButtons"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

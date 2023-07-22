@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="italic"><summary>
+ True if the font is italic.
+ </summary><signature><![CDATA[bool italic;
+]]></signature></Document>

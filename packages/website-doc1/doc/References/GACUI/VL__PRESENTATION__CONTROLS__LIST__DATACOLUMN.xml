@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DataColumn"><summary>Datagrid Column.</summary><signature><![CDATA[class DataColumn
+    : Object
+    , Description<DataColumn>;
+]]></signature><seealsos><symbol name="DataColumn" docId="vl::presentation::controls::list::DataColumn"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

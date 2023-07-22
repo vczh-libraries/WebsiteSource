@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Destroyed"><summary>
+ Called when the window is destroyed.
+ </summary><signature><![CDATA[void Destroyed(
+);
+]]></signature></Document>

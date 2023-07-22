@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="AsyncService"><summary>
+ Get the asynchronized operation service.
+ </summary><returns>The asynchronized operation service</returns><signature><![CDATA[INativeAsyncService * AsyncService(
+);
+]]></signature><seealsos><symbol name="INativeAsyncService" docId="vl::presentation::INativeAsyncService"/></seealsos></Document>

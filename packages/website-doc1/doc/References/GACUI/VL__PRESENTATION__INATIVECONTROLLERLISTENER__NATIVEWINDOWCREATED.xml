@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="NativeWindowCreated"><summary>
+ Called when a window is created.
+ </summary><param name="window">The created window.</param><signature><![CDATA[void NativeWindowCreated(
+    INativeWindow * window
+);
+]]></signature><seealsos><symbol name="INativeWindow" docId="vl::presentation::INativeWindow"/></seealsos></Document>

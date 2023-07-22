@@ -1,0 +1,6 @@
+<Document accessor="" category="Function" name="WfPrint"><summary>Print a Workflow declaration.</summary><param name="node">The Workflow declaration.</param><param name="indent">The indentation.</param><param name="writer">The target writer.</param><signature><![CDATA[void WfPrint(
+    Ptr<WfDeclaration> node,
+    WString const & indent,
+    stream::TextWriter & writer
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="TextWriter" docId="vl::stream::TextWriter"/><symbol name="WfDeclaration"/></seealsos></Document>

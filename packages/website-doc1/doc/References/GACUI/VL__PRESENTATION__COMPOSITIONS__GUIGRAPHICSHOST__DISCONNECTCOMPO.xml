@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="DisconnectComposition"><summary>Notify that a composition is going to disconnect from this graphics host. Generally this happens when a composition&apos;s parent line changes.</summary><param name="composition">The composition to disconnect</param><signature><![CDATA[void DisconnectComposition(
+    GuiGraphicsComposition * composition
+);
+]]></signature><seealsos><symbol name="GuiGraphicsComposition" docId="vl::presentation::compositions::GuiGraphicsComposition"/></seealsos></Document>

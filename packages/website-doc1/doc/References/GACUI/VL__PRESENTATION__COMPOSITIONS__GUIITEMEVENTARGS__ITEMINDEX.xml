@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="itemIndex"><summary>Item index.</summary><signature><![CDATA[vint itemIndex;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

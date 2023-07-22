@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetMember"><summary>Get a field of the object by the field name.</summary><returns>The field of the object.</returns><param name="name">The field name.</param><signature><![CDATA[Ptr<ParsingTreeNode> GetMember(
+    WString const & name
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="ParsingTreeNode" docId="vl::parsing::ParsingTreeNode"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSharedHeight"><summary>Enable or disable sharing the height of this item.</summary><param name="value">Set to true to share the height of this item.</param><signature><![CDATA[void SetSharedHeight(
+    bool value
+);
+]]></signature></Document>

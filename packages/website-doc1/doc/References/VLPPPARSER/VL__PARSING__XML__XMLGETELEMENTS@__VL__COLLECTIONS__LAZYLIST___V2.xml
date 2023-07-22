@@ -1,0 +1,5 @@
+<Document accessor="" category="Function" name="XmlGetElements"><summary>Try to read sub elements in an XML element.</summary><returns>Expected sub elements. All sub elements of the expected name will be returned.</returns><param name="element">The element to find sub elements.</param><param name="name">The name of sub elements.</param><signature><![CDATA[collections::LazyList<Ptr<XmlElement>> XmlGetElements(
+    Ptr<XmlElement> element,
+    WString const & name
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="LazyList" docId="vl::collections::LazyList"/><symbol name="XmlElement" docId="vl::parsing::xml::XmlElement"/></seealsos></Document>

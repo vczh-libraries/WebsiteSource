@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiBindableTextList"><summary>A bindable Text list control.</summary><signature><![CDATA[class GuiBindableTextList
+    : GuiVirtualTextList
+    , Description<GuiBindableTextList>;
+]]></signature><seealsos><symbol name="GuiBindableTextList" docId="vl::presentation::controls::GuiBindableTextList"/></seealsos><basetypes><symbol name="GuiVirtualTextList" docId="vl::presentation::controls::GuiVirtualTextList"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

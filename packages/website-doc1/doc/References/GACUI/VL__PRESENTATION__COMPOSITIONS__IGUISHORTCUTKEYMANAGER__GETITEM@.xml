@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetItem"><summary>Get the <symbol name="IGuiShortcutKeyItem" docId="vl::presentation::compositions::IGuiShortcutKeyItem"/> associated with the index.</summary><returns>The shortcut key item.</returns><param name="index">The index.</param><signature><![CDATA[IGuiShortcutKeyItem * GetItem(
+    vint index
+);
+]]></signature><seealsos><symbol name="IGuiShortcutKeyItem" docId="vl::presentation::compositions::IGuiShortcutKeyItem"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

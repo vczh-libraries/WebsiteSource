@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="Values"><summary>Get all values.</summary><returns>All values.</returns><signature><![CDATA[ValueContainer const & Values(
+) const;
+]]></signature><seealsos><symbol name="ValueContainer"/></seealsos></Document>

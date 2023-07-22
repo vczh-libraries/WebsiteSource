@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="lostFocus"><summary>Lost focus event.</summary><signature><![CDATA[GuiNotifyEvent lostFocus;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

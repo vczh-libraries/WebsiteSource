@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a non-null value by copying data.</summary><param name="value">The data to copy.</param><signature><![CDATA[ Nullable(
+    T const & value
+);
+]]></signature></Document>

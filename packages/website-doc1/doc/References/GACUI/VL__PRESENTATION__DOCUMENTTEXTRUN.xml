@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentTextRun"><summary>Pepresents a text run.</summary><signature><![CDATA[class DocumentTextRun
+    : DocumentContentRun
+    , Description<DocumentTextRun>;
+]]></signature><seealsos><symbol name="DocumentTextRun" docId="vl::presentation::DocumentTextRun"/></seealsos><basetypes><symbol name="DocumentContentRun" docId="vl::presentation::DocumentContentRun"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

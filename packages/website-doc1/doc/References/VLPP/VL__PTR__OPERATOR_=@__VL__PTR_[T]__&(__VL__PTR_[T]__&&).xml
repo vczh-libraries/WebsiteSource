@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="operator ="><summary>Replace by moving another shared pointer.</summary><returns>The shared pointer itself.</returns><param name="pointer">The shared pointer to copy.</param><signature><![CDATA[Ptr<T> & operator =(
+    Ptr<T> && pointer
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/></seealsos></Document>

@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="IEnumerator"><summary>An enumerator interface for receiving values without going back.</summary><typeparam name="T">Type of the values returned from the enumerator.</typeparam><signature><![CDATA[template <
+    typename T
+>
+class IEnumerator
+    : Interface;
+]]></signature><basetypes><symbol name="Interface" docId="vl::Interface"/></basetypes></Document>

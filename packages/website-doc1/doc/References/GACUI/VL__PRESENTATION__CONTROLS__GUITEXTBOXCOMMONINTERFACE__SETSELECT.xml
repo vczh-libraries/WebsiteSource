@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSelectionText"><summary>Set the selected text.</summary><param name="value">The selected text.</param><signature><![CDATA[void SetSelectionText(
+    WString const & value
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

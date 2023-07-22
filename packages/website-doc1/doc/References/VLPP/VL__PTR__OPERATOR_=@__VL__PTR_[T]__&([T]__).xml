@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="operator ="><summary>Replace the object inside this shared pointer.</summary><returns>The shared pointer itself.</returns><param name="pointer">The pointer to the new object.</param><signature><![CDATA[Ptr<T> & operator =(
+    T * pointer
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/></seealsos></Document>

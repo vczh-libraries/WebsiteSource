@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetVisibleStyle"><summary>Get the item style controller for an visible item index. If an item is not visible, it returns null.</summary><returns>The item style controller.</returns><param name="itemIndex">The item index.</param><signature><![CDATA[ItemStyle * GetVisibleStyle(
+    vint itemIndex
+);
+]]></signature><seealsos><symbol name="ItemStyle"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

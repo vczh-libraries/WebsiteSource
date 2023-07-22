@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="GetScreen"><summary>
+ Get the screen object by a specified screen index.
+ </summary><returns>The screen object.</returns><param name="index">The specified screen index.</param><signature><![CDATA[INativeScreen * GetScreen(
+    vint index
+);
+]]></signature><seealsos><symbol name="INativeScreen" docId="vl::presentation::INativeScreen"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

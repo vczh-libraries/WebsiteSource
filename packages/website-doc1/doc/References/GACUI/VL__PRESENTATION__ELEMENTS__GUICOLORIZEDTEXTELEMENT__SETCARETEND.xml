@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetCaretEnd"><summary>
+ Set the end position of the selection area.
+ </summary><param name="value">The end position of the selection area.</param><signature><![CDATA[void SetCaretEnd(
+    TextPos value
+);
+]]></signature><seealsos><symbol name="TextPos" docId="vl::presentation::TextPos"/></seealsos></Document>

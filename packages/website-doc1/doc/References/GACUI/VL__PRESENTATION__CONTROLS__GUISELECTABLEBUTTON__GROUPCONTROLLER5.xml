@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="OnSelectedChanged"><summary>Called when the selection state of any <symbol name="GuiSelectableButton" docId="vl::presentation::controls::GuiSelectableButton"/> changed.</summary><param name="button">The button that changed the selection state.</param><signature><![CDATA[void OnSelectedChanged(
+    GuiSelectableButton * button
+);
+]]></signature><seealsos><symbol name="GuiSelectableButton" docId="vl::presentation::controls::GuiSelectableButton"/></seealsos></Document>

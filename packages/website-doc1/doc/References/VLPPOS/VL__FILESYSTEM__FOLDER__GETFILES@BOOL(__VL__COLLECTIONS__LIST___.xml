@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetFiles"><summary>Get all files in this folder.</summary><returns>Returns true if this operation succeeded.</returns><param name="files">All files.</param><signature><![CDATA[bool GetFiles(
+    collections::List<File> & files
+) const;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="File" docId="vl::filesystem::File"/></seealsos></Document>

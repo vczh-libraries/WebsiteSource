@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSelectedDate"><summary>Display a date.</summary><param name="value">The date.</param><signature><![CDATA[void SetSelectedDate(
+    DateTime const & value
+);
+]]></signature><seealsos><symbol name="DateTime" docId="vl::DateTime"/></seealsos></Document>

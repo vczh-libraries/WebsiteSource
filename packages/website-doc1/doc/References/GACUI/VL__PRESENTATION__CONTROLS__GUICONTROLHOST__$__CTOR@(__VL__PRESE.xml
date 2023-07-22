@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a control with a specified default theme.</summary><param name="themeName">The theme name for retriving a default control template.</param><param name="mode">The window mode.</param><signature><![CDATA[ GuiControlHost(
+    theme::ThemeName themeName,
+    INativeWindow::WindowMode mode
+);
+]]></signature><seealsos><symbol name="WindowMode" docId="vl::presentation::INativeWindow::WindowMode"/><symbol name="ThemeName"/></seealsos></Document>

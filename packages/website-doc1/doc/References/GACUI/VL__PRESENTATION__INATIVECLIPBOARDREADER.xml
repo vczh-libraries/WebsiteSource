@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="INativeClipboardReader"><summary>
+ Clipboard reader.
+ </summary><signature><![CDATA[class INativeClipboardReader
+    : IDescriptable
+    , Description<INativeClipboardReader>;
+]]></signature><seealsos><symbol name="INativeClipboardReader" docId="vl::presentation::INativeClipboardReader"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

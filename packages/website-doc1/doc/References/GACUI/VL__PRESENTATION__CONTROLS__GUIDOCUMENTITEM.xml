@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiDocumentItem"><summary>Embedded object in a document.</summary><signature><![CDATA[class GuiDocumentItem
+    : Object
+    , Description<GuiDocumentItem>;
+]]></signature><seealsos><symbol name="GuiDocumentItem" docId="vl::presentation::controls::GuiDocumentItem"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

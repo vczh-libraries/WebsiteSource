@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="WriteLine"><summary>Write a string with a CRLF.</summary><param name="string">The string to write.</param><signature><![CDATA[void WriteLine(
+    WString const & string
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="NodeExpanded"><summary>Node expanded event.</summary><signature><![CDATA[compositions::GuiNodeNotifyEvent NodeExpanded;
+]]></signature><seealsos><symbol name="GuiNodeNotifyEvent"/></seealsos></Document>

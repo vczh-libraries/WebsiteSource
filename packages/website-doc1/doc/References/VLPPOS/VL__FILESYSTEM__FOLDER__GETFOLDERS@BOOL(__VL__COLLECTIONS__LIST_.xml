@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetFolders"><summary>Get all folders in this folder.</summary><returns>Returns true if this operation succeeded.</returns><param name="folders">All folders.</param><remarks>In Windows, drives are considered sub folders in the root folder.</remarks><signature><![CDATA[bool GetFolders(
+    collections::List<Folder> & folders
+) const;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="Folder" docId="vl::filesystem::Folder"/></seealsos></Document>

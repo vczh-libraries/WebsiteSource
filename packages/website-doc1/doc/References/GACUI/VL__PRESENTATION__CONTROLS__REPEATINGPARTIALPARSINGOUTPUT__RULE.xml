@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="rule"><summary>The rule name that can parse the code of the selected context.</summary><signature><![CDATA[WString rule;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

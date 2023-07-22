@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="CreateResolver"><summary>Create an <symbol name="IGuiResourcePathResolver" docId="vl::presentation::IGuiResourcePathResolver"/> object.</summary><returns>The created resolver.</returns><param name="resource">The resource context.</param><param name="workingDirectory">The working directory context.</param><signature><![CDATA[Ptr<IGuiResourcePathResolver> CreateResolver(
+    Ptr<GuiResource> resource,
+    WString const & workingDirectory
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="GuiResource" docId="vl::presentation::GuiResource"/><symbol name="IGuiResourcePathResolver" docId="vl::presentation::IGuiResourcePathResolver"/></seealsos></Document>

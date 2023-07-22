@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="FindDeepestNode"><summary>Find a most deepest indirect child node at the position. Using this function requires <symbol name="InitializeQueryCache" docId="vl::parsing::ParsingTreeNode::InitializeQueryCache@void()"/> to be called.</summary><returns>The found node.</returns><param name="position">The position.</param><signature><![CDATA[ParsingTreeNode * FindDeepestNode(
+    ParsingTextPos const & position
+);
+]]></signature><seealsos><symbol name="ParsingTextPos" docId="vl::parsing::ParsingTextPos"/><symbol name="ParsingTreeNode" docId="vl::parsing::ParsingTreeNode"/></seealsos></Document>

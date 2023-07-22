@@ -1,0 +1,2 @@
+<Document accessor="public" category="Struct" name="TextEditPreviewStruct"><summary>Callback data for text editing preview.</summary><signature><![CDATA[struct TextEditPreviewStruct;
+]]></signature></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSortedContent"><summary>Store candidate items in the list control.</summary><param name="items">Candidate items.</param><signature><![CDATA[void SetSortedContent(
+    collections::List<AutoCompleteItem> const & items
+);
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="AutoCompleteItem" docId="vl::presentation::controls::GuiTextBoxAutoCompleteBase::AutoCompleteItem"/></seealsos></Document>

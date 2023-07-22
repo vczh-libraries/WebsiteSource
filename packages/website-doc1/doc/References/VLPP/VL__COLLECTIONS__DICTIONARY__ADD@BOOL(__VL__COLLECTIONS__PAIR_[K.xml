@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Add"><summary>Add a key with an associated value.</summary><returns>Returns true if the pair is added. If will crash if the key exists.</returns><param name="value">The pair of key and value.</param><signature><![CDATA[bool Add(
+    Pair<KT, VT> const & value
+);
+]]></signature><seealsos><symbol name="Pair" docId="vl::collections::Pair"/></seealsos></Document>

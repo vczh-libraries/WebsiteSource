@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DeclarationVisitor"><summary>An empty visitor, overriding all abstract methods with empty implementations.</summary><signature><![CDATA[class DeclarationVisitor
+    : Object
+    , WfDeclaration::IVisitor;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IVisitor"/></basetypes></Document>

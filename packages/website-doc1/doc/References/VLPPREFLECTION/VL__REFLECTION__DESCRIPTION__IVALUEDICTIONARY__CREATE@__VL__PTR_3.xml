@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Create"><summary>Create a dictionary with elements copied from another lazy list.</summary><returns>The created dictionary.</returns><param name="values">Elements to copy.</param><signature><![CDATA[static Ptr<IValueDictionary> Create(
+    collections::LazyList<collections::Pair<Value, Value>> values
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="LazyList" docId="vl::collections::LazyList"/><symbol name="Pair" docId="vl::collections::Pair"/><symbol name="IValueDictionary" docId="vl::reflection::description::IValueDictionary"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

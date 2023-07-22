@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="shownCandidates"><summary>Available candidate tokens (in lexer token index) that marked with @AutoCompleteCandidate().</summary><signature><![CDATA[collections::List<vint> shownCandidates;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

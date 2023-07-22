@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="MemoryStream"><summary>A <b>readable</b>, <b>peekable</b>, <b>writable</b> and <b>seekable</b> stream that creates on a buffer.</summary><signature><![CDATA[class MemoryStream
+    : Object
+    , IStream;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IStream" docId="vl::stream::IStream"/></basetypes></Document>

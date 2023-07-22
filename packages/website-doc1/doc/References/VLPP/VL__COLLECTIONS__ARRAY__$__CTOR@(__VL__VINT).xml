@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an array.</summary><param name="size">The size of the array.</param><remarks>
+ The default value is zero. <symbol name="Resize" docId="vl::collections::Array::Resize@void(::vl::vint)"/> can be called to determine the size later.
+ It will crash when the size is a negative number.
+ </remarks><signature><![CDATA[ Array(
+    vint size /* optional */
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

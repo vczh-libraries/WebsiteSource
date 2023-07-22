@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetChild"><summary>Get the child control using a specified index.</summary><returns>The child control.</returns><param name="index">The specified index.</param><signature><![CDATA[GuiControl * GetChild(
+    vint index
+);
+]]></signature><seealsos><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

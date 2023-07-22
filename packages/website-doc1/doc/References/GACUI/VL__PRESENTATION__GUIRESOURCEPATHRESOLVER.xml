@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiResourcePathResolver"><summary>Represents a symbol resolver for loading a resource.</summary><signature><![CDATA[class GuiResourcePathResolver
+    : Object
+    , Description<GuiResourcePathResolver>;
+]]></signature><seealsos><symbol name="GuiResourcePathResolver" docId="vl::presentation::GuiResourcePathResolver"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

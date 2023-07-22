@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetImage"><summary>Set the image for this command.</summary><param name="value">The image for this command.</param><signature><![CDATA[void SetImage(
+    Ptr<GuiImageData> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/></seealsos></Document>

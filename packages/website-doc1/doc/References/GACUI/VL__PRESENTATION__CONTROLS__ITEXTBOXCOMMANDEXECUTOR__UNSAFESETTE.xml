@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="UnsafeSetText"><summary>Override the text content in the control.</summary><param name="value">The new text content.</param><signature><![CDATA[void UnsafeSetText(
+    WString const & value
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

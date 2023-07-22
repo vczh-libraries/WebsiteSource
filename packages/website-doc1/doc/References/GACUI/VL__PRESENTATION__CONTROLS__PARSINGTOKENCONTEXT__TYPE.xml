@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="type"><summary>Type of the parent.</summary><signature><![CDATA[WString type;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

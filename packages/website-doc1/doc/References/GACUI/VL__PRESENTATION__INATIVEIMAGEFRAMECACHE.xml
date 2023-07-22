@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="INativeImageFrameCache"><summary>
+ Represents a customized cache object for an image frame.
+ </summary><signature><![CDATA[class INativeImageFrameCache
+    : Interface;
+]]></signature><basetypes><symbol name="Interface" docId="vl::Interface"/></basetypes></Document>

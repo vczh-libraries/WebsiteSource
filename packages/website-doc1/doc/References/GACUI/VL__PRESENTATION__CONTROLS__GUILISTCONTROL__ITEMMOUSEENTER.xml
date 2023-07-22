@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemMouseEnter"><summary>Item mouse enter event.</summary><signature><![CDATA[compositions::GuiItemNotifyEvent ItemMouseEnter;
+]]></signature><seealsos><symbol name="GuiItemNotifyEvent"/></seealsos></Document>

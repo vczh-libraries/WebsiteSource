@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SendFailure"><summary>Mark the <symbol name="IFuture" docId="vl::reflection::description::IFuture"/> object as finished by providing an exception.</summary><returns>Returns true when this operation succeeded. Multiple calls to <symbol name="SendResult" docId="vl::reflection::description::IPromise::SendResult@bool(::vl::reflection::description::Value const &amp;)"/> and <symbol name="SendFailure" docId="vl::reflection::description::IPromise::SendFailure@bool(::vl::Ptr&lt;::vl::reflection::description::IValueException&gt;)"/> cause a failure.</returns><param name="failure">The exception of the <symbol name="IFuture" docId="vl::reflection::description::IFuture"/> object.</param><signature><![CDATA[bool SendFailure(
+    Ptr<IValueException> failure
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IValueException"/></seealsos></Document>

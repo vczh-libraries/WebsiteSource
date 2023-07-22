@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="AddChild"><summary>Add a composition as a child.</summary><returns>Returns true if this operation succeeded.</returns><param name="child">The child composition to add.</param><signature><![CDATA[bool AddChild(
+    GuiGraphicsComposition * child
+);
+]]></signature><seealsos><symbol name="GuiGraphicsComposition" docId="vl::presentation::compositions::GuiGraphicsComposition"/></seealsos></Document>

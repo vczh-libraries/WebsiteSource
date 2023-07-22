@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiResponsiveViewComposition"><summary>A responsive layout composition defined by views of different sizes.</summary><signature><![CDATA[class GuiResponsiveViewComposition
+    : GuiResponsiveCompositionBase
+    , Description<GuiResponsiveViewComposition>;
+]]></signature><seealsos><symbol name="GuiResponsiveViewComposition" docId="vl::presentation::compositions::GuiResponsiveViewComposition"/></seealsos><basetypes><symbol name="GuiResponsiveCompositionBase" docId="vl::presentation::compositions::GuiResponsiveCompositionBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

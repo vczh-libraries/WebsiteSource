@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="SetStyleBounds"><summary>Set the bounds of an item control.</summary><param name="style">The item control.</param><param name="bounds">The new bounds.</param><signature><![CDATA[void SetStyleBounds(
+    compositions::GuiBoundsComposition * style,
+    Rect bounds
+);
+]]></signature><seealsos><symbol name="Rect"/><symbol name="GuiBoundsComposition" docId="vl::presentation::compositions::GuiBoundsComposition"/></seealsos></Document>

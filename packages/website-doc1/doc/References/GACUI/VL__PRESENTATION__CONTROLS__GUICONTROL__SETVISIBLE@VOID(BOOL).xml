@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetVisible"><summary>Make the control visible or invisible.</summary><param name="value">Set to true to make the visible enabled.</param><signature><![CDATA[void SetVisible(
+    bool value
+);
+]]></signature></Document>

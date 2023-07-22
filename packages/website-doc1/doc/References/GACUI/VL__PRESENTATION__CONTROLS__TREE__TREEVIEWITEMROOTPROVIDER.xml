@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="TreeViewItemRootProvider"><summary>The default implementation of <symbol name="INodeRootProvider" docId="vl::presentation::controls::tree::INodeRootProvider"/> for <symbol name="GuiVirtualTreeView" docId="vl::presentation::controls::GuiVirtualTreeView"/>.</summary><signature><![CDATA[class TreeViewItemRootProvider
+    : MemoryNodeRootProvider
+    , ITreeViewItemView
+    , Description<TreeViewItemRootProvider>;
+]]></signature><seealsos><symbol name="TreeViewItemRootProvider" docId="vl::presentation::controls::tree::TreeViewItemRootProvider"/></seealsos><basetypes><symbol name="ITreeViewItemView" docId="vl::presentation::controls::tree::ITreeViewItemView"/><symbol name="MemoryNodeRootProvider" docId="vl::presentation::controls::tree::MemoryNodeRootProvider"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

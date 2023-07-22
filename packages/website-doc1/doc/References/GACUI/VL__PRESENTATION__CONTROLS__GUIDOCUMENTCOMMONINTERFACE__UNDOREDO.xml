@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="UndoRedoChanged"><summary>Undo redo status changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent UndoRedoChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

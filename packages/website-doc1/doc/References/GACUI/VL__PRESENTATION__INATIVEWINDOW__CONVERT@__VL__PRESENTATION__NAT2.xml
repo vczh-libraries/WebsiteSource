@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="Convert"><summary>
+ Convert size from GUI coordinate to native coordinate.
+ </summary><returns>The converted result.</returns><param name="value">The coordinate to convert.</param><signature><![CDATA[NativeSize Convert(
+    Size value
+);
+]]></signature><seealsos><symbol name="NativeSize"/><symbol name="Size"/></seealsos></Document>

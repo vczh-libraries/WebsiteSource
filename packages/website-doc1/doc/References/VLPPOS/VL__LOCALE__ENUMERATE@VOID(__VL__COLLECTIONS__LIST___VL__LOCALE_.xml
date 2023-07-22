@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Enumerate"><summary>Get all supported locales.</summary><param name="locales">All supported locales.</param><signature><![CDATA[static void Enumerate(
+    collections::List<Locale> & locales
+);
+]]></signature><seealsos><symbol name="Locale" docId="vl::Locale"/><symbol name="List" docId="vl::collections::List"/></seealsos></Document>

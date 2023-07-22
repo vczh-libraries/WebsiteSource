@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="baseline"><summary>The base line calculation algorithm.</summary><signature><![CDATA[BaselineType baseline;
+]]></signature><seealsos><symbol name="BaselineType" docId="vl::presentation::compositions::GuiFlowOption::BaselineType"/></seealsos></Document>

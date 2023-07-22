@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiMenu"><summary>Popup menu.</summary><signature><![CDATA[class GuiMenu
+    : GuiPopup
+    , IGuiMenuService
+    , Description<GuiMenu>;
+]]></signature><seealsos><symbol name="GuiMenu" docId="vl::presentation::controls::GuiMenu"/></seealsos><basetypes><symbol name="GuiPopup" docId="vl::presentation::controls::GuiPopup"/><symbol name="IGuiMenuService" docId="vl::presentation::controls::IGuiMenuService"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

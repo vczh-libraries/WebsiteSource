@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="TextChanged"><summary>Text changed event. This event raises when the text of the control is changed.</summary><signature><![CDATA[compositions::GuiNotifyEvent TextChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="CalculateNodeVisibilityIndex"><summary>Get the index in all visible nodes of a node.</summary><returns>The index in all visible nodes of a node.</returns><param name="node">The node to calculate the index.</param><signature><![CDATA[vint CalculateNodeVisibilityIndex(
+    INodeProvider * node
+);
+]]></signature><seealsos><symbol name="INodeProvider" docId="vl::presentation::controls::tree::INodeProvider"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

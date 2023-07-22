@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Enabled"><summary>
+ Called when the window is enabled.
+ </summary><signature><![CDATA[void Enabled(
+);
+]]></signature></Document>

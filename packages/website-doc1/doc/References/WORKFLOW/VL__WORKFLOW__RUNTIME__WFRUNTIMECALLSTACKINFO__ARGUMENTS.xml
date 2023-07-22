@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="arguments"><summary>Argument values.</summary><signature><![CDATA[Ptr<WfRuntimeVariableContext> arguments;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WfRuntimeVariableContext" docId="vl::workflow::runtime::WfRuntimeVariableContext"/></seealsos></Document>

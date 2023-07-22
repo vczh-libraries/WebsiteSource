@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="WriteChar"><summary>Write a single character.</summary><param name="c">The character to write.</param><signature><![CDATA[void WriteChar(
+    wchar_t c
+);
+]]></signature></Document>

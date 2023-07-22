@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="All"><summary>Test if all elements in the lazy list satisfy a filter.</summary><typeparam name="F">Type of the filter.</typeparam><returns>Returns true if all elements satisfy the filter.</returns><param name="f">The filter.</param><example index="0"/><signature><![CDATA[template <
+    typename F
+>
+bool All(
+    F f
+) const;
+]]></signature></Document>

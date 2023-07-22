@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a lazy list from a container. It is very useful to <symbol name="MakePtr"/> a container as an intermediate result and then put in a lazy list.</summary><typeparam name="TContainer">Type of the container.</typeparam><param name="container">The container.</param><signature><![CDATA[template <
+    typename TContainer
+>
+ LazyList(
+    Ptr<TContainer> container
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/></seealsos></Document>

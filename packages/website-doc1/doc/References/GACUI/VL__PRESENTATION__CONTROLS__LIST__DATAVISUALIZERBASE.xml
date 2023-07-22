@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DataVisualizerBase"><summary>Base class for all data visualizers.</summary><signature><![CDATA[class DataVisualizerBase
+    : Object
+    , IDataVisualizer;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IDataVisualizer" docId="vl::presentation::controls::list::IDataVisualizer"/></basetypes></Document>

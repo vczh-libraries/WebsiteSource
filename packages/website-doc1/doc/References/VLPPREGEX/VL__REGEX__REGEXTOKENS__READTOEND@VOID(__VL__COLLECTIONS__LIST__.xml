@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="ReadToEnd"><summary>Copy all tokens.</summary><param name="tokens">Returns all tokens.</param><param name="discard">A callback to decide which kind of tokens to discard. The input is <symbol name="token" docId="vl::regex::RegexToken::token"/>. Returns true to discard this kind of tokens.</param><example index="0"/><signature><![CDATA[void ReadToEnd(
+    collections::List<RegexToken> & tokens,
+    bool( * discard)(
+vint) /* optional */
+) const;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="RegexToken" docId="vl::regex::RegexToken"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

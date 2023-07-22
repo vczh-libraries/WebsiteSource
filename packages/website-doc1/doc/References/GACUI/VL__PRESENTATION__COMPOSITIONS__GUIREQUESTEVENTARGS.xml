@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="GuiRequestEventArgs"><summary>Request event arguments.</summary><signature><![CDATA[struct GuiRequestEventArgs
+    : GuiEventArgs
+    , Description<GuiRequestEventArgs>;
+]]></signature><seealsos><symbol name="GuiRequestEventArgs" docId="vl::presentation::compositions::GuiRequestEventArgs"/></seealsos><basetypes><symbol name="GuiEventArgs" docId="vl::presentation::compositions::GuiEventArgs"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

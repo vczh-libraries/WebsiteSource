@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSize"><summary>Set the size of this item.</summary><param name="value">The size of this item.</param><signature><![CDATA[void SetSize(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

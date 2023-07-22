@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiSolidLabelElement"><summary>
+ Defines an element of a plain text.
+ </summary><signature><![CDATA[class GuiSolidLabelElement
+    : GuiElementBase<GuiSolidLabelElement>;
+]]></signature><seealsos><symbol name="GuiSolidLabelElement" docId="vl::presentation::elements::GuiSolidLabelElement"/></seealsos><basetypes><symbol name="GuiElementBase"/></basetypes></Document>

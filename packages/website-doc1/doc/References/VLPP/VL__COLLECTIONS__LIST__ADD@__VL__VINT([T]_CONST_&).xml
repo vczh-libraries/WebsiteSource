@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Add"><summary>Append a value at the end of the list.</summary><returns>The index of the added item.</returns><param name="item">The value to add.</param><signature><![CDATA[vint Add(
+    T const & item
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

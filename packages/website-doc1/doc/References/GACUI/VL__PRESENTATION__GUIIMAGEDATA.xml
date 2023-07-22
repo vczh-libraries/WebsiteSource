@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="GuiImageData"><summary>
+ Represnets an image to display.
+ </summary><signature><![CDATA[class GuiImageData
+    : Object
+    , Description<GuiImageData>;
+]]></signature><seealsos><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

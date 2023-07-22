@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="newBegin"><summary>The start position of the selection after caret changing.</summary><signature><![CDATA[TextPos newBegin;
+]]></signature><seealsos><symbol name="TextPos" docId="vl::presentation::TextPos"/></seealsos></Document>

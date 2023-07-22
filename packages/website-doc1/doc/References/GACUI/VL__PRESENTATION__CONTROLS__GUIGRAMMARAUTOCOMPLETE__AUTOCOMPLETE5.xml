@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="candidateItems"><summary>Candidate items.</summary><signature><![CDATA[collections::List<ParsingCandidateItem> candidateItems;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="ParsingCandidateItem" docId="vl::presentation::controls::ParsingCandidateItem"/></seealsos></Document>

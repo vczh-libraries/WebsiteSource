@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiImageFrameElement"><summary>
+ Defines an element containing an image.
+ </summary><signature><![CDATA[class GuiImageFrameElement
+    : GuiElementBase<GuiImageFrameElement>;
+]]></signature><seealsos><symbol name="GuiImageFrameElement" docId="vl::presentation::elements::GuiImageFrameElement"/></seealsos><basetypes><symbol name="GuiElementBase"/></basetypes></Document>

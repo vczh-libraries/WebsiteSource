@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="StartTimer"><summary>
+ Start to reveive global timer message.
+ </summary><signature><![CDATA[void StartTimer(
+);
+]]></signature></Document>

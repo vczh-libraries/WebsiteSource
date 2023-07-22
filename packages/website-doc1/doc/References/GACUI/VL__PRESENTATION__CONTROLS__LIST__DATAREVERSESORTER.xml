@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DataReverseSorter"><summary>A reverse order <symbol name="IDataSorter"/>.</summary><signature><![CDATA[class DataReverseSorter
+    : DataSorterBase
+    , Description<DataReverseSorter>;
+]]></signature><seealsos><symbol name="DataReverseSorter" docId="vl::presentation::controls::list::DataReverseSorter"/></seealsos><basetypes><symbol name="DataSorterBase" docId="vl::presentation::controls::list::DataSorterBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="VirtualCseDeclarationVisitor"><summary>An empty visitor, overriding all abstract methods with empty implementations.</summary><signature><![CDATA[class VirtualCseDeclarationVisitor
+    : Object
+    , WfVirtualCseDeclaration::IVisitor;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IVisitor"/></basetypes></Document>

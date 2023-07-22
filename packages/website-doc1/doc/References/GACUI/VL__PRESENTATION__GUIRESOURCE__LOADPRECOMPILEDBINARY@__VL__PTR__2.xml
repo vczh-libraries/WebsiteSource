@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="LoadPrecompiledBinary"><summary>Load a precompiled resource from a stream. This function will hit an assert if there are errors.</summary><returns>The loaded resource.</returns><param name="binaryStream">The stream.</param><signature><![CDATA[static Ptr<GuiResource> LoadPrecompiledBinary(
+    stream::IStream & binaryStream
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiResource" docId="vl::presentation::GuiResource"/><symbol name="IStream" docId="vl::stream::IStream"/></seealsos></Document>

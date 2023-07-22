@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Copy a file path.</summary><param name="_filePath">The file path to copy.</param><signature><![CDATA[ FilePath(
+    FilePath const & _filePath
+);
+]]></signature><seealsos><symbol name="FilePath" docId="vl::filesystem::FilePath"/></seealsos></Document>

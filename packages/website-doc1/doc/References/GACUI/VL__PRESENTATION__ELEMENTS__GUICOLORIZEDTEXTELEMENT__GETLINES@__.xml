@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetLines"><summary>
+ Get the internal <symbol name="TextLines" docId="vl::presentation::elements::text::TextLines"/> object that stores all characters and colors.
+ </summary><returns>The internal <symbol name="TextLines" docId="vl::presentation::elements::text::TextLines"/> object.</returns><signature><![CDATA[text::TextLines & GetLines(
+);
+]]></signature><seealsos><symbol name="TextLines" docId="vl::presentation::elements::text::TextLines"/></seealsos></Document>

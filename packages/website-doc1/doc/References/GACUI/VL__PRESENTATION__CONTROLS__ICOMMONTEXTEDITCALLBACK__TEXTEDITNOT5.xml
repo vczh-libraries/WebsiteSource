@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="inputStart"><summary>The start position of the selection after replacing.</summary><signature><![CDATA[TextPos inputStart;
+]]></signature><seealsos><symbol name="TextPos" docId="vl::presentation::TextPos"/></seealsos></Document>

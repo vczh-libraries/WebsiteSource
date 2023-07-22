@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="RegisterSchedulerForCurrentThread"><summary>Attach a scheduler for the current thread.</summary><param name="scheduler">The scheduler to attach.</param><signature><![CDATA[static void RegisterSchedulerForCurrentThread(
+    Ptr<IAsyncScheduler> scheduler
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IAsyncScheduler" docId="vl::reflection::description::IAsyncScheduler"/></seealsos></Document>

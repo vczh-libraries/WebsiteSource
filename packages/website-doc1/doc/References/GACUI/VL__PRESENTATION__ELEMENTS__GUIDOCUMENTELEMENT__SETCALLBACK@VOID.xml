@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetCallback"><summary>Set the callback.</summary><param name="value">The callback.</param><signature><![CDATA[void SetCallback(
+    ICallback * value
+);
+]]></signature><seealsos><symbol name="ICallback" docId="vl::presentation::elements::GuiDocumentElement::ICallback"/></seealsos></Document>

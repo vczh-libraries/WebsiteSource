@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Clear"><summary>
+ Remove every text lines.
+ </summary><signature><![CDATA[void Clear(
+);
+]]></signature></Document>

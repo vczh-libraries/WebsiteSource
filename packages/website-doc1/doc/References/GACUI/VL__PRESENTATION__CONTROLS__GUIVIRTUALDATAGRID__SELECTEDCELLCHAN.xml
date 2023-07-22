@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="SelectedCellChanged"><summary>Selected cell changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent SelectedCellChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

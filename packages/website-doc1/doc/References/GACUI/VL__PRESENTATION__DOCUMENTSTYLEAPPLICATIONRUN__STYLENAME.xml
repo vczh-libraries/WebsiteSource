@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="styleName"><summary>Style name.</summary><signature><![CDATA[WString styleName;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetData"><summary>Set the data object.</summary><param name="value">The data object.</param><signature><![CDATA[void SetData(
+    Ptr<DescriptableObject> const & value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

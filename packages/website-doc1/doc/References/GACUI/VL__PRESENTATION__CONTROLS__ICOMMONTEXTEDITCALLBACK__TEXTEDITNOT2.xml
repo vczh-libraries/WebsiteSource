@@ -1,0 +1,2 @@
+<Document accessor="public" category="Struct" name="TextEditNotifyStruct"><summary>Callback data for text editing.</summary><signature><![CDATA[struct TextEditNotifyStruct;
+]]></signature></Document>

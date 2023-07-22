@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSelectedColor"><summary>Set the selected color.</summary><param name="value">The selected color.</param><signature><![CDATA[void SetSelectedColor(
+    Color value
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="GuiStackComposition"><summary>
+ Represents a stack composition.
+ </summary><signature><![CDATA[class GuiStackComposition
+    : GuiBoundsComposition
+    , Description<GuiStackComposition>;
+]]></signature><seealsos><symbol name="GuiStackComposition" docId="vl::presentation::compositions::GuiStackComposition"/></seealsos><basetypes><symbol name="GuiBoundsComposition" docId="vl::presentation::compositions::GuiBoundsComposition"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

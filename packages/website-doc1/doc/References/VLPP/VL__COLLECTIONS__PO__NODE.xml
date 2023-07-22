@@ -1,0 +1,4 @@
+<Document accessor="" category="Struct" name="Node"><summary>
+ Node contains extra information for sorted objects.
+ </summary><signature><![CDATA[struct Node;
+]]></signature></Document>

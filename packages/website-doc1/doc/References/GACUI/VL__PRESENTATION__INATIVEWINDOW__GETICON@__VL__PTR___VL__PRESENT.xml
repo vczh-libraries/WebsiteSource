@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetIcon"><summary>
+ Get the icon.
+ </summary><returns>Returns the icon.</returns><signature><![CDATA[Ptr<GuiImageData> GetIcon(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/></seealsos></Document>

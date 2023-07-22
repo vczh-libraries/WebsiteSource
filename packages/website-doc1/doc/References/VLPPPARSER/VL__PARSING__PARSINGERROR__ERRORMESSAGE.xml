@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="errorMessage"><summary>The error message.</summary><signature><![CDATA[WString errorMessage;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

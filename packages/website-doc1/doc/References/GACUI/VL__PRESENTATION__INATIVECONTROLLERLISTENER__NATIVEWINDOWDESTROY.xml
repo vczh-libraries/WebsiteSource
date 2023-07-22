@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="NativeWindowDestroying"><summary>
+ Called when a window is destroying.
+ </summary><param name="window">The destroying window.</param><signature><![CDATA[void NativeWindowDestroying(
+    INativeWindow * window
+);
+]]></signature><seealsos><symbol name="INativeWindow" docId="vl::presentation::INativeWindow"/></seealsos></Document>

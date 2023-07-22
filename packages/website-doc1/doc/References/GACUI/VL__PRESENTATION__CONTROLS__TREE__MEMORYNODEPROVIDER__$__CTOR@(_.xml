@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a node provider with a data object.</summary><param name="_data">The data object.</param><signature><![CDATA[ MemoryNodeProvider(
+    Ptr<DescriptableObject> _data /* optional */
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

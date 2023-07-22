@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="CheckedPropertyChanged"><summary>Checked property name changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent CheckedPropertyChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

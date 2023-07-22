@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetValueByPath"><summary>Get a contained resource object using a path like &quot;Packages\Application\Name&quot;.</summary><returns>The containd resource object.</returns><param name="path">The path.</param><signature><![CDATA[Ptr<DescriptableObject> GetValueByPath(
+    WString const & path
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/></seealsos></Document>

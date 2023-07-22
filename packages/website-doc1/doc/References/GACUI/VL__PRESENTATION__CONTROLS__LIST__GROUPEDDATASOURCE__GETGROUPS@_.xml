@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetGroups"><summary>Get all groups.</summary><returns>All groups.</returns><signature><![CDATA[GalleryGroupList const & GetGroups(
+);
+]]></signature><seealsos><symbol name="GalleryGroupList"/></seealsos></Document>

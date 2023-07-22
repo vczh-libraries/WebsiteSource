@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a tree list control in virtual mode.</summary><param name="themeName">The theme name for retriving a default control template.</param><param name="_nodeRootProvider">The node root provider for this control.</param><signature><![CDATA[ GuiVirtualTreeListControl(
+    theme::ThemeName themeName,
+    Ptr<tree::INodeRootProvider> _nodeRootProvider
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INodeRootProvider" docId="vl::presentation::controls::tree::INodeRootProvider"/><symbol name="ThemeName"/></seealsos></Document>

@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiApplication"><summary>Represents an GacUI application, for window management and asynchronized operation supporting. Use <symbol name="GetApplication" docId="vl::presentation::controls::GetApplication@::vl::presentation::controls::GuiApplication *()"/> to access the instance of this class.</summary><signature><![CDATA[class GuiApplication
+    : Object
+    , INativeControllerListener
+    , Description<GuiApplication>;
+]]></signature><seealsos><symbol name="GuiApplication" docId="vl::presentation::controls::GuiApplication"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="INativeControllerListener" docId="vl::presentation::INativeControllerListener"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="PreviewStopped"><summary>Preview stopped event.</summary><signature><![CDATA[compositions::GuiItemNotifyEvent PreviewStopped;
+]]></signature><seealsos><symbol name="GuiItemNotifyEvent"/></seealsos></Document>

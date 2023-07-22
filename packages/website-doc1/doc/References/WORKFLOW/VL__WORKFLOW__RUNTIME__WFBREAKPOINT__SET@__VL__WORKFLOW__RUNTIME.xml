@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Set"><summary>Create an property writing break point.</summary><returns>The created break point.</returns><param name="thisObject">The target object. Set to null to apply to every object.</param><param name="propertyInfo">The property.</param><signature><![CDATA[static WfBreakPoint Set(
+    reflection::DescriptableObject * thisObject,
+    reflection::description::IPropertyInfo * propertyInfo
+);
+]]></signature><seealsos><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/><symbol name="IPropertyInfo"/><symbol name="WfBreakPoint" docId="vl::workflow::runtime::WfBreakPoint"/></seealsos></Document>

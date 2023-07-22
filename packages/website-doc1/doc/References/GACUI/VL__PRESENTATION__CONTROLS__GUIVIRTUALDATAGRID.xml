@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="GuiVirtualDataGrid"><summary>Data grid control in virtual mode.</summary><signature><![CDATA[class GuiVirtualDataGrid
+    : GuiVirtualListView
+    , compositions::GuiAltActionHostBase
+    , list::IDataGridContext
+    , Description<GuiVirtualDataGrid>;
+]]></signature><seealsos><symbol name="GuiVirtualDataGrid" docId="vl::presentation::controls::GuiVirtualDataGrid"/></seealsos><basetypes><symbol name="GuiAltActionHostBase" docId="vl::presentation::compositions::GuiAltActionHostBase"/><symbol name="GuiVirtualListView" docId="vl::presentation::controls::GuiVirtualListView"/><symbol name="IDataGridContext" docId="vl::presentation::controls::list::IDataGridContext"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="DateSelected"><summary>Date selected event. Called when a day button is selected.</summary><signature><![CDATA[compositions::GuiNotifyEvent DateSelected;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

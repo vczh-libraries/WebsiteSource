@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetLayoutProvider"><summary>
+ Get the renderer awared rich text document layout engine provider object.
+ </summary><returns>Returns the layout provider.</returns><signature><![CDATA[IGuiGraphicsLayoutProvider * GetLayoutProvider(
+);
+]]></signature><seealsos><symbol name="IGuiGraphicsLayoutProvider" docId="vl::presentation::elements::IGuiGraphicsLayoutProvider"/></seealsos></Document>

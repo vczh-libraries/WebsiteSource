@@ -1,0 +1,4 @@
+<Document accessor="" category="Function" name="u64toa"><summary>Convert an unsigned 64-bits interger to a string.</summary><returns>The converted string.</returns><param name="number">The number to convert.</param><signature><![CDATA[AString u64toa(
+    vuint64_t number
+);
+]]></signature><seealsos><symbol name="AString" docId="vl::AString"/><symbol name="vuint64_t" docId="vl::vuint64_t"/></seealsos></Document>

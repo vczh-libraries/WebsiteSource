@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiVirtualTextList"><summary>Text list control in virtual mode.</summary><signature><![CDATA[class GuiVirtualTextList
+    : GuiSelectableListControl
+    , Description<GuiVirtualTextList>;
+]]></signature><seealsos><symbol name="GuiVirtualTextList" docId="vl::presentation::controls::GuiVirtualTextList"/></seealsos><basetypes><symbol name="GuiSelectableListControl" docId="vl::presentation::controls::GuiSelectableListControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

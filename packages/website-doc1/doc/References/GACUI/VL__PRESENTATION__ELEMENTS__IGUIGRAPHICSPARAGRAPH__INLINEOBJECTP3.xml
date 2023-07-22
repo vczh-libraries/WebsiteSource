@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="backgroundImage"><summary>The background image, nullable.</summary><signature><![CDATA[Ptr<IGuiGraphicsElement> backgroundImage;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiGraphicsElement" docId="vl::presentation::elements::IGuiGraphicsElement"/></seealsos></Document>

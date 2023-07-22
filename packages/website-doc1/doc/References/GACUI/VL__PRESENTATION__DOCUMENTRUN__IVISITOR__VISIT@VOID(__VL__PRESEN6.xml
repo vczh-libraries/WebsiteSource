@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Visit"><summary>Visit operation for <symbol name="DocumentEmbeddedObjectRun" docId="vl::presentation::DocumentEmbeddedObjectRun"/>.</summary><param name="run">The run object.</param><signature><![CDATA[void Visit(
+    DocumentEmbeddedObjectRun * run
+);
+]]></signature><seealsos><symbol name="DocumentEmbeddedObjectRun" docId="vl::presentation::DocumentEmbeddedObjectRun"/></seealsos></Document>

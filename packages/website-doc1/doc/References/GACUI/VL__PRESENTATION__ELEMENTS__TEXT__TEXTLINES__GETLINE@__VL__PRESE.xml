@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="GetLine"><summary>
+ Returns the text line of a specified row number.
+ </summary><returns>The related text line object.</returns><param name="row">The specified row number.</param><signature><![CDATA[TextLine & GetLine(
+    vint row
+);
+]]></signature><seealsos><symbol name="TextLine" docId="vl::presentation::elements::text::TextLine"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

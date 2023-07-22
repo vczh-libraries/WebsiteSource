@@ -1,0 +1,9 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a functor from a method.</summary><typeparam name="C">Type of the class that this method belongs to.</typeparam><param name="sender">The object that this method belongs to.</param><param name="function">The method pointer.</param><signature><![CDATA[template <
+    typename C
+>
+ Func(
+    C * sender,
+    R( C:: * function)(
+TArgs...)
+);
+]]></signature></Document>

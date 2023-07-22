@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetText"><summary>
+ Returns the whole string in the text lines.
+ </summary><returns>The string.</returns><signature><![CDATA[WString GetText(
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentStylePropertiesRun"><summary>Pepresents a style properties run.</summary><signature><![CDATA[class DocumentStylePropertiesRun
+    : DocumentContainerRun
+    , Description<DocumentStylePropertiesRun>;
+]]></signature><seealsos><symbol name="DocumentStylePropertiesRun" docId="vl::presentation::DocumentStylePropertiesRun"/></seealsos><basetypes><symbol name="DocumentContainerRun" docId="vl::presentation::DocumentContainerRun"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="leftButtonDoubleClick"><summary>Left mouse button double click event.</summary><signature><![CDATA[GuiMouseEvent leftButtonDoubleClick;
+]]></signature><seealsos><symbol name="GuiMouseEvent"/></seealsos></Document>

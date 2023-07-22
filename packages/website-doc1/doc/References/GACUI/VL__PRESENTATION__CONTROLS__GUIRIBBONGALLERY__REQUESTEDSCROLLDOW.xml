@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="RequestedScrollDown"><summary>Scroll down button clicked event.</summary><signature><![CDATA[compositions::GuiNotifyEvent RequestedScrollDown;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

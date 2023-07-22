@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ShortcutTextChanged"><summary>Shortcut text changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ShortcutTextChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

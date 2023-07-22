@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="GetIgnoreChildControlMouseEvents"><summary>
+ Test if the button ignores mouse events raised in child controls.
+ When this property is false,
+ the button reacts to mouse operations even when it happens on contained child controls.
+ </summary><returns>Returns true if the button ignores mouse events raised in child controls.</returns><signature><![CDATA[bool GetIgnoreChildControlMouseEvents(
+);
+]]></signature></Document>

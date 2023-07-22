@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetShape"><summary>
+ Set the shape.
+ </summary><param name="value">The new shape.</param><signature><![CDATA[void SetShape(
+    ElementShape value
+);
+]]></signature><seealsos><symbol name="ElementShape" docId="vl::presentation::elements::ElementShape"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="codeIndex"><summary>The &quot;codeIndex&quot; argument from <symbol name="Parse" docId="vl::regex::RegexLexer::Parse@::vl::regex::RegexTokens(::vl::WString const &amp;, ::vl::vint)"/>.</summary><signature><![CDATA[vint codeIndex;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiListControl"><summary>Represents a list control. A list control automatically read data sources and creates corresponding data item control from the item template.</summary><signature><![CDATA[class GuiListControl
+    : GuiScrollView
+    , Description<GuiListControl>;
+]]></signature><seealsos><symbol name="GuiListControl" docId="vl::presentation::controls::GuiListControl"/></seealsos><basetypes><symbol name="GuiScrollView" docId="vl::presentation::controls::GuiScrollView"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

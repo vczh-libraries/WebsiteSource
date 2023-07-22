@@ -1,0 +1,6 @@
+<Document accessor="public" category="Variable" name="deleter"><summary>
+ The deleter which deletes <symbol name="interTokenState" docId="vl::regex::RegexProcessingToken::interTokenState"/> created by <symbol name="extendProc" docId="vl::regex::RegexProc::extendProc"/>.
+ This callback is not called automatically.
+ It is here to make the maintainance convenient for the caller.
+ </summary><signature><![CDATA[RegexInterTokenStateDeleter deleter;
+]]></signature><seealsos><symbol name="RegexInterTokenStateDeleter"/></seealsos></Document>

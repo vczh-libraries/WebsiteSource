@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="WriteString"><summary>Write a string.</summary><param name="string">The string to write.</param><signature><![CDATA[void WriteString(
+    WString const & string
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

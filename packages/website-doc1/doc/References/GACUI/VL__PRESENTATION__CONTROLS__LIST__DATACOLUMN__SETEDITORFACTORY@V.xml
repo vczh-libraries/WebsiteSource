@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetEditorFactory"><summary>Set the editor factory for the column.</summary><param name="value">The editor factory.</param><signature><![CDATA[void SetEditorFactory(
+    Ptr<IDataEditorFactory> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IDataEditorFactory" docId="vl::presentation::controls::list::IDataEditorFactory"/></seealsos></Document>

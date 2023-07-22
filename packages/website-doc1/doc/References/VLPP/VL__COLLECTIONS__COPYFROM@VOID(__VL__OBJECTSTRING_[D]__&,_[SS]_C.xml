@@ -1,0 +1,10 @@
+<Document accessor="" category="Function" name="CopyFrom"><summary>Copy containers.</summary><typeparam name="D">Type of code points in the target string.</typeparam><typeparam name="Ss">Type of the source container.</typeparam><param name="ds">The target string.</param><param name="ss">The source container.</param><param name="append">Set to true to perform appending instead of replacing.</param><signature><![CDATA[template <
+    typename D, 
+    typename Ss
+>
+void CopyFrom(
+    ObjectString<D> & ds,
+    Ss const & ss,
+    bool append /* optional */
+);
+]]></signature><seealsos><symbol name="ObjectString" docId="vl::ObjectString"/></seealsos></Document>

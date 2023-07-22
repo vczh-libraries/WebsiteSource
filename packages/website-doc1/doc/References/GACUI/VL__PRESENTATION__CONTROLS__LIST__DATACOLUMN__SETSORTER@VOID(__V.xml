@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSorter"><summary>Set the sorter for the column.</summary><param name="value">The sorter.</param><signature><![CDATA[void SetSorter(
+    Ptr<IDataSorter> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IDataSorter"/></seealsos></Document>

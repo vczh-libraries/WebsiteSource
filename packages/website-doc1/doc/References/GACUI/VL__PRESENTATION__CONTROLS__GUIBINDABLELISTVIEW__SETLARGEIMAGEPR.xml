@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetLargeImageProperty"><summary>Set the large image property name to get the large image from an item.</summary><param name="value">The large image property name.</param><signature><![CDATA[void SetLargeImageProperty(
+    ItemProperty<Ptr<GuiImageData>> const & value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/><symbol name="ItemProperty"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="selectedFocused"><summary>
+ Colors in focused and selected state.
+ </summary><signature><![CDATA[ColorItem selectedFocused;
+]]></signature><seealsos><symbol name="ColorItem" docId="vl::presentation::elements::text::ColorItem"/></seealsos></Document>

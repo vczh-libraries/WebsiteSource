@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiDocumentLabel"><summary>Static document viewer for displaying <symbol name="DocumentModel" docId="vl::presentation::DocumentModel"/>.</summary><signature><![CDATA[class GuiDocumentLabel
+    : GuiControl
+    , GuiDocumentCommonInterface
+    , Description<GuiDocumentLabel>;
+]]></signature><seealsos><symbol name="GuiDocumentLabel" docId="vl::presentation::controls::GuiDocumentLabel"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="GuiDocumentCommonInterface" docId="vl::presentation::controls::GuiDocumentCommonInterface"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

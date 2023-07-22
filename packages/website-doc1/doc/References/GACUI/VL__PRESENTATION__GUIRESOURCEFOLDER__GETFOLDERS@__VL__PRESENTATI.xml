@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetFolders"><summary>Get all sub folders.</summary><returns>All sub folders.</returns><signature><![CDATA[FolderList const & GetFolders(
+);
+]]></signature><seealsos><symbol name="FolderList"/></seealsos></Document>

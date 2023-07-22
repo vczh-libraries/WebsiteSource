@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetMainWindow"><summary>Get the main window.</summary><returns>The main window.</returns><signature><![CDATA[GuiWindow * GetMainWindow(
+);
+]]></signature><seealsos><symbol name="GuiWindow" docId="vl::presentation::controls::GuiWindow"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiRepeatCompositionBase"><summary>A base class for all bindable repeat compositions.</summary><signature><![CDATA[class GuiRepeatCompositionBase
+    : Object
+    , Description<GuiRepeatCompositionBase>;
+]]></signature><seealsos><symbol name="GuiRepeatCompositionBase" docId="vl::presentation::compositions::GuiRepeatCompositionBase"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

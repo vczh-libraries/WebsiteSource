@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="secure"><summary>Set to true if the request uses SSL, or https.</summary><signature><![CDATA[bool secure;
+]]></signature></Document>

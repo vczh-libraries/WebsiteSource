@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="OnItemExpanded"><summary>Called when a node is expanded.</summary><param name="node">The node.</param><signature><![CDATA[void OnItemExpanded(
+    INodeProvider * node
+);
+]]></signature><seealsos><symbol name="INodeProvider" docId="vl::presentation::controls::tree::INodeProvider"/></seealsos></Document>

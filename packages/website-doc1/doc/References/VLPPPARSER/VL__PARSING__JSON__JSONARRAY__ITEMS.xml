@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="items"><summary>Array elements.</summary><signature><![CDATA[vl::collections::List<vl::Ptr<JsonNode>> items;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List" docId="vl::collections::List"/><symbol name="JsonNode" docId="vl::parsing::json::JsonNode"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="style"><summary>Style properties.</summary><signature><![CDATA[Ptr<DocumentStyleProperties> style;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="DocumentStyleProperties" docId="vl::presentation::DocumentStyleProperties"/></seealsos></Document>

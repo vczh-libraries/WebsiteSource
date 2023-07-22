@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="RenameStyle"><summary>Rename a style.</summary><param name="oldStyleName">The name of the style.</param><param name="newStyleName">The new name.</param><signature><![CDATA[void RenameStyle(
+    WString const & oldStyleName,
+    WString const & newStyleName
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

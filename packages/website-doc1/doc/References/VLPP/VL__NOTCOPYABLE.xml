@@ -1,0 +1,2 @@
+<Document accessor="" category="Class" name="NotCopyable"><summary>Base type for all classes to stop generating default copy constructors.</summary><signature><![CDATA[class NotCopyable;
+]]></signature></Document>

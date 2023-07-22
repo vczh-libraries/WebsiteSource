@@ -1,0 +1,8 @@
+<Document accessor="public" category="Function" name="DelayExecute"><summary>
+ Delay execute a specified function with an specified argument asynchronisly.
+ </summary><returns>The Delay execution controller for this task.</returns><param name="proc">The specified function.</param><param name="milliseconds">Time to delay.</param><signature><![CDATA[Ptr<INativeDelay> DelayExecute(
+    Func<void(
+)> const & proc,
+    vint milliseconds
+);
+]]></signature><seealsos><symbol name="Func"/><symbol name="Ptr" docId="vl::Ptr"/><symbol name="INativeDelay" docId="vl::presentation::INativeDelay"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

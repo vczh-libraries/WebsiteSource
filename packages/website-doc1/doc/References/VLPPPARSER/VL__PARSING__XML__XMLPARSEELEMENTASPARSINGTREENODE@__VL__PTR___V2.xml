@@ -1,0 +1,6 @@
+<Document accessor="" category="Function" name="XmlParseElementAsParsingTreeNode"><summary>Parse an XML element.</summary><returns>Returns the parsing result as a weak-typed AST node. Returns null if there is any unrecoverable error during parsing.</returns><param name="input">The input for parsing.</param><param name="table">The return value from <symbol name="XmlLoadTable" docId="vl::parsing::xml::XmlLoadTable@::vl::Ptr&lt;::vl::parsing::tabling::ParsingTable&gt;()"/>.</param><param name="codeIndex">(Optional): This argument will be copied to <symbol name="codeIndex" docId="vl::parsing::ParsingTextRange::codeIndex"/> in every AST nodes. The default value is -1.</param><signature><![CDATA[vl::Ptr<vl::parsing::ParsingTreeNode> XmlParseElementAsParsingTreeNode(
+    vl::WString const & input,
+    vl::Ptr<vl::parsing::tabling::ParsingTable> table,
+    vl::vint codeIndex /* optional */
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="ParsingTreeNode" docId="vl::parsing::ParsingTreeNode"/><symbol name="ParsingTable" docId="vl::parsing::tabling::ParsingTable"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

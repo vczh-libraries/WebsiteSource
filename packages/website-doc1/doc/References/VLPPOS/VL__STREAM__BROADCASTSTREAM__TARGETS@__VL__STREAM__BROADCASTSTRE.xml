@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="Targets"><summary>
+ Get the list of output streams.
+ You can change this list to subscribe or unsubscribe.
+ </summary><returns>The list of output streams.</returns><signature><![CDATA[StreamList & Targets(
+);
+]]></signature><seealsos><symbol name="StreamList"/></seealsos></Document>

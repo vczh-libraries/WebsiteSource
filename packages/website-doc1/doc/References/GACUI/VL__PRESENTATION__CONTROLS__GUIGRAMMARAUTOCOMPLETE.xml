@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiGrammarAutoComplete"><summary>Grammar based auto complete controller.</summary><signature><![CDATA[class GuiGrammarAutoComplete
+    : GuiTextBoxAutoCompleteBase
+    , RepeatingParsingExecutor::CallbackBase
+    , RepeatingTaskExecutor<RepeatingParsingOutput>;
+]]></signature><seealsos><symbol name="RepeatingParsingOutput" docId="vl::presentation::controls::RepeatingParsingOutput"/></seealsos><basetypes><symbol name="RepeatingTaskExecutor" docId="vl::RepeatingTaskExecutor"/><symbol name="GuiTextBoxAutoCompleteBase" docId="vl::presentation::controls::GuiTextBoxAutoCompleteBase"/><symbol name="CallbackBase" docId="vl::presentation::controls::RepeatingParsingExecutor::CallbackBase"/></basetypes></Document>

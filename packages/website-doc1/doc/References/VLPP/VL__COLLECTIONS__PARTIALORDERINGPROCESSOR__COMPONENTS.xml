@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="components"><summary>After <symbol name="Sort" docId="vl::collections::PartialOrderingProcessor::Sort@void()"/> is called, this field stores all sorted components in order.</summary><signature><![CDATA[List<po::Component> components;
+]]></signature><seealsos><symbol name="List" docId="vl::collections::List"/><symbol name="Component" docId="vl::collections::po::Component"/></seealsos></Document>

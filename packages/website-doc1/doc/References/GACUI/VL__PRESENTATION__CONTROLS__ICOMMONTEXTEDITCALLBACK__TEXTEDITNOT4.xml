@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="inputEnd"><summary>The end position of the selection after replacing.</summary><signature><![CDATA[TextPos inputEnd;
+]]></signature><seealsos><symbol name="TextPos" docId="vl::presentation::TextPos"/></seealsos></Document>

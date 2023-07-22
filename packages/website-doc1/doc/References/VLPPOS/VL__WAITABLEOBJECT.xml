@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="WaitableObject"><summary>Base type of all synchronization objects.</summary><signature><![CDATA[class WaitableObject
+    : Object
+    , NotCopyable;
+]]></signature><basetypes><symbol name="NotCopyable" docId="vl::NotCopyable"/><symbol name="Object" docId="vl::Object"/></basetypes></Document>

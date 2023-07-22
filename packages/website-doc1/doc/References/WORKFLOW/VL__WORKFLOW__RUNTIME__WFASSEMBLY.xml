@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="WfAssembly"><summary>Representing a Workflow assembly.</summary><signature><![CDATA[class WfAssembly
+    : Object
+    , reflection::Description<WfAssembly>;
+]]></signature><seealsos><symbol name="WfAssembly" docId="vl::workflow::runtime::WfAssembly"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

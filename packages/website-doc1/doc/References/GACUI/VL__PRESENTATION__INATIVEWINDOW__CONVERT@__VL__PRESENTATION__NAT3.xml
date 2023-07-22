@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="Convert"><summary>
+ Convert margin from GUI coordinate to native coordinate.
+ </summary><returns>The converted result.</returns><param name="value">The coordinate to convert.</param><signature><![CDATA[NativeMargin Convert(
+    Margin value
+);
+]]></signature><seealsos><symbol name="Margin"/><symbol name="NativeMargin"/></seealsos></Document>

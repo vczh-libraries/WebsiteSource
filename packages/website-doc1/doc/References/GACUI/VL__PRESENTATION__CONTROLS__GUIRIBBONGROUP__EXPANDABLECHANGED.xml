@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ExpandableChanged"><summary>Expandable changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ExpandableChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

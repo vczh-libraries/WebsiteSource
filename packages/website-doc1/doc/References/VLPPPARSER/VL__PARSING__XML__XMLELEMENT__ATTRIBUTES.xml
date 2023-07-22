@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="attributes"><summary>Attributes of the element.</summary><signature><![CDATA[vl::collections::List<vl::Ptr<XmlAttribute>> attributes;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List" docId="vl::collections::List"/><symbol name="XmlAttribute" docId="vl::parsing::xml::XmlAttribute"/></seealsos></Document>

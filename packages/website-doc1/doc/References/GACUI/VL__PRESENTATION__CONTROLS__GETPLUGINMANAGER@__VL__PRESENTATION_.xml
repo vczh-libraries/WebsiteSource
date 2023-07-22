@@ -1,0 +1,3 @@
+<Document accessor="" category="Function" name="GetPluginManager"><summary>Get the global <symbol name="IGuiPluginManager" docId="vl::presentation::controls::IGuiPluginManager"/> object.</summary><returns>The global <symbol name="GuiApplication" docId="vl::presentation::controls::GuiApplication"/> object.</returns><signature><![CDATA[IGuiPluginManager * GetPluginManager(
+);
+]]></signature><seealsos><symbol name="IGuiPluginManager" docId="vl::presentation::controls::IGuiPluginManager"/></seealsos></Document>

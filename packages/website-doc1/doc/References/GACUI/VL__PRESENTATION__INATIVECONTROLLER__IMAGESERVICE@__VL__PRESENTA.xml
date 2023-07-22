@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="ImageService"><summary>
+ Get the image service.
+ </summary><returns>The image service</returns><signature><![CDATA[INativeImageService * ImageService(
+);
+]]></signature><seealsos><symbol name="INativeImageService" docId="vl::presentation::INativeImageService"/></seealsos></Document>

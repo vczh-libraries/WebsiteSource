@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="NodeLeftButtonDoubleClick"><summary>Node left mouse button double click event.</summary><signature><![CDATA[compositions::GuiNodeMouseEvent NodeLeftButtonDoubleClick;
+]]></signature><seealsos><symbol name="GuiNodeMouseEvent"/></seealsos></Document>

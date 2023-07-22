@@ -1,0 +1,8 @@
+<Document accessor="" category="Class" name="IGuiGraphicsElement"><summary>
+ This is the interface for graphics elements.
+ Graphics elements usually contains some information and helper functions for visible things.
+ An graphics elements should be created using ElementType::Create.
+ </summary><signature><![CDATA[class IGuiGraphicsElement
+    : IDescriptable
+    , Description<IGuiGraphicsElement>;
+]]></signature><seealsos><symbol name="IGuiGraphicsElement" docId="vl::presentation::elements::IGuiGraphicsElement"/></seealsos><basetypes><symbol name="Description" docId="vl::reflection::Description"/><symbol name="IDescriptable" docId="vl::reflection::IDescriptable"/></basetypes></Document>

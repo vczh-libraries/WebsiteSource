@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Opened"><summary>
+ Called when the window is opened.
+ </summary><signature><![CDATA[void Opened(
+);
+]]></signature></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetDropdownPopup"><summary>Set the dropdown context menu of this item.</summary><param name="value">The dropdown context menu of this item.</param><signature><![CDATA[void SetDropdownPopup(
+    GuiMenu * value
+);
+]]></signature><seealsos><symbol name="GuiMenu" docId="vl::presentation::controls::GuiMenu"/></seealsos></Document>

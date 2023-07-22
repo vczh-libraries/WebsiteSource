@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="SelectionChanged"><summary>Selection changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent SelectionChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

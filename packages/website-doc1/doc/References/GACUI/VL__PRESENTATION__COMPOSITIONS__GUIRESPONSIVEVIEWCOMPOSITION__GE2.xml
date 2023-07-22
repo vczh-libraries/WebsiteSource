@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetCurrentView"><summary>Get the current displaying view.</summary><returns>The current displaying view.</returns><signature><![CDATA[GuiResponsiveCompositionBase * GetCurrentView(
+);
+]]></signature><seealsos><symbol name="GuiResponsiveCompositionBase" docId="vl::presentation::compositions::GuiResponsiveCompositionBase"/></seealsos></Document>

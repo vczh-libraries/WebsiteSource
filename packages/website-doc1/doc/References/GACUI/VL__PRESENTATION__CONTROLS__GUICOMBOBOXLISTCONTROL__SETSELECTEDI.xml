@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetSelectedIndex"><summary>Set the selected index.</summary><param name="value">The selected index.</param><signature><![CDATA[void SetSelectedIndex(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

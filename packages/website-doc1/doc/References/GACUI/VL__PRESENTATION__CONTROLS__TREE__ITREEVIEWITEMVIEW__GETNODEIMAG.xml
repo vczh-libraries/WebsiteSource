@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetNodeImage"><summary>Get the image of a node.</summary><returns>Get the image of a node.</returns><param name="node">The node.</param><signature><![CDATA[Ptr<GuiImageData> GetNodeImage(
+    INodeProvider * node
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/><symbol name="INodeProvider" docId="vl::presentation::controls::tree::INodeProvider"/></seealsos></Document>

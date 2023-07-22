@@ -1,0 +1,2 @@
+<Document accessor="" category="Struct" name="GuiResourcePrecompileContext"><summary>Provide a context for resource precompiling</summary><signature><![CDATA[struct GuiResourcePrecompileContext;
+]]></signature></Document>

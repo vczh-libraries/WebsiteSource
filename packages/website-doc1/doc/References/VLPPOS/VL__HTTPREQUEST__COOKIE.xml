@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="cookie"><summary>Cookie. Set to empty if cookie is not needed.</summary><signature><![CDATA[WString cookie;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

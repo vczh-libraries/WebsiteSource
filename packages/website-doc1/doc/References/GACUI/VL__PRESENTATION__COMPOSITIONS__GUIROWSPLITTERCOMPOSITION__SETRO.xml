@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetRowsToTheTop"><summary>Set the number of rows that above the splitter.</summary><param name="value">The number of rows that above the splitter</param><signature><![CDATA[void SetRowsToTheTop(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

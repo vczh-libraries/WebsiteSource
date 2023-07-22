@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="ToFullWidth"><summary>Convert characters to the full width.</summary><returns>The converted string.</returns><param name="str">The string to convert.</param><remarks>This function is only available in Windows.</remarks><signature><![CDATA[WString ToFullWidth(
+    WString const & str
+) const;
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

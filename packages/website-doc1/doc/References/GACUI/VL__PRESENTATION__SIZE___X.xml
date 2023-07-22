@@ -1,0 +1,4 @@
+<Document accessor="public" category="Variable" name="x"><summary>
+ Size in x dimension.
+ </summary><signature><![CDATA[T x;
+]]></signature></Document>

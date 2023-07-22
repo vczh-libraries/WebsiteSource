@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemRightButtonDoubleClick"><summary>Item right mouse button double click event.</summary><signature><![CDATA[compositions::GuiItemMouseEvent ItemRightButtonDoubleClick;
+]]></signature><seealsos><symbol name="GuiItemMouseEvent"/></seealsos></Document>

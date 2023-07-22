@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create a column with the specified text and size.</summary><param name="_text">The specified text.</param><param name="_size">The specified size.</param><signature><![CDATA[ ListViewColumn(
+    WString const & _text /* optional */,
+    vint _size /* optional */
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

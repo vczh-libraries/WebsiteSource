@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="JsonObjectField"><summary>Object property node.</summary><signature><![CDATA[class JsonObjectField
+    : JsonNode
+    , vl::reflection::Description<JsonObjectField>;
+]]></signature><seealsos><symbol name="JsonObjectField" docId="vl::parsing::json::JsonObjectField"/></seealsos><basetypes><symbol name="JsonNode" docId="vl::parsing::json::JsonNode"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

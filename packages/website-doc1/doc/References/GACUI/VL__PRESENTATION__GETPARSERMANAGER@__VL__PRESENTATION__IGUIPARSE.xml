@@ -1,0 +1,3 @@
+<Document accessor="" category="Function" name="GetParserManager"><summary>Get the global <symbol name="IGuiParserManager" docId="vl::presentation::IGuiParserManager"/> object.</summary><returns>The parser manager.</returns><signature><![CDATA[IGuiParserManager * GetParserManager(
+);
+]]></signature><seealsos><symbol name="IGuiParserManager" docId="vl::presentation::IGuiParserManager"/></seealsos></Document>

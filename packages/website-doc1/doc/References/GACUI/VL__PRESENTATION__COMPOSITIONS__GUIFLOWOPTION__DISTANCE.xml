@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="distance"><summary>The distance value.</summary><signature><![CDATA[vint distance;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

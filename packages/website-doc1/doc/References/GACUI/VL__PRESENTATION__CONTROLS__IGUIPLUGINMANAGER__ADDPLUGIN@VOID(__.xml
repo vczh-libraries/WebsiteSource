@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="AddPlugin"><summary>Add a plugin before <symbol name="Load" docId="vl::presentation::controls::IGuiPluginManager::Load@void()"/> is called.</summary><param name="plugin">The plugin.</param><signature><![CDATA[void AddPlugin(
+    Ptr<IGuiPlugin> plugin
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IGuiPlugin" docId="vl::presentation::controls::IGuiPlugin"/></seealsos></Document>

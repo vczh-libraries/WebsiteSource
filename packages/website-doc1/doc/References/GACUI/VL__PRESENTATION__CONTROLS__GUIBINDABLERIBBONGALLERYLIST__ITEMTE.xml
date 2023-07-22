@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemTemplateChanged"><summary>Item template changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent ItemTemplateChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

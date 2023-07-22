@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="RequestedDropdown"><summary>Dropdown button clicked event.</summary><signature><![CDATA[compositions::GuiNotifyEvent RequestedDropdown;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

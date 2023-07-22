@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="right"><summary>True if the right mouse button is pressed.</summary><signature><![CDATA[bool right;
+]]></signature></Document>

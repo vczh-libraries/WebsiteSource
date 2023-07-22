@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Setup"><summary>Set a target <b>writable</b> stream to receive data. <symbol name="Write" docId="vl::stream::IEncoder::Write@::vl::vint(void *, ::vl::vint)"/> transforms the content and write to this tream.</summary><param name="_stream">The target <b>writable</b> stream.</param><signature><![CDATA[void Setup(
+    IStream * _stream
+);
+]]></signature><seealsos><symbol name="IStream" docId="vl::stream::IStream"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create the parse using a parsing table.</summary><param name="_table">The parsing table.</param><signature><![CDATA[ ParsingAmbiguousParser(
+    Ptr<ParsingTable> _table /* optional */
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="ParsingTable" docId="vl::parsing::tabling::ParsingTable"/></seealsos></Document>

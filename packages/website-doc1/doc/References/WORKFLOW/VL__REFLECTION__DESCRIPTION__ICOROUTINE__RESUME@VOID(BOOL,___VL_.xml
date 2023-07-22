@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Resume"><summary>Resume the coroutine.</summary><param name="raiseException">Set to true to raise an exception that the coroutine encountered. The same exception is accessible by <symbol name="GetFailure" docId="vl::reflection::description::ICoroutine::GetFailure@::vl::Ptr&lt;::vl::reflection::description::IValueException&gt;()"/>.</param><param name="output">Input for the coroutine in this resuming.</param><signature><![CDATA[void Resume(
+    bool raiseException,
+    Ptr<CoroutineResult> output
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="CoroutineResult" docId="vl::reflection::description::CoroutineResult"/></seealsos></Document>

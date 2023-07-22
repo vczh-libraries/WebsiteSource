@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="AdoptedSizeInvalidated"><summary>Adopted size invalidated.</summary><signature><![CDATA[compositions::GuiNotifyEvent AdoptedSizeInvalidated;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

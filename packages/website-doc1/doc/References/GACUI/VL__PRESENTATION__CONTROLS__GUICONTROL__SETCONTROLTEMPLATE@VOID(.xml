@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetControlTemplate"><summary>Set the associated control template.</summary><param name="value">The control template.</param><signature><![CDATA[void SetControlTemplate(
+    ControlTemplatePropertyType const & value
+);
+]]></signature><seealsos><symbol name="ControlTemplatePropertyType"/></seealsos></Document>

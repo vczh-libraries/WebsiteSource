@@ -1,0 +1,6 @@
+<Document accessor="" category="Class" name="TextLines"><summary>
+ A class to maintain multiple lines of text buffer.
+ </summary><signature><![CDATA[class TextLines
+    : Object
+    , Description<TextLines>;
+]]></signature><seealsos><symbol name="TextLines" docId="vl::presentation::elements::text::TextLines"/></seealsos><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

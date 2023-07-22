@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetContainerComposition"><summary>Get the container composition for the control.</summary><returns>The container composition.</returns><signature><![CDATA[compositions::GuiGraphicsComposition * GetContainerComposition(
+);
+]]></signature><seealsos><symbol name="GuiGraphicsComposition" docId="vl::presentation::compositions::GuiGraphicsComposition"/></seealsos></Document>

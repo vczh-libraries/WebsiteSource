@@ -1,0 +1,8 @@
+<Document accessor="public" category="Enum" name="ExecuteStatus"><summary>Delay execution controller status.</summary><enumitem name="Canceled">Canceled.</enumitem><enumitem name="Executed">Executed.</enumitem><enumitem name="Executing">Executing.</enumitem><enumitem name="Pending">Pending.</enumitem><signature><![CDATA[enum ExecuteStatus
+{
+    Pending,
+    Executing,
+    Executed,
+    Canceled,
+};
+]]></signature></Document>

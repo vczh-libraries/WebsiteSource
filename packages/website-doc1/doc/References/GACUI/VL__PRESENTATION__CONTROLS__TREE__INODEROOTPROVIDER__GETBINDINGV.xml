@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetBindingValue"><summary>Get the binding value of a node.</summary><returns>The binding value of a node.</returns><param name="node">The node.</param><signature><![CDATA[description::Value GetBindingValue(
+    INodeProvider * node
+);
+]]></signature><seealsos><symbol name="INodeProvider" docId="vl::presentation::controls::tree::INodeProvider"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>

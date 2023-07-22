@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Visit"><summary>A callback that is called if the node accepting this visitor is <symbol name="XmlElement" docId="vl::parsing::xml::XmlElement"/>.</summary><param name="node">The strong-typed AST node in its real type.</param><signature><![CDATA[void Visit(
+    XmlElement * node
+);
+]]></signature><seealsos><symbol name="XmlElement" docId="vl::parsing::xml::XmlElement"/></seealsos></Document>

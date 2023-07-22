@@ -1,0 +1,30 @@
+<Document accessor="public" category="Enum" name="FormatType"><summary>
+ Represents an image format.
+ </summary><enumitem name="Bmp">
+ Bitmap format.
+ </enumitem><enumitem name="Gif">
+ GIF format.
+ </enumitem><enumitem name="Icon">
+ Icon format.
+ </enumitem><enumitem name="Jpeg">
+ JPEG format.
+ </enumitem><enumitem name="Png">
+ PNG format.
+ </enumitem><enumitem name="Tiff">
+ TIFF format.
+ </enumitem><enumitem name="Unknown">
+ Unknown format.
+ </enumitem><enumitem name="Wmp">
+ WMP format.
+ </enumitem><signature><![CDATA[enum FormatType
+{
+    Bmp,
+    Gif,
+    Icon,
+    Jpeg,
+    Png,
+    Tiff,
+    Wmp,
+    Unknown,
+};
+]]></signature></Document>

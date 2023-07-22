@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="JsonString"><summary>String literal value node.</summary><signature><![CDATA[class JsonString
+    : JsonNode
+    , vl::reflection::Description<JsonString>;
+]]></signature><seealsos><symbol name="JsonString" docId="vl::parsing::json::JsonString"/></seealsos><basetypes><symbol name="JsonNode" docId="vl::parsing::json::JsonNode"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

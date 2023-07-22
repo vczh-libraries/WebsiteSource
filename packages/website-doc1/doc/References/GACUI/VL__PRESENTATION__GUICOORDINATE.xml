@@ -1,0 +1,4 @@
+<Document accessor="" category="TypeAlias" name="GuiCoordinate"><summary>
+ Represents a position in the local window coordinate space, which is DPI awared.
+ </summary><signature><![CDATA[using GuiCoordinate = vint;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetParsingTable"><summary>Get a parsing table by name.</summary><returns>The parsing table.</returns><param name="name">The name.</param><signature><![CDATA[Ptr<Table> GetParsingTable(
+    WString const & name
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="Table"/></seealsos></Document>

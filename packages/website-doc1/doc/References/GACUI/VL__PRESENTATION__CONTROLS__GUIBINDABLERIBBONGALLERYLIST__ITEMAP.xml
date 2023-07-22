@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ItemApplied"><summary>Item applied event.</summary><signature><![CDATA[compositions::GuiItemNotifyEvent ItemApplied;
+]]></signature><seealsos><symbol name="GuiItemNotifyEvent"/></seealsos></Document>

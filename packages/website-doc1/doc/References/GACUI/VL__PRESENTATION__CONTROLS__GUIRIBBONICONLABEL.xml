@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiRibbonIconLabel"><summary>Auto resizable ribbon icon label.</summary><signature><![CDATA[class GuiRibbonIconLabel
+    : GuiControl
+    , Description<GuiRibbonIconLabel>;
+]]></signature><seealsos><symbol name="GuiRibbonIconLabel" docId="vl::presentation::controls::GuiRibbonIconLabel"/></seealsos><basetypes><symbol name="GuiControl" docId="vl::presentation::controls::GuiControl"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

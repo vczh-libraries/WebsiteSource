@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiGrammarColorizer"><summary>Grammar based colorizer.</summary><signature><![CDATA[class GuiGrammarColorizer
+    : GuiTextBoxRegexColorizer
+    , RepeatingParsingExecutor::CallbackBase;
+]]></signature><basetypes><symbol name="GuiTextBoxRegexColorizer" docId="vl::presentation::controls::GuiTextBoxRegexColorizer"/><symbol name="CallbackBase" docId="vl::presentation::controls::RepeatingParsingExecutor::CallbackBase"/></basetypes></Document>

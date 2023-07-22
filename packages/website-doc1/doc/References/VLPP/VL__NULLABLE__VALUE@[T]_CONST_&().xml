@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="Value"><summary>Return the data inside this nullable value</summary><returns>The data inside this nullable value. It crashes when it is null.</returns><signature><![CDATA[T const & Value(
+) const;
+]]></signature></Document>

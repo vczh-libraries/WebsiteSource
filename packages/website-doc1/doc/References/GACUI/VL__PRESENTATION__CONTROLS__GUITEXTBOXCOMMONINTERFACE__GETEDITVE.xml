@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetEditVersion"><summary>Get the current edit version. When the control is modified, the edit version increased. Calling <symbol name="NotifyModificationSaved" docId="vl::presentation::controls::GuiTextBoxCommonInterface::NotifyModificationSaved@void()"/> will not reset the edit version.</summary><returns>The current edit version.</returns><signature><![CDATA[vuint GetEditVersion(
+);
+]]></signature><seealsos><symbol name="vuint" docId="vl::vuint"/></seealsos></Document>

@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="GetKeyName"><summary>
+ Get the name of a key.
+ </summary><returns>The name of a key.</returns><param name="code">The key code.</param><signature><![CDATA[WString GetKeyName(
+    VKEY code
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="VKEY"/></seealsos></Document>

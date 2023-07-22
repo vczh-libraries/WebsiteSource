@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Set"><summary>Set data to this storage.</summary><param name="value">The data to set.</param><signature><![CDATA[void Set(
+    T const & value
+);
+]]></signature></Document>

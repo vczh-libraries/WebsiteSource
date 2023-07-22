@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Move a shared pointer.</summary><param name="pointer">The shared pointer to Move.</param><signature><![CDATA[ Ptr(
+    Ptr<T> && pointer
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/></seealsos></Document>

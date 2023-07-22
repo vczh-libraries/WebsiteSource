@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="middle"><summary>True if the middle mouse button is pressed.</summary><signature><![CDATA[bool middle;
+]]></signature></Document>

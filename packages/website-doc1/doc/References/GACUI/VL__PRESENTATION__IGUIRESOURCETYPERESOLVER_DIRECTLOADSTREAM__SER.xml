@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SerializePrecompiled"><summary>Serialize a precompiled resource to a stream.</summary><param name="resource">The resource item containing the resource.</param><param name="content">The content to serialize.</param><param name="binaryStream">The stream.</param><signature><![CDATA[void SerializePrecompiled(
+    Ptr<GuiResourceItem> resource,
+    Ptr<DescriptableObject> content,
+    stream::IStream & binaryStream
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiResourceItem" docId="vl::presentation::GuiResourceItem"/><symbol name="DescriptableObject" docId="vl::reflection::DescriptableObject"/><symbol name="IStream" docId="vl::stream::IStream"/></seealsos></Document>

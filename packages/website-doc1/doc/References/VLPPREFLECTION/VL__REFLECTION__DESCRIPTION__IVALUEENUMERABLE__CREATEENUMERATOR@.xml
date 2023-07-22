@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="CreateEnumerator"><summary>
+ Create an enumerator. <symbol name="Next" docId="vl::reflection::description::IValueEnumerator::Next@bool()"/> should be called before reading the first value.
+ </summary><returns>The enumerator.</returns><signature><![CDATA[Ptr<IValueEnumerator> CreateEnumerator(
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IValueEnumerator" docId="vl::reflection::description::IValueEnumerator"/></seealsos></Document>

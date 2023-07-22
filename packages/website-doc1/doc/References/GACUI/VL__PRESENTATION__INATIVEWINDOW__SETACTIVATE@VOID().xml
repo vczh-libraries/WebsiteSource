@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetActivate"><summary>
+ Activate to the window.
+ If the window disabled activation, this function enables it again.
+ </summary><signature><![CDATA[void SetActivate(
+);
+]]></signature></Document>

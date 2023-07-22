@@ -1,0 +1,5 @@
+<Document accessor="" category="Class" name="GuiRepeatStackComposition"><summary>Bindable stack composition.</summary><signature><![CDATA[class GuiRepeatStackComposition
+    : GuiStackComposition
+    , GuiRepeatCompositionBase
+    , Description<GuiRepeatStackComposition>;
+]]></signature><seealsos><symbol name="GuiRepeatStackComposition" docId="vl::presentation::compositions::GuiRepeatStackComposition"/></seealsos><basetypes><symbol name="GuiRepeatCompositionBase" docId="vl::presentation::compositions::GuiRepeatCompositionBase"/><symbol name="GuiStackComposition" docId="vl::presentation::compositions::GuiStackComposition"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

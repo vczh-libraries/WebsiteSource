@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="EnableActivate"><summary>
+ Enable activation to the window.
+ </summary><signature><![CDATA[void EnableActivate(
+);
+]]></signature></Document>

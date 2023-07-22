@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="NodeCollapsed"><summary>Node collapsed event.</summary><signature><![CDATA[compositions::GuiNodeNotifyEvent NodeCollapsed;
+]]></signature><seealsos><symbol name="GuiNodeNotifyEvent"/></seealsos></Document>

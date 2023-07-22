@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="DocumentImageRun"><summary>Pepresents a image run.</summary><signature><![CDATA[class DocumentImageRun
+    : DocumentInlineObjectRun
+    , Description<DocumentImageRun>;
+]]></signature><seealsos><symbol name="DocumentImageRun" docId="vl::presentation::DocumentImageRun"/></seealsos><basetypes><symbol name="DocumentInlineObjectRun" docId="vl::presentation::DocumentInlineObjectRun"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,7 @@
+<Document accessor="public" category="Function" name="Setup"><summary>
+ Set a target <b>readable</b> stream.
+ <symbol name="Read" docId="vl::stream::IDecoder::Read@::vl::vint(void *, ::vl::vint)"/> reads from this tream and transform the content.
+ </summary><param name="_stream">The target <b>readable</b> stream.</param><signature><![CDATA[void Setup(
+    IStream * _stream
+);
+]]></signature><seealsos><symbol name="IStream" docId="vl::stream::IStream"/></seealsos></Document>

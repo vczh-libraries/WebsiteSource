@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="AttachListControl"><summary>Called when an item arranger in installed to a <symbol name="GuiListControl" docId="vl::presentation::controls::GuiListControl"/>.</summary><param name="value">The list control.</param><signature><![CDATA[void AttachListControl(
+    GuiListControl * value
+);
+]]></signature><seealsos><symbol name="GuiListControl" docId="vl::presentation::controls::GuiListControl"/></seealsos></Document>

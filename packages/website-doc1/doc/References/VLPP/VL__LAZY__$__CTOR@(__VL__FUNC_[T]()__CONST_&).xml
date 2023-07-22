@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="$__ctor"><summary>Create an evaluation using a function, which produces the evaluation result.</summary><param name="evaluator">The function.</param><signature><![CDATA[ Lazy(
+    Func<T(
+)> const & evaluator
+);
+]]></signature><seealsos><symbol name="Func"/></seealsos></Document>

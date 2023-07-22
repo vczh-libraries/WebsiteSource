@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="WfRuntimeCallStackInfo"><summary>Representing a call stack item.</summary><signature><![CDATA[class WfRuntimeCallStackInfo
+    : Object
+    , reflection::description::IValueCallStack;
+]]></signature><basetypes><symbol name="Object" docId="vl::Object"/><symbol name="IValueCallStack"/></basetypes></Document>

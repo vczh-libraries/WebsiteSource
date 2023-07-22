@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetFont"><summary>Replace the font within the specified range.</summary><param name="start">The position of the first character of the specified range.</param><param name="length">The length of the specified range by character.</param><param name="value">The font.</param><returns>Returns true if this operation succeeded.</returns><signature><![CDATA[bool SetFont(
+    vint start,
+    vint length,
+    WString const & value
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

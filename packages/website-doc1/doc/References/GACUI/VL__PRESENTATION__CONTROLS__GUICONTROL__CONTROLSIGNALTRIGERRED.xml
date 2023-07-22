@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="ControlSignalTrigerred"><summary>Control signal trigerred. This raises be raised because of multiple reason specified in the argument.</summary><signature><![CDATA[compositions::GuiControlSignalEvent ControlSignalTrigerred;
+]]></signature><seealsos><symbol name="GuiControlSignalEvent"/></seealsos></Document>

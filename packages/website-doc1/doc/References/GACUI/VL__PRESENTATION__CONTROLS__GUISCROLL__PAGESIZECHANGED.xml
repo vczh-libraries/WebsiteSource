@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="PageSizeChanged"><summary>Page size changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent PageSizeChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

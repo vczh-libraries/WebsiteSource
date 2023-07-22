@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiResourceFolder"><summary>Resource folder. A resource folder contains many sub folders and sub items.</summary><signature><![CDATA[class GuiResourceFolder
+    : GuiResourceNodeBase
+    , Description<GuiResourceFolder>;
+]]></signature><seealsos><symbol name="GuiResourceFolder" docId="vl::presentation::GuiResourceFolder"/></seealsos><basetypes><symbol name="GuiResourceNodeBase" docId="vl::presentation::GuiResourceNodeBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetFont"><summary>Set the font of this control.</summary><param name="value">The font of this control.</param><signature><![CDATA[void SetFont(
+    Nullable<FontProperties> const & value
+);
+]]></signature><seealsos><symbol name="Nullable" docId="vl::Nullable"/><symbol name="FontProperties" docId="vl::presentation::FontProperties"/></seealsos></Document>

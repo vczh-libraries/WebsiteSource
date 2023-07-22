@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="Result"><summary>Returns true if the type is a Plain-Old-Data type.</summary><signature><![CDATA[static bool const Result;
+]]></signature></Document>

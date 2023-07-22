@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetCaretColor"><summary>
+ Set the color of the caret.
+ </summary><param name="value">The color of the caret.</param><signature><![CDATA[void SetCaretColor(
+    Color value
+);
+]]></signature><seealsos><symbol name="Color" docId="vl::presentation::Color"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetImportUri"><summary>Set the import uri for this folder.</summary><param name="uri">The import uri for this folder. Set an empty string for non-import folders</param><signature><![CDATA[void SetImportUri(
+    WString const & uri
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

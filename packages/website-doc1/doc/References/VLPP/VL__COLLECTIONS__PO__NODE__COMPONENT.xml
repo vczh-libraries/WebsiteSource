@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="component"><summary>The index used in <symbol name="components" docId="vl::collections::PartialOrderingProcessor::components"/>, specifying the component that contain this node.</summary><signature><![CDATA[vint component;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

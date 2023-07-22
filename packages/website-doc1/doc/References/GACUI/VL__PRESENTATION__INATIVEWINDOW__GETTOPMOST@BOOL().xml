@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetTopMost"><summary>
+ Test is the window always on top of the desktop.
+ </summary><returns>Returns true if the window is always on top of the desktop.</returns><signature><![CDATA[bool GetTopMost(
+);
+]]></signature></Document>

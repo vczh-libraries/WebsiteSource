@@ -1,0 +1,2 @@
+<Document accessor="public" category="Struct" name="TextCaretChangedStruct"><summary>Callback data for text caret changing.</summary><signature><![CDATA[struct TextCaretChangedStruct;
+]]></signature></Document>

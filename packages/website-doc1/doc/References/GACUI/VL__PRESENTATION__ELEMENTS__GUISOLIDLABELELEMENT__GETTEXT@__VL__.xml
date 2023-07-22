@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetText"><summary>
+ Get the text.
+ </summary><returns>The text.</returns><signature><![CDATA[WString const & GetText(
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/></seealsos></Document>

@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetMaxCount"><summary>Set the maximum number of items should be displayed.</summary><param name="value">The maximum number of items should be displayed.</param><signature><![CDATA[void SetMaxCount(
+    vint value
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

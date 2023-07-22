@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GlobalTimer"><summary>
+ Called when the global timer message raised. To receive or not receive this message, use <symbol name="StartTimer" docId="vl::presentation::INativeInputService::StartTimer@void()"/> or <symbol name="StopTimer" docId="vl::presentation::INativeInputService::StopTimer@void()"/></summary><signature><![CDATA[void GlobalTimer(
+);
+]]></signature></Document>

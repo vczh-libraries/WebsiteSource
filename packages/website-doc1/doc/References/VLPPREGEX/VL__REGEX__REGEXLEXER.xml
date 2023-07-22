@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="RegexLexer"><summary>Lexical analyzer.</summary><signature><![CDATA[class RegexLexer
+    : Object
+    , NotCopyable;
+]]></signature><basetypes><symbol name="NotCopyable" docId="vl::NotCopyable"/><symbol name="Object" docId="vl::Object"/></basetypes></Document>

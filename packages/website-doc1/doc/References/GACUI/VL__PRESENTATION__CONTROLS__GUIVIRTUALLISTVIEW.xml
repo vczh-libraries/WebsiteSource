@@ -1,0 +1,4 @@
+<Document accessor="" category="Class" name="GuiVirtualListView"><summary>List view control in virtual mode.</summary><signature><![CDATA[class GuiVirtualListView
+    : GuiListViewBase
+    , Description<GuiVirtualListView>;
+]]></signature><seealsos><symbol name="GuiVirtualListView" docId="vl::presentation::controls::GuiVirtualListView"/></seealsos><basetypes><symbol name="GuiListViewBase" docId="vl::presentation::controls::GuiListViewBase"/><symbol name="Description" docId="vl::reflection::Description"/></basetypes></Document>

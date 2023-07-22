@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="SmallImagePropertyChanged"><summary>Small image property name changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent SmallImagePropertyChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

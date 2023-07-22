@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="start"><summary>Position in the input string in characters.</summary><signature><![CDATA[vint start;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

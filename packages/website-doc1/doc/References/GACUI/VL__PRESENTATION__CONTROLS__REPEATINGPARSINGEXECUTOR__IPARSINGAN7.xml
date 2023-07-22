@@ -1,0 +1,6 @@
+<Document accessor="protected" category="Function" name="GetItem"><summary>Get a syntax tree node&apos;s item when the whole tree is in a partial modified state. You should use this function instead of ParsingTreeArray::GetItem when implementing this interface.</summary><returns>Returns the item node.</returns><param name="node">The node.</param><param name="index">The index of the item.</param><param name="output">The partial parsing output, which describes how the whole tree is partial modified.</param><signature><![CDATA[Ptr<parsing::ParsingTreeNode> GetItem(
+    parsing::ParsingTreeArray * node,
+    vint index,
+    RepeatingPartialParsingOutput const * output
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="ParsingTreeArray" docId="vl::parsing::ParsingTreeArray"/><symbol name="ParsingTreeNode" docId="vl::parsing::ParsingTreeNode"/><symbol name="RepeatingPartialParsingOutput" docId="vl::presentation::controls::RepeatingPartialParsingOutput"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

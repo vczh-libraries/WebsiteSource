@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="nodeCount"><summary>The number of nodes in this component.</summary><signature><![CDATA[vint nodeCount;
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

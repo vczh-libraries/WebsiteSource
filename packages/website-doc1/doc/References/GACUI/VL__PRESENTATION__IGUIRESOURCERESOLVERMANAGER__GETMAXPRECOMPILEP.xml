@@ -1,0 +1,3 @@
+<Document accessor="public" category="Function" name="GetMaxPrecompilePassIndex"><summary>Get the maximum precompiling pass index.</summary><returns>The maximum precompiling pass index.</returns><signature><![CDATA[vint GetMaxPrecompilePassIndex(
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="parsingTree"><summary>A syntax tree that contains this error.</summary><signature><![CDATA[ParsingTreeCustomBase * parsingTree;
+]]></signature><seealsos><symbol name="ParsingTreeCustomBase" docId="vl::parsing::ParsingTreeCustomBase"/></seealsos></Document>

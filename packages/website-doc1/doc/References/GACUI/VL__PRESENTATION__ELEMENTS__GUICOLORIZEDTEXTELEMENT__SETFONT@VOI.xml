@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="SetFont"><summary>
+ Set the font configuration for all characters. <symbol name="FontChanged" docId="vl::presentation::elements::GuiColorizedTextElement::ICallback::FontChanged@void()"/> will be called.
+ </summary><param name="value">The font configuration.</param><signature><![CDATA[void SetFont(
+    FontProperties const & value
+);
+]]></signature><seealsos><symbol name="FontProperties" docId="vl::presentation::FontProperties"/></seealsos></Document>

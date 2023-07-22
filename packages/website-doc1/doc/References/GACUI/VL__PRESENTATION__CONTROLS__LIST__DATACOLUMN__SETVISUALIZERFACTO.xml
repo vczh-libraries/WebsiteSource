@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetVisualizerFactory"><summary>Set the visualizer factory for the column.</summary><param name="value">The visualizer factory.</param><signature><![CDATA[void SetVisualizerFactory(
+    Ptr<IDataVisualizerFactory> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="IDataVisualizerFactory" docId="vl::presentation::controls::list::IDataVisualizerFactory"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="BoundsChanged"><summary>Event that will be raised when the final bounds is changed.</summary><signature><![CDATA[compositions::GuiNotifyEvent BoundsChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

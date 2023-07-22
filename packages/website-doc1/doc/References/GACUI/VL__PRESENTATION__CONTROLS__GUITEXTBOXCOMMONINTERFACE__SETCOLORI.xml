@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetColorizer"><summary>Set the current colorizer.</summary><param name="value">The current colorizer.</param><signature><![CDATA[void SetColorizer(
+    Ptr<GuiTextBoxColorizerBase> value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiTextBoxColorizerBase" docId="vl::presentation::controls::GuiTextBoxColorizerBase"/></seealsos></Document>

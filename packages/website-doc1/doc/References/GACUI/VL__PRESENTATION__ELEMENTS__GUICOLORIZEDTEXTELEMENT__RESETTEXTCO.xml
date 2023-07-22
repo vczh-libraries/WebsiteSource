@@ -1,0 +1,6 @@
+<Document accessor="public" category="Function" name="ResetTextColorIndex"><summary>
+ Reset color of all characters
+ </summary><param name="index">Color index of all characters.</param><signature><![CDATA[void ResetTextColorIndex(
+    vint index
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

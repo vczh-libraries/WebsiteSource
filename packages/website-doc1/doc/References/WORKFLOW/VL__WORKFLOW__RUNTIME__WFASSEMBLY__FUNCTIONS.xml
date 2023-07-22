@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="functions"><summary>Functions.</summary><signature><![CDATA[collections::List<Ptr<WfAssemblyFunction>> functions;
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="List" docId="vl::collections::List"/><symbol name="WfAssemblyFunction" docId="vl::workflow::runtime::WfAssemblyFunction"/></seealsos></Document>

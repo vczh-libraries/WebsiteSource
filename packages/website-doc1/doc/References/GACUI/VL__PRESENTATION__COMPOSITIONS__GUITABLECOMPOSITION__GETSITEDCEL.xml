@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="GetSitedCell"><summary>Get the cell composition that covers the specified cell location.</summary><returns>The cell composition that covers the specified cell location.</returns><param name="_row">The number of rows.</param><param name="_column">The number of columns.</param><signature><![CDATA[GuiCellComposition * GetSitedCell(
+    vint _row,
+    vint _column
+);
+]]></signature><seealsos><symbol name="GuiCellComposition" docId="vl::presentation::compositions::GuiCellComposition"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

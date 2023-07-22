@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetLargeImage"><summary>Get the large image of an item.</summary><returns>The large image.</returns><param name="itemIndex">The index of the item.</param><signature><![CDATA[Ptr<GuiImageData> GetLargeImage(
+    vint itemIndex
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

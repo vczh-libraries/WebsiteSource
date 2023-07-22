@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="SetImageProperty"><summary>Set the image property name to get the image from an item.</summary><param name="value">The image property name.</param><signature><![CDATA[void SetImageProperty(
+    ItemProperty<Ptr<GuiImageData>> const & value
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="GuiImageData" docId="vl::presentation::GuiImageData"/><symbol name="ItemProperty"/></seealsos></Document>

@@ -1,0 +1,12 @@
+<Document accessor="" category="Class" name="SpinLock"><summary>
+ Spin lock. It is similar to mutex, but it does not occupy resource in the system.
+ The macro &quot;SPIN_LOCK&quot; is recommended instead of calling <symbol name="Enter" docId="vl::SpinLock::Enter@void()"/> and <symbol name="Leave" docId="vl::SpinLock::Leave@void()"/> like this:
+ <program><code><![CDATA[
+ SPIN_LOCK(yourLock)
+ {
+     // do something
+ }
+ ]]></code></program></summary><signature><![CDATA[class SpinLock
+    : Object
+    , NotCopyable;
+]]></signature><basetypes><symbol name="NotCopyable" docId="vl::NotCopyable"/><symbol name="Object" docId="vl::Object"/></basetypes></Document>

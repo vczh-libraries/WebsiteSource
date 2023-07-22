@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="WindowDestroying"><summary>Window destroying event.</summary><signature><![CDATA[compositions::GuiNotifyEvent WindowDestroying;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

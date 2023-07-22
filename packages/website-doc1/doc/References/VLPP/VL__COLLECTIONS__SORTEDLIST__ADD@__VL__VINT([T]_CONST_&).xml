@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="Add"><summary>Add a value at the correct position, all elements will be kept in order.</summary><returns>The index of the added item.</returns><param name="item">The value to add.</param><signature><![CDATA[vint Add(
+    T const & item
+);
+]]></signature><seealsos><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,7 @@
+<Document accessor="" category="Function" name="JsonParse"><summary>Parse a JSON text, it could be an object or an array.</summary><returns>Returns the parsing result as a strong-typed AST node. Returns null if there is any unrecoverable error during parsing.</returns><param name="input">The input for parsing.</param><param name="table">The return value from <symbol name="JsonLoadTable" docId="vl::parsing::json::JsonLoadTable@::vl::Ptr&lt;::vl::parsing::tabling::ParsingTable&gt;()"/>.</param><param name="errors">All errors during parsing.</param><param name="codeIndex">(Optional): This argument will be copied to <symbol name="codeIndex" docId="vl::parsing::ParsingTextRange::codeIndex"/> in every AST nodes. The default value is -1.</param><signature><![CDATA[vl::Ptr<JsonNode> JsonParse(
+    vl::WString const & input,
+    vl::Ptr<vl::parsing::tabling::ParsingTable> table,
+    vl::collections::List<vl::Ptr<vl::parsing::ParsingError>> & errors,
+    vl::vint codeIndex /* optional */
+);
+]]></signature><seealsos><symbol name="Ptr" docId="vl::Ptr"/><symbol name="WString" docId="vl::WString"/><symbol name="List" docId="vl::collections::List"/><symbol name="ParsingError" docId="vl::parsing::ParsingError"/><symbol name="JsonNode" docId="vl::parsing::json::JsonNode"/><symbol name="ParsingTable" docId="vl::parsing::tabling::ParsingTable"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

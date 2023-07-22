@@ -1,0 +1,4 @@
+<Document accessor="public" category="Function" name="GetTextValue"><summary>Get the text representation of an item.</summary><returns>The text representation of an item.</returns><param name="itemIndex">The index of the item.</param><signature><![CDATA[WString GetTextValue(
+    vint itemIndex
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="vint" docId="vl::vint"/></seealsos></Document>

@@ -1,0 +1,2 @@
+<Document accessor="public" category="Variable" name="FilterIndexChanged"><summary>Filter index changed event.</summary><signature><![CDATA[compositions::GuiNotifyEvent FilterIndexChanged;
+]]></signature><seealsos><symbol name="GuiNotifyEvent"/></seealsos></Document>

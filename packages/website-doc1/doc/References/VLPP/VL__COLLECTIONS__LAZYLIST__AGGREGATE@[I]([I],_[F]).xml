@@ -1,0 +1,14 @@
+<Document accessor="public" category="Function" name="Aggregate"><summary>Aggregate a lazy list.</summary><typeparam name="I">Type of the initial value.</typeparam><typeparam name="F">Type of the aggregator.</typeparam><returns>The aggregated value.</returns><param name="init">The aggregated value defined for the empty prefix.</param><param name="f">
+ The aggregator.
+ The first argument is the aggregated value of any prefix.
+ The second argument is the element right after a prefix.
+ Returns the aggregated value of the new prefix.
+ </param><example index="0"/><signature><![CDATA[template <
+    typename I, 
+    typename F
+>
+I Aggregate(
+    I init,
+    F f
+) const;
+]]></signature></Document>

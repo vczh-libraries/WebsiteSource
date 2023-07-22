@@ -1,0 +1,5 @@
+<Document accessor="public" category="Function" name="Create"><summary>Call the constructor of the specified type to create a value.</summary><returns>The created value.</returns><param name="typeName">The registered full name for the type to create the value.</param><param name="arguments">Arguments for the constructor.</param><remarks><p>Only available when <b>VCZH_DEBUG_NO_REFLECTION</b> is <b>off</b>.</p></remarks><example index="0"/><signature><![CDATA[static Value Create(
+    WString const & typeName,
+    collections::Array<Value> & arguments
+);
+]]></signature><seealsos><symbol name="WString" docId="vl::WString"/><symbol name="Array" docId="vl::collections::Array"/><symbol name="Value" docId="vl::reflection::description::Value"/></seealsos></Document>
