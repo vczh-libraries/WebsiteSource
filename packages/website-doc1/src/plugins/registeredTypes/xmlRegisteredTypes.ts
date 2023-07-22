@@ -4,7 +4,7 @@ import { Element, xml2js } from 'xml-js';
 import { RegisteredTypesInfo } from '../../views/registeredTypesView';
 
 const reflectionXml = <Element>xml2js(
-    readFileSync(path.join(__dirname, '../../../../../../Document/Tools/Demos/Gaclib/Reflection.xml'), { encoding: 'utf-8' }),
+    readFileSync(path.join(__dirname, '../../../doc/Reflection.xml'), { encoding: 'utf-8' }),
     {
         compact: false,
         ignoreDeclaration: true,
