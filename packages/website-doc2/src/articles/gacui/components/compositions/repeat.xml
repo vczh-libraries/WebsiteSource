@@ -27,8 +27,8 @@
                     <ul>
                         <li><a href="/gacui/components/compositions/repeat_virtual_freeheight.html">&lt;RepeatFreeHeightItem/&gt;</a></li>
                         <li><a href="/gacui/components/compositions/repeat_virtual_fixedheight.html">&lt;RepeatFixedHeightItem/&gt;</a></li>
-                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheightmc.html">&lt;RepeatFixedSizeMultiColumnItem/&gt;</a></li>
-                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedsizemc.html">&lt;RepeatFixedHeightMultiColumnItem/&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheightmc.html">&lt;RepeatFixedHeightMultiColumnItem/&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedsizemc.html">&lt;RepeatFixedSizeMultiColumnItem/&gt;</a></li>
                     </ul>
                 </li>
             </ul>

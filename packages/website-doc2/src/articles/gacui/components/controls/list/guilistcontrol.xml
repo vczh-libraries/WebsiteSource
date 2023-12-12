@@ -147,17 +147,21 @@
                     Implementing an arranger is not easy,
                     but there are predefined arrangers for common requirements:
                     <ul>
-                        <li><b>list::FreeHeightItemArranger</b>: Each item take a row, heights could be different.</li>
-                        <li><b>list::FixedHeightItemArranger</b>: Each item take a row with the same height.</li>
-                        <li><b>list::FixedSizeMultiColumnItemArranger</b>: Layout items like a grid, each cell has the same size.</li>
-                        <li><b>list::FixedHeightMultiColumnItemArranger</b>: Layout items like a grid, but each column could have a different width.</li>
-                        <li><b>list::ListViewColumnItemArranger</b>: Each item take a row, contents are controlled by column headers.</li>
+                        <li><b>list::FreeHeightItemArranger</b>: Each item take a row, heights could be different. It is implemented using <a href="/gacui/components/compositions/repeat_virtual_freeheight.html">&lt;RepeatFreeHeightItem/&gt;</a>.</li>
+                        <li><b>list::FixedHeightItemArranger</b>: Each item take a row with the same height. It is implemented using <a href="/gacui/components/compositions/repeat_virtual_fixedheight.html">&lt;RepeatFixedHeightItem/&gt;</a>.</li>
+                        <li><b>list::FixedSizeMultiColumnItemArranger</b>: Layout items like a grid, each cell has the same size. It is implemented using <a href="/gacui/components/compositions/repeat_virtual_fixedheightmc.html">&lt;RepeatFixedHeightMultiColumnItem/&gt;</a>.</li>
+                        <li><b>list::FixedHeightMultiColumnItemArranger</b>: Layout items like a grid, but each column could have a different width. It is implemented using <a href="/gacui/components/compositions/repeat_virtual_fixedsizemc.html">&lt;RepeatFixedSizeMultiColumnItem/&gt;</a>.</li>
+                        <li><b>list::ListViewColumnItemArranger</b>: Each item take a row, contents are controlled by column headers. It is implemented using <a href="/gacui/components/compositions/repeat_virtual_fixedheight.html">&lt;RepeatFixedHeightItem/&gt;</a>.</li>
                     </ul>
                     <b>NOTE</b>:
                     the direction is controlled by <b>Asix</b>.
                     For example,
                     by using <b>DownLeft</b> instead of <b>RightDown</b> or the default axis,
                     <b>FixedHeightItemArranger</b> layout items from left to right instead of from top to bottom.
+                </p>
+                <p>
+                    It is recommended to inherited from <b><a href="/gacui/components/compositions/repeat_virtual.html">GuiVirtualRepeatCompositionBase</a></b> when you have to create a new layout.
+                    When such new composition is ready, use <b>VirtualRepeatRangedItemArrangerBase&lt;T&gt;</b> to turn it into an <b>IItemArranger</b>.
                 </p>
             </topic>
             <topic>

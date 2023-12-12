@@ -10,8 +10,8 @@
       <article name="Virtual Repeat Compositions" file="compositions/repeat_virtual">
         <article name="&lt;RepeatFreeHeightItem&gt;" file="compositions/repeat_virtual_freeheight"/>
         <article name="&lt;RepeatFixedHeightItem&gt;" file="compositions/repeat_virtual_fixedheight"/>
-        <article name="&lt;RepeatFixedSizeMultiColumnItem&gt;" file="compositions/repeat_virtual_fixedheightmc"/>
-        <article name="&lt;RepeatFixedHeightMultiColumnItem&gt;" file="compositions/repeat_virtual_fixedsizemc"/>
+        <article name="&lt;RepeatFixedHeightMultiColumnItem&gt;" file="compositions/repeat_virtual_fixedheightmc"/>
+        <article name="&lt;RepeatFixedSizeMultiColumnItem&gt;" file="compositions/repeat_virtual_fixedsizemc"/>
       </article>
     </article>
     <article name="&lt;SharedSizeRoot&gt; and &lt;SharedSizeItem&gt;" file="compositions/sharedsize"/>

@@ -154,9 +154,12 @@
                 <a href="/gacui/components/controls/list/guilistcontrol.html#Arranger-ArrangerChanged-">
                     built-in IItemArranger implementations
                 </a>.
-                Check them out to see if any of the works,
+                Check them out to see if any of the built-in things work,
                 so you don't have to implement this interface.
-                It is pretty difficult.
+            </p>
+            <p>
+                It is recommended to inherited from <b><a href="/gacui/components/compositions/repeat_virtual.html">GuiVirtualRepeatCompositionBase</a></b> when you have to create a new layout.
+                When such new composition is ready, use <b>VirtualRepeatRangedItemArrangerBase&lt;T&gt;</b> to turn it into an <b>IItemArranger</b>.
             </p>
             <p>
                 <b>IItemProviderCallback</b> is also the base class of <b>IItemArranger</b>.
