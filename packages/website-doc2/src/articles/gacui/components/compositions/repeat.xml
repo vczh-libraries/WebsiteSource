@@ -133,51 +133,6 @@
             <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b>
             are <b>&lt;Stack/&gt;</b> and <b>&lt;Flow/&gt;</b> with data binding.
         </p>
-        <p>
-            You are not required to create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item.
-            Instead,
-            you bind a collection object to the <b>ItemSource</b> property,
-            assign an item template to the <b>ItemTemplate</b> property,
-            <b>&lt;RepeatStack/&gt;</b> or <b>&lt;RepeatFlow/&gt;</b>
-            will create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item in <b>ItemSource</b>,
-            each containing an instance from <b>ItemTemplate</b> to display an item in <b>ItemSource</b>.
-        </p>
-        <p>
-            <b>&lt;RepeatStack/&gt;</b> inherits from <b>&lt;Stack/&gt;</b>,
-            <b>&lt;RepeatFlow/&gt;</b> inherits from <b>&lt;Flow/&gt;</b>,
-            all properties in <b>&lt;Stack/&gt;</b> or <b>&lt;Flow/&gt;</b> are available.
-        </p>
-        <topic>
-            <title>Accessing auto-managed &lt;StackItem/&gt; or &lt;FlowItem/&gt;</title>
-            <p>
-                <b>&lt;RepeatStack/&gt;::StackItems</b> property
-                or <b>&lt;RepeatFlow/&gt;::FlowItems</b> property
-                contains the same number of <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b>
-                to items in <b>ItemSource</b> in exactly the same order.
-            </p>
-            <p>
-                If a <b>system::ObservableList^</b> is assigned to <b>ItemSource</b>,
-                the items and the order will be kept throught out the running time.
-                Otherwise these compositions only reflect items in the collection at the moment of assigning to <b>ItemSource</b>.
-            </p>
-            <p>
-                Each <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> has an only child composition
-                which is an selected instance from <b>ItemTemplate</b>.
-            </p>
-            <p>
-                To access the item template instance of a specified item in <b>ItemSource</b>,
-                just use <b>StackItems</b> or <b>FlowItems</b> with the same index,
-                and find the first direct child composition of the returned <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b>.
-            </p>
-            <p>
-                To access <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> inside the item template instance,
-                just find its direct parent composition.
-            </p>
-            <p>
-                When <b>null</b> is assigned to <b>ItemSource</b>,
-                all items will be deleted.
-            </p>
-        </topic>
         <topic>
             <title>Sample</title>
             <p>

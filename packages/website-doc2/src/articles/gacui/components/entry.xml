@@ -5,7 +5,10 @@
     <article name="&lt;Stack&gt; and &lt;StackItem&gt;" file="compositions/stack"/>
     <article name="&lt;Flow&gt; and &lt;Flow&gt;" file="compositions/flow"/>
     <article name="&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt; and &lt;ColumnSplitter&gt;" file="compositions/table"/>
-    <article name="Repeat Compositions" file="compositions/repeat"/>
+    <article name="Repeat Compositions" file="compositions/repeat">
+      <article name="&lt;RepeatStack&gt; and &lt;RepeatFlow&gt;" file="compositions/repeat_nonvirtual"/>
+      <article name="Virtual Repeat Compositions" file="compositions/repeat_virtual"/>
+    </article>
     <article name="&lt;SharedSizeRoot&gt; and &lt;SharedSizeItem&gt;" file="compositions/sharedsize"/>
     <article name="&lt;SideAligned&gt;" file="compositions/sidealigned"/>
     <article name="&lt;PartialView&gt;" file="compositions/partialview"/>

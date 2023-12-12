@@ -1,0 +1,70 @@
+<article index="true">
+    <topic>
+        <title>Virtual Repeat Compositions</title>
+        <p>
+            <b>GuiVirtualRepeatCompositionBase</b> maintain instances of item template automatically to render items in the item source.
+        </p>
+        <topic>
+            <title>Axis property</title>
+            <p>
+                All repeat compositions maintain items in a default order.
+                To change the order, set a new axis to the <b>Axis</b> property.
+                <b>Axis</b> in <b>GuiVirtualRepeatCompositionBase</b> is very similar to
+                <a href="/gacui/components/compositions/flow.html#-Flow-Axis">
+                    <b>Axis</b> in <b>&lt;Flow/&gt;</b>
+                </a>.
+            </p>
+        </topic>
+        <topic>
+            <title>TotalSize property</title>
+            <p>
+                <b>Context</b> property of any living <b>ItemTemplate</b> instance will always sync to <b>Context</b> property of the repeat composition.
+            </p>
+        </topic>
+        <topic>
+            <title>ViewLocation property</title>
+            <p>
+                <b>Context</b> property of any living <b>ItemTemplate</b> instance will always sync to <b>Context</b> property of the repeat composition.
+            </p>
+        </topic>
+        <topic>
+            <title>Accessing auto-managed instances of item template</title>
+            <p>
+                <b>GuiVirtualRepeatCompositionBase</b> only creates instances of item template for only visible items.
+                Visible items mean items that are in the area of this composition,
+                all items that are scrolled out will get their instance of item template released from the memory,
+                and recreate when they are scrolled in again.
+            </p>
+            <p>
+                When an item is not visible,
+                it is not able to find the instance of item template for this item.
+            </p>
+            <p>
+                If a <b>system::ObservableList^</b> is assigned to <b>ItemSource</b>,
+                the items and the order will be kept throught out the running time.
+                Otherwise these compositions only reflect items in the collection at the moment of assigning to <b>ItemSource</b>.
+            </p>
+            <p>
+                The <b>GetVisibleStyle</b> function gives you the instance of item template for an item.
+                If the item is not visible, it returns <b>nullptr</b>.
+            </p>
+            <p>
+                The <b>GetVisibleIndex</b> function gives you the index of an item from an instance of item template.
+                If it doesn't belong to this composition, it returns <b>-1</b>.
+            </p>
+            <p>
+                The <b>FindItemByRealKeyDirection</b> and <b>FindItemByVirtualKeyDirection</b> function find an item that is related to the specified item using a key.
+                <b>VirtualKey</b> uses the logical order of the composition.
+                <b>RealKey</b> uses the render order of the composition.
+                When <b>Axis</b> is unchanged or set using an instance of <b>GuiDefaultAxis</b>, they are identical.
+            </p>
+            <p>
+                The <b>EnsureItemVisible</b> function tries its best to update <b>ViewLocation</b> to make the specified item visible.
+            </p>
+            <p>
+                When <b>null</b> is assigned to <b>ItemSource</b>,
+                all items will be deleted.
+            </p>
+        </topic>
+    </topic>
+</article>
