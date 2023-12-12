@@ -14,8 +14,8 @@
                     <b>GuiNonVirtialRepeatCompositionBase</b>:
                     Create and maintain instances of item template for all items.
                     <ul>
-                        <li><a href="/gacui/components/compositions/repeat_nonvirtual.html">&lt;RepeatStack&gt;</a></li>
-                        <li><a href="/gacui/components/compositions/repeat_nonvirtual.html">&lt;RepeatFlow&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_nonvirtual.html">&lt;RepeatStack/&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_nonvirtual.html">&lt;RepeatFlow/&gt;</a></li>
                     </ul>
                 </li>
                 <li>
@@ -25,10 +25,10 @@
                     all items that are scrolled out will get their instance of item template released from the memory,
                     and recreate when they are scrolled in again.
                     <ul>
-                        <li><a href="/gacui/components/compositions/repeat_virtual_freeheight.html">&lt;RepeatFreeHeightItem&gt;</a></li>
-                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheight.html">&lt;RepeatFixedHeightItem&gt;</a></li>
-                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheightmc.html">&lt;RepeatFixedSizeMultiColumnItem&gt;</a></li>
-                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedsizemc.html">&lt;RepeatFixedHeightMultiColumnItem&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_freeheight.html">&lt;RepeatFreeHeightItem/&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheight.html">&lt;RepeatFixedHeightItem/&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheightmc.html">&lt;RepeatFixedSizeMultiColumnItem/&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedsizemc.html">&lt;RepeatFixedHeightMultiColumnItem/&gt;</a></li>
                     </ul>
                 </li>
             </ul>
@@ -119,8 +119,6 @@
                 The first instance of a successful test will be created with the item in the list,
                 with <b>MinSizeLimitation</b> set to <b>LimitToElementAndChildren</b>
                 and <b>Margin</b> set to <b>left:0 top:0 right:0 bottom:0</b>.
-                And then a <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> will be created to contain this instance
-                and inserted to the <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b> in the correct position.
             </p>
         </topic>
         <topic>

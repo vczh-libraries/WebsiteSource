@@ -47,6 +47,23 @@
             which is used in every views.
         </p>
         <topic>
+            <title>NotifyItemDataModified function</title>
+            <p>
+                When properties in an item is changed,
+                if an item template has anything binded to them directly,
+                the item template will be updated automatically.
+            </p>
+            <p>
+                But if the item template has anything binded to the <b>Text</b> property of <b>&lt;TextListItemTemplate/&gt;</b>,
+                when the property described by <b>LargeImageProperty</b> or <b>SmallImageProperty</b> or any column's <b>TextProperty</b> in the associated item is changed,
+                the item template is not updated since no notification get sent out.
+            </p>
+            <p>
+                In this case, The <b>NotifyItemDataModified</b> function needs to be called.
+                It notices a range of item templates to update itself.
+            </p>
+        </topic>
+        <topic>
             <title>Sample</title>
             <p>
                 <sample name="control_list_listview_bindable"/>

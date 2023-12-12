@@ -48,6 +48,39 @@
             <b>&lt;BindableTreeView/&gt;</b> knows that child nodes for this node is changed.
         </p>
         <topic>
+            <title>ReverseMappingProperty property and NotifyNodeDataModified function</title>
+            <p>
+                When properties in an item is changed,
+                if an item template has anything binded to them directly,
+                the item template will be updated automatically.
+            </p>
+            <p>
+                But if the item template has anything binded to the <b>Text</b> or <b>Image</b> property of <b>&lt;TextListItemTemplate/&gt;</b>,
+                when the property described by <b>TextProperty</b> or <b>ImageProperty</b> in the associated item is changed,
+                the item template is not updated since no notification get sent out.
+            </p>
+            <p>
+                In this case, The <b>NotifyNodeDataModified</b> function needs to be called.
+                It notices an item template to update by its associated item.
+                This function will throw an exception if:
+                <ul>
+                    <li>The <b>ReverseMappingProperty</b> property is not specified.</li>
+                    <li>The given item is <b>null</b>.</li>
+                    <li>The given item is not binded to this control.</li>
+                    <li>The given item is the <b>ItemSource</b> object.</li>
+                </ul>
+            </p>
+            <p>
+                The <b>ReverseMappingProperty</b> is specified in the constructor when using C++.
+                It lets the control stores something to the item to create a 1:1 mapping from tree nodes to items,
+                using a property of <b>vl::reflection::description::Value</b> in C++ or <b>object</b> in Workflow script.
+                When this property is used,
+                items in the item source should be exclusively binded to this control.
+                When an item get unbinded from the control,
+                the specified property of an item will be set to <b>null</b> again.
+            </p>
+        </topic>
+        <topic>
             <title>Sample</title>
             <p>
                 <sample name="control_list_treeview_bindable"/>
