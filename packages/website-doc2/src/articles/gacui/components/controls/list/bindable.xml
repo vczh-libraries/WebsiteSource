@@ -17,7 +17,7 @@
             <p>
                 Creating a <b>Ptr&lt;IValueObservableList&gt;</b> in C++ is easy.
                 Use <b>vl::collections::ObservableList&lt;T&gt;</b> instead of <b>vl::collections::List&lt;T&gt;</b>,
-                you can get a <b>Ptr&lt;IValueObservableList&gt;</b> by calling the <b>GetWrapper</b> method.
+                you can get a <b>Ptr&lt;IValueObservableList&gt;</b> by calling the <b>BoxParameter</b> function on that list.
             </p>
         </topic>
         <topic>

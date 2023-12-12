@@ -269,7 +269,7 @@
                                     Some of type <name>vl::reflection::descriptions::Value</name>.
                                     These properties accepts container types, usually called <name>ItemSource</name> in bindable list controls.
                                     If you assign a <name>vl::reflection::descriptions::IValueObservableList</name> object to this property,
-                                    which can be obtained by calling <name>GetWrapper</name> of a <name>vl::collections::ObservableList</name> object,
+                                    which can be obtained by calling <name>BoxParameter</name> on a <name>vl::collections::ObservableList</name> object,
                                     list items will change when the list object is changed.
                                 </li>
                             </ul>

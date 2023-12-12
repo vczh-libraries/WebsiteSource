@@ -1,23 +1,37 @@
 <article index="true">
     <topic>
-        <title>&lt;RepeatStack&gt; and &lt;RepeatFlow&gt;</title>
+        <title>Repeat Compositions</title>
         <p>
-            <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b>
-            are <b>&lt;Stack/&gt;</b> and <b>&lt;Flow/&gt;</b> with data binding.
+            <b>GuiRepeatCompositionBase</b> is the base class of all repeat compositions,
+            which takes an item template and an item source,
+            displays items in the item source using the item template,
+            and maintain the order automatically when items in the item source are add/remove/change.
         </p>
         <p>
-            You are not required to create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item.
-            Instead,
-            you bind a collection object to the <b>ItemSource</b> property,
-            assign an item template to the <b>ItemTemplate</b> property,
-            <b>&lt;RepeatStack/&gt;</b> or <b>&lt;RepeatFlow/&gt;</b>
-            will create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item in <b>ItemSource</b>,
-            each containing an instance from <b>ItemTemplate</b> to display an item in <b>ItemSource</b>.
-        </p>
-        <p>
-            <b>&lt;RepeatStack/&gt;</b> inherits from <b>&lt;Stack/&gt;</b>,
-            <b>&lt;RepeatFlow/&gt;</b> inherits from <b>&lt;Flow/&gt;</b>,
-            all properties in <b>&lt;Stack/&gt;</b> or <b>&lt;Flow/&gt;</b> are available.
+            There are two kinds of repeat compositions:
+            <ul>
+                <li>
+                    <b>GuiNonVirtialRepeatCompositionBase</b>:
+                    Create and maintain instances of item template for all items.
+                    <ul>
+                        <li>&lt;RepeatStack&gt;</li>
+                        <li>&lt;RepeatFlow&gt;</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>GuiVirtialRepeatCompositionBase</b>:
+                    Create and maintain instances of item template for only visible items.
+                    Visible items mean items that are in the area of this composition,
+                    all items that are scrolled out will get their instance of item template released from the memory,
+                    and recreate when they are scrolled in again.
+                    <ul>
+                        <li>&lt;RepeatFreeHeightItem&gt;</li>
+                        <li>&lt;RepeatFixedHeightItem&gt;</li>
+                        <li>&lt;RepeatFixedSizeMultiColumnItem&gt;</li>
+                        <li>&lt;RepeatFixedHeightMultiColumnItem&gt;</li>
+                    </ul>
+                </li>
+            </ul>
         </p>
         <topic>
             <title>ItemSource property</title>
@@ -41,12 +55,12 @@
             <p>
                 Values in the collection must match <b>&lt;ref.Parameter/&gt;</b>
                 of the <a href="/gacui/xmlres/tag_instance.html">instance</a>
-                that is specified in the <b>ItemProperty</b> property.
+                that is specified in the <b>ItemTemplate</b> property.
             </p>
             <p>
                 If there are
                 <a href="/gacui/xmlres/instance/properties.html#Control-Item-Template-func-data-Object-TEMPLATE-CLASS-">multiple instances</a>
-                in the <b>ItemProperty</b> property,
+                in the <b>ItemTemplate</b> property,
                 the first one whose <b>&lt;ref.Parameter/&gt;</b> is able to accept the value will be selected for the item in the collection.
                 If none of them can,
                 an exception will raise.
@@ -72,17 +86,16 @@
             <p>
                 If an <b>ObservableList</b> is assigned to the <b>ItemSource</b> property,
                 when items in the list changed,
-                associated <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b>
-                will be automatically created or destroyed in <b>&lt;RepeatStack/&gt;</b> or<b>&lt;RepeatFlow/&gt;</b>
+                associated instance of item templates will be automatically created or destroyed.
             </p>
             <p>
-                To create a <b>system::List^</b> in C++,
-                either call <b>vl::reflection::description::IValueList::Create</b>,
-                or use <b>vl::collections::ObservableList&lt;T&gt;</b> as your collection class and call its <b>GetWrapper</b> function.
+                To create a <b>system::ObservableList^</b> in C++,
+                either call <b>vl::reflection::description::IValueObservableList::Create</b>,
+                or use <b>vl::collections::ObservableList&lt;T&gt;</b> as your collection class and call the <b>BoxParameter</b> function on it.
             </p>
             <p>
-                The <b>GetWrapper</b> function creates a reference to the C++ collection,
-                they share items in the collection,
+                The <b>BoxParameter</b> function creates a reference to the C++ collection,
+                the C++ collection and the created object share items in the collection,
                 and one can observe changes from another.
             </p>
         </topic>
@@ -116,6 +129,24 @@
                 <b>Context</b> property of any living <b>ItemTemplate</b> instance will always sync to <b>Context</b> property of the repeat composition.
             </p>
         </topic>
+        <p>
+            <b>&lt;RepeatStack/&gt;</b> and <b>&lt;RepeatFlow/&gt;</b>
+            are <b>&lt;Stack/&gt;</b> and <b>&lt;Flow/&gt;</b> with data binding.
+        </p>
+        <p>
+            You are not required to create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item.
+            Instead,
+            you bind a collection object to the <b>ItemSource</b> property,
+            assign an item template to the <b>ItemTemplate</b> property,
+            <b>&lt;RepeatStack/&gt;</b> or <b>&lt;RepeatFlow/&gt;</b>
+            will create <b>&lt;StackItem/&gt;</b> or <b>&lt;FlowItem/&gt;</b> for each item in <b>ItemSource</b>,
+            each containing an instance from <b>ItemTemplate</b> to display an item in <b>ItemSource</b>.
+        </p>
+        <p>
+            <b>&lt;RepeatStack/&gt;</b> inherits from <b>&lt;Stack/&gt;</b>,
+            <b>&lt;RepeatFlow/&gt;</b> inherits from <b>&lt;Flow/&gt;</b>,
+            all properties in <b>&lt;Stack/&gt;</b> or <b>&lt;Flow/&gt;</b> are available.
+        </p>
         <topic>
             <title>Accessing auto-managed &lt;StackItem/&gt; or &lt;FlowItem/&gt;</title>
             <p>
