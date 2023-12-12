@@ -101,7 +101,7 @@
             </p>
             <p>
                 When data in an item is modified,
-                there are 3 ways to notify the list control:
+                there are 3 ways to notify the list control to recreate the instance of the item template associated with these items:
                 <ul>
                     <li>
                         When using <b>vl::collections::ObservableList&lt;T&gt;</b>,
@@ -122,6 +122,11 @@
                         or when the observable collection is created using <b>Workflow</b> script,
                         replacing an item with itself also notify the list control.
                     </li>
+                </ul>
+                There are another way to notify the list control to updated the item instead of recreating it:
+                <ul>
+                    <li>Call <b>NotifyItemDataModified</b> of <b>&lt;BindableTextList/&gt;</b> or <b>&lt;BindableListView/&gt;</b>.</li>
+                    <li>Call <b>NotifyNodeDataModified</b> of <b>&lt;BindableTreeView/&gt;</b>.</li>
                 </ul>
             </p>
         </topic>
