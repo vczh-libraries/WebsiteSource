@@ -50,7 +50,7 @@
         <topic>
             <title>Views</title>
             <p>
-                The <b>View</b> property defines all predefined view in <b>&lt;TextList/&gt;</b>.
+                The <b>View</b> property defines all predefined view in <b>&lt;ListView/&gt;</b>.
                 Valid values are listed at the beginning of this page.
                 You could ignore this property and change <b>ItemTemplate</b> and <b>Arranger</b>
                 by assigning new values to these properties

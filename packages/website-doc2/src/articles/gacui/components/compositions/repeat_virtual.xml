@@ -18,13 +18,15 @@
         <topic>
             <title>TotalSize property</title>
             <p>
-                <b>Context</b> property of any living <b>ItemTemplate</b> instance will always sync to <b>Context</b> property of the repeat composition.
+                <b>TotalSize</b> property measures the area occupied by all items, regardless visible and non visible.
             </p>
         </topic>
         <topic>
             <title>ViewLocation property</title>
             <p>
-                <b>Context</b> property of any living <b>ItemTemplate</b> instance will always sync to <b>Context</b> property of the repeat composition.
+                <b>ViewLocation</b> defines the left-top corner of the visible area in <b>TotalSize</b>.
+                The size of the visible area is the size of this composition.
+                Items that could render in this visible area becomes visible, otherwise invisible.
             </p>
         </topic>
         <topic>

@@ -1,5 +1,36 @@
 <article index="true">
     <topic>
         <title>&lt;RepeatFixedHeightItem&gt;</title>
+        <p>
+            This composition render items in a default order from top to bottom.
+            All items have the same height, which is defined by the largest value in all visible items.
+            All items are stretched to the width of this composition by default.
+        </p>
+        <topic>
+            <title>ItemWidth</title>
+            <p>
+                The default value of this property is <b>-1</b>.
+                When it is set to any non-negative number,
+                it defines the width of all items.
+            </p>
+            <p>
+                One of an example is the <b>Detail</b> view in <b>&lt;ListView&gt;</b>.
+                When the size of the column bar is changed,
+                item widths are changed.
+            </p>
+        </topic>
+        <topic>
+            <title>ItemYOffset</title>
+            <p>
+                The default value of this property is <b>0</b>.
+                When it is set to any positive number,
+                it addes some space before the first item.
+            </p>
+            <p>
+                One of an example is the <b>Detail</b> view in <b>&lt;ListView&gt;</b>.
+                When the list is scrolled to the top,
+                the first item is just below the column bar.
+            </p>
+        </topic>
     </topic>
 </article>
