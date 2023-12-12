@@ -14,8 +14,8 @@
                     <b>GuiNonVirtialRepeatCompositionBase</b>:
                     Create and maintain instances of item template for all items.
                     <ul>
-                        <li>&lt;RepeatStack&gt;</li>
-                        <li>&lt;RepeatFlow&gt;</li>
+                        <li><a href="/gacui/components/compositions/repeat_nonvirtual.html">&lt;RepeatStack&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_nonvirtual.html">&lt;RepeatFlow&gt;</a></li>
                     </ul>
                 </li>
                 <li>
@@ -25,10 +25,10 @@
                     all items that are scrolled out will get their instance of item template released from the memory,
                     and recreate when they are scrolled in again.
                     <ul>
-                        <li>&lt;RepeatFreeHeightItem&gt;</li>
-                        <li>&lt;RepeatFixedHeightItem&gt;</li>
-                        <li>&lt;RepeatFixedSizeMultiColumnItem&gt;</li>
-                        <li>&lt;RepeatFixedHeightMultiColumnItem&gt;</li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_freeheight.html">&lt;RepeatFreeHeightItem&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheight.html">&lt;RepeatFixedHeightItem&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedheightmc.html">&lt;RepeatFixedSizeMultiColumnItem&gt;</a></li>
+                        <li><a href="/gacui/components/compositions/repeat_virtual_fixedsizemc.html">&lt;RepeatFixedHeightMultiColumnItem&gt;</a></li>
                     </ul>
                 </li>
             </ul>
