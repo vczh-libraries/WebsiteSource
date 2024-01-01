@@ -69,13 +69,16 @@
 
     <prop name="SubMenuTemplate">
       <p>
-        The assigned control template instance must be or derived from <b>&lt;MenuTemplate/&gt;</b>.
+        The assigned control template instance must be or derived from <b>&lt;RibbonGroupMenuTemplate/&gt;</b>.
       </p>
       <p>
         This property defines the control template for the dropdown menu,
         which is rendered when the ribbon group is collapsed.
         If this property is <b>empty</b>,
         the default control template for the <b>Menu</b> theme will be used.
+      </p>
+      <p>
+        The <b>Commands</b> and <b>Expandable</b> properties of <b>&lt;RibbonGroupMenuTemplate/&gt;</b> are the same as <b>&lt;RibbonGroupTemplate/&gt;</b>.
       </p>
     </prop>
   </outputs>

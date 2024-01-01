@@ -16,6 +16,31 @@
             </p>
         </topic>
         <topic>
+            <title>UseMinimumTotalSize property</title>
+            <p>
+                The default value is <b>false</b>.
+            </p>
+            <p>
+                When <b>UseMinimumTotalSize</b> is <b>true</b>, <b>TotalSize</b> returns a smallest size but large enough to make scrolling right.
+            </p>
+            <p>
+                For example, in <b>&lt;RepeatFixedHeightItem/&gt;</b>, The width of <b>TotalSize</b> becomes <b>0</b> when <b>UseMinimumTotalSize</b> is <b>true</b> and <b>ItemWidth</b> is <b>-1</b>.
+                Because under such configuration, widths of items always equal to the width of <b>&lt;RepeatFixedHeightItem/&gt;</b> itself,
+                it provides no information to control the scrolling, and it is very useful to make the horizontal scroll disappear forever.
+            </p>
+            <p>
+                But the height of <b>TotalSize</b> is not affected, the value is necessary to control the scrolling.
+            </p>
+            <p>
+                <b>NOTE</b>: Scroll bars are not part of this composition, instead the following properties could be combined to configure scroll bars:
+                <ul>
+                    <li>TotalSize</li>
+                    <li>ViewLocation</li>
+                    <li>Size of CachedBounds</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
             <title>TotalSize property</title>
             <p>
                 <b>TotalSize</b> property measures the area occupied by all items, regardless visible and non visible.
