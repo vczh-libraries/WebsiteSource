@@ -144,5 +144,15 @@
                 </p>
             </topic>
         </topic>
+        <topic>
+            <title>Rendering issues about adding items</title>
+            <p>
+                Adding items could cause flashing during rendering for about 1 frame.
+                To workaround this issue, call <b>GuiControlHost::ForceCalculateSizeImmediately</b> after finishing editing all items in a rendering cycle, in either C++ or Workflow.
+                A control host is a top level window like window or menu.
+                You could also call the same function in `ContainerComposition` of any list controls,
+                but this function is only available to C++.
+            </p>
+        </topic>
     </topic>
 </article>
