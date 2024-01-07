@@ -1,6 +1,6 @@
 <article>
     <topic>
-        <title>Upgrading from 1.0</title>
+        <title>Breaking changes from 1.0</title>
         <topic>
             <title>UnboxParameter&lt;T&gt; function</title>
             <p>
