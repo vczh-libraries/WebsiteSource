@@ -188,6 +188,12 @@ private:
             <topic>
                 <title>IGuiGraphicsRenderTarget</title>
                 <p>
+                    A parameter is added to <b>PushClipper</b> and <b>PopClipper</b>.
+                    The <b>generator</b> describes the object that creates the current clipper, it could be <b>nullptr</b>.
+                    The value of this parameter does not matter in almost all the cases,
+                    usually it is an element or a composition.
+                </p>
+                <p>
                     New methods <b>IsInHostedRendering</b>, <b>StartHostedRendering</b> and <b>StopHostedRendering</b>.
                 </p>
                 <p>
