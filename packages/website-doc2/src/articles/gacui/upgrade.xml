@@ -42,6 +42,7 @@
                         <li><b>ClientArea</b> property to <b>CachedClientArea</b> property</li>
                         <li><b>MinPreferredMinSize</b> property to <b>CachedMinSize</b> and <b>CachedMinClientSize</b> property</li>
                         <li><b>Bounds</b> and <b>PreviousCalculatedBounds</b> property to <b>CachedBounds</b> property</li>
+                        <li><b>FindComposition</b> function to <b>FindVisibleComposition</b> function.</li>
                     </ul>
                 </p>
             </topic>
@@ -93,6 +94,92 @@
                     The latest <b>ThemeTemplates</b> with a non-null <b>PreferCustomFrameWindow</b> decides
                     whether to use <b>SystemFrameWindow</b> or <b>CustomFrameWindow</b>
                     when a window's theme name is <b>ThemeName::Window</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>GacUI Rendering API</title>
+            <topic>
+                <title>DEFINE_GUI_GRAPHICS_ELEMENT</title>
+                <p>
+                    This macro is removed.
+                </p>
+                <p>
+                    <program language="c++">
+                       <code><![CDATA[
+class YourElement : public GuiElementBase<TYPE>, YourBaseClasses...
+{
+    DEFINE_GUI_GRAPHICS_ELEMENT(TYPE, NAME)
+...
+};
+                        ]]></code>
+                    </program>
+                    should be replaced by
+                    <program language="c++">
+                       <code><![CDATA[
+class YourElement : public GuiElementBase<TYPE>, YourBaseClasses...
+{
+private:
+    friend class GuiElementBase<TYPE>;
+    static constexpr const wchar_t* ElementTypeName = NAME;
+...
+};
+                        ]]></code>
+                    </program>
+                </p>
+            </topic>
+            <topic>
+                <title>DEFINE_CACHED_RESOURCE_ALLOCATOR</title>
+                <p>
+                    This macro is removed.
+                </p>
+                <p>
+                    <program language="c++">
+                       <code><![CDATA[
+class YourAllocator : YourBaseClasses...
+{
+    DEFINE_CACHED_RESOURCE_ALLOCATOR(TKEY, TVALUE)
+...
+};
+                        ]]></code>
+                    </program>
+                    should be replaced by
+                    <program language="c++">
+                       <code><![CDATA[
+class YourAllocator : public GuiCachedResourceAllocatorBase<YourAllocator, TKEY, TVALUE>, YourBaseClasses...
+{
+...
+};
+                        ]]></code>
+                    </program>
+                </p>
+            </topic>
+            <topic>
+                <title>DEFINE_GUI_GRAPHICS_RENDERER</title>
+                <p>
+                    This macro is removed.
+                </p>
+                <p>
+                    <program language="c++">
+                       <code><![CDATA[
+class YourRenderer : public Object, public IGuiGraphicsRenderer, YourBaseClasses...
+{
+    DEFINE_GUI_GRAPHICS_RENDERER(TELEMENT, TRENDERER, TTARGET)
+...
+};
+                        ]]></code>
+                    </program>
+                    should be replaced by
+                    <program language="c++">
+                       <code><![CDATA[
+class YourRenderer : GuiElementRendererBase<TELEMENT, TRENDERER, TTARGET>, YourBaseClasses...
+{
+private:
+    friend class GuiElementRendererBase<TELEMENT, TRENDERER, TTARGET>;
+...
+};
+                        ]]></code>
+                    </program>
                 </p>
             </topic>
         </topic>
