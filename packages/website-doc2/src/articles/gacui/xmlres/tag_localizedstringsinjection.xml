@@ -11,7 +11,7 @@
                 <li>There is no <b>DefaultLocale</b> attribute.</li>
                 <li>There is a <b>InjectIntoClassName</b> attribute, it should be the same value to the <b>ClassName</b> attribute of the <b>&lt;LocalizedStrings/&gt;</b> it adds to.</li>
             </ul>
-            The <b>ClassName</b> attribute must be unique in the whole resource file just like others.
+            The <b>ref.Class</b> attribute must be unique in the whole resource file just like others.
             Just find a name you like,
             it will not be used in any other part of the XML.
         </p>

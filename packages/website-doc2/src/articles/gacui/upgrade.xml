@@ -1,71 +1,195 @@
-<article>
+<article index="true">
     <topic>
         <title>Breaking changes from 1.0</title>
         <topic>
-            <title>GuiControl</title>
-            <p>
-                <b>SetFocus</b> and <b>GetFocus</b> are renamed to <b>SetFocused</b> and <b>GetFocused</b>.
-            </p>
+            <title>GacUI API</title>
+            <topic>
+                <title>GuiControl</title>
+                <p>
+                    <b>SetFocus</b> and <b>GetFocus</b> are renamed to <b>SetFocused</b> and <b>GetFocused</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiListControl</title>
+                <p>
+                    Adding items could cause flashing during rendering for about 1 frame.
+                    To workaround this issue, call <b>GuiControlHost::ForceCalculateSizeImmediately</b> after finishing editing all items in a rendering cycle, in either C++ or Workflow.
+                    A control host is a top level window like window or menu.
+                    You could also call the same function in `ContainerComposition` of any list controls,
+                    but this function is only available to C++.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiControlHost</title>
+                <p>
+                    <b>WindowReadyToClose</b> event is added.
+                    <b>WindowClosing</b> is called first,
+                    and if it does not cancel the operation,
+                    <b>WindowReadyToClose</b> is close, then the window is close, then <b>WindowClosed</b> is called.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiGraphicsComposition</title>
+                <p>
+                    Removed:
+                    <ul>
+                        <li><b>Margin</b> property</li>
+                        <li><b>IsTrivialComposition</b> function</li>
+                        <li><b>PreferredBounds</b> property</li>
+                    </ul>
+                    Renamed:
+                    <ul>
+                        <li><b>ClientArea</b> property to <b>CachedClientArea</b> property</li>
+                        <li><b>MinPreferredMinSize</b> property to <b>CachedMinSize</b> and <b>CachedMinClientSize</b> property</li>
+                        <li><b>Bounds</b> and <b>PreviousCalculatedBounds</b> property to <b>CachedBounds</b> property</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiGraphicsSite</title>
+                <p>
+                    This class is removed, members are merged to its base class <b>GuiGraphicsComposition</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiBoundsComposition</title>
+                <p>
+                    <b>Bounds</b> property is renamed to <b>ExpectedBounds</b>.
+                </p>
+                <p>
+                    <b>AlignmentToParent</b> property will no longer consider parent's <b>InternalMargin</b> property in layout.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiTableComposition</title>
+                <p>
+                    Removed <b>GetCellArea</b> and <b>UpdateCellBounds</b> functions.
+                </p>
+                <p>
+                    When <b>MinSizeLimitation</b> is not <b>LimitToElementAndChildren</b>, layout of cells is not considered in the table's minimum size.
+                </p>
+            </topic>
+            <topic>
+                <title>ThemeName </title>
+                <p>
+                    New theme <b>SystemFrameWindow</b> for control template of <b>GuiWindow</b> when the system frame is enabled.
+                </p>
+                <p>
+                    New theme <b>CustomFrameWindow</b> for control template of <b>GuiWindow</b> when the system frame is disabled.
+                </p>
+            </topic>
+            <topic>
+                <title>ThemeTemplates</title>
+                <p>
+                    New theme <b>SystemFrameWindow</b> and <b>CustomFrameWindow</b>.
+                </p>
+                <p>
+                    New property <b>PreferCustomFrameWindow</b>.
+                    The default value is <b>nullptr</b>.
+                    At least one <b>ThemeTemplates</b> should have this property set to non-null.
+                    The latest <b>ThemeTemplates</b> with a non-null <b>PreferCustomFrameWindow</b> decides
+                    whether to use <b>SystemFrameWindow</b> or <b>CustomFrameWindow</b>
+                    when a window's theme name is <b>ThemeName::Window</b>.
+                </p>
+            </topic>
         </topic>
         <topic>
-            <title>GuiListControl</title>
-            <p>
-                Adding items could cause flashing during rendering for about 1 frame.
-                To workaround this issue, call <b>GuiControlHost::ForceCalculateSizeImmediately</b> after finishing editing all items in a rendering cycle, in either C++ or Workflow.
-                A control host is a top level window like window or menu.
-                You could also call the same function in `ContainerComposition` of any list controls,
-                but this function is only available to C++.
-            </p>
-        </topic>
-        <topic>
-            <title>GuiControlHost</title>
-            <p>
-                <b>WindowReadyToClose</b> event is added.
-                <b>WindowClosing</b> is called first,
-                and if it does not cancel the operation,
-                <b>WindowReadyToClose</b> is close, then the window is close, then <b>WindowClosed</b> is called.
-            </p>
-        </topic>
-        <topic>
-            <title>GuiGraphicsComposition</title>
-            <p>
-                Removed:
-                <ul>
-                    <li><b>Margin</b> property</li>
-                    <li><b>IsTrivialComposition</b> function</li>
-                    <li><b>PreferredBounds</b> property</li>
-                </ul>
-                Renamed:
-                <ul>
-                    <li><b>ClientArea</b> property to <b>CachedClientArea</b> property</li>
-                    <li><b>MinPreferredMinSize</b> property to <b>CachedMinSize</b> and <b>CachedMinClientSize</b> property</li>
-                    <li><b>Bounds</b> and <b>PreviousCalculatedBounds</b> property to <b>CachedBounds</b> property</li>
-                </ul>
-            </p>
-        </topic>
-        <topic>
-            <title>GuiGraphicsSite</title>
-            <p>
-                This class is removed, members are merged to its base class <b>GuiGraphicsComposition</b>.
-            </p>
-        </topic>
-        <topic>
-            <title>GuiBoundsComposition</title>
-            <p>
-                <b>Bounds</b> property is renamed to <b>ExpectedBounds</b>.
-            </p>
-            <p>
-                <b>AlignmentToParent</b> property will no longer consider parent's <b>InternalMargin</b> property in layout.
-            </p>
-        </topic>
-        <topic>
-            <title>GuiTableComposition</title>
-            <p>
-                Removed <b>GetCellArea</b> and <b>UpdateCellBounds</b> functions.
-            </p>
-            <p>
-                When <b>MinSizeLimitation</b> is not <b>LimitToElementAndChildren</b>, layout of cells is not considered in the table's minimum size.
-            </p>
+            <title>GacUI Platform Provider API</title>
+            <topic>
+                <title>IGuiGraphicsRenderTarget</title>
+                <p>
+                    New methods <b>IsInHostedRendering</b>, <b>StartHostedRendering</b> and <b>StopHostedRendering</b>.
+                </p>
+                <p>
+                    Use <b>GuiGraphicsRenderTarget</b> to implement <b>IGuiGraphicsRenderTarget</b> to reduce complexity,
+                    without bothering with dealing with hosted or non-hosted mode,
+                    and some calculation of clippings.
+                </p>
+            </topic>
+            <topic>
+                <title>INativeWindow</title>
+                <p>
+                    <b>SetFocus</b> and <b>IsFocused</b> is removed, because now activated means focused.
+                </p>
+                <p>
+                    New method <b>IsActivelyRefreshing</b>, it always returns <b>true</b> for native platform provider.
+                </p>
+                <p>
+                    New method <b>GetRenderingOffset</b>, it always returns <b>{0,0}</b> for native platform provider.
+                </p>
+                <p>
+                    New method <b>IsRenderingAsActivated</b>, it should returns <b>true</b> when the window or any child window is activated.
+                </p>
+            </topic>
+            <topic>
+                <title>INativeWindowListener</title>
+                <p>
+                    New callback <b>RenderingAsActivated</b> and <b>RenderingAsDeactivated</b>,
+                    called when <b>INativeWindow::IsRenderingAsActivated</b> is changed.
+                </p>
+                <p>
+                    <b>Closing</b> renamed to <b>BeforeClosing</b> and <b>AfterClosing</b>.
+                    <b>BeforeClosing</b> of all listeners must be called first,
+                    followed by <b>AfterClosing</b> of all listeners,
+                    if none of listeners cancel the closing in <b>BeforeClosing</b>.
+                </p>
+                <p>
+                    New callback <b>NeedRefresh</b>, <b>ForceRefresh</b> and <b>BecomeNonMainHostedWindow</b>,
+                    they should not be called from a native platform provider.
+                </p>
+                <p>
+                    A parameter is added to <b>DpiChanged</b>.
+                    <b>DpiChanged(true)</b> of all listeners must be called first,
+                    followed by <b>DpiChanged(false)</b> of all listeners.
+                </p>
+            </topic>
+            <topic>
+                <title>GetCurrentController and SetCurrentController</title>
+                <p>
+                    It is renamed to <b>SetNativeController</b>.
+                    <b>GetCurrentController</b> no longer returns the object in <b>SetNativeController</b>,
+                    instead it returns a new implementation of <b>INativeController</b>
+                    of which services could be substituted by <b>GetNativeServiceSubstitution</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>New helper functions</title>
+                <p>
+                    <b>PerformHitTest</b> to call <b>INativeWindowListener::HitTest</b> on a collection of listeners.
+                </p>
+                <p>
+                    <b>GetCursorFromHitTest</b> to get a suggested cursors from hit test results.
+                </p>
+            </topic>
+            <topic>
+                <title>New macros</title>
+                <p>
+                    <b>GUI_DEFINE_KEYBOARD_WINDOWS_NAME</b> for suggested names for keys.
+                </p>
+            </topic>
+            <topic>
+                <title>New helper classes</title>
+                <topic>
+                    <title>SharedAsyncService</title>
+                    <p>
+                        This class is offered as a default implementation of <b>INativeAsyncService</b>.
+                    </p>
+                </topic>
+                <topic>
+                    <title>SharedCallbackService</title>
+                    <p>
+                        This class is offered as a default implementation of <b>INativeCallbackService</b> and <b>INativeCallbackInvoker</b>.
+                    </p>
+                </topic>
+                <topic>
+                    <title>FakeDialogService</title>
+                    <p>
+                        This class is offered as a default implementation of <b>INativeDialogService</b> for <b>hosted mode only</b>.
+                        To use this service in hosted mode,
+                        <b>INativeController::DialogService</b> of a native platform provider could just return <b>nullptr</b>.
+                    </p>
+                </topic>
+            </topic>
         </topic>
     </topic>
 </article>
