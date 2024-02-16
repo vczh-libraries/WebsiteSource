@@ -170,16 +170,19 @@
                                 you don't even need to worry about slowing down your application by putting too many layouts in nested tables.
                             </li>
                             <li>
-                                <b>Side and PartialView</b>: Place sub-layouts and expand them to a specified percentage of the space of the parent layout.
+                                <b>Side</b> and <b>PartialView</b>: Place sub-layouts and expand them to a specified percentage of the space of the parent layout.
                             </li>
                             <li>
-                                <b>SharedSizeItem and SharedSizeRoot</b>: Control sub-layouts in different layouts to have the same width or height.
+                                <b>SharedSizeItem</b> and <b>SharedSizeRoot</b>: Control sub-layouts in different layouts to have the same width or height.
                                 It is very useful when you need to align icons, texts and shortcuts in a menu,
                                 but they cannot just be put in a table,
                                 because icon, text and shortcut are grouped by menu item controls.
                             </li>
                             <li>
-                                <b>RepeatStack and RepeatFlow</b>: Bindable Stack and Flow layout.
+                                <b>RepeatStack</b> and <b>RepeatFlow</b>: Bindable Stack and Flow layout.
+                            </li>
+                            <li>
+                                <b>RepeatFreeHeightItem</b>, <b>RepeatFixedHeightItem</b>, <b>RepeatFixedHeightMultiColumnItem</b> and <b>RepeatFixedSizeMultiColumnItem</b>: Layout implementation for <b>GuiListControl::IItemArranger</b>.
                             </li>
                             <li>
                                 <b>Responsive</b>: Place sub-layouts in a Responsive layout,
@@ -285,7 +288,7 @@
                 </ul>
             </p>
             <p>
-                Demos of full GacUI features can be found <a href="./demo.html">here</a>.
+                Demos of full GacUI features can be found <a href="//demo.html">here</a>.
             </p>
         </topic>
     </topic>

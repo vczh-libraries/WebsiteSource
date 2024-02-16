@@ -70,18 +70,21 @@
                 </p>
             </topic>
             <topic>
-                <title>ThemeName </title>
+                <title>ThemeName</title>
                 <p>
                     New theme <b>SystemFrameWindow</b> for control template of <b>GuiWindow</b> when the system frame is enabled.
                 </p>
                 <p>
                     New theme <b>CustomFrameWindow</b> for control template of <b>GuiWindow</b> when the system frame is disabled.
                 </p>
+                <p>
+                    New theme <b>RibbonGroupMenu</b> for control template of a drop down menu when <b>GuiRibbonGroup</b> is collapsed to a button.
+                </p>
             </topic>
             <topic>
                 <title>ThemeTemplates</title>
                 <p>
-                    New theme <b>SystemFrameWindow</b> and <b>CustomFrameWindow</b>.
+                    New themes as described in <b>ThemeName</b>.
                 </p>
                 <p>
                     New property <b>PreferCustomFrameWindow</b>.
