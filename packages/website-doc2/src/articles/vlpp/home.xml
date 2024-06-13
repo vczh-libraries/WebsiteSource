@@ -44,6 +44,14 @@
                     <li><b>(a|w|u(8|16|32))to(a|w|u(8|16|32))</b>: convert between strings.</li>
                 </ul>
             </p>
+            <p>
+                A string reader concept implemented by combination of classes with the following members:
+                <ul>
+                    <li><b>Read</b>: Read a code point, could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> and <b>char32_t</b>. It returns 0 when there is no more code point to read.</li>
+                    <li><b>ReadingIndex</b>: The index of the last successful called to <b>Read</b>, beginning from 0.</li>
+                    <li><b>SourceCluster</b>: The position of the sub array in source code points of the last successful called to <b>Read</b>.</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Containers and collections operations</title>
