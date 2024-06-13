@@ -30,12 +30,20 @@
                     <li>Functions convert numbers to <b>AString</b>: <b>([ui](64)?|f)toa</b>.</li>
                     <li>Lower and upper case: <b>[aw](lower|upper)</b>.</li>
                 </ul>
-                Functions convert <b>WString</b> to numbers: <b>wto([ui](64)?|f)</b> and <b>wto([ui](64)?|f)_test</b>.
             </p>
         </topic>
         <topic>
             <title>String encoding operations</title>
             <p>In namespace <b>::vl</b>,</p>
+            <p>
+                <b>char16be_t</b> for big endian Utf-16 character.
+            </p>
+            <p>
+                <ul>
+                    <li><b>UtfConversion&lt;T&gt;</b> to convert strings from and to Utf-32, using <b>From32</b> and <b>To32</b> static member functions.</li>
+                    <li><b>(a|w|u(8|16|32))to(a|w|u(8|16|32))</b>: convert between strings.</li>
+                </ul>
+            </p>
         </topic>
         <topic>
             <title>Containers and collections operations</title>
