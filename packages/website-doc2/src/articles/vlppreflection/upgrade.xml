@@ -7,5 +7,11 @@
                 It returns <b>Unboxed&lt;T&gt;</b> instead of updating the second argument.
             </p>
         </topic>
+        <topic>
+            <title>SERIALIZE_ENUM macro</title>
+            <p>
+                Removed. All enum types will be automatically recognized.
+            </p>
+        </topic>
     </topic>
 </article>
