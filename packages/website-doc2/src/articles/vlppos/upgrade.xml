@@ -1,8 +1,23 @@
 <article>
     <topic>
         <title>Breaking changes from 1.0</title>
-        <p>
-            This library does not have breaking changes at this version.
-        </p>
+        <topic>
+            <title>Utf(8|16(BE)?|32)Encoder class</title>
+            <p>
+                They become a typedef to a more general <b>UtfGeneralEncoder&lt;TNative, wchar_t&gt;</b> class.
+            </p>
+        </topic>
+        <topic>
+            <title>Utf(8|16(BE)?|32)Decoder class</title>
+            <p>
+                They become a typedef to a more general <b>UtfGeneralDecoder&lt;TNative, wchar_t&gt;</b> class.
+            </p>
+        </topic>
+        <topic>
+            <title>TextReader, TextWriter, StringReader, StreamReader, StreamWriter classes</title>
+            <p>
+                They are no longer classes but <b>typedef</b> to template classes.
+            </p>
+        </topic>
     </topic>
 </article>
