@@ -47,7 +47,7 @@
             <p>
                 A string reader concept implemented by combination of classes with the following members:
                 <ul>
-                    <li><b>Read</b>: Read a code point, could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> and <b>char32_t</b>. It returns 0 when there is no more code point to read.</li>
+                    <li><b>Read</b>: Read a code point, could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> or <b>char32_t</b>. It returns 0 when there is no more code point to read.</li>
                     <li><b>ReadingIndex</b>: The index of the last successful called to <b>Read</b>, beginning from 0.</li>
                     <li><b>SourceCluster</b>: The position of the sub array in source code points of the last successful called to <b>Read</b>.</li>
                 </ul>
@@ -55,27 +55,39 @@
             <p>
                 A string consumer concept implemented by combination of classes with the following members:
                 <ul>
-                    <li>protected <b>Consume</b>: Read a code point, could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> and <b>char32_t</b>. It returns 0 when there is no more code point to read.</li>
+                    <li>protected <b>Consume</b>: Read a code point, could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> or <b>char32_t</b>. It returns 0 when there is no more code point to read.</li>
+                    <li>
+                        To convert a reader to a consumer, use <b>UtfReaderConsumer&lt;TReader, TConsumerRedirection&lt;T&gt;&gt;</b>.
+                        <b>TConsumerRedirection</b> could offer a replacement implementation of <b>SourceCluster</b>,
+                        but if it is not needed, just pass <b>UtfEmptyConsumerRedirection</b> to it.
+                    </li>
+                    <li>
+                        Use <b>UtfStringConsumer&lt;T&gt;</b> to create a consumer,
+                        offering code points stored in a zero-terminated pointer.
+                        <b>T</b> could be could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> or <b>char32_t</b>.
+                    </li>
+                    <li>
+                        Use <b>UtfStringRangeConsumer&lt;T&gt;</b> to create a consumer,
+                        offering code points stored in a range by two pointers.
+                        <b>T</b> could be could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> or <b>char32_t</b>.
+                    </li>
                 </ul>
-            </p>
-            <p>
-                To convert a reader to a consumer, use <b>UtfReaderConsumer&lt;TReader, TConsumerRedirection&lt;T&gt;&gt;</b>.
-                <b>TConsumerRedirection</b> could offer a replacement implementation of <b>SourceCluster</b>,
-                but if it is not needed, just pass <b>UtfEmptyConsumerRedirection</b> to it.
             </p>
             <p>
                 When you have a string consumer to offer code points to be converted,
                 use <b>UtfToUtfReaderBase&lt;TFrom, TTo, TConsumer, TConsumerRedirection&lt;T&gt;&gt;</b> to create a reader.
-                <b>TFrom</b> and <b>TTo</b> could be could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> and <b>char32_t</b>.
+                <b>TFrom</b> and <b>TTo</b> could be could be <b>wchar_t</b>, <b>char8_t</b>, <b>char16_t</b>, <b>char16be_t</b> or <b>char32_t</b>.
                 <b>TConsumerRedirection</b> is optional.
-            </p>
-            <p>
-                Use <b>UtfStringToStringReader&lt;TFrom, TTo&gt;</b> to create a reader,
-                convert code points stored in a zero-terminated pointer.
-            </p>
-            <p>
-                Use <b>UtfStringRangeToStringRangeReader&lt;TFrom, TTo&gt;</b> to create a reader,
-                convert code points stored in a range by two pointers.
+                <ul>
+                    <li>
+                        Use <b>UtfStringToStringReader&lt;TFrom, TTo&gt;</b> to create a reader,
+                        convert code points stored in a zero-terminated pointer.
+                    </li>
+                    <li>
+                        Use <b>UtfStringRangeToStringRangeReader&lt;TFrom, TTo&gt;</b> to create a reader,
+                        convert code points stored in a range by two pointers.
+                    </li>
+                </ul>
             </p>
         </topic>
         <topic>
