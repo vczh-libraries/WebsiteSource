@@ -10,7 +10,7 @@
             <p>
                 <ul>
                     <li><b>Object</b> and <b>Interface</b>, which are base classes for reference types and interfaces. Almost everything inherit from one or both of them.</li>
-                    <li><b>Nullable&lt;T&gt;</b>, <b>Ptr&lt;T&gt;</b>, <b>Tuple&lt;Ts...&gt;</b>: data containers.</li>
+                    <li><b>Nullable&lt;T&gt;</b>, <b>Ptr&lt;T&gt;</b>, <b>Tuple&lt;Ts...&gt;</b>, <b>Variant&lt;Ts...&gt;</b>: data containers.</li>
                     <li><b>AString</b>, <b>WString</b>, <b>U8String</b>, <b>U16String</b>, <b>U32String</b>, <b>DateTime</b>: basic primitive types.</li>
                     <li><b>Error</b>, <b>Exception</b>: basic exception types.</li>
                     <li><b>Func&lt;T&gt;</b>, <b>Event&lt;T&gt;</b>: strongly-typed functor that can contain function pointers, method pointers or lambda expressions.</li>
@@ -18,6 +18,24 @@
                     <li>And more ...</li>
                 </ul>
             </p>
+        </topic>
+        <topic>
+            <title>String conversion operations</title>
+            <p>In namespace <b>::vl</b>,</p>
+            <p>
+                <ul>
+                    <li>Functions convert <b>WString</b> to numbers: <b>wto([ui](64)?|f)</b> and <b>wto([ui](64)?|f)_test</b>.</li>
+                    <li>Functions convert <b>AString</b> to numbers: <b>ato([ui](64)?|f)</b> and <b>ato([ui](64)?|f)_test</b>.</li>
+                    <li>Functions convert numbers to <b>WString</b>: <b>([ui](64)?|f)tow</b>.</li>
+                    <li>Functions convert numbers to <b>AString</b>: <b>([ui](64)?|f)toa</b>.</li>
+                    <li>Lower and upper case: <b>[aw](lower|upper)</b>.</li>
+                </ul>
+                Functions convert <b>WString</b> to numbers: <b>wto([ui](64)?|f)</b> and <b>wto([ui](64)?|f)_test</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>String encoding operations</title>
+            <p>In namespace <b>::vl</b>,</p>
         </topic>
         <topic>
             <title>Containers and collections operations</title>
@@ -49,6 +67,10 @@
                 You are able to organize test cases in nested categories,
                 and either run all the way to the end,
                 or tell the IDE to stop at the first failed test assertion.
+            </p>
+            <p>
+                In order to test code that is aware of the current date time.
+                <b>vl::InjectDateTimeImpl</b> could be used to control the implementation of <b>vl::DateTime</b>.
             </p>
         </topic>
     </topic>
