@@ -240,6 +240,16 @@ private:
                 </p>
             </topic>
             <topic>
+                <title>IGuiPlugin</title>
+                <p>
+                    New parameters <b>controllerUnrelatedPlugins</b> and <b>controllerRelatedPlugins</b>
+                    is added to <b>IGuiPlugin::Load</b> and <b>IGuiPlugin::Unload</b>.
+                    In unit test GacUI will restart for many times,
+                    these parameters tell a plugin why it is loaded or unloaded,
+                    giving the plugin to skip some work if possible.
+                </p>
+            </topic>
+            <topic>
                 <title>GetCurrentController and SetCurrentController</title>
                 <p>
                     It is renamed to <b>SetNativeController</b>.
@@ -255,6 +265,9 @@ private:
                 </p>
                 <p>
                     <b>GetCursorFromHitTest</b> to get a suggested cursors from hit test results.
+                </p>
+                <p>
+                    <b>(Try)?FindObjectByName</b> and <b>(Try)?FindControlByText</b> to get an object with <b>ref.Name</b> specified in GacUI Resource XML from an object created in a &lt;Instance/&gt;.
                 </p>
             </topic>
             <topic>

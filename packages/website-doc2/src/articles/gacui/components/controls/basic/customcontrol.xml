@@ -35,6 +35,10 @@
                 <b>&lt;ref.Members/&gt;</b>
             </a>.
         </p>
+        <p>
+            To make such control focusable,
+            use the <b>FocusableComposition</b> to specify a composition to receive keyboard and other related events.
+        </p>
         <topic>
             <title>Adding something to a custom control</title>
             <p>
