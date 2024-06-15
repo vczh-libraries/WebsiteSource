@@ -15,62 +15,57 @@
                 <li>
                     GuiGraphicsComposition
                     <ul>
+                        <li>GuiWindowComposition</li>
                         <li>
-                            GuiGraphicsSite
+                            &lt;Bounds&gt;
                             <ul>
-                                <li>GuiWindowComposition</li>
                                 <li>
-                                    &lt;Bounds&gt;
+                                    &lt;Stack&gt;
                                     <ul>
-                                        <li>
-                                            &lt;Stack&gt;
-                                            <ul>
-                                                <li>&lt;RepeatStack&gt;</li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            &lt;Flow&gt;
-                                            <ul>
-                                                <li>&lt;RepeatFlow&gt;</li>
-                                            </ul>
-                                        </li>
-                                        <li>&lt;Table&gt;</li>
-                                        <li>&lt;SharedSizeRoot&gt;</li>
-                                        <li>&lt;SharedSizeItem&gt;</li>
-                                        <li>
-                                            GuiResponsiveCompositionBase
-                                            <ul>
-                                                <li>&lt;ResponsiveView&gt;</li>
-                                                <li>&lt;ResponsiveFixed&gt;</li>
-                                                <li>&lt;ResponsiveStack&gt;</li>
-                                                <li>&lt;ResponsiveGroup&gt;</li>
-                                            </ul>
-                                        </li>
-                                        <li>&lt;ResponsiveShared&gt;</li>
-                                        <li>&lt;ResponsiveContainer&gt;</li>
+                                        <li>&lt;RepeatStack&gt;</li>
                                     </ul>
                                 </li>
-                                <li>&lt;StackItem&gt;</li>
-                                <li>&lt;FlowItem&gt;</li>
-                                <li>&lt;Cell&gt;</li>
                                 <li>
-                                   GuiTableSplitterComposition
+                                    &lt;Flow&gt;
                                     <ul>
-                                        <li>&lt;RowSplitter&gt;</li>
-                                        <li>&lt;ColumnSplitter&gt;</li>
+                                        <li>&lt;RepeatFlow&gt;</li>
                                     </ul>
                                 </li>
-                                <li>&lt;SideAligned&gt;</li>
-                                <li>&lt;PartialView&gt;</li>
+                                <li>&lt;Table&gt;</li>
+                                <li>&lt;SharedSizeRoot&gt;</li>
+                                <li>&lt;SharedSizeItem&gt;</li>
                                 <li>
-                                    GuiVirtualRepeatCompositionBase
+                                    GuiResponsiveCompositionBase
                                     <ul>
-                                        <li>&lt;RepeatFreeHeightItem&gt;</li>
-                                        <li>&lt;RepeatFixedHeightItem&gt;</li>
-                                        <li>&lt;RepeatFixedSizeMultiColumnItem&gt;</li>
-                                        <li>&lt;RepeatFixedHeightMultiColumnItem&gt;</li>
+                                        <li>&lt;ResponsiveView&gt;</li>
+                                        <li>&lt;ResponsiveFixed&gt;</li>
+                                        <li>&lt;ResponsiveStack&gt;</li>
+                                        <li>&lt;ResponsiveGroup&gt;</li>
                                     </ul>
                                 </li>
+                                <li>&lt;ResponsiveShared&gt;</li>
+                                <li>&lt;ResponsiveContainer&gt;</li>
+                            </ul>
+                        </li>
+                        <li>&lt;StackItem&gt;</li>
+                        <li>&lt;FlowItem&gt;</li>
+                        <li>&lt;Cell&gt;</li>
+                        <li>
+                           GuiTableSplitterComposition
+                            <ul>
+                                <li>&lt;RowSplitter&gt;</li>
+                                <li>&lt;ColumnSplitter&gt;</li>
+                            </ul>
+                        </li>
+                        <li>&lt;SideAligned&gt;</li>
+                        <li>&lt;PartialView&gt;</li>
+                        <li>
+                            GuiVirtualRepeatCompositionBase
+                            <ul>
+                                <li>&lt;RepeatFreeHeightItem&gt;</li>
+                                <li>&lt;RepeatFixedHeightItem&gt;</li>
+                                <li>&lt;RepeatFixedSizeMultiColumnItem&gt;</li>
+                                <li>&lt;RepeatFixedHeightMultiColumnItem&gt;</li>
                             </ul>
                         </li>
                     </ul>
