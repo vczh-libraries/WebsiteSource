@@ -18,6 +18,9 @@
                 <ul>
                     <li><b>vl::AString</b></li>
                     <li><b>vl::WString</b></li>
+                    <li><b>vl::U8String</b></li>
+                    <li><b>vl::U16String</b></li>
+                    <li><b>vl::U32String</b></li>
                     <li><b>vl::Func</b>: calling the function is safe only when the function itself is self.</li>
                     <li><b>vl::Ptr</b>: using the referenced object is safe only when the object itself is safe.</li>
                     <li><b>vl::console::Console</b></li>
@@ -47,8 +50,8 @@
             <title>VlppRegex</title>
             <p>
                 <ul>
-                    <li><b>vl::regex::Regex</b></li>
-                    <li><b>vl::regex::RegexLexer</b></li>
+                    <li><b>vl::regex::Regex_</b></li>
+                    <li><b>vl::regex::RegexLexer_</b></li>
                 </ul>
             </p>
         </topic>
@@ -57,6 +60,14 @@
             <p>
                 <ul>
                     <li><b>vl::tabling::ParsingTable</b></li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>VlppParser2</title>
+            <p>
+                <ul>
+                    <li>Generated parsers inheriting from <b>vl::glr::ParserBase</b></li>
                 </ul>
             </p>
         </topic>

@@ -6,12 +6,18 @@
             Here is a complete list of them.
         </p>
         <p>
+            This page is under construction,
+            detailed explanation will be completed later.
+            The syntax of DSL are written in comments of classes listed here:
+        </p>
+        <p>
             <ul>
-                <li><a href="/vlpp/ref/VL__COLLECTIONS__LAZYLIST.html">Collection Operations</a></li>
-                <li><a href="/vlpp/ref/VL__UNITTEST__UNITTEST.html">Unit Test Framework</a></li>
-                <li><a href="/vlppregex/ref/VL__REGEX__REGEX.html">Regular Expression</a></li>
-                <li><a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">Reflectable Type Registrations.</a></li>
-                <li><a href="/vlppparser/ref/VL__PARSING__TABLING__PARSINGTABLE.html">Parser Grammar File Format</a></li>
+                <li><b>Collection Operations</b>: vl::collections::LazyList&lt;T&gt; <b>(Vlpp)</b></li>
+                <li><b>Unit Test Framework</b>: vl::unittest::UnitTest <b>(Vlpp)</b></li>
+                <li><b>Regular Expression</b>: vl::regex::Regex_&lt;T&gt; <b>(VlppRegex)</b></li>
+                <li><b>eflectable Type Registrations</b>: vl::reflection::Description&lt;T&gt; <b>(VlppReflection)</b></li>
+                <li><b>Parser Grammar File Format (deprecated)</b>: vl::parsing::tabling::ParsingTable <b>(VlppParser)</b></li>
+                <li><b>Parser Grammar File Format</b>: (under construction) <b>(VlppParser2)</b></li>
             </ul>
         </p>
     </topic>
