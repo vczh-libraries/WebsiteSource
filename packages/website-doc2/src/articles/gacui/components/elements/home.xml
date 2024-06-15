@@ -213,5 +213,12 @@
                 the coordinate space is aligned to the center.
             </p>
         </topic>
+        <topic>
+            <title>&lt;ColorizedTextElement&gt; and &lt;DocumentElement&gt;</title>
+            <p>
+                These elements are for implementing editing and rendering of all text box controls.
+                They are not supposed to be used directly.
+            </p>
+        </topic>
     </topic>
 </article>

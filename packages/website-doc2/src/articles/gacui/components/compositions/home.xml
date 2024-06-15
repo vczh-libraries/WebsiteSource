@@ -62,6 +62,15 @@
                                 </li>
                                 <li>&lt;SideAligned&gt;</li>
                                 <li>&lt;PartialView&gt;</li>
+                                <li>
+                                    GuiVirtualRepeatCompositionBase
+                                    <ul>
+                                        <li>&lt;RepeatFreeHeightItem&gt;</li>
+                                        <li>&lt;RepeatFixedHeightItem&gt;</li>
+                                        <li>&lt;RepeatFixedSizeMultiColumnItem&gt;</li>
+                                        <li>&lt;RepeatFixedHeightMultiColumnItem&gt;</li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                     </ul>
