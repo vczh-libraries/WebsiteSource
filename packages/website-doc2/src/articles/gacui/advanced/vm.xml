@@ -189,7 +189,7 @@
                     void GuiMain()
                     {
                         ...
-                        auto viewModel = MakePtr<ViewModel>();
+                        auto viewModel = Ptr(new ViewModel);
                         auto window = new helloworld::MainWindow(viewModel);
                         ...
                     }

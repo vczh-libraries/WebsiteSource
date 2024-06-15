@@ -57,7 +57,7 @@
         <p>
             Secondly we need to create the runtime environment for executing the script:
             <program><code><![CDATA[
-                auto globalContext = MakePtr<WfRuntimeGlobalContext>(assembly);
+                auto globalContext = Ptr(new WfRuntimeGlobalContext(assembly));
                 auto initializeFunction = LoadFunction<void()>(globalContext, L"<initialize>");
                 initializeFunction();
             ]]></code></program>

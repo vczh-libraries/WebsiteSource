@@ -296,7 +296,7 @@
 
                         void Run(const Func<void()>& callback)
                         {
-                            auto scheduler = MakePtr<SyncScheduler>();
+                            auto scheduler = Ptr(new SyncScheduler);
                             IAsyncScheduler::RegisterDefaultScheduler(scheduler);
                             callback();
                             while (scheduler->tasks.Count() > 0)

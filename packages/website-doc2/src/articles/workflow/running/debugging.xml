@@ -27,7 +27,7 @@
         <p>
             Firstly, after initializing the assembly, we start debugging:
             <program><code><![CDATA[
-                auto debugger = MakePtr<MyDebugger>();
+                auto debugger = Ptr(new MyDebugger);
                 SetDebuggerForCurrentThread(debugger);
             ]]></code></program>
             <b>MyDebugger</b> inherits <b>WfDebugger</b>, it will be explained later.

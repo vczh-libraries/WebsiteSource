@@ -12,7 +12,7 @@
 
 int main()
 {
-    MakePtr<MyScript>()->Main();
+    Ptr(new MyScript)->Main();
 }
             ]]></code></program>
         </p>
