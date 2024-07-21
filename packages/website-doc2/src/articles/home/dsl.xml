@@ -4,20 +4,18 @@
         <p>
             Domain specific languages are widely used in this library.
             Here is a complete list of them.
-        </p>
-        <p>
-            This page is under construction,
-            detailed explanation will be completed later.
-            The syntax of DSL are written in comments of classes listed here:
+            For any topic without documentation,
+            the syntax is commented in the class listed below:
         </p>
         <p>
             <ul>
-                <li><b>Collection Operations</b>: vl::collections::LazyList&lt;T&gt; <b>(Vlpp)</b></li>
-                <li><b>Unit Test Framework</b>: vl::unittest::UnitTest <b>(Vlpp)</b></li>
-                <li><b>Regular Expression</b>: vl::regex::Regex_&lt;T&gt; <b>(VlppRegex)</b></li>
-                <li><b>eflectable Type Registrations</b>: vl::reflection::Description&lt;T&gt; <b>(VlppReflection)</b></li>
+                <li><b><a href="/vlpp/home.html#Containers-and-collections-operations">Collection Operations</a></b>: vl::collections::LazyList&lt;T&gt; <b>(Vlpp)</b></li>
+                <li><b><a href="./dsl_regex.html">Regular Expression</a></b>: vl::regex::Regex_&lt;T&gt; <b>(VlppRegex)</b></li>
+                <li><b><a href="./dsl_reflection.html">Reflectable Type Registrations</a></b>: vl::reflection::Description&lt;T&gt; <b>(VlppReflection)</b></li>
                 <li><b>Parser Grammar File Format (deprecated)</b>: vl::parsing::tabling::ParsingTable <b>(VlppParser)</b></li>
                 <li><b>Parser Grammar File Format</b>: (under construction) <b>(VlppParser2)</b></li>
+                <li><b><a href="./dsl_unittest.html">Unit Test Framework (Vlpp)</a></b>: vl::unittest::UnitTest <b>(Vlpp)</b></li>
+                <li><b>Unit Test Framework (GacUI)</b>: (under development)</li>
             </ul>
         </p>
     </topic>

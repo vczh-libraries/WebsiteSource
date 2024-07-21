@@ -2,7 +2,11 @@
   <article name="Gaclib Document" file="home">
     <article name="Download Gaclib" file="home/download"/>
     <article name="Thread Safety" file="home/mt"/>
-    <article name="Domain Specific Languages" file="home/dsl"/>
+    <article name="Domain Specific Languages" file="home/dsl">
+      <article name="Regular Expression" file="home/dsl_regex"/>
+      <article name="Reflectable Type Registrations" file="home/dsl_reflection"/>
+      <article name="Unit Test Framework (Vlpp)" file="home/dsl_unittest"/>
+    </article>
     <article name="Registered Types" file="home/registered">
       <registeredTypes name="VlppReflection" file="home/registered/vlppreflection"/>
       <registeredTypes name="VlppParser" file="home/registered/vlppparser"/>
