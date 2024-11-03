@@ -1,11 +1,11 @@
 import * as assert from 'assert';
 import { route, RouterFragment, RouterFragmentKind, RouterParameterKind, RouterPattern } from '../src';
 
-function assertFragments<T>(rp: RouterPattern<T>, expected: RouterFragment[]): void {
+function assertFragments<T extends {}>(rp: RouterPattern<T>, expected: RouterFragment[]): void {
     assert.deepStrictEqual(rp.fragments, expected);
 }
 
-function assertDefaultValue<T>(rp: RouterPattern<T>, expected: T): void {
+function assertDefaultValue<T extends {}>(rp: RouterPattern<T>, expected: T): void {
     assert.deepStrictEqual(rp.createDefaultValue(), expected);
 }
 

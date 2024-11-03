@@ -15,7 +15,7 @@ export interface ViewConfig {
     embeddedResources?: EmbeddedResources;
 }
 
-export function litHtmlViewRouterCallback<TModel = {}>(
+export function litHtmlViewRouterCallback<TModel extends {} = {}>(
     method: HttpMethods,
     model: TModel,
     views: ViewMetadata[],
@@ -37,7 +37,7 @@ export function litHtmlViewRouterCallback<TModel = {}>(
     return ['text/html', generatedHtml];
 }
 
-export function litHtmlViewCallback<TModel = {}>(
+export function litHtmlViewCallback<TModel extends {} = {}>(
     views: ViewMetadata[],
     viewName: string,
     config: ViewConfig

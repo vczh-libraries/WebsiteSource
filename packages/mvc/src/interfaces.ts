@@ -79,7 +79,7 @@ export interface RouterPatternBase {
     walk(text: string, fragment: RouterFragment, value: {}): boolean;
 }
 
-export interface RouterPattern<T> extends RouterPatternBase {
+export interface RouterPattern<T extends {}> extends RouterPatternBase {
     createDefaultValue(): T;
     walk(text: string, fragment: RouterFragment, value: T): boolean;
 }
@@ -89,6 +89,6 @@ export type RouterCallback<TModel, TResult> = (method: HttpMethods, model: TMode
 export interface Router<TResult> {
     readonly registered: readonly RouterPatternBase[];
     readonly pathPrefix: string;
-    register<TModel>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void;
+    register<TModel extends {}>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void;
     match(method: HttpMethods, query: string): TResult | undefined;
 }

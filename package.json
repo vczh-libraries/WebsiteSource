@@ -17,6 +17,7 @@
     ]
   },
   "devDependencies": {
+    "@types/webpack": "^5.28.5",
     "lerna": "^3.16.1"
   }
 }

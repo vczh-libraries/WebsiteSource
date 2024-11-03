@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { endsWithPatternArray, route, RouterFragmentKind, RouterPattern } from '../src';
 
-function assertWalk<T>(rp: RouterPattern<T>, url: string, expected: T): void {
+function assertWalk<T extends {}>(rp: RouterPattern<T>, url: string, expected: T): void {
     const fragments = url.split('/');
     if (endsWithPatternArray(rp)) {
         assert.strictEqual(true, fragments.length >= rp.fragments.length + 1);

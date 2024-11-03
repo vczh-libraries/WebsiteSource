@@ -15,7 +15,7 @@ class RouterImpl<TResult> implements Router<TResult> {
         return this.patterns.map((value: RouterPackage<TResult>) => value.pattern);
     }
 
-    public register<TModel>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void {
+    public register<TModel extends {}>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void {
         this.patterns.push({
             methods: methods.length === 0 ? ['GET'] : methods,
             pattern,

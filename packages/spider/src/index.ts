@@ -1,11 +1,11 @@
 // tslint:disable:no-http-string
 
 import { Router, RouterFragment, RouterFragmentKind, RouterPatternBase } from 'gaclib-mvc';
-import scrape = require('website-scraper');
+import websiteScraper = require('website-scraper');
 
 type RegisterAction = (
     action: 'generateFilename',
-    callback: (value: { resource: scrape.Resource }) => { filename: string }
+    callback: (value: { resource: websiteScraper.Resource }) => { filename: string }
 ) => void;
 
 export function collectStaticUrls<TResult>(router: Router<TResult>): string[] {
@@ -41,7 +41,7 @@ export function downloadWebsite(urls: string[], directory: string): void {
         requestConcurrency: 1,
         plugins: [{
             apply(registerAction: RegisterAction): void {
-                registerAction('generateFilename', (value: { resource: scrape.Resource }) => {
+                registerAction('generateFilename', (value: { resource: websiteScraper.Resource }) => {
                     const matches = /^http:\/\/[^\/]+(.*)$/g.exec(value.resource.url);
                     if (matches !== null) {
                         return { filename: matches[1] };
@@ -53,8 +53,8 @@ export function downloadWebsite(urls: string[], directory: string): void {
         }]
     };
 
-    scrape(options).then(
-        (value: scrape.Resource[]) => {
+    websiteScraper(options).then(
+        (value: websiteScraper.Resource[]) => {
             for (const res of value) {
                 console.log(`${res.url} => ${res.filename}`);
             }

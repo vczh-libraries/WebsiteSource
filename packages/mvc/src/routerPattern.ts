@@ -12,7 +12,7 @@ type ValidPropertyTypes<T> = T[keyof T];
 type FilterOutInvalidProperties<T> = Pick<T, ValidPropertyTypes<ValidPropertiesToKeys<T>>>;
 
 // A|B|... -> ((k:FIOP<A>)=>void)|((k:FIOP<B>)=>void)|... -> (k:FIOP<A>&FIOP<B>&...)=>void -> FIOP<A>&FIOP<B>&...
-type MergeParameters<U> = (U extends {} ? (k: FilterOutInvalidProperties<U>) => void : never) extends ((k: infer I) => void) ? I : never;
+type MergeParameters<U extends {}> = ((k: FilterOutInvalidProperties<U>) => void) extends ((k: infer I) => void) ? I : never;
 
 function getParameterName(fragment: {}): [true, RouterParameter] | [false, string] {
     if (typeof fragment === 'string') {
@@ -363,8 +363,8 @@ class RouterPatternImpl implements RouterPatternBase {
     }
 }
 
-export function route<T>(strings: TemplateStringsArray): RouterPattern<{}>;
-export function route<T>(strings: TemplateStringsArray, ...parameters: T[]): RouterPattern<MergeParameters<T>>;
+export function route(strings: TemplateStringsArray): RouterPattern<{}>;
+export function route<T extends {}>(strings: TemplateStringsArray, ...parameters: T[]): RouterPattern<MergeParameters<T>>;
 export function route(strings: TemplateStringsArray, ...parameters: {}[]): RouterPatternBase {
     return new RouterPatternImpl(strings, parameters);
 }

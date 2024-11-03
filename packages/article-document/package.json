@@ -10,13 +10,13 @@
     "license": "Apache-2.0",
     "devDependencies": {
         "@types/jest": "^24.0.17",
-        "@types/node": "^12.6.9",
-        "jest": "^24.8.0",
+        "@types/node": "^22.8.7",
+        "jest": "^29.7.0",
         "rimraf": "^2.6.3",
-        "ts-jest": "^24.0.2",
+        "ts-jest": "^29.2.5",
         "tslint": "^5.18.0",
         "tslint-shared": "^1.0.0",
-        "typescript": "^3.6.3"
+        "typescript": "^5.6.3"
     },
     "dependencies": {
         "gaclib-article": "^0.0.1",
