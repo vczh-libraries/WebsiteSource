@@ -9,7 +9,7 @@
     },
     "license": "Apache-2.0",
     "devDependencies": {
-        "tslint-shared": "^0.0.1"
+        "eslint-shared": "^0.0.1"
     },
     "dependencies": {
         "escape-string-regexp": "^2.0.0"

@@ -9,7 +9,7 @@
     "license": "Apache-2.0",
     "devDependencies": {
         "@types/mime-types": "^2.1.0",
-        "tslint-shared": "^0.0.1"
+        "eslint-shared": "^0.0.1"
     },
     "dependencies": {
         "gaclib-mvc": "^0.0.1",

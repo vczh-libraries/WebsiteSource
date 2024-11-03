@@ -2,14 +2,15 @@
     "name": "gaclib-article",
     "version": "0.0.1",
     "description": "Gaclib article XML to HTML converter",
+    "type": "module",
     "main": "./lib/src/index.js",
     "scripts": {
-        "build": "rimraf ./lib && tslint --project tsconfig.json && tsc",
+        "build": "rimraf ./lib && eslint && tsc",
         "test": "jest"
     },
     "license": "Apache-2.0",
     "devDependencies": {
-        "tslint-shared": "^0.0.1"
+        "eslint-shared": "^0.0.1"
     },
     "dependencies": {
         "lit-html": "^1.1.2",
