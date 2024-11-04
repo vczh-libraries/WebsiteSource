@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import { Element } from 'xml-js';
-import { Article, consumePlugin, Content, parseArticle, Plugin } from '../src';
+import { Article, consumePlugin, Content, parseArticle, Plugin } from '../src/index.js';
 
 function pluginParser(e: Element): Plugin | undefined {
     if (e.name === 'plugin') {

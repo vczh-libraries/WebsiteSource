@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { EOL } from 'os';
 import { Element } from 'xml-js';
-import { Article, parseArticle, Plugin } from '../src';
+import { Article, parseArticle, Plugin } from '../src/index.js';
 
 test(`Empty Article`, () => {
     const input = `

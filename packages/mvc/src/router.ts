@@ -1,4 +1,4 @@
-import { HttpMethods, Router, RouterCallback, RouterFragmentKind, RouterPattern, RouterPatternBase } from './interfaces';
+import { HttpMethods, Router, RouterCallback, RouterFragmentKind, RouterPattern, RouterPatternBase } from './interfaces.js';
 
 interface RouterPackage<TResult> {
     methods: HttpMethods[];

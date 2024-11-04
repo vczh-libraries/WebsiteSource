@@ -1,6 +1,6 @@
 import * as a from 'gaclib-article';
 import { Element, xml2js } from 'xml-js';
-import { hierarchyIndex } from './xmlControlTemplateCommon';
+import { hierarchyIndex } from './xmlControlTemplateCommon.js';
 
 type PluginParser = (e: Element) => a.Plugin | undefined;
 

@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { DocArticle, DocExample, parseDocArticle } from '../src';
+import { DocArticle, DocExample, parseDocArticle } from '../src/index.js';
 
 function exampleRetriver(index: number): DocExample {
     return {

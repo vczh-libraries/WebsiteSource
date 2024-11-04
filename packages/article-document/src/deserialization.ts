@@ -1,6 +1,6 @@
 import * as a from 'gaclib-article';
 import { Element, xml2js } from 'xml-js';
-import * as d from './interfaces';
+import * as d from './interfaces.js';
 
 function parseDocSymbol(xml: Element): d.DocSymbol {
     if (xml.attributes === undefined) {

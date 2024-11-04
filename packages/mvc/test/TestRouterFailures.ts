@@ -1,4 +1,4 @@
-import { route } from '../src';
+import { route } from '../src/index.js';
 
 test(`Empty pattern`, () => {
     expect(() => {

@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit-html';
-import * as a from './interfaces';
+import * as a from './interfaces.js';
 
 export interface RenderArticleOptions {
     hrefPrefix: string | undefined;

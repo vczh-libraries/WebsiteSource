@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import { endsWithPatternArray, route, RouterFragmentKind, RouterPattern } from '../src';
+import { endsWithPatternArray, route, RouterFragmentKind, RouterPattern } from '../src/index.js';
 
 function assertWalk<T extends {}>(rp: RouterPattern<T>, url: string, expected: T): void {
     const fragments = url.split('/');

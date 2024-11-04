@@ -1,4 +1,4 @@
-import * as a from './interfaces';
+import * as a from './interfaces.js';
 
 type PluginConverter = (plugin: {}) => a.Content[];
 

@@ -3,7 +3,7 @@ import { Article, parseArticle } from 'gaclib-article';
 import { litHtmlViewRouterCallback, MvcRouter, MvcRouterResult } from 'gaclib-host';
 import { HttpMethods, route } from 'gaclib-mvc';
 import * as path from 'path';
-import { views } from './views';
+import { views } from './views/index.js';
 
 export function loadArticle(filename: string): Article {
     const xml = readFileSync(path.join(__dirname, `../src/articles/${filename}`), { encoding: 'utf-8' });

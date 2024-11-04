@@ -1,6 +1,6 @@
 import * as a from 'gaclib-article';
 import { Element } from 'xml-js';
-import { Hierarchy, hierarchyRoot, propertiesMetadata, themeNamesMetadata } from '../control-template/xmlControlTemplateCommon';
+import { Hierarchy, hierarchyRoot, propertiesMetadata, themeNamesMetadata } from '../control-template/xmlControlTemplateCommon.js';
 
 export interface ControlTemplatesPlugin {
     kind: 'ControlTemplatesPlugin';

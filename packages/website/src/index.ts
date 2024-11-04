@@ -2,8 +2,8 @@ import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolde
 import { createRouter } from 'gaclib-mvc';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { homePageDynamicUrls, registerHomePages } from './homePages';
-import { registerTopLevelPages, topLevelPageDynamicUrls } from './topLevelPages';
+import { homePageDynamicUrls, registerHomePages } from './homePages.js';
+import { registerTopLevelPages, topLevelPageDynamicUrls } from './topLevelPages.js';
 
 const router = createRouter<MvcRouterResult>();
 registerFolder(router, path.join(__dirname, `./dist`));

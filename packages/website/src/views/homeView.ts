@@ -1,5 +1,5 @@
 // tslint:disable:no-submodule-imports
-import { Article } from 'gaclib-article/lib/src/interfaces';
+import { Article } from 'gaclib-article/lib/src/interfaces.js';
 import { renderArticle } from 'gaclib-article/lib/src/rendering.js';
 import { html, render, TemplateResult } from 'lit-html';
 

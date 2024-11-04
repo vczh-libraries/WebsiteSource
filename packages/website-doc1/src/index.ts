@@ -7,11 +7,11 @@ import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
 import { parseArticlePlugin, renderArticlePlugin } from './plugins/article';
-import { parseControlTemplateArticle, renderControlTemplateArticle } from './plugins/control-template/xmlControlTemplateArticle';
-import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol';
-import { exampleRetriver } from './plugins/document/xmlExample';
-import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes';
-import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView';
+import { parseControlTemplateArticle, renderControlTemplateArticle } from './plugins/control-template/xmlControlTemplateArticle.js';
+import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol.js';
+import { exampleRetriver } from './plugins/document/xmlExample.js';
+import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes.js';
+import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView.js';
 import { DirectoryInfo, views } from './views';
 
 const pathPrefix = `/doc/ver1`;

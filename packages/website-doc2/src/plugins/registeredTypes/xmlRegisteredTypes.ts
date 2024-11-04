@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
-import { RegisteredTypesInfo } from '../../views/registeredTypesView';
+import { RegisteredTypesInfo } from '../../views/registeredTypesView.js';
 
 const reflectionXml = <Element>xml2js(
     readFileSync(path.join(__dirname, '../../../../../../Document/Tools/Demos/Gaclib/Reflection.xml'), { encoding: 'utf-8' }),

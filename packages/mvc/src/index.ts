@@ -1,3 +1,3 @@
-export * from './interfaces';
-export * from './routerPattern';
-export * from './router';
+export * from './interfaces.js';
+export * from './routerPattern.js';
+export * from './router.js';

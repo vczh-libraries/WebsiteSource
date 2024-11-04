@@ -1,5 +1,5 @@
 import * as a from 'gaclib-article';
-import * as d from './interfaces';
+import * as d from './interfaces.js';
 
 type DocSymbolConverter = (docSymbol: d.DocSymbol) => a.PageLink | undefined;
 

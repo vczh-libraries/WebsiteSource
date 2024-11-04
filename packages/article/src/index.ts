@@ -1,3 +1,3 @@
-export * from './consumePlugin';
-export * from './deserialization';
-export * from './interfaces';
+export * from './consumePlugin.js';
+export * from './deserialization.js';
+export * from './interfaces.js';

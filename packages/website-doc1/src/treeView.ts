@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
-import { DirectoryInfo, DirectoryNode } from './views';
+import { DirectoryInfo, DirectoryNode } from './views/index.js';
 
 export interface DocTreeNode {
     name: string;

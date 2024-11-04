@@ -1,6 +1,6 @@
 // why @types/escape-string-regexp doesn't work?
 import escapeStringRegexp from 'escape-string-regexp';
-import { RouterFragment, RouterFragmentKind, RouterParameter, RouterParameterKind, RouterParameterTypes, RouterPattern, RouterPatternBase } from './interfaces';
+import { RouterFragment, RouterFragmentKind, RouterParameter, RouterParameterKind, RouterParameterTypes, RouterPattern, RouterPatternBase } from './interfaces.js';
 
 // if the type of a property is one of RouterParameterTypes, then convert the type of the property to be the key
 type ValidPropertiesToKeys<T> = { [P in keyof T]: T[P] extends RouterParameterTypes ? P : never; };

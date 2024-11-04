@@ -1,6 +1,6 @@
 import { EOL } from 'os';
 import { Element, xml2js } from 'xml-js';
-import * as a from './interfaces';
+import * as a from './interfaces.js';
 
 type PluginParser = (e: Element) => a.Plugin | undefined;
 

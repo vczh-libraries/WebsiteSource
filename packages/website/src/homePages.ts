@@ -1,9 +1,9 @@
 import { Article, Image, Paragraph, Topic } from 'gaclib-article';
 import { litHtmlViewCallback, litHtmlViewRouterCallback, MvcRouter, MvcRouterResult, ViewConfig } from 'gaclib-host';
 import { HttpMethods, route } from 'gaclib-mvc';
-import { loadArticle } from './topLevelPages';
-import { views } from './views';
-import { FeatureItem, FeatureList } from './views/homeCategoryFeatureView';
+import { loadArticle } from './topLevelPages.js';
+import { views } from './views/index.js';
+import { FeatureItem, FeatureList } from './views/homeCategoryFeatureView.js';
 
 function getFeatureListFromArticle(article: Article): FeatureList {
     return {
