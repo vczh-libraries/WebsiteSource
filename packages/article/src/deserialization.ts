@@ -258,7 +258,7 @@ function parseContent(container: Element, pluginParser: PluginParser, addParagra
                                 const atts = Object.keys(xmlChild.attributes);
                                 if (atts.length === 1) {
                                     switch (atts[0]) {
-                                        case 'src':
+                                        case 'src': {
                                             if (typeof xmlChild.attributes.src !== 'string') {
                                                 throw new Error(`Attribute ${atts[0]} in <img> should be a string.`);
                                             }
@@ -276,12 +276,12 @@ function parseContent(container: Element, pluginParser: PluginParser, addParagra
                                                 });
                                             }
                                             continue CHILD_LOOP;
+                                        }
                                         default:
                                     }
                                 }
                             }
                             throw new Error('Exactly one "src" attribute is allowed in <img>.');
-                            continue CHILD_LOOP;
                         }
                         case 'ul': case 'ol': {
                             content.push(parseList(xmlChild, xmlChild.name === 'ol', pluginParser));
@@ -315,6 +315,7 @@ function parseContent(container: Element, pluginParser: PluginParser, addParagra
                             if (addParagraphToErrorMessage) {
                                 throw new Error(`<p> should not mix with other content in <${container.name}>.`);
                             }
+                            // eslint-disable-next-line no-fallthrough
                         default: {
                             const plugin = pluginParser(xmlChild);
                             if (plugin === undefined) {
@@ -401,7 +402,7 @@ function parseTopic(xmlTopic: Element, pluginParser: PluginParser): a.Topic {
 }
 
 export function parseArticle(xml: string, pluginParser?: PluginParser): a.Article {
-    const pp = pluginParser === undefined ? (e: Element): a.Plugin | undefined => { return undefined; } : pluginParser;
+    const pp = pluginParser === undefined ? () => undefined : pluginParser;
 
     const element = <Element>xml2js(
         xml,

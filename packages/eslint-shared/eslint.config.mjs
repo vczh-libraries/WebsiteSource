@@ -17,5 +17,12 @@ export default tseslint.config(
             "src/**/*.ts",
             "test/**/*.ts"
         ]
+    },
+    {
+        rules: {
+            "@typescript-eslint/no-base-to-string": "off",
+            "@typescript-eslint/no-empty-object-type": "off",
+            "@typescript-eslint/restrict-template-expressions": "off"
+        }
     }
 );
