@@ -5,6 +5,8 @@ import { HttpMethods, route } from 'gaclib-mvc';
 import * as path from 'path';
 import { views } from './views/index.js';
 
+const __dirname = path.resolve('./lib');
+
 export function loadArticle(filename: string): Article {
     const xml = readFileSync(path.join(__dirname, `../src/articles/${filename}`), { encoding: 'utf-8' });
     return parseArticle(xml);

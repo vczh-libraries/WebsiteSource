@@ -5,6 +5,8 @@ import * as path from 'path';
 import { homePageDynamicUrls, registerHomePages } from './homePages.js';
 import { registerTopLevelPages, topLevelPageDynamicUrls } from './topLevelPages.js';
 
+const __dirname = path.resolve('./lib');
+
 const router = createRouter<MvcRouterResult>();
 registerFolder(router, path.join(__dirname, `./dist`));
 registerHomePages(router); // temporarily disabled by not giving any link from the home page

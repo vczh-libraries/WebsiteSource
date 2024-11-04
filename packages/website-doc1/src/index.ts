@@ -12,7 +12,7 @@ import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol.js'
 import { exampleRetriver } from './plugins/document/xmlExample.js';
 import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes.js';
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView.js';
-import { DirectoryInfo, views } from './views';
+import { DirectoryInfo, views } from './views/index.js';
 
 const pathPrefix = `/doc/ver1`;
 

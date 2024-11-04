@@ -3,6 +3,8 @@ import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
 import { RegisteredTypesInfo } from '../../views/registeredTypesView.js';
 
+const __dirname = path.resolve('./lib/plugins/registeredTypes');
+
 const reflectionXml = <Element>xml2js(
     readFileSync(path.join(__dirname, '../../../doc/Reflection.xml'), { encoding: 'utf-8' }),
     {

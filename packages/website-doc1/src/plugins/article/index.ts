@@ -1,7 +1,7 @@
 import * as a from 'gaclib-article';
 import { Element } from 'xml-js';
-import { ControlTemplatesPlugin, parseControlTemplates, renderControlTemplates } from './xmlControlTemplates';
-import { parseSample, renderSample, SamplePlugin } from './xmlSample';
+import { ControlTemplatesPlugin, parseControlTemplates, renderControlTemplates } from './xmlControlTemplates.js';
+import { parseSample, renderSample, SamplePlugin } from './xmlSample.js';
 
 export function parseArticlePlugin(e: Element): a.Plugin | undefined {
     if (e.type === 'element') {

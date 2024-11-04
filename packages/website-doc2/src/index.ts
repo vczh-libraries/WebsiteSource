@@ -11,8 +11,9 @@ import { parseControlTemplateArticle, renderControlTemplateArticle } from './plu
 import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol.js';
 import { exampleRetriver } from './plugins/document/xmlExample.js';
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView.js';
-import { DirectoryInfo, views } from './views';
+import { DirectoryInfo, views } from './views/index.js';
 
+const __dirname = path.resolve('./lib');
 const pathPrefix = `/doc/current`;
 
 const router = createRouter<MvcRouterResult>(pathPrefix);

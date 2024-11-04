@@ -4,6 +4,8 @@ import { DocExample } from 'gaclib-article-document';
 import * as path from 'path';
 import { Element, xml2js } from 'xml-js';
 
+const __dirname = path.resolve('./lib/plugins/document');
+
 const templateCodeMapping: { [key: string]: string } = {
     VLPP: path.join(__dirname, '../../../../../../Document/Tools/Examples/Vlpp/Main.cpp'),
     VLPPOS: path.join(__dirname, '../../../../../../Document/Tools/Examples/VlppOS/Main.cpp'),

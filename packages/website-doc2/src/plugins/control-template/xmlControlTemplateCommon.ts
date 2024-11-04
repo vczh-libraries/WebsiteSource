@@ -19,6 +19,7 @@ export interface PropertiesMetadata {
     [controlTemplate: string]: PropertyMetadata;
 }
 
+const __dirname = path.resolve('./lib/plugins/control-template');
 const dirRoot = path.join(__dirname, '../../../src/articles/gacui/components/ctemplates');
 export const themeNamesMetadata = <ThemeNamesMetadata>JSON.parse(readFileSync(path.join(dirRoot, 'metadata/themeNames.json'), { encoding: 'utf-8' }));
 export const hierarchyMetadata = <HierarchyMetadata>JSON.parse(readFileSync(path.join(dirRoot, 'metadata/hierarchy.json'), { encoding: 'utf-8' }));
