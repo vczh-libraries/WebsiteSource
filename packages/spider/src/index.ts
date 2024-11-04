@@ -1,7 +1,7 @@
 // tslint:disable:no-http-string
 
 import { Router, RouterFragment, RouterFragmentKind, RouterPatternBase } from 'gaclib-mvc';
-import * as websiteScraper from 'website-scraper';
+import websiteScraper from 'website-scraper';
 
 type RegisterAction = (
     action: 'generateFilename',
@@ -35,7 +35,7 @@ export function collectStaticUrls<TResult>(router: Router<TResult>): string[] {
 export function downloadWebsite(urls: string[], directory: string): void {
 
     const options = {
-        urls: urls.map((url: string) => `http://127.0.0.1:8080${url}`),
+        urls: urls.map((url: string) => `http://localhost:8080${url}`),
         directory,
         recursive: true,
         requestConcurrency: 1,
