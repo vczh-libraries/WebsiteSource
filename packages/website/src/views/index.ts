@@ -2,7 +2,7 @@ import { ViewMetadata } from 'gaclib-render';
 
 const rootView: ViewMetadata = {
     name: 'Gaclib-RootView',
-    source: `${__dirname}/rootView.js`,
+    source: 'rootView.js',
     path: '/scripts/rootView.js',
     containerId: 'rootViewContainer',
     htmlInfo: {
@@ -13,7 +13,7 @@ const rootView: ViewMetadata = {
 
 const articleView: ViewMetadata = {
     name: 'Gaclib-ArticleView',
-    source: `${__dirname}/articleView.js`,
+    source: 'articleView.js',
     path: '/scripts/articleView.js',
     parentView: 'Gaclib-RootView',
     htmlInfo: {}
@@ -21,7 +21,7 @@ const articleView: ViewMetadata = {
 
 const homeView: ViewMetadata = {
     name: 'Gaclib-HomeView',
-    source: `${__dirname}/homeView.js`,
+    source: 'homeView.js',
     path: '/scripts/homeView.js',
     parentView: 'Gaclib-RootView',
     containerId: 'homeViewContainer',
@@ -32,7 +32,7 @@ const homeView: ViewMetadata = {
 
 const homeCategoryArticleView: ViewMetadata = {
     name: 'Gaclib-HomeCategoryArticleView',
-    source: `${__dirname}/homeCategoryArticleView.js`,
+    source: 'homeCategoryArticleView.js',
     path: '/scripts/homeCategoryArticleView.js',
     parentView: 'Gaclib-HomeView',
     htmlInfo: {}
@@ -40,7 +40,7 @@ const homeCategoryArticleView: ViewMetadata = {
 
 const homeCategoryFeatureView: ViewMetadata = {
     name: 'Gaclib-HomeCategoryFeatureView',
-    source: `${__dirname}/homeCategoryFeatureView.js`,
+    source: 'homeCategoryFeatureView.js',
     path: '/scripts/homeCategoryFeatureView.js',
     parentView: 'Gaclib-HomeView',
     htmlInfo: {}

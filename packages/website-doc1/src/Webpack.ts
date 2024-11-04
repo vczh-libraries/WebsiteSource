@@ -1,13 +1,13 @@
 import { ViewMetadata } from 'gaclib-render';
 import * as path from 'path';
-import * as terserWebpackPlugin from 'terser-webpack-plugin';
-import { views } from './views';
+import TerserPlugin from 'terser-webpack-plugin';
+import { views } from './views/index.js';
 
 const exportedArray = views.map((metadata: ViewMetadata) => {
     return {
-        entry: metadata.source,
+        entry: path.resolve(`./lib/views/${metadata.source}`),
         output: {
-            path: path.join(__dirname, `./dist${path.dirname(metadata.path)}`),
+            path: path.resolve(`./lib/dist${path.dirname(metadata.path)}`),
             filename: path.basename(metadata.path),
             library: metadata.name,
             libraryTarget: 'window',
@@ -17,7 +17,7 @@ const exportedArray = views.map((metadata: ViewMetadata) => {
         optimization: {
             minimize: true,
             minimizer: [
-                new terserWebpackPlugin({
+                new TerserPlugin({
                     terserOptions: {
                         output: {
                             comments: false
@@ -30,4 +30,4 @@ const exportedArray = views.map((metadata: ViewMetadata) => {
     };
 });
 
-module.exports = exportedArray;
+export default exportedArray;

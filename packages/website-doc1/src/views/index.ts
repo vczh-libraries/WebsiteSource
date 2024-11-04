@@ -2,7 +2,7 @@ import { ViewMetadata } from 'gaclib-render';
 
 const rootView: ViewMetadata = {
     name: 'Gaclib-RootView',
-    source: `${__dirname}/rootView.js`,
+    source: 'rootView.js',
     path: '/scripts/rootView.js',
     containerId: 'rootViewContainer',
     htmlInfo: {
@@ -13,7 +13,7 @@ const rootView: ViewMetadata = {
 
 const directoryView: ViewMetadata = {
     name: 'Gaclib-DirectoryView',
-    source: `${__dirname}/directoryView.js`,
+    source: 'directoryView.js',
     path: '/scripts/directoryView.js',
     containerId: 'directoryViewContainer',
     parentView: 'Gaclib-RootView',
@@ -22,7 +22,7 @@ const directoryView: ViewMetadata = {
 
 const registeredTypesView: ViewMetadata = {
     name: 'Gaclib-RegisteredTypesView',
-    source: `${__dirname}/registeredTypesView.js`,
+    source: 'registeredTypesView.js',
     path: '/scripts/registeredTypesView.js',
     parentView: 'Gaclib-DirectoryView',
     htmlInfo: {}
@@ -30,7 +30,7 @@ const registeredTypesView: ViewMetadata = {
 
 const articleView: ViewMetadata = {
     name: 'Gaclib-ArticleView',
-    source: `${__dirname}/articleView.js`,
+    source: 'articleView.js',
     path: '/scripts/articleView.js',
     parentView: 'Gaclib-DirectoryView',
     htmlInfo: {}
@@ -38,7 +38,7 @@ const articleView: ViewMetadata = {
 
 const namespaceView: ViewMetadata = {
     name: 'Gaclib-NamespaceView',
-    source: `${__dirname}/namespaceView.js`,
+    source: 'namespaceView.js',
     path: '/scripts/namespaceView.js',
     parentView: 'Gaclib-DirectoryView',
     htmlInfo: {}
@@ -46,7 +46,7 @@ const namespaceView: ViewMetadata = {
 
 const documentView: ViewMetadata = {
     name: 'Gaclib-DocumentView',
-    source: `${__dirname}/documentView.js`,
+    source: 'documentView.js',
     path: '/scripts/documentView.js',
     parentView: 'Gaclib-DirectoryView',
     htmlInfo: {}
