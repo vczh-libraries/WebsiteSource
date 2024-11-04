@@ -1,6 +1,6 @@
 // tslint:disable:no-submodule-imports
 import { Article } from 'gaclib-article/lib/src/interfaces';
-import { renderArticle } from 'gaclib-article/lib/src/rendering';
+import { renderArticle } from 'gaclib-article/lib/src/rendering.js';
 import { html, render } from 'lit-html';
 
 export const viewExport = {
