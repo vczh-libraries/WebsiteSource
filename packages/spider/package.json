@@ -2,16 +2,18 @@
     "name": "gaclib-spider",
     "version": "0.0.1",
     "description": "Gaclib Website Spider",
+    "type": "module",
     "main": "./lib/index.js",
     "scripts": {
-        "build": "rimraf ./lib && tslint --project tsconfig.json && tsc"
+        "build": "rimraf ./lib && eslint && tsc"
     },
     "license": "Apache-2.0",
     "devDependencies": {
+        "@types/website-scraper": "^1.2.10",
         "eslint-shared": "^0.0.1"
     },
     "dependencies": {
         "gaclib-mvc": "^0.0.1",
-        "website-scraper": "4.0.1"
+        "website-scraper": "5.3.1"
     }
 }

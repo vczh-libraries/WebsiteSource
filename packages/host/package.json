@@ -2,9 +2,10 @@
     "name": "gaclib-host",
     "version": "0.0.1",
     "description": "Gaclib Website http server",
+    "type": "module",
     "main": "./lib/index.js",
     "scripts": {
-        "build": "rimraf ./lib && tslint --project tsconfig.json && tsc"
+        "build": "rimraf ./lib && eslint && tsc"
     },
     "license": "Apache-2.0",
     "devDependencies": {

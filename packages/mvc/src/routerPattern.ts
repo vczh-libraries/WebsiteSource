@@ -1,5 +1,5 @@
 // why @types/escape-string-regexp doesn't work?
-const escapeStringRegexp = <(str: string) => string>require('escape-string-regexp');
+import escapeStringRegexp from 'escape-string-regexp';
 import { RouterFragment, RouterFragmentKind, RouterParameter, RouterParameterKind, RouterParameterTypes, RouterPattern, RouterPatternBase } from './interfaces';
 
 // if the type of a property is one of RouterParameterTypes, then convert the type of the property to be the key
@@ -14,7 +14,7 @@ type FilterOutInvalidProperties<T> = Pick<T, ValidPropertyTypes<ValidPropertiesT
 // A|B|... -> ((k:FIOP<A>)=>void)|((k:FIOP<B>)=>void)|... -> (k:FIOP<A>&FIOP<B>&...)=>void -> FIOP<A>&FIOP<B>&...
 type MergeParameters<U extends {}> = ((k: FilterOutInvalidProperties<U>) => void) extends ((k: infer I) => void) ? I : never;
 
-function getParameterName(fragment: {}): [true, RouterParameter] | [false, string] {
+function getParameterName(fragment: {[key: string] : {}}): [true, RouterParameter] | [false, string] {
     if (typeof fragment === 'string') {
         return [false, fragment];
     }
@@ -92,6 +92,7 @@ function submitFragment(target: RouterFragment[], fragmentBuilders: {}[]): void 
                 });
                 return;
             }
+            break;
         }
         case 3: {
             const arg1 = processedFragments[0];
@@ -106,6 +107,7 @@ function submitFragment(target: RouterFragment[], fragmentBuilders: {}[]): void 
                 });
                 return;
             }
+            break;
         }
         default:
     }

@@ -1,7 +1,7 @@
 // tslint:disable:no-http-string
 
 import { Router, RouterFragment, RouterFragmentKind, RouterPatternBase } from 'gaclib-mvc';
-import websiteScraper = require('website-scraper');
+import * as websiteScraper from 'website-scraper';
 
 type RegisterAction = (
     action: 'generateFilename',
@@ -42,6 +42,7 @@ export function downloadWebsite(urls: string[], directory: string): void {
         plugins: [{
             apply(registerAction: RegisterAction): void {
                 registerAction('generateFilename', (value: { resource: websiteScraper.Resource }) => {
+                    // eslint-disable-next-line no-useless-escape
                     const matches = /^http:\/\/[^\/]+(.*)$/g.exec(value.resource.url);
                     if (matches !== null) {
                         return { filename: matches[1] };

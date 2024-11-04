@@ -100,6 +100,7 @@ function parseDocText(xml: Element, requireName: boolean): d.DocText {
                             hasImplicitParagraphContent = true;
                         }
                     }
+                    break;
                 }
                 default:
             }

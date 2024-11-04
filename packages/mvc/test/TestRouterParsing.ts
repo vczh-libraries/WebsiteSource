@@ -71,6 +71,7 @@ test(`/{a}-{b}`, () => {
     const rp = route`/${{ a: '' }}-${{ b: '' }}`;
     assertFragments(rp, [{
         kind: RouterFragmentKind.MultiplePatterns,
+        // eslint-disable-next-line no-useless-escape
         pattern: /^(.+)\-(.+)$/.source,
         parameters: [['a', RouterParameterKind.String], ['b', RouterParameterKind.String]]
     }]);

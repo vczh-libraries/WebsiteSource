@@ -1,6 +1,6 @@
 import { ViewMetadata } from 'gaclib-render';
 import * as path from 'path';
-import terserWebpackPlugin = require('terser-webpack-plugin');
+import * as terserWebpackPlugin from 'terser-webpack-plugin';
 import { views } from './views';
 
 const exportedArray = views.map((metadata: ViewMetadata) => {

@@ -49,7 +49,7 @@ export function parseControlTemplateArticle(xml: string, pluginParser?: PluginPa
         }
     );
 
-    const pp = pluginParser === undefined ? (e: Element): a.Plugin | undefined => { return undefined; } : pluginParser;
+    const pp = pluginParser === undefined ? (() => undefined) : pluginParser;
 
     if (xmlCt.elements !== undefined) {
         if (xmlCt.elements.length !== 1 || xmlCt.elements[0].name !== 'control-template-document') {

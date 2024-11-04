@@ -2,19 +2,21 @@
     "name": "gaclib-mvc",
     "version": "0.0.1",
     "description": "Gaclib Website MVC url router library",
+    "type": "module",
     "main": "./lib/src/index.js",
     "scripts": {
-        "build": "rimraf ./lib && tslint --project tsconfig.json && tsc",
-        "test": "jest"
+        "build": "rimraf ./lib && eslint && tsc",
+        "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js"
     },
     "license": "Apache-2.0",
     "devDependencies": {
         "eslint-shared": "^0.0.1"
     },
     "dependencies": {
-        "escape-string-regexp": "^2.0.0"
+        "escape-string-regexp": "^5.0.0"
     },
     "jest": {
+        "transform": {},
         "testRegex": "/lib/test/Test.*\\.js",
         "verbose": true
     }
