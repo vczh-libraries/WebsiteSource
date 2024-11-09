@@ -12,7 +12,7 @@
             </ul>
         </p>
         <p>
-            <b>&lt;TreeItemTemplate/&gt;</b> derives from <b>&lt;TextListItemTemplate/&gt;</b>.
+            <b>&lt;TreeItemTemplate/&gt;</b> derives from <b>&lt;ListItemTemplate/&gt;</b>.
             It has the following properties additional to its base class:
         </p>
         <topic>

@@ -139,6 +139,7 @@
                     <li><b>CreateSubMenu</b></li>
                     <li><b>DestroySubMenu</b></li>
                     <li><b>SubMenu</b> property</li>
+                    <li><b>SubMenuHost</b> property</li>
                     <li><b>SubMenuOpening</b> property</li>
                     <li><b>PreferredMenuClientSize</b> property</li>
                 </ul>

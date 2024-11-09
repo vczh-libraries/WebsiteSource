@@ -12,7 +12,7 @@
                         <li>
                             <b>Predefined Item Template</b>:
                             <ul>
-                                <li><b>SetViewToDefault()</b> (default): list::DefaultDataGridItemTemplate + list::ListViewColumnItemArranger</li>
+                                <li><b>SetViewToDefault()</b> (default): list::DefaultDataGridItemTemplate + list::ListViewColumnItemArranger (which has <b>ColumnButtons</b> and <b>ColumnSplitters</b> properties if control objects of them are needed)</li>
                             </ul>
                         </li>
                     </ul>
@@ -118,6 +118,7 @@
                             Each column could be attached an editor factory.
                             If a column has an editor,
                             clicking any cell in this column will activate the editor.
+                            The <b>OpenedEditor</b> property will be useful if you need to access the editor object.
                         </p>
                     </li>
                 </ul>

@@ -75,7 +75,7 @@
                     It reflects how the list control understand data in its items.
                 </p>
                 <p>
-                    This property returns an instance of <b>GuiListControl::IItemProvider</b>
+                    This property returns an instance of <b>list::IItemProvider</b>
                     which provide access to the text representation of each item,
                     plus a <b>description::Value</b> representation
                     for <a href="/vlppreflection/home.html">reflection</a>.

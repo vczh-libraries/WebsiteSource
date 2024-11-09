@@ -134,6 +134,15 @@
                 or tell the IDE to stop at the first failed test assertion.
             </p>
             <p>
+                Calling <b>UnitTest::RunAndDisposeTests</b> to start a unit test CLI application and the following CLI arguments are supported by default:
+                <ul>
+                    <li><b>/D</b>: Debug mode, it will crash at the first error.</li>
+                    <li><b>/R</b>: Release mode, it will crash at the first error.</li>
+                    <li><b>/F:FileName.cpp</b>: Only run test cases defined in this file. Multiple instances are allowed at the same time to execute a specified group of files.</li>
+                </ul>
+                <b>/D</b> and <b>/R</b> are exclusive. If none of them are offered, on Windows <b>/D</b> is activated if a debugger is attached to the process from the beginning.
+            </p>
+            <p>
                 In order to test code that is aware of the current date time.
                 <b>vl::InjectDateTimeImpl</b> could be used to control the implementation of <b>vl::DateTime</b>.
             </p>

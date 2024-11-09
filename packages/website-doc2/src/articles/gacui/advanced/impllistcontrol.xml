@@ -19,7 +19,7 @@
             then <b>GuiListControl</b> could be used to reduce runtime overhead.
         </p>
         <topic>
-            <title>GuiListControl::IItemProvider, the constructor argument</title>
+            <title>list::IItemProvider, the constructor argument</title>
             <p>
                 An instance of <b>IItemProvider</b> is required in the constructor of
                 <b>GuiListControl</b> and <b>GuiSelectableListControl</b>.
@@ -99,7 +99,7 @@
             </p>
         </topic>
         <topic>
-            <title>GuiListControl::IItemProviderCallback, the constructor argument</title>
+            <title>list::IItemProviderCallback, the constructor argument</title>
             <p>
                 The <b>OnItemModified</b> allow <b>IItemProvider</b> to report
                 one change of consecutive items:

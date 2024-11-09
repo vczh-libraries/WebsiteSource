@@ -13,7 +13,7 @@
                         <li>
                             <b>Predefined Item Template</b>:
                             <ul>
-                                <li><b>SetView(Detail)</b> (default): list::DetailListViewItemTemplate + list::ListViewColumnItemArranger</li>
+                                <li><b>SetView(Detail)</b> (default): list::DetailListViewItemTemplate + list::ListViewColumnItemArranger (which has <b>ColumnButtons</b> and <b>ColumnSplitters</b> properties if control objects of them are needed)</li>
                                 <li><b>SetView(BigIcon)</b>: list::BigIconListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
                                 <li><b>SetView(SmallIcon)</b>: list::SmallIconListViewItemTemplate + list::FixedSizeMultiColumnItemArranger</li>
                                 <li><b>SetView(List)</b>: list::ListListViewItemTemplate + list::FixedHeightMultiColumnItemArranger</li>
