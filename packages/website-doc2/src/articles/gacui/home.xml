@@ -60,24 +60,105 @@
                 </li>
             </ul>
         </p>
-        <p>
-            These platforms are supported at this moment:
-            <ul>
-                <li><b>Win32 Subsystem</b>: You could use either GDI or Direct2D 1.0/1.1 to render UI.</li>
-                <li><b>Linux</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/gGac">https://github.com/vczh-libraries/gGac</a>)</li>
-                <li><b>macOS</b>: Finished but still in 1.0, not catching up with the latest version at this moment. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)</li>
-                <li><b>Hosted mode</b>: Apply to any native implementation, making all windows in GacUI rendered in one native window.</li>
-                <li><b>Remote Protocol (core)</b>: Apply <b>hosted mode</b> to it, making GacUI running in a virtual environment, communicating with a renderer with commands, through any protocol that defined by you.</li>
-                <li><b>Remote Protocol (renderer)</b>: Apply to any native implementation, communicating with <b>Remote Protocol (core)</b>, through any protocol that defined by you.</li>
-            </ul>
-            In the future, more platforms will be included in GacUI like:
-            <ul>
-                <li>UWP</li>
-                <li>WASM running on browsers</li>
-                <li>Command-line interface applications</li>
-                <li>etc ...</li>
-            </ul>
-        </p>
+        <topic>
+            <title>Supported Platforms</title>
+            <p>
+                These platforms are supported at this moment:
+            </p>
+            <topic>
+                <title>Native Platforms</title>
+                <p>
+                    <ul>
+                        <li>
+                            <b>Win32 Subsystem</b>: You could use either GDI or Direct2D 1.0/1.1 to render UI.
+                            <ul>
+                                <li>SetupWindowsDirect2DRenderer();</li>
+                                <li>SetupWindowsGDIRenderer();</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Linux</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/gGac">https://github.com/vczh-libraries/gGac</a>)
+                            <ul>
+                                <li>SetupGtkRenderer();</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>macOS</b>: Finished but still in 1.0, not catching up with the latest version at this moment. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)
+                            <ul>
+                                <li>SetupOSXCoreGraphicsRenderer();</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+                <p><img src="/Platform_1.png"/></p>
+            </topic>
+            <topic>
+                <title>Hosted Mode</title>
+                <p>
+                    Apply to any native implementation, making all windows in GacUI rendered in one native window.
+                    <ul>
+                        <li>SetupHostedWindowsDirect2DRenderer();</li>
+                        <li>SetupHostedWindowsGDIRenderer();</li>
+                    </ul>
+                </p>
+                <p><img src="/Platform_2.png"/></p>
+            </topic>
+            <topic>
+                <title>Remote Protocols (core and renderer)</title>
+                <p>
+                    It allows a GacUI application to run in two different binaries: core and renderer. You could run them in exe-dll, or in two different processes.
+                    In the near future, GacUI will release a renderer implementation in TypeScript, allow a GacUI application to be rendered in a browser.
+                    At that moment, the core could be a background process, or even a WASM binary also running in the browser.
+                </p>
+                <p>
+                    GacUI will not offer any predefined implementation of communitation between two binaries,
+                    but serialization of the remote protocol will be offered in JSON (ready) and binary (not yet ready).
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            <b>Remote Protocol (core)</b>: Apply <b>hosted mode</b> to it, making GacUI running in a virtual environment, communicating with a renderer with commands, through any protocol that defined by you.
+                            <ul>
+                                <li>SetupRemoteNativeController(IGuiRemoteProtocol*);</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Remote Protocol (renderer)</b>: Apply to any native implementation, communicating with <b>Remote Protocol (core)</b>, through any protocol that defined by you.
+                            <ul>
+                                <li>SetupRawWindowsDirect2DRenderer();</li>
+                                <li>SetupRawWindowsGDIRenderer();</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </p>
+                <p><img src="/Platform_3.png"/></p>
+            </topic>
+            <topic>
+                <title>Remote Protocols (with your protocols)</title>
+                <p>
+                    An example of remote protocol implementation using JSON.
+                </p>
+                <p>
+                    Test applications on Windows with Named Pipe:
+                    <a href="https://github.com/vczh-libraries/GacUI/blob/master/Test/GacUISrc/RemotingTest_Core/NamedPipeCoreChannel.cpp">Core</a> and
+                    <a href="https://github.com/vczh-libraries/GacUI/blob/master/Test/GacUISrc/RemotingTest_Rendering_Win32/NamedPipeRendererChannel.cpp">Renderer</a>.
+                    After the remote protocol completes, they will be moved to the <b>Release</b> repo.
+                </p>
+                <p><img src="/Platform_4.png"/></p>
+            </topic>
+            <topic>
+                <title>In the future ...</title>
+                <p>
+                    In the future, more platforms will be included in GacUI like:
+                    <ul>
+                        <li>UWP</li>
+                        <li>WASM running on browsers</li>
+                        <li>Command-line interface applications</li>
+                        <li>etc ...</li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
         <topic>
             <title>In this topic ...</title>
             <p>
