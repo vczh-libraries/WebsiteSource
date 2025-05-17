@@ -42,6 +42,7 @@
                 <ul>
                     <li><b>UtfConversion&lt;T&gt;</b> to convert strings from and to Utf-32, using <b>From32</b> and <b>To32</b> static member functions.</li>
                     <li><b>(a|w|u(8|16|32))to(a|w|u(8|16|32))</b>: convert between strings.</li>
+                    <li><b>ConvertUtfString&lt;TFrom, TTo&gt;</b>: convert between UTF strings. <b>TFrom</b> and <b>TTo</b> must be one of <b>WString</b>, <b>U8String</b>, <b>U16String</b>, <b>U32String</b>.</li>
                 </ul>
             </p>
             <p>
@@ -102,6 +103,8 @@
                     <li><b>for (auto VAR : COLLECTION)</b> and <b>for (auto [VAR, INDEX] : indexed(COLLECTION))</b> for iterating containers.</li>
                     <li><b>Range&lt;T&gt;</b>: Convert a range to a <b>LazyList&lt;T&gt;</b>.</li>
                     <li><b>From</b>: Convert array, pointer range or collection types to <b>LazyList&lt;T&gt;</b>.</li>
+                    <li><b>BinarySearchLambda</b>: Find an item in a sorted array, returning the position of the item, and the position to insert the item.</li>
+                    <li><b>Sort</b> and <b>SortLambda</b>: Sort items in an array.</li>
                     <li>And more ...</li>
                 </ul>
             </p>

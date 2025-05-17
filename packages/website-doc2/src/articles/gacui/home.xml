@@ -66,13 +66,15 @@
                 <li><b>Win32 Subsystem</b>: You could use either GDI or Direct2D 1.0/1.1 to render UI.</li>
                 <li><b>Linux</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/gGac">https://github.com/vczh-libraries/gGac</a>)</li>
                 <li><b>macOS</b>: Finished but still in 1.0, not catching up with the latest version at this moment. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)</li>
+                <li><b>Hosted mode</b>: Apply to any native implementation, making all windows in GacUI rendered in one native window.</li>
+                <li><b>Remote Protocol (core)</b>: Apply <b>hosted mode</b> to it, making GacUI running in a virtual environment, communicating with a renderer with commands, through any protocol that defined by you.</li>
+                <li><b>Remote Protocol (renderer)</b>: Apply to any native implementation, communicating with <b>Remote Protocol (core)</b>, through any protocol that defined by you.</li>
             </ul>
             In the future, more platforms will be included in GacUI like:
             <ul>
                 <li>UWP</li>
                 <li>WASM running on browsers</li>
                 <li>Command-line interface applications</li>
-                <li>Single-window mode, which renders menus and dialog boxes in the main window, instead of creating new native windows for them.</li>
                 <li>etc ...</li>
             </ul>
         </p>

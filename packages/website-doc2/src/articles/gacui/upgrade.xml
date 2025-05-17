@@ -29,6 +29,12 @@
                 </p>
             </topic>
             <topic>
+                <title>GuiImageFrameElement</title>
+                <p>
+                    <b>GuiImageFrameElement</b> will not check frame index availability anymore. The renderer should handle that properly.
+                </p>
+            </topic>
+            <topic>
                 <title>GuiGraphicsComposition</title>
                 <p>
                     Removed:
