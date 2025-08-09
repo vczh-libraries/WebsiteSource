@@ -204,7 +204,7 @@
                                 <li>TextList, CheckList, RadioList, ListView, TreeView, DataGrid, ComboBox</li>
                                 <li>SinglelineTextBox, MultilineTextBox</li>
                                 <li>DocumentLabel, DocumentTextBox, DocumentViewer</li>
-                                <li>ToolstripMenuBar, ToolstripToolBar, ToolstripButton, ToolstripDropDownButton, ToolstripSplitButton, ToolstripSplitter</li>
+                                <li>ToolstripMenuBar, ToolstripToolBar, ToolstripToolBarInMenu, ToolstripButton, ToolstripDropDownButton, ToolstripSplitButton, ToolstripSplitter, ToolstripSplitterInMenu</li>
                                 <li>RibbonTab, RibbonGroup, RibbonButtons, RibbonToolstrips, RibbonToolstripMenu</li>
                                 <li>RibbonIconLabel, RibbonSmallIconLabel</li>
                                 <li>RibbonGallery, RibbonGalleryList, RibbonGalleryItemList</li>

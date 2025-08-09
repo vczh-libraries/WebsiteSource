@@ -89,6 +89,7 @@
                             <li><b>ToolstripMenu</b>: A popup menu.</li>
                             <li><b>ToolstripMenuBar</b>: A menu bar for first level menu items.</li>
                             <li><b>ToolstripToolBar</b>: A container for toolstrip buttons.</li>
+                            <li><b>ToolstripToolBarInMenu</b>: A container for toolstrip buttons, when the toolstrip is in a menu.</li>
                             <li><b>ToolstripGroupContainer</b> and <b>ToolstripGroup</b>: Organize menu items or toolstrip buttons into different groups in dropdown menus or toolstrip toolbars.</li>
                             <li><b>ToolstripButton</b>: A button with icon in <b>ToolstripToolBar</b>.</li>
                             <li>
@@ -105,6 +106,7 @@
                                     <li><b>ToolstripDropdownButton</b>: A button in <b>ToolstripToolBar</b>, clicking it opens a dropdown menu.</li>
                                     <li><b>ToolstripSplitButton</b>: A button in <b>ToolstripToolBar</b>, splitted into a button and a small dropdown button.</li>
                                     <li><b>ToolstripSplitter</b>: A splitter between toolstrip buttons.</li>
+                                    <li><b>ToolstripSplitterInMenu</b>: A splitter between toolstrip buttons, when the toolstrip is in a menu.</li>
                                 </ul>
                             </li>
                         </ul>

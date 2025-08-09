@@ -262,7 +262,12 @@
                                     <li><b>&lt;ToolstripMenuBar&gt;</b></li>
                                 </ul>
                             </li>
-                            <li><b>&lt;ToolstripToolBar&gt;</b></li>
+                            <li>
+                                <b>&lt;ToolstripToolBar&gt;</b>
+                                <ul>
+                                    <li><b>&lt;ToolstripToolBarInMenu&gt;</b> (Virtual)</li>
+                                </ul>
+                            </li>
                             <li>
                                 &lt;Button&gt;
                                 <ul>
@@ -289,6 +294,7 @@
                             </li>
                             <li><b>&lt;MenuSplitter&gt;</b> (virtual)</li>
                             <li><b>&lt;ToolstripSplitter&gt;</b> (virtual)</li>
+                            <li><b>&lt;ToolstripSplitterInMenu&gt;</b> (virtual)</li>
                             <li>
                                 GuiToolstripNestedContainer
                                 <ul>

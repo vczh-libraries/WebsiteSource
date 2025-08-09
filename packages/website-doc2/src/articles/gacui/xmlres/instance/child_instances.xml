@@ -80,24 +80,24 @@
                     </ul>
                 </li>
                 <li>
-                    <b>&lt;ToolstripToolBar/&gt;</b> and <b>&lt;ToolstripMenu/&gt;</b>, typically also for <b>SubMenu</b> property of toolstrip buttons:
+                    <b>&lt;ToolstripToolBar/&gt;</b>, <b>&lt;ToolstripToolBar/&gt;</b> and <b>&lt;ToolstripMenu/&gt;</b>, typically also for <b>SubMenu</b> property of toolstrip buttons:
                     <ul>
                         <li><b>&lt;ToolstripGroupContainer/&gt;</b>: Put the group containers in the toolstrip menu.</li>
                         <li><b>&lt;ToolstripButton/&gt;</b> or its virtual classes: Put the button inside the parent control.</li>
-                        <li><b>&lt;ToolstripSplitter/&gt;</b>: Put the splitter inside the parent control.</li>
+                        <li><b>&lt;ToolstripSplitter/&gt;</b> or <b>&lt;ToolstripSplitterInMenu/&gt;</b>: Put the splitter inside the parent control.</li>
                     </ul>
                 </li>
                 <li>
                     <b>&lt;ToolstripGroupContainer/&gt;</b>, typically also for <b>SubMenu</b> property of toolstrip items:
                     <ul>
-                        <li><b>&lt;ToolstripGroup/&gt;</b>: Put the group inside this group container. <b>&lt;ToolstripSplitter&gt;</b> will be automatically inserted between groups.</li>
+                        <li><b>&lt;ToolstripGroup/&gt;</b>: Put the group inside this group container. <b>&lt;ToolstripSplitter&gt;</b> or <b>&lt;ToolstripSplitterInMenu/&gt;</b> will be automatically inserted between groups.</li>
                     </ul>
                 </li>
                 <li>
                     <b>&lt;ToolstripGroup/&gt;</b>:
                     <ul>
                         <li><b>&lt;ToolstripButton/&gt;</b> or its virtual classes: Put the button inside the parent control.</li>
-                        <li><b>&lt;ToolstripSplitter/&gt;</b>: Put the splitter inside the parent control.</li>
+                        <li><b>&lt;ToolstripSplitter/&gt;</b> or <b>&lt;ToolstripSplitterInMenu/&gt;</b>: Put the splitter inside the parent control.</li>
                     </ul>
                 </li>
             </ul>
