@@ -73,5 +73,15 @@
                 </ul>
             </p>
         </topic>
+        <topic>
+            <title>Unit test framework</title>
+            <p>
+                In order to test code that is aware of the locale.
+                <b>vl::InjectLocaleImpl</b> could be used to control the implementation of <b>vl::Locale</b>.
+                <b>vl::GetDefaultLocaleImpl</b> could be used to generate an implementation of <b>vl::Locale</b> that never changes,
+                which is also the current Linux implementation,
+                that supports only <b>en-us</b>.
+            </p>
+        </topic>
     </topic>
 </article>
