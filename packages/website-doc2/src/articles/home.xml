@@ -5,6 +5,18 @@
             Gaclib consists of the following libraries:
         </p>
         <topic>
+            <title>Github Copilot Supports</title>
+            <p>
+                <a href="https://github.com/vczh-libraries/GacUI/blob/master/.github/copilot-instructions.md">.github/copilot-instructions.md</a>
+            </p>
+            <p>
+                This is a github copilot prompts that is current being working on.
+                Besides some instructions for GacUI development,
+                it also contains brief documents for each library.
+                It would be helpful for not only you, but also your AI.
+            </p>
+        </topic>
+        <topic>
             <title>Vlpp: Much more easier to deal with data</title>
             <p>
                 Click <a href="/vlpp/ref.html">here</a> for API references.
