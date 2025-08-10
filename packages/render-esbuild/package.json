@@ -1,0 +1,18 @@
+{
+    "name": "gaclib-render-esbuild",
+    "version": "0.0.1",
+    "description": "Gaclib Website front-end rendering using lit-html (esbuild)",
+    "type": "module",
+    "main": "./lib/index.js",
+    "scripts": {
+        "build": "rimraf ./lib && eslint && tsc"
+    },
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "eslint-shared": "^0.0.1"
+    },
+    "dependencies": {
+        "esbuild": "0.25.8",
+        "gaclib-render": "^0.0.1"
+    }
+}

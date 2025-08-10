@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es2022",
+            "dom"
+        ],
+        "module": "es2022",
+        "moduleResolution": "bundler",
+        "target": "es2022",
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "outDir": "./lib",
+        "noEmitOnError": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "plugins": [
+            {
+                "name": "typescript-lit-html-plugin"
+            }
+        ]
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "lib"
+    ]
+}
