@@ -6,7 +6,7 @@ import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
-import { parseArticlePlugin, renderArticlePlugin } from './plugins/article';
+import { parseArticlePlugin, renderArticlePlugin } from './plugins/article/index.js';
 import { parseControlTemplateArticle, renderControlTemplateArticle } from './plugins/control-template/xmlControlTemplateArticle.js';
 import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol.js';
 import { exampleRetriver } from './plugins/document/xmlExample.js';
@@ -14,6 +14,7 @@ import { getRegisteredTypes } from './plugins/registeredTypes/xmlRegisteredTypes
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView.js';
 import { DirectoryInfo, views } from './views/index.js';
 
+const __dirname = path.resolve('./lib');
 const pathPrefix = `/doc/ver1`;
 
 const router = createRouter<MvcRouterResult>(pathPrefix);
