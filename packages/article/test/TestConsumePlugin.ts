@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { assert, test } from 'vitest';
 import { Element } from 'xml-js';
 import { Article, consumePlugin, Content, parseArticle, Plugin } from '../src/index.js';
 

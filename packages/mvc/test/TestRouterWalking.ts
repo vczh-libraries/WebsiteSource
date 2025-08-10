@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { assert, test } from 'vitest';
 import { endsWithPatternArray, route, RouterFragmentKind, RouterPattern } from '../src/index.js';
 
 function assertWalk<T extends {}>(rp: RouterPattern<T>, url: string, expected: T): void {

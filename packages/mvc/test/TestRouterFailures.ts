@@ -1,3 +1,4 @@
+import { expect, test } from 'vitest';
 import { route } from '../src/index.js';
 
 test(`Empty pattern`, () => {

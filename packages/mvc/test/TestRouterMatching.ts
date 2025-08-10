@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import * as assert from 'assert';
+import { assert, expect, test } from 'vitest';
 import { createRouter, HttpMethods, route } from '../src/index.js';
 
 test(`Query not begin with "/"`, () => {
