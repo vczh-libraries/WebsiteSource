@@ -7,13 +7,16 @@
         <topic>
             <title>Github Copilot Supports</title>
             <p>
-                <a href="https://github.com/vczh-libraries/GacUI/blob/master/.github/copilot-instructions.md">.github/copilot-instructions.md</a>
+                <a href="https://github.com/vczh-libraries/Tools/tree/master/Copilot">Copilot Prompts and Knowledge Base</a>
             </p>
             <p>
                 This is a github copilot prompts that is current being working on.
                 Besides some instructions for GacUI development,
                 it also contains brief documents for each library.
                 It would be helpful for not only you, but also your AI.
+            </p>
+            <p>
+                The <a href="https://github.com/vczh-libraries/Tools/tree/master/Copilot/KnowledgeBase">Knowledge Base</a> is a collection of documents that provide additional context and information about the libraries.
             </p>
         </topic>
         <topic>

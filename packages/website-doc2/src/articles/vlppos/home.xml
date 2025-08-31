@@ -81,6 +81,12 @@
                 <b>vl::GetDefaultLocaleImpl</b> could be used to generate an implementation of <b>vl::Locale</b> that never changes,
                 which is also the current Linux implementation,
                 that supports only <b>en-us</b>.
+                <b>vl::GetOSLocaleImpl</b> provides the default implementation of <b>vl::Locale</b>. This function is not declared in the header file.
+            </p>
+            <p>
+                In order to test code that is aware of the file system and <b>FileStream</b>,
+                <b>vl::InjectFileSystemImpl</b> could be used to control the implementation of <b>vl::FileSystem</b>.
+                <b>vl::GetOSFileSystemImpl</b> provides the default implementation of <b>vl::FileSystem</b>. This function is not declared in the header file.
             </p>
         </topic>
     </topic>

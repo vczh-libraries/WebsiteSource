@@ -148,6 +148,7 @@
             <p>
                 In order to test code that is aware of the current date time.
                 <b>vl::InjectDateTimeImpl</b> could be used to control the implementation of <b>vl::DateTime</b>.
+                <b>vl::GetOSDateTimeImpl</b> provides the default implementation of <b>vl::DateTime</b>. This function is not declared in the header file.
             </p>
         </topic>
     </topic>
