@@ -222,6 +222,9 @@ private:
                 <p>
                     New method <b>IsRenderingAsActivated</b>, it should returns <b>true</b> when the window or any child window is activated.
                 </p>
+                <p>
+                    New method <b>SuggestMinClientSize</b>, ignore it in native OS platform implementation.
+                </p>
             </topic>
             <topic>
                 <title>INativeWindowListener</title>
