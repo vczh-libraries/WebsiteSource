@@ -22,5 +22,6 @@ if (process.argv[2] === '-d') {
     downloadWebsite(urls, path.join(__dirname, './website'));
     untilPressEnter();
 } else {
+    console.log("http://localhost:8080/index.html");
     hostUntilPressingEnter(server, 8080);
 }
