@@ -79,10 +79,8 @@
                 Like every controls with scroll bars inherit from <b>GuiScrollView</b>.
             </p>
             <p>
-                But there are also <b>GuiTextBoxCommonInterface</b> and <b>GuiDocumentCommonInterface</b> for editor controls.
-                <b>&lt;SinglelineTextBox&gt;</b> is not scrollable while <b>&lt;MultilineTextBoxTemplate&gt;</b> is,
-                obviously one inherits from <b>GuiScrollView</b> and another one is not,
-                which is also the case in control template hierarchy.
+                But there are also <b>GuiDocumentCommonInterface</b> for editor controls,
+                offering rendering and editing features.
             </p>
         </topic>
         <topic>

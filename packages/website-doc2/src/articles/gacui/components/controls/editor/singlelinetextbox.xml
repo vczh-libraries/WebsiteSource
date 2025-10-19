@@ -7,16 +7,17 @@
                     <b>&lt;SinglelineTextBox/&gt;</b>
                     <ul>
                         <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiSinglelineTextBox*</li>
-                        <li><b>Template Tag</b>: &lt;SinglelineTextBoxTemplate/&gt;</li>
+                        <li><b>Template Tag</b>: &lt;DocumentLabelTemplate/&gt;</li>
                         <li><b>Template Name</b>: SinglelineTextBox</li>
                     </ul>
                 </li>
             </ul>
         </p>
         <p>
+            <b>&lt;SinglelineTextBox/&gt;</b> is a <b>GuiDocumentLabel</b>.
             The control template doesn't need to care about rendering characters.
             When it is installed to the control,
-            a fully managed <b>GuiColorizedTextElement</b> will be installed
+            a fully managed <b>GuiDocumentElement</b> will be installed
             to the <b>ContainerComposition</b> of the control template.
         </p>
         <p>

@@ -29,9 +29,28 @@
                 </p>
             </topic>
             <topic>
+                <title>GuiSinglelineTextBox and GuiMultilineTextBox</title>
+                <p>
+                    <b>GuiSinglelineTextBox</b> inherits from <b>GuiDocumentLabel</b>.
+                </p>
+                <p>
+                    <b>GuiMultilineTextBox</b> inherits from <b>GuiDocumentViewer</b>.
+                </p>
+                <p>
+                    Use <b>SetCaret</b> instead of <b>Select</b>.
+                    Use <b>EditMode</b> instead of <b>Readonly</b>.
+                </p>
+            </topic>
+            <topic>
                 <title>GuiImageFrameElement</title>
                 <p>
                     <b>GuiImageFrameElement</b> will not check frame index availability anymore. The renderer should handle that properly.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiColorizedTextElement</title>
+                <p>
+                    <b>GuiColorizedTextElement</b> is removed.
                 </p>
             </topic>
             <topic>

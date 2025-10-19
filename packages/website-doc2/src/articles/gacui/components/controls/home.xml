@@ -117,20 +117,24 @@
                             <li>
                                 GuiScrollView
                                 <ul>
-                                    <li><b>&lt;MultilineTextBox&gt;</b></li>
                                     <li>
                                         &lt;ScrollContainer&gt;
                                         <ul>
-                                            <li><b>&lt;DocumentViewer&gt;</b></li>
+                                            <li>
+                                            <b>&lt;DocumentViewer&gt;</b>
+                                                <ul>
+                                                    <li><b>&lt;MultilineTextBox&gt;</b></li>
+                                                </ul>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            <li><b>&lt;SinglelineTextBox&gt;</b></li>
                             <li>
                                 <b>&lt;DocumentLabel&gt;</b>
                                 <ul>
                                     <li><b>&lt;DocumentTextBox&gt;</b> (virtual)</li>
+                                    <li><b>&lt;SinglelineTextBox&gt;</b></li>
                                 </ul>
                             </li>
                         </ul>

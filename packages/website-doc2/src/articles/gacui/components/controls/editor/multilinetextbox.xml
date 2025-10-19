@@ -7,17 +7,17 @@
                     <b>&lt;MultilineTextBox/&gt;</b>
                     <ul>
                         <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiMultilineTextBox*</li>
-                        <li><b>Template Tag</b>: &lt;MultilineTextBoxTemplate/&gt;</li>
+                        <li><b>Template Tag</b>: &lt;DocumentViewerTemplate/&gt;</li>
                         <li><b>Template Name</b>: MultilineTextBox</li>
                     </ul>
                 </li>
             </ul>
         </p>
         <p>
-            <b>&lt;MultilineTextBox/&gt;</b> is a <b>GuiScrollView</b>.
+            <b>&lt;MultilineTextBox/&gt;</b> is a <b>GuiDocumentViewer</b>.
             The control template doesn't need to care about rendering characters.
             When it is installed to the control,
-            a fully managed <b>GuiColorizedTextElement</b> will be installed
+            a fully managed <b>GuiDocumentElement</b> will be installed
             to the <b>ContainerComposition</b> of the control template.
         </p>
         <p>

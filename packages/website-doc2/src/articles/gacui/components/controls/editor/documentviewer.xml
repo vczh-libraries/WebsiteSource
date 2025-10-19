@@ -24,9 +24,10 @@
             <b>&lt;CommonScrollViewLook/&gt;</b> is very useful to implement the control template.
         </p>
         <p>
-            <b>&lt;DocumentViewer/&gt;</b> provides a vertical scroll bar.
+            <b>&lt;GuiDocumentViewer/&gt;</b> provides both horizontal and vertical scroll bars.
             When a paragraph is too long to display,
             auto line-wrapping is automatically done so that the horizontal scroll bar is always not needed.
+            But such default behavior can be changed.
         </p>
     </topic>
 </article>

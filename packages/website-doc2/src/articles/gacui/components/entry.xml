@@ -45,17 +45,10 @@
       <article name="&lt;Tab&gt; and &lt;TabPage&gt;" file="controls/container/tab"/>
     </article>
     <article name="Editor Controls" file="controls/editor/home">
-      <article name="Document Editor Controls" file="controls/editor/document">
-        <article name="&lt;DocumentViewer&gt;" file="controls/editor/documentviewer"/>
-        <article name="&lt;DocumentLabel&gt; and &lt;DocumentTextBox&gt;" file="controls/editor/documentlabel"/>
-      </article>
-      <article name="Text Editor Controls" file="controls/editor/text">
-        <article name="&lt;SinglelineTextBox&gt;" file="controls/editor/singlelinetextbox"/>
-        <article name="&lt;MultilineTextBox&gt;" file="controls/editor/multilinetextbox"/>
-        <article name="Colorizer" file="controls/editor/textcolorizer"/>
-        <article name="Auto Complete" file="controls/editor/textautocomplete"/>
-        <article name="Programming Language Service" file="controls/editor/textgrammar"/>
-      </article>
+      <article name="&lt;DocumentViewer&gt;" file="controls/editor/documentviewer"/>
+      <article name="&lt;DocumentLabel&gt; and &lt;DocumentTextBox&gt;" file="controls/editor/documentlabel"/>
+      <article name="&lt;SinglelineTextBox&gt;" file="controls/editor/singlelinetextbox"/>
+      <article name="&lt;MultilineTextBox&gt;" file="controls/editor/multilinetextbox"/>
     </article>
     <article name="List Controls" file="controls/list/home">
       <article name="GuiListControl and GuiSelectableListControl" file="controls/list/guilistcontrol"/>
