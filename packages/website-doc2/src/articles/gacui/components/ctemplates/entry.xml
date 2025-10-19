@@ -1,7 +1,6 @@
 <reference>
   <control-template ct="ControlTemplate" file="ControlTemplate">
     <control-template ct="LabelTemplate" file="LabelTemplate"/>
-    <control-template ct="SinglelineTextBoxTemplate" file="SinglelineTextBoxTemplate"/>
     <control-template ct="DocumentLabelTemplate" file="DocumentLabelTemplate"/>
     <control-template ct="WindowTemplate" file="WindowTemplate">
       <control-template ct="MenuTemplate" file="MenuTemplate">
@@ -20,7 +19,6 @@
     </control-template>
     <control-template ct="ScrollTemplate" file="ScrollTemplate"/>
     <control-template ct="ScrollViewTemplate" file="ScrollViewTemplate">
-      <control-template ct="MultilineTextBoxTemplate" file="MultilineTextBoxTemplate"/>
       <control-template ct="DocumentViewerTemplate" file="DocumentViewerTemplate"/>
       <control-template ct="ListControlTemplate" file="ListControlTemplate">
         <control-template ct="TextListTemplate" file="TextListTemplate"/>
