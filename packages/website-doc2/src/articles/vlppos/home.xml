@@ -75,19 +75,33 @@
         </topic>
         <topic>
             <title>Unit test framework</title>
-            <p>
-                In order to test code that is aware of the locale.
-                <b>vl::InjectLocaleImpl</b> could be used to control the implementation of <b>vl::Locale</b>.
-                <b>vl::GetDefaultLocaleImpl</b> could be used to generate an implementation of <b>vl::Locale</b> that never changes,
-                which is also the current Linux implementation,
-                that supports only <b>en-us</b>.
-                <b>vl::GetOSLocaleImpl</b> provides the default implementation of <b>vl::Locale</b>. This function is not declared in the header file.
-            </p>
-            <p>
-                In order to test code that is aware of the file system and <b>FileStream</b>,
-                <b>vl::InjectFileSystemImpl</b> could be used to control the implementation of <b>vl::FileSystem</b>.
-                <b>vl::GetOSFileSystemImpl</b> provides the default implementation of <b>vl::FileSystem</b>. This function is not declared in the header file.
-            </p>
+            <topic>
+                <title>Mocking Locale</title>
+                <p>
+                    <b>vl::InjectLocaleImpl</b> could be used to control the implementation of <b>vl::Locale</b>.
+                    This function stack all injections, each injection could access the previous implementation by implementing <b>vl::feature_injection::IFeatureImpl</b>
+                </p>
+                <p>
+                    <b>vl::EjectLocaleImpl</b> could be used to revert <b>vl::InjectLocaleImpl</b>.
+                    Passing <b>nullptr</b> to cancel all <b>vl::InjectLocaleImpl</b> calls.
+                </p>
+            </topic>
+            <topic>
+                <title>Mocking File, Folder and FileStream</title>
+                <p>
+                    <b>vl::filesystem::InjectFileSystemImpl</b> could be used to control the implementation of <b>vl::filesystem::File</b>, <b>vl::filesystem::Folder</b>, and <b>vl::stream::FileStream</b>.
+                    This function stack all injections, each injection could access the previous implementation by implementing <b>vl::feature_injection::IFeatureImpl</b>
+                </p>
+                <p>
+                    <b>IFileSystemImpl::GetFileStreamImpl</b> controls how <b>FileStream</b> access a file from a given file path.
+                    If virtual files are added to the file system, this function should take care of them.
+                    This function can redirect the call to the previous implementation for files that are not added by the current implementation.
+                </p>
+                <p>
+                    <b>vl::filesystem::EjectFileSystemImpl</b> could be used to revert <b>vl::filesystem::InjectFileSystemImpl</b>.
+                    Passing <b>nullptr</b> to cancel all <b>vl::filesystem::InjectFileSystemImpl</b> calls.
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>
