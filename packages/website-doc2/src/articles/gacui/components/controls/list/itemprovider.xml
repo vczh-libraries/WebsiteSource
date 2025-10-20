@@ -2,14 +2,14 @@
     <topic>
         <title>Accessing Items via IItemProvider</title>
         <p>
-            List and tree controls provide programmatic access to their items through provider interfaces.
+            List controls provide programmatic access to their items through provider interfaces.
             These interfaces allow you to query, navigate, and manipulate items in different ways
             depending on the control type.
         </p>
         <topic>
             <title>Interfaces Required by Controls</title>
             <p>
-                Different list and tree controls expose different provider interfaces
+                Different list controls expose different provider interfaces
                 for accessing their items.
                 Use <b>dynamic_cast</b> with <b>RequestView</b> to obtain specific view interfaces.
             </p>
