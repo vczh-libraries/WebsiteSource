@@ -1,5 +1,252 @@
 <article index="true">
     <topic>
         <title>Accessing Items via IItemProvider</title>
+        <p>
+            List and tree controls provide programmatic access to their items through provider interfaces.
+            These interfaces allow you to query, navigate, and manipulate items in different ways
+            depending on the control type.
+        </p>
+        <topic>
+            <title>Interfaces Required by Controls</title>
+            <p>
+                Different list and tree controls expose different provider interfaces
+                for accessing their items.
+                Use <b>dynamic_cast</b> with <b>RequestView</b> to obtain specific view interfaces.
+            </p>
+            <topic>
+                <title>GuiListControl</title>
+                <p>
+                    <b>GuiListControl</b> provides basic item access through <b>IItemProvider</b>:
+                    <ul>
+                        <li><b>GetItemProvider()</b>: Returns the <b>IItemProvider</b> interface</li>
+                        <li><b>Count()</b>: Get the number of items</li>
+                        <li><b>GetTextValue(itemIndex)</b>: Get the text representation of an item</li>
+                        <li><b>GetBindingValue(itemIndex)</b>: Get the boxed value of an item</li>
+                    </ul>
+                </p>
+                <p>
+                    To access more detailed view interfaces:
+                </p>
+                <p>
+                    <b>dynamic_cast&lt;IMyView*&gt;(l.GetItemProvider()-&gt;RequestView(WString::Unmanaged(IMyView::Identifier)))</b>
+                </p>
+                <p>
+                    This allows accessing items in their rendering order.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiVirtualTextList</title>
+                <p>
+                    <b>GuiVirtualTextList</b> extends the item provider with <b>list::ITextItemView</b>:
+                    <ul>
+                        <li><b>GetChecked(itemIndex)</b>: Get the checked state of an item</li>
+                        <li><b>SetChecked(itemIndex, bool)</b>: Set the checked state of an item</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiVirtualListView</title>
+                <p>
+                    <b>GuiVirtualListView</b> provides <b>list::IListViewItemView</b> for accessing list view item data:
+                    <ul>
+                        <li><b>GetSmallImage(itemIndex)</b>: Get the small icon for an item</li>
+                        <li><b>GetLargeImage(itemIndex)</b>: Get the large icon for an item</li>
+                        <li><b>GetText(itemIndex)</b>: Get the text of an item</li>
+                        <li><b>GetSubItem(itemIndex, subItemIndex)</b>: Access sub-item data</li>
+                        <li><b>GetDataColumnCount()</b>: Get the number of data columns</li>
+                        <li><b>GetDataColumn(index)</b>: Access a user-defined projection of text and sub items</li>
+                        <li><b>GetColumnCount()</b>: Get the number of column headers</li>
+                        <li><b>GetColumnText(index)</b>: Access column header text</li>
+                    </ul>
+                </p>
+                <p>
+                    The <b>ListViewColumnItemArranger::IColumnItemView</b> interface provides column-specific operations:
+                    <ul>
+                        <li><b>GetColumnSize(index)</b>: Get column header width</li>
+                        <li><b>SetColumnSize(index, value)</b>: Set column header width</li>
+                        <li><b>GetDropdownPopup(index)</b>: Access the dropdown menu attached to a column header</li>
+                        <li><b>GetSortingState(index)</b>: Access the sorting state of a column header (rendering effect only, does not reflect actual item order)</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiVirtualTreeListControl</title>
+                <p>
+                    <b>GuiVirtualTreeListControl</b> provides <b>tree::INodeItemView</b> (also accessible via <b>GetNodeItemView()</b>):
+                    <ul>
+                        <li><b>RequestNode(index)</b>: Convert item index to <b>Ptr&lt;INodeProvider&gt;</b></li>
+                        <li><b>CalculateNodeVisibilityIndex(node)</b>: Convert <b>INodeProvider*</b> to index (returns <b>-1</b> if collapsed by any ancestor)</li>
+                    </ul>
+                </p>
+                <p>
+                    <b>GetNodeRootProvider()</b> returns <b>tree::INodeRootProvider</b>:
+                    <ul>
+                        <li><b>GetRootNode()</b>: Get the root node (root node is not rendered, its children are the top-level nodes)</li>
+                        <li><b>GetTextValue(node)</b>: Get the text representation of a node</li>
+                        <li><b>GetBindingValue(node)</b>: Get the boxed value of a node</li>
+                    </ul>
+                </p>
+                <p>
+                    To access more detailed view interfaces:
+                </p>
+                <p>
+                    <b>dynamic_cast&lt;IMyView*&gt;(l.GetNodeRootProvider()-&gt;RequestView(WString::Unmanaged(IMyView::Identifier)))</b>
+                </p>
+                <p>
+                    This allows accessing nodes in their logical tree structure.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiVirtualTreeView</title>
+                <p>
+                    <b>GuiVirtualTreeView</b> extends the node provider with <b>tree::ITreeViewItemView</b>:
+                    <ul>
+                        <li><b>GetNodeImage(node)</b>: Access the icon for a tree view node</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiVirtualDataGrid</title>
+                <p>
+                    <b>GuiVirtualDataGrid</b> provides <b>list::IDataGridView</b> for cell-level access:
+                    <ul>
+                        <li><b>GetBindingCellValue(row, column)</b>: Access cell data</li>
+                        <li><b>SetBindingCellValue(row, column, value)</b>: Set cell data (must be writable if an editor factory is assigned for the column)</li>
+                        <li><b>GetCellSpan()</b>: No effect (merging cells is not supported yet)</li>
+                    </ul>
+                </p>
+                <p>
+                    <b>IMPORTANT</b>:
+                    The item provider of the data grid represents items in rendering order,
+                    which means it only contains items that passed all filters,
+                    sorted by the assigned sorter.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Predefined IItemProvider or INodeRootProvider</title>
+            <p>
+                Each list and tree control uses a specific provider implementation:
+            </p>
+            <p>
+                <b>List Controls and View Implementations:</b>
+                <ul>
+                    <li><b>GuiTextList</b>: <b>list::TextItemProvider</b> (BindingValue: <b>Ptr&lt;TextItem&gt;</b>)</li>
+                    <li><b>GuiListView</b>: <b>list::ListViewItemProvider</b> (BindingValue: <b>Ptr&lt;ListViewItem&gt;</b>)</li>
+                    <li><b>GuiBindableTextList</b>: <b>list::TextItemBindableProvider</b> (BindingValue: <b>description::Value</b> in ItemSource)</li>
+                    <li><b>GuiBindableListView</b>: <b>list::ListViewItemBindableProvider</b> (BindingValue: <b>description::Value</b> in ItemSource)</li>
+                    <li><b>GuiVirtualTreeListControl</b>: <b>tree::NodeItemProvider</b></li>
+                    <li><b>GuiBindableDataGrid</b>: <b>list::DataProvider</b></li>
+                </ul>
+            </p>
+            <p>
+                <b>Tree Controls and View Implementations:</b>
+                <ul>
+                    <li><b>GuiTreeView</b>: <b>tree::TreeViewItemRootProvider</b> (BindingValue: <b>Ptr&lt;TreeViewItem&gt;</b>)</li>
+                    <li><b>GuiBindableTreeView</b>: <b>tree::TreeViewItemBindableRootProvider</b> (BindingValue: <b>description::Value</b> in ItemSource)</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Manipulating Items</title>
+            <p>
+                Different controls provide different ways to manipulate their items programmatically.
+            </p>
+            <topic>
+                <title>GuiTextList</title>
+                <p>
+                    <b>GuiTextList</b> provides direct access to its items:
+                    <ul>
+                        <li><b>GetItems()</b>: Returns a writable list of <b>Ptr&lt;TextItem&gt;</b></li>
+                        <li><b>GetSelectedItem()</b>: Returns the selected <b>Ptr&lt;TextItem&gt;</b> (null if multiple or none selected)</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiListView</title>
+                <p>
+                    <b>GuiListView</b> provides access to columns and items:
+                    <ul>
+                        <li><b>GetDataColumns()</b>: Returns a writable list of data column indices</li>
+                        <li><b>GetColumns()</b>: Returns a writable list of <b>Ptr&lt;ListViewColumn&gt;</b></li>
+                        <li><b>GetItems()</b>: Returns a writable list of <b>Ptr&lt;ListViewItem&gt;</b></li>
+                        <li><b>GetSelectedItem()</b>: Returns the selected <b>Ptr&lt;ListViewItem&gt;</b> (null if multiple or none selected)</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiTreeView</title>
+                <p>
+                    <b>GuiTreeView</b> provides tree-based access through <b>Nodes()</b>:
+                    <ul>
+                        <li><b>GetRootNode()</b>: Returns <b>Ptr&lt;INodeProvider&gt;</b> of the root node</li>
+                        <li><b>GetMemoryNode(node)</b>: Converts <b>INodeProvider*</b> to <b>MemoryNodeProvider*</b></li>
+                    </ul>
+                </p>
+                <p>
+                    <b>MemoryNodeProvider</b> provides:
+                    <ul>
+                        <li><b>Children()</b>: A writable list of <b>Ptr&lt;MemoryNodeProvider&gt;</b></li>
+                        <li><b>GetData()</b>: Access the actual data of a node (must be <b>Ptr&lt;TreeViewItem&gt;</b>)</li>
+                        <li><b>SetData(value)</b>: Set the data of a node</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiBindableTextList</title>
+                <p>
+                    <b>GuiBindableTextList</b> works with data binding:
+                    <ul>
+                        <li><b>GetItemSource()</b>: Get the enumerable object representing all items</li>
+                        <li><b>SetItemSource(value)</b>: Set the item source (if it implements <b>IValueReadonlyList</b>, the implementation will be more efficient; if it implements <b>IValueObservableList</b>, changing the list will update the list control automatically)</li>
+                        <li><b>GetSelectedItem()</b>: Returns the selected <b>description::Value</b> (null if multiple or none selected)</li>
+                        <li><b>NotifyItemDataModified(start, count)</b>: Call this function if properties inside any item are changed when there is no update to the item source</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiBindableListView</title>
+                <p>
+                    <b>GuiBindableListView</b> combines columns with data binding:
+                    <ul>
+                        <li><b>GetDataColumns()</b>: Returns a writable list of data column indices</li>
+                        <li><b>GetColumns()</b>: Returns a writable list of <b>Ptr&lt;ListViewColumn&gt;</b></li>
+                        <li><b>GetItemSource()</b>: Get the enumerable object representing all items</li>
+                        <li><b>SetItemSource(value)</b>: Set the item source (if it implements <b>IValueReadonlyList</b>, the implementation will be more efficient; if it implements <b>IValueObservableList</b>, changing the list will update the list control automatically)</li>
+                        <li><b>GetSelectedItem()</b>: Returns the selected <b>description::Value</b> (null if multiple or none selected)</li>
+                        <li><b>NotifyItemDataModified(start, count)</b>: Call this function if properties inside any item are changed when there is no update to the item source</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiBindableTreeView</title>
+                <p>
+                    <b>GuiBindableTreeView</b> requires a <b>reverseMappingProperty</b> constructor argument,
+                    which represents a property of the node data in the item source
+                    for accessing <b>Ptr&lt;INodeProvider&gt;</b> for that node.
+                </p>
+                <p>
+                    Available methods:
+                    <ul>
+                        <li><b>GetItemSource()</b>: Get the object for the root node</li>
+                        <li><b>SetItemSource(value)</b>: Set the root node object (if its Children property implements <b>IValueReadonlyList</b>, the implementation will be more efficient; if its Children property implements <b>IValueObservableList</b>, changing the list will update the tree view automatically)</li>
+                        <li><b>GetSelectedItem()</b>: Returns the selected <b>description::Value</b> (null if multiple or none selected)</li>
+                        <li><b>NotifyNodeDataModified(value)</b>: Call this function if properties inside any node data are changed (requires <b>reverseMappingProperty</b> to exist; there is no way to notify children changes if its Children property does not implement <b>IValueObservableList</b>)</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiBindableDataGrid</title>
+                <p>
+                    <b>GuiBindableDataGrid</b> provides cell-based selection with data binding:
+                    <ul>
+                        <li><b>GetItemSource()</b>: Get the enumerable object representing all rows</li>
+                        <li><b>SetItemSource(value)</b>: Set the row data (if it implements <b>IValueReadonlyList</b>, the implementation will be more efficient; if it implements <b>IValueObservableList</b>, changing the list will update the data grid automatically)</li>
+                        <li><b>GetSelectedCell()</b>: Returns the selected <b>description::Value</b> for the cell</li>
+                        <li><b>SelectCell(value, openEditor)</b>: Select a cell, and open its editor if <b>openEditor</b> is <b>true</b></li>
+                    </ul>
+                </p>
+            </topic>
+        </topic>
     </topic>
 </article>
