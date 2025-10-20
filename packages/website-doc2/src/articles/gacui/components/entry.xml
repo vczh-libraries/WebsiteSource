@@ -68,6 +68,7 @@
           <article name="Editor" file="controls/list/datagrid_editor"/>
         </article>
       </article>
+      <article name="Accessing Items via IItemProvider" file="controls/list/itemprovider"/>
     </article>
     <article name="Toolstrip Controls" file="controls/toolstrip/home">
       <article name="&lt;ToolstripButton&gt;" file="controls/toolstrip/toolstripbutton">
