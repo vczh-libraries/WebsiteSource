@@ -64,7 +64,11 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: st
 }
 
 function formatText(text: string): string {
-    return text;
+    return text
+        .split(/\r?\n/)
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .join(' ');
 }
 
 function renderContent(contents: Content[], listPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
