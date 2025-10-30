@@ -8,7 +8,8 @@
         "build": "rimraf ./lib && eslint && tsc && copyfiles -u 1 assest/**/* lib/dist/ && node ./lib/esbuild.js",
         "fullbuild": "cls & pushd ..\\.. && yarn build && popd",
         "start": "node ./lib/index.js",
-        "download": "node ./lib/index.js -d"
+        "download": "node ./lib/index.js -d",
+        "markdown": "node ./lib/index.js -m"
     },
     "license": "Apache-2.0",
     "devDependencies": {

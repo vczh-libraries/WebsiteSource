@@ -13,6 +13,7 @@ import { convertDocSymbolToHyperlink } from './plugins/document/xmlDocSymbol.js'
 import { exampleRetriver } from './plugins/document/xmlExample.js';
 import { DocTreeNode, getDirectoryInfoFromPath, loadDocTree, stepIndexByPath } from './treeView.js';
 import { DirectoryInfo, views } from './views/index.js';
+import { convertDocumentToMarkdown } from './markdown.js';
 
 const __dirname = path.resolve('./lib');
 const pathPrefix = `/doc/current`;
@@ -158,7 +159,9 @@ function collectDocUrls(dnode: DocTreeNode, docUrls: string[]): void {
     }
 }
 
-if (process.argv[2] === '-d') {
+if (process.argv[2] === '-m') {
+    convertDocumentToMarkdown(docTree, path.join(__dirname, './markdown'));
+} else if (process.argv[2] === '-d') {
     const [router, server] = initializeServer();
     server.listen(8080, 'localhost');
 
