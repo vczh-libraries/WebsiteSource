@@ -63,12 +63,16 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: st
     }
 }
 
-function renderContent(contents: Content[], collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
+function formatText(text: string): string {
+    return text;
+}
+
+function renderContent(contents: Content[], listPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
     let md = "";
     for (const content of contents) {
         switch (content.kind) {
             case "Text":
-                md += content.text;
+                md += formatText(content.text);
                 break;
             case "PageLink": {
                 const url = rewriteLink(content.href, collectedNodes, directory, relativeUrlPrefix);
@@ -85,11 +89,29 @@ function renderContent(contents: Content[], collectedNodes: CollectedNodes, dire
             case "Image":
                 md += `![](https://gaclib.net/doc${content.src})`;
                 break;
+            case "List": {
+                for (const item of content.items) {
+                    switch (item.kind) {
+                        case "ContentListItem": {
+                            md += `\r\n${listPrefix}- ` + renderContent(item.content, listPrefix + "  ", collectedNodes, directory, relativeUrlPrefix);
+                            break;
+                        }
+                        case "ParagraphListItem": {
+                            md += `\r\n${listPrefix}- \`empty list item\``;
+                            for (const p of item.paragraphs) {
+                                md += `\r\n${listPrefix}  ` + renderContent(p.content, listPrefix + "    ", collectedNodes, directory, relativeUrlPrefix);
+                            }
+                            break;
+                        }
+                    }
+                }
+                break;
+            }
             case "Strong":
-                md += "**" + renderContent(content.content, collectedNodes, directory, relativeUrlPrefix) + "**";
+                md += "**" + renderContent(content.content, listPrefix, collectedNodes, directory, relativeUrlPrefix) + "**";
                 break;
             case "Emphasise":
-                md += "_" + renderContent(content.content, collectedNodes, directory, relativeUrlPrefix) + "_";
+                md += "_" + renderContent(content.content, listPrefix, collectedNodes, directory, relativeUrlPrefix) + "_";
                 break;
             case "Program":
                 md += `\r\n\`\`\`${content.language || ''}\r\n${content.code}\r\n\`\`\`\r\n`;
@@ -99,11 +121,11 @@ function renderContent(contents: Content[], collectedNodes: CollectedNodes, dire
                 const kind = sp.kind;
                 switch (sp.kind) {
                     case "SamplePlugin": {
-                        md += renderContent(renderSample(sp), collectedNodes, directory, relativeUrlPrefix);
+                        md += renderContent(renderSample(sp), listPrefix, collectedNodes, directory, relativeUrlPrefix);
                         break;
                     }
                     case "ControlTemplatesPlugin": {
-                        md += renderContent(renderControlTemplates(sp), collectedNodes, directory, relativeUrlPrefix);
+                        md += renderContent(renderControlTemplates(sp), listPrefix, collectedNodes, directory, relativeUrlPrefix);
                         break;
                     }
                     default: {
@@ -124,7 +146,7 @@ function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedN
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
-                md += renderContent(content.content, collectedNodes, directory, relativeUrlPrefix) + `\r\n\r\n`;
+                md += renderContent(content.content, "", collectedNodes, directory, relativeUrlPrefix) + `\r\n\r\n`;
                 break;
             case 'Topic':
                 md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes, directory, relativeUrlPrefix);
