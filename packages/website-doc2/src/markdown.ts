@@ -9,13 +9,17 @@ import { renderSample, SamplePlugin } from './plugins/article/xmlSample.js';
 
 type CollectedNodes = { [path: string]: DocTreeNode };
 
+function escapeText(text: string): string {
+    return text.replaceAll("<", "\\<").replaceAll(">", "\\>");
+}
+
 function generateIndexForProject(nodes: DocTreeNode[], prefix: string, directory: string, relativeDirectory: string, collectedNodes: CollectedNodes): string {
     let indexMd = "";
     for (const node of nodes.filter(node => node.kind === "article")) {
         const markdownRelativePath = node.path!.join('/') + '.md';
         collectedNodes[path.join(directory, markdownRelativePath)] = node;
 
-        indexMd += `${prefix}- [${node.name.replaceAll("<", "\\<").replaceAll(">", "\\>")}](${relativeDirectory}${markdownRelativePath})\r\n`;
+        indexMd += `${prefix}- [${escapeText(node.name)}](${relativeDirectory}${markdownRelativePath})\r\n`;
         if (node.subNodes) {
             indexMd += generateIndexForProject(node.subNodes, prefix + "  ", directory, relativeDirectory, collectedNodes);
         }
@@ -68,19 +72,11 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: st
 }
 
 function formatText(text: string): string {
-    const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
-    return lines
-        .map((line, index) => {
-            if (index === 0) {
-                return line.replace(/\s+$/, '');
-            } else if (index === lines.length - 1) {
-                return line.replace(/^\s+/, '');
-            } else {
-                return line.trim();
-            }
-        })
-        .join(' ')
-        .replaceAll("<", "\\<").replaceAll(">", "\\>");
+    return text
+        .split(/\r?\n/)
+        .filter(line => line.trim().length > 0)
+        .map(line => line.trim())
+        .join(' ');
 }
 
 function renderContent(contents: Content[], listPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
@@ -88,7 +84,7 @@ function renderContent(contents: Content[], listPrefix: string, collectedNodes: 
     for (const content of contents) {
         switch (content.kind) {
             case "Text":
-                md += formatText(content.text);
+                md += escapeText(content.text);
                 break;
             case "PageLink": {
                 const url = rewriteLink(content.href, collectedNodes, directory, relativeUrlPrefix);
@@ -115,7 +111,7 @@ function renderContent(contents: Content[], listPrefix: string, collectedNodes: 
                         case "ParagraphListItem": {
                             md += `\r\n${listPrefix}- \`empty list item\``;
                             for (const p of item.paragraphs) {
-                                md += `\r\n${listPrefix}  ` + renderContent(p.content, listPrefix + "    ", collectedNodes, directory, relativeUrlPrefix);
+                                md += `\r\n${listPrefix}  ` + formatText(renderContent(p.content, listPrefix + "    ", collectedNodes, directory, relativeUrlPrefix));
                             }
                             break;
                         }
@@ -158,11 +154,11 @@ function renderContent(contents: Content[], listPrefix: string, collectedNodes: 
 }
 
 function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
-    let md = `${topicPrefix} ${topic.title.replaceAll("<", "\\<").replaceAll(">", "\\>")}\r\n\r\n`;
+    let md = `${topicPrefix} ${escapeText(topic.title)}\r\n\r\n`;
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
-                md += renderContent(content.content, "", collectedNodes, directory, relativeUrlPrefix) + `\r\n\r\n`;
+                md += formatText(renderContent(content.content, "", collectedNodes, directory, relativeUrlPrefix)) + `\r\n\r\n`;
                 break;
             case 'Topic':
                 md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes, directory, relativeUrlPrefix);
