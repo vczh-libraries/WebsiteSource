@@ -141,14 +141,26 @@
                 <ul>
                     <li><b>/D</b>: Debug mode, it will crash at the first error.</li>
                     <li><b>/R</b>: Release mode, it will crash at the first error.</li>
-                    <li><b>/F:FileName.cpp</b>: Only run test cases defined in this file. Multiple instances are allowed at the same time to execute a specified group of files.</li>
+                    <li>
+                        <b>/F:FileName.cpp</b>: Only run test cases defined in this file.
+                        Multiple instances are allowed at the same time to execute a specified group of files.
+                        Wildcards are supported, e.g., <b>/F:Test_My*.cpp</b>.
+                        <b>/F</b> only filters test files by file names, file path is not considered.
+                    </li>
                 </ul>
                 <b>/D</b> and <b>/R</b> are exclusive. If none of them are offered, on Windows <b>/D</b> is activated if a debugger is attached to the process from the beginning.
             </p>
-            <p>
-                In order to test code that is aware of the current date time.
-                <b>vl::InjectDateTimeImpl</b> could be used to control the implementation of <b>vl::DateTime</b>.
-            </p>
+            <topic>
+                <title>Mocking DateTime</title>
+                <p>
+                    <b>vl::InjectDateTimeImpl</b> could be used to control the implementation of <b>vl::DateTime</b>.
+                    This function stack all injections, each injection could access the previous implementation by implementing <b>vl::feature_injection::IFeatureImpl</b>
+                </p>
+                <p>
+                    <b>vl::EjectDateTimeImpl</b> could be used to revert <b>vl::InjectDateTimeImpl</b>.
+                    Passing <b>nullptr</b> to cancel all <b>vl::InjectDateTimeImpl</b> calls.
+                </p>
+            </topic>
         </topic>
     </topic>
 </article>

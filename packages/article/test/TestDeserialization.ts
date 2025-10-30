@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { assert, test } from 'vitest';
 import { EOL } from 'os';
 import { Element } from 'xml-js';
 import { Article, parseArticle, Plugin } from '../src/index.js';

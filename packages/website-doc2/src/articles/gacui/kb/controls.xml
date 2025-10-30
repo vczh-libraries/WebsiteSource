@@ -66,7 +66,7 @@
                     <p>
                         <b>Editor Controls:</b>
                         <ul>
-                            <li><b>SinglelineTextBox</b> and <b>MultilineTextBox</b>: Displays editable colorizable code, offer customizable auto-complete functionalities.</li>
+                            <li><b>SinglelineTextBox</b> and <b>MultilineTextBox</b>: Displays editable plain text.</li>
                             <li><b>DocumentLabel</b> and <b>DocumentViewer</b>: Displays editable text or rich document, allowing compositions and controls to be embedded into a document.</li>
                         </ul>
                     </p>

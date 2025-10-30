@@ -31,6 +31,7 @@
             When a paragraph is too long to display,
             auto line-wrapping is automatically done so that the horizontal scroll bar is always not needed.
             Height of these controls will grow to display the whole document.
+            But such default behavior can be changed.
         </p>
         <p>
             There is no functionality difference between <b>&lt;DocumentLabel/&gt;</b> and <b>&lt;DocumentTextBox/&gt;</b>.

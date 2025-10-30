@@ -6,7 +6,7 @@
                 <li><b>and</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>
                 <li><b>as</b>: <a href="/workflow/lang/interface_inherit.html">Inheritance (interface)</a>, <a href="/workflow/lang/class_inherit.html">Inheritance (class)</a>, <a href="/workflow/lang/expr.html">Expressions</a>, <a href="/workflow/lang/bind_observe.html">Observe events explicitly (data binding)</a></li>
                 <li><b>attach</b>: <a href="/workflow/lang/interface_prop.html">Properties and Events (interface)</a>, <a href="/workflow/lang/class_prop.html">Properties and Events (class)</a></li>
-                <li><b>bind</b>: <a href="/working/lang/bind.html">Data Bindings</a></li>
+                <li><b>bind</b>: <a href="/workflow/lang/bind.html">Data Bindings</a></li>
                 <li><b>bool</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>break</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
                 <li><b>cast</b>: <a href="/workflow/lang/interface_inherit.html">Inheritance (interface)</a>, <a href="/workflow/lang/class_inherit.html">Inheritance (class)</a>, <a href="/workflow/lang/expr.html">Expressions</a></li>

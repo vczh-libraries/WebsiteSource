@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { assert, test } from 'vitest';
 import { DocArticle, DocExample, parseDocArticle } from '../src/index.js';
 
 function exampleRetriver(index: number): DocExample {

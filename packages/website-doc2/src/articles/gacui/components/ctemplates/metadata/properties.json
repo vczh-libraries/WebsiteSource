@@ -16,12 +16,6 @@
             "DefaultTextColor"
         ]
     },
-    "SinglelineTextBoxTemplate": {
-        "outputs": [
-            "TextColor",
-            "CaretColor"
-        ]
-    },
     "DocumentLabelTemplate": {
         "outputs": [
             "BaselineDocument",
@@ -99,15 +93,6 @@
         "outputs": [
             "HorizontalScroll",
             "VerticalScroll"
-        ]
-    },
-    "MultilineTextBoxTemplate": {
-        "inputs": [
-            "Commands"
-        ],
-        "outputs": [
-            "TextColor",
-            "CaretColor"
         ]
     },
     "DocumentViewerTemplate": {

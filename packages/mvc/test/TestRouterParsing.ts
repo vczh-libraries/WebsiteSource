@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { assert, test } from 'vitest';
 import { route, RouterFragment, RouterFragmentKind, RouterParameterKind, RouterPattern } from '../src/index.js';
 
 function assertFragments<T extends {}>(rp: RouterPattern<T>, expected: RouterFragment[]): void {

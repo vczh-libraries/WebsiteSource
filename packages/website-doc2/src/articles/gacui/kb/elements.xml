@@ -54,10 +54,10 @@
             <sample name="kb_elements"/>
         </p>
         <p>
-            There are also <b>GuiColorizedTextElement</b> and <b>DocumentElement</b>.
-            These two elements offer full featured text rendering for code and document.
+            There is <b>DocumentElement</b>.
+            This element offer full featured document rendering.
             But they are not designed to be used directly,
-            instead you are expected to use the follow controls:
+            instead you are expected to use these controls:
             <ul>
 			    <li><b>SinglelineTextBox</b></li>
 			    <li><b>MultilineTextBox</b></li>

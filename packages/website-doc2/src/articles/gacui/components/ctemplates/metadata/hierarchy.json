@@ -1,6 +1,5 @@
 {
     "LabelTemplate": "ControlTemplate",
-    "SinglelineTextBoxTemplate": "ControlTemplate",
     "DocumentLabelTemplate": "ControlTemplate",
     "WindowTemplate": "ControlTemplate",
     "MenuTemplate": "WindowTemplate",
@@ -11,7 +10,6 @@
     "ComboBoxTemplate": "ToolstripButtonTemplate",
     "ScrollTemplate": "ControlTemplate",
     "ScrollViewTemplate": "ControlTemplate",
-    "MultilineTextBoxTemplate": "ScrollViewTemplate",
     "DocumentViewerTemplate": "ScrollViewTemplate",
     "ListControlTemplate": "ScrollViewTemplate",
     "TextListTemplate": "ListControlTemplate",
