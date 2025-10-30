@@ -44,6 +44,8 @@ function renderContentToText(contents: Content[]): string {
     return md;
 }
 
+const missingArticleUrls: string[] = [];
+
 function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string | undefined {
     if (href.startsWith("http://")) {
         return href;
@@ -52,14 +54,13 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: st
     } else if (href.startsWith("//")) {
         throw new Error(`Unsupported url in markdown: ${href}`);
     } else if (href.startsWith("/")) {
-        if (href.endsWith(".html")) {
-            href = href.slice(0, -5);
-        }
-        href=`./${href.substring(1)}.md`;
+        href = href.replaceAll(/\.html(#.*)?$/g, '');
+        href = `./${href.substring(1)}.md`;
         if (collectedNodes[path.join(directory, href)]) {
             return relativeUrlPrefix + href;
         } else {
-            throw new Error(`Article not found: ${href}`);
+            missingArticleUrls.push(href);
+            return undefined;
         }
     } else {
         throw new Error(`Unsupported url in markdown: ${href}`);
@@ -209,7 +210,18 @@ export function convertDocumentToMarkdown(docTree: DocTree, directory: string): 
     fs.writeFileSync(path.join(directory, "index.md"), indexMd, { encoding: 'utf-8' });
     fs.writeFileSync(path.join(directory, "docTree.md"), JSON.stringify(docTree, undefined, 2), { encoding: 'utf-8' });
 
-    for (const [path, error] of failedPaths) {
-        console.error(`Failed to generate markdown for ${path}: ${error.message}`);
+    if (failedPaths.length > 0) {
+        console.error(`\r\nFailed to generate:`);
+        for (const [path, error] of failedPaths) {
+            console.error(`${path}: ${error.message}`);
+        }
+    }
+
+    if (missingArticleUrls.length > 0) {
+        console.error(`\r\nMissing article urls:`);
+        for (const url of missingArticleUrls) {
+            if (url.includes("/ctemplates/") || url.includes("/ref/")) continue;
+            console.error(`${url}`);
+        }
     }
 }
