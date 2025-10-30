@@ -4,6 +4,8 @@ import { DocTree, DocTreeNode } from './treeView.js';
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseArticlePlugin } from './plugins/article/index.js';
+import { ControlTemplatesPlugin, renderControlTemplates } from './plugins/article/xmlControlTemplates.js';
+import { renderSample, SamplePlugin } from './plugins/article/xmlSample.js';
 
 type CollectedNodes = { [path: string]: DocTreeNode };
 
@@ -36,7 +38,7 @@ function renderContentToText(contents: Content[]): string {
                 md += renderContentToText(content.content);
                 break;
             default:
-                throw new Error(`renderContentToText(): content.kind rendering is not supported yet.`);
+                throw new Error(`renderContentToText(): ${content.kind} rendering is not supported yet.`);
         }
     }
     return md;
@@ -94,8 +96,26 @@ function renderContent(contents: Content[], collectedNodes: CollectedNodes, dire
             case "Program":
                 md += `\r\n\`\`\`${content.language || ''}\r\n${content.code}\r\n\`\`\`\r\n`;
                 break;
+            case "Plugin": {
+                const sp = (<ControlTemplatesPlugin | SamplePlugin>content.plugin);
+                const kind = sp.kind;
+                switch (sp.kind) {
+                    case "SamplePlugin": {
+                        md += renderContent(renderSample(sp), collectedNodes, directory, relativeUrlPrefix);
+                        break;
+                    }
+                    case "ControlTemplatesPlugin": {
+                        md += renderContent(renderControlTemplates(sp), collectedNodes, directory, relativeUrlPrefix);
+                        break;
+                    }
+                    default: {
+                        throw new Error(`Unrecognized plugin kind: ${kind}.`);
+                    }
+                }
+                break;
+            }
             default:
-                throw new Error(`renderContent(): content.kind rendering is not supported yet.`);
+                throw new Error(`renderContent(): ${content.kind} rendering is not supported yet.`);
         }
     }
     return md;
