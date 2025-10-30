@@ -42,7 +42,7 @@ function renderContentToText(contents: Content[]): string {
     return md;
 }
 
-function rewriteLink(href: string, collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string | undefined {
+function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string | undefined {
     if (href.startsWith("http://")) {
         return href;
     } else if (href.startsWith("https://")) {
@@ -53,7 +53,7 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, nodeUrlPrefix
         if (href.endsWith(".html")) {
             href = href.slice(0, -5);
         }
-        if (collectedNodes[nodeUrlPrefix + href]) {
+        if (collectedNodes[path.join(directory, href) + ".md"]) {
             return relativeUrlPrefix + href;
         } else {
             return undefined;
@@ -61,21 +61,22 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, nodeUrlPrefix
     }
 }
 
-function renderContent(contents: Content[], collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string {
+function renderContent(contents: Content[], collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
     let md = "";
     for (const content of contents) {
         switch (content.kind) {
             case "Text":
                 md += content.text;
                 break;
-            case "PageLink":
-                const url = rewriteLink(content.href, collectedNodes, nodeUrlPrefix, relativeUrlPrefix);
+            case "PageLink": {
+                const url = rewriteLink(content.href, collectedNodes, directory, relativeUrlPrefix);
                 if (url) {
                     md += `[${renderContentToText(content.content)}](${url})`;
                 } else {
                     md += `${renderContentToText(content.content)}\`missing document: ${content.href}\``;
                 }
                 break;
+            }
             case "Name":
                 md += `\`${content.text}\``;
                 break;
@@ -85,10 +86,10 @@ function renderContent(contents: Content[], collectedNodes: CollectedNodes, node
             case "List":
                 break;
             case "Strong":
-                md += "**" + renderContent(content.content, collectedNodes, nodeUrlPrefix, relativeUrlPrefix) + "**";
+                md += "**" + renderContent(content.content, collectedNodes, directory, relativeUrlPrefix) + "**";
                 break;
             case "Emphasise":
-                md += "_" + renderContent(content.content, collectedNodes, nodeUrlPrefix, relativeUrlPrefix) + "_";
+                md += "_" + renderContent(content.content, collectedNodes, directory, relativeUrlPrefix) + "_";
                 break;
             case "Program":
                 md += `\r\n\`\`\`${content.language || ''}\r\n${content.code}\r\n\`\`\`\r\n`;
@@ -100,30 +101,30 @@ function renderContent(contents: Content[], collectedNodes: CollectedNodes, node
     return md;
 }
 
-function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string {
+function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
     let md = `${topicPrefix} ${topic.title}\r\n\r\n`;
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
-                md += renderContent(content.content, collectedNodes, nodeUrlPrefix, relativeUrlPrefix) + `\r\n\r\n`;
+                md += renderContent(content.content, collectedNodes, directory, relativeUrlPrefix) + `\r\n\r\n`;
                 break;
             case 'Topic':
-                md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes, nodeUrlPrefix, relativeUrlPrefix);
+                md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes, directory, relativeUrlPrefix);
                 break;
         }
     }
     return md;
 }
 
-function generateMarkdownFromArticle(article: Article, collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string {
-    return generateMarkdownFromTopic(article.topic, "#", collectedNodes, nodeUrlPrefix, relativeUrlPrefix);
+function generateMarkdownFromArticle(article: Article, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
+    return generateMarkdownFromTopic(article.topic, "#", collectedNodes, directory, relativeUrlPrefix);
 }
 
-function generateMarkdown(outputPath: string, node: DocTreeNode, collectedNodes: CollectedNodes): void {
+function generateMarkdown(outputPath: string, node: DocTreeNode, collectedNodes: CollectedNodes, directory: string): void {
     console.log(`Generating ${node.file!} -> ${outputPath}`);
     const articleXml = fs.readFileSync(node.file!, { encoding: 'utf-8' });
     const article = parseArticle(articleXml, parseArticlePlugin);
-    const articleMd = generateMarkdownFromArticle(article, collectedNodes);
+    const articleMd = generateMarkdownFromArticle(article, collectedNodes, directory, (node.path!.length > 1 ? "../".repeat(node.path!.length - 1) : "./"));
     fs.mkdirSync(path.dirname(outputPath), { recursive: true });
     fs.writeFileSync(outputPath, articleMd, { encoding: 'utf-8' });
 }
@@ -148,10 +149,19 @@ export function convertDocumentToMarkdown(docTree: DocTree, directory: string): 
         indexMd += `## ${projectNode.name}\r\n\r\n${generateIndexForProject(subNodes, "", manualDir, "./manual/", collectedNodes)}\r\n`;
     }
 
+    const failedPaths: [string, Error][] = [];
     for (const path in collectedNodes) {
-        generateMarkdown(path, collectedNodes[path], collectedNodes);
+        try {
+            generateMarkdown(path, collectedNodes[path], collectedNodes, directory);
+        } catch (error) {
+            failedPaths.push([path, error as Error]);
+        }
     }
 
     fs.writeFileSync(path.join(directory, "index.md"), indexMd, { encoding: 'utf-8' });
     fs.writeFileSync(path.join(directory, "docTree.md"), JSON.stringify(docTree, undefined, 2), { encoding: 'utf-8' });
+
+    for (const [path, error] of failedPaths) {
+        console.error(`Failed to generate markdown for ${path}: ${error.message}`);
+    }
 }
