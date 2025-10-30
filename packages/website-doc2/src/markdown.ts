@@ -42,7 +42,26 @@ function renderContentToText(contents: Content[]): string {
     return md;
 }
 
-function renderContent(contents: Content[]): string {
+function rewriteLink(href: string, collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string | undefined {
+    if (href.startsWith("http://")) {
+        return href;
+    } else if (href.startsWith("https://")) {
+        return href;
+    } else if (href.startsWith("//")) {
+        throw new Error(`Unsupported url in markdown: ${href}`);
+    } else {
+        if (href.endsWith(".html")) {
+            href = href.slice(0, -5);
+        }
+        if (collectedNodes[nodeUrlPrefix + href]) {
+            return relativeUrlPrefix + href;
+        } else {
+            return undefined;
+        }
+    }
+}
+
+function renderContent(contents: Content[], collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string {
     let md = "";
     for (const content of contents) {
         switch (content.kind) {
@@ -50,6 +69,12 @@ function renderContent(contents: Content[]): string {
                 md += content.text;
                 break;
             case "PageLink":
+                const url = rewriteLink(content.href, collectedNodes, nodeUrlPrefix, relativeUrlPrefix);
+                if (url) {
+                    md += `[${renderContentToText(content.content)}](${url})`;
+                } else {
+                    md += `${renderContentToText(content.content)}\`missing document: ${content.href}\``;
+                }
                 break;
             case "Name":
                 md += `\`${content.text}\``;
@@ -60,10 +85,10 @@ function renderContent(contents: Content[]): string {
             case "List":
                 break;
             case "Strong":
-                md += "**" + renderContent(content.content) + "**";
+                md += "**" + renderContent(content.content, collectedNodes, nodeUrlPrefix, relativeUrlPrefix) + "**";
                 break;
             case "Emphasise":
-                md += "_" + renderContent(content.content) + "_";
+                md += "_" + renderContent(content.content, collectedNodes, nodeUrlPrefix, relativeUrlPrefix) + "_";
                 break;
             case "Program":
                 md += `\r\n\`\`\`${content.language || ''}\r\n${content.code}\r\n\`\`\`\r\n`;
@@ -75,23 +100,23 @@ function renderContent(contents: Content[]): string {
     return md;
 }
 
-function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes): string {
+function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string {
     let md = `${topicPrefix} ${topic.title}\r\n\r\n`;
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
-                md += renderContent(content.content) + `\r\n\r\n`;
+                md += renderContent(content.content, collectedNodes, nodeUrlPrefix, relativeUrlPrefix) + `\r\n\r\n`;
                 break;
             case 'Topic':
-                md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes);
+                md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes, nodeUrlPrefix, relativeUrlPrefix);
                 break;
         }
     }
     return md;
 }
 
-function generateMarkdownFromArticle(article: Article, collectedNodes: CollectedNodes): string {
-    return generateMarkdownFromTopic(article.topic, "#", collectedNodes);
+function generateMarkdownFromArticle(article: Article, collectedNodes: CollectedNodes, nodeUrlPrefix: string, relativeUrlPrefix: string): string {
+    return generateMarkdownFromTopic(article.topic, "#", collectedNodes, nodeUrlPrefix, relativeUrlPrefix);
 }
 
 function generateMarkdown(outputPath: string, node: DocTreeNode, collectedNodes: CollectedNodes): void {
