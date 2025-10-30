@@ -51,15 +51,18 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: st
         return href;
     } else if (href.startsWith("//")) {
         throw new Error(`Unsupported url in markdown: ${href}`);
-    } else {
+    } else if (href.startsWith("/")) {
         if (href.endsWith(".html")) {
             href = href.slice(0, -5);
         }
-        if (collectedNodes[path.join(directory, href) + ".md"]) {
+        href=`./${href.substring(1)}.md`;
+        if (collectedNodes[path.join(directory, href)]) {
             return relativeUrlPrefix + href;
         } else {
-            return undefined;
+            throw new Error(`Article not found: ${href}`);
         }
+    } else {
+        throw new Error(`Unsupported url in markdown: ${href}`);
     }
 }
 
@@ -196,7 +199,7 @@ export function convertDocumentToMarkdown(docTree: DocTree, directory: string): 
     for (const path in collectedNodes) {
         try {
             const node = collectedNodes[path];
-            generateMarkdown(path, node, collectedNodes, directory);
+            generateMarkdown(path, node, collectedNodes, manualDir);
             console.log(`Generating ${node.file!} -> ${path}`);
         } catch (error) {
             failedPaths.push([path, error as Error]);
