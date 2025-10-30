@@ -15,7 +15,7 @@ function generateIndexForProject(nodes: DocTreeNode[], prefix: string, directory
         const markdownRelativePath = node.path!.join('/') + '.md';
         collectedNodes[path.join(directory, markdownRelativePath)] = node;
 
-        indexMd += `${prefix}- [${node.name}](${relativeDirectory}${markdownRelativePath})\r\n`;
+        indexMd += `${prefix}- [${node.name.replaceAll("<", "\\<").replaceAll(">", "\\>")}](${relativeDirectory}${markdownRelativePath})\r\n`;
         if (node.subNodes) {
             indexMd += generateIndexForProject(node.subNodes, prefix + "  ", directory, relativeDirectory, collectedNodes);
         }
@@ -68,11 +68,19 @@ function rewriteLink(href: string, collectedNodes: CollectedNodes, directory: st
 }
 
 function formatText(text: string): string {
-    return text
-        .split(/\r?\n/)
-        .map(line => line.trim())
-        .filter(line => line.length > 0)
-        .join(' ');
+    const lines = text.split(/\r?\n/).filter(line => line.trim().length > 0);
+    return lines
+        .map((line, index) => {
+            if (index === 0) {
+                return line.replace(/\s+$/, '');
+            } else if (index === lines.length - 1) {
+                return line.replace(/^\s+/, '');
+            } else {
+                return line.trim();
+            }
+        })
+        .join(' ')
+        .replaceAll("<", "\\<").replaceAll(">", "\\>");
 }
 
 function renderContent(contents: Content[], listPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
@@ -150,7 +158,7 @@ function renderContent(contents: Content[], listPrefix: string, collectedNodes: 
 }
 
 function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
-    let md = `${topicPrefix} ${topic.title}\r\n\r\n`;
+    let md = `${topicPrefix} ${topic.title.replaceAll("<", "\\<").replaceAll(">", "\\>")}\r\n\r\n`;
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
@@ -187,7 +195,7 @@ export function convertDocumentToMarkdown(docTree: DocTree, directory: string): 
 
     const collectedNodes: CollectedNodes = {};
     const excludedFirstLevelNames = ["Breaking changes from 1.0", "References", "Build your first GacUI Application!"];
-    let indexMd = "# Manual\r\n\r\n";
+    let indexMd = "# Copy of Online Manual\r\n\r\n";
     for (const projectNode of docTree.root.subNodes!) {
         if (projectNode.name === "Gaclib Document") continue;
         const subNodes = (projectNode.subNodes || []).filter(node => node.kind === "article" && !excludedFirstLevelNames.includes(node.name));
