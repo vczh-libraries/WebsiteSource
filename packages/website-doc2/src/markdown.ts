@@ -1,5 +1,5 @@
 
-import { Article, parseArticle, Topic } from 'gaclib-article';
+import { Article, Content, parseArticle, Topic } from 'gaclib-article';
 import { DocTree, DocTreeNode } from './treeView.js';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -21,11 +21,66 @@ function generateIndexForProject(nodes: DocTreeNode[], prefix: string, directory
     return indexMd;
 }
 
+function renderContentToText(contents: Content[]): string {
+    let md = "";
+    for (const content of contents) {
+        switch (content.kind) {
+            case "Text":
+            case "Name":
+                md += content.text;
+                break;
+            case "Strong":
+                md += renderContentToText(content.content);
+                break;
+            case "Emphasise":
+                md += renderContentToText(content.content);
+                break;
+            default:
+                throw new Error(`renderContentToText(): content.kind rendering is not supported yet.`);
+        }
+    }
+    return md;
+}
+
+function renderContent(contents: Content[]): string {
+    let md = "";
+    for (const content of contents) {
+        switch (content.kind) {
+            case "Text":
+                md += content.text;
+                break;
+            case "PageLink":
+                break;
+            case "Name":
+                md += `\`${content.text}\``;
+                break;
+            case "Image":
+                md += `![](https://gaclib.net/doc${content.src})`;
+                break;
+            case "List":
+                break;
+            case "Strong":
+                md += "**" + renderContent(content.content) + "**";
+                break;
+            case "Emphasise":
+                md += "_" + renderContent(content.content) + "_";
+                break;
+            case "Program":
+                md += `\r\n\`\`\`${content.language || ''}\r\n${content.code}\r\n\`\`\`\r\n`;
+                break;
+            default:
+                throw new Error(`renderContent(): content.kind rendering is not supported yet.`);
+        }
+    }
+    return md;
+}
+
 function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes): string {
     let md = `${topicPrefix} ${topic.title}\r\n\r\n`;
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
+                md += renderContent(content.content) + `\r\n\r\n`;
                 break;
             case 'Topic':
                 md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes);
