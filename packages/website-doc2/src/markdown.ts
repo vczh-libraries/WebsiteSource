@@ -1,8 +1,13 @@
+
+import { Article, parseArticle, Topic } from 'gaclib-article';
 import { DocTree, DocTreeNode } from './treeView.js';
 import * as fs from 'fs';
 import * as path from 'path';
+import { parseArticlePlugin } from './plugins/article/index.js';
 
-function generateIndexForProject(nodes: DocTreeNode[], prefix: string, directory: string, relativeDirectory: string, collectedNodes: { [path: string]: DocTreeNode }): string {
+type CollectedNodes = { [path: string]: DocTreeNode };
+
+function generateIndexForProject(nodes: DocTreeNode[], prefix: string, directory: string, relativeDirectory: string, collectedNodes: CollectedNodes): string {
     let indexMd = "";
     for (const node of nodes.filter(node => node.kind === "article")) {
         const markdownRelativePath = node.path!.join('/') + '.md';
@@ -16,8 +21,31 @@ function generateIndexForProject(nodes: DocTreeNode[], prefix: string, directory
     return indexMd;
 }
 
-function generateMarkdown(outputPath: string, node: DocTreeNode): void {
+function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedNodes: CollectedNodes): string {
+    let md = `${topicPrefix} ${topic.title}\r\n\r\n`;
+    for (const content of topic.content) {
+        switch (content.kind) {
+            case 'Paragraph':
+                break;
+            case 'Topic':
+                md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes);
+                break;
+        }
+    }
+    return md;
+}
+
+function generateMarkdownFromArticle(article: Article, collectedNodes: CollectedNodes): string {
+    return generateMarkdownFromTopic(article.topic, "#", collectedNodes);
+}
+
+function generateMarkdown(outputPath: string, node: DocTreeNode, collectedNodes: CollectedNodes): void {
     console.log(`Generating ${node.file!} -> ${outputPath}`);
+    const articleXml = fs.readFileSync(node.file!, { encoding: 'utf-8' });
+    const article = parseArticle(articleXml, parseArticlePlugin);
+    const articleMd = generateMarkdownFromArticle(article, collectedNodes);
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    fs.writeFileSync(outputPath, articleMd, { encoding: 'utf-8' });
 }
 
 export function convertDocumentToMarkdown(docTree: DocTree, directory: string): void {
@@ -29,18 +57,19 @@ export function convertDocumentToMarkdown(docTree: DocTree, directory: string): 
     const manualDir = path.join(directory, "manual");
     fs.mkdirSync(manualDir);
 
-    const collectedNodes: { [path: string]: DocTreeNode } = {};
+    const collectedNodes: CollectedNodes = {};
+    const excludedFirstLevelNames = ["Breaking changes from 1.0", "References", "Build your first GacUI Application!"];
     let indexMd = "# Manual\r\n\r\n";
     for (const projectNode of docTree.root.subNodes!) {
         if (projectNode.name === "Gaclib Document") continue;
-        const subNodes = (projectNode.subNodes || []).filter(node => node.kind === "article" && node.name !== "Breaking changes from 1.0" && node.name !== "References");
+        const subNodes = (projectNode.subNodes || []).filter(node => node.kind === "article" && !excludedFirstLevelNames.includes(node.name));
         if (subNodes.length === 0) continue;
 
         indexMd += `## ${projectNode.name}\r\n\r\n${generateIndexForProject(subNodes, "", manualDir, "./manual/", collectedNodes)}\r\n`;
     }
 
     for (const path in collectedNodes) {
-        generateMarkdown(path, collectedNodes[path]);
+        generateMarkdown(path, collectedNodes[path], collectedNodes);
     }
 
     fs.writeFileSync(path.join(directory, "index.md"), indexMd, { encoding: 'utf-8' });
