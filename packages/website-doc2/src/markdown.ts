@@ -85,8 +85,6 @@ function renderContent(contents: Content[], collectedNodes: CollectedNodes, dire
             case "Image":
                 md += `![](https://gaclib.net/doc${content.src})`;
                 break;
-            case "List":
-                break;
             case "Strong":
                 md += "**" + renderContent(content.content, collectedNodes, directory, relativeUrlPrefix) + "**";
                 break;
@@ -141,7 +139,6 @@ function generateMarkdownFromArticle(article: Article, collectedNodes: Collected
 }
 
 function generateMarkdown(outputPath: string, node: DocTreeNode, collectedNodes: CollectedNodes, directory: string): void {
-    console.log(`Generating ${node.file!} -> ${outputPath}`);
     const articleXml = fs.readFileSync(node.file!, { encoding: 'utf-8' });
     const article = parseArticle(articleXml, parseArticlePlugin);
     const articleMd = generateMarkdownFromArticle(article, collectedNodes, directory, (node.path!.length > 1 ? "../".repeat(node.path!.length - 1) : "./"));
@@ -172,7 +169,9 @@ export function convertDocumentToMarkdown(docTree: DocTree, directory: string): 
     const failedPaths: [string, Error][] = [];
     for (const path in collectedNodes) {
         try {
-            generateMarkdown(path, collectedNodes[path], collectedNodes, directory);
+            const node = collectedNodes[path];
+            generateMarkdown(path, node, collectedNodes, directory);
+            console.log(`Generating ${node.file!} -> ${path}`);
         } catch (error) {
             failedPaths.push([path, error as Error]);
         }
