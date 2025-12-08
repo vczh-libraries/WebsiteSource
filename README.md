@@ -52,9 +52,9 @@ inside the package folder:
 - **Debug**: Open `http://localhost:8080/index.html` after running `npm run start`.
 - **Release**: Run `npm run download` to generate the whole website statically in `./lib/website`.
 
-### website-doc1
+### website-doc2
 
-Gaclib Website Document for GacUI 1.0: http://gaclib.net/doc/current/home.html.
+Gaclib Website Document for GacUI 2.0: http://gaclib.net/doc/current/home.html.
 
 inside the package folder:
 
@@ -65,8 +65,8 @@ inside the package folder:
 
 Update multiple platform supporting information in:
 
-- packages\website-doc1\src\articles\home.xml
-- packages\website-doc1\src\articles\home\download.xml
-- packages\website-doc1\src\articles\gacui\running.xml
-- packages\website-doc1\src\articles\gacui\kb\application.xml
-- packages\website-doc1\src\articles\gacui\kb\osprovider.xml
+- packages\website-doc2\src\articles\home.xml
+- packages\website-doc2\src\articles\home\download.xml
+- packages\website-doc2\src\articles\gacui\running.xml
+- packages\website-doc2\src\articles\gacui\kb\application.xml
+- packages\website-doc2\src\articles\gacui\kb\osprovider.xml
