@@ -5,7 +5,8 @@
             Gaclib can be downloaded from:
             <ul>
                 <li><b>Windows</b>: <a href="https://github.com/vczh-libraries/Release">vczh-libraries/Release</a></li>
-                <li><b>Linux</b>: <a href="https://github.com/vczh-libraries/gGac">vczh-libraries/gGac</a></li>
+                <li><b>Linux Wayland</b>: <a href="https://github.com/vczh-libraries/wGac">vczh-libraries/wGac</a></li>
+                <li><b>Linux XWindow</b>: <a href="https://github.com/vczh-libraries/gGac">vczh-libraries/gGac</a></li>
                 <li><b>macOS</b>: <a href="https://github.com/vczh-libraries/iGac">vczh-libraries/iGac</a></li>
             </ul>
             If cross-platforms are needed,

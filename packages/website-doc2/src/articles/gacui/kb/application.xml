@@ -22,7 +22,11 @@
                     <b>SetupOSXCoreGraphicsRenderer</b> must be called in <b>main</b>.
                 </li>
                 <li>
-                    For Linux,
+                    For Linux Wayland,
+                    <b>SetupWGacRenderer</b> must be called in <b>main</b>.
+                </li>
+                <li>
+                    For Linux XWindow,
                     <b>SetupGGacRenderer</b> must be called in <b>main</b>.
                 </li>
             </ul>

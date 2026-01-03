@@ -107,9 +107,10 @@
                 you must know everything about how GacUI interact with the OS.
                 It is highly recommended to read the
                 <a href="https://github.com/vczh-libraries/GacUI/tree/master/Source/NativeWindow/Windows">Windows</a>,
-                <a href="https://github.com/vczh-libraries/iGac">macOS</a>
+                <a href="https://github.com/vczh-libraries/iGac">macOS</a>,
+                <a href="https://github.com/vczh-libraries/wGac">Linux Wayland</a>
                 and
-                <a href="https://github.com/vczh-libraries/gGac">Linux</a>
+                <a href="https://github.com/vczh-libraries/gGac">Linux XWindow</a>
                 implementation for <b>INativeController</b> before creating yours.
                 Especially there are GDI and Direct2D support in Windows,
                 it is a good example to know how to allow multiple rendering techniques in one OS.
