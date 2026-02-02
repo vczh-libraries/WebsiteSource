@@ -101,10 +101,10 @@
   <article name="Unit Testing" file="unittest/home">
     <article name="Using Unit Test Framework" file="unittest/vlpp"/>
     <article name="Running GacUI in Unit Test Framework" file="unittest/gacui">
-      <article name="Frame Organization and Logging" file="unittest/gacui_frame"/>
+      <article name="Snapshots and Frames" file="unittest/gacui_frame"/>
       <article name="IO Interaction" file="unittest/gacui_io"/>
       <article name="Accessing Controls" file="unittest/gacui_controls"/>
-      <article name="Using Snapshots and the Snapshot Viewer" file="unittest/gacui_snapshots"/>
+      <article name="Snapshot Viewer" file="unittest/gacui_snapshots"/>
     </article>
   </article>
 </reference>

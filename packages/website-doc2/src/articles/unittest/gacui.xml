@@ -2,7 +2,178 @@
     <topic>
         <title>Running GacUI in Unit Test Framework</title>
         <p>
-            (editing ...)
+            The most simple way to start the unit test framework would be:
+            <program language="c++"><code><![CDATA[
+#include <Vlpp.h>
+using namespace vl;
+
+#ifdef VCZH_MSVC
+int wmain(int argc , wchar_t* argv[])
+#else
+int main(int argc, char** argv)
+#endif
+{
+	UnitTestFrameworkConfig config;
+	config.snapshotFolder = L"...";
+	config.resourceFolder = L"...";
+	GacUIUnitTest_Initialize(&config);
+	int result = unittest::UnitTest::RunAndDisposeTests(argc, argv);
+	GacUIUnitTest_Finalize();
+#ifdef VCZH_CHECK_MEMORY_LEAKS
+	_CrtDumpMemoryLeaks();
+#endif
+	return result;
+}
+            ]]></code></program>
         </p>
+        <p>
+            A typical test file would be:
+            <program language="c++"><code><![CDATA[
+#include <GacUI.h>
+using namespace vl;
+using namespace vl::presentation;
+using namespace vl::presentation::controls;
+using namespace vl::presentation::unittest;
+
+TEST_FILE
+{
+	const auto resourceSingleButton = LR"GacUISrc(
+<Resource>
+  <Instance name="MainWindowResource">
+    <Instance ref.Class="gacuisrc_unittest::MainWindow">
+      <Window ref.Name="self" Text="GuiButton" ClientSize="x:320 y:240">
+        <Button ref.Name="button" Text="This is a Button">
+          <ev.Clicked-eval>...</ev.Clicked-eval>
+        </Button>
+      </Window>
+    </Instance>
+  </Instance>
+</Resource>
+)GacUISrc";
+
+    TEST_CASE(L"ClickOnMouseUp")
+    {
+        GacUIUnitTest_SetGuiMainProxy([](UnitTestRemoteProtocol* protocol, IUnitTestContext*)
+        {
+            protocol->OnNextIdleFrame(L"Ready", [=]()
+            {
+                auto window = GetApplication()->GetMainWindow();
+                auto button = FindObjectByName<GuiButton>(window, L"button");
+                auto location = protocol->LocationOf(button);
+                protocol->LClick(location);
+            });
+            protocol->OnNextIdleFrame(L"Close", [=]()
+            {
+                auto window = GetApplication()->GetMainWindow();
+                window->Hide();
+            });
+        });
+        GacUIUnitTest_StartFast_WithResourceAsText<darkskin::Theme>(
+            WString::Unmanaged(L"Controls/Basic/GuiButton/ClickOnMouseUp"),
+            WString::Unmanaged(L"gacuisrc_unittest::MainWindow"),
+            resourceSingleButton
+            );
+    });
+}
+            ]]></code></program>
+        </p>
+        <topic>
+            <title>About Snapshots and Frames</title>
+            <p>
+                This test case will create a bunch of file in <b>UnitTestFrameworkConfig::snapshotFolder</b>,
+                under the path <b>Controls/Basic/GuiButton</b>.
+                There will be <b>ClickOnMouseUp.json</b> and two <b>ClickOnMouseUp/frame_*.json</b>, with some other <b>ClickOnMouseUp.*.json</b> files.
+                If you <b>git commit</b> them,
+                after running a test case you can easily find out which test cases have been affected.
+            </p>
+            <p>
+                In this test case, the unit test framework does the following thing:
+                <ul>
+                    <li>Compile the resource and run <b>gacuisrc_unittest::MainWindow</b> as the main window, offering no arguments.</li>
+                    <li>Wait until the layout finishes.</li>
+                    <li>Save the snapshot of the current UI to <b>frame_0.json</b>.</li>
+                    <li>Click the button.</li>
+                    <li>Wait until the layout finishes.</li>
+                    <li>Save the snapshot of the current UI to <b>frame_1.json</b>.</li>
+                    <li>exit.</li>
+                </ul>
+            </p>
+            <p>
+                Each frame needs to make some visible UI changes,
+                the unit test framework will detect and fail if no visible UI change has been made.
+            </p>
+            <p>
+                Each frame should not call blocking functions directly.
+                For example, if a button displays a dialog,
+                the <b>ShowDialog</b> or <b>ShowModal</b> or <b>ShowModalAndDelete</b> function only returns after the dialog is closed,
+                such functions are blocking functions.
+                In case when clicking a button displaying a dialog,
+                you should use:
+                <program language="c++"><code><![CDATA[
+GetApplication()->InvokeInMainThread(window, [=]()
+{
+	protocol->LClick(location);
+});
+                ]]></code></program>
+                The next frame will starts right after the dialog is shown,
+                and you can then interact with it.
+                <b>ShowModalAsync</b> does not have such limitation.
+            </p>
+            <p>
+                So the title of the frame should describe what the UI looks like before the action,
+                or just describe what the previous frame has done,
+                as a snapshot is taken combining with the title name before executing the code inside a frame.
+            </p>
+        </topic>
+        <topic>
+            <title>Using Images</title>
+            <p>
+                <b>UnitTestFrameworkConfig::resourceFolder</b> is the working directly when compiling the GacUI XML resource.
+                If it needs to add other resource files, e.g. images, you can put them there.
+            </p>
+            <p>
+             The following code shows how to reference image files in the resource:
+                <program language="xml"><code><![CDATA[
+<Resource>
+  <Folder name="UnitTestConfig" content="Link">ListViewImagesData.xml</Folder>
+  <Folder name="ListViewImages" content="Link">ListViewImagesFolder.xml</Folder>
+  ...
+</Resource>
+                ]]></code></program>
+                By saying this, <b>ListViewImagesData.xml</b> and <b>ListViewImagesFolder.xml</b> should be put under <b>UnitTestFrameworkConfig::resourceFolder</b>.
+            </p>
+            <p>
+                <b>ListViewImagesData.xml</b>
+                <program language="xml"><code><![CDATA[
+<Folder>
+  <Xml name="ImageData">
+    <ImageData>
+      <Image Path="ListViewImages/LargeImages/Cert" Format="Png" Width="32" Height="32"/>
+      ...
+    </ImageData>
+  </Xml>
+</Folder>
+                ]]></code></program>
+            </p>
+            <p>
+                <b>ListViewImagesFolder.xml</b>
+                <program language="xml"><code><![CDATA[
+<Folder>
+  <Folder name="LargeImages">
+    <Image name="Cert" content="File">Cert_32.png</Image>
+    ...
+  </Folder>
+  ...
+</Folder>
+                ]]></code></program>
+            </p>
+            <p>
+                The unit test framework will not actually read the image file,
+                but in order to perform UI layouting,
+                it will instead read <b>UnitTestConfig/ImageData</b> to search for the metadata of the image.
+                In this example,
+                <b>res://ListViewImages/LargeImages/Cert</b> will match the record <b>Format="Png" Width="32" Height="32"</b>.
+            </p>
+        </topic>
     </topic>
 </article>
