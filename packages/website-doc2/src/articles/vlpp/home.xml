@@ -140,7 +140,8 @@
                 Calling <b>UnitTest::RunAndDisposeTests</b> to start a unit test CLI application and the following CLI arguments are supported by default:
                 <ul>
                     <li><b>/D</b>: Debug mode, it will crash at the first error.</li>
-                    <li><b>/R</b>: Release mode, it will crash at the first error.</li>
+                    <li><b>/R</b>: Release mode, it will print all crashed tests with their failures.</li>
+                    <li><b>/C</b>: LLM mode, it will execute until the first crashed test with its failure printed and exit.</li>
                     <li>
                         <b>/F:FileName.cpp</b>: Only run test cases defined in this file.
                         Multiple instances are allowed at the same time to execute a specified group of files.
@@ -148,7 +149,7 @@
                         <b>/F</b> only filters test files by file names, file path is not considered.
                     </li>
                 </ul>
-                <b>/D</b> and <b>/R</b> are exclusive. If none of them are offered, on Windows <b>/D</b> is activated if a debugger is attached to the process from the beginning.
+                <b>/D</b>, <b>/R</b> and <b>/C</b> are exclusive. If none of them are offered, on Windows <b>/D</b> is activated if a debugger is attached to the process from the beginning.
             </p>
             <topic>
                 <title>Mocking DateTime</title>
