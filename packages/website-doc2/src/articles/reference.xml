@@ -89,10 +89,21 @@
     <article name="Advanced Topics" file="gacui/advanced/home">
       <link pathPrefix="gacui/advanced" filePrefix="" file="gacui/advanced/entry.xml"/>
     </article>
+    <article name="Hosted Mode and Remote Protocol" file="gacui/modes/home">
+      <link pathPrefix="gacui/modes" filePrefix="" file="gacui/modes/entry.xml"/>
+    </article>
     <article name="Breaking changes from 1.0" file="gacui/upgrade"/>
     <article name="References" file="gacui/ref">
       <!--link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/-->
       <unfinished name="Namespaces" file="gacui/ref/namespaces"/>
+    </article>
+  </article>
+  <article name="Unit Testing" file="unittest/home">
+    <article name="Using Unit Test Framework" file="unittest/vlpp"/>
+    <article name="Running GacUI in Unit Test Framework" file="unittest/gacui">
+      <article name="Frame Organization and Logging" file="unittest/gacui_frame"/>
+      <article name="IO Interaction" file="unittest/gacui_io"/>
+      <article name="Accessing Controls" file="unittest/gacui_controls"/>
     </article>
   </article>
 </reference>

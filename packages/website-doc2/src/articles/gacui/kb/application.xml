@@ -142,5 +142,37 @@
             but it is OK to call in the UI thread.
             It will return only after the task is completed.
         </p>
+        <p>
+            <b>SetupWindowsGDIRendererInternal</b> and <b>SetupHostedWindowsDirect2DRenderer</b>
+            setup GacUI with only one OS native window.
+            All non-main windows will be renderered inside that window.
+        </p>
+        <p>
+            <b>SetupRemoteNativeController</b> setup GacUI with remote protocol,
+            it is also running in hosted mode.
+            It takes an argument to an implementation of <b>IGuiRemoteProtocol</b>,
+            which is responsible to serialize and deserialize commands between core and renderer.
+        </p>
+        <p>
+            <b>SetupRawWindowsGDIRenderer</b> and <b>SetupRawWindowsDirect2DRenderer</b> starts up a GacUI application with <b>INativeController</b> only,
+            there will be no <b>GuiApplication</b> running and therefore no controls can be used.
+            This is useful when you want to run a remote protocol renderer that interacts with a user.
+            <b>GuiRemoteRendererSingle</b> connects to one actual GacUI application that running with remote protoco.
+            <b>IMPORTANT:</b> you must implement the communicating by yourself.
+            GacUI has a default implementation of remote protocol serialization with JSON or string format.
+            But you must implement the sending and receiving.
+        </p>
+        <p>
+            When running GacUI with unit test framework,
+            it starts GacUI with remote protocol,
+            with an implementation of <b>IGuiRemoteProtocol</b> that logs the whole UI to multiple JSON files.
+            <b>UnitTestSnapshotViewerAppWindow</b> and <b>UnitTestSnapshotViewerViewModel</b>
+            offers an ability to render these JSON files with limited user interaction
+            to inspect what happened during the unit tests.
+            In order to ensure a test case creates exactly the same logging across multiple platforms,
+            text measurments are fake and limited to simple layout.
+            Therefore in the snapshot viewer you might find controls for displaying texts (e.g. a button) appear to be larger than expected,
+            that is normal.
+        </p>
     </topic>
 </article>

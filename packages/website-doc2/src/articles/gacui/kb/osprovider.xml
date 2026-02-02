@@ -98,6 +98,13 @@
                     <li><b>INativeInputService</b>: Accessing global keyboard status and timer.</li>
                 </ul>
             </p>
+            <p>
+                <b>GuiHostedController</b> and <b>SetHostedApplication</b> can create a hosted mode implementation of <b>INativeController</b>
+                on top of a native <b>INativeController</b> instance.
+                Checkout <b>SetupWindowsGDIRendererInternal</b> and <b>SetupHostedWindowsDirect2DRenderer</b> for details.
+                When running GacUI with remote protocol,
+                <b>SetupRemoteNativeController</b> will create <b>GuiHostedController</b> on top of <b>GuiRemoteController</b>.
+            </p>
         </topic>
         <topic>
             <title>Development Note</title>
@@ -114,11 +121,6 @@
                 implementation for <b>INativeController</b> before creating yours.
                 Especially there are GDI and Direct2D support in Windows,
                 it is a good example to know how to allow multiple rendering techniques in one OS.
-            </p>
-            <p>
-                In the future, <b>INativeHostedController</b> and <b>INativeHostedWindow</b> will be created for scenarios that
-                all GacUI windows are rendered in one OS native window,
-                like CLI, UWP or browsers.
             </p>
         </topic>
     </topic>
