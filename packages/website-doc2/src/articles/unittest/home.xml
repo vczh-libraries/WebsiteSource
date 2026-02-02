@@ -1,8 +1,91 @@
 <article index="true">
     <topic>
         <title>Unit Testing</title>
+        <p>In namespace <b>::vl::unittest</b>,</p>
         <p>
-            (editing ...)
+            An easy-to-use unit test framework.
+            You are able to organize test cases in nested categories,
+            and either run all the way to the end,
+            or tell the IDE to stop at the first failed test assertion.
         </p>
+        <p>
+            Calling <b>UnitTest::RunAndDisposeTests</b> to start a unit test CLI application and the following CLI arguments are supported by default:
+            <ul>
+                <li><b>/D</b>: Debug mode, it will crash at the first error.</li>
+                <li><b>/R</b>: Release mode, it will print all crashed tests with their failures.</li>
+                <li><b>/C</b>: LLM mode, it will execute until the first crashed test with its failure printed and exit.</li>
+                <li>
+                    <b>/F:FileName.cpp</b>: Only run test cases defined in this file.
+                    Multiple instances are allowed at the same time to execute a specified group of files.
+                    Wildcards are supported, e.g., <b>/F:Test_My*.cpp</b>.
+                    <b>/F</b> only filters test files by file names, file path is not considered.
+                </li>
+            </ul>
+            <b>/D</b>, <b>/R</b> and <b>/C</b> are exclusive. If none of them are offered, on Windows <b>/D</b> is activated if a debugger is attached to the process from the beginning.
+        </p>
+        <topic>
+            <title>Mocking DateTime</title>
+            <p>
+                <b>vl::InjectDateTimeImpl</b> could be used to control the implementation of <b>vl::DateTime</b>.
+                This function stack all injections, each injection could access the previous implementation by implementing <b>vl::feature_injection::IFeatureImpl</b>
+            </p>
+            <p>
+                <b>vl::EjectDateTimeImpl</b> could be used to revert <b>vl::InjectDateTimeImpl</b>.
+                Passing <b>nullptr</b> to cancel all <b>vl::InjectDateTimeImpl</b> calls.
+            </p>
+        </topic>
+        <topic>
+            <title>Mocking Locale</title>
+            <p>
+                <b>vl::InjectLocaleImpl</b> could be used to control the implementation of <b>vl::Locale</b>.
+                This function stack all injections, each injection could access the previous implementation by implementing <b>vl::feature_injection::IFeatureImpl</b>
+            </p>
+            <p>
+                <b>vl::EjectLocaleImpl</b> could be used to revert <b>vl::InjectLocaleImpl</b>.
+                Passing <b>nullptr</b> to cancel all <b>vl::InjectLocaleImpl</b> calls.
+            </p>
+        </topic>
+        <topic>
+            <title>Mocking File, Folder and FileStream</title>
+            <p>
+                <b>vl::filesystem::InjectFileSystemImpl</b> could be used to control the implementation of <b>vl::filesystem::File</b>, <b>vl::filesystem::Folder</b>, and <b>vl::stream::FileStream</b>.
+                This function stack all injections, each injection could access the previous implementation by implementing <b>vl::feature_injection::IFeatureImpl</b>
+            </p>
+            <p>
+                <b>IFileSystemImpl::GetFileStreamImpl</b> controls how <b>FileStream</b> access a file from a given file path.
+                If virtual files are added to the file system, this function should take care of them.
+                This function can redirect the call to the previous implementation for files that are not added by the current implementation.
+            </p>
+            <p>
+                <b>vl::filesystem::EjectFileSystemImpl</b> could be used to revert <b>vl::filesystem::InjectFileSystemImpl</b>.
+                Passing <b>nullptr</b> to cancel all <b>vl::filesystem::InjectFileSystemImpl</b> calls.
+            </p>
+        </topic>
+        <topic>
+            <title>Ordinary Testing</title>
+            <p>
+                The unit test framework is a CLI application.
+                You can do any assertion you want in the <b>TEST_FILE -&gt; {TEST_CATEGORY}* -&gt; TEST_CASE</b> structure.
+            </p>
+        </topic>
+        <topic>
+            <title>Testing GacUI Application</title>
+            <p>
+                There are some additional features for testing a GacUI application.
+            </p>
+            <p>
+                You can simulate user interaction, including keyboard, mouse, typing, etc.
+            </p>
+            <p>
+                You can access controls for assertion even if they are not exposed in <b>public</b> members.
+            </p>
+            <p>
+                You can log the whole UI into multiple JSON files.
+                The file organization is handled by the unit test framework,
+                and you are able to run a snapshot viewer to render these snapshots for inspection.
+                The snapshot viewer is offered along with the source code as a window class,
+                you need to write a simple <b>GuiMain</b> to run the window offering the snapshot folder path.
+            </p>
+        </topic>
     </topic>
 </article>
