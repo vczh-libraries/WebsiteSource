@@ -2,7 +2,85 @@
     <topic>
         <title>Using Unit Test Framework</title>
         <p>
-            (editing ...)
+            The most simple way to start the unit test framework would be:
+            <program language="c++"><code><![CDATA[
+#include <Vlpp.h>
+using namespace vl;
+
+#ifdef VCZH_MSVC
+int wmain(int argc , wchar_t* argv[])
+#else
+int main(int argc, char** argv)
+#endif
+{
+	int result = unittest::UnitTest::RunAndDisposeTests(argc, argv);
+	vl::FinalizeGlobalStorage();
+#ifdef VCZH_CHECK_MEMORY_LEAKS
+	_CrtDumpMemoryLeaks();
+#endif
+	return result;
+}
+            ]]></code></program>
+        </p>
+        <p>
+            In this way you could pass <b>/D</b>, <b>/R</b>, <b>/C</b> and <b>/F</b> directly to your unit test binary
+            and they will be handled by the unit test framework properly.
+        </p>
+        <p>
+            You can create multiple cpp files for your test cases,
+            <b>/F</b> will automatically react to them.
+            A typical test file would be:
+            <program language="c++"><code><![CDATA[
+#include <Vlpp.h>
+using namespace vl;
+
+void AnError()
+{
+    CHECK_FAIL(L"Not Implemented!");
+}
+
+void AnException()
+{
+    throw Exception(L"A message");
+}
+
+TEST_FILE
+{
+    TEST_CASE(L"This is a test case")
+    {
+        TEST_ASSERT(1 + 1 == 2);
+    });
+
+    TEST_CATEGORY(L"This is a test category")
+    {
+        TEST_CASE(L"This is another test case")
+        {
+            TEST_ERROR(AnError());
+            TEST_EXCEPTION(AnException(), Exception, [](const Exception& e)
+            {
+                TEST_ASSERT(e.Message() == L"A message");
+            });
+        });
+    });
+}
+            ]]></code></program>
+            <ul>
+                <li><b>TEST_ASSERT(condition);</b> accepts an expression and fails if it evaluates to false.</li>
+                <li><b>TEST_ERROR(statement);</b> accepts a statement and fails if it does not throw an exception is or inheriting from <b>Error</b>. Such error are usually triggered by <b>CHECK_ERROR</b> and <b>CHECK_FAIL</b>.</li>
+                <li><b>TEST_EXCEPTION(statement,exception,handler);</b> executes the statement, fails if it does not throw an exception is or inheriting from <b>exception</b>. The handler will be called on that exception for additional assertion.</li>
+            </ul>
+            Please be aware that these are macros, commas may be interepreted unexpectedly.
+        </p>
+        <p>
+            <b>TEST_CATEGORY</b> could be used to group other <b>TEST_CATEGORY</b> and <b>TEST_CASE</b>.
+            <b>TEST_ASSERT</b>, <b>TEST_ERROR</b> and <b>TEST_EXCEPTION</b> can only be used in <b>TEST_CASE</b>.
+            <b>TEST_CASE_ASSERT(condition);</b> is a shortcut for a <b>TEST_CASE</b> containing only a <b>TEST_ASSERT</b>.
+        </p>
+        <p>
+            If you get <b>TestA.cpp</b>, <b>TestB.cpp</b> and <b>TestC.cpp</b>,
+            using no <b>/F</b> will run tests in all three files,
+            using <b>/F:Test*.cpp</b> will run tests in all three files,
+            using <b>/F:TestA.cpp /F:TestB.cpp</b> will run tests in <b>TestA.cpp</b> and <b>TestB.cpp</b> only.
         </p>
     </topic>
 </article>
