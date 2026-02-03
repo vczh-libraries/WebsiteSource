@@ -6,6 +6,7 @@
             <program language="c++"><code><![CDATA[
 #include <Vlpp.h>
 using namespace vl;
+using namespace vl::unittest;
 
 #ifdef VCZH_MSVC
 int wmain(int argc , wchar_t* argv[])
@@ -33,6 +34,7 @@ int main(int argc, char** argv)
             <program language="c++"><code><![CDATA[
 #include <Vlpp.h>
 using namespace vl;
+using namespace vl::unittest;
 
 void AnError()
 {
