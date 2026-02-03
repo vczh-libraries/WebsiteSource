@@ -190,6 +190,11 @@
                         <a href="/gacui/advanced/home.html">Advanced Topics</a>:
                         Details about advanced features and patterns for GacUI.
                     </li>
+                    <li>
+                        <a href="/gacui/modes/home.html">Hosted Mode and Remote Protocol</a>:
+                        Details about running a GacUI application in hosted mode (there is only one OS native window, all other windows are virtually rendered inside it),
+                        or running a GacUI application with remote protocol (the application itself is headless, and rendering is in else where, including a native remote process or even a browser).
+                    </li>
                 </ul>
             </p>
         </topic>
