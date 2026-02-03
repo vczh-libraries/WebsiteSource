@@ -98,12 +98,27 @@
                     <li><b>INativeInputService</b>: Accessing global keyboard status and timer.</li>
                 </ul>
             </p>
+        </topic>
+        <topic>
+            <title>Hosted Mode</title>
             <p>
                 <b>GuiHostedController</b> and <b>SetHostedApplication</b> can create a hosted mode implementation of <b>INativeController</b>
                 on top of a native <b>INativeController</b> instance.
                 Checkout <b>SetupWindowsGDIRendererInternal</b> and <b>SetupHostedWindowsDirect2DRenderer</b> for details.
                 When running GacUI with remote protocol,
                 <b>SetupRemoteNativeController</b> will create <b>GuiHostedController</b> on top of <b>GuiRemoteController</b>.
+            </p>
+            <p>
+                When an <b>INativeController</b> is running as a native OS provider to <b>GuiHostedController</b>,
+                it has to handle extra works for rendering in <b>IGuiGraphicsRenderTarget</b>:
+                <ul>
+                    <li><b>IsInHostedRendering()</b> will be called to detect if the render target is working.</li>
+                    <li><b>StartHostedRendering()</b>. This is called only under hosted mode, so that all subsequent rendering calls are hinted.</li>
+                    <li>Multiple <b>StartRendering()</b> and <b>StopRendering()</b> calls sent from the window.</li>
+                    <li><b>StopHostedRendering()</b>, if any <b>StopRendering()</b> fails, this should fail with the same reason.</li>
+                </ul>
+                <b>GuiGraphicsRenderTarget</b> can be used to simplifies the implementation,
+                therefore only one call to <b>StartRenderingOnNativeWindow</b> and <b>StopRenderingOnNativeWindow</b> is sent to the render target.
             </p>
         </topic>
         <topic>

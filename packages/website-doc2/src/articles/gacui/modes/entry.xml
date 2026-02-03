@@ -1,5 +1,4 @@
 <reference>
-  <article name="Hosted Mode Application" file="hosted"/>
   <article name="Remote Protocol Core Application" file="remote_core"/>
   <article name="Remote Protocol Client Application" file="remote_client"/>
   <article name="Implementing a Communication Protocol" file="remote_communication"/>
