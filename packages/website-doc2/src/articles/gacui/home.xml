@@ -89,7 +89,7 @@
                             </ul>
                         </li>
                         <li>
-                            <b>macOS</b>: Finished but still in 1.0, not catching up with the latest version at this moment. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)
+                            <b>macOS</b>: Almost all features are working, hosted mode is under development. (<a href="https://github.com/vczh-libraries/iGac">https://github.com/vczh-libraries/iGac</a>)
                             <ul>
                                 <li>SetupOSXCoreGraphicsRenderer();</li>
                             </ul>
