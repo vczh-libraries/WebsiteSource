@@ -2,7 +2,57 @@
     <topic>
         <title>Accessing Controls</title>
         <p>
-            (editing ...)
+            When a window or a custom control is created from GacUI XML Resource,
+            and you need the pointer to a specific sub object,
+            you don't have to <b>public</b> them.
+            Here are functions to access a specific control, composition or component by its <b>ref.Name</b> attribute,
+            or to access a control by its text,
+            defined in the <b>vl::presentation::controls</b> namespace.
         </p>
+        <topic>
+            <title>FindObjectByName(rootObject, name)</title>
+            <p>
+                The first parameter must be an object that created by an &lt;Instance/&gt;, e.g. a window or a custom control.
+                The second parameter must be an object that directly inside that particular &lt;Instance/&gt; with <b>ref.Name</b> attribute assigned.
+                If nothing is found, the function crashes.
+                <program language="c++"><code><![CDATA[
+auto button = FindObjectByName(window, L"buttonSomething");
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>TryFindObjectByName(rootObject, name)</title>
+            <p>
+                Same as <b>FindObjectByName</b>, but it returns null if nothing is found.
+            </p>
+        </topic>
+        <topic>
+            <title>FindObjectByName(rootObject, name1, name2, ...)</title>
+            <p>
+                This is a shortcut of a chain call: to <b>... FindObjectByName(FindObjectByName(rootObject, name1), name2) ...</b>.
+                It is useful when your target object is inside nested custom controls in a window,
+                you need to provide all <b>ref.Name</b> attributes in the hierarchy.
+                <b>IMPORTANT:</b> such custom controls must be created by &lt;Instance/&gt;.
+            </p>
+        </topic>
+        <topic>
+            <title>FindControlByText&lt;Type&gt;(control, text)</title>
+            <p>
+                The first parameter must be a control.
+                The is the text of the target sub control.
+                If nothing is found matching the type and the text, the function crashes.
+                Otherwise it would return a random one within all matching controls.
+                Unlike <b>FindObjectByName</b>, you can use this function to search into nested custom controls.
+                <program language="c++"><code><![CDATA[
+auto button = FindControlByText<GuiButton>(window, L"Click Me!");
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>TryFindControlByText&lt;Type&gt;(control, text)</title>
+            <p>
+                Same as <b>FindControlByText</b>, but it returns null if nothing is found.
+            </p>
+        </topic>
     </topic>
 </article>
