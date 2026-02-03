@@ -13,16 +13,16 @@ int wmain(int argc , wchar_t* argv[])
 int main(int argc, char** argv)
 #endif
 {
-	UnitTestFrameworkConfig config;
-	config.snapshotFolder = L"...";
-	config.resourceFolder = L"...";
-	GacUIUnitTest_Initialize(&config);
-	int result = unittest::UnitTest::RunAndDisposeTests(argc, argv);
-	GacUIUnitTest_Finalize();
+    UnitTestFrameworkConfig config;
+    config.snapshotFolder = L"...";
+    config.resourceFolder = L"...";
+    GacUIUnitTest_Initialize(&config);
+    int result = unittest::UnitTest::RunAndDisposeTests(argc, argv);
+    GacUIUnitTest_Finalize();
 #ifdef VCZH_CHECK_MEMORY_LEAKS
-	_CrtDumpMemoryLeaks();
+    _CrtDumpMemoryLeaks();
 #endif
-	return result;
+    return result;
 }
             ]]></code></program>
         </p>
@@ -37,7 +37,7 @@ using namespace vl::presentation::unittest;
 
 TEST_FILE
 {
-	const auto resourceSingleButton = LR"GacUISrc(
+    const auto resourceSingleButton = LR"GacUISrc(
 <Resource>
   <Instance name="MainWindowResource">
     <Instance ref.Class="gacuisrc_unittest::MainWindow">
@@ -76,6 +76,62 @@ TEST_FILE
     });
 }
             ]]></code></program>
+            Or if you are loading an existing window instead of making one from GacUI XML resource:
+            <program language="c++"><code><![CDATA[
+#include <GacUI.h>
+using namespace vl;
+using namespace vl::presentation;
+using namespace vl::presentation::controls;
+using namespace vl::presentation::unittest;
+
+TEST_FILE
+{
+    TEST_CASE(L"ClickOnMouseUp")
+    {
+
+    GacUIUnitTest_SetGuiMainProxy([](UnitTestRemoteProtocol* protocol, IUnitTestContext*)
+    {
+        protocol->OnNextIdleFrame(L"Ready", [=]()
+        {
+            auto window = GetApplication()->GetMainWindow();
+            auto button = FindObjectByName<GuiButton>(window, L"button");
+            auto location = protocol->LocationOf(button);
+            protocol->LClick(location);
+        });
+        protocol->OnNextIdleFrame(L"Close", [=]()
+        {
+            auto window = GetApplication()->GetMainWindow();
+            window->Hide();
+        });
+    });
+    GacUIUnitTest_LinkGuiMainProxy([=](
+        vl::presentation::unittest::UnitTestRemoteProtocol* protocol,
+        vl::presentation::unittest::IUnitTestContext* context,
+        const vl::presentation::unittest::UnitTestMainFunc& previousMainProxy
+        )
+    {
+        {
+            vl::presentation::remoteprotocol::ControllerGlobalConfig globalConfig;
+#if defined VCZH_WCHAR_UTF16
+            globalConfig.documentCaretFromEncoding = vl::presentation::remoteprotocol::CharacterEncoding::UTF16;
+#elif defined VCZH_WCHAR_UTF32
+            globalConfig.documentCaretFromEncoding = vl::presentation::remoteprotocol::CharacterEncoding::UTF32;
+#endif
+            protocol->GetEvents()->OnControllerConnect(globalConfig);
+        }
+        auto theme = vl::Ptr(darkskin::Theme);
+        vl::presentation::theme::RegisterTheme(theme);
+        {
+            gacuisrc_unittest::MainWindow window;
+            window.MoveToScreenCenter();
+            previousMainProxy(protocol, context);
+            vl::presentation::controls::GetApplication()->Run(&window);
+        }
+        vl::presentation::theme::UnregisterTheme(theme->Name);
+    });
+    GacUIUnitTest_Start(WString::Unmanaged(L"Controls/Basic/GuiButton/ClickOnMouseUp"));
+}
+            ]]></code></program>
         </p>
         <topic>
             <title>About Snapshots and Frames</title>
@@ -112,7 +168,7 @@ TEST_FILE
                 <program language="c++"><code><![CDATA[
 GetApplication()->InvokeInMainThread(window, [=]()
 {
-	protocol->LClick(location);
+    protocol->LClick(location);
 });
                 ]]></code></program>
                 The next frame will starts right after the dialog is shown,
