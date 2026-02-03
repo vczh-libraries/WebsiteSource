@@ -104,7 +104,6 @@
       <article name="Snapshots and Frames" file="unittest/gacui_frame"/>
       <article name="IO Interaction" file="unittest/gacui_io"/>
       <article name="Accessing Controls" file="unittest/gacui_controls"/>
-      <article name="Additional Configurations" file="unittest/gacui_config"/>
       <article name="Snapshot Viewer" file="unittest/gacui_snapshots"/>
     </article>
   </article>

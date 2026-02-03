@@ -2,7 +2,57 @@
     <topic>
         <title>Snapshots and Frames</title>
         <p>
-            (editing ...)
+            If you let the unit test framework create a window from a GacUI XML resource,
+            You can set the 4th parametero of <b>GacUIUnitTest_StartFast_WithResourceAsText</b> to offer some callbacks.
+            The type is <b>GacUIUnitTest_Installer</b> and it has these members:
+            <ul>
+                <li><b>Func&lt;void()&gt; initialize;</b> it is called before the window is created.</li>
+                <li><b>Func&lt;void(GuiWindow*)&gt; installWindow;</b> it is called before the window is opened.</li>
+                <li><b>Func&lt;void()&gt; finalize;</b> it is called after the window is closed.</li>
+                <li><b>Nullable&lt;UnitTestScreenConfig&gt; config;</b> more configurations, including font list, screen size, etc.</li>
+            </ul>
         </p>
+        <p>
+            A test case typically begins with a call to <b>GacUIUnitTest_SetGuiMainProxy</b> with multiple frames created.
+            You are recommended to follow the rule:
+            <ul>
+                <li>The name of the first frame should be <b>Ready</b>.</li>
+                <li>Names of other frames describe what has been done in the previous frame.</li>
+                <li>In each frame visible UI changes must be triggered.</li>
+                <li>As each IO operation is completed after all events are handled in the GacUI application, if an operation calls any blocking function, wrap it in <b>InvokeInMainThread</b>.</li>
+                <li>When an action is taken, if the side effect happens immediately, assertion should be placed right after the action.</li>
+                <li>When an action is taken, if the side effect happens async but fast, assertion should be placed at the beginning of the next frame.</li>
+                <li>Whenever possible keep the last frame only calling the <b>window-&gt;Close();</b> function. This rule could sometimes conflict with the previous rule, the previous rule has higher priority.</li>
+            </ul>
+        </p>
+        <topic>
+            <title>About Visible UI Change</title>
+            <p>
+                A visible UI change means something that cause GacUI to refresh any window in your application.
+                This includes changing texts, sizes, layouts; showing or hiding windows or controls; enabling or disabling controls; select anything or type anything in a control; etc.
+                The unit test framework will detect whether any visible UI change has been made in a frame,
+                and the test fail if there is not.
+                <b>IMPORTANT:</b> DO NOT make a frame just for assertion as it doesn't cause any visible UI change.
+            </p>
+        </topic>
+        <topic>
+            <title>About Blocking Function</title>
+            <p>
+                Blocking functions are anything that does not return but the application is still running.
+                For example, <b>ShowDialog</b>, <b>ShowModal</b>, <b>ShowModalAndDelete</b>, <b>InvokeInMainThreadAndWait</b>, etc.
+                Any IO interaction inside a frame only returns after GacUI handles all events.
+                For example, <b>protocol-&gt;LClick(location);</b> on a button only returns after <b>Clicked</b> as well as all other mouse events are handled.
+                If in any of this event a blocking function is called,
+                <b>LClick</b> blocks the current frame,
+                and the unit test framework detects such action and fail the test.
+                In this case, call <b>LClick</b> in <b>InvokeInMainThread</b> instead.
+                <program language="c++"><code><![CDATA[
+GetApplication()->InvokeInMainThread(window, [=]()
+{
+    protocol->LClick(location);
+});
+                ]]></code></program>
+            </p>
+        </topic>
     </topic>
 </article>
