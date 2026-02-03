@@ -29,7 +29,7 @@ public:
     
     WString GetExecutablePath() override
     {
-	    // anything that you want GetCurrentController()->GetExecutablePath() to return
+        // anything that you want GetCurrentController()->GetExecutablePath() to return
     }
     
     void Submit(bool& disconnected) override
@@ -52,7 +52,37 @@ public:
         // tell the remote client that all work is done
         // block until the remote client is disconnected
     }
+
+    void WriteError(const WString& error)
+    {
+        // send an error message to the remote client
+        // such error will be a fetal error and the remote client is supposed to stop
+    }
 };
+
+MyChannel* myChannel = nullptr;
+
+void GuiMain()
+{
+    theme::RegisterTheme(Ptr(new darkskin::Theme));
+    {
+        rptest::MainWindow window;
+        window.ForceCalculateSizeImmediately();
+        window.MoveToScreenCenter();
+        try
+        {
+            GetApplication()->Run(&window);
+        }
+        catch (const Exception& e)
+        {
+            myChannel->WriteError(e.Message());
+        }
+        catch (const Error& e)
+        {
+            myChannel->WriteError(WString::Unmanaged(e.Description()));
+        }
+    }
+}
 
 int main(int argc, char* argv[])
 {
@@ -69,9 +99,9 @@ int main(int argc, char* argv[])
             GuiRemoteProtocolFromJsonChannel channelSender(channel);
             GuiRemoteProtocolFilter filteredProtocol(&channelSender);
             GuiRemoteProtocolDomDiffConverter diffConverterProtocol(&filteredProtocol);
-            coreChannel = &serverCoreChannel;
+            myChannel = &serverCoreChannel;
             SetupRemoteNativeController(&diffConverterProtocol);
-            coreChannel = nullptr;
+            myChannel = nullptr;
         },
         [&serverCoreChannel](
             GuiRemoteProtocolAsyncJsonChannelSerializer::TChannelThreadProc channelThreadProc,
