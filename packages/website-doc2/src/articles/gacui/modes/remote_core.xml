@@ -7,7 +7,7 @@
             So that we can give a dedicated thread for handling actual communitation with the remote client.
             A typical example would be:
              <program language="c++"><code><![CDATA[
-class MyChannel : public Object, public IGuiRemoteProtocolChannel<WString>
+class CoreChannel : public Object, public IGuiRemoteProtocolChannel<WString>
 {
 public:
     void Initialize(IGuiRemoteProtocolChannelReceiver<WString>* receiver) override
@@ -60,7 +60,7 @@ public:
     }
 };
 
-MyChannel* myChannel = nullptr;
+CoreChannel* coreChannel = nullptr;
 
 void GuiMain()
 {
@@ -75,18 +75,18 @@ void GuiMain()
         }
         catch (const Exception& e)
         {
-            myChannel->WriteError(e.Message());
+            coreChannel->WriteError(e.Message());
         }
         catch (const Error& e)
         {
-            myChannel->WriteError(WString::Unmanaged(e.Description()));
+            coreChannel->WriteError(WString::Unmanaged(e.Description()));
         }
     }
 }
 
 int main(int argc, char* argv[])
 {
-    MyChannel serverCoreChannel(&server);
+    CoreChannel serverCoreChannel(&server);
 
     auto jsonParser = Ptr(new glr::json::Parser);
     GuiRemoteJsonChannelStringSerializer channelJsonSerializer(&serverCoreChannel, jsonParser);
@@ -99,9 +99,9 @@ int main(int argc, char* argv[])
             GuiRemoteProtocolFromJsonChannel channelSender(channel);
             GuiRemoteProtocolFilter filteredProtocol(&channelSender);
             GuiRemoteProtocolDomDiffConverter diffConverterProtocol(&filteredProtocol);
-            myChannel = &serverCoreChannel;
+            coreChannel = &serverCoreChannel;
             SetupRemoteNativeController(&diffConverterProtocol);
-            myChannel = nullptr;
+            coreChannel = nullptr;
         },
         [&serverCoreChannel](
             GuiRemoteProtocolAsyncJsonChannelSerializer::TChannelThreadProc channelThreadProc,
