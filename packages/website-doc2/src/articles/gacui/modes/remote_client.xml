@@ -2,7 +2,8 @@
     <topic>
         <title>Remote Protocol Client Application</title>
         <p>
-            (editing ...)
+            This sample simplifies all the details leaving the sending and receiving of strings to you.
+            Check out <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Rendering_Win32">this test project</a> for a complete example.
         </p>
     </topic>
 </article>
