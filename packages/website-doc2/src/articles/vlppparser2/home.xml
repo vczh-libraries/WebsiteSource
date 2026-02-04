@@ -5,8 +5,77 @@
             VlppParser2 provides GLR parser generator for C++,
             with generated XML and JSON parsers.
         </p>
-        <p>
-            The page is under construction.
-        </p>
+        <topic>
+            <title>Using Generated XML Parser</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Using Generated JSON Parser</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Building New Parsers</title>
+            <p>
+            </p>
+            <p>
+                <b>GlrParserGen</b> in <a href="https://github.com/vczh-libraries/Release/tree/master/Tools">released tools</a> can be used to generate C++ code starting from a <b>Parser.xml</b>.
+                Take the <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Compiler/RemoteProtocol/Syntax/Parser.xml">remote protocol parser</a> as an example:
+                <program language="xml"><code><![CDATA[
+<Parser name="GuiRemoteProtocol">
+  <Includes>&lt;VlppGlrParser.h&gt;</Includes>
+  <CppNamespace>vl::presentation::remoteprotocol</CppNamespace>
+  <HeaderGuard>VCZH_PRESENTATION_REMOTEPROTOCOL</HeaderGuard>
+  <OutputDir>../Generated</OutputDir>
+
+  <Asts>
+    <Ast name="Ast">
+      <CppNamespace>vl::presentation::remoteprotocol</CppNamespace>
+      <ReflectionNamespace>presentation::remoteprotocol</ReflectionNamespace>
+      <ClassPrefix>GuiRp</ClassPrefix>
+      <BlockedUtilities>
+        <Empty/>
+        <Copy/>
+        <Traverse/>
+        <Builder/>
+      </BlockedUtilities>
+      <File file="Ast.txt"/>
+    </Ast>
+  </Asts>
+
+  <Lexer file="Lexer.txt"/>
+  <Syntax name="Parser">
+    <File file="Syntax.txt"/>
+  </Syntax>
+</Parser>
+                ]]></code></program>
+                Those <b>name</b> attributes affect naming of generated files.
+                <b>/Parser/Syntax/@name</b> will also become the name of the generated parser class.
+                Here are some important elements:
+                <ul>
+                    <li><b>/Parser/Includes</b>: additional headers to include in generated files.</li>
+                    <li><b>/Parser/CppNamespace</b>: C++ namespace for generated classes.</li>
+                    <li><b>/Parser/HeaderGuard</b>: header guard for generated header files.</li>
+                    <li><b>/Parser/OutputDir</b>: output directory for generated files.</li>
+                    <li><b>/Parser/Asts/Ast/CppNamespace</b>: C++ namespace for all classes in this AST group.</li>
+                    <li><b>/Parser/Asts/Ast/ReflectionNamespace</b>: namespaces when appearing in reflection metadata.</li>
+                    <li><b>/Parser/Asts/Ast/ClassPrefix</b>: prefix for all class names in this AST group.</li>
+                    <li><b>/Parser/Asts/Ast/BlockedUtilities</b>: disable generation of certain utility classes for this AST group.</li>
+                </ul>
+            </p>
+            <p>
+                There can be multiple groups of ASTs, in each group there can be multiple AST definition files.
+                AST classes are selectively visible to other AST files.
+                Usually we only define one group.
+            </p>
+            <p>
+                There can be only one lexer file.
+            </p>
+            <p>
+                There can be multiple syntax files.
+                Parser rules are selectively visible to other syntax files.
+            </p>
+        </topic>
     </topic>
 </article>

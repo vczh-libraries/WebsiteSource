@@ -55,6 +55,10 @@
     </article>
   </article>
   <article name="Vlpp Parser2" file="vlppparser2/home">
+    <article name="AST Definition" file="vlppparser2/ast"/>
+    <article name="Lexer Definition" file="vlppparser2/lexer"/>
+    <article name="Syntax Definition" file="vlppparser2/syntax"/>
+    <article name="Generated APIs" file="vlppparser2/apis"/>
     <article name="References" file="vlppparser2/ref">
       <!--link pathPrefix="vlppparser/ref" filePrefix="VLPPPARSER2/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPPARSER2.xml"/-->
       <unfinished name="Namespaces" file="vlppparser2/ref/namespaces"/>
