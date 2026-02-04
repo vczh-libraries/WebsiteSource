@@ -76,10 +76,44 @@ RuleName : TypeName
         <topic>
             <title>Switches</title>
             <p>
+                Switches can be used when you want to exclude something when matching a rule.
+                <b>switch A, !B, ...;</b> must appear at the very top of a syntax definition to declare all used switches in this file.
+                Switches are visible to all syntax files therefore their names must be unique globally.
+                Each switch has its default value, here <b>A</b> is on and <b>B</b> is off.
+            </p>
+            <p>
+                If we want to make some syntax that only available with certain switches are turned on or off:
+                <b>?(Condition1:Syntax1 | Condition2:; | ...)</b>.
+                This is a switch-enabled alternative syntax.
+                Each branch is available only when its condition is satisfied.
+            </p>
+            <p>
+                A condition could look like
+                <b>(A &amp;&amp; !B | !C) &amp;&amp; D</b>.
+            </p>
+            <p>
+                In the switch-enabled alternative syntax,
+                each branch is tested in order,
+                only the first satisfying branch becomes selected.
+                <b>";"</b> means an invalid syntax,
+                when it is selected, the whole clause is disabled.
+                If such selected invalid syntax is in another alternative syntax,
+                only that branch becomes invalid.
+            </p>
+            <p>
+                To specify switch values for a piece of syntax:
+                <b>!(!A, B, ...; Syntax)</b>.
+                Only inside <b>Syntax</b> referenced switches have new values assigned.
+                In this example, <b>A</b> becomes off and <b>B</b> becomes on.
             </p>
         </topic>
         <topic>
             <title>Calculator Example</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Switch Example</title>
             <p>
             </p>
         </topic>
