@@ -65,6 +65,12 @@ RuleName : TypeName
         <topic>
             <title>Additional Field Assignments</title>
             <p>
+                At the very end of the syntax there can be additional field assignment,
+                only for fields that are enum types:
+                <b>{Field1=EnumItem1, Field2?=EnumItem2 ...}</b>.
+            </p>
+            <p>
+                Field assignments cannot be used in the middle of the syntax.
             </p>
         </topic>
         <topic>
