@@ -8,7 +8,7 @@
         <p>
             One rule consits of multiple clauses, each clauses is defined by EBNF-like syntax:
             <ul>
-                <li><b>RuleOrTokenName:FieldName</b>: Match the rule or token and store the result to the field. The class type of this clause can be either specified or inferred.</li>
+                <li><b>RuleOrTokenName:FieldName</b>: Match the rule or token and store the result to the field. The class type of this clause can be either specified or inferred. <b>RuleName</b> here should not be a partial rule.</li>
                 <li><b>!RuleName</b>: The whole rule will modify fields in the same object from <b>RuleName</b> instead of creating a new object.</li>
                 <li><b>(Syntax)</b>: Match <b>Syntax</b>, just for fixing operator priority.</li>
                 <li><b>[Syntax]</b>: Match <b>Syntax</b> optionally.</li>
@@ -38,16 +38,28 @@ RuleName : TypeName
         <topic>
             <title>Ordinary Clause</title>
             <p>
+                <b>Syntax as ClassType</b> creates an ordinary clause.
+                An ordinary clause should not contain <b>!RuleName</b> in its syntax.
+                When such clause matches, a new object of <b>ClassType</b> is created to store the results of this clause.
             </p>
         </topic>
         <topic>
             <title>Reuse Clause</title>
             <p>
+                <b>Syntax</b> creates a reuse clause.
+                A reuse clause should have exactly one <b>!RuleName</b> in its all possible paths.
+                Such clause modify fields in the object from that <b>RuleName</b> instead of creating a new object.
             </p>
         </topic>
         <topic>
             <title>Partial Clause</title>
             <p>
+                <b>Syntax as partial ClassType</b> creates an ordinary clause.
+                A partial clause should not contain <b>!RuleName</b> in its syntax.
+                The syntax of the partial clause will be copy-pasted to everywhere that uses this rule,
+                if there are multiple partial clauses in this rule,
+                they are treated like an alternative syntax.
+                The clause that use this rule must use the same ClassType or its sub type.
             </p>
         </topic>
         <topic>
@@ -57,6 +69,11 @@ RuleName : TypeName
         </topic>
         <topic>
             <title>Switches</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Calculator Example</title>
             <p>
             </p>
         </topic>
