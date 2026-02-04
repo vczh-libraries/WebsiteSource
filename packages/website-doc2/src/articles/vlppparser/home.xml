@@ -2,6 +2,11 @@
     <topic>
         <title>Introduction to VlppParser</title>
         <p>
+            <b>IMPORTANT:</b> This library is deprecated and you are strongly recommended to use <a href="/vlppparser2/home.html">VlppParser2</a> instead.
+            <b>VlppParser2</b> offers better performance, more powerful features, almost compatible syntax of definition,
+            and more importantly, it follows the same design principle to the APIs so it is very easy to migrate.
+        </p>
+        <p>
             VlppParser provides GLR parser generator for C++,
             with generated XML and JSON parsers.
         </p>
@@ -87,11 +92,11 @@
             <p>
                 Here are some sample grammar files:
                 <ul>
-                    <li><a href="https://github.com/vczh-libraries/VlppParser/blob/master/Source/Parsing/Json/ParsingJson.parser.txt">JSON parser</a>.</li>
-                    <li><a href="https://github.com/vczh-libraries/VlppParser/blob/master/Source/Parsing/Xml/ParsingXml.parser.txt">XML parser</a>.</li>
-                    <li><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Expression/WfExpression.parser.txt">Workflow script parser</a>.</li>
+                    <li><a href="https://github.com/vczh-libraries/VlppParser/blob/master/Source/Parsing/Json/ParsingJson.parser.txt">JSON parser</a> (<a href="https://github.com/vczh-libraries/VlppParser2/tree/master/Source/Json/Syntax">VlppParser2 version</a>).</li>
+                    <li><a href="https://github.com/vczh-libraries/VlppParser/blob/master/Source/Parsing/Xml/ParsingXml.parser.txt">XML parser</a> (<a href="https://github.com/vczh-libraries/VlppParser2/tree/master/Source/Xml/Syntax">VlppParser2 version</a>).</li>
+                    <li><a href="https://github.com/vczh-libraries/Workflow/blob/release-1.0/Source/Expression/WfExpression.parser.txt">Workflow script parser</a> (<a href="https://github.com/vczh-libraries/Workflow/tree/master/Source/Parser/Syntax">VlppParser2 version</a>).</li>
                     <li>
-                        <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Compiler/InstanceQuery/GuiInstanceQuery_Parser.parser.txt">Instance query parser</a> for GacUI XML resource,
+                        <a href="https://github.com/vczh-libraries/GacUI/blob/release-1.0/Source/Compiler/InstanceQuery/GuiInstanceQuery_Parser.parser.txt">Instance query parser</a> (<a href="https://github.com/vczh-libraries/GacUI/tree/master/Source/Compiler/InstanceQuery/Syntax">VlppParser2 version</a>) for GacUI XML resource,
                         working like the CSS selector but it is inspired by XPath.
                     </li>
                 </ul>

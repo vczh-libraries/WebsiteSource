@@ -51,6 +51,16 @@
                 The generated parser and all <b>IVisitor</b> interfaces follow the same design described in <a href="/vlppparser2/apis.html">Generated APIs</a>.
             </p>
             <p>
+                Predefined parsers can be found here as examples:
+                <ul>
+                    <li><a href="https://github.com/vczh-libraries/VlppParser2/tree/master/Source/Json/Syntax">JSON</a></li>
+                    <li><a href="https://github.com/vczh-libraries/VlppParser2/tree/master/Source/Xml/Syntax">XML</a></li>
+                    <li><a href="https://github.com/vczh-libraries/Workflow/tree/master/Source/Parser/Syntax">Workflow</a></li>
+                    <li><a href="https://github.com/vczh-libraries/GacUI/tree/master/Source/Compiler/InstanceQuery/Syntax">InstanceQuery in GacUI XML Resource</a></li>
+                    <li><a href="https://github.com/vczh-libraries/GacUI/tree/master/Source/Compiler/RemoteProtocol/Syntax">GacUI Remote Protocol Definition</a></li>
+                </ul>
+            </p>
+            <p>
                 <b>GlrParserGen</b> in <a href="https://github.com/vczh-libraries/Release/tree/master/Tools">released tools</a> can be used to generate C++ code starting from a <b>Parser.xml</b>.
                 Take the <a href="https://github.com/vczh-libraries/GacUI/blob/master/Source/Compiler/RemoteProtocol/Syntax/Parser.xml">remote protocol parser</a> as an example:
                 <program language="xml"><code><![CDATA[
