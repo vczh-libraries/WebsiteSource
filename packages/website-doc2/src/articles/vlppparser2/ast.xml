@@ -50,10 +50,10 @@ class Derived : Base
             <p>
                 A <b>@ambiguous</b> can be used before a class definition,
                 indicating that any syntax rule of exactly this type is allow to produce results with ambiguity.
-                The type of this rule will be rewritten to be <b>ClassTypeToResolve</b>,
+                The type of such rule is rewritten to <b>ClassTypeToResolve</b>,
                 with a member <b>var candidates : ClassType[];</b> to store all results that could be produced from the same input.
                 A rule of a sub type to an ambiguous type is not automatically allowed to be ambiguous,
-                but you can explicitly specific the type to use the ambiguous base type.
+                but you can explicitly specific the type to make such rule use the ambiguous base type.
             </p>
         </topic>
     </topic>
