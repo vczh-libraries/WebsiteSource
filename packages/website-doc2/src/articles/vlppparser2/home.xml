@@ -8,16 +8,47 @@
         <topic>
             <title>Using Generated XML Parser</title>
             <p>
+                All functions and types are defined in <b>vl::glr::xml</b>.
+                Before using the XML parser, you need to constructor a <b>Parser</b> object.
+                <b>Parser</b> can be used parallelly with multiple <b>XmlParseDocument</b> or <b>XmlParseElement</b> calls.
+                These two functions return <b>Ptr&lt;XmlDocument&gt;</b> and <b>Ptr&lt;XmlElement&gt;</b> respectively,
+                and you can access the content in XML directly or by calling the following shortcut functions:
+                <ul>
+                    <li><b>XmlPrint</b>: Print an XML node to a writer. You can call it with <b>stream::GenerateToStream</b> to get a string from it, or call <b>XmlToString</b> to get the string directly.</li>
+                    <li><b>XmlPrintContent</b>: Print an all contents in an element to a writer. You can call it with <b>stream::GenerateToStream</b> to get a string from it, or call <b>XmlGetValue</b> to get the string directly.</li>
+                    <li><b>XmlGetAttribute</b>: Find an attribute in an element.</li>
+                    <li><b>XmlGetElement</b>: Find the first sub element in an element given the element name.</li>
+                    <li><b>XmlGetElements</b>: Find all sub elements in an element given the element name.</li>
+                </ul>
+                The predefined printing functions print XML in a compact format without indentation or new lines.
+            </p>
+            <p>
+                <b>XmlNode::IVisitor</b> is recommended to use for any recursive operations on an XML node.
+                <b>Parser</b> and <b>XmlNode::IVisitor</b> follow the same design described in <a href="/vlppparser2/apis.html">Generated APIs</a>.
             </p>
         </topic>
         <topic>
             <title>Using Generated JSON Parser</title>
             <p>
+                All functions and types are defined in <b>vl::glr::json</b>.
+                <b>Parser</b> can be used parallelly with multiple parsing calls to <b>Parsing::ParseJRoot</b>,
+                which returns a <b>Ptr&lt;JsonNode&gt;</b>,
+                and you can access the content in JSON directly or by calling the following shortcut functions:
+                <ul>
+                    <li><b>JsonPrint</b>: Print a JSON node to a writer. You can call it with <b>stream::GenerateToStream</b> to get a string from it, or call <b>JsonToString</b> to get the string directly.</li>
+                </ul>
+                You can pass an optional <b>JsonFormatting</b> to <b>JsonPrint</b> or <b>JsonToString</b> to control the formatting.
+            </p>
+            <p>
+                <b>JsonNode::IVisitor</b> is recommended to use for any recursive operations on a JSON node.
+                <b>Parser</b> and <b>JsonNode::IVisitor</b> follow the same design described in <a href="/vlppparser2/apis.html">Generated APIs</a>.
             </p>
         </topic>
         <topic>
             <title>Building New Parsers</title>
             <p>
+                A parser class and some <b>IVisitor</b> interfaces will be generated from <b>GlrParserGen</b>.
+                The generated parser and all <b>IVisitor</b> interfaces follow the same design described in <a href="/vlppparser2/apis.html">Generated APIs</a>.
             </p>
             <p>
                 <b>GlrParserGen</b> in <a href="https://github.com/vczh-libraries/Release/tree/master/Tools">released tools</a> can be used to generate C++ code starting from a <b>Parser.xml</b>.
