@@ -110,6 +110,80 @@ RuleName : TypeName
         <topic>
             <title>Calculator Example</title>
             <p>
+                AST Definition:
+                <program language="AST"><code><![CDATA[
+class Expr
+{
+}
+
+class NumExpr : Expr
+{
+    var value : token;
+}
+
+enum UnaryOp
+{
+    Positive,
+    Negative,
+}
+
+class Unary : Expr
+{
+    var op : UnaryOp;
+    var operand : Expr;
+}
+
+enum BinaryOp
+{
+    Add,
+    Minus,
+    Multiply,
+    Divid,
+}
+
+class Binary : Expr
+{
+    var op : BinaryOp;
+    var left : Expr;
+    var right : Expr;
+}
+                ]]></code></program>
+                Lexer Definition:
+                <program language="LEXER"><code><![CDATA[
+ADD:/+
+SUB:-
+MUL:/*
+DIV://
+OPEN_BRACE:/(
+CLOSE_BRACE:/)
+NUM:/d+(./d+)?
+discard SPACE:/s+
+                ]]></code></program>
+                Syntax Definition:
+                <program language="SYNTAX"><code><![CDATA[
+Exp0
+  ::= NUM:value as NumExpr
+  ::= "(" !Exp ")"
+  ;
+
+Exp1
+  ::= !Exp0
+  ::= "+" Exp1:operand as Unary {op = Positive}
+  ::= "-" Exp1:operand as Unary {op = Negative}
+  ;
+
+Exp2
+  ::= !Exp1
+  ::= Exp2:left "*" Exp1:right as Binary {op = Multiply}
+  ::= Exp2:left "/" Exp1:right as Binary {op = Divid}
+  ;
+
+@parser Exp
+  ::= !Exp2
+  ::= Exp3:left "+" Exp2:right as Binary {op = Add}
+  ::= Exp3:left "-" Exp2:right as Binary {op = Minus}
+  ;
+                ]]></code></program>
             </p>
         </topic>
         <topic>
