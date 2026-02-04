@@ -2,6 +2,22 @@
     <topic>
         <title>Syntax Definition</title>
         <p>
+            An AST definition consists of multiple rules.
+            A <b>@public</b> can be used before any type definition to make it visible from another AST definition file.
+        </p>
+        <p>
+            EBNF is used in syntax definitions:
+            <ul>
+                <li><b>RuleOrTokenName:FieldName</b>: Match the rule or token and store the result to the field. The class type of this rule can be either specified or inferred.</li>
+                <li><b>!RuleName</b>: The whole rule will modify fields in the same object from <b>RuleName</b> instead of creating a new object.</li>
+                <li><b>(Syntax)</b>: Match <b>Syntax</b>, just for fixing operator priority.</li>
+                <li><b>[Syntax]</b>: Match <b>Syntax</b> optionally.</li>
+                <li><b>+[Syntax]</b>: Match <b>Syntax</b> optionally, when ambiguity occurs, the opt-in one wins.</li>
+                <li><b>SyntaxA SyntaxB</b>: Match <b>SyntaxA</b> followed by <b>SyntaxB</b>.</li>
+                <li><b>SyntaxA | SyntaxB</b>: Match either <b>SyntaxA</b> or <b>SyntaxB</b>.</li>
+                <li><b>{Syntax}</b>: Match zero or more occurrences of <b>Syntax</b>.</li>
+                <li><b>{SyntaxA ; SyntaxB}</b>: Match zero or more occurrences of <b>SyntaxA</b> separating by <b>SyntaxB</b>. This is a shortcut for <b>[SyntaxA {SyntaxB SyntaxA}]</b>.</li>
+            </ul>
         </p>
     </topic>
 </article>
