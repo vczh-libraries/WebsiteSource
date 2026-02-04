@@ -106,6 +106,9 @@ RuleName : TypeName
                 Only inside <b>Syntax</b> referenced switches have new values assigned.
                 In this example, <b>A</b> becomes off and <b>B</b> becomes on.
             </p>
+            <p>
+                Switches with new values will be taken into <b>Syntax</b> recursively until it hits another switch value assignment.
+            </p>
         </topic>
         <topic>
             <title>Calculator Example</title>
@@ -189,6 +192,71 @@ Exp2
         <topic>
             <title>Switch Example</title>
             <p>
+                This sample demos one of the way to solve the ambiguity if-else problem.
+                Actually the best approach is to use <b>if condition then statements +[else statements]</b>,
+                so using switches for this problem is not recommended but it can still be an example:
+                <program language="SYNTAX"><code><![CDATA[
+switch allow_half_if;
+
+Do
+  ::= "do" ";" as DoStat
+  ;
+
+Block
+  ::= "{" { Stat:stats } "}" as BlockStat
+  ;
+
+IfTail
+  ::= OtherStat:thenBranch ("else" Stat:elseBranch | ?(allow_half_if: ;)) as partial IfStat
+  ::= !(!allow_half_if; If:thenBranch) "else" Stat:elseBranch as partial IfStat
+  ::= ?(allow_half_if: If:thenBranch) as partial IfStat
+  ;
+
+If
+  ::= "if" "cond" "then" IfTail as IfStat
+  ;
+
+OtherStat
+  ::= !Do
+  ::= !Block
+  ;
+
+@parser Stat
+  ::= !OtherStat
+  ::= !(allow_half_if; !If)
+  ;
+                ]]></code></program>
+                For this input
+                <program><code><![CDATA[
+if cond then if cond then do; else do;
+                ]]></code></program>
+                <ul>
+                    <li><b>Stat</b> matches the whole input, it has to be <b>!(allow_half_if; !If)</b>.</li>
+                    <li><b>If</b> consumes the first 3 tokens and living <b>if cond then do; else do;</b> for <b>IfTail</b>.</li>
+                    <li>
+                        <b>IfFail</b> has two choices:
+                        <ul>
+                            <li>
+                                Using <b>!(!allow_half_if; If:thenBranch) "else" Stat:elseBranch</b> to match <b>if cond then do; else do;</b>
+                                <ul>
+                                    <li>It means using <b>!(!allow_half_if; If:thenBranch)</b> to match <b>if cond then do;</b>, leaving <b>else do;</b> for <b>"else" Stat:elseBranch</b>.</li>
+                                    <li>Now it tries to match <b>If</b> with <b>allow_half_if</b> turned off.</li>
+                                    <li>The second level of <b>If</b> still consumes 3 tokens and leaving <b>do;</b> for <b>IfTail</b> also with <b>allow_half_if</b> turned off.</li>
+                                    <li>It has to match <b>OtherStat:thenBranch ("else" Stat:elseBranch | ?(allow_half_if: ;))</b> with <b>do;</b>.</li>
+                                    <li>Since <b>allow_half_if</b> is off, <b>?(allow_half_if: ;)</b> is invalid as all branches in fails, so the current <b>IfTail</b> is rewritten to <b>OtherStat:thenBranch "else" Stat:elseBranch</b>.</li>
+                                    <li>Obviously it cannot match <b>do;</b>, therefore fails.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Using <b>?(allow_half_if: If:thenBranch)</b> to match <b>if cond then do; else do;</b>
+                                <ul>
+                                    <li>Given that when <b>allow_half_if</b> is on, <b>If</b> accepts all forms, so it succeeds.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>So the "else" associates with the second "if", instead of the first one or both.</li>
+                </ul>
             </p>
         </topic>
     </topic>
