@@ -2,6 +2,16 @@
     <topic>
         <title>Generated APIs</title>
         <p>
+            If you enable everything (by default) in <b>Parser.xml</b>,
+            AST will generates following APIs for creating and accessing AST types:
+            <ul>
+                <li>For any <b>ClassType</b> there is a <b>MakeClassType</b> class, call its default constructor and you can create the whole AST tree with this fluent interface. After all fields are prepared the created object can be obtained by static_cast&lt;Ptr&lt;ClassType&gt;&gt;.</li>
+                <li>Each base class has a <b>ClassType::IVisitor</b> interface and a <b>Accept</b> function. The <b>Accept</b> function accepts an implementation of the <b>IVisitor</b> interface, and one member in <b>IVisitor</b> will be called according to the actual type of <b>Accept</b>'s "this argument".</li>
+                <li><b>your::namespaces::empty_visitor::ClassTypeVisitor</b> for each <b>ClassType::IVisitor</b>. It has all members implemented doing nothing. You can use this class to implement your own algorithm when only a few types need to be handled.</li>
+                <li><b>your::namespaces::copy_visitor::AstVisitor</b>. <b>Ast</b> here is the AST group's name. This visitor implements all <b>IVisitor</b> interfaces in one class. After passing it to <b>Accept</b>, its <b>result</b> field has a copy of the whole AST tree.</li>
+                <li><b>your::namespaces::json_visitor::AstVisitor</b>. <b>Ast</b> here is the AST group's name. This visitor implements all <b>IVisitor</b> interfaces in one class. After passing it to <b>Accept</b>, its <b>result</b> field has a serialized JSON document. The JSON document also follows the design of AST.</li>
+                <li><b>your::namespaces::traverse_visitor::AstVisitor</b>. <b>Ast</b> here is the AST group's name. This visitor implements all <b>IVisitor</b> interfaces in one class. After passing it to <b>Accept</b>, every object in the AST tree will calls a <b>Traverse</b> function from the top base type <b>ParsingAstBase</b> all the way to its actual type  in order, and <b>Finishing</b> when all members of an AST object are traversed, from its actual type all the way to the top base type <b>ParsingAstBase</b>. There is also a <b>Traverse</b> function for <b>ParsingToken</b>.</li>
+            </ul>
         </p>
     </topic>
 </article>
