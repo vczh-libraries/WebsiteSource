@@ -2,7 +2,38 @@
     <topic>
         <title>Implementing a Communication Protocol</title>
         <p>
-            (editing ...)
+            <b>IGuiRemoteProtocol</b> has a lot of strong typed messages defined as functions.
+            When the core application wants to send anything to a remote client, a member function is called.
+            When the remote client sent anything to the core application, a member function in <b>IGuiRemoteProtocol::GetRemoteEventProcessor</b> is called.
+            Some messages need to wait for a response from the remote client, the first argument of such message is always <b>vint id</b>.
+            The core application will be blocked until the remote client sends back a expected response message with the same id.
+        </p>
+        <p>
+            Therefore <b>IGuiRemoteProtocol</b> represents a renderer.
+            The core side implementation sends messages to client and receive responses from client.
+            The client side implementation receives messages from core and send responses to core.
+        </p>
+        <p>
+            <b>IGuiRemoteProtocolChannel&lt;T&gt;</b> and <b>IGuiRemoteProtocolChannelReceiver&lt;T&gt;</b> works like <b>IGuiRemoteProtocol</b> and <b>IGuiRemoteEventProcessor</b>,
+            but there is no strong typed messages anymore, everything becomes the <b>T</b>.
+        </p>
+        <p>
+            <b>GuiRemoteProtocolFromJsonChannel</b> (for core) and <b>GuiRemoteJsonChannelFromProtocol</b> (for client) handles message translation between
+            <b>IGuiRemoteProtocol</b> and <b>IGuiRemoteProtocolChannel&lt;Ptr&lt;JsonObject&gt;&gt;</b>.
+        </p>
+        <p>
+            <b>GuiRemoteJsonChannelStringSerializer</b> (for core) and <b>GuiRemoteJsonChannelStringDeserializer</b> (for client) handles message translation between
+            <b>IGuiRemoteProtocolChannel&lt;Ptr&lt;JsonObject&gt;&gt;</b> and <b>IGuiRemoteProtocolChannel&lt;WString&gt;</b>.
+        </p>
+        <p>
+            Although message are sent bidirectionally, but the naming is saying what is done from core to client.
+            <a href="/gacui/modes/remote_client.html">Remote Protocol Client Application</a> and
+            <a href="/gacui/modes/remote_communication.html">Implementing a Communication Protocol</a>
+            demos how to setup the pipeline from <b>IGuiRemoteProtocol</b> all the way to sending and receiving strings.
+            You can also implements your own pipeline using different message formats.
+            JSON serialization is offered in GacUI by default,
+            but you can also code generate your own serializer with other underlying format
+            using metadata in <a href="https://github.com/vczh-libraries/Release/tree/master/Import/Metadata">this folder</a>.
         </p>
     </topic>
 </article>
