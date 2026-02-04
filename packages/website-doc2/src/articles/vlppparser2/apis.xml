@@ -13,5 +13,19 @@
                 <li><b>your::namespaces::traverse_visitor::AstVisitor</b>. <b>Ast</b> here is the AST group's name. This visitor implements all <b>IVisitor</b> interfaces in one class. After passing it to <b>Accept</b>, every object in the AST tree will calls a <b>Traverse</b> function from the top base type <b>ParsingAstBase</b> all the way to its actual type  in order, and <b>Finishing</b> when all members of an AST object are traversed, from its actual type all the way to the top base type <b>ParsingAstBase</b>. There is also a <b>Traverse</b> function for <b>ParsingToken</b>.</li>
             </ul>
         </p>
+        <p>
+            For any <b>RuleName</b> decorated with a <b>@parser</b>, a <b>ParseRuleName</b> function is generated in the <b>your::namespaces::Parser</b> class. Here <b>Parser</b> is the name of the parser defined in <b>Parser.xml</b>.
+            You can either put a string or a List&lt;RegexToken&gt; to this function.
+            It returns an AST tree when succeeded,
+            otherwise it triggers the <b>OnError</b> event.
+            In this event, you can choose to stop the parse function to throw an exception,
+            and it will just returns null.
+        </p>
+        <p>
+            For the predefined XML parser,
+            you are not recommended to call the <b>Parser</b> class directly,
+            because some post processing is required to fix the AST tree.
+            Instead pass this <b>Parser</b> class to <b>XmlParseDocument</b> or <b>XmlParseElement</b>.
+        </p>
     </topic>
 </article>
