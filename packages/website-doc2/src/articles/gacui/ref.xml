@@ -32,12 +32,22 @@
                 </p>
             </topic>
             <topic>
+                <title>for unit test framework</title>
+                <p>
+                    <ul>
+                        <li><b>GacUI.UnitTest.h</b> and <b>GacUI.UnitTest.cpp</b>: for running test cases.</li>
+                        <li><b>GacUI.UnitTest.UI.h</b> and <b>GacUI.UnitTest.UI.cpp</b>: the snapshot viewer.</li>
+                    </ul>
+                </p>
+            </topic>
+            <topic>
                 <title>for loading compiled GacUI XML resource without using generated C++ code</title>
                 <p>
                     <ul>
                         <li>(all source files above)</li>
                         <li><b>GacUIReflection.h</b> and <b>GacUIReflection.cpp</b></li>
                         <li><b>DarkSkinReflection.h</b> and <b>DarkSkinReflection.cpp</b></li>
+                        <li><b>GacUI.UnitTest.UIReflection.h</b> and <b>GacUI.UnitTest.UIReflection.cpp</b></li>
                     </ul>
                 </p>
                 <p>

@@ -19,7 +19,8 @@
             <title>Source Files for VlppParser</title>
             <p>
                 <ul>
-                    <li><b>VlppParser2.h</b> and <b>VlppParser2.cpp</b></li>
+                    <li><b>VlppGlrParser.h</b> and <b>VlppGlrParser.cpp</b>: Necessary files for generated parsers.</li>
+                    <li><b>VlppGlrParserCompiler.h</b> and <b>VlppGlrParserCompiler.cpp</b>: Parser compiler, for generating C++ code from syntax, or running the syntax directly.</li>
                 </ul>
             </p>
         </topic>
