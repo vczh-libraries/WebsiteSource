@@ -84,14 +84,14 @@ function renderContent(contents: Content[], listPrefix: string, collectedNodes: 
     for (const content of contents) {
         switch (content.kind) {
             case "Text":
-                md += escapeText(content.text);
+                md += formatText(escapeText(content.text));
                 break;
             case "PageLink": {
                 const url = rewriteLink(content.href, collectedNodes, directory, relativeUrlPrefix);
                 if (url) {
-                    md += `[${renderContentToText(content.content)}](${url})`;
+                    md += `[${formatText(renderContentToText(content.content))}](${url})`;
                 } else {
-                    md += `${renderContentToText(content.content)}\`missing document: ${content.href}\``;
+                    md += `${formatText(renderContentToText(content.content))}\`missing document: ${content.href}\``;
                 }
                 break;
             }
@@ -158,7 +158,7 @@ function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedN
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
-                md += formatText(renderContent(content.content, "", collectedNodes, directory, relativeUrlPrefix)) + `\r\n\r\n`;
+                md += renderContent(content.content, "", collectedNodes, directory, relativeUrlPrefix) + `\r\n\r\n`;
                 break;
             case 'Topic':
                 md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes, directory, relativeUrlPrefix);
