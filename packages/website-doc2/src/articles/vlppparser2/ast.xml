@@ -2,6 +2,59 @@
     <topic>
         <title>AST Definition</title>
         <p>
+            An AST definition consists of multiple <b>Enum</b> and <b>Class</b>.
+            A <b>@public</b> can be used before any type definition to make it visible from another AST definition file.
         </p>
+        <topic>
+            <title>Enum</title>
+            <p>
+                <program language="AST"><code><![CDATA[
+enum Season
+{
+    Spring,
+    Summer,
+    Autumn,
+    Winter,
+}
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Class</title>
+            <p>
+                <program language="AST"><code><![CDATA[
+class Base
+{
+    var name : token;
+}
+
+class Derived : Base
+{
+    var season : Season;
+    var baseArray : Base[];
+}
+                ]]></code></program>
+            </p>
+            <p>
+                Inheriting between classes works as other programming languages.
+            </p>
+            <p>
+                Here are a list of supported field types:
+                <ul>
+                    <li><b>token</b>: vl::glr::ParsingToken</li>
+                    <li><b>enum type</b></li>
+                    <li><b>class type</b>: vl::Ptr&lt;ClassType&gt;</li>
+                    <li><b>array to class type</b>: vl::collections::List&lt;vl::Ptr&lt;ClassType&gt;&gt;</li>
+                </ul>
+            </p>
+            <p>
+                A <b>@ambiguous</b> can be used before a class definition,
+                indicating that any syntax rule of exactly this type is allow to produce results with ambiguity.
+                The type of this rule will be rewritten to be <b>ClassTypeToResolve</b>,
+                with a member <b>var candidates : ClassType[];</b> to store all results that could be produced from the same input.
+                A rule of a sub type to an ambiguous type is not automatically allowed to be ambiguous,
+                but you can explicitly specific the type to use the ambiguous base type.
+            </p>
+        </topic>
     </topic>
 </article>
