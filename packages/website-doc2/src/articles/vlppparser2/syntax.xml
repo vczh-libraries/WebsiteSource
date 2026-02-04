@@ -6,9 +6,9 @@
             A <b>@public</b> can be used before any type definition to make it visible from another AST definition file.
         </p>
         <p>
-            EBNF is used in syntax definitions:
+            One rule consits of multiple clauses, each clauses is defined by EBNF-like syntax:
             <ul>
-                <li><b>RuleOrTokenName:FieldName</b>: Match the rule or token and store the result to the field. The class type of this rule can be either specified or inferred.</li>
+                <li><b>RuleOrTokenName:FieldName</b>: Match the rule or token and store the result to the field. The class type of this clause can be either specified or inferred.</li>
                 <li><b>!RuleName</b>: The whole rule will modify fields in the same object from <b>RuleName</b> instead of creating a new object.</li>
                 <li><b>(Syntax)</b>: Match <b>Syntax</b>, just for fixing operator priority.</li>
                 <li><b>[Syntax]</b>: Match <b>Syntax</b> optionally.</li>
@@ -18,6 +18,47 @@
                 <li><b>{Syntax}</b>: Match zero or more occurrences of <b>Syntax</b>.</li>
                 <li><b>{SyntaxA ; SyntaxB}</b>: Match zero or more occurrences of <b>SyntaxA</b> separating by <b>SyntaxB</b>. This is a shortcut for <b>[SyntaxA {SyntaxB SyntaxA}]</b>.</li>
             </ul>
+            A rule is defined by:
+            <program language="Syntax"><code><![CDATA[
+RuleName : TypeName
+::= Clause1
+...
+;
+            ]]></code></program>
+            <ul>
+                <li>If any clause matches, the rule matches. If multiple clauses match, ambiguity happens.</li>
+                <li>There are optional, alternative and loop syntax in clauses, if multiple paths of a clause match, ambiguity happens.</li>
+                <li>Each clause has a type, either specified or inferred. If <b>:TypeName</b> is not omitted, it becomes the most detailed common type of all clauses.</li>
+                <li>All clauses must be partial or not partial at the same time in a rule.</li>
+                <li><b>@public</b> can be used before a rule to make it visible to other syntax files.</li>
+                <li><b>@parser</b> can be used before a rule to make a public function generated for the parser class for this rule. Rules without <b>@parser</b> is not accessible in C++.</li>
+                <li>If both <b>@public</b> and <b>@parser</b> are used, put <b>@public</b> before <b>@parser</b>.</li>
+            </ul>
         </p>
+        <topic>
+            <title>Ordinary Clause</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Reuse Clause</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Partial Clause</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Additional Field Assignments</title>
+            <p>
+            </p>
+        </topic>
+        <topic>
+            <title>Switches</title>
+            <p>
+            </p>
+        </topic>
     </topic>
 </article>
