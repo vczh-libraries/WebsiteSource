@@ -2,6 +2,43 @@
     <topic>
         <title>Lexer Definition</title>
         <p>
+            An lexer definition consists of multiple tokens.
+            Names of non-discarded tokens can be used in syntax definitions.
+        </p>
+        <p>
+            Single line comments are allowed using <b>//</b>.
+        </p>
+        <p>
+            A token can be defined by:
+            <program language="Lexer"><code><![CDATA[
+TokenName           :REGEX
+            ]]></code></program>
+            Spaces are allowed before <b>":"</b> but not after, everything after <b>":"</b> in this line is considered the regular expression to define the token.
+        </p>
+        <p>
+            A discarded token can be defined by:
+            <program language="Lexer"><code><![CDATA[
+discard TokenName   :REGEX
+            ]]></code></program>
+            Such token will be recognized and removed from the input.
+            You can use it for comments or whitespaces.
+        </p>
+        <p>
+            A token fragment can be defined by:
+            <program language="Lexer"><code><![CDATA[
+$FragmentName       :REGEX
+            ]]></code></program>
+           This is not a token,
+           but it can be used in other regular expressions using <b>{$FragmentName}</b>,
+           to paste the fragment at that position and avoid repeating the same pattern everywhere.
+           Here is an example of defining integer, hex and binary literal in C++:
+            <program language="Lexer"><code><![CDATA[
+$CPP_NUMBER_POSTFIX  :[uU]|[lL]|[uU][lL]|[lL][uU]|[lL][lL]|[uU][lL][lL]|[lL][uU][lL]|[lL][lL][uU]|i8|ui8|i16|ui16|i32|ui32|i64|ui64
+INT                  :(/d+('/d+)*)({$CPP_NUMBER_POSTFIX})?
+HEX                  :0[xX][0-9a-fA-F]+({$CPP_NUMBER_POSTFIX})?
+BIN                  :0[bB][01]+({$CPP_NUMBER_POSTFIX})?
+            ]]></code></program>
+            Token fragments are just simply copy-pasted, that's why <b>"()"</b> is needed here.
         </p>
     </topic>
 </article>

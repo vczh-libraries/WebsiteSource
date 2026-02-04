@@ -5,6 +5,9 @@
             An AST definition consists of multiple <b>Enum</b> and <b>Class</b>.
             A <b>@public</b> can be used before any type definition to make it visible from another AST definition file.
         </p>
+        <p>
+            Single line comments are allowed using <b>//</b>.
+        </p>
         <topic>
             <title>Enum</title>
             <p>
