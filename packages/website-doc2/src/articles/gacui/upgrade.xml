@@ -228,6 +228,23 @@ private:
                 </p>
             </topic>
             <topic>
+                <title>IGuiGraphicsParagraph</title>
+                <p>
+                    <b>OpenCaret</b> and <b>CloseCaret</b> has been replaced by <b>EnableCaret</b>, <b>DisableCaret</b> and <b>BlinkCaret</b>.
+                </p>
+                <p>
+                    <b>EnableCaret</b> and <b>DisableCaret</b> tells if the caret is activated in this specific paragraph or not.
+                    <b>BlinkCaret</b> switch the caret between visible and invisible, it should be ignored if the caret is disabled.
+                </p>
+                <p>
+                    <b>InlineObjectProperties::backgroundColor</b> is added to the struct.
+                    This field tells an additional color on the object, when its alpha channel is zero it should be ignored.
+                    In the past, the background color is set by <b>SetBackgroundColor</b>.
+                    Now <b>SetBackgroundColor</b> as well as any other text attributes should be ignored when rendering inline objects.
+                    Currently this indicates if an object is selected or not. You can choose any way to render it.
+                </p>
+            </topic>
+            <topic>
                 <title>INativeWindow</title>
                 <p>
                     <b>SetFocus</b> and <b>IsFocused</b> is removed, because now activated means focused.
