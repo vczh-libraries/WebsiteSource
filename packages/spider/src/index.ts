@@ -1,12 +1,9 @@
 // tslint:disable:no-http-string
 
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import * as http from 'http';
+import * as path from 'path';
 import { Router, RouterFragment, RouterFragmentKind, RouterPatternBase } from 'gaclib-mvc';
-import websiteScraper from 'website-scraper';
-
-type RegisterAction = (
-    action: 'generateFilename',
-    callback: (value: { resource: websiteScraper.Resource }) => { filename: string }
-) => void;
 
 export function collectStaticUrls<TResult>(router: Router<TResult>): string[] {
     return router
@@ -32,34 +29,36 @@ export function collectStaticUrls<TResult>(router: Router<TResult>): string[] {
         ;
 }
 
-export function downloadWebsite(urls: string[], directory: string): void {
-
-    const options = {
-        urls: urls.map((url: string) => `http://localhost:8080${url}`),
-        directory,
-        recursive: true,
-        requestConcurrency: 1,
-        plugins: [{
-            apply(registerAction: RegisterAction): void {
-                registerAction('generateFilename', (value: { resource: websiteScraper.Resource }) => {
-                    // eslint-disable-next-line no-useless-escape
-                    const matches = /^http:\/\/[^\/]+(.*)$/g.exec(value.resource.url);
-                    if (matches !== null) {
-                        return { filename: matches[1] };
-                    } else {
-                        throw new Error(`Unable to process url: ${value.resource.url}`);
-                    }
-                });
+function httpGet(url: string): Promise<Buffer> {
+    return new Promise((resolve, reject) => {
+        http.get(url, (res) => {
+            if (res.statusCode !== 200) {
+                reject(new Error(`HTTP ${res.statusCode} for ${url}`));
+                res.resume();
+                return;
             }
-        }]
-    };
+            const chunks: Buffer[] = [];
+            res.on('data', (chunk: Buffer) => chunks.push(chunk));
+            res.on('end', () => resolve(Buffer.concat(chunks)));
+            res.on('error', reject);
+        }).on('error', reject);
+    });
+}
 
-    websiteScraper(options).then(
-        (value: websiteScraper.Resource[]) => {
-            for (const res of value) {
-                console.log(`${res.url} => ${res.filename}`);
+export async function downloadWebsite(urls: string[], directory: string): Promise<void> {
+    for (const urlPath of urls) {
+        const fullUrl = `http://localhost:8080${urlPath}`;
+        try {
+            const data = await httpGet(fullUrl);
+            const filePath = path.join(directory, urlPath);
+            const dir = path.dirname(filePath);
+            if (!existsSync(dir)) {
+                mkdirSync(dir, { recursive: true });
             }
-        },
-        (err: Error) => { console.log(err.message); }
-    );
+            writeFileSync(filePath, data);
+            console.log(`${fullUrl} => ${urlPath}`);
+        } catch (err) {
+            console.error(`Failed: ${fullUrl} - ${(<Error>err).message}`);
+        }
+    }
 }

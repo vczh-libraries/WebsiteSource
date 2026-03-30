@@ -1,4 +1,4 @@
-import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolder, untilPressEnter } from 'gaclib-host';
+import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolder } from 'gaclib-host';
 import { createRouter } from 'gaclib-mvc';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
@@ -19,8 +19,9 @@ if (process.argv[2] === '-d') {
     server.listen(8080, 'localhost');
 
     const urls = collectStaticUrls(router).concat(homePageDynamicUrls).concat(topLevelPageDynamicUrls);
-    downloadWebsite(urls, path.join(__dirname, './website'));
-    untilPressEnter();
+    await downloadWebsite(urls, path.join(__dirname, './website'));
+    server.close();
+    process.exit(0);
 } else {
     console.log("http://localhost:8080/index.html");
     hostUntilPressingEnter(server, 8080);

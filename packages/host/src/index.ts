@@ -4,7 +4,6 @@ import { EmbeddedResources, generateHtml, HtmlInfo, ViewMetadata } from 'gaclib-
 import * as http from 'http';
 import * as mime from 'mime-types';
 import * as path from 'path';
-import * as url from 'url';
 
 export type MvcRouterResult = [string, string | Buffer];
 export type MvcRouter = Router<MvcRouterResult>;
@@ -84,12 +83,17 @@ export function createMvcServer(router: MvcRouter): http.Server {
                 break NOT_FOUND;
             }
 
-            const query = url.parse(req.url, true);
-            if (query.pathname === undefined || query.pathname === null) {
+            let pathname: string | undefined;
+            try {
+                // `req.url` is usually a path like "/index.html?x=1".
+                // Use WHATWG URL parsing to avoid deprecated `url.parse()`.
+                const baseUrl = `http://${req.headers.host ?? 'localhost'}`;
+                pathname = new URL(req.url, baseUrl).pathname;
+            } catch {
                 break NOT_FOUND;
             }
 
-            const htmlResult = router.match(<HttpMethods>req.method, query.pathname);
+            const htmlResult = router.match(<HttpMethods>req.method, pathname);
             if (htmlResult === undefined) {
                 break NOT_FOUND;
             }

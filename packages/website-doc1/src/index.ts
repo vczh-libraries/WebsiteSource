@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { consumePlugin, parseArticle } from 'gaclib-article';
 import { DocSymbol, parseDocArticle, renderDocArticle } from 'gaclib-article-document';
-import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolder, untilPressEnter } from 'gaclib-host';
+import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolder } from 'gaclib-host';
 import { createRouter, route } from 'gaclib-mvc';
 import { EmbeddedResources, generateHtml, HtmlInfo } from 'gaclib-render';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
@@ -149,8 +149,9 @@ if (process.argv[2] === '-d') {
     const docUrls: string[] = [];
     collectDocUrls(docTree.root, docUrls);
 
-    downloadWebsite(collectStaticUrls(router).concat(docUrls), path.join(__dirname, './website'));
-    untilPressEnter();
+    await downloadWebsite(collectStaticUrls(router).concat(docUrls), path.join(__dirname, './website'));
+    server.close();
+    process.exit(0);
 } else {
     hostUntilPressingEnter(server, 8080);
 }
