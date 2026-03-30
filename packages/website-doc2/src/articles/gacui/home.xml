@@ -77,15 +77,9 @@
                             </ul>
                         </li>
                         <li>
-                            <b>Linux Wayland</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/wGac">https://github.com/vczh-libraries/wGac</a>)
+                            <b>Linux with Wayland</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/wGac">https://github.com/vczh-libraries/wGac</a>)
                             <ul>
-                                <li>SetupWGacRenderer();</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <b>Linux XWindow</b>: Finished but you have to built toolchain by yourself. (<a href="https://github.com/vczh-libraries/gGac">https://github.com/vczh-libraries/gGac</a>)
-                            <ul>
-                                <li>SetupGGacRenderer();</li>
+                                <li>vl::presentation::elements::wgac::SetupWGacRenderer();</li>
                             </ul>
                         </li>
                         <li>

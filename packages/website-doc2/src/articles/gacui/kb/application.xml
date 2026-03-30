@@ -19,15 +19,11 @@
                 </li>
                 <li>
                     For macOS,
-                    <b>SetupOSXCoreGraphicsRenderer</b> must be called in <b>main</b>.
+                    <b>SetupOSXCoreGraphicsRenderer</b> or <b>SetupOSXHostedCoreGraphicsRenderer</b> must be called in <b>main</b>.
                 </li>
                 <li>
-                    For Linux Wayland,
-                    <b>SetupWGacRenderer</b> must be called in <b>main</b>.
-                </li>
-                <li>
-                    For Linux XWindow,
-                    <b>SetupGGacRenderer</b> must be called in <b>main</b>.
+                    For Linux with Wayland,
+                    <b>vl::presentation::elements::wgac::SetupWGacRenderer or SetupWGacHostedRenderer</b> must be called in <b>main</b>.
                 </li>
             </ul>
         </p>
