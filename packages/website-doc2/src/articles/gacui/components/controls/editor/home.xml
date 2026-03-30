@@ -164,6 +164,9 @@
                 just set these two properties to the same value.
             </p>
             <p>
+                <b>EnsureCaretVisible</b> scrolls the text box to the <b>CaretEnd</b>.
+            </p>
+            <p>
                 <b>CalculateCaretFromPoint</b> returns the nearest caret at a position.
                 The coordinate origin is the left-top corner of the document.
             </p>
