@@ -4,7 +4,7 @@ import { renderArticle } from 'gaclib-article/lib/src/rendering.js';
 import { html, render } from 'lit-html';
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const categoryArticle = <Article>window['MVC-Resources.categoryArticle'];
         const htmlTemplate = html`
 ${renderArticle(categoryArticle)}

@@ -10,7 +10,7 @@ const buttons: [string, string, string][] = [
 ];
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const htmlTemplate = html`
 <table class="RootTable">
     <tr>

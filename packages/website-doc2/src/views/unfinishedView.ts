@@ -2,7 +2,7 @@
 import { html, render } from 'lit-html';
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const htmlTemplate = html`
 <h1>This page is being generated ...</h1>
 `;

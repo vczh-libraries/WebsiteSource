@@ -12,6 +12,6 @@
         "eslint-shared": "^0.0.1"
     },
     "dependencies": {
-        "lit-html": "^1.1.2"
+        "lit-html": "^3.3.2"
     }
 }

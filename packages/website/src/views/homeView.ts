@@ -13,7 +13,7 @@ const buttons: [string, string, string][] = [
 ];
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const homeArticle = <Article>window['MVC-Resources.homeArticle'];
         const htmlTemplate = html`
 <table class="HomeArticleContainer"><tr><td align="center">

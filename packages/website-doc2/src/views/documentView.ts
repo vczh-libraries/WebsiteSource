@@ -4,7 +4,7 @@ import { renderArticle } from 'gaclib-article/lib/src/rendering.js';
 import { html, render } from 'lit-html';
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const article = <Article>window['MVC-Resources.documentArticle'];
         const hrefPrefix = <string>window['MVC-Resources.hrefPrefix'];
         const htmlTemplate = html`

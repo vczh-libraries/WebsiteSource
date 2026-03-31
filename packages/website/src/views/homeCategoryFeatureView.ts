@@ -15,7 +15,7 @@ export interface FeatureList {
 }
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const featureList = <FeatureList>window['MVC-Resources.featureList'];
 
         const htmlTemplate = html`

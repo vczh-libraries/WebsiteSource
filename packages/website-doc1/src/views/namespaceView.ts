@@ -2,7 +2,7 @@
 import { html, render } from 'lit-html';
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const namespaceName = <string>window['MVC-Resources.namespaceName'];
         const htmlTemplate = html`
 <h1>namespace ${namespaceName}</h1>

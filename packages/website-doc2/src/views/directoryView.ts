@@ -36,7 +36,7 @@ function renderDirectory(dinfo: DirectoryInfo, hrefPrefix: string, dnodes: Direc
 }
 
 export const viewExport = {
-    renderView(model: {}, target: Element): void {
+    renderView(model: {}, target: HTMLElement): void {
         const dinfo = <DirectoryInfo>window['MVC-Resources.directoryInfo'];
         const hrefPrefix = <string>window['MVC-Resources.hrefPrefix'];
         const htmlTemplate = html`
