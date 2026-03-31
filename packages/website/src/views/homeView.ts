@@ -14,7 +14,7 @@ const buttons: [string, string, string][] = [
 
 export const viewExport = {
     renderView(model: {}, target: HTMLElement): void {
-        const homeArticle = <Article>window['MVC-Resources.homeArticle'];
+        const homeArticle = <Article>(<Record<string, unknown>><unknown>window)['MVC-Resources.homeArticle'];
         const htmlTemplate = html`
 <table class="HomeArticleContainer"><tr><td align="center">
     <div class="HomeArticle">${renderArticle(homeArticle)}</div></div>
@@ -31,7 +31,7 @@ export const viewExport = {
                 const buttonDelimiter = html`;`;
                 return buttonHtmls
                     .map((h: TemplateResult) => [h, buttonDelimiter])
-                    .reduce((a: [TemplateResult], b: [TemplateResult]) => a.concat(b))
+                    .reduce((a: TemplateResult[], b: TemplateResult[]) => a.concat(b))
                     ;
             })()}
 </h2>

@@ -1,9 +1,9 @@
-import { HttpMethods, Router, RouterCallback, RouterFragmentKind, RouterPattern, RouterPatternBase } from './interfaces.js';
+import { HttpMethods, Router, RouterCallback, RouterFragmentKind, RouterParameterPack, RouterPattern, RouterPatternBase } from './interfaces.js';
 
 interface RouterPackage<TResult> {
     methods: HttpMethods[];
     pattern: RouterPatternBase;
-    callback(method: HttpMethods, model: {}): TResult | undefined;
+    callback(method: HttpMethods, model: RouterParameterPack): TResult | undefined;
 }
 
 class RouterImpl<TResult> implements Router<TResult> {
@@ -15,7 +15,7 @@ class RouterImpl<TResult> implements Router<TResult> {
         return this.patterns.map((value: RouterPackage<TResult>) => value.pattern);
     }
 
-    public register<TModel extends {}>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void {
+    public register<TModel extends RouterParameterPack>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void {
         this.patterns.push({
             methods: methods.length === 0 ? ['GET'] : methods,
             pattern,

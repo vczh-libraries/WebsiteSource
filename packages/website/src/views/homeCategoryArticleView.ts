@@ -5,7 +5,7 @@ import { html, render } from 'lit-html';
 
 export const viewExport = {
     renderView(model: {}, target: HTMLElement): void {
-        const categoryArticle = <Article>window['MVC-Resources.categoryArticle'];
+        const categoryArticle = <Article>(<Record<string, unknown>><unknown>window)['MVC-Resources.categoryArticle'];
         const htmlTemplate = html`
 ${renderArticle(categoryArticle)}
 `;

@@ -1,6 +1,6 @@
 // why @types/escape-string-regexp doesn't work?
 import escapeStringRegexp from 'escape-string-regexp';
-import { RouterFragment, RouterFragmentKind, RouterParameter, RouterParameterKind, RouterParameterTypes, RouterPattern, RouterPatternBase } from './interfaces.js';
+import { RouterFragment, RouterFragmentKind, RouterParameter, RouterParameterKind, RouterParameterPack, RouterParameterTypes, RouterPattern, RouterPatternBase } from './interfaces.js';
 
 // if the type of a property is one of RouterParameterTypes, then convert the type of the property to be the key
 type ValidPropertiesToKeys<T> = { [P in keyof T]: T[P] extends RouterParameterTypes ? P : never; };
@@ -12,9 +12,9 @@ type ValidPropertyTypes<T> = T[keyof T];
 type FilterOutInvalidProperties<T> = Pick<T, ValidPropertyTypes<ValidPropertiesToKeys<T>>>;
 
 // A|B|... -> ((k:FIOP<A>)=>void)|((k:FIOP<B>)=>void)|... -> (k:FIOP<A>&FIOP<B>&...)=>void -> FIOP<A>&FIOP<B>&...
-type MergeParameters<U extends {}> = ((k: FilterOutInvalidProperties<U>) => void) extends ((k: infer I) => void) ? I : never;
+type MergeParameters<U extends RouterParameterPack> = ((k: FilterOutInvalidProperties<U>) => void) extends ((k: infer I) => void) ? I : never;
 
-function getParameterName(fragment: {[key: string] : {}}): [true, RouterParameter] | [false, string] {
+function getParameterName(fragment: RouterParameterPack | string): [true, RouterParameter] | [false, string] {
     if (typeof fragment === 'string') {
         return [false, fragment];
     }
@@ -45,7 +45,7 @@ function getParameterName(fragment: {[key: string] : {}}): [true, RouterParamete
     throw new Error(`Parameter object "${JSON.stringify(fragment)}" should have exactly one property.`);
 }
 
-function submitFragment(target: RouterFragment[], fragmentBuilders: {}[]): void {
+function submitFragment(target: RouterFragment[], fragmentBuilders: (RouterParameterPack | string)[]): void {
     const processedFragments = fragmentBuilders.map(getParameterName);
     switch (processedFragments.length) {
         case 0: {
@@ -136,7 +136,7 @@ function submitFragment(target: RouterFragment[], fragmentBuilders: {}[]): void 
     });
 }
 
-function addParameter(value: {}, parameter: RouterParameter, text?: string): boolean {
+function addParameter(value: RouterParameterPack, parameter: RouterParameter, text?: string): boolean {
     const prop = parameter[0];
     switch (parameter[1]) {
         case RouterParameterKind.String:
@@ -244,7 +244,7 @@ function processPatternArray(fragments: RouterFragment[]): void {
 class RouterPatternImpl implements RouterPatternBase {
     public fragments: RouterFragment[] = [];
 
-    constructor(strings: TemplateStringsArray, parameters: {}[]) {
+    constructor(strings: TemplateStringsArray, parameters: RouterParameterPack[]) {
         if (strings.length - parameters.length !== 1) {
             throw new Error('TypeScript does not compile route literal correctly!');
         }
@@ -252,7 +252,7 @@ class RouterPatternImpl implements RouterPatternBase {
             throw new Error('Pattern should begin with "/".');
         }
 
-        let fragmentBuilders: {}[] = [];
+        let fragmentBuilders: (RouterParameterPack | string)[] = [];
         for (let i = 0; i < strings.length; i++) {
             const fragments = strings[i]
                 .substr(i === 0 ? 1 : 0)
@@ -277,8 +277,8 @@ class RouterPatternImpl implements RouterPatternBase {
         processPatternArray(this.fragments);
     }
 
-    public createDefaultValue(): {} {
-        const value = {};
+    public createDefaultValue(): RouterParameterPack {
+        const value: RouterParameterPack = {};
         for (const fragment of this.fragments) {
             switch (fragment.kind) {
                 case RouterFragmentKind.Free:
@@ -299,7 +299,7 @@ class RouterPatternImpl implements RouterPatternBase {
         return value;
     }
 
-    public walk(text: string, fragment: RouterFragment, value: {}): boolean {
+    public walk(text: string, fragment: RouterFragment, value: RouterParameterPack): boolean {
         switch (fragment.kind) {
             case RouterFragmentKind.Text:
                 return fragment.text === text;
@@ -365,8 +365,8 @@ class RouterPatternImpl implements RouterPatternBase {
     }
 }
 
-export function route(strings: TemplateStringsArray): RouterPattern<{}>;
-export function route<T extends {}>(strings: TemplateStringsArray, ...parameters: T[]): RouterPattern<MergeParameters<T>>;
-export function route(strings: TemplateStringsArray, ...parameters: {}[]): RouterPatternBase {
+export function route(strings: TemplateStringsArray): RouterPattern<RouterParameterPack>;
+export function route<T extends RouterParameterPack>(strings: TemplateStringsArray, ...parameters: T[]): RouterPattern<MergeParameters<T>>;
+export function route(strings: TemplateStringsArray, ...parameters: RouterParameterPack[]): RouterPatternBase {
     return new RouterPatternImpl(strings, parameters);
 }

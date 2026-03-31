@@ -2,7 +2,7 @@ import { html, render } from 'lit-html';
 
 export const viewExport = {
     renderView(model: {}, target: HTMLElement): void {
-        const hrefPrefix = <string>window['MVC-Resources.hrefPrefix'];
+        const hrefPrefix = <string>(<Record<string, unknown>><unknown>window)['MVC-Resources.hrefPrefix'];
         const htmlTemplate = html`
 <table class="RootTable">
     <tr>

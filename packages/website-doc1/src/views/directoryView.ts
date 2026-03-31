@@ -37,8 +37,8 @@ function renderDirectory(dinfo: DirectoryInfo, hrefPrefix: string, dnodes: Direc
 
 export const viewExport = {
     renderView(model: {}, target: HTMLElement): void {
-        const dinfo = <DirectoryInfo>window['MVC-Resources.directoryInfo'];
-        const hrefPrefix = <string>window['MVC-Resources.hrefPrefix'];
+        const dinfo = <DirectoryInfo>(<Record<string, unknown>><unknown>window)['MVC-Resources.directoryInfo'];
+        const hrefPrefix = <string>(<Record<string, unknown>><unknown>window)['MVC-Resources.hrefPrefix'];
         const htmlTemplate = html`
 <table class="DirectoryTable">
     <tr>

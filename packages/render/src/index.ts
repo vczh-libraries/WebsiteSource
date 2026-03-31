@@ -89,7 +89,7 @@ export interface EmbeddedResources {
 
 export function generateHtml(htmlInfo: HtmlInfo, views: ViewMetadata[], viewName: string, mvcModel: {}, extraHeadHtml: string, embeddedResources: EmbeddedResources): string {
     const [viewMap, mvcViews] = checkViews(views, viewName);
-    const resources = { mvcModel, mvcViews, ...embeddedResources };
+    const resources: Record<string, unknown> = { mvcModel, mvcViews, ...embeddedResources };
 
     let info: HtmlInfo = mergeHtmlInfo(
         {

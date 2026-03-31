@@ -99,7 +99,7 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
     if (docArticle.basetypes !== undefined) {
         const items: a.ContentListItem[] = docArticle.basetypes
             .map(dsc)
-            .filter(Boolean)
+            .filter((x): x is a.PageLink => Boolean(x))
             .map((pageLink: a.PageLink) => ({
                 kind: 'ContentListItem',
                 content: [pageLink]
@@ -123,7 +123,7 @@ export function renderDocArticle(docArticle: d.DocArticle, title: string, dsc: D
     if (docArticle.seealsos !== undefined) {
         const items: a.ContentListItem[] = docArticle.seealsos
             .map(dsc)
-            .filter(Boolean)
+            .filter((x): x is a.PageLink => Boolean(x))
             .map((pageLink: a.PageLink) => ({
                 kind: 'ContentListItem',
                 content: [pageLink]

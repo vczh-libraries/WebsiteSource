@@ -2,7 +2,10 @@ export type RouterParameterTypes =
     | string
     | number
     | boolean
+    | string[]
     ;
+
+export type RouterParameterPack = Record<string, RouterParameterTypes>;
 
 export type HttpMethods =
     | 'GET'
@@ -75,11 +78,11 @@ export type RouterFragment =
 
 export interface RouterPatternBase {
     readonly fragments: RouterFragment[];
-    createDefaultValue(): {};
-    walk(text: string, fragment: RouterFragment, value: {}): boolean;
+    createDefaultValue(): RouterParameterPack;
+    walk(text: string, fragment: RouterFragment, value: RouterParameterPack): boolean;
 }
 
-export interface RouterPattern<T extends {}> extends RouterPatternBase {
+export interface RouterPattern<T extends RouterParameterPack> extends RouterPatternBase {
     createDefaultValue(): T;
     walk(text: string, fragment: RouterFragment, value: T): boolean;
 }
@@ -89,6 +92,6 @@ export type RouterCallback<TModel, TResult> = (method: HttpMethods, model: TMode
 export interface Router<TResult> {
     readonly registered: readonly RouterPatternBase[];
     readonly pathPrefix: string;
-    register<TModel extends {}>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void;
+    register<TModel extends RouterParameterPack>(methods: HttpMethods[], pattern: RouterPattern<TModel>, callback: RouterCallback<TModel, TResult>): void;
     match(method: HttpMethods, query: string): TResult | undefined;
 }

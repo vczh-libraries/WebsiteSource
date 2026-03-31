@@ -106,8 +106,8 @@ function sortTypeTdNs(rts: RegisteredType[]): TypeTdNs[] {
 
 export const viewExport = {
     renderView(model: {}, target: HTMLElement): void {
-        const projectName = <RegisteredTypesInfo>window['MVC-Resources.projectName'];
-        const info = <RegisteredTypesInfo>window['MVC-Resources.registeredTypesInfo'];
+        const projectName = <RegisteredTypesInfo>(<Record<string, unknown>><unknown>window)['MVC-Resources.projectName'];
+        const info = <RegisteredTypesInfo>(<Record<string, unknown>><unknown>window)['MVC-Resources.registeredTypesInfo'];
         const tdnss = sortTypeTdNs(info.types);
 
         let nameLength = 0;

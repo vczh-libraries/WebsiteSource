@@ -16,7 +16,7 @@ export interface FeatureList {
 
 export const viewExport = {
     renderView(model: {}, target: HTMLElement): void {
-        const featureList = <FeatureList>window['MVC-Resources.featureList'];
+        const featureList = <FeatureList>(<Record<string, unknown>><unknown>window)['MVC-Resources.featureList'];
 
         const htmlTemplate = html`
 <table class="FeatureTable">${
