@@ -1,0 +1,213 @@
+<article>
+    <topic>
+        <title>Registration Macros and Attributes</title>
+        <p>
+            VlppReflection registers C++ types by executing type loader code.
+            The source comment above <b>Description&lt;T&gt;</b> in VlppReflection contains the complete macro walkthrough;
+            this page summarizes the registration workflow and documents the attribute macros used to attach metadata to registered types, members and parameters.
+            These attributes are VlppReflection metadata, not C++ language attributes.
+        </p>
+        <p>
+            Type registration code is compiled only when <b>VCZH_DEBUG_NO_REFLECTION</b> is not defined.
+            Code that declares reflectable classes still needs to compile without runtime reflection, but member registration and attributes are part of the reflection build.
+        </p>
+
+        <topic>
+            <title>Registration Workflow</title>
+            <p>
+                A registration unit usually follows this shape:
+            </p>
+            <p>
+                <ol>
+                    <li>Define one typelist macro that enumerates fully qualified C++ types.</li>
+                    <li>In headers, expand the typelist with <b>DECL_TYPE_INFO</b>.</li>
+                    <li>In one C++ file, expand the typelist with <b>IMPL_CPP_TYPE_INFO</b> or <b>IMPL_TYPE_INFO_RENAME</b>.</li>
+                    <li>Register enum items, struct fields, class members or interface members.</li>
+                    <li>Create an <b>ITypeLoader</b> and call <b>ADD_TYPE_INFO</b> for every type in the typelist.</li>
+                    <li>Install the loader through <b>GetGlobalTypeManager()-&gt;AddTypeLoader</b> before reading reflected metadata.</li>
+                </ol>
+            </p>
+            <p>
+                Member registration macros often need a temporary comma macro because parameter name lists are written inside macro arguments:
+            </p>
+            <p>
+                <program language="C++"><code><![CDATA[
+#define MY_TYPELIST(F)\
+    F(demo::DisplayNameAttribute)\
+    F(demo::SampleClass)
+
+MY_TYPELIST(DECL_TYPE_INFO)
+
+// In one C++ file:
+MY_TYPELIST(IMPL_CPP_TYPE_INFO)
+
+#define _ ,
+
+BEGIN_STRUCT_MEMBER(demo::DisplayNameAttribute)
+    STRUCT_MEMBER(text)
+END_STRUCT_MEMBER(demo::DisplayNameAttribute)
+
+BEGIN_CLASS_MEMBER(demo::SampleClass)
+    CLASS_MEMBER_CONSTRUCTOR(Ptr<demo::SampleClass>(), NO_PARAMETER)
+    ATTRIBUTE_TYPE(demo::DisplayNameAttribute, L"Sample")
+
+    CLASS_MEMBER_METHOD(Rename, { L"value" })
+    ATTRIBUTE_MEMBER(demo::DisplayNameAttribute, L"Renaming")
+    ATTRIBUTE_PARAMETER(L"value", demo::DisplayNameAttribute, L"New name")
+END_CLASS_MEMBER(demo::SampleClass)
+
+#undef _
+
+class DemoTypeLoader : public Object, public ITypeLoader
+{
+public:
+    void Load(ITypeManager* manager) override
+    {
+        MY_TYPELIST(ADD_TYPE_INFO)
+    }
+
+    void Unload(ITypeManager* manager) override
+    {
+    }
+};
+            ]]></code></program>
+            </p>
+            <p>
+                The big source comment above <b>Description&lt;T&gt;</b> also lists these registration macro families:
+            </p>
+            <p>
+                <ul>
+                    <li>Enums: <b>BEGIN_ENUM_ITEM</b>, <b>BEGIN_ENUM_ITEM_MERGABLE</b>, <b>ENUM_ITEM</b>, <b>ENUM_CLASS_ITEM</b>, <b>END_ENUM_ITEM</b>.</li>
+                    <li>Structs: <b>BEGIN_STRUCT_MEMBER</b>, <b>STRUCT_MEMBER</b>, <b>END_STRUCT_MEMBER</b>.</li>
+                    <li>Classes: <b>BEGIN_CLASS_MEMBER</b>, <b>CLASS_MEMBER_BASE</b>, <b>CLASS_MEMBER_FIELD</b>, <b>CLASS_MEMBER_CONSTRUCTOR</b>, <b>CLASS_MEMBER_EXTERNALCTOR(_TEMPLATE)?</b>, <b>CLASS_MEMBER_METHOD(_OVERLOAD)?_RENAME</b>, <b>CLASS_MEMBER_(STATIC_)?METHOD(_OVERLOAD)?</b>, <b>CLASS_MEMBER_(STATIC_)?EXTERNALMETHOD(_TEMPLATE)?</b>, <b>CLASS_MEMBER_PROPERTY(_EVENT)?(_READONLY)?(_FAST)?</b>, <b>CLASS_MEMBER_PROPERTY_REFERENCETEMPLATE</b>, <b>CLASS_MEMBER_EVENT</b>, <b>END_CLASS_MEMBER</b>.</li>
+                    <li>Interfaces: <b>BEGIN_INTERFACE_PROXY_NOPARENT_RAWPTR</b>, <b>BEGIN_INTERFACE_PROXY_RAWPTR</b>, <b>BEGIN_INTERFACE_PROXY_NOPARENT_SHAREDPTR</b>, <b>BEGIN_INTERFACE_PROXY_SHAREDPTR</b>, <b>END_INTERFACE_PROXY</b>, <b>BEGIN_INTERFACE_MEMBER</b>, <b>BEGIN_INTERFACE_MEMBER_NOPROXY</b>, <b>END_INTERFACE_MEMBER</b>.</li>
+                </ul>
+            </p>
+            <p>
+                A reflectable interface must directly or indirectly inherit <b>IDescriptable</b>.
+                If Workflow script classes should be able to implement the interface, register a proxy and use a constructor that accepts <b>Ptr&lt;IValueInterfaceProxy&gt;</b>.
+                Use <b>BEGIN_INTERFACE_MEMBER_NOPROXY</b> only when script implementation is not required.
+            </p>
+        </topic>
+
+        <topic>
+            <title>Attribute Macros</title>
+            <p>
+                Attribute macros create <b>IAttributeInfo</b> objects and store them in an <b>IAttributeBag</b>.
+                <b>ITypeDescriptor</b>, <b>IMemberInfo</b> and <b>IParameterInfo</b> expose attributes through <b>GetAttributeCount</b> and <b>GetAttribute</b>.
+                Each attribute records its reflected struct type and the boxed values passed to the macro.
+            </p>
+            <p>
+                The attribute type must satisfy these rules:
+            </p>
+            <p>
+                <ul>
+                    <li>The type must be registered in reflection.</li>
+                    <li>The registered type descriptor must be a struct, not a class or interface.</li>
+                    <li><b>TYPE{ARG1, ...}</b> must compile for the arguments passed to the macro.</li>
+                    <li>Each argument should be <b>ITypeDescriptor*</b> or a reflected serializable value type, so metadata logging and generated metadata can write it back.</li>
+                    <li>Zero arguments are allowed for marker attributes.</li>
+                </ul>
+            </p>
+            <p>
+                Use these macros inside a type member registration block:
+            </p>
+            <p>
+                <ul>
+                    <li><b>ATTRIBUTE_TYPE(TYPE, ...)</b>: attaches the attribute to the current type descriptor.</li>
+                    <li><b>ATTRIBUTE_MEMBER(TYPE, ...)</b>: attaches the attribute to the most recently registered field, property, event, method or constructor. Put it immediately after the member macro it decorates.</li>
+                    <li><b>ATTRIBUTE_PARAMETER(L"name", TYPE, ...)</b>: attaches the attribute to a named parameter of the most recently registered method or constructor. The parameter name must match exactly one parameter.</li>
+                </ul>
+            </p>
+        </topic>
+
+        <topic>
+            <title>Adding a Custom Attribute</title>
+            <p>
+                A custom attribute is just a reflected struct that is later attached by one of the attribute macros.
+                Keep it small and data-only.
+                The field order is the argument order seen by <b>TYPE{ARG1, ...}</b>.
+            </p>
+            <p>
+                <program language="C++"><code><![CDATA[
+namespace demo
+{
+    struct DisplayNameAttribute
+    {
+        WString text;
+        auto operator<=>(const DisplayNameAttribute&) const = default;
+    };
+}
+
+#define DEMO_TYPES(F)\
+    F(demo::DisplayNameAttribute)\
+    F(demo::SampleClass)
+
+DEMO_TYPES(DECL_TYPE_INFO)
+
+DEMO_TYPES(IMPL_CPP_TYPE_INFO)
+
+#define _ ,
+
+BEGIN_STRUCT_MEMBER(demo::DisplayNameAttribute)
+    STRUCT_MEMBER(text)
+END_STRUCT_MEMBER(demo::DisplayNameAttribute)
+
+BEGIN_CLASS_MEMBER(demo::SampleClass)
+    ATTRIBUTE_TYPE(demo::DisplayNameAttribute, L"Visible sample")
+
+    CLASS_MEMBER_METHOD(Rename, { L"value" })
+    ATTRIBUTE_MEMBER(demo::DisplayNameAttribute, L"Rename method")
+    ATTRIBUTE_PARAMETER(L"value", demo::DisplayNameAttribute, L"Target name")
+END_CLASS_MEMBER(demo::SampleClass)
+
+#undef _
+            ]]></code></program>
+            </p>
+            <p>
+                To read attributes, iterate the <b>IAttributeBag</b>, check <b>IAttributeInfo::GetAttributeType</b>,
+                then read each argument through <b>GetAttributeValueType</b> and <b>GetAttributeValue</b>.
+                If an attribute argument is a type reference, the value type is <b>ITypeDescriptor</b> and the boxed value stores an <b>ITypeDescriptor*</b>.
+            </p>
+            <p>
+                Workflow source attributes use the syntax <b>@category:Name</b>.
+                The Workflow analyzer resolves this to <b>system::workflow_attributes::att_category_Name</b>.
+                The resolved type must be a reflected struct with zero fields or one field.
+                A one-field Workflow attribute takes one argument, and Workflow C++ generation currently emits only string values and <b>ITypeDescriptor*</b> values for attributes.
+            </p>
+        </topic>
+
+        <topic>
+            <title>Existing Production Attributes</title>
+            <p>
+                A scan of the sibling source repositories found production attribute declarations only in the Workflow repo.
+                Test attributes in VlppReflection tests are intentionally excluded.
+                GacUI and generated sources use Workflow attributes, but they do not declare additional production attribute structs.
+            </p>
+            <p>
+                All existing production attributes live in C++ namespace <b>vl::__vwsn</b> and are reflected under <b>system::workflow_attributes</b>.
+            </p>
+            <p>
+                <ul>
+                    <li><b>att_cpp_File</b> / <b>system::workflow_attributes::att_cpp_File</b>: one <b>WString argument</b>. Workflow <b>@cpp:File("YourFile")</b> controls the generated C++ file pair for a class.</li>
+                    <li><b>att_cpp_UserImpl</b> / <b>system::workflow_attributes::att_cpp_UserImpl</b>: marker. Workflow <b>@cpp:UserImpl</b> leaves a generated constructor, destructor or function body for user code merging.</li>
+                    <li><b>att_cpp_Private</b> / <b>system::workflow_attributes::att_cpp_Private</b>: marker. Workflow <b>@cpp:Private</b> emits the decorated generated C++ class member in a private section.</li>
+                    <li><b>att_cpp_Protected</b> / <b>system::workflow_attributes::att_cpp_Protected</b>: marker. Workflow <b>@cpp:Protected</b> emits the decorated generated C++ class member in a protected section.</li>
+                    <li><b>att_cpp_Friend</b> / <b>system::workflow_attributes::att_cpp_Friend</b>: one <b>ITypeDescriptor* argument</b>. Workflow <b>@cpp:Friend(typeof(YourType))</b> emits a C++ friend declaration.</li>
+                    <li><b>att_rpc_Interface</b> / <b>system::workflow_attributes::att_rpc_Interface</b>: marker used by Workflow RPC validation to identify RPC interfaces.</li>
+                    <li><b>att_rpc_Ctor</b> / <b>system::workflow_attributes::att_rpc_Ctor</b>: marker used by Workflow RPC generation for constructor metadata.</li>
+                    <li><b>att_rpc_Byval</b> / <b>system::workflow_attributes::att_rpc_Byval</b>: marker used by Workflow RPC generation for by-value transport decisions.</li>
+                    <li><b>att_rpc_Byref</b> / <b>system::workflow_attributes::att_rpc_Byref</b>: marker used by Workflow RPC generation for by-reference transport decisions.</li>
+                    <li><b>att_rpc_Cached</b> / <b>system::workflow_attributes::att_rpc_Cached</b>: marker used by Workflow RPC generation for cached by-reference behavior.</li>
+                    <li><b>att_rpc_Dynamic</b> / <b>system::workflow_attributes::att_rpc_Dynamic</b>: marker used by Workflow RPC generation for dynamic RPC behavior.</li>
+                    <li><b>att_rpc_IdString</b> / <b>system::workflow_attributes::att_rpc_IdString</b>: one <b>WString argument</b>. Workflow RPC metadata uses it for stable string ids.</li>
+                    <li><b>att_rpc_IdNumber</b> / <b>system::workflow_attributes::att_rpc_IdNumber</b>: one <b>vint argument</b>. Workflow RPC metadata uses it for stable numeric ids.</li>
+                </ul>
+            </p>
+            <p>
+                The C++ code generation attributes affect generated C++ layout only.
+                For example, <b>@cpp:Private</b> and <b>@cpp:Protected</b> do not change Workflow visibility rules.
+            </p>
+        </topic>
+    </topic>
+</article>

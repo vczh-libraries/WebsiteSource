@@ -60,6 +60,9 @@
                 A reflectable C++ class must inherit from <b>Description&lt;T&gt;</b> or <b>AggregatableDescription&lt;T&gt;</b>.
                 To make a class member reflectable, types that are used in that member should also be reflectable.
             </p>
+            <p>
+                Type registration macros, member registration macros and custom attributes are described in <a href="/vlppreflection/registration-macros.html">Registration Macros and Attributes</a>.
+            </p>
         </topic>
         <topic>
             <title>Functors</title>
