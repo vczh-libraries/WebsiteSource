@@ -10,7 +10,7 @@
         <p>
             The standard C++ path is small:
             <ul>
-                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over a raw transport such as NamedPipeServer or HttpServer.</li>
+                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolXXX implementation such as NamedPipeServer or HttpServer.</li>
                 <li>Connect the core to that server with GuiRemoteProtocolLocalChannelClient.</li>
                 <li>Wrap the core channel with GuiRemoteProtocolJsonChannelRenderer_Async and GuiRemoteProtocolCoreChannel.</li>
                 <li>Pass the protocol, usually after GuiRemoteProtocolFilter and GuiRemoteProtocolDomDiffConverter, to SetupRemoteNativeController.</li>
@@ -102,7 +102,7 @@ void StartNamedPipeRemoteCore()
             If the UI throws while the remote server is alive,
             send the error through IJsonLocalChannelServer::BroadcastError so the renderer stops instead of waiting for more packages.
             A production server can also reject clients that do not offer GacUIRemoteProtocolChannelName,
-            disconnect old renderers, or call GuiRemoteProtocolCoreChannel::DetachRenderer when replacing a renderer.
+            disconnect previous renderers, or call GuiRemoteProtocolCoreChannel::DetachRenderer when replacing a renderer.
         </p>
         <p>
             See <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Core">RemotingTest_Core</a>

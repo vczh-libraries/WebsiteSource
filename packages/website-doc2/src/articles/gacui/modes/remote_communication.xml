@@ -2,7 +2,7 @@
     <topic>
         <title>Remote Protocol Channel Layer</title>
         <p>
-            GacUI remote protocol channeling uses vl::inter_process channel and raw transport constructions underneath.
+            GacUI remote protocol channeling uses the vl::inter_process channel bridge and INetworkProtocolXXX transport interfaces underneath.
             The GacUI layer remains a rendering protocol between a headless core and a renderer.
         </p>
         <p>
@@ -11,7 +11,7 @@
                 <li>IGuiRemoteProtocol and IGuiRemoteEventProcessor: the strongly typed GacUI remote protocol.</li>
                 <li>GuiRemoteProtocolCoreChannel and GuiRemoteProtocolRendererChannel: conversion between the strongly typed protocol and JSON channel packages.</li>
                 <li>GuiRemoteProtocolNetworkChannelServer, GuiRemoteProtocolLocalChannelClient and GuiRemoteProtocolChannelClient: the vl::inter_process JSON channel bridge.</li>
-                <li>NamedPipeServer, NamedPipeClient, HttpServer, HttpClient, or a custom raw transport: the underlying connection implementation.</li>
+                <li>NamedPipeServer, NamedPipeClient, HttpServer, HttpClient, or a custom INetworkProtocolXXX implementation: the underlying data-transmission implementation.</li>
             </ul>
         </p>
         <p>
@@ -35,16 +35,15 @@
         <topic>
             <title>What User Code Owns</title>
             <p>
-                The new design removes the old custom string-channel work from normal applications.
-                A C++ application does not implement IGuiRemoteProtocolChannel&lt;WString&gt;,
-                does not call the old string serializer/deserializer classes,
-                and does not route individual remote protocol messages.
+                A normal C++ application configures the remote protocol channel at startup.
+                After GuiRemoteProtocolCoreChannel and GuiRemoteProtocolRendererChannel are connected,
+                the library routes individual remote protocol messages between the strongly typed protocol and JSON channel packages.
             </p>
             <p>
                 User code usually owns only:
                 <ul>
-                    <li>A small server policy around GuiRemoteProtocolNetworkChannelServer, if the core needs to wait for a renderer, reject invalid clients, or replace an old renderer.</li>
-                    <li>A raw transport choice, such as named pipe or HTTP.</li>
+                    <li>A small server policy around GuiRemoteProtocolNetworkChannelServer, if the core needs to wait for a renderer, reject invalid clients, or replace a previous renderer.</li>
+                    <li>An underlying data-transmission implementation, represented by INetworkProtocolServer, INetworkProtocolClient and INetworkProtocolConnection.</li>
                     <li>Optional renderer-side error handling by overriding GuiRemoteProtocolChannelClient::OnReadError, OnLocalError or OnDisconnected.</li>
                 </ul>
             </p>
@@ -57,13 +56,13 @@
         <topic>
             <title>Adding a Transport</title>
             <p>
-                Add a new underlying implementation below GacUI, at the vl::inter_process raw protocol layer.
-                Implement INetworkProtocolConnection, INetworkProtocolClient and INetworkProtocolServer
-                so they exchange asynchronous WString messages.
+                Add a new underlying data-transmission implementation below GacUI by implementing the vl::inter_process INetworkProtocolXXX interfaces.
+                The names say network protocol, but the contract is only asynchronous WString message exchange.
+                The implementation can be a pipe, socket, stdio stream, shared memory, DLL function calls, or any other mechanism that can satisfy INetworkProtocolConnection, INetworkProtocolClient and INetworkProtocolServer.
                 Then reuse the GacUI JSON channel classes.
             </p>
             <p>
-                The core side selects the transport server as the template argument:
+                The core side selects the INetworkProtocolServer implementation as the template argument:
                 <program language="c++"><code><![CDATA[
 using MyRemoteCoreServer =
     GuiRemoteProtocolNetworkChannelServer<MyNetworkProtocolServer>;
@@ -77,7 +76,7 @@ server.ConnectLocalClient(coreClient);
                 ]]></code></program>
             </p>
             <p>
-                The renderer side wraps a raw transport client:
+                The renderer side wraps an INetworkProtocolClient object:
                 <program language="c++"><code><![CDATA[
 auto jsonParser = Ptr(new glr::json::Parser);
 auto networkClient = Ptr(new MyNetworkProtocolClient(/* connection arguments */));
@@ -90,9 +89,9 @@ channelClient.WaitForServer();
                 The same channel setup shown in
                 <a href="/gacui/modes/remote_core.html">Remote Protocol Core Application</a> and
                 <a href="/gacui/modes/remote_client.html">Remote Protocol Client Application</a>
-                works after the raw transport is connected.
+                works after the transport object is connected.
                 See <a href="/vlppos/using-inter-process.html">Using Inter-Process Channels</a>
-                for the raw protocol and channel interface contracts.
+                for the INetworkProtocolXXX and channel interface contracts.
             </p>
         </topic>
     </topic>

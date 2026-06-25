@@ -36,7 +36,7 @@
             A C++ core application usually starts a <b>GuiRemoteProtocolNetworkChannelServer</b>,
             connects itself through <b>GuiRemoteProtocolLocalChannelClient</b>,
             and waits for a renderer connected through <b>GuiRemoteProtocolChannelClient</b>.
-            The raw transport is still selected by the application.
+            The underlying data-transmission implementation is still selected by the application.
             Current Windows examples use:
             <ul>
                 <li><b>vl::inter_process::NamedPipeServer</b> and <b>vl::inter_process::NamedPipeClient</b>.</li>
@@ -44,7 +44,9 @@
             </ul>
         </p>
         <p>
-            A different transport should be added below the <b>vl::inter_process</b> network protocol interfaces,
+            A different data-transmission implementation should be added by implementing the <b>vl::inter_process</b> <b>INetworkProtocolXXX</b> interfaces.
+            They are named network protocol interfaces, but the implementation does not have to be a network protocol;
+            stdio, DLL function calls, shared memory, sockets or any other message transport can fit this layer.
             so the GacUI JSON channel classes can stay unchanged.
             This part will be covered in <a href="/gacui/modes/remote_communication.html">Remote Protocol Channel Layer</a>.
         </p>

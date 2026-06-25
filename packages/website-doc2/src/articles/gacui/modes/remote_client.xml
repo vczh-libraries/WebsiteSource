@@ -9,7 +9,7 @@
         </p>
         <p>
             The renderer side does not implement a string channel anymore.
-            It only chooses a raw vl::inter_process client,
+            It only chooses a vl::inter_process transport client,
             creates a GuiRemoteProtocolChannelClient,
             and bridges that JSON channel to GuiRemoteRendererSingle.
         </p>

@@ -112,20 +112,20 @@
                 </p>
                 <p>
                     GacUI offers a JSON remote protocol channel on top of <b>vl::inter_process</b>.
-                    The application chooses the raw transport, such as the Windows named pipe or HTTP implementations from <b>VlppOS</b>,
+                    The application chooses the underlying data-transmission implementation, such as the Windows named pipe or HTTP implementations from <b>VlppOS</b>,
                     and the channel layer translates between that transport and the strongly typed remote protocol.
                 </p>
                 <p>
                     <ul>
                         <li>
-                            <b>Remote Protocol (core)</b>: Apply <b>hosted mode</b> to it, making GacUI running in a virtual environment, communicating with a renderer through the selected <b>vl::inter_process</b> transport.
+                            <b>Remote Protocol (core)</b>: Apply <b>hosted mode</b> to it, making GacUI running in a virtual environment, communicating with a renderer through the selected <b>vl::inter_process</b> channel transport.
                             <ul>
                                 <li>SetupRemoteNativeController(IGuiRemoteProtocol*);</li>
                                 <li>GuiRemoteProtocolCoreChannel;</li>
                             </ul>
                         </li>
                         <li>
-                            <b>Remote Protocol (renderer)</b>: Apply to any native implementation, communicating with <b>Remote Protocol (core)</b> through the selected <b>vl::inter_process</b> transport.
+                            <b>Remote Protocol (renderer)</b>: Apply to any native implementation, communicating with <b>Remote Protocol (core)</b> through the selected <b>vl::inter_process</b> channel transport.
                             <ul>
                                 <li>SetupRawWindowsDirect2DRenderer();</li>
                                 <li>SetupRawWindowsGDIRenderer();</li>
@@ -138,7 +138,7 @@
                 <p><img src="/Platform_3.png"/></p>
             </topic>
             <topic>
-                <title>Remote Protocols (with channel transports)</title>
+                <title>Remote Protocols (with custom transports)</title>
                 <p>
                     Current examples of the JSON remote protocol channel using <b>vl::inter_process</b>.
                 </p>
