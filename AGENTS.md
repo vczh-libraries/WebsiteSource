@@ -34,10 +34,10 @@ yarn build
 
 ## Debugging
 
-The side is splitted into 2 part: `website` and `website-doc2`.
+The site is split into 2 parts: `website` and `website-doc2`.
 Run `npm run start` in `website` hosts the main site.
 Run `npm run start` in `website-doc2` hosts the document part of the site.
-The above commands starts an interactive CLI application, running an HTTP service.
+The above commands start an interactive CLI application, running an HTTP service.
 The website content is interpreted and rendered at browser side.
 The HTTP service only hosts metadata, scripts and skeleton HTML files.
 `playwright` is required to actually read the content.
@@ -47,12 +47,16 @@ They are not required to run at the same time if you don't need both.
 
 ## Publishing
 
-Run `npm run download` in `website` makes `packages/website/lib/website`
-Run `npm run download` in `website-doc2` makes `packages/website-doc2/lib/website`
-Run `npm run markdown` in `website-doc2` makes `packages/website-doc2/lib/markdown`
+Run all paths below from the `WebsiteSource` repo root unless a step says to work in another repo.
 
-These commands download the whole website to the dist, making it a static website to be able to hosted by github io.
-It also converted the latest GacUI document to markdown files so that they can be shipped in source repos.
+Run these commands one after another because the download commands both bind port 8080:
+- Run `npm run download` in `website` makes `packages/website/lib/website`
+- Run `npm run download` in `website-doc2` makes `packages/website-doc2/lib/website`
+- Run `npm run markdown` in `website-doc2` makes `packages/website-doc2/lib/markdown`
+
+These commands download the whole website to the dist, making it a static website that can be hosted by github io.
+They also convert the latest GacUI document to markdown files so that they can be shipped in source repos.
+Publishing output should be stable. If a no-op website publish shows only `\n` to `\r\n` changes inside generated HTML JSON strings in `../vczh-libraries.github.io`, do not commit it; restore those files or regenerate from a checkout with matching line-ending settings.
 After executing these commands, the following things must be done in the declaration order.
 
 ### 1. Publish Website
@@ -60,11 +64,11 @@ After executing these commands, the following things must be done in the declara
 This step requires these repos to exist as sibling folders:
 - vczh-libraries.github.io
 
-Copy `packages/website/lib/website` to `./vczh-libraries.github.io` and override all existing files.
-Delete `./vczh-libraries.github.io/doc/current` folder completely.
-Copy all files from `packages/website-doc2/lib/website` to `./vczh-libraries.github.io/doc/current` recursively.
+Copy all files from `packages/website/lib/website` to `../vczh-libraries.github.io` recursively and override all existing files.
+Delete `../vczh-libraries.github.io/doc/current` folder completely.
+Copy all files from `packages/website-doc2/lib/website/doc/current` to `../vczh-libraries.github.io/doc/current` recursively.
 
-Commit and push all local changes in `vczh-libraries.github.io` to its `master` branch.
+Commit and push all local changes in `../vczh-libraries.github.io` to its `master` branch.
 Wait for the CI to run, the repo URL is `https://github.com/vczh-libraries/vczh-libraries.github.io`.
 Open `https://vczh-libraries.github.io/` and make sure it has the latest content.
 
@@ -83,17 +87,17 @@ This step requires these repos to exist as sibling folders:
 
 #### Step 1.
 
-Execute `./Tools/Jobs/job.monorepo.copilotInitAll.prompt.md` first.
+Follow the prompt in `../Tools/Jobs/job.monorepo.copilotInitAll.prompt.md` first.
 
 #### Step 2.
 
-Delete `./Tools/Copilot/KnowledgeBase/manual` completely.
-Copy all files from `packages/website-doc2/lib/markdown/manual` to `./Tools/Copilot/KnowledgeBase/manual`.
-Replace `# Copy of Online Manual` in `./Tools/Copilot/KnowledgeBase/Index.md` with `packages/website-doc2/lib/markdown/index.md` (this file has the title too).
+Delete `../Tools/Copilot/KnowledgeBase/manual` completely.
+Copy all files from `packages/website-doc2/lib/markdown/manual` to `../Tools/Copilot/KnowledgeBase/manual`.
+Replace the whole `# Copy of Online Manual` section in `../Tools/Copilot/KnowledgeBase/Index.md` with `packages/website-doc2/lib/markdown/index.md` (this file has the title too). This section is the final section of the file, so replace from that heading to the end of the file.
 
 #### Step 3.
 
-Execute `./Tools/Jobs/job.monorepo.copilotInitAll.prompt.md` again but skip learning.
+Follow the prompt in `../Tools/Jobs/job.monorepo.copilotInitAll.prompt.md` again but skip learning.
 
 #### Step 4.
 
