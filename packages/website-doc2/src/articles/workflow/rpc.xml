@@ -158,6 +158,9 @@ func clientMain(lc : IRpcLifecycle*) : string
 			<p>
 				RpcJsonDispatcherClient receives JSON packages from a channel, waits for the server handshake, connects to local servers when needed, and exposes its RPC lifecycle and dispatcher. RpcJsonDispatcherServer receives JSON packages from clients, registers and disconnects clients, broadcasts service declarations, and forwards RPC requests. Both classes require a concrete ScheduleTask policy; the task-queue variants provide the standard implementation.
 			</p>
+			<p>
+				See <a href="/workflow/rpc/json-channel.html">JSON RPC Channel Setup</a> for the IRpcJsonMessageDispatcher transport contract and concrete vl::inter_process setup code.
+			</p>
 		</topic>
 	</topic>
 </article>
