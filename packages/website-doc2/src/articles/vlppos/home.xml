@@ -74,6 +74,18 @@
             </p>
         </topic>
         <topic>
+            <title>Inter-process communication</title>
+            <p>In namespace <b>::vl::inter_process</b>,</p>
+            <p>
+                <ul>
+                    <li><b>IChannelServer&lt;T&gt;</b>, <b>IChannelClient&lt;T&gt;</b>, <b>IChannel&lt;T&gt;</b> and <b>IChannelReader&lt;T&gt;</b> for typed named package delivery between connected participants.</li>
+                    <li><b>INetworkProtocolServer</b>, <b>INetworkProtocolClient</b>, <b>INetworkProtocolConnection</b> and <b>INetworkProtocolCallback</b> for implementing a new underlying raw transport.</li>
+                    <li><b>NamedPipeServer</b>, <b>NamedPipeClient</b>, <b>HttpServer</b>, <b>HttpClient</b> and Windows HTTP helper APIs for the current Windows implementations.</li>
+                </ul>
+                See <a href="/vlppos/using-inter-process.html">Using Inter-Process Channels</a> for the layer split and usage rules.
+            </p>
+        </topic>
+        <topic>
             <title>Unit test framework</title>
             <topic>
                 <title>Mocking Locale</title>
