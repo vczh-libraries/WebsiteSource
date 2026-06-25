@@ -160,8 +160,6 @@ When documenting invented templates or parsers, give the grammar shape, allowed 
 
 Library document pages are written for library users, maintainers, and coding agents. Their job is to explain the concepts, syntax, APIs, and rules that help someone use the libraries correctly. They are guidance pages, not textbooks and not generated API references.
 
-Facts of libraries come from source code and test cases in each repo.
-
 Write in English with direct and precise sentences. Prefer stable facts, constraints, and examples over broad claims. Use exact project names, class names, function names, XML tags, attributes, commands, and repository names. Keep paragraphs short, and remove wording that only says something is useful without explaining when or why.
 
 Organize content by project and by user task. A page should have a narrow purpose: what the feature is, when to use it, the required syntax or API surface, important options, common mistakes, and links to related pages or generated reference pages. Keep exhaustive member lists in generated API documents; hand-written pages should connect concepts and point readers to the exact names they need.
@@ -173,3 +171,17 @@ When writing about an invented language, XML template, parser, or routing rule, 
 Examples should be small and purposeful. Prefer one example that demonstrates a rule over many examples that only vary names. If screenshots, samples, or links to the `Release` repo explain behavior better than prose, use the existing `<sample>` support described in `docs/website-doc.md`.
 
 Before publishing, check that links point to real pages and that the page still makes sense after markdown export. The generated markdown is consumed by the `Tools` knowledge base, so avoid browser-only wording when a plain markdown reader would lose important context.
+
+### Adding/Updating a Topic
+
+- Figure out the correct repo and document project to add documents for that topic.
+  - Each document project describes things in the same repo.
+- Check out the source code, test cases and knowledge bases around the topic.
+  - The knowledge base is copied to all sibling source repos so searching could be done inside that repo.
+- Check out how documents are written in that project.
+  - Some document project mentions things like an index.
+  - Some document project offers more details.
+  - There is no hard restriction about how to organize the topic, it could be added to a page, creating or updating multiple pages.
+  - Follow the written style in that document project.
+- Build, test and debug.
+- No publishing is required.
