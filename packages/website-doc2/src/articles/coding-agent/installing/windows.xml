@@ -25,7 +25,7 @@
             If the application uses the tools shipped by Release, build them from the Release repository:
             <ul>
                 <li>Open <name>Tools\Executables\Executables.sln</name> in Visual Studio.</li>
-                <li>Build <name>Release</name> with <name>x86</name>.</li>
+                <li>Build <name>Release</name> with <name>x64</name>.</li>
                 <li>Run <name>Tools\CopyExecutables.ps1</name>.</li>
                 <li>Confirm <name>CodePack.exe</name>, <name>CppMerge.exe</name>, <name>GacGen.exe</name>, and <name>GlrParserGen.exe</name> exist in <name>Release\Tools</name>.</li>
             </ul>
