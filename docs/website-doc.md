@@ -53,11 +53,12 @@ Supported node tags:
 - `<registeredTypes name="..." file="...">`: A registered-types page path.
 - `<unfinished name="..." file="...">`: A placeholder page.
 - `<namespace name="...">`: A namespace directory page. `::` is converted to `_` in the URL path.
-- `<document name="..." docId="..." file="...">`: A generated API document page. A `<document>` without `file` is a directory node.
+- `<document name="...">`: A category-only tree item. It has no URL and no page of its own, and only groups nested reference nodes.
+- `<document name="..." docId="..." file="...">`: A generated API document page.
 - `<control-template ct="..." file="...">`: A generated control-template page.
 - `<link pathPrefix="..." filePrefix="..." file="..."/>`: Includes another reference XML file. `pathPrefix` extends the URL path; `filePrefix` extends the source-file directory.
 
-This nested tree is the category system. Pages are grouped by parent reference nodes, and each category may include more nested templates through `<link>`.
+This nested tree is the category system. Pages are grouped by parent reference nodes, and each category may include more nested templates through `<link>`. Use a `<document name="...">` node without `file` when the left tree needs a collapsible category but clicking the category itself should not open a document page.
 
 ## Page Rendering By Node Kind
 

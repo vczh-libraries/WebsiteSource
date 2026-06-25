@@ -102,6 +102,9 @@
     <article name="Hosted Mode and Remote Protocol" file="gacui/modes/home">
       <link pathPrefix="gacui/modes" filePrefix="" file="gacui/modes/entry.xml"/>
     </article>
+    <document name="Coding Agent Supports">
+      <article name="AutomationService" file="gacui/coding-agent/automation-service"/>
+    </document>
     <article name="Breaking changes from 1.0" file="gacui/upgrade"/>
     <article name="References" file="gacui/ref">
       <!--link pathPrefix="gacui/ref" filePrefix="GACUI/" file="../../../../../Document/Tools/Demos/Gaclib/References/GACUI.xml"/-->

@@ -1,0 +1,180 @@
+<article index="true">
+    <topic>
+        <title>AutomationService</title>
+        <p>
+            AutomationService is the GacUI surface for programmatic inspection and input.
+            It is exposed by <name>INativeAutomationService</name> through <name>GetCurrentController()-&gt;AutomationService()</name>.
+            Coding agents use it to read the current UI structure and send input commands without depending on operating-system UI Automation.
+        </p>
+        <p>
+            The service is independent from the remote protocol.
+            A normal Windows application, a remote protocol core application, and a remote protocol renderer can all expose an automation service,
+            but each setup exposes the view of the UI that exists on that side.
+        </p>
+        <topic>
+            <title>Service Interface</title>
+            <p>
+                <name>INativeAutomationService</name> has one service-level availability flag and three feature groups:
+                <ul>
+                    <li><name>Available</name>: returns false when no automation service exists for the current controller.</li>
+                    <li><name>Stop</name>: turns off all features. Windows implementations also stop the HTTP listener.</li>
+                    <li><name>CanDumpControlTree</name> and <name>DumpControlTree</name>: expose visible GacUI windows, popups, controls and compositions.</li>
+                    <li><name>CanDumpDomTree</name> and <name>DumpDomTree</name>: expose the remote protocol renderer DOM.</li>
+                    <li><name>CanRunIOCommands</name> and <name>RunIOCommand</name>: send a textual IO command to the main window or to a selected native window.</li>
+                </ul>
+            </p>
+            <p>
+                Feature availability is checked separately.
+                A real service returns true from <name>Available</name> even if a specific feature is unsupported.
+                Unsupported features should return false from the corresponding <name>Can...</name> function and return an empty string from the operation.
+            </p>
+        </topic>
+        <topic>
+            <title>Windows HTTP Layer</title>
+            <p>
+                <name>StartWindowsHttpAutomationService</name> creates a localhost HTTP wrapper around the current <name>INativeAutomationService</name>.
+                It is declared in <name>PlatformProviders/Windows/WinNativeWindow.h</name> and implemented by the Windows platform provider.
+                If <name>GetCurrentController()-&gt;AutomationService()-&gt;Available()</name> is false, the function returns without starting a listener.
+            </p>
+            <p>
+                The function takes <name>applicationName</name> as a URL path fragment and <name>port</name> as the localhost port.
+                Given <name>applicationName == L"Automation/MyApp"</name> and <name>port == 8888</name>, the listener prefix is <name>http://localhost:8888/Automation/MyApp/</name>.
+                The service offers exactly these HTTP URLs:
+                <ul>
+                    <li><name>GET http://localhost:8888/Automation/MyApp/Controls</name>: calls <name>DumpControlTree</name> on the UI thread when <name>CanDumpControlTree</name> is true.</li>
+                    <li><name>GET http://localhost:8888/Automation/MyApp/Dom</name>: calls <name>DumpDomTree</name> on the UI thread when <name>CanDumpDomTree</name> is true.</li>
+                    <li><name>POST http://localhost:8888/Automation/MyApp/IO</name>: passes the UTF-8 request body to <name>RunIOCommand</name> with no window id.</li>
+                    <li><name>POST http://localhost:8888/Automation/MyApp/IO/&lt;windowId&gt;</name>: passes the UTF-8 request body to <name>RunIOCommand</name> with the window id path segment.</li>
+                </ul>
+            </p>
+            <p>
+                The window id is a path segment after <name>IO</name>, not a query parameter.
+                All other methods, paths, and malformed <name>IO</name> suffixes return HTTP 404 with a text response.
+                Successful IO command parsing returns <name>Queued</name>; this means the command was accepted and posted to the UI thread, not that every visible effect has already finished.
+                Syntax errors and command errors are returned synchronously as text beginning with <name>!</name>.
+            </p>
+        </topic>
+        <topic>
+            <title>Starting The Service</title>
+            <p>
+                Call <name>StartWindowsHttpAutomationService</name> from <name>GuiMain</name>, after the setup function has installed the current native controller and before entering the application event loop.
+                Call <name>StopWindowsHttpAutomationService</name> during shutdown when the service lifetime is not already stopped through <name>INativeAutomationService::Stop</name>.
+            </p>
+            <p>
+                A normal Windows application can start the service before <name>GetApplication()-&gt;Run</name>:
+                <program language="c++"><code><![CDATA[
+#include "../../../Source/PlatformProviders/Windows/WinNativeWindow.h"
+
+using namespace vl;
+using namespace vl::presentation;
+using namespace vl::presentation::controls;
+
+void GuiMain()
+{
+    demo::MainWindow window;
+    window.ForceCalculateSizeImmediately();
+    window.MoveToScreenCenter();
+
+    windows::StartWindowsHttpAutomationService(
+        WString::Unmanaged(L"Automation/MyApp"),
+        8888);
+    GetApplication()->Run(&window);
+    windows::StopWindowsHttpAutomationService();
+}
+
+int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+    return SetupHostedWindowsDirect2DRenderer();
+}
+                ]]></code></program>
+            </p>
+            <p>
+                Repeated calls do not create multiple listeners.
+                The Windows implementation keeps one process-wide HTTP service until <name>StopWindowsHttpAutomationService</name> or <name>INativeAutomationService::Stop</name> stops it.
+            </p>
+        </topic>
+        <topic>
+            <title>Setup Function Cases</title>
+            <p>
+                The setup function decides which controller and service are active while <name>GuiMain</name> runs.
+                Use the following cases when deciding whether user code must substitute another automation service:
+                <ul>
+                    <li><name>SetupWindowsGDIRenderer</name>: installs <name>WindowsAutomationService</name>. Use <name>StartWindowsHttpAutomationService</name> directly for multi-window control tree and IO. The DOM route is normally unavailable.</li>
+                    <li><name>SetupWindowsDirect2DRenderer</name>: same automation behavior as <name>SetupWindowsGDIRenderer</name>, with the Direct2D renderer.</li>
+                    <li><name>SetupHostedWindowsGDIRenderer</name>: installs <name>WindowsAutomationServiceHosted</name>. Use the HTTP service directly. IO should use <name>/IO</name> without a window id because hosted sub windows and popups are represented under the main window.</li>
+                    <li><name>SetupHostedWindowsDirect2DRenderer</name>: same automation behavior as <name>SetupHostedWindowsGDIRenderer</name>, with the Direct2D renderer.</li>
+                    <li><name>SetupRawWindowsGDIRenderer</name>: installs <name>WindowsAutomationService</name> for the raw native window controller. If the raw process is a remote protocol renderer and owns a <name>GuiRemoteRendererSingle</name>, substitute <name>WindowsAutomationServiceRenderer</name> to expose renderer DOM and renderer-side IO.</li>
+                    <li><name>SetupRawWindowsDirect2DRenderer</name>: same automation behavior as <name>SetupRawWindowsGDIRenderer</name>, with the Direct2D renderer.</li>
+                    <li><name>SetupRemoteNativeController</name>: the remote controller itself does not return an automation service. Substitute <name>RemoteProtocolAutomationService</name> around <name>GetApplication()-&gt;Run</name> when the remote core should expose the hosted control tree and core-side IO.</li>
+                    <li><name>SetupGacGenNativeController</name>: this setup is for generation-time resource processing, not an interactive UI session. It does not provide an automation service for HTTP control.</li>
+                    <li><name>SetupGtkRenderer</name>: do not call the Windows HTTP helper. A Gtk port must provide its own endpoint layer and automation service implementation if it needs coding-agent automation.</li>
+                    <li><name>SetupWGacRenderer</name>: do not call the Windows HTTP helper. A Wayland port must provide its own endpoint layer and automation service implementation if it needs coding-agent automation.</li>
+                    <li><name>SetupWGacHostedRenderer</name>: same requirement as <name>SetupWGacRenderer</name>, but the service should follow hosted-mode window-id behavior if it exposes hosted windows.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Substituting a Service</title>
+            <p>
+                Use <name>GetNativeServiceSubstitution()-&gt;Substitute(service, false)</name> before the automation service is first requested.
+                The substitution layer rejects a late substitution after a service has already been used.
+                Keep the substituted object alive until it is unsubstituted.
+            </p>
+            <p>
+                A remote protocol core can expose the core-side automation surface like this:
+                <program language="c++"><code><![CDATA[
+void GuiMain()
+{
+    RemoteProtocolAutomationService automationService;
+    GetNativeServiceSubstitution()->Substitute(&automationService, false);
+    windows::StartWindowsHttpAutomationService(
+        WString::Unmanaged(L"Automation/RemoteCore"),
+        8888);
+
+    GetApplication()->Run(mainWindow);
+
+    windows::StopWindowsHttpAutomationService();
+    GetNativeServiceSubstitution()->Unsubstitute(&automationService);
+}
+                ]]></code></program>
+            </p>
+            <p>
+                A remote protocol renderer that owns a <name>GuiRemoteRendererSingle</name> can substitute <name>WindowsAutomationServiceRenderer</name> in the same scope before starting the HTTP service.
+                This is the case where <name>GET /Dom</name> becomes meaningful.
+            </p>
+        </topic>
+        <topic>
+            <title>Implementing Another Platform</title>
+            <p>
+                A platform implementation should implement <name>INativeAutomationService</name> or reuse <name>AutomationServiceBase</name> from <name>Utilities/SharedServices</name>.
+                Return true from <name>Available</name>, implement the supported <name>Can...</name> and operation pairs, and make <name>Stop</name> disable all future operations.
+            </p>
+            <p>
+                When implementing IO:
+                <ul>
+                    <li>Parse the command synchronously on the request path so malformed commands return an immediate error.</li>
+                    <li>Queue the parsed command to the UI thread instead of running arbitrary UI work on the HTTP or transport thread.</li>
+                    <li>Return <name>Queued</name> after the parsed command is accepted.</li>
+                    <li>Use <name>RunIOCommandOnNativeWindow</name> when the platform can map a window id to an <name>INativeWindow</name> and its listener list.</li>
+                </ul>
+            </p>
+            <p>
+                The Windows HTTP wrapper is only one endpoint layer.
+                Other platforms may expose the same URL contract, a stdio protocol, an in-process function-call bridge, or another transport,
+                as long as the transport calls the same <name>INativeAutomationService</name> operations on the correct threads.
+            </p>
+        </topic>
+        <topic>
+            <title>Operational Notes</title>
+            <p>
+                Application-level automation depends on the GacUI UI thread.
+                A native crash dialog, file dialog, or other modal native window can block the UI thread and keep the HTTP endpoint from answering.
+                In that situation, inspect and operate native windows from another process using Win32 APIs, then return to the automation endpoint after the modal window is closed.
+            </p>
+            <p>
+                Do not use operating-system UI Automation as the fallback for GacUI automation on Windows.
+                It can fail when the screen is locked, and it is not the contract implemented by <name>AutomationService</name>.
+            </p>
+        </topic>
+    </topic>
+</article>

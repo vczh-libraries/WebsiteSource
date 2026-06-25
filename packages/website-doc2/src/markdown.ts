@@ -15,10 +15,19 @@ function escapeText(text: string): string {
 
 function generateIndexForProject(nodes: DocTreeNode[], prefix: string, directory: string, relativeDirectory: string, collectedNodes: CollectedNodes): string {
     let indexMd = "";
-    for (const node of nodes.filter(node => node.kind === "article")) {
+    for (const node of nodes.filter(node => node.kind === "article" || node.kind === "directory")) {
+        if (node.kind === "directory") {
+            if (node.subNodes) {
+                const subIndexMd = generateIndexForProject(node.subNodes, prefix + "  ", directory, relativeDirectory, collectedNodes);
+                if (subIndexMd.length > 0) {
+                    indexMd += `${prefix}- ${escapeText(node.name)}\r\n${subIndexMd}`;
+                }
+            }
+            continue;
+        }
+
         const markdownRelativePath = node.path!.join('/') + '.md';
         collectedNodes[path.join(directory, markdownRelativePath)] = node;
-
         indexMd += `${prefix}- [${escapeText(node.name)}](${relativeDirectory}${markdownRelativePath})\r\n`;
         if (node.subNodes) {
             indexMd += generateIndexForProject(node.subNodes, prefix + "  ", directory, relativeDirectory, collectedNodes);
@@ -79,12 +88,20 @@ function formatText(text: string): string {
         .join(' ');
 }
 
+function formatInlineText(text: string): string {
+    return escapeText(text.replace(/\s+/g, ' '));
+}
+
+function formatBlockContent(text: string): string {
+    return text.replace(/[ \t]+(\r?\n)/g, '$1').trim();
+}
+
 function renderContent(contents: Content[], listPrefix: string, collectedNodes: CollectedNodes, directory: string, relativeUrlPrefix: string): string {
     let md = "";
     for (const content of contents) {
         switch (content.kind) {
             case "Text":
-                md += formatText(escapeText(content.text));
+                md += formatInlineText(content.text);
                 break;
             case "PageLink": {
                 const url = rewriteLink(content.href, collectedNodes, directory, relativeUrlPrefix);
@@ -105,13 +122,13 @@ function renderContent(contents: Content[], listPrefix: string, collectedNodes: 
                 for (const item of content.items) {
                     switch (item.kind) {
                         case "ContentListItem": {
-                            md += `\r\n${listPrefix}- ` + renderContent(item.content, listPrefix + "  ", collectedNodes, directory, relativeUrlPrefix);
+                            md += `\r\n${listPrefix}- ` + formatBlockContent(renderContent(item.content, listPrefix + "  ", collectedNodes, directory, relativeUrlPrefix));
                             break;
                         }
                         case "ParagraphListItem": {
                             md += `\r\n${listPrefix}- \`empty list item\``;
                             for (const p of item.paragraphs) {
-                                md += `\r\n${listPrefix}  ` + formatText(renderContent(p.content, listPrefix + "    ", collectedNodes, directory, relativeUrlPrefix));
+                                md += `\r\n${listPrefix}  ` + formatBlockContent(renderContent(p.content, listPrefix + "    ", collectedNodes, directory, relativeUrlPrefix));
                             }
                             break;
                         }
@@ -158,7 +175,7 @@ function generateMarkdownFromTopic(topic: Topic, topicPrefix: string, collectedN
     for (const content of topic.content) {
         switch (content.kind) {
             case 'Paragraph':
-                md += renderContent(content.content, "", collectedNodes, directory, relativeUrlPrefix) + `\r\n\r\n`;
+                md += formatBlockContent(renderContent(content.content, "", collectedNodes, directory, relativeUrlPrefix)) + `\r\n\r\n`;
                 break;
             case 'Topic':
                 md += generateMarkdownFromTopic(content, `${topicPrefix}#`, collectedNodes, directory, relativeUrlPrefix);
@@ -194,7 +211,7 @@ export function convertDocumentToMarkdown(docTree: DocTree, directory: string): 
     let indexMd = "# Copy of Online Manual\r\n\r\n";
     for (const projectNode of docTree.root.subNodes!) {
         if (projectNode.name === "Gaclib Document") continue;
-        const subNodes = (projectNode.subNodes || []).filter(node => node.kind === "article" && !excludedFirstLevelNames.includes(node.name));
+        const subNodes = (projectNode.subNodes || []).filter(node => (node.kind === "article" || node.kind === "directory") && !excludedFirstLevelNames.includes(node.name));
         if (subNodes.length === 0) continue;
 
         indexMd += `## ${projectNode.name}\r\n\r\n${generateIndexForProject(subNodes, "", manualDir, "./manual/", collectedNodes)}\r\n`;
