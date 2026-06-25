@@ -160,6 +160,8 @@ When documenting invented templates or parsers, give the grammar shape, allowed 
 
 Library document pages are written for library users, maintainers, and coding agents. Their job is to explain the concepts, syntax, APIs, and rules that help someone use the libraries correctly. They are guidance pages, not textbooks and not generated API references.
 
+Facts of libraries come from source code and test cases in each repo.
+
 Write in English with direct and precise sentences. Prefer stable facts, constraints, and examples over broad claims. Use exact project names, class names, function names, XML tags, attributes, commands, and repository names. Keep paragraphs short, and remove wording that only says something is useful without explaining when or why.
 
 Organize content by project and by user task. A page should have a narrow purpose: what the feature is, when to use it, the required syntax or API surface, important options, common mistakes, and links to related pages or generated reference pages. Keep exhaustive member lists in generated API documents; hand-written pages should connect concepts and point readers to the exact names they need.
