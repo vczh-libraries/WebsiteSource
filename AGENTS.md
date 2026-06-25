@@ -4,11 +4,18 @@
 
 All packages are in the `packages` folder
 
-<!-- complete the list -->
-- [website](./docs/website.md): web pages of the site
-- [website-doc2](./doc/website-doc.md): document pages for GacUI 2.0 (latest)
+- [article](./docs/article.md): shared XML article parser, plugin hook, and `lit-html` renderer used by website content.
+- [article-document](./docs/article-document.md): API document XML parser that converts generated reference XML into article trees.
+- [eslint-shared](./docs/eslint-shared.md): shared ESLint configuration package for all TypeScript packages.
+- [host](./docs/host.md): Node HTTP host that connects the router, static files, and generated view HTML.
+- [mvc](./docs/mvc.md): URL router and typed route-template DSL used by the host and content packages.
+- [render](./docs/render.md): browser-side view metadata, HTML shell generation, resource embedding, and nested view orchestration.
+- [render-esbuild](./docs/render-esbuild.md): esbuild bundler for browser-side view modules.
+- [spider](./docs/spider.md): static URL collector and downloader used by publishing commands.
+- [website](./docs/website.md): file structure and content routes for the main website.
+- [website-doc2](./docs/website-doc.md): file structure, document tree, custom templates, and content routes for GacUI 2.0 documents (latest).
 - obsolete documents:
-  - `website-doc1`: document pages for GacUI 1.0
+  - [website-doc1](./docs/website-doc1.md): document pages for GacUI 1.0
   - these packages are frozen, no editing should be allowed unless it can't build.
   - all document packages share the same architecture.
 
