@@ -130,9 +130,9 @@ Follow the prompt in `../Tools/Jobs/job.monorepo.copilotInitAll.prompt.md` again
 
 Commit and push all changes in required repos to their master branches.
 
-## Writing Documents
+## Maintenance
 
-Documents in `docs` are maintainer and coding-agent guidance. Write them to explain what a package does, which public APIs or content formats matter, and how the package fits into the website pipeline. They should be informative, precise, and short. Prefer direct descriptions over tutorial prose, and avoid duplicating source code details that are obvious from the implementation.
+Package documents in `docs` are maintainer and coding-agent guidance. Write them to explain what a package does, which public APIs or content formats matter, and how the package fits into the website pipeline. They should be informative, precise, and short. Prefer direct descriptions over tutorial prose, and avoid duplicating source code details that are obvious from the implementation.
 
 Create one document per package using the package folder name: `docs/<package-folder-name>.md`. Start with the package folder, npm package name, and a short purpose statement. Then describe only the parts a maintainer needs to use or change the package safely: file structure, public entry points, route or parser contracts, custom template syntax, build/start/download behavior, and known limitations.
 
@@ -155,3 +155,19 @@ Use this project-to-repo mapping when writing or updating website documents:
 - Published markdown and the coding-agent knowledge base are consumed by the `Tools` repo.
 
 When documenting invented templates or parsers, give the grammar shape, allowed attributes, nesting rules, and one compact example. Explain what the parser produces and where the rendered result is consumed. Do not write a full textbook for library users; the exported knowledge base and source repos are responsible for detailed coding guidance.
+
+## Writing Documents for the Library
+
+Library document pages are written for library users, maintainers, and coding agents. Their job is to explain the concepts, syntax, APIs, and rules that help someone use the libraries correctly. They are guidance pages, not textbooks and not generated API references.
+
+Write in English with direct and precise sentences. Prefer stable facts, constraints, and examples over broad claims. Use exact project names, class names, function names, XML tags, attributes, commands, and repository names. Keep paragraphs short, and remove wording that only says something is useful without explaining when or why.
+
+Organize content by project and by user task. A page should have a narrow purpose: what the feature is, when to use it, the required syntax or API surface, important options, common mistakes, and links to related pages or generated reference pages. Keep exhaustive member lists in generated API documents; hand-written pages should connect concepts and point readers to the exact names they need.
+
+Follow `docs/website-doc.md` for where pages live, how `reference.xml` and `entry.xml` organize categories, and which custom templates are available. Follow `docs/article.md` for shared article syntax and `docs/article-document.md` for generated API document syntax. Do not duplicate those formats here.
+
+When writing about an invented language, XML template, parser, or routing rule, include the grammar shape, allowed attributes or operands, nesting rules, and one compact valid example. Explain what the parser produces and which renderer or package consumes the result.
+
+Examples should be small and purposeful. Prefer one example that demonstrates a rule over many examples that only vary names. If screenshots, samples, or links to the `Release` repo explain behavior better than prose, use the existing `<sample>` support described in `docs/website-doc.md`.
+
+Before publishing, check that links point to real pages and that the page still makes sense after markdown export. The generated markdown is consumed by the `Tools` knowledge base, so avoid browser-only wording when a plain markdown reader would lose important context.
