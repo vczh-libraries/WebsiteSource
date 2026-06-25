@@ -1,0 +1,163 @@
+<article>
+	<topic>
+		<title>Workflow RPC</title>
+		<p>
+			Workflow RPC describes service contracts with Workflow interfaces and runs them through a transport-independent lifecycle, dispatcher, serializer, and channel layer. The contract is written in Workflow; the runtime decides how object references, method calls, property access, and events travel between processes or machines.
+		</p>
+
+		<topic>
+			<title>Declaring RPC Interfaces</title>
+			<p>
+				An RPC service interface is a non-generic Workflow interface marked with @rpc:Interface. Base interfaces must also be RPC interfaces.
+			</p>
+			<p>
+				Use @rpc:Ctor on an RPC interface when that interface represents a service type that can be requested by clients.
+				<program><code><![CDATA[
+module Rpc;
+using system::*;
+
+namespace Chat
+{
+	@rpc:Interface
+	@rpc:Ctor
+	interface IChatService
+	{
+		func Send(text : string) : void;
+		func LastMessage() : string;
+	}
+}
+]]></code></program>
+			</p>
+			<p>
+				RPC members can use serializable values, shared pointers to RPC interfaces, and strong typed collections whose element types are serializable. void is valid only as a method return type.
+			</p>
+		</topic>
+
+		<topic>
+			<title>RPC Attributes</title>
+			<p>
+				The RPC analyzer recognizes these attributes:
+				<ul>
+					<li>@rpc:Interface: marks a Workflow interface as an RPC interface.</li>
+					<li>@rpc:Ctor: marks an RPC interface as constructible through the RPC service model.</li>
+					<li>@rpc:Cached: marks an RPC property as cached by the client-side wrapper.</li>
+					<li>@rpc:Dynamic: marks an RPC property as read from the remote object every time.</li>
+					<li>@rpc:Byval: transfers a strong typed collection by value.</li>
+					<li>@rpc:Byref: transfers a strong typed collection by reference.</li>
+				</ul>
+			</p>
+			<p>
+				@rpc:Cached and @rpc:Dynamic can only be used on RPC properties and cannot appear together. A property is cached by default unless it is marked @rpc:Dynamic.
+			</p>
+			<p>
+				@rpc:Byval and @rpc:Byref can be used on RPC properties, method return values, and method parameters that are strong typed collections. They cannot appear together. When neither is written, observable collections and collections containing RPC interfaces default to reference transfer; other strong typed collections default to value transfer.
+			</p>
+		</topic>
+
+		<topic>
+			<title>Serializable Values</title>
+			<p>
+				RPC payloads must be serializable. Supported payload shapes are:
+				<ul>
+					<li>primitive reflected values such as booleans, integers, floating point values, and strings;</li>
+					<li>reflected structs, normal enums, and flag enums;</li>
+					<li>nullable values whose element type is serializable;</li>
+					<li>shared pointers to interfaces marked with @rpc:Interface;</li>
+					<li>strong typed collections whose type arguments are serializable.</li>
+				</ul>
+			</p>
+			<p>
+				Reserved framework types such as object references and RPC exceptions are part of the transport protocol and are not valid as ordinary RPC member payloads.
+			</p>
+		</topic>
+
+		<topic>
+			<title>Service and Client Flow</title>
+			<p>
+				A server creates an implementation object and registers it with IRpcLifecycle. A client asks the lifecycle for the same service name and casts the returned object to the service interface.
+				<program><code><![CDATA[
+func serviceMain(lc : IRpcLifecycle*) : void
+{
+	var service = new Chat::IChatService^
+	{
+		var last : string = "";
+
+		override func Send(text : string) : void
+		{
+			last = text;
+		}
+
+		override func LastMessage() : string
+		{
+			return last;
+		}
+	};
+
+	lc.RegisterLocalService(rpc_GetIds()["Chat::IChatService"], service);
+}
+
+func clientMain(lc : IRpcLifecycle*) : string
+{
+	var service = cast (Chat::IChatService^) lc.RequestService("Chat::IChatService");
+	service.Send("hello");
+	return service.LastMessage();
+}
+]]></code></program>
+			</p>
+			<p>
+				rpc_GetIds() exposes the RPC interface id table for the loaded RPC module. RegisterLocalService binds a local implementation to an interface id. RequestService asks the remote side for a service by name and returns a wrapper object.
+			</p>
+		</topic>
+
+		<topic>
+			<title>Runtime Objects</title>
+			<p>
+				The Workflow RPC runtime separates protocol logic from transport:
+				<ul>
+					<li>IRpcLifecycle owns the per-client or per-session state. It maps local objects to object references, creates wrappers for remote object references, registers services, requests services, and exposes the serializer, dispatcher, and controller.</li>
+					<li>IRpcDispatcher routes object operations and event operations. It declares local services, sends object operations to clients, broadcasts object events, and has explicit initialize and finalize steps.</li>
+					<li>IRpcController performs local object operations and event operations. It also controls whether property change events and collection item events are suppressed while an RPC operation is being applied.</li>
+					<li>IRpcSerializer converts reflected values, object references, exceptions, and operation records to and from the transport representation.</li>
+				</ul>
+			</p>
+		</topic>
+
+		<topic>
+			<title>Implementing a Dispatcher</title>
+			<p>
+				A dispatcher implementation owns the lifecycle of a transport connection. It should:
+				<ul>
+					<li>create or receive an IRpcLifecycle for each connected client;</li>
+					<li>call Initialize before sending or receiving RPC operations;</li>
+					<li>translate incoming transport messages to object operations, event operations, service declarations, or lifecycle operations;</li>
+					<li>call DeclareLocalService when local services must become visible to the other side;</li>
+					<li>send object operations through SendToClient_ObjectOps and object events through BroadcastFromClient_ObjectEventOps;</li>
+					<li>call Finalize when the transport is closed.</li>
+				</ul>
+			</p>
+			<p>
+				Dispatchers should schedule user callbacks through the host task queue or event loop that owns the service objects. RPC callbacks can re-enter user code, so a dispatcher must keep its threading and lifetime policy consistent.
+			</p>
+		</topic>
+
+		<topic>
+			<title>JSON RPC Channel Layer</title>
+			<p>
+				The JSON implementation uses RpcJsonDispatcher, RpcJsonLifecycle, RpcJsonObjectOps, and RpcJsonObjectEventOps. IRpcJsonMessageDispatcher accepts JSON requests and classifies them as direct, broadcast, or broadcast-and-drop messages.
+			</p>
+			<p>
+				The shared channel implementation connects the JSON dispatcher to <a href="/vlppos/using-inter-process.html">vl::inter_process</a> channels:
+				<ul>
+					<li>JsonPackage is a JSON node package.</li>
+					<li>JsonChannel is an IChannel&lt;JsonPackage&gt;.</li>
+					<li>JsonChannelClient and JsonChannelServer are the channel endpoints used by the dispatcher.</li>
+					<li>JsonNetworkChannelClient and JsonNetworkChannelServer use the network channel implementation.</li>
+					<li>JsonLocalChannelClient uses the local inter-process channel implementation.</li>
+				</ul>
+			</p>
+			<p>
+				RpcJsonDispatcherClient receives JSON packages from a channel, waits for the server handshake, connects to local servers when needed, and exposes its RPC lifecycle and dispatcher. RpcJsonDispatcherServer receives JSON packages from clients, registers and disconnects clients, broadcasts service declarations, and forwards RPC requests. Both classes require a concrete ScheduleTask policy; the task-queue variants provide the standard implementation.
+			</p>
+		</topic>
+	</topic>
+</article>

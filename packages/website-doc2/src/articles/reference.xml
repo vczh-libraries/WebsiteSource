@@ -73,6 +73,8 @@
     <article name="Syntax" file="workflow/lang">
       <link pathPrefix="workflow/lang" filePrefix="" file="workflow/lang/entry.xml"/>
     </article>
+    <article name="Attributes" file="workflow/attributes"/>
+    <article name="RPC" file="workflow/rpc"/>
     <article name="Runtime Instructions" file="workflow/ins"/>
     <article name="C++ Code Generation" file="workflow/codegen"/>
     <article name="Breaking changes from 1.0" file="workflow/upgrade"/>

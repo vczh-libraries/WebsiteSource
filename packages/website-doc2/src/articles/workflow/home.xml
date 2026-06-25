@@ -29,8 +29,10 @@
                 <ul>
                     <li><a href="/workflow/running.html">Running a Script</a>: Launching Workflow scripts in different ways.</li>
                     <li><a href="/workflow/lang.html">Syntax</a>: Language references of Workflow.</li>
+                    <li><a href="/workflow/attributes.html">Attributes</a>: Metadata syntax and custom attribute resolution.</li>
+                    <li><a href="/workflow/rpc.html">RPC</a>: Service interfaces, RPC attributes, lifecycle, dispatcher, and channel contracts.</li>
                     <li><a href="/workflow/codegen.html">C++ Code Generation</a>: Controlling the details about how Workflow scripts generate C++ code files.</li>
-                    <li><a href="/workflow/ref.html">Running a Script</a>: API references of predefined library, runtime and compiler of Workflow.</li>
+                    <li><a href="/workflow/ref.html">References</a>: API references of predefined library, runtime and compiler of Workflow.</li>
                 </ul>
             </p>
         </topic>

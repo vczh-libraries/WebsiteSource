@@ -25,9 +25,57 @@
             <ul>
                 <li>variables</li>
                 <li>functions not starting with <b>override</b></li>
+                <li>one delete{} block</li>
             </ul>
+        </p>
+        <p>
             All of them are only accessible by name inside the new interface expressions.
         </p>
+        <topic>
+            <title>Delete block in a new interface expression</title>
+            <p>
+                A new interface expression can contain one delete{} block.
+                It declares cleanup code for the anonymous implementation object.
+            </p>
+            <p>
+                The block has no name, arguments, return type, or override keyword:
+                <program><code><![CDATA[
+                    interface ISubscription*
+                    {
+                        func Stop():void;
+                    }
+
+                    var subscription = new ISubscription*
+                    {
+                        var stopped: bool = false;
+
+                        override func Stop():void
+                        {
+                            stopped = true;
+                        }
+
+                        delete
+                        {
+                            if (!stopped)
+                            {
+                                Stop();
+                            }
+                        }
+                    };
+
+                    delete subscription;
+                ]]></code></program>
+            </p>
+            <p>
+                For a shared interface object, the delete{} block runs when the last shared pointer releases the object.
+                For a raw interface object, it runs when the object is deleted directly,
+                or when the object has been converted to a shared pointer and the last shared pointer releases it.
+            </p>
+            <p>
+                The block is used for resources owned by the anonymous implementation object,
+                such as unregistering callbacks, closing subscriptions, or releasing native handles.
+            </p>
+        </topic>
         <topic>
             <title>New and delete objects implementing shared interfaces</title>
             <p>
