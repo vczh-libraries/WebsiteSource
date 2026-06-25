@@ -1,0 +1,36 @@
+<article index="true">
+    <topic>
+        <title>Preparing Context Files</title>
+        <p>
+            Copy the coding-agent context from the Release repository into the root of the application repository.
+            The minimum copied set is:
+            <ul>
+                <li><name>.github</name>: prompts, guidelines, scripts, Linux build helpers, local learning files, task-log files, and the copied knowledge base.</li>
+                <li><name>AGENTS.md</name>: common entry instructions used by Codex and other agents that read this file.</li>
+                <li><name>CLAUDE.md</name>: the same entry instructions for Claude-style agents.</li>
+                <li><name>Project.md</name>: application-specific repository map and verification policy, written by the application owner.</li>
+            </ul>
+        </p>
+        <p>
+            The copied <name>.github</name> folder contains several kinds of files:
+            <ul>
+                <li><name>copilot-instructions.md</name>: the main instruction file. It tells the agent to read <name>Project.md</name>, use the knowledge base, and prefer provided scripts.</li>
+                <li><name>Guidelines</name>: build, run, debug, source-file, coding, and GacUI resource instructions.</li>
+                <li><name>prompts</name>: job prompts such as <name>ask.prompt.md</name>, <name>investigate.prompt.md</name>, <name>refine.prompt.md</name>, and <name>kb.prompt.md</name>.</li>
+                <li><name>Scripts</name>: Windows PowerShell wrappers for building, executing, debugging, and archiving task logs.</li>
+                <li><name>Ubuntu</name>: Linux build wrapper and helper commands.</li>
+                <li><name>KnowledgeBase</name>: copied API, design, manual, and learning documents that the agent can read without network access.</li>
+                <li><name>Learning</name>: project-local lessons that refine future agent behavior.</li>
+                <li><name>TaskLogs</name>: working documents for investigation and knowledge-base jobs.</li>
+            </ul>
+        </p>
+        <p>
+            Keep the copied context files under source control when they describe stable project behavior.
+            Task-log files may be tracked or ignored according to the repository policy, but the files referenced by the prompts should exist before asking the agent to use those prompts.
+            If the application has different build scripts, test commands, project names, generated files, or platform support, update <name>Project.md</name> first.
+        </p>
+        <p>
+            See <a href="/coding-agent/project-md.html">Writing Project.md</a> for the expected contents of the application-specific file.
+        </p>
+    </topic>
+</article>

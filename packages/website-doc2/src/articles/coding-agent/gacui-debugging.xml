@@ -1,0 +1,49 @@
+<article index="true">
+    <topic>
+        <title>AutomationService and Basic Computer Use</title>
+        <p>
+            GacUI applications need an application-level automation path so a coding agent can inspect and operate the UI while debugging.
+            On Windows, the recommended path is to start the GacUI AutomationService HTTP endpoint from the application during startup.
+            This lets the agent read the control tree or remote-renderer DOM and send IO commands without using operating-system UI Automation.
+        </p>
+        <p>
+            From the agent user's perspective, this means:
+            <ul>
+                <li>The application should expose a stable localhost automation URL while it is running.</li>
+                <li>The agent should use the automation endpoint for normal GacUI windows and controls.</li>
+                <li>The agent should not rely on UI Automation as a fallback, because it can fail when the screen is locked.</li>
+                <li>The user can keep using the computer because the agent does not need to drive the physical pointer for normal GacUI operations.</li>
+            </ul>
+        </p>
+        <p>
+            See <a href="/gacui/coding-agent/automation-service.html">AutomationService</a> for the service setup, exact HTTP URLs, setup-function cases, and platform implementation details.
+        </p>
+        <topic>
+            <title>When the Agent Gets Blocked</title>
+            <p>
+                Application-level automation depends on the application UI thread.
+                A native crash dialog, message box, file dialog, color dialog, or another modal native window can block that thread.
+                When this happens, the agent should stop polling the application automation endpoint and inspect native windows from another process.
+            </p>
+            <p>
+                The copied <name>.github/Guidelines/Running-ComputerUse.md</name> file explains the unblocking workflow:
+                <ul>
+                    <li>Identify the target process.</li>
+                    <li>Enumerate top-level and child windows with Win32 APIs.</li>
+                    <li>Read class names, window text, control ids, and rectangles.</li>
+                    <li>Prefer direct control messages such as <name>BM_CLICK</name>, <name>WM_SETTEXT</name>, and combo-box messages.</li>
+                    <li>Capture a screenshot only when visual confirmation is needed.</li>
+                    <li>Close or answer the native dialog before returning to AutomationService.</li>
+                </ul>
+            </p>
+        </topic>
+        <topic>
+            <title>Project Preparation</title>
+            <p>
+                If the application contains GacUI UI work, mention its automation endpoint in <name>Project.md</name>.
+                Include the executable project name, port, URL prefix, whether hosted mode is used, and any native dialogs that commonly appear.
+                This gives the agent enough context to choose AutomationService first and native-window handling only when the application is blocked.
+            </p>
+        </topic>
+    </topic>
+</article>

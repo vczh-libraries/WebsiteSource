@@ -1,0 +1,38 @@
+<article index="true">
+    <topic>
+        <title>Installing Required Tools on Windows</title>
+        <p>
+            The Windows agent scripts build with MSBuild through Visual Studio's developer environment and debug with CDB.
+            Install Visual Studio with the C++ desktop workload, a Windows SDK, and the Windows debugging tools that provide <name>cdb.exe</name>.
+            If CDB is not available, install the Windows Driver Kit or the Windows debugging tools component from the Visual Studio Installer.
+        </p>
+        <p>
+            Define these environment variables before asking the agent to build or debug:
+            <ul>
+                <li><name>VLPP_VSDEVCMD_PATH</name>: absolute path to <name>VsDevCmd.bat</name>, for example <name>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat</name>.</li>
+                <li><name>CDBPATH</name>: absolute path to <name>cdb.exe</name>, for example <name>C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\cdb.exe</name>.</li>
+            </ul>
+        </p>
+        <p>
+            After copying the Release <name>.github</name> folder, the agent should use these scripts instead of calling tools directly:
+            <ul>
+                <li><name>.github\Scripts\copilotBuild.ps1</name>: builds the solution found from <name>Project.md</name> context and writes <name>Build.log</name>.</li>
+                <li><name>.github\Scripts\copilotExecute.ps1</name>: runs unit-test or CLI projects and writes <name>Execute.log</name> for unit tests.</li>
+                <li><name>.github\Scripts\copilotDebug_Start.ps1</name> and <name>copilotDebug_RunCommand.ps1</name>: start CDB and send debugger commands.</li>
+            </ul>
+        </p>
+        <p>
+            If the application uses the tools shipped by Release, build them from the Release repository:
+            <ul>
+                <li>Open <name>Tools\Executables\Executables.sln</name> in Visual Studio.</li>
+                <li>Build <name>Release</name> with <name>x86</name>.</li>
+                <li>Run <name>Tools\CopyExecutables.ps1</name>.</li>
+                <li>Confirm <name>CodePack.exe</name>, <name>CppMerge.exe</name>, <name>GacGen.exe</name>, and <name>GlrParserGen.exe</name> exist in <name>Release\Tools</name>.</li>
+            </ul>
+        </p>
+        <p>
+            For debugger readability, copy <name>Import\vlpp.natvis</name> from Release to Visual Studio's visualizers folder.
+            The CDB startup script also loads the natvis file for debugger commands such as <name>dx</name>.
+        </p>
+    </topic>
+</article>

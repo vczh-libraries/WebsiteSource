@@ -1,0 +1,24 @@
+<article index="true">
+    <topic>
+        <title>Working with Coding Agent</title>
+        <p>
+            This project explains how to prepare an application repository so a coding agent can participate in day-to-day development with the Vczh Libraries.
+            The expected setup is copied from the Release repository: the <name>.github</name> folder, <name>AGENTS.md</name>, <name>CLAUDE.md</name>, and a project-specific <name>Project.md</name>.
+            After these files are in place, an agent has local instructions, copied documentation, build scripts, debugging scripts, and task-log conventions.
+        </p>
+        <p>
+            The workflow is:
+            <ul>
+                <li>Install platform tools so build, run, and debug scripts can work.</li>
+                <li>Copy the agent context files from the Release repository into the application repository.</li>
+                <li>Write <name>Project.md</name> so the agent knows which solution, projects, generated files, and platform folders belong to the application.</li>
+                <li>Use prompt jobs such as <name>investigate</name> and <name>refine</name> for repeatable development work.</li>
+                <li>For GacUI applications, expose AutomationService and prepare basic native-window handling so the agent can debug UI behavior without depending on operating-system UI Automation.</li>
+            </ul>
+        </p>
+        <p>
+            The files copied from Release are starting points.
+            They should be kept close to the application repository and changed when the application has different build steps, verification projects, generated files, or debugging expectations.
+        </p>
+    </topic>
+</article>

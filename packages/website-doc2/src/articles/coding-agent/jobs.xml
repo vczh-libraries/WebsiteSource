@@ -1,0 +1,54 @@
+<article index="true">
+    <topic>
+        <title>Investigate and Refine Jobs</title>
+        <p>
+            <name>AGENTS.md</name> and <name>CLAUDE.md</name> route short request keywords to prompt files in <name>.github/prompts</name>.
+            These jobs make agent work repeatable because the agent writes durable task documents, uses the copied knowledge base, and follows the repository's build and debug scripts.
+        </p>
+        <topic>
+            <title>investigate</title>
+            <p>
+                Use <name>investigate</name> for coding work that needs analysis, implementation, verification, and a record of decisions.
+                It is not limited to bug fixing.
+                It can handle new features, refactoring, behavior changes, regressions, and deep research that may end in source edits.
+            </p>
+            <p>
+                Common request forms are:
+                <ul>
+                    <li><name>investigate repro ...</name>: start a fresh task and copy the problem or feature request into <name>Copilot_Investigate.md</name>.</li>
+                    <li><name>investigate continue ...</name>: append an update to the current investigation and continue from the existing proposals.</li>
+                    <li><name>investigate report ...</name>: ask the agent to summarize confirmed proposals and tradeoffs.</li>
+                </ul>
+            </p>
+            <p>
+                The job writes <name>.github/TaskLogs/Copilot_Investigate.md</name>.
+                It records the problem description, tests or confirmation criteria, proposed solutions, code changes, and confirmation or denial for each proposal.
+                The prompt expects the agent to build, run tests, and debug when needed.
+            </p>
+        </topic>
+        <topic>
+            <title>refine</title>
+            <p>
+                Use <name>refine</name> after completed work has produced task logs that contain reusable lessons.
+                The job reads archived task documents, extracts user preferences and project-specific lessons, and writes them to:
+                <ul>
+                    <li><name>.github/KnowledgeBase/Learning.md</name>: general learnings across projects.</li>
+                    <li><name>.github/Learning/Learning_Coding.md</name>: source-code learnings for this repository.</li>
+                    <li><name>.github/Learning/Learning_Testing.md</name>: test-code and verification learnings for this repository.</li>
+                </ul>
+            </p>
+            <p>
+                The refine job is intentionally document-only.
+                It should not modify source code.
+                It is useful when a correction, review discussion, or debugging result should influence future agent behavior.
+            </p>
+        </topic>
+        <topic>
+            <title>Other Keywords</title>
+            <p>
+                The copied context also includes <name>ask</name> for analysis-only questions and <name>kb</name> for drafting or updating knowledge-base documents.
+                If a user request does not start with a known keyword, the root instructions classify ordinary coding work as an <name>investigate repro</name> style task.
+            </p>
+        </topic>
+    </topic>
+</article>

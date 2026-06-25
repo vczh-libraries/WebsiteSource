@@ -111,6 +111,18 @@
       <unfinished name="Namespaces" file="gacui/ref/namespaces"/>
     </article>
   </article>
+  <article name="Working with Coding Agent" file="coding-agent/home">
+    <document name="Installing required tools">
+      <article name="Windows" file="coding-agent/installing/windows"/>
+      <article name="Linux" file="coding-agent/installing/linux"/>
+      <article name="macOS" file="coding-agent/installing/macos"/>
+    </document>
+    <article name="Preparing Context Files" file="coding-agent/context">
+      <article name="Writing Project.md" file="coding-agent/project-md"/>
+    </article>
+    <article name="Investigate and Refine Jobs" file="coding-agent/jobs"/>
+    <article name="AutomationService and Basic Computer Use" file="coding-agent/gacui-debugging"/>
+  </article>
   <article name="Unit Testing" file="unittest/home">
     <article name="Using Unit Test Framework" file="unittest/vlpp"/>
     <article name="Running GacUI in Unit Test Framework" file="unittest/gacui">

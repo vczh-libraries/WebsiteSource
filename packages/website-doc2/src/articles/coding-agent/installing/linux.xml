@@ -1,0 +1,35 @@
+<article index="true">
+    <topic>
+        <title>Installing Required Tools on Linux</title>
+        <p>
+            The Linux agent workflow is driven by <name>.github/Ubuntu/build.sh</name>.
+            It adds <name>.github/Ubuntu/vl/cmd</name> to <name>PATH</name>, runs <name>vmake --make</name>, and then builds with <name>vbuild</name>.
+            The agent instructions deliberately route builds through this script instead of direct <name>cmake</name>, <name>make</name>, <name>clang++</name>, <name>g++</name>, or <name>gdb</name> calls.
+        </p>
+        <p>
+            Prepare a Linux environment with a C++ compiler toolchain, Bash, and LLDB.
+            After copying the Release <name>.github</name> folder, make the copied scripts executable if the checkout blocks execution bits:
+            <program language="bash"><code><![CDATA[
+chmod +x .github/Ubuntu/build.sh
+chmod +x .github/Ubuntu/vl/cmd/*
+            ]]></code></program>
+        </p>
+        <p>
+            Build from the folder that contains the target <name>vmake</name> file:
+            <ul>
+                <li>For a repository with one Linux project, use <name>REPO-ROOT/Test/Linux</name>.</li>
+                <li>For a repository with multiple Linux projects, use <name>REPO-ROOT/Test/Linux/PROJECT-NAME</name>.</li>
+                <li>Run <name>REPO-ROOT/.github/Ubuntu/build.sh</name> for an incremental build.</li>
+                <li>Run <name>REPO-ROOT/.github/Ubuntu/build.sh -f</name> for a full rebuild.</li>
+            </ul>
+        </p>
+        <p>
+            Linux debug work should use <name>lldb</name> in an interactive terminal session.
+            The copied guidelines expect the agent to start LLDB from the same folder that contains the <name>vmake</name> file so relative paths to binaries and source files remain correct.
+        </p>
+        <p>
+            If the application uses Release tools, run <name>Release/Tools/BuildExecutables.sh</name> in the Release repository.
+            It produces <name>CodePack</name>, <name>CppMerge</name>, <name>GacGen</name>, and <name>GlrParserGen</name> under <name>Release/Tools</name>.
+        </p>
+    </topic>
+</article>
