@@ -64,9 +64,36 @@ After executing these commands, the following things must be done in the declara
 This step requires these repos to exist as sibling folders:
 - vczh-libraries.github.io
 
-Copy all files from `packages/website/lib/website` to `../vczh-libraries.github.io` recursively and override all existing files.
-Delete `../vczh-libraries.github.io/doc/current` folder completely.
-Copy all files from `packages/website-doc2/lib/website/doc/current` to `../vczh-libraries.github.io/doc/current` recursively.
+Run this PowerShell from the `WebsiteSource` repo root to prepare the website repo:
+
+```powershell
+$repoRoot = (Resolve-Path .).Path
+$pagesRepo = (Resolve-Path ..\vczh-libraries.github.io).Path
+
+$mainSource = Join-Path $repoRoot "packages\website\lib\website"
+$docSource = Join-Path $repoRoot "packages\website-doc2\lib\website\doc\current"
+$docTarget = [System.IO.Path]::GetFullPath((Join-Path $pagesRepo "doc\current"))
+$pagesRepoRoot = [System.IO.Path]::GetFullPath($pagesRepo).TrimEnd("\")
+
+if (-not $docTarget.StartsWith($pagesRepoRoot + "\", [System.StringComparison]::OrdinalIgnoreCase)) {
+    throw "Unexpected doc target: $docTarget"
+}
+
+foreach ($path in @($mainSource, $docSource, $pagesRepo)) {
+    if (-not (Test-Path -LiteralPath $path)) {
+        throw "Missing required path: $path"
+    }
+}
+
+Copy-Item -Path (Join-Path $mainSource "*") -Destination $pagesRepo -Recurse -Force
+
+if (Test-Path -LiteralPath $docTarget) {
+    Remove-Item -LiteralPath $docTarget -Recurse -Force
+}
+
+New-Item -ItemType Directory -Path $docTarget | Out-Null
+Copy-Item -Path (Join-Path $docSource "*") -Destination $docTarget -Recurse -Force
+```
 
 Commit and push all local changes in `../vczh-libraries.github.io` to its `master` branch.
 Wait for the CI to run, the repo URL is `https://github.com/vczh-libraries/vczh-libraries.github.io`.
