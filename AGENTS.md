@@ -15,7 +15,7 @@ All packages are in the `packages` folder
 - [website](./docs/website.md): file structure and content routes for the main website.
 - [website-doc2](./docs/website-doc.md): file structure, document tree, custom templates, and content routes for GacUI 2.0 documents (latest).
 - obsolete documents:
-  - [website-doc1](./docs/website-doc1.md): document pages for GacUI 1.0
+  - `website-doc1`: document pages for GacUI 1.0
   - these packages are frozen, no editing should be allowed unless it can't build.
   - all document packages share the same architecture.
 
