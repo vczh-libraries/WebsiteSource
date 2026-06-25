@@ -31,20 +31,28 @@
             no security guarantee is provided.
         </p>
         <p>
-            GacUI does not provide any protocol implementation,
-            you need to connect the GacUI application with a remote client by yourself.
-            And you are free to go with and not limited to anything below:
+            GacUI provides a JSON channel layer for the remote protocol,
+            implemented with <b>vl::inter_process</b>.
+            A C++ core application usually starts a <b>GuiRemoteProtocolNetworkChannelServer</b>,
+            connects itself through <b>GuiRemoteProtocolLocalChannelClient</b>,
+            and waits for a renderer connected through <b>GuiRemoteProtocolChannelClient</b>.
+            The raw transport is still selected by the application.
+            Current Windows examples use:
             <ul>
-                <li>Network protocols such as TCP, HTTP, HTTPS, NamedPipe, etc. For HTTP and NamedPipd, the <b>GacUI</b> repo has a test client as a demo.</li>
-                <li>Non-networking protocols such as Foreign Function Interface (FFI) or even Dynamic-Linked Library (DLL).</li>
+                <li><b>vl::inter_process::NamedPipeServer</b> and <b>vl::inter_process::NamedPipeClient</b>.</li>
+                <li><b>vl::inter_process::HttpServer</b> and <b>vl::inter_process::HttpClient</b>.</li>
             </ul>
-            But GacUI still offers some wrappers that simplifies everything to string sending and receiving.
-            This part will be covered in <a href="/gacui/modes/remote_communication.html">Implementing a Communication Protocol</a>.
         </p>
         <p>
-            In <a href="https://github.com/vczh-libraries/Release/tree/master/Import/Metadata">this folder</a> there are definitions of the remote protocol in JSON format and in its original format.
-            The original format can be parsed using <b>vl::presentation::remoteprotocol::Parser</b> in <b>GacUICompiler.h</b>.
-            You can then write any code generation tool to generate code in any programming language you want.
+            A different transport should be added below the <b>vl::inter_process</b> network protocol interfaces,
+            so the GacUI JSON channel classes can stay unchanged.
+            This part will be covered in <a href="/gacui/modes/remote_communication.html">Remote Protocol Channel Layer</a>.
+        </p>
+        <p>
+            The complete Windows test projects are
+            <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Core">RemotingTest_Core</a> and
+            <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Rendering_Win32">RemotingTest_Rendering_Win32</a>.
+            They show the current named pipe and HTTP setup.
         </p>
     </topic>
 </article>

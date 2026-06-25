@@ -1,39 +1,99 @@
 <article index="true">
     <topic>
-        <title>Implementing a Communication Protocol</title>
+        <title>Remote Protocol Channel Layer</title>
         <p>
-            <b>IGuiRemoteProtocol</b> has a lot of strong typed messages defined as functions.
-            When the core application wants to send anything to a remote client, a member function is called.
-            When the remote client sent anything to the core application, a member function in <b>IGuiRemoteProtocol::GetRemoteEventProcessor</b> is called.
-            Some messages need to wait for a response from the remote client, the first argument of such message is always <b>vint id</b>.
-            The core application will be blocked until the remote client sends back a expected response message with the same id.
+            GacUI remote protocol channeling uses vl::inter_process channel and raw transport constructions underneath.
+            The GacUI layer remains a rendering protocol between a headless core and a renderer.
         </p>
         <p>
-            Therefore <b>IGuiRemoteProtocol</b> represents a renderer.
-            The core side implementation sends messages to client and receive responses from client.
-            The client side implementation receives messages from core and send responses to core.
+            The layers are:
+            <ul>
+                <li>IGuiRemoteProtocol and IGuiRemoteEventProcessor: the strongly typed GacUI remote protocol.</li>
+                <li>GuiRemoteProtocolCoreChannel and GuiRemoteProtocolRendererChannel: conversion between the strongly typed protocol and JSON channel packages.</li>
+                <li>GuiRemoteProtocolNetworkChannelServer, GuiRemoteProtocolLocalChannelClient and GuiRemoteProtocolChannelClient: the vl::inter_process JSON channel bridge.</li>
+                <li>NamedPipeServer, NamedPipeClient, HttpServer, HttpClient, or a custom raw transport: the underlying connection implementation.</li>
+            </ul>
         </p>
         <p>
-            <b>IGuiRemoteProtocolChannel&lt;T&gt;</b> and <b>IGuiRemoteProtocolChannelReceiver&lt;T&gt;</b> works like <b>IGuiRemoteProtocol</b> and <b>IGuiRemoteEventProcessor</b>,
-            but there is no strong typed messages anymore, everything becomes the <b>T</b>.
+            The JSON channel package type is Ptr&lt;glr::json::JsonNode&gt;.
+            The remote protocol channel name is GacUIRemoteProtocolChannelName, whose value is GacUIRemoteProtocol.
+            The in-process core client should be assigned GacUIRemoteProtocolCoreClientId.
+            Renderer-side packages are sent to that core client id, and core-side packages are sent to the renderer client id learned from ControllerConnect.
         </p>
         <p>
-            <b>GuiRemoteProtocolFromJsonChannel</b> (for core) and <b>GuiRemoteJsonChannelFromProtocol</b> (for client) handles message translation between
-            <b>IGuiRemoteProtocol</b> and <b>IGuiRemoteProtocolChannel&lt;Ptr&lt;JsonObject&gt;&gt;</b>.
+            ChannelPackageInfo describes the remote protocol envelope:
+            <ul>
+                <li>semantic: Message, Request, Response or Event.</li>
+                <li>id: the request or response id, or -1 when the package does not need one.</li>
+                <li>name: the generated remote protocol message, request, response or event name.</li>
+            </ul>
         </p>
         <p>
-            <b>GuiRemoteJsonChannelStringSerializer</b> (for core) and <b>GuiRemoteJsonChannelStringDeserializer</b> (for client) handles message translation between
-            <b>IGuiRemoteProtocolChannel&lt;Ptr&lt;JsonObject&gt;&gt;</b> and <b>IGuiRemoteProtocolChannel&lt;WString&gt;</b>.
+            JsonChannelPack and JsonChannelUnpack convert this envelope and the optional arguments node to and from a JSON object.
+            Application code normally does not call these functions unless it is logging, debugging or building a non-C++ renderer.
         </p>
-        <p>
-            Although message are sent bidirectionally, but the naming is saying what is done from core to client.
-            <a href="/gacui/modes/remote_client.html">Remote Protocol Client Application</a> and
-            <a href="/gacui/modes/remote_communication.html">Implementing a Communication Protocol</a>
-            demos how to setup the pipeline from <b>IGuiRemoteProtocol</b> all the way to sending and receiving strings.
-            You can also implements your own pipeline using different message formats.
-            JSON serialization is offered in GacUI by default,
-            but you can also code generate your own serializer with other underlying format
-            using metadata in <a href="https://github.com/vczh-libraries/Release/tree/master/Import/Metadata">this folder</a>.
-        </p>
+        <topic>
+            <title>What User Code Owns</title>
+            <p>
+                The new design removes the old custom string-channel work from normal applications.
+                A C++ application does not implement IGuiRemoteProtocolChannel&lt;WString&gt;,
+                does not call the old string serializer/deserializer classes,
+                and does not route individual remote protocol messages.
+            </p>
+            <p>
+                User code usually owns only:
+                <ul>
+                    <li>A small server policy around GuiRemoteProtocolNetworkChannelServer, if the core needs to wait for a renderer, reject invalid clients, or replace an old renderer.</li>
+                    <li>A raw transport choice, such as named pipe or HTTP.</li>
+                    <li>Optional renderer-side error handling by overriding GuiRemoteProtocolChannelClient::OnReadError, OnLocalError or OnDisconnected.</li>
+                </ul>
+            </p>
+            <p>
+                GuiRemoteProtocolCoreChannel exposes BeforeWrite and BeforeOnRead.
+                GuiRemoteProtocolRendererChannel exposes the same events.
+                Use these events for tracing package flow or diagnosing mismatched renderer/core behavior.
+            </p>
+        </topic>
+        <topic>
+            <title>Adding a Transport</title>
+            <p>
+                Add a new underlying implementation below GacUI, at the vl::inter_process raw protocol layer.
+                Implement INetworkProtocolConnection, INetworkProtocolClient and INetworkProtocolServer
+                so they exchange asynchronous WString messages.
+                Then reuse the GacUI JSON channel classes.
+            </p>
+            <p>
+                The core side selects the transport server as the template argument:
+                <program language="c++"><code><![CDATA[
+using MyRemoteCoreServer =
+    GuiRemoteProtocolNetworkChannelServer<MyNetworkProtocolServer>;
+
+auto jsonParser = Ptr(new glr::json::Parser);
+MyRemoteCoreServer server(jsonParser, /* transport server constructor arguments */);
+server.Start();
+
+auto coreClient = Ptr(new GuiRemoteProtocolLocalChannelClient(jsonParser));
+server.ConnectLocalClient(coreClient);
+                ]]></code></program>
+            </p>
+            <p>
+                The renderer side wraps a raw transport client:
+                <program language="c++"><code><![CDATA[
+auto jsonParser = Ptr(new glr::json::Parser);
+auto networkClient = Ptr(new MyNetworkProtocolClient(/* connection arguments */));
+
+GuiRemoteProtocolChannelClient channelClient(networkClient, jsonParser);
+channelClient.WaitForServer();
+                ]]></code></program>
+            </p>
+            <p>
+                The same channel setup shown in
+                <a href="/gacui/modes/remote_core.html">Remote Protocol Core Application</a> and
+                <a href="/gacui/modes/remote_client.html">Remote Protocol Client Application</a>
+                works after the raw transport is connected.
+                See <a href="/vlppos/using-inter-process.html">Using Inter-Process Channels</a>
+                for the raw protocol and channel interface contracts.
+            </p>
+        </topic>
     </topic>
 </article>
