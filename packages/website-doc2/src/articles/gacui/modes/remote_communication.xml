@@ -2,7 +2,7 @@
     <topic>
         <title>Remote Protocol Channel Layer</title>
         <p>
-            GacUI remote protocol channeling uses the vl::inter_process channel bridge and INetworkProtocolXXX transport interfaces underneath.
+            GacUI remote protocol channeling uses the vl::inter_process channel bridge and the INetworkProtocolConnection, INetworkProtocolCallback, INetworkProtocolClient and INetworkProtocolServer interfaces underneath.
             The GacUI layer remains a rendering protocol between a headless core and a renderer.
         </p>
         <p>
@@ -11,7 +11,7 @@
                 <li>IGuiRemoteProtocol and IGuiRemoteEventProcessor: the strongly typed GacUI remote protocol.</li>
                 <li>GuiRemoteProtocolCoreChannel and GuiRemoteProtocolRendererChannel: conversion between the strongly typed protocol and JSON channel packages.</li>
                 <li>GuiRemoteProtocolNetworkChannelServer, GuiRemoteProtocolLocalChannelClient and GuiRemoteProtocolChannelClient: the vl::inter_process JSON channel bridge.</li>
-                <li>NamedPipeServer, NamedPipeClient, HttpServer, HttpClient, or a custom INetworkProtocolXXX implementation: the underlying data-transmission implementation.</li>
+                <li>NamedPipeServer, NamedPipeClient, HttpServer, HttpClient, or custom implementations of the INetworkProtocolConnection, INetworkProtocolCallback, INetworkProtocolClient and INetworkProtocolServer interfaces: the underlying data-transmission implementation.</li>
             </ul>
         </p>
         <p>
@@ -43,7 +43,7 @@
                 User code usually owns only:
                 <ul>
                     <li>A small server policy around GuiRemoteProtocolNetworkChannelServer, if the core needs to wait for a renderer, reject invalid clients, or replace a previous renderer.</li>
-                    <li>An underlying data-transmission implementation, represented by INetworkProtocolServer, INetworkProtocolClient and INetworkProtocolConnection.</li>
+                    <li>An underlying data-transmission implementation, represented by INetworkProtocolConnection, INetworkProtocolCallback, INetworkProtocolClient and INetworkProtocolServer.</li>
                     <li>Optional renderer-side error handling by overriding GuiRemoteProtocolChannelClient::OnReadError, OnLocalError or OnDisconnected.</li>
                 </ul>
             </p>
@@ -56,16 +56,16 @@
         <topic>
             <title>Adding a Transport</title>
             <p>
-                Add a new underlying data-transmission implementation below GacUI by implementing the vl::inter_process INetworkProtocolXXX interfaces.
+                Add a new underlying data-transmission implementation below GacUI by implementing the vl::inter_process INetworkProtocolConnection, INetworkProtocolCallback, INetworkProtocolClient and INetworkProtocolServer interfaces.
                 The names say network protocol, but the contract is only asynchronous WString message exchange.
-                The implementation can be a pipe, socket, stdio stream, shared memory, DLL function calls, or any other mechanism that can satisfy INetworkProtocolConnection, INetworkProtocolClient and INetworkProtocolServer.
+                The implementation can be a pipe, socket, stdio stream, shared memory, DLL function calls, or any other mechanism that can satisfy INetworkProtocolConnection, INetworkProtocolCallback, INetworkProtocolClient and INetworkProtocolServer.
                 Then reuse the GacUI JSON channel classes.
             </p>
             <p>
                 The core side selects the INetworkProtocolServer implementation as the template argument:
                 <program language="c++"><code><![CDATA[
 using MyRemoteCoreServer =
-    GuiRemoteProtocolNetworkChannelServer<MyNetworkProtocolServer>;
+    GuiRemoteProtocolNetworkChannelServer<MyTransportServer>;
 
 auto jsonParser = Ptr(new glr::json::Parser);
 MyRemoteCoreServer server(jsonParser, /* transport server constructor arguments */);
@@ -79,7 +79,7 @@ server.ConnectLocalClient(coreClient);
                 The renderer side wraps an INetworkProtocolClient object:
                 <program language="c++"><code><![CDATA[
 auto jsonParser = Ptr(new glr::json::Parser);
-auto networkClient = Ptr(new MyNetworkProtocolClient(/* connection arguments */));
+auto networkClient = Ptr(new MyTransportClient(/* connection arguments */));
 
 GuiRemoteProtocolChannelClient channelClient(networkClient, jsonParser);
 channelClient.WaitForServer();
@@ -91,7 +91,7 @@ channelClient.WaitForServer();
                 <a href="/gacui/modes/remote_client.html">Remote Protocol Client Application</a>
                 works after the transport object is connected.
                 See <a href="/vlppos/using-inter-process.html">Using Inter-Process Channels</a>
-                for the INetworkProtocolXXX and channel interface contracts.
+                for the inter-process protocol and channel interface contracts.
             </p>
         </topic>
     </topic>

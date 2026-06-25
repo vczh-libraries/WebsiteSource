@@ -10,7 +10,7 @@
         <p>
             The standard C++ path is small:
             <ul>
-                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolXXX implementation such as NamedPipeServer or HttpServer.</li>
+                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolServer implementation such as NamedPipeServer or HttpServer.</li>
                 <li>Connect the core to that server with GuiRemoteProtocolLocalChannelClient.</li>
                 <li>Wrap the core channel with GuiRemoteProtocolJsonChannelRenderer_Async and GuiRemoteProtocolCoreChannel.</li>
                 <li>Pass the protocol, usually after GuiRemoteProtocolFilter and GuiRemoteProtocolDomDiffConverter, to SetupRemoteNativeController.</li>

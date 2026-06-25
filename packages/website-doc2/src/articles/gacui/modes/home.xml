@@ -44,7 +44,8 @@
             </ul>
         </p>
         <p>
-            A different data-transmission implementation should be added by implementing the <b>vl::inter_process</b> <b>INetworkProtocolXXX</b> interfaces.
+            A different data-transmission implementation should be added by implementing the <b>vl::inter_process</b>
+            <b>INetworkProtocolConnection</b>, <b>INetworkProtocolCallback</b>, <b>INetworkProtocolClient</b> and <b>INetworkProtocolServer</b> interfaces.
             They are named network protocol interfaces, but the implementation does not have to be a network protocol;
             stdio, DLL function calls, shared memory, sockets or any other message transport can fit this layer.
             so the GacUI JSON channel classes can stay unchanged.
