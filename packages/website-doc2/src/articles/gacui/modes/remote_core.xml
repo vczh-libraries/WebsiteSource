@@ -12,7 +12,7 @@
             <ul>
                 <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolServer implementation such as NamedPipeServer or HttpServer.</li>
                 <li>Connect the core to that server with GuiRemoteProtocolLocalChannelClient.</li>
-                <li>Wrap the core channel with GuiRemoteProtocolJsonChannelRenderer_Async and GuiRemoteProtocolCoreChannel.</li>
+                <li>Wrap the core channel with GuiRemoteProtocolAsyncJsonChannel and GuiRemoteProtocolCoreChannel.</li>
                 <li>Pass the protocol, usually after GuiRemoteProtocolFilter and GuiRemoteProtocolDomDiffConverter, to SetupRemoteNativeController.</li>
             </ul>
         </p>
@@ -82,7 +82,7 @@ void StartNamedPipeRemoteCore()
 
     server.WaitForRenderer();
 
-    GuiRemoteProtocolJsonChannelRenderer_Async asyncChannel(coreClient->GetProtocolChannel());
+    GuiRemoteProtocolAsyncJsonChannel asyncChannel(coreClient->GetProtocolChannel());
     GuiRemoteProtocolCoreChannel coreProtocol(
         coreClient.Obj(),
         &asyncChannel,

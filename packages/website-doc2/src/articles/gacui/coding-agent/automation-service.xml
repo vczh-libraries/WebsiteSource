@@ -58,7 +58,9 @@
             <title>Starting The Service</title>
             <p>
                 Call <name>StartWindowsHttpAutomationService</name> from <name>GuiMain</name>, after the setup function has installed the current native controller and before entering the application event loop.
-                Call <name>StopWindowsHttpAutomationService</name> during shutdown when the service lifetime is not already stopped through <name>INativeAutomationService::Stop</name>.
+                Every code path that calls <name>StartWindowsHttpAutomationService</name> must later call <name>StopWindowsHttpAutomationService</name> before the native controller or substituted automation service is torn down.
+                Skipping the stop leaks the process-wide HTTP service.
+                Use a local guard or equivalent try/catch so the stop runs after the start on normal returns and exceptions.
             </p>
             <p>
                 A normal Windows application can start the service before <name>GetApplication()-&gt;Run</name>:
@@ -69,17 +71,30 @@ using namespace vl;
 using namespace vl::presentation;
 using namespace vl::presentation::controls;
 
+class WindowsHttpAutomationServiceScope
+{
+public:
+    WindowsHttpAutomationServiceScope(const WString& applicationName, vint port)
+    {
+        windows::StartWindowsHttpAutomationService(applicationName, port);
+    }
+
+    ~WindowsHttpAutomationServiceScope()
+    {
+        windows::StopWindowsHttpAutomationService();
+    }
+};
+
 void GuiMain()
 {
     demo::MainWindow window;
     window.ForceCalculateSizeImmediately();
     window.MoveToScreenCenter();
 
-    windows::StartWindowsHttpAutomationService(
+    WindowsHttpAutomationServiceScope httpAutomationService(
         WString::Unmanaged(L"Automation/MyApp"),
         8888);
     GetApplication()->Run(&window);
-    windows::StopWindowsHttpAutomationService();
 }
 
 int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
@@ -90,7 +105,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             </p>
             <p>
                 Repeated calls do not create multiple listeners.
-                The Windows implementation keeps one process-wide HTTP service until <name>StopWindowsHttpAutomationService</name> or <name>INativeAutomationService::Stop</name> stops it.
+                The Windows implementation keeps one process-wide HTTP service until <name>StopWindowsHttpAutomationService</name> stops it.
             </p>
         </topic>
         <topic>
@@ -122,18 +137,20 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
             </p>
             <p>
                 A remote protocol core can expose the core-side automation surface like this:
+                The sample uses the same <name>WindowsHttpAutomationServiceScope</name> guard from the normal Windows application example.
                 <program language="c++"><code><![CDATA[
 void GuiMain()
 {
     RemoteProtocolAutomationService automationService;
     GetNativeServiceSubstitution()->Substitute(&automationService, false);
-    windows::StartWindowsHttpAutomationService(
-        WString::Unmanaged(L"Automation/RemoteCore"),
-        8888);
 
-    GetApplication()->Run(mainWindow);
+    {
+        WindowsHttpAutomationServiceScope httpAutomationService(
+            WString::Unmanaged(L"Automation/RemoteCore"),
+            8888);
+        GetApplication()->Run(mainWindow);
+    }
 
-    windows::StopWindowsHttpAutomationService();
     GetNativeServiceSubstitution()->Unsubstitute(&automationService);
 }
                 ]]></code></program>
