@@ -26,7 +26,15 @@
             <p>
                 Feature availability is checked separately.
                 A real service returns true from <name>Available</name> even if a specific feature is unsupported.
-                Unsupported features should return false from the corresponding <name>Can...</name> function and return an empty string from the operation.
+                Unsupported dump features should return false from the corresponding <name>Can...</name> function and return an empty string from the operation.
+            </p>
+            <p>
+                <name>CanRunIOCommands</name> returns <name>INativeAutomationService::IOCommandAvailability</name>:
+                <ul>
+                    <li><name>Disabled</name>: <name>RunIOCommand</name> returns an empty string and endpoint layers should treat IO as unsupported.</li>
+                    <li><name>Enabled</name>: <name>RunIOCommand</name> accepts every syntactically valid command and queues accepted work.</li>
+                    <li><name>ExitOnly</name>: only the exact command <name>!Exit</name> is forwarded and keeps the normal <name>Queued</name> result. Every other command returns exactly <name>!Application stopped responding.</name> synchronously without queuing work.</li>
+                </ul>
             </p>
         </topic>
         <topic>
@@ -50,8 +58,9 @@
             <p>
                 The window id is a path segment after <name>IO</name>, not a query parameter.
                 All other methods, paths, and malformed <name>IO</name> suffixes return HTTP 404 with a text response.
+                The HTTP wrapper returns 404 only when <name>CanRunIOCommands</name> returns <name>Disabled</name>; both <name>Enabled</name> and <name>ExitOnly</name> call <name>RunIOCommand</name>.
                 Successful IO command parsing returns <name>Queued</name>; this means the command was accepted and posted to the UI thread, not that every visible effect has already finished.
-                Syntax errors and command errors are returned synchronously as text beginning with <name>!</name>.
+                Syntax errors, command errors, and <name>ExitOnly</name> rejections are returned synchronously as text beginning with <name>!</name>.
             </p>
         </topic>
         <topic>
@@ -136,7 +145,7 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                 Keep the substituted object alive until it is unsubstituted.
             </p>
             <p>
-                A remote protocol core can expose the core-side automation surface like this:
+                A remote protocol core can expose the core-side automation surface like this.
                 The sample uses the same <name>WindowsHttpAutomationServiceScope</name> guard from the normal Windows application example.
                 <program language="c++"><code><![CDATA[
 void GuiMain()
@@ -158,6 +167,11 @@ void GuiMain()
             <p>
                 A remote protocol renderer that owns a <name>GuiRemoteRendererSingle</name> can substitute <name>WindowsAutomationServiceRenderer</name> in the same scope before starting the HTTP service.
                 This is the case where <name>GET /Dom</name> becomes meaningful.
+            </p>
+            <p>
+                When a remote renderer is retained after a fatal remote-protocol error, renderer automation keeps <name>GET /Dom</name> available.
+                The DOM response is still an HTTP success containing the frozen renderer DOM, and it adds a lowercase top-level <name>fatalError</name> string with the original error.
+                Renderer IO switches to <name>ExitOnly</name>: ordinary IO returns exactly <name>!Application stopped responding.</name>, while exact <name>!Exit</name> is still accepted so automation can close the retained renderer.
             </p>
         </topic>
         <topic>
