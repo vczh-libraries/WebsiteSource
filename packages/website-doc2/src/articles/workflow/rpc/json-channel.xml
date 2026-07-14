@@ -205,14 +205,14 @@ public:
 			<p>
 				The server channel accepts only clients that declare the RPC channel name. After the broker local client is connected, every accepted normal client is registered with RpcJsonDispatcherServer.
 				<program language="C++"><code><![CDATA[
-class JsonRpcChannelServer : public JsonNetworkChannelServer<NamedPipeServer>
+class JsonRpcChannelServer : public JsonNetworkChannelServer<named_pipe::NamedPipeServer>
 {
 private:
 	RpcJsonDispatcherServer* dispatcher = nullptr;
 
 public:
 	JsonRpcChannelServer(Ptr<Parser> parser, const WString& pipeName)
-		: JsonNetworkChannelServer<NamedPipeServer>(parser, pipeName)
+		: JsonNetworkChannelServer<named_pipe::NamedPipeServer>(parser, pipeName)
 	{
 	}
 
@@ -378,7 +378,7 @@ void HostLocalService(
 		<topic>
 			<title>Connecting a Remote Client</title>
 			<p>
-				A remote client uses JsonNetworkChannelClient over a raw transport such as NamedPipeClient or HttpClient. The channel connection supplies the client id; OnConnected initializes the RPC lifecycle for that id.
+				A remote client uses JsonNetworkChannelClient over a raw transport such as <b>vl::inter_process::named_pipe::NamedPipeClient</b> or <b>vl::inter_process::windows_http::HttpClient</b>. The channel connection supplies the client id; OnConnected initializes the RPC lifecycle for that id.
 				<program language="C++"><code><![CDATA[
 class JsonRpcNetworkEndpoint : public JsonRpcNetworkClient
 {
@@ -408,7 +408,7 @@ Ptr<MyRpcDispatcherClient> ConnectRemoteRpcClient(
 	const List<WString>& waitingForServices)
 {
 	auto dispatcher = Ptr(new MyRpcDispatcherClient(taskQueue));
-	auto transport = Ptr(new NamedPipeClient(L"WorkflowRpcPipe"));
+	auto transport = Ptr(new named_pipe::NamedPipeClient(L"WorkflowRpcPipe"));
 	auto channelClient = Ptr(new JsonRpcNetworkEndpoint(dispatcher, transport, parser));
 
 	dispatcher->WaitForServer(

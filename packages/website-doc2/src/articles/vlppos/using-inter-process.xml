@@ -232,11 +232,11 @@ using namespace vl;
 using namespace vl::inter_process;
 
 class ChatServer
-    : public NetworkProtocolChannelServer<WString, WStringListSerializer, NamedPipeServer>
+    : public NetworkProtocolChannelServer<WString, WStringListSerializer, named_pipe::NamedPipeServer>
 {
 public:
     ChatServer(const WString& pipeName)
-        : NetworkProtocolChannelServer<WString, WStringListSerializer, NamedPipeServer>(pipeName)
+        : NetworkProtocolChannelServer<WString, WStringListSerializer, named_pipe::NamedPipeServer>(pipeName)
     {
     }
 
@@ -265,9 +265,9 @@ server->Start();
             <topic>
                 <title>Named Pipe Transport</title>
                 <p>
-                    <b>NamedPipeServer</b> implements <b>INetworkProtocolServer</b>.
-                    <b>NamedPipeClient</b> derives from <b>NamedPipeConnection</b> and implements <b>INetworkProtocolClient</b>.
-                    <b>NamedPipeConnection</b> implements <b>INetworkProtocolConnection</b>.
+                    <b>vl::inter_process::named_pipe::NamedPipeServer</b> implements <b>INetworkProtocolServer</b>.
+                    <b>vl::inter_process::named_pipe::NamedPipeClient</b> derives from <b>vl::inter_process::named_pipe::NamedPipeConnection</b> and implements <b>INetworkProtocolClient</b>.
+                    <b>vl::inter_process::named_pipe::NamedPipeConnection</b> implements <b>INetworkProtocolConnection</b>.
                 </p>
                 <p>
                     The server starts overlapped named-pipe accepting in <b>Start</b> and owns both accepted connections and pending accepts.
@@ -280,8 +280,8 @@ server->Start();
             <topic>
                 <title>HTTP Transport</title>
                 <p>
-                    <b>HttpServer</b> derives from <b>HttpServerApi</b> and implements <b>INetworkProtocolServer</b>.
-                    <b>HttpClient</b> implements both <b>INetworkProtocolClient</b> and <b>INetworkProtocolConnection</b>.
+                    <b>vl::inter_process::windows_http::HttpServer</b> derives from <b>vl::inter_process::windows_http::HttpServerApi</b> and implements <b>INetworkProtocolServer</b>.
+                    <b>vl::inter_process::windows_http::HttpClient</b> implements both <b>INetworkProtocolClient</b> and <b>INetworkProtocolConnection</b>.
                     This transport is a raw protocol implementation over Windows HTTP APIs, not a general web framework.
                 </p>
                 <p>
@@ -293,13 +293,13 @@ server->Start();
                     </ul>
                 </p>
                 <p>
-                    <b>HttpClient::WaitForServer</b> sends the connect request, validates the returned URLs, records them and reports connection.
+                    <b>vl::inter_process::windows_http::HttpClient::WaitForServer</b> sends the connect request, validates the returned URLs, records them and reports connection.
                     <b>BeginReadingLoopUnsafe</b> starts the long-poll request loop.
                     <b>SendString</b> posts to the response URL.
                     Connect and response failures retry a limited number of times; request failures retry while the client is still running.
                 </p>
                 <p>
-                    <b>HttpServer</b> creates a <b>HttpServerConnection</b> for each connect request.
+                    <b>vl::inter_process::windows_http::HttpServer</b> creates a <b>vl::inter_process::windows_http::HttpServerConnection</b> for each connect request.
                     Server-to-client messages are returned through a pending long-poll request when possible, or queued until the next request.
                     Client-to-server request bodies are dispatched as inbound strings.
                     When the server stops, pending long-poll requests are cancelled and connection callbacks receive disconnection.
@@ -308,16 +308,16 @@ server->Start();
             <topic>
                 <title>Windows HTTP Helper APIs</title>
                 <p>
-                    <b>HttpClientApi</b> and <b>HttpServerApi</b> are lower-level Windows helpers used by <b>HttpClient</b> and <b>HttpServer</b>.
+                    <b>vl::inter_process::windows_http::HttpClientApi</b> and <b>vl::inter_process::windows_http::HttpServerApi</b> are lower-level Windows helpers used by <b>vl::inter_process::windows_http::HttpClient</b> and <b>vl::inter_process::windows_http::HttpServer</b>.
                     Use them directly when a Windows feature needs asynchronous HTTP request and response behavior without adopting the raw <b>INetworkProtocol</b> transport shape.
                 </p>
                 <p>
-                    <b>HttpClientApi</b> owns one WinHTTP session and connection for a host and port.
-                    <b>HttpQuery</b> sends one asynchronous request described by <b>HttpRequest</b>, whose fields include method, query, body, content type, accept types, credentials, cookies, extra headers and timeouts.
-                    Results are either <b>HttpResponse</b> or <b>HttpError</b>; HTTP status codes such as 404 are represented as <b>HttpResponse</b> values.
+                    <b>vl::inter_process::windows_http::HttpClientApi</b> owns one WinHTTP session and connection for a host and port.
+                    <b>HttpQuery</b> sends one asynchronous request described by <b>vl::inter_process::windows_http::HttpRequest</b>, whose fields include method, query, body, content type, accept types, credentials, cookies, extra headers and timeouts.
+                    Results are either <b>vl::inter_process::windows_http::HttpResponse</b> or <b>vl::inter_process::windows_http::HttpError</b>; HTTP status codes such as 404 are represented as <b>HttpResponse</b> values.
                 </p>
                 <p>
-                    <b>HttpServerApi</b> owns one HTTP.sys URL prefix.
+                    <b>vl::inter_process::windows_http::HttpServerApi</b> owns one HTTP.sys URL prefix.
                     Override <b>OnHttpRequestReceived</b> to dispatch requests and <b>OnHttpServerStopping</b> to clean up feature state.
                     Helpers such as <b>GetUtf8Body</b>, <b>SendResponse</b> and <b>SendResponseUtf8</b> handle common request-body and response tasks.
                 </p>

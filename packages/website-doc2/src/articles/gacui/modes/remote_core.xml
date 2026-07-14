@@ -10,7 +10,7 @@
         <p>
             The standard C++ path is small:
             <ul>
-                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolServer implementation such as NamedPipeServer or HttpServer.</li>
+                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolServer implementation such as <b>vl::inter_process::named_pipe::NamedPipeServer</b> or <b>vl::inter_process::windows_http::HttpServer</b>.</li>
                 <li>Connect the core to that server with GuiRemoteProtocolLocalChannelClient.</li>
                 <li>Wrap the core channel with GuiRemoteProtocolAsyncJsonChannel and GuiRemoteProtocolCoreChannel.</li>
                 <li>Pass the protocol, usually after GuiRemoteProtocolFilter and GuiRemoteProtocolDomDiffConverter, to SetupRemoteNativeController.</li>
@@ -32,9 +32,9 @@ using namespace vl::presentation::remoteprotocol::channeling;
 using namespace vl::presentation::remoteprotocol::repeatfiltering;
 
 class NamedPipeRemoteCoreServer
-    : public GuiRemoteProtocolNetworkChannelServer<inter_process::NamedPipeServer>
+    : public GuiRemoteProtocolNetworkChannelServer<inter_process::named_pipe::NamedPipeServer>
 {
-    using Base = GuiRemoteProtocolNetworkChannelServer<inter_process::NamedPipeServer>;
+    using Base = GuiRemoteProtocolNetworkChannelServer<inter_process::named_pipe::NamedPipeServer>;
 
     EventObject rendererConnected;
 
