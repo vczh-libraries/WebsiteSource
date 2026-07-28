@@ -50,8 +50,8 @@
             Applications may use these public contracts directly, but product code is strongly recommended to provide its own implementation and keep the GacUI JSON channel classes unchanged.
         </p>
         <p>
-            A custom data-transmission implementation can be added by implementing the <b>vl::inter_process</b>
-            <b>INetworkProtocolConnection</b>, <b>INetworkProtocolCallback</b>, <b>INetworkProtocolClient</b> and <b>INetworkProtocolServer</b> interfaces.
+            A custom data-transmission implementation can be added by implementing these interfaces from <b>vl::inter_process</b>:
+            <b>INetworkProtocolConnection</b>, <b>INetworkProtocolCallback</b>, <b>INetworkProtocolClient</b> and <b>INetworkProtocolServer</b>.
             They are named network protocol interfaces, but the implementation does not have to be a network protocol;
             stdio, DLL function calls, shared memory, a WebAssembly/JavaScript bridge, sockets or any other asynchronous message transport can fit this layer.
             This part will be covered in <a href="/gacui/modes/remote_communication.html">Remote Protocol Channel Layer</a>.
