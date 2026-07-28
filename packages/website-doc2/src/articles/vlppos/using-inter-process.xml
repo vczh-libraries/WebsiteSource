@@ -5,7 +5,15 @@
             The <b>vl::inter_process</b> namespace is organized in layers.
             Feature code normally uses the channel interfaces, because they describe typed named message delivery between connected participants.
             Transport code implements the raw network protocol interfaces, because they describe how one server and many clients exchange asynchronous <b>WString</b> messages.
-            The built-in Windows transports are composition choices that connect these two layers.
+            Portable async-socket transports and Windows-specific transports are composition choices that connect these two layers.
+        </p>
+        <p>
+            VlppOS provides the <b>INetworkProtocol</b> and <b>IChannel</b> interface families only for test-purpose local cross-process communication.
+            Applications may use these public interfaces as integration contracts, but product code is strongly recommended to provide its own implementations instead of treating the bundled transports and channel stack as production networking.
+        </p>
+        <p>
+            Despite the names, these contracts are not tied to TCP/IP.
+            Any mechanism that provides the required asynchronous message and lifecycle behavior can fit behind them, including stdio, DLL calls, shared memory, WebAssembly host calls, pipes, sockets, HTTP or a custom network protocol.
         </p>
         <p>
             Keep this boundary in application code:
@@ -150,6 +158,7 @@ public:
                 The raw protocol layer is the extension point for a new underlying implementation.
                 It intentionally knows nothing about channel names or package types.
                 One <b>INetworkProtocolConnection</b> exchanges asynchronous <b>WString</b> messages with the other side.
+                This message contract can be implemented by a local pipe or socket, stdio, DLL calls, shared memory, a WebAssembly host bridge or another mechanism; the name <b>INetworkProtocol</b> does not require an IP network.
             </p>
             <p>
                 Implement these interfaces for a new transport:
@@ -257,10 +266,85 @@ server->Start();
             </p>
         </topic>
         <topic>
+            <title>Portable Async-Socket Implementations</title>
+            <p>
+                The types in <b>vl::inter_process::async_tcp_socket</b> form a portable, loopback-only stack for asynchronous TCP bytes, HTTP/1.1 requests and Mini HTTP services.
+                Platform-neutral factories select <b>windows_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b>, <b>linux_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b>, or <b>macos_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b> at the application composition boundary.
+            </p>
+            <topic>
+                <title>Direct Length-Framed Transport</title>
+                <p>
+                    Use <b>async_tcp_socket::NetworkProtocolServer&lt;TAsyncSocketServer&gt;</b> and <b>async_tcp_socket::NetworkProtocolClient&lt;TAsyncSocketClient&gt;</b> when both peers use VlppOS and HTTP compatibility is unnecessary.
+                    One logical connection is one physical TCP socket.
+                    Each <b>WString</b> is framed with its character count and native <b>wchar_t</b> bytes, so this is not a portable wire encoding between peers with different <b>wchar_t</b> representations.
+                </p>
+                <p>
+                    These templates construct their socket backend from forwarded constructor arguments, so choose the concrete type for the target:
+                    <b>windows_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b>,
+                    <b>linux_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b>, or
+                    <b>macos_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b>, and pass the port to the protocol adapter.
+                    They do not accept an injected <b>Ptr&lt;IAsyncSocketServer&gt;</b> or <b>Ptr&lt;IAsyncSocketClient&gt;</b>.
+                </p>
+                <p>
+                    <b>IAsyncSocketServer</b>, <b>IAsyncSocketClient</b>, <b>IAsyncSocketConnection</b> and <b>IAsyncSocketCallback</b> expose the underlying ordered full-duplex byte streams.
+                    The interface-returning <b>CreateDefaultAsyncSocketServer(port)</b> and <b>CreateDefaultAsyncSocketClient(port)</b> factories are for code that consumes these socket interfaces, including the injected <b>SocketHttpServer</b> and <b>SocketHttpClient</b> dependencies below.
+                    Each socket exposes its immutable loopback port through <b>GetPort</b>, and <b>IAsyncSocketClient::CreateSameEndpointClient</b> creates a fresh client for another physical lane on the same endpoint.
+                </p>
+            </topic>
+            <topic>
+                <title>HTTP-Compatible Socket Transport</title>
+                <p>
+                    Use <b>async_tcp_socket::SocketHttpServer</b> and <b>async_tcp_socket::SocketHttpClient</b> when the transport must use the VlppOS HTTP wire protocol or interoperate with the Windows HTTP implementation.
+                    They implement <b>INetworkProtocolServer</b>, <b>INetworkProtocolClient</b> and <b>INetworkProtocolConnection</b> over the portable Mini HTTP stack.
+                </p>
+                <p>
+                    The public construction surface keeps native socket composition explicit:
+                    <program language="C++"><code><![CDATA[
+SocketHttpServer(
+    Ptr<IAsyncSocketServer> socketServer,
+    const WString& urlPrefix
+    );
+
+SocketHttpClient(
+    Ptr<IAsyncSocketClient> socketClient,
+    const WString& server,
+    const WString& urlPrefix
+    );
+                    ]]></code></program>
+                </p>
+                <p>
+                    The server adapter uses the injected listener and never creates another one.
+                    The client uses the injected client for its first physical lane and calls <b>CreateSameEndpointClient</b> for the additional lanes required by full-duplex polling and recovery.
+                    The server name must select loopback, and the URL prefix is empty for the origin root or begins with <b>/</b>.
+                </p>
+                <p>
+                    The adapter uses the same <b>/VlppInterProcess/Connect</b>, <b>/VlppInterProcess/Request/{token}</b> and <b>/VlppInterProcess/Response/{token}</b> routes as <b>windows_http::HttpServer</b> and <b>windows_http::HttpClient</b>.
+                    The protocol has no message-level delivery acknowledgement, deduplication, heartbeat or disconnect route, so it must not be treated as exactly-once delivery.
+                </p>
+            </topic>
+            <topic>
+                <title>Portable Mini HTTP Request Helpers</title>
+                <p>
+                    <b>async_tcp_socket::HttpRequest</b>, <b>HttpResponse</b>, <b>HttpRequestServer</b>, <b>HttpRequestClient</b> and <b>HttpRequestConnection</b> provide the lower HTTP/1.1 message layer.
+                    Use them when code needs complete binary-safe request and response objects and controls each connection directly.
+                </p>
+                <p>
+                    <b>async_tcp_socket::SocketHttpServerApi</b>, <b>SocketHttpRequestContext</b> and <b>SocketHttpClientApi</b> add prefix dispatch and request/response conveniences.
+                    A server API receives <b>(socketServer, urlPrefix)</b>, and multiple APIs share one listener only when they receive the exact same server object.
+                    Override <b>OnHttpRequestReceived</b>, inspect the relative path, query or UTF-8 body, and complete the one-shot context with <b>Respond</b>, <b>RespondStatus</b>, <b>RespondBytes</b>, <b>RespondUtf8</b> or <b>Cancel</b>.
+                    A client API receives <b>(socketClient, server)</b> and queues asynchronous <b>HttpQuery</b> calls.
+                </p>
+                <p>
+                    <b>SocketHttpClientApi</b> uses the <b>windows_http::HttpRequest</b>, <b>HttpResponse</b> and <b>HttpError</b> value types, but those types are platform-neutral and using them here does not invoke WinHTTP.
+                    The TCP, HTTP and Mini HTTP implementations in this section are local test, validation and demonstration infrastructure rather than a production web stack.
+                </p>
+            </topic>
+        </topic>
+        <topic>
             <title>Windows Implementations</title>
             <p>
-                The concrete raw protocol implementations currently provided by VlppOS are Windows-only.
-                Treat them as ready-to-use Windows transports and as reference implementations for the raw protocol contract, but do not make portable feature code depend on them directly.
+                Named pipes and the legacy HTTP.sys/WinHTTP transport are Windows-only.
+                They are available for local tests and as reference implementations for the raw protocol contract, but do not make portable feature code depend on them or treat them as production communication stacks.
             </p>
             <topic>
                 <title>Named Pipe Transport</title>

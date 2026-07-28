@@ -112,8 +112,12 @@
                 </p>
                 <p>
                     GacUI offers a JSON remote protocol channel on top of <b>vl::inter_process</b>.
-                    The application chooses the underlying data-transmission implementation, such as the Windows named pipe or HTTP implementations from <b>VlppOS</b>,
+                    The application chooses the underlying data-transmission implementation, such as the cross-platform async-TCP Mini HTTP transport, the Windows named-pipe transport, or the Windows HTTP.sys/WinHTTP transport from <b>VlppOS</b>,
                     and the channel layer translates between that transport and the strongly typed remote protocol.
+                </p>
+                <p>
+                    The <b>INetworkProtocol</b> and <b>IChannel</b> interface families are provided only for test-purpose local cross-process communication.
+                    Its public contracts can be reused directly, but product code is strongly recommended to provide its own implementation while keeping the GacUI JSON channel layer unchanged.
                 </p>
                 <p>
                     <ul>
@@ -143,7 +147,7 @@
                     Current examples of the JSON remote protocol channel using <b>vl::inter_process</b>.
                 </p>
                 <p>
-                    Test applications on Windows with named pipe and HTTP:
+                    The test applications exercise Windows named pipe (<b>/Pipe</b>), Windows HTTP.sys/WinHTTP (<b>/Http</b>) and portable Mini HTTP over loopback TCP (<b>/MiniHttp</b>):
                     <a href="https://github.com/vczh-libraries/GacUI/blob/master/Test/GacUISrc/RemotingTest_Core/GuiMain.cpp">Core</a> and
                     <a href="https://github.com/vczh-libraries/GacUI/blob/master/Test/GacUISrc/RemotingTest_Rendering_Win32/GuiMain.cpp">Renderer</a>.
                 </p>

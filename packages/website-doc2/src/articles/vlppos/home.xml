@@ -80,9 +80,14 @@
                 <ul>
                     <li><b>IChannelServer&lt;T&gt;</b>, <b>IChannelClient&lt;T&gt;</b>, <b>IChannel&lt;T&gt;</b> and <b>IChannelReader&lt;T&gt;</b> for typed named package delivery between connected participants.</li>
                     <li><b>INetworkProtocolServer</b>, <b>INetworkProtocolClient</b>, <b>INetworkProtocolConnection</b> and <b>INetworkProtocolCallback</b> for implementing a new underlying raw transport.</li>
-                    <li><b>NamedPipeServer</b> and <b>NamedPipeClient</b> in <b>::vl::inter_process::named_pipe</b> for the current Windows named-pipe implementation.</li>
-                    <li><b>HttpServer</b>, <b>HttpClient</b> and Windows HTTP helper APIs in <b>::vl::inter_process::windows_http</b> for the current Windows HTTP implementation.</li>
+                    <li><b>IAsyncSocketServer</b>, <b>IAsyncSocketClient</b> and <b>CreateDefaultAsyncSocketServer</b> / <b>CreateDefaultAsyncSocketClient</b> in <b>::vl::inter_process::async_tcp_socket</b> for cross-platform loopback TCP.</li>
+                    <li><b>SocketHttpServer</b> and <b>SocketHttpClient</b> in <b>::vl::inter_process::async_tcp_socket</b> for the portable Mini HTTP implementation of the raw protocol interfaces.</li>
+                    <li><b>SocketHttpServerApi</b>, <b>SocketHttpRequestContext</b> and <b>SocketHttpClientApi</b> in <b>::vl::inter_process::async_tcp_socket</b> for small cross-platform Mini HTTP request/response services.</li>
+                    <li><b>NamedPipeServer</b> and <b>NamedPipeClient</b> in <b>::vl::inter_process::named_pipe</b> for the Windows-only named-pipe implementation.</li>
+                    <li><b>HttpServer</b>, <b>HttpClient</b> and HTTP.sys/WinHTTP helper APIs in <b>::vl::inter_process::windows_http</b> for the Windows-only HTTP implementation.</li>
                 </ul>
+                The <b>INetworkProtocol</b> and <b>IChannel</b> interface families are provided only for test-purpose local cross-process communication.
+                Its public contracts may be used directly, but product code is strongly recommended to provide its own implementations.
                 See <a href="/vlppos/using-inter-process.html">Using Inter-Process Channels</a> for the layer split and usage rules.
             </p>
         </topic>

@@ -10,11 +10,15 @@
         <p>
             The standard C++ path is small:
             <ul>
-                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolServer implementation such as <b>vl::inter_process::named_pipe::NamedPipeServer</b> or <b>vl::inter_process::windows_http::HttpServer</b>.</li>
+                <li>Start a GuiRemoteProtocolNetworkChannelServer&lt;TServerBase&gt; over an INetworkProtocolServer implementation such as the cross-platform <b>vl::inter_process::async_tcp_socket::SocketHttpServer</b>, the Windows-only <b>vl::inter_process::named_pipe::NamedPipeServer</b>, or the Windows-only <b>vl::inter_process::windows_http::HttpServer</b>.</li>
                 <li>Connect the core to that server with GuiRemoteProtocolLocalChannelClient.</li>
                 <li>Wrap the core channel with GuiRemoteProtocolAsyncJsonChannel and GuiRemoteProtocolCoreChannel.</li>
                 <li>Pass the protocol, usually after GuiRemoteProtocolFilter and GuiRemoteProtocolDomDiffConverter, to SetupRemoteNativeController.</li>
             </ul>
+        </p>
+        <p>
+            The portable <b>/MiniHttp</b> test path creates an <b>IAsyncSocketServer</b> with <b>CreateDefaultAsyncSocketServer(port)</b> and injects it into a <b>GuiRemoteProtocolNetworkChannelServer&lt;async_tcp_socket::SocketHttpServer&gt;</b> specialization.
+            The same listener can also host a separate <b>SocketHttpServerApi</b> automation prefix.
         </p>
         <p>
             The core client is expected to be registered as GacUIRemoteProtocolCoreClientId.
@@ -106,7 +110,7 @@ void StartNamedPipeRemoteCore()
         </p>
         <p>
             See <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Core">RemotingTest_Core</a>
-            for the complete named pipe and HTTP implementation.
+            for the complete named-pipe (<b>/Pipe</b>), Windows HTTP.sys/WinHTTP (<b>/Http</b>) and portable Mini HTTP (<b>/MiniHttp</b>) implementations.
         </p>
     </topic>
 </article>
