@@ -7,6 +7,9 @@
             Coding agents use it to read the current UI structure and send input commands without depending on operating-system UI Automation.
         </p>
         <p>
+            <b>IMPORTANT:</b> This automation service is strong recommended to only use with debugging and testing. Security is not guaranteed totally.
+        </p>
+        <p>
             The service is independent from the remote protocol.
             A normal Windows application, a remote protocol core application, and a remote protocol renderer can all expose an automation service,
             but each setup exposes the view of the UI that exists on that side.
@@ -131,9 +134,10 @@ int CALLBACK WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                     <li><name>SetupRawWindowsDirect2DRenderer</name>: same automation behavior as <name>SetupRawWindowsGDIRenderer</name>, with the Direct2D renderer.</li>
                     <li><name>SetupRemoteNativeController</name>: the remote controller itself does not return an automation service. Substitute <name>RemoteProtocolAutomationService</name> around <name>GetApplication()-&gt;Run</name> when the remote core should expose the hosted control tree and core-side IO.</li>
                     <li><name>SetupGacGenNativeController</name>: this setup is for generation-time resource processing, not an interactive UI session. It does not provide an automation service for HTTP control.</li>
-                    <li><name>SetupGtkRenderer</name>: do not call the Windows HTTP helper. A Gtk port must provide its own endpoint layer and automation service implementation if it needs coding-agent automation.</li>
-                    <li><name>SetupWGacRenderer</name>: do not call the Windows HTTP helper. A Wayland port must provide its own endpoint layer and automation service implementation if it needs coding-agent automation.</li>
-                    <li><name>SetupWGacHostedRenderer</name>: same requirement as <name>SetupWGacRenderer</name>, but the service should follow hosted-mode window-id behavior if it exposes hosted windows.</li>
+                    <li><name>SetupWGacRenderer</name>: <a href="https://github.com/vczh-libraries/wGac/blob/master/WGacShared/MiniHttpAutomationService.cpp"/> in <b>wGac</b> repo is the sample code to start such service.</li>
+                    <li><name>SetupWGacHostedRenderer</name>: same requirement as <name>SetupWGacRenderer</name>.</li>
+                    <li><name>SetupOSXCoreGraphicsRenderer</name>: <a href="https://github.com/vczh-libraries/iGac/blob/master/MacShared/MiniHttpAutomationService.cpp"/> in <b>iGac</b> repo is the sample code to start such service.</li>
+                    <li><name>SetupOSXHostedCoreGraphicsRenderer</name>: same requirement as <name>SetupOSXCoreGraphicsRenderer</name>.</li>
                 </ul>
             </p>
         </topic>

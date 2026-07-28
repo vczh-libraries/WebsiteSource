@@ -2,7 +2,13 @@
     <topic>
         <title>Hosted Mode and Remote Protocol</title>
         <p>
-            Using <b>SetupHostedWindowsGDIRenderer</b> or <b>SetupHostedWindowsDirect2DRenderer</b> instead of <b>SetupWindowsGDIRenderer</b> or <b>SetupWindowsDirect2DRenderer</b>
+            Using
+            <ul>
+                <li><b>SetupHostedWindowsDirect2DRenderer</b></li>
+                <li><b>SetupHostedWindowsGDIRenderer</b></li>
+                <li><b>SetupWGacHostedRenderer</b></li>
+                <li><b>SetupOSXHostedCoreGraphicsRenderer</b></li>
+            </ul>
             runs a GacUI application in hosted mode.
             A hosted mode GacUI application will start only one OS native window,
             other windows are rendered inside it virtually.

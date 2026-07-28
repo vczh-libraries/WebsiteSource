@@ -99,6 +99,8 @@
                     <ul>
                         <li>SetupHostedWindowsDirect2DRenderer();</li>
                         <li>SetupHostedWindowsGDIRenderer();</li>
+                        <li>SetupWGacHostedRenderer();</li>
+                        <li>SetupOSXHostedCoreGraphicsRenderer();</li>
                     </ul>
                 </p>
                 <p><img src="/Platform_2.png"/></p>
