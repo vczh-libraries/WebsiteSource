@@ -2,7 +2,7 @@
     <topic>
         <title>Installing Required Tools on Windows</title>
         <p>
-            The Windows agent scripts build with MSBuild through Visual Studio's developer environment and debug with CDB.
+            The Windows agent scripts build with MSBuild through Visual Studio's developer environment, and the agent debugs directly with CDB.
             Install Visual Studio with the C++ desktop workload, a Windows SDK, and the Windows debugging tools that provide <name>cdb.exe</name>.
             If CDB is not available, install the Windows Driver Kit or the Windows debugging tools component from the Visual Studio Installer.
         </p>
@@ -14,12 +14,14 @@
             </ul>
         </p>
         <p>
-            After copying the Release <name>.github</name> folder, the agent should use these scripts instead of calling tools directly:
+            After copying the Release <name>.github</name> folder, the agent should use these scripts instead of calling build or execution tools directly:
             <ul>
                 <li><name>.github\Scripts\copilotBuild.ps1</name>: builds the solution found from <name>Project.md</name> context and writes <name>Build.log</name>.</li>
                 <li><name>.github\Scripts\copilotExecute.ps1</name>: runs unit-test or CLI projects and writes <name>Execute.log</name> for unit tests.</li>
-                <li><name>.github\Scripts\copilotDebug_Start.ps1</name> and <name>copilotDebug_RunCommand.ps1</name>: start CDB and send debugger commands.</li>
             </ul>
+        </p>
+        <p>
+            Run CDB directly in an interactive terminal when debugging.
         </p>
         <p>
             If the application uses the tools shipped by Release, build them from the Release repository:
@@ -32,7 +34,7 @@
         </p>
         <p>
             For debugger readability, copy <name>Import\vlpp.natvis</name> from Release to Visual Studio's visualizers folder.
-            The CDB startup script also loads the natvis file for debugger commands such as <name>dx</name>.
+            Load the natvis file in CDB for debugger commands such as <name>dx</name>.
         </p>
     </topic>
 </article>
