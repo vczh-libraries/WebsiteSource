@@ -80,6 +80,7 @@
                 <ul>
                     <li><b>IChannelServer&lt;T&gt;</b>, <b>IChannelClient&lt;T&gt;</b>, <b>IChannel&lt;T&gt;</b> and <b>IChannelReader&lt;T&gt;</b> for typed named package delivery between connected participants.</li>
                     <li><b>INetworkProtocolServer</b>, <b>INetworkProtocolClient</b>, <b>INetworkProtocolConnection</b> and <b>INetworkProtocolCallback</b> for implementing a new underlying raw transport.</li>
+                    <li><b>StdioRedirectionServer</b>, <b>StdioRedirectionClient</b> and <b>StdioRedirectionConnection</b> in <b>::vl::inter_process::stdio_redirection</b> for the cross-platform stdio implementation of the raw protocol interfaces.</li>
                     <li><b>IAsyncSocketServer</b>, <b>IAsyncSocketClient</b> and <b>CreateDefaultAsyncSocketServer</b> / <b>CreateDefaultAsyncSocketClient</b> in <b>::vl::inter_process::async_tcp_socket</b> for cross-platform loopback TCP.</li>
                     <li><b>SocketHttpServer</b> and <b>SocketHttpClient</b> in <b>::vl::inter_process::async_tcp_socket</b> for the portable Mini HTTP implementation of the raw protocol interfaces.</li>
                     <li><b>SocketHttpServerApi</b>, <b>SocketHttpRequestContext</b> and <b>SocketHttpClientApi</b> in <b>::vl::inter_process::async_tcp_socket</b> for small cross-platform Mini HTTP request/response services.</li>
