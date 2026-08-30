@@ -10,7 +10,7 @@
             <title>Choose the Relevant Guides</title>
             <p>
                 <ul>
-                    <li><a href="https://github.com/vczh-libraries/GacUI/blob/master/Test/RemotingHelpers/README.md">GacUI Remoting Test Helpers</a> explains the reusable setup for a remote Core and renderer, and for applications with either a local or foreign view model. Use it for application bring-up, transport selection, process roles, connection order, and shutdown order.</li>
+                    <li><a href="https://github.com/vczh-libraries/Release/blob/master/Import-Test/README.md">GacUI Remoting Test Helpers</a> explains the reusable setup for a remote Core and renderer, and for applications with either a local or foreign view model. Use it for application bring-up, transport selection, process roles, connection order, and shutdown order.</li>
                     <li><a href="https://github.com/vczh-libraries/GacJS/blob/master/doc/rpc/README.md">Working with Workflow RPC</a> is the entry point for implementing view models in another programming language. Use it when the agent must create the target-language RPC library, metadata-driven code generator, wrappers, or cross-language verification.</li>
                 </ul>
             </p>
