@@ -166,8 +166,13 @@ public:
                     <li><b>INetworkProtocolConnection</b>: install or uninstall one callback, start the asynchronous read loop, send one string message and stop the connection.</li>
                     <li><b>INetworkProtocolCallback</b>: receive strings, remote errors, local errors, connected and disconnected events. Callback methods may run on any thread, so implementations and users must be thread-safe.</li>
                     <li><b>INetworkProtocolClient</b>: own one connection, block in <b>WaitForServer</b> until the connection is established or fails, and report <b>ClientStatus</b>.</li>
-                    <li><b>INetworkProtocolServer</b>: start accepting, call <b>OnClientConnected</b> for accepted transport connections, stop all owned connections and report stopped state.</li>
+                    <li><b>INetworkProtocolServer</b>: start accepting, call <b>OnClientConnected</b> with <b>Ptr&lt;INetworkProtocolConnection&gt;</b> for accepted transport connections, stop all owned connections and report stopped state.</li>
                 </ul>
+            </p>
+            <p>
+                Connection-admission callbacks carry the producer's existing owning <b>Ptr</b> through the asynchronous socket, HTTP request, network protocol and channel layers.
+                An override should accept that <b>Ptr</b> and forward or store it without constructing another <b>Ptr</b> from the callback argument or from <b>.Obj()</b>.
+                Use <b>.Obj()</b> only when an existing operation requires a temporary raw pointer; doing so does not transfer ownership.
             </p>
             <p>
                 <b>InstallCallback</b> should call <b>OnInstalled</b> with the connection.
@@ -196,7 +201,8 @@ class MyClient : public Object, public virtual INetworkProtocolClient
 
 class MyServer : public Object, public virtual INetworkProtocolServer
 {
-    // Accept MyConnection objects and pass them to OnClientConnected.
+    // Accept MyConnection objects and pass their existing owning Ptr
+    // unchanged to OnClientConnected.
 };
 
 using MyChannelServer =
@@ -252,7 +258,7 @@ public:
     WaitForClientResult OnClientConnected(
         vint clientId,
         const IChannelClient<WString>::ChannelNameList& availableChannels,
-        IChannelClient<WString>* localClient) override
+        Ptr<IChannelClient<WString>> localClient) override
     {
         return availableChannels.Contains(ChatChannelName)
             ? WaitForClientResult::Accept

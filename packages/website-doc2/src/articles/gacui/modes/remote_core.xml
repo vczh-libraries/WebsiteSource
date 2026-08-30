@@ -27,6 +27,10 @@
             so user code does not need to route individual remote protocol messages.
         </p>
         <p>
+            Channel admission receives a <b>Ptr&lt;IJsonChannelClient&gt;</b> for a local client and null for a network client.
+            Preserve that producer-owned <b>Ptr</b> when forwarding or retaining the local client. Use <b>.Obj()</b> only for a temporary raw-pointer operation, and never construct a new <b>Ptr</b> from that raw pointer.
+        </p>
+        <p>
             A compact named pipe setup looks like this:
             <program language="c++"><code><![CDATA[
 using namespace vl;
@@ -58,7 +62,7 @@ protected:
     inter_process::WaitForClientResult OnClientConnected(
         vint clientId,
         const IJsonChannelClient::ChannelNameList& availableChannels,
-        IJsonChannelClient* localClient) override
+        Ptr<IJsonChannelClient> localClient) override
     {
         if (localClient)
         {

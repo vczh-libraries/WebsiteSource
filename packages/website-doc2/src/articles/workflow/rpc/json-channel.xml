@@ -204,6 +204,8 @@ public:
 			<title>Server Channel Setup</title>
 			<p>
 				The server channel accepts only clients that declare the RPC channel name. After the broker local client is connected, every accepted normal client is registered with RpcJsonDispatcherServer.
+				The admission callback receives <b>Ptr&lt;JsonChannelClient&gt;</b> for a local client so the producer's existing reference counter remains valid throughout the callback; it is null for a network client.
+				Forward or store that <b>Ptr</b> directly, and use <b>.Obj()</b> only for an operation that requires a raw pointer. Never create another <b>Ptr</b> from the raw result.
 				<program language="C++"><code><![CDATA[
 class JsonRpcChannelServer : public JsonNetworkChannelServer<named_pipe::NamedPipeServer>
 {
@@ -219,7 +221,7 @@ public:
 	WaitForClientResult OnClientConnected(
 		vint clientId,
 		const JsonChannelClient::ChannelNameList& availableChannels,
-		JsonChannelClient* localClient) override
+		Ptr<JsonChannelClient> localClient) override
 	{
 		if (!availableChannels.Contains(WString::Unmanaged(RpcChannelName)))
 		{
