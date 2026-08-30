@@ -14,6 +14,7 @@
                 <li>Write <name>Project.md</name> so the agent knows which solution, projects, generated files, and platform folders belong to the application.</li>
                 <li>Use prompt jobs such as <name>investigate</name> and <name>refine</name> for repeatable development work.</li>
                 <li>For GacUI applications, expose AutomationService and prepare basic native-window handling so the agent can debug UI behavior without depending on operating-system UI Automation.</li>
+                <li>Use the remoting and Workflow RPC guides when asking an agent to set up a remote renderer or implement a view model in another language.</li>
             </ul>
         </p>
         <p>

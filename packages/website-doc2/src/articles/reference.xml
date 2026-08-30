@@ -122,6 +122,7 @@
     </article>
     <article name="Investigate and Refine Jobs" file="coding-agent/jobs"/>
     <article name="AutomationService and Basic Computer Use" file="coding-agent/gacui-debugging"/>
+    <article name="Creating Remote Protocol and Foreign View Model" file="coding-agent/remoting"/>
   </article>
   <article name="Unit Testing" file="unittest/home">
     <article name="Using Unit Test Framework" file="unittest/vlpp"/>
