@@ -82,9 +82,12 @@
             <p>
                 The value of the <b>ShortcutBuilder</b> property must be in this format:
                 <program><code><![CDATA[
-                    Ctrl+Shift+Alt+KEY
+                    Ctrl+Shift+Alt+Win+KEY
                 ]]></code></program>
-                <b>Ctrl+</b>, <b>Shift+</b> and <b>Alt+</b> are optional.
+                <b>Ctrl+</b>, <b>Shift+</b>, <b>Alt+</b>, and the operating-system Super modifier are optional.
+                <b>Win+</b>, <b>Command+</b>, and <b>Super+</b> are aliases for the same Super modifier on every platform.
+                The rendered shortcut uses the active platform provider's canonical label: Win on Windows, Command on macOS, and Super on Linux.
+                If a remote renderer changes that label, installed commands notify bound shortcut text automatically.
                 And <b>KEY</b> must be one of a value returning from <b>vl::presentation::GetCurrentController()->InputService()->GetKeyName(VKEY)</b>.
             </p>
             <p>

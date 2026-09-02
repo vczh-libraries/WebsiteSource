@@ -12,7 +12,7 @@
         <p>
             In the event registration object you will find a lot of fields for events,
             for example,
-            <b>leftButtonDown</b>.
+            <b>mouseDown</b>.
             There are 3 methods for subscribing an event:
             <ul>
                 <li>
@@ -94,22 +94,17 @@
                 <p>
                     GacUI offers the following button events:
                     <ul>
-                        <li>leftButtonDown</li>
-                        <li>leftButtonUp</li>
-                        <li>leftButtonDoubleClick</li>
-                        <li>middleButtonDown</li>
-                        <li>middleButtonUp</li>
-                        <li>middleButtonDoubleClick</li>
-                        <li>rightButtonDown</li>
-                        <li>rightButtonUp</li>
-                        <li>rightButtonDoubleClick</li>
+                        <li>mouseDown</li>
+                        <li>mouseUp</li>
+                        <li>mouseDoubleClick</li>
                         <li>horizontalWheel</li>
                         <li>verticalWheel</li>
                     </ul>
-                    mapping to the 5 standard buttons of a mouse.
-                    But a typical mouse today,
-                    middle button and vertical wheel are merged together,
-                    horizontal wheel are usually missing.
+                </p>
+                <p>
+                    The three button events share the same event type.
+                    Read <b>button</b> to distinguish <b>Left</b>, <b>Middle</b>,
+                    <b>Right</b>, <b>Mouse4</b>, and <b>Mouse5</b>.
                 </p>
                 <p>
                     The type of the second argument is <b>vl::presentation::compositions::GuiMouseEventArgs&amp;</b>,
@@ -126,6 +121,8 @@
                     <ul>
                         <li><b>ctrl</b>: <b>true</b> if the CTRL key is pressing.</li>
                         <li><b>shift</b>: <b>true</b> if the SHIFT key is pressing.</li>
+                        <li><b>osSuper</b>: <b>true</b> if the Windows, Command, or Super key is pressing.</li>
+                        <li><b>button</b>: the button for a down, up, or double-click event.</li>
                         <li><b>left</b>: <b>true</b> if the mouse left button is pressing.</li>
                         <li><b>middle</b>: <b>true</b> if the mouse middle button is pressing.</li>
                         <li><b>right</b>: <b>true</b> if the mouse right button is pressing.</li>
@@ -147,10 +144,6 @@
                         <li>mouseEnter</li>
                         <li>mouseLeave</li>
                     </ul>
-                    mapping to the 5 standard buttons of a mouse.
-                    But a typical mouse today,
-                    middle button and vertical wheel are merged together,
-                    horizontal wheel are usually missing.
                 </p>
                 <p>
                     <b>mouseEnter</b> happens when the mouse moves into a composition.
@@ -177,8 +170,7 @@
                     including button up events.
                 </p>
                 <p>
-                    After the button up event happens,
-                    the capturing is released.
+                    Capturing is released after every held mouse button is released.
                 </p>
             </topic>
             <topic>
@@ -310,6 +302,7 @@
                     <li><b>ctrl</b>: <b>true</b> if the CTRL key is pressing.</li>
                     <li><b>shift</b>: <b>true</b> if the SHIFT key is pressing.</li>
                     <li><b>alt</b>: <b>true</b> if the ALT button is pressing.</li>
+                    <li><b>osSuper</b>: <b>true</b> if the Windows, Command, or Super key is pressing.</li>
                     <li><b>capslock</b>: <b>true</b> if the CAPSLOCK button is activated.</li>
                     <li><b>autoRepeatKeyDown</b>: <b>true</b> if this event is generated because of holding a key.</li>
                 </ul>
@@ -353,6 +346,7 @@
                     <li><b>ctrl</b>: <b>true</b> if the CTRL key is pressing.</li>
                     <li><b>shift</b>: <b>true</b> if the SHIFT key is pressing.</li>
                     <li><b>alt</b>: <b>true</b> if the ALT button is pressing.</li>
+                    <li><b>osSuper</b>: <b>true</b> if the Windows, Command, or Super key is pressing.</li>
                     <li><b>capslock</b>: <b>true</b> if the CAPSLOCK button is activated.</li>
                 </ul>
             </p>

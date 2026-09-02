@@ -14,13 +14,13 @@
             <p>
                 Here are a list of available mouse interaction functions in the <b>protocol</b> object:
                 <ul>
-                    <li><b>MouseMove(location)</b>: move the mouse to the specified location</li>
+                    <li><b>MouseMove(location) and MouseMove(location, ctrl, shift, alt, osSuper)</b>: move the mouse to the specified location with optional modifier keys.</li>
                     <li><b>_LDown(location?)</b>: trigger a left button down event.</li>
                     <li><b>_LUp(location?)</b>: trigger a left button up event.</li>
                     <li><b>_LDBClick(location?)</b>: trigger a left button double click event.</li>
-                    <li><b>LClick(location?) and LClick(location, ctrl, shift, alt)</b>: trigger multiple events to simulate a click with optional modifier keys.</li>
-                    <li><b>LDBClick(location?) and LDBClick(location, ctrl, shift, alt)</b>: trigger multiple events to simulate a double click with optional modifier keys.</li>
-                    <li>M (middle button) version and R (right button) version of above functions.</li>
+                    <li><b>LClick(location?) and LClick(location, ctrl, shift, alt, osSuper)</b>: trigger multiple events to simulate a click with optional modifier keys.</li>
+                    <li><b>LDBClick(location?) and LDBClick(location, ctrl, shift, alt, osSuper)</b>: trigger multiple events to simulate a double click with optional modifier keys.</li>
+                    <li>M (middle), R (right), Mouse4, and Mouse5 versions of the down, up, click, and double-click functions are available.</li>
                 </ul>
             </p>
         </topic>
@@ -29,8 +29,8 @@
             <p>
                 Here are a list of available mouse wheel interaction functions in the <b>protocol</b> object:
                 <ul>
-                    <li><b>_Wheel(up, position?) and _Wheel(up, position, ctrl, shift, alt)</b>: scroll the wheel forward. A negative number means backard. <b>WheelDown</b> or <b>WheelUp</b> for shortcuts to scroll with jumps, a jump scales to 120.</li>
-                    <li><b>_HWheel(right, position?) and _HWheel(right, position, ctrl, shift, alt)</b>: scroll the horizontal wheel towards right. A negative number means towards left. <b>HWheelLeft</b> or <b>HWheelRight</b> for shortcuts to scroll with jumps, a jump scales to 120.</li>
+                    <li><b>_Wheel(up, position?) and _Wheel(up, position, ctrl, shift, alt, osSuper)</b>: scroll the wheel forward. A negative number means backard. <b>WheelDown</b> or <b>WheelUp</b> for shortcuts to scroll with jumps, a jump scales to 120.</li>
+                    <li><b>_HWheel(right, position?) and _HWheel(right, position, ctrl, shift, alt, osSuper)</b>: scroll the horizontal wheel towards right. A negative number means towards left. <b>HWheelLeft</b> or <b>HWheelRight</b> for shortcuts to scroll with jumps, a jump scales to 120.</li>
                 </ul>
             </p>
         </topic>
@@ -42,8 +42,8 @@
                     <li><b>_KeyDown(key)</b>: trigger a key down event.</li>
                     <li><b>_KeyDownRepeat(key)</b>: trigger a key down event triggers by keep pressing a key.</li>
                     <li><b>_KeyUp(key)</b>: trigger a key up event.</li>
-                    <li><b>KeyPress(key) and KeyPress(key, ctrl, shift, alt)</b>: trigger multiple events to simulate a key press with optional modifier keys.</li>
-                    <li><b>TypeString(string)</b>: trigger a sequence of char events to type a string. Key events will not be triggered.</li>
+                    <li><b>KeyPress(key) and KeyPress(key, ctrl, shift, alt, osSuper)</b>: trigger multiple events to simulate a key press with optional modifier keys.</li>
+                    <li><b>TypeString(string) and TypeString(string, ctrl, shift, alt, osSuper)</b>: trigger a sequence of char events with optional modifier keys. Other key events will not be triggered.</li>
                 </ul>
             </p>
         </topic>
