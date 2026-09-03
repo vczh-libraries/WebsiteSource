@@ -1,6 +1,9 @@
 <article index="true">
     <topic>
         <title>Breaking changes from 1.0</title>
+        <p>
+            This page lists API changes since <b>1.0-rc3</b> and explains how to update existing code.
+        </p>
         <topic>
             <title>GacUI API</title>
             <topic>
@@ -69,6 +72,88 @@
                         <li><b>Bounds</b> and <b>PreviousCalculatedBounds</b> property to <b>CachedBounds</b> property</li>
                         <li><b>FindComposition</b> function to <b>FindVisibleComposition</b> function.</li>
                     </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>GuiGraphicsEventReceiver</title>
+                <p>
+                    The nine button-specific events are removed and replaced by three <b>GuiMouseEvent</b> members:
+                    <ul>
+                        <li><b>leftButtonDown</b>, <b>middleButtonDown</b>, and <b>rightButtonDown</b> are replaced by <b>mouseDown</b>.</li>
+                        <li><b>leftButtonUp</b>, <b>middleButtonUp</b>, and <b>rightButtonUp</b> are replaced by <b>mouseUp</b>.</li>
+                        <li><b>leftButtonDoubleClick</b>, <b>middleButtonDoubleClick</b>, and <b>rightButtonDoubleClick</b> are replaced by <b>mouseDoubleClick</b>.</li>
+                    </ul>
+                    These names also change on reflected <b>GuiGraphicsComposition</b> objects, including event bindings in GacUI Resource XML.
+                </p>
+                <p>
+                    <b>GuiMouseEventArgs::button</b> is added with type <b>NativeMouseButton</b> and default value <b>NativeMouseButton::Left</b>.
+                    For the three new events, it identifies the button that caused the event: <b>Left</b>, <b>Middle</b>, <b>Right</b>, <b>Mouse4</b>, or <b>Mouse5</b>.
+                    The inherited <b>left</b>, <b>middle</b>, and <b>right</b> fields still describe held-button states.
+                    Use <b>button</b> to distinguish the event's button, including on release.
+                </p>
+                <p>
+                    When migrating a handler for one button, subscribe to the corresponding new event and filter <b>arguments.button</b>.
+                    For example, replace a subscription to <b>leftButtonDown</b> with:
+                    <program language="c++">
+                        <code><![CDATA[
+composition->GetEventReceiver()->mouseDown.AttachLambda(
+    [](GuiGraphicsComposition* sender, GuiMouseEventArgs& arguments)
+    {
+        if (arguments.button != NativeMouseButton::Left) return;
+        // Handle the left button press.
+    });
+                        ]]></code>
+                    </program>
+                    In GacUI Resource XML, replace <b>ev.leftButtonDown</b> with <b>ev.mouseDown</b> and apply the same filter in Workflow:
+                    <program language="xml">
+                        <code><![CDATA[
+<Bounds>
+    <ev.mouseDown-eval><![CDATA[
+        if (arguments.button == NativeMouseButton::Left)
+        {
+            arguments.handled = true;
+        }
+    ]]]]><![CDATA[></ev.mouseDown-eval>
+</Bounds>
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    A double click raises <b>mouseDown</b>, <b>mouseUp</b>, <b>mouseDown</b>, <b>mouseDoubleClick</b>, then <b>mouseUp</b>.
+                    <b>GuiItemMouseEventArgs</b> and <b>GuiNodeMouseEventArgs</b> inherit <b>button</b>.
+                    The existing button-specific Item events on <b>GuiListControl</b> and Node events on <b>GuiVirtualTreeListControl</b> are kept.
+                    Handle Mouse4 and Mouse5 through composition events.
+                </p>
+            </topic>
+            <topic>
+                <title>IGuiShortcutKeyManager and GuiShortcutKeyItem</title>
+                <p>
+                    <b>IGuiShortcutKeyManager::TryGetShortcut</b>, <b>CreateNewShortcut</b>, and <b>CreateShortcutIfNotExist</b>
+                    add a required <b>bool osSuper</b> parameter between <b>alt</b> and <b>key</b>:
+                    <program language="c++">
+                        <code><![CDATA[
+IGuiShortcutKeyItem* TryGetShortcut(bool ctrl, bool shift, bool alt, bool osSuper, VKEY key);
+IGuiShortcutKeyItem* CreateNewShortcut(bool ctrl, bool shift, bool alt, bool osSuper, VKEY key);
+IGuiShortcutKeyItem* CreateShortcutIfNotExist(bool ctrl, bool shift, bool alt, bool osSuper, VKEY key);
+                        ]]></code>
+                    </program>
+                    Update overrides and callers, including the corresponding methods on <b>GuiShortcutKeyManager</b>.
+                    Pass <b>false</b> for existing shortcuts without Win/Command/Super.
+                </p>
+                <p>
+                    <b>GuiShortcutKeyManager::CreateShortcutInternal</b>, the <b>GuiShortcutKeyItem</b> constructor,
+                    and <b>GuiShortcutKeyItem::CanActivate</b> taking separate modifiers also add this parameter before the key.
+                    <b>GuiShortcutKeyItem::ReadKeyConfig</b> adds an output parameter <b>bool&amp; _osSuper</b> between <b>_alt</b> and <b>_key</b>.
+                    Shortcut matching includes the Super modifier, so a shortcut without it does not match a Super chord.
+                </p>
+            </topic>
+            <topic>
+                <title>GuiToolstripCommand::ShortcutBuilder</title>
+                <p>
+                    Add <b>bool osSuper = false</b>.
+                    The <b>SHORTCUT</b> parser accepts <b>Win</b>, <b>Command</b>, and <b>Super</b> as names for the same modifier on every platform.
+                    For example, <b>Ctrl+Command+Q</b> and <b>Ctrl+Win+Q</b> specify the same shortcut.
+                    <b>GuiShortcutKeyItem::GetName()</b> uses the platform label returned by <b>INativeResourceService::GetOSSuperKeyName()</b>.
                 </p>
             </topic>
             <topic>
@@ -265,6 +350,33 @@ private:
             <topic>
                 <title>INativeWindowListener</title>
                 <p>
+                    The nine button-specific callbacks are removed:
+                    <ul>
+                        <li><b>LeftButtonDown</b>, <b>MiddleButtonDown</b>, and <b>RightButtonDown</b> are replaced by <b>MouseDown</b>.</li>
+                        <li><b>LeftButtonUp</b>, <b>MiddleButtonUp</b>, and <b>RightButtonUp</b> are replaced by <b>MouseUp</b>.</li>
+                        <li><b>LeftButtonDoubleClick</b>, <b>MiddleButtonDoubleClick</b>, and <b>RightButtonDoubleClick</b> are replaced by <b>MouseDoubleClick</b>.</li>
+                    </ul>
+                    The new virtual callbacks take the button as the first parameter:
+                    <program language="c++">
+                        <code><![CDATA[
+virtual void MouseDown(NativeMouseButton button, const NativeWindowMouseInfo& info);
+virtual void MouseUp(NativeMouseButton button, const NativeWindowMouseInfo& info);
+virtual void MouseDoubleClick(NativeMouseButton button, const NativeWindowMouseInfo& info);
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    Update listener overrides and native platform dispatch to use these callbacks for all five buttons.
+                    Move button-specific behavior into a test or switch on <b>button</b>.
+                    For example, a call to <b>LeftButtonDown(info)</b> becomes <b>MouseDown(NativeMouseButton::Left, info)</b>.
+                    On the second press of a double click, call <b>MouseDown</b> immediately before <b>MouseDoubleClick</b>.
+                </p>
+                <p>
+                    <b>MouseMoving</b>, <b>HorizontalWheel</b>, and <b>VerticalWheel</b> still take only <b>const NativeWindowMouseInfo&amp; info</b>.
+                    All mouse callbacks receive the Super modifier in <b>info.osSuper</b>.
+                    Capture this state with the native event and pass it to the listener.
+                </p>
+                <p>
                     New callback <b>RenderingAsActivated</b> and <b>RenderingAsDeactivated</b>,
                     called when <b>INativeWindow::IsRenderingAsActivated</b> is changed.
                 </p>
@@ -282,6 +394,46 @@ private:
                     A parameter is added to <b>DpiChanged</b>.
                     <b>DpiChanged(true)</b> of all listeners must be called first,
                     followed by <b>DpiChanged(false)</b> of all listeners.
+                </p>
+            </topic>
+            <topic>
+                <title>NativeMouseButton and input information</title>
+                <p>
+                    Add <b>enum class NativeMouseButton</b> in <b>vl::presentation</b>, with values
+                    <b>Left</b>, <b>Middle</b>, <b>Right</b>, <b>Mouse4</b>, and <b>Mouse5</b>.
+                    It identifies the button passed to <b>INativeWindowListener</b> mouse-button callbacks and stored in <b>GuiMouseEventArgs::button</b>.
+                </p>
+                <p>
+                    Add <b>bool osSuper = false</b> to <b>WindowMouseInfo_&lt;T&gt;</b>, <b>NativeWindowKeyInfo</b>, and <b>NativeWindowCharInfo</b>.
+                    It records Win on Windows, Command on macOS, or Super on Linux.
+                    In <b>WindowMouseInfo_&lt;T&gt;</b> it follows <b>shift</b>; in key and character information it follows <b>alt</b>.
+                    Update positional aggregate initializers for the inserted field.
+                </p>
+                <p>
+                    <b>WindowMouseInfo</b> and <b>NativeWindowMouseInfo</b> are aliases of <b>WindowMouseInfo_&lt;T&gt;</b>, so both gain this field.
+                    <b>GuiMouseEventArgs</b>, <b>GuiKeyEventArgs</b>, and <b>GuiCharEventArgs</b> inherit <b>osSuper</b> from their input-info base types;
+                    <b>GuiItemMouseEventArgs</b> and <b>GuiNodeMouseEventArgs</b> inherit it through <b>GuiMouseEventArgs</b>.
+                </p>
+            </topic>
+            <topic>
+                <title>INativeInputService</title>
+                <p>
+                    <b>RegisterGlobalShortcutKey</b> adds a required <b>bool osSuper</b> parameter between <b>alt</b> and <b>key</b>:
+                    <program language="c++">
+                        <code><![CDATA[
+virtual vint RegisterGlobalShortcutKey(bool ctrl, bool shift, bool alt, bool osSuper, VKEY key) = 0;
+                        ]]></code>
+                    </program>
+                    Update implementations and callers. Pass <b>false</b> for global shortcuts without Win/Command/Super.
+                    A Windows provider maps <b>osSuper</b> to <b>MOD_WIN</b> when registering the hot key.
+                </p>
+            </topic>
+            <topic>
+                <title>INativeResourceService</title>
+                <p>
+                    Add the pure virtual method <b>WString GetOSSuperKeyName()</b>.
+                    Implementations return <b>Win</b> on Windows, <b>Command</b> on macOS, and <b>Super</b> on Linux.
+                    This controls the modifier label displayed by <b>GuiShortcutKeyItem::GetName()</b>.
                 </p>
             </topic>
             <topic>
