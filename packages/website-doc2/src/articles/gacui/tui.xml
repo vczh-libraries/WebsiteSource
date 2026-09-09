@@ -109,8 +109,8 @@
             <p>
                 TuiSkin includes buttons, text boxes, menus, tabs, lists, trees, detail/grid views,
                 scroll controls and text-based document controls. The showcase demonstrates their supported templates.
-                Graphical images and arbitrary drawing elements are not rendered as terminal graphics;
-                document image demonstrations use textual placeholders.
+                ImageFrame, polygons, gradients, 3D elements and other unregistered graphical elements have no TUI renderer.
+                The document image demonstrations use textual placeholders.
                 Ribbon and toolbar templates are not supplied. Use supported menu/button controls when adapting such an interface.
             </p>
         </topic>
