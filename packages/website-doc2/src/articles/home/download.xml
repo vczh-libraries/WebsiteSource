@@ -67,23 +67,31 @@
                 </p>
             </topic>
             <topic>
-                <title>GacUI, GacUIWindows and DarkSkin</title>
+                <title>GacUI, GacUI.Windows, DarkSkin and TuiSkin</title>
                 <p>
                     This is the GacUI itself.
-                    <b>GacUIWindows</b> is the port to Windows OS.
+                    <b>GacUI.Windows</b> is the port to Windows OS.
                     All Windows older than 7 are not supported.
                     <b>DarkSkin</b> is the default skin.
                     If you have created your own skin for every controls,
                     you don't need this file.
                 </p>
+                <p>
+                    <name>Import/Skins/TuiSkin/TuiSkin.h</name> and <name>TuiSkin.cpp</name>
+                    provide control templates for local Windows Terminal applications.
+                    The Console tutorial in <name>Tutorial/GacUI_ControlTemplate/TuiSkin</name>
+                    defines <name>GACUILITE_TUI_APPLICATION</name> and supplies terminal startup through GacUILite.
+                    See <a href="/gacui/tui.html">the TUI startup guide</a> for its resource and build steps.
+                </p>
             </topic>
             <topic>
-                <title>GacUIReflection and DarkSkinReflection</title>
+                <title>GacUIReflection, DarkSkinReflection and TuiSkinReflection</title>
                 <p>
                     <b>Usually you don't need these files.</b>
                 </p>
                 <p>
                     These files register all reflectable classes for GacUI.
+                    Use the reflection pair for the skin your application needs; the TuiSkin tutorial uses generated C++ with reflection disabled.
                     You only need this when you need to dynamically compiler and execute Workflow scripts that access GacUI classes.
                     <ul>
                         <li>

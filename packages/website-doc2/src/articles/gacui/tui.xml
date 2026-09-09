@@ -1,0 +1,118 @@
+<article index="true" numberBeforeTitle="true">
+    <topic>
+        <title>Build a Windows Terminal application</title>
+        <p>
+            GacUI's text user interface (TUI) runs locally in Windows Terminal.
+            It uses the same controls, compositions, data binding and XML resource compiler as a graphical application,
+            with <name>TuiSkin</name> templates sized in terminal cells.
+            The <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_ControlTemplate/TuiSkin">TuiSkin tutorial</a>
+            contains a complete control showcase, localized dialogs, rich text and window-closing examples.
+        </p>
+        <topic>
+            <title>Build and run the showcase</title>
+            <p>
+                <ol>
+                    <li><a href="https://github.com/vczh-libraries/Release">Download the Release repository</a>, including its Import, Tools and Tutorial folders.</li>
+                    <li>Open <name>Tutorial/GacUI_ControlTemplate/GacUI_ControlTemplate.sln</name> with the Visual Studio C++ toolset configured by its projects. Build the TuiSkin project in Debug or Release, for Win32 or x64. The solution also builds its GacUILite dependency.</li>
+                    <li>Open Windows Terminal and change directory to <name>Tutorial/GacUI_ControlTemplate/TuiSkin</name>. Keep this as the working directory: the application loads <name>../UIRes/TuiSkin.bin</name>.</li>
+                    <li>Run the executable from the solution's output folder. Debug Win32 uses <name>../Debug/TuiSkin.exe</name>; Debug x64 uses <name>../x64/Debug/TuiSkin.exe</name>. Substitute Release for a Release build.</li>
+                </ol>
+            </p>
+            <p>
+                Run interactively with the terminal's input and output handles; do not redirect application output into a file or pipe.
+                The first frame fits the current viewport, even when it differs from the showcase's authored 120 by 40 size.
+                Resize the terminal to check layout and scrolling. The Exit page demonstrates direct and queued Hide/Close requests,
+                a close veto and explicit Stop calls. An accepted close returns to the shell and restores terminal state.
+            </p>
+        </topic>
+        <topic>
+            <title>Console startup and TuiSkin registration</title>
+            <p>
+                The tutorial is a Console application. Its reusable startup source,
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/Lib/GacUILite/TuiMain.cpp">GacUILite/TuiMain.cpp</a>,
+                calls the local terminal setup function:
+                <program language="C++"><code><![CDATA[
+                    int wmain()
+                    {
+                        return SetupTuiWindowsRenderer();
+                    }
+                ]]></code></program>
+            </p>
+            <p>
+                Define <name>GACUILITE_TUI_APPLICATION</name> for every configuration of the console project.
+                Compile both GacUILite startup sources directly in that project:
+                <name>WinMain.cpp</name> is wholly guarded by <name>#ifndef GACUILITE_TUI_APPLICATION</name>,
+                and <name>TuiMain.cpp</name> by <name>#ifdef GACUILITE_TUI_APPLICATION</name>.
+                The shared static library is compiled separately, so an executable's macro cannot change its compilation.
+                Existing graphical projects use the library's GUI startup without defining this macro.
+            </p>
+            <p>
+                GacUILite compiles <name>Import/Skins/TuiSkin/TuiSkin.cpp</name> with <name>/bigobj</name>.
+                The startup plugin depends on <name>GacGen_TuiSkinResourceLoader</name> and initializes the palette before registering the theme:
+                <program language="C++"><code><![CDATA[
+                    tuiskin::SetColorPackage(tuiskin::CreateDefaultColorPackage());
+                    RegisterTheme(Ptr(new tuiskin::TuiTheme));
+                ]]></code></program>
+                These calls run before controls are constructed in <name>GuiMain()</name>.
+                Keep the plugin registration and dependency from the supplied startup source when reusing it.
+            </p>
+        </topic>
+        <topic>
+            <title>Compile and load resources</title>
+            <p>
+                Authored resources live in <name>TuiSkin/UI/TuiControlTest</name>.
+                After editing XML, localized text or document resources, run the supplied resource builder and rebuild the C++ project.
+                For a checkout at <name>C:/Code/Release</name>, use:
+                <program language="PowerShell"><code><![CDATA[
+                    & 'C:\Code\Release\Tools\GacBuild.ps1' -FileName 'C:\Code\Release\Tutorial\GacUI.xml'
+                ]]></code></program>
+                The builder generates and merges C++ for both architectures.
+                The tutorial compiles <name>Source/TuiControlTestPartialClasses.cpp</name> and includes <name>Source/TuiControlTest.h</name>.
+                Generated ordinary includes name <name>GacUI.h</name> and <name>Skins/TuiSkin/TuiSkin.h</name>.
+            </p>
+            <p>
+                The resource's <name>GacGenConfig/Cpp/Resource</name> setting is
+                <name>../../../UIRes/TuiSkin.bin</name>, relative to its resource directory.
+                Generated C++ supplies the UI classes; the binary supplies non-code resources such as rich text documents.
+                The tutorial loads the binary before constructing its main window:
+                <program language="C++"><code><![CDATA[
+                    void GuiMain()
+                    {
+                        {
+                            FileStream fileStream(L"../UIRes/TuiSkin.bin", FileStream::ReadOnly);
+                            GetResourceManager()->LoadResourceOrPending(fileStream);
+                        }
+                        tuidemo::TuiMainWindow window;
+                        window.ForceCalculateSizeImmediately();
+                        GetApplication()->Run(&window);
+                    }
+                ]]></code></program>
+                Build from the packaged project to retain its required imports and preprocessor definitions.
+                It uses <name>VCZH_DEBUG_NO_REFLECTION</name>; the separate <name>TuiSkinReflection</name> pair is unnecessary for this generated-C++ application.
+            </p>
+        </topic>
+        <topic>
+            <title>Layout, controls and terminal limits</title>
+            <p>
+                One layout unit is one terminal cell. Use <name>TuiFont</name> at size 1;
+                the application does not select the terminal's physical font or cell size.
+                CJK text can occupy two columns. Text styles and colors depend on the terminal's rendering capabilities.
+                Size templates for cell geometry instead of reusing pixel-sized graphical templates.
+            </p>
+            <p>
+                The main showcase uses <name>SystemFrameWindow</name> and
+                <name>MinSizeLimitation="NoLimit"</name> on its bounds so a large hidden page cannot enlarge the physical viewport.
+                Child windows, menus and fake Message/Color/Font/File dialogs are hosted inside that viewport.
+                Normal main-window Hide/Close is cancellable through the existing closing events;
+                dismissing a child dialog keeps the application running, and an open modal retains normal close interception.
+            </p>
+            <p>
+                TuiSkin includes buttons, text boxes, menus, tabs, lists, trees, detail/grid views,
+                scroll controls and text-based document controls. The showcase demonstrates their supported templates.
+                Graphical images and arbitrary drawing elements are not rendered as terminal graphics;
+                document image demonstrations use textual placeholders.
+                Ribbon and toolbar templates are not supplied. Use supported menu/button controls when adapting such an interface.
+            </p>
+        </topic>
+    </topic>
+</article>

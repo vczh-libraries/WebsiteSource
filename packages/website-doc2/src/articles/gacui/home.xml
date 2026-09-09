@@ -106,6 +106,16 @@
                 <p><img src="/Platform_2.png"/></p>
             </topic>
             <topic>
+                <title>Windows Terminal</title>
+                <p>
+                    GacUI can render a local text user interface in Windows Terminal using
+                    <name>SetupTuiWindowsRenderer()</name> and the supplied <name>TuiSkin</name>.
+                    Windows, popups and dialogs share the terminal viewport; layout coordinates count terminal cells.
+                    Start with <a href="/gacui/tui.html">Build a Windows Terminal application</a>
+                    for console startup, resource packaging and supported controls.
+                </p>
+            </topic>
+            <topic>
                 <title>Remote Protocols (core and renderer)</title>
                 <p>
                     It allows a GacUI application to run in two different binaries: core and renderer. You could run them in exe-dll, or in two different processes.
@@ -162,7 +172,6 @@
                     <ul>
                         <li>UWP</li>
                         <li>WASM running on browsers</li>
-                        <li>Command-line interface applications</li>
                         <li>etc ...</li>
                     </ul>
                 </p>
@@ -175,6 +184,10 @@
                     <li>
                         <a href="/gacui/running.html">Build your first GacUI Application!</a>:
                         A step-by-step tutorial for creating a GacUI application.
+                    </li>
+                    <li>
+                        <a href="/gacui/tui.html">Build a Windows Terminal application</a>:
+                        Run the TuiSkin showcase and create a local console application.
                     </li>
                     <li>
                         <a href="/gacui/kb/home.html">Knowledge Base</a>:

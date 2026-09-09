@@ -2,6 +2,10 @@
     <topic>
         <title>Build your first GacUI Application!</title>
         <p>
+            For a text user interface, follow <a href="/gacui/tui.html">Build a Windows Terminal application</a>.
+            The walkthrough below creates a graphical application.
+        </p>
+        <p>
             This is a walkthrough of building a Hello World application in GacUI.
             It based on <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_HelloWorlds/CppXml">one of the demo project</a> released with GacUI.
             You need to prepare the following first:
