@@ -93,6 +93,15 @@
             </p>
         </topic>
         <topic>
+            <title>Terminal UI</title>
+            <p>
+                <name>vl::console::TUI</name> owns a terminal session, dispatches keyboard, mouse, resize and timer callbacks, and renders a buffer of <name>TuiPixel</name> cells on Windows, Linux and macOS.
+                Drawing helpers support optional <name>TuiClipper</name> rectangles and caller-owned buffers.
+                See <a href="/vlppos/using-tui.html">Using Terminal UI</a> for lifecycle, drawing and input rules, or
+                <a href="/gacui/tui.html">Build a terminal application</a> for GacUI controls and platform setup functions.
+            </p>
+        </topic>
+        <topic>
             <title>Unit test framework</title>
             <topic>
                 <title>Mocking Locale</title>

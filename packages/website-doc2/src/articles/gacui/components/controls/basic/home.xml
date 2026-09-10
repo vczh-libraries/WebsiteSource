@@ -182,6 +182,12 @@
             <p>
                 The following properties and events control the control template for a control.
             </p>
+            <p>
+                <name>GuiControl::RefreshThemes()</name> synchronously rebuilds theme-provided templates in this control and its descendants on the UI thread.
+                Explicit <name>ControlTemplate</name> factories are preserved, and their child controls are still visited.
+                Use <name>GuiApplication::RefreshThemes()</name> to refresh all live windows, including hidden menus and popups.
+                See <a href="/gacui/kb/dtemplates.html#Refreshing-existing-controls">Refreshing existing controls</a> for state preservation and event timing.
+            </p>
             <topic>
                 <title>ControlThemeName (ControlThemeNameChanged)</title>
                 <p>

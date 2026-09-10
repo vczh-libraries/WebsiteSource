@@ -181,6 +181,15 @@ void GuiMain()
         <topic>
             <title>Implementing Another Platform</title>
             <p>
+                <name>GuiRemoteRendererSingle::RegisterMainWindow</name> captures the native window's sizing configuration before automation starts.
+                This makes an early renderer <name>GET /Dom</name> safe before the first Core frame or sizing request has arrived; initialize this state when registering the window instead of waiting for a protocol callback.
+            </p>
+            <p>
+                Multiwindow control dumps select subwindows with <name>GuiControlHost::GetOpening()</name>.
+                Control-level <name>GetVisible()</name> does not indicate whether a native window is still open: a closed dialog can remain in the application window list until deferred deletion, even after its native window is destroyed.
+                Omit such closed windows before resolving their IDs, and keep native-window ID validation strict.
+            </p>
+            <p>
                 A platform implementation should implement <name>INativeAutomationService</name> or reuse <name>AutomationServiceBase</name> from <name>Utilities/SharedServices</name>.
                 Return true from <name>Available</name>, implement the supported <name>Can...</name> and operation pairs, and make <name>Stop</name> disable all future operations.
             </p>

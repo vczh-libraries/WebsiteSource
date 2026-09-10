@@ -25,6 +25,13 @@
                     For Linux with Wayland,
                     <b>vl::presentation::elements::wgac::SetupWGacRenderer or SetupWGacHostedRenderer</b> must be called in <b>main</b>.
                 </li>
+                <li>
+                    For a local terminal application, call <name>SetupTuiWindowsRenderer()</name> on Windows,
+                    <name>vl::presentation::wayland::SetupTuiWaylandRenderer()</name> on Linux, or
+                    <name>vl::presentation::osx::SetupTuiCocoaRenderer()</name> on macOS from a console entry point.
+                    Each accepts an optional <name>const vl::presentation::TuiConfiguration&amp;</name> and calls <name>GuiMain()</name> with terminal rendering and hosted windows.
+                    See <a href="/gacui/tui.html">Build a terminal application</a> for platform headers and TuiSkin registration.
+                </li>
             </ul>
         </p>
         <p>
@@ -56,6 +63,13 @@
             A single theme object is not required to provide control templates for all controls,
             but all registered themes must cover all controls.
             The latest registered theme has the top priority.
+        </p>
+        <p>
+            After changing registered themes or their palette, call <name>GuiApplication::RefreshThemes()</name> through <name>GetApplication()-&gt;RefreshThemes()</name> on the UI thread.
+            It synchronously refreshes all live windows, including hidden popups and menus.
+            <name>GuiControl::RefreshThemes()</name> refreshes one control and its descendants instead.
+            Both preserve explicitly assigned control templates while rebuilding templates obtained from the registered themes.
+            See <a href="/gacui/kb/dtemplates.html#Refreshing-existing-controls">Refreshing existing controls</a> for the timing and lifetime rules.
         </p>
         <p>
             When a theme is created using <b>GacUI XML Resource</b>,

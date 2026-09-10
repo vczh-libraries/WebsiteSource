@@ -117,5 +117,30 @@
                 </Instance>
             ]]></code></program>
         </p>
+        <topic anchor="Refreshing-existing-controls">
+            <title>Refreshing existing controls</title>
+            <p>
+                <name>RegisterTheme</name> and <name>UnregisterTheme</name> change how later template lookups resolve; existing controls keep their current template objects until refreshed.
+                After changing the registered themes or a skin's palette, call <name>GetApplication()-&gt;RefreshThemes()</name> to apply the current defaults to all live windows.
+                <name>GuiApplication::RefreshThemes()</name> includes hidden windows, menus and popups.
+                Call <name>GuiControl::RefreshThemes()</name> when only one control and its descendants should be refreshed.
+            </p>
+            <p>
+                Both methods run synchronously on the UI thread.
+                A control whose <name>ControlTemplate</name> factory is empty rebuilds its template using its <name>ControlThemeName</name> and the current registered themes.
+                Explicitly assigned <name>ControlTemplate</name> factories are preserved, and traversal still visits their child controls.
+                The refresh snapshots the windows and child controls being visited and skips those disposed during rebuilding.
+            </p>
+            <p>
+                Controls keep their application state while their template objects are replaced: existing children, text and document models, selection and editing state, focus, and logical scroll positions survive rebuilding.
+                A new template can change layout, so the final viewport can clamp a scroll position to its new valid range.
+                Keep references to controls and application data; reacquire template-owned compositions or controls after refreshing.
+                If an event is running inside the template being replaced, queue the refresh with <name>InvokeInMainThread</name> so that event dispatch can finish first.
+            </p>
+            <p>
+                For TuiSkin, call <name>tuiskin::SetColorPackage</name> before refreshing.
+                See <a href="/gacui/tui.html#Change-the-theme-while-running">Change the theme while running</a> for a palette-switching example.
+            </p>
+        </topic>
     </topic>
 </article>

@@ -106,12 +106,14 @@
                 <p><img src="/Platform_2.png"/></p>
             </topic>
             <topic>
-                <title>Windows Terminal</title>
+                <title>Terminal applications</title>
                 <p>
-                    GacUI can render a local text user interface in Windows Terminal using
-                    <name>SetupTuiWindowsRenderer()</name> and the supplied <name>TuiSkin</name>.
+                    GacUI can render a local text user interface using the supplied <name>TuiSkin</name> and
+                    <name>SetupTuiWindowsRenderer()</name> on Windows,
+                    <name>vl::presentation::wayland::SetupTuiWaylandRenderer()</name> on Linux, or
+                    <name>vl::presentation::osx::SetupTuiCocoaRenderer()</name> on macOS.
                     Windows, popups and dialogs share the terminal viewport; layout coordinates count terminal cells.
-                    Start with <a href="/gacui/tui.html">Build a Windows Terminal application</a>
+                    Start with <a href="/gacui/tui.html">Build a terminal application</a>
                     for console startup, resource packaging and supported controls.
                 </p>
             </topic>
@@ -186,7 +188,7 @@
                         A step-by-step tutorial for creating a GacUI application.
                     </li>
                     <li>
-                        <a href="/gacui/tui.html">Build a Windows Terminal application</a>:
+                        <a href="/gacui/tui.html">Build a terminal application</a>:
                         Run the TuiSkin showcase and create a local console application.
                     </li>
                     <li>

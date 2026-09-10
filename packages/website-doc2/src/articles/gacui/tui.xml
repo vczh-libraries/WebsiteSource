@@ -1,15 +1,42 @@
 <article index="true" numberBeforeTitle="true">
     <topic>
-        <title>Build a Windows Terminal application</title>
+        <title>Build a terminal application</title>
         <p>
-            GacUI's text user interface (TUI) runs locally in Windows Terminal.
+            GacUI's text user interface (TUI) runs locally in a terminal on Windows, Linux and macOS.
             It uses the same controls, compositions, data binding and XML resource compiler as a graphical application,
             with <name>TuiSkin</name> templates sized in terminal cells.
             The <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_ControlTemplate/TuiSkin">TuiSkin tutorial</a>
             contains a complete control showcase, localized dialogs, rich text and window-closing examples.
         </p>
         <topic>
-            <title>Build and run the showcase</title>
+            <title>Choose the platform entry point</title>
+            <p>
+                Define <name>void GuiMain()</name> as for a graphical GacUI application, and call the platform's terminal setup function from your console entry point:
+                <ul>
+                    <li>Windows: <name>SetupTuiWindowsRenderer()</name>, declared in GacUI's <name>GacUI.h</name>. Use Windows Terminal.</li>
+                    <li>Linux: <name>vl::presentation::wayland::SetupTuiWaylandRenderer()</name>, declared in wGac's <name>WGac/TUI/TuiWGacController.h</name>.</li>
+                    <li>macOS: <name>vl::presentation::osx::SetupTuiCocoaRenderer()</name>, declared in iGac's <name>Mac/TUI/TuiCocoaController.h</name>.</li>
+                </ul>
+            </p>
+            <p>
+                All three return <name>int</name> and accept an optional <name>const vl::presentation::TuiConfiguration&amp; configuration = {}</name>.
+                Its <name>tabInterval</name> field defaults to 4 and must be positive; it controls tab stops in terminal text layout.
+            </p>
+            <p>
+                The setup function initializes GacUI and calls <name>GuiMain()</name> inside the terminal session.
+                It combines the shared terminal renderer and hosted-window support with the platform's native services.
+                For example, wGac supplies native image services and a terminal clipboard service using XWayland when available, while iGac uses Cocoa services without creating an AppKit window or taking focus away from the terminal.
+                Linux and macOS startup initialize <name>LC_CTYPE</name> from the environment before creating services; use a UTF-8 locale.
+                The <a href="https://github.com/vczh-libraries/wGac/tree/master/WGacTuiControlTest">wGac showcase</a> and
+                <a href="https://github.com/vczh-libraries/iGac/tree/master/MacTuiControlTest">iGac showcase</a> provide platform entry points and projects.
+            </p>
+            <p>
+                GacUI uses <a href="/vlppos/using-tui.html">VlppOS TUI</a> for terminal input, cell buffers and output.
+                The setup functions select its automatic color mode. <name>TuiConfiguration</name> configures GacUI text layout; it does not contain the lower-level <name>TuiStartOptions::colorMode</name> option.
+            </p>
+        </topic>
+        <topic>
+            <title>Build and run the Windows showcase</title>
             <p>
                 <ol>
                     <li><a href="https://github.com/vczh-libraries/Release">Download the Release repository</a>, including its Import, Tools and Tutorial folders.</li>
@@ -92,12 +119,38 @@
             </p>
         </topic>
         <topic>
+            <title>Change the theme while running</title>
+            <p>
+                After changing a TuiSkin color package or replacing a registered theme, call <name>GuiApplication::RefreshThemes()</name> on the UI thread to update existing windows, including hidden menus and popups.
+                For a single control subtree, call <name>GuiControl::RefreshThemes()</name>.
+                Both methods rebuild templates supplied by the registered themes and preserve explicitly assigned <name>ControlTemplate</name> factories.
+                An explicit template does not prevent its child controls from being refreshed.
+            </p>
+            <p>
+                For example, queue a palette change from a button's event handler so that the current event finishes before its template is replaced:
+                <program language="C++"><code><![CDATA[
+                    GetApplication()->InvokeInMainThread(GetApplication()->GetMainWindow(), []()
+                    {
+                        tuiskin::SetColorPackage(tuiskin::CreatePurplePackage());
+                        GetApplication()->RefreshThemes();
+                    });
+                ]]></code></program>
+                Updating the palette alone does not rebuild existing templates.
+                See <a href="/gacui/kb/dtemplates.html#Refreshing-existing-controls">Refreshing existing controls</a> for refresh scope and state preservation.
+            </p>
+        </topic>
+        <topic>
             <title>Layout, controls and terminal limits</title>
             <p>
                 One layout unit is one terminal cell. Use <name>TuiFont</name> at size 1;
                 the application does not select the terminal's physical font or cell size.
                 CJK text can occupy two columns. Text styles and colors depend on the terminal's rendering capabilities.
                 Size templates for cell geometry instead of reusing pixel-sized graphical templates.
+            </p>
+            <p>
+                Keyboard shortcuts can only use events the terminal delivers. Window-manager and terminal shortcuts may consume combinations such as Alt+F4, Super/Windows keys or Command keys before the application receives them.
+                POSIX terminals often do not report physical key releases, and modifier state comes from received terminal events.
+                Test shortcuts in the target terminal and provide a visible command for essential actions.
             </p>
             <p>
                 The main showcase uses <name>SystemFrameWindow</name> and

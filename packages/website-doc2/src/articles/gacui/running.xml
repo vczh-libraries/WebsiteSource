@@ -2,7 +2,7 @@
     <topic>
         <title>Build your first GacUI Application!</title>
         <p>
-            For a text user interface, follow <a href="/gacui/tui.html">Build a Windows Terminal application</a>.
+            For a text user interface, follow <a href="/gacui/tui.html">Build a terminal application</a>.
             The walkthrough below creates a graphical application.
         </p>
         <p>

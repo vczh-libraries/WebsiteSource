@@ -28,6 +28,7 @@
     <article name="Using Streams" file="vlppos/using-streams"/>
     <article name="Using Threads and Locks" file="vlppos/using-threads"/>
     <article name="Using Inter-Process Channels" file="vlppos/using-inter-process"/>
+    <article name="Using Terminal UI" file="vlppos/using-tui"/>
     <article name="Breaking changes from 1.0" file="vlppos/upgrade"/>
     <article name="References" file="vlppos/ref">
       <!--link pathPrefix="vlppos/ref" filePrefix="VLPPOS/" file="../../../../../Document/Tools/Demos/Gaclib/References/VLPPOS.xml"/-->
@@ -87,7 +88,7 @@
   </article>
   <article name="GacUI" file="gacui/home">
     <article name="Build your first GacUI Application!" file="gacui/running"/>
-    <article name="Build a Windows Terminal application" file="gacui/tui"/>
+    <article name="Build a terminal application" file="gacui/tui"/>
     <article name="Knowledge Base" file="gacui/kb/home">
       <link pathPrefix="gacui/kb" filePrefix="" file="gacui/kb/entry.xml"/>
     </article>

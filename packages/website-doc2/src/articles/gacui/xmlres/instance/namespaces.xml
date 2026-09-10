@@ -31,30 +31,32 @@
             As described in <a href="/gacui/xmlres/tag_instance.html">&lt;Instance&gt;</a>,
             the default namespace is
             <program><code><![CDATA[
-                presentation::controls::GuiWindow;
-                presentation::elements::GuiWindowElement;
-                presentation::compositions::GuiWindowComposition;
-                presentation::compositions::GuiWindow;
-                presentation::templates::GuiWindow;
-                system::Window;
-                system::reflection::Window;
-                presentation::Window;
-                presentation::GuiWindow;
-                presentation::controls::Window;
-                presentation::controls::list::Window;
-                presentation::controls::tree::Window;
-                presentation::elements::Window;
-                presentation::elements::GuiWindow;
-                presentation::elements::text::Window;
-                presentation::compositions::Window;
-                presentation::templates::Window;
-                presentation::theme::Window
+                presentation::controls::Gui*;
+                presentation::elements::Gui*Element;
+                presentation::elements::*Element;
+                presentation::compositions::Gui*Composition;
+                presentation::compositions::Gui*;
+                presentation::templates::Gui*;
+                system::*;
+                system::reflection::*;
+                presentation::*;
+                presentation::Gui*;
+                presentation::controls::*;
+                presentation::controls::list::*;
+                presentation::controls::tree::*;
+                presentation::elements::*;
+                presentation::elements::Gui*;
+                presentation::elements::text::*;
+                presentation::compositions::*;
+                presentation::templates::*;
+                presentation::theme::*
             ]]></code></program>
             When you write <b>&lt;Window/&gt;</b>,
             it replaces <b>*</b> by <b>Window</b> in the list and results in:
             <program><code><![CDATA[
                 presentation::controls::GuiWindow;
                 presentation::elements::GuiWindowElement;
+                presentation::elements::WindowElement;
                 presentation::compositions::GuiWindowComposition;
                 presentation::compositions::GuiWindow;
                 presentation::templates::GuiWindow;
@@ -75,6 +77,10 @@
             Now only <b>presentation::controls::GuiWindow</b> exist,
             so <b>&lt;Window/&gt;</b> is <b>presentation::controls::GuiWindow</b>.
             An error will be generated if zero or multiple of them exist.
+         </p>
+         <p>
+            The default <b>presentation::elements::*Element</b> mapping also resolves <b>&lt;TuiBorder/&gt;</b>
+            to <b>presentation::elements::TuiBorderElement</b>, without an explicit namespace declaration.
          </p>
          <p>
             For types that are not able to be found in the default namespace,
