@@ -33,11 +33,14 @@
             <title>Compositions</title>
             <p>
                 <a href="/gacui/kb/compositions.html">Composition</a> offer layout algorithms based on constraints.
+                <a href="/gacui/components/compositions/eazylayout.html">&lt;ez:Layout&gt;</a>
+                combines docking, proportional sizing, and grids using nested layout descriptions.
             </p>
             <p>
                 <a href="/gacui/components/compositions/home.html">Here</a> contains detailed introduction for:
                 <ul>
                     <li>&lt;Bounds&gt;</li>
+                    <li>&lt;ez:Layout&gt;</li>
                     <li>&lt;Stack&gt;, &lt;RepeatStack&gt;, &lt;StackItem&gt;</li>
                     <li>&lt;Flow&gt;, &lt;RepeatFlow&gt;, &lt;FlowItem&gt;</li>
                     <li>&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt;, &lt;ColumnSplitter&gt;</li>

@@ -19,6 +19,7 @@
                         <li>
                             &lt;Bounds&gt;
                             <ul>
+                                <li><a href="/gacui/components/compositions/eazylayout.html">&lt;ez:Layout&gt;</a></li>
                                 <li>
                                     &lt;Stack&gt;
                                     <ul>
@@ -298,6 +299,21 @@
                 the window will keep growing when it is resizing,
                 until forever.
             </p>
+            <topic>
+                <title>&lt;ez:Layout/&gt;</title>
+                <p>
+                    Use <a href="/gacui/components/compositions/eazylayout.html">&lt;ez:Layout/&gt;</a>
+                    to express docking, proportional sizes, or rows and columns instead of binding calculated positions.
+                    Nest layout descriptions to combine these arrangements;
+                    ordinary resizing is handled automatically.
+                </p>
+                <p>
+                    Bindings on <b>Padding</b>, <b>Border</b>, <b>Direction</b>, and <b>CellSpan</b>
+                    can store changes to the arrangement.
+                    Call <b>BuildLayout()</b> on the owning layout to apply later changes while keeping controls and their state.
+                    <b>Percentage</b> and <b>CellOption</b> must be constants in XML.
+                </p>
+            </topic>
         </topic>
         <topic>
             <title>Other Properties</title>

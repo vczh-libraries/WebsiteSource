@@ -2,6 +2,7 @@
   <article name="Elements" file="elements/home"/>
   <article name="Compositions" file="compositions/home">
     <article name="&lt;Bounds&gt;" file="compositions/bounds"/>
+    <article name="&lt;ez:Layout&gt;" file="compositions/eazylayout"/>
     <article name="&lt;Stack&gt; and &lt;StackItem&gt;" file="compositions/stack"/>
     <article name="&lt;Flow&gt; and &lt;Flow&gt;" file="compositions/flow"/>
     <article name="&lt;Table&gt;, &lt;Cell&gt;, &lt;RowSplitter&gt; and &lt;ColumnSplitter&gt;" file="compositions/table"/>
