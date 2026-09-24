@@ -3,9 +3,21 @@
         <title>Breaking changes from 1.0</title>
         <p>
             This page lists API changes since <b>1.0-rc-3</b> and explains how to update existing code.
-            The mouse-button and Win/Command/Super migration notes include the breaking changes in
-            <a href="https://github.com/vczh-libraries/Release/releases/tag/1.4.1.1">release 1.4.1.1</a>.
         </p>
+        <topic>
+            <title>Mouse buttons and Win/Command/Super shortcuts (1.4.1.1)</title>
+            <p>
+                Update applications and native platform providers as follows. The API sections below contain signatures and migration examples.
+                <ul>
+                    <li>Replace composition <b>leftButtonDown</b>, <b>middleButtonDown</b>, and <b>rightButtonDown</b> with <b>mouseDown</b>; replace the corresponding Up and DoubleClick events with <b>mouseUp</b> and <b>mouseDoubleClick</b>. Apply the same renames to <b>ev.</b> bindings in GacUI Resource XML. Filter <b>arguments.button</b> to retain a handler's original button restriction.</li>
+                    <li><b>NativeMouseButton</b> identifies <b>Left</b>, <b>Middle</b>, <b>Right</b>, <b>Mouse4</b>, or <b>Mouse5</b>. The new <b>GuiMouseEventArgs::button</b> defaults to <b>Left</b> and is inherited by item and node arguments. Existing button-specific Item and Node events remain available.</li>
+                    <li>Replace the nine button-specific <b>INativeWindowListener</b> callbacks with <b>MouseDown</b>, <b>MouseUp</b>, and <b>MouseDoubleClick</b>, each taking <b>NativeMouseButton</b> before <b>const NativeWindowMouseInfo&amp;</b>.</li>
+                    <li>Populate <b>osSuper</b> in mouse, key, and character input information. Mouse movement and wheel callbacks keep their signatures and receive this state through <b>info.osSuper</b>.</li>
+                    <li>Insert <b>bool osSuper</b> between <b>alt</b> and <b>key</b> in shortcut-manager calls and overrides, shortcut-item construction and modifier matching, and <b>RegisterGlobalShortcutKey</b>. Add <b>bool&amp; _osSuper</b> before <b>_key</b> in <b>ReadKeyConfig</b>. Pass <b>false</b> for shortcuts without Win/Command/Super.</li>
+                    <li><b>ShortcutBuilder::osSuper</b> defaults to <b>false</b>; <b>SHORTCUT</b> accepts <b>Win</b>, <b>Command</b>, and <b>Super</b> as aliases. Implement the new pure virtual <b>INativeResourceService::GetOSSuperKeyName()</b> with the platform label used by <b>GuiShortcutKeyItem::GetName()</b>.</li>
+                </ul>
+            </p>
+        </topic>
         <topic>
             <title>GacUI API</title>
             <topic>
