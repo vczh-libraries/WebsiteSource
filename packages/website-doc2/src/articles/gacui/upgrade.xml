@@ -2,7 +2,9 @@
     <topic>
         <title>Breaking changes from 1.0</title>
         <p>
-            This page lists API changes since <b>1.0-rc3</b> and explains how to update existing code.
+            This page lists API changes since <b>1.0-rc-3</b> and explains how to update existing code.
+            The mouse-button and Win/Command/Super migration notes include the breaking changes in
+            <a href="https://github.com/vczh-libraries/Release/releases/tag/1.4.1.1">release 1.4.1.1</a>.
         </p>
         <topic>
             <title>GacUI API</title>
