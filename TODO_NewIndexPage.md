@@ -7,6 +7,7 @@ In packages/website, currently the index.html file is generated from a template,
 ## Content of index.html
 
 - Logo and name "Gaclib"
+- Short introduction
 - A tab with source code and result
   - A hello world message box using easy layout.
   - A simple data binding demo, typing name and say hello below.
@@ -26,6 +27,14 @@ In packages/website, currently the index.html file is generated from a template,
   - Each feature rendered as group box, with short description and optional sample code in it
 - The whole page could be rendered as GUI/TUI, totally controlled by CSS.
   - Content loads from json resources, separate content and rendering.
+
+## Resource Organization
+
+- Images are loaded only when it needs to display, and never need to reload before the web oagr is closed.
+- assets/index.json stores all text and image urls, in a data structure which organizes the index page.
+  - Tab headers (icon, header text, etc) are hardcoded in html but content of each tab page are in json.
+  - Treat index.json as a data source for a template but no flexibility is required. Field names could be just hardcoded in html.
+  - This would help implementing the lazy image loading and caching by creating lazily building html content.
 
 ## MSIC
 
