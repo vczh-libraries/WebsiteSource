@@ -25,6 +25,7 @@ In packages/website, currently the index.html file is generated from a template,
 - Detailed feature lists, including data bindjng, workflow script, remote protocol, etc
   - Each feature rendered as group box, with short description and optional sample code in it
 - The whole page could be rendered as GUI/TUI, totally controlled by CSS.
+  - Content loads from json resources, separate content and rendering.
 
 ## MSIC
 
