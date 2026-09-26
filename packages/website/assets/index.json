@@ -40,7 +40,8 @@
     "back-to-top": "Back to top ↑",
     "agents-eyebrow": "04 / Build with an agent",
     "agents-title": "Using Coding Agents",
-    "agents-description": "The release includes instructions, documentation, and build and debugging scripts to help coding agents create GacUI applications on every platform. Describe your application in your own language, and give your agent the project guidance it needs to build it."
+    "agents-description": "The release includes instructions, documentation, and build and debugging scripts to help coding agents create GacUI applications on every platform. Describe your application in your own language, and give your agent the project guidance it needs to build it.",
+    "agents-integration-description": "A coding agent can help you integrate any programming language with GacUI for view model implementation. GacJS provides a working TypeScript example, and the release includes instructions for creating and verifying support for your preferred language."
   },
   "actions": [
     {
@@ -637,5 +638,9 @@
   "agentsLink": {
     "href": "/doc/current/coding-agent/home.html",
     "label": "Set up your coding agent →"
+  },
+  "agentsIntegrationLink": {
+    "href": "https://github.com/vczh-libraries/Release#implementing-view-model-in-other-programming-languages",
+    "label": "Integrate your language →"
   }
 }

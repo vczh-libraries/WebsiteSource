@@ -220,6 +220,7 @@ function render(data) {
         byId(`tab-${platform.id}`).querySelector('.platform-graphic').append(lazyImage(platform.icon));
     }
     byId('agents-link').append(link(data.agentsLink, 'button'));
+    byId('agents-integration-link').append(link(data.agentsIntegrationLink, 'button'));
     for (const item of data.links) {
         const anchor = link({ href: item.href }, 'quick-link');
         const icon = element('span', item.icon, 'link-icon');

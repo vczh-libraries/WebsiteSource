@@ -104,6 +104,7 @@ code { font-family: var(--mono); }
 .quick-link strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
 .quick-link small { display: block; color: var(--muted); font-size: 12px; line-height: 1.6; }
 .agent-guide { display: flex; gap: 40px; align-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 24px 0; }
+.agent-guide + .agent-guide { border-top: 0; }
 .agent-guide p { flex: 1; margin: 0; color: var(--muted); font-size: 15px; max-width: 780px; }
 .agent-guide .button { white-space: nowrap; }
 .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 20px; }
