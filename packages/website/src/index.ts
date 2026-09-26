@@ -1,5 +1,5 @@
-import { createMvcServer, hostUntilPressingEnter, MvcRouterResult, registerFolder } from 'gaclib-host';
-import { createRouter } from 'gaclib-mvc';
+import { createMvcServer, fileCallback, hostUntilPressingEnter, MvcRouterResult, registerFolder } from 'gaclib-host';
+import { createRouter, route } from 'gaclib-mvc';
 import { collectStaticUrls, downloadWebsite } from 'gaclib-spider';
 import * as path from 'path';
 import { homePageDynamicUrls, registerHomePages } from './homePages.js';
@@ -9,6 +9,7 @@ const __dirname = path.resolve('./lib');
 
 const router = createRouter<MvcRouterResult>();
 registerFolder(router, path.join(__dirname, `./dist`));
+router.register([], route`/`, fileCallback('text/html', path.join(__dirname, './dist/index.html')));
 registerHomePages(router); // temporarily disabled by not giving any link from the home page
 registerTopLevelPages(router);
 

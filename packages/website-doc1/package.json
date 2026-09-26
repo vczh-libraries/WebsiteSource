@@ -5,7 +5,7 @@
     "type": "module",
     "main": "./lib/index.js",
     "scripts": {
-        "build": "rimraf ./lib && eslint && tsc && copyfiles -u 1 assest/**/* lib/dist/ && node ./lib/esbuild.js",
+        "build": "rimraf ./lib && eslint && tsc && copyfiles -u 1 assets/**/* lib/dist/ && node ./lib/esbuild.js",
         "fullbuild": "cls & pushd ..\\.. && yarn build && popd",
         "start": "node ./lib/index.js",
         "download": "node ./lib/index.js -d"

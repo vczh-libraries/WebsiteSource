@@ -20,7 +20,7 @@ This package contains the latest GacUI 2.0 documentation site. Like `website`, i
 - `src/articles/reference.xml`: The top-level category and page tree.
 - `src/articles/**/entry.xml`: Nested reference fragments included by `<link>` nodes.
 - `src/articles/**/*.xml`: Hand-written article pages, generated API document pages, and control-template document pages.
-- `assest/`: CSS, icons, images, and screenshots copied to `lib/dist`.
+- `assets/`: CSS, icons, images, and screenshots copied to `lib/dist`.
 
 ## Route Model
 
@@ -126,7 +126,7 @@ The markdown converter intentionally focuses on article pages. It skips some fir
 
 ## Build, Start, Download
 
-- `npm run build`: Clears `lib`, lints, compiles TypeScript, copies `assest` to `lib/dist`, then bundles views.
+- `npm run build`: Clears `lib`, lints, compiles TypeScript, copies `assets` to `lib/dist`, then bundles views.
 - `npm run start`: Hosts `http://localhost:8080/doc/current/home.html`.
 - `npm run download`: Downloads the static document site to `packages/website-doc2/lib/website`.
 - `npm run markdown`: Generates markdown output for publishing into downstream repos.

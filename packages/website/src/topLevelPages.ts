@@ -13,11 +13,6 @@ export function loadArticle(filename: string): Article {
 }
 
 const topLevelPages: { [key: string]: { title: string; button: string; article: string } } = {
-    index: {
-        title: ' GPU Accelerated C++ User Interface (vczh)',
-        button: 'Home',
-        article: 'home.xml'
-    },
     demo: {
         title: 'Demos',
         button: 'Demo',
