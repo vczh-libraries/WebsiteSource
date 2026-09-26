@@ -97,7 +97,29 @@ function renderExamples(data) {
         const panel = byId(`example-${id}`);
         panel.append(clone('example-template'));
         fields(panel, example);
-        panel.querySelector('code').textContent = example.code;
+        const options = panel.querySelector('.source-options');
+        const sourceCode = panel.querySelector('pre');
+        sourceCode.id = `example-${id}-source`;
+        const showSource = (source) => {
+            sourceCode.querySelector('code').textContent = source.code;
+            sourceCode.setAttribute('aria-label', source.label);
+        };
+        for (const [index, source] of example.sources.entries()) {
+            const label = element('label');
+            const radio = element('input', undefined, 'sr-only');
+            radio.type = 'radio';
+            radio.name = `example-${id}-source`;
+            radio.value = source.id;
+            radio.checked = index === 0;
+            radio.setAttribute('aria-label', source.label);
+            radio.setAttribute('aria-controls', sourceCode.id);
+            radio.addEventListener('change', () => {
+                if (radio.checked) showSource(source);
+            });
+            label.append(radio, element('span', source.label));
+            options.append(label);
+        }
+        showSource(example.sources[0]);
         const stage = panel.querySelector('.preview-stage');
         stage.append(lazyImage(example.snapshot, 'sample-snapshot'));
         built.add(id);

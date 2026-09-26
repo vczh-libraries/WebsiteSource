@@ -66,7 +66,13 @@ h1 { max-width: 1060px; font-size: clamp(32px, 4.1vw, 52px); line-height: 1.16; 
 .example-grid { display: grid; grid-template-columns: 1.15fr 1fr; }
 .source-pane { min-width: 0; border-right: 1px solid var(--line); }
 .pane-label { display: flex; justify-content: space-between; gap: 12px; padding: 15px 22px; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-.language { font-size: 10px; letter-spacing: 0; text-transform: none; }
+.source-options { justify-content: flex-start; flex-wrap: wrap; gap: 8px 20px; min-width: 0; margin: 0; border: 0; }
+.source-options label { position: relative; cursor: pointer; }
+.source-options span { display: inline-flex; align-items: center; gap: 8px; }
+.source-options span::before { content: "\25B6"; visibility: hidden; font-size: 9px; }
+.source-options input:checked + span { color: var(--accent); }
+.source-options input:checked + span::before { visibility: visible; }
+.source-options input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 4px; }
 pre { font: 12px/1.8 var(--mono); margin: 0; padding: 8px 22px 20px; overflow: auto; tab-size: 2; white-space: pre; }
 code { font-family: var(--mono); }
 .source-link { display: inline-block; margin: 0 22px 20px; font-size: 12px; }
@@ -143,7 +149,7 @@ body:has(#style-tui:checked) .section-heading h2 { font-size: 24px; }
     main { padding: 0 20px; }.hero { padding: 38px 0 32px; }
     h1 { font-size: 34px; }.intro { font-size: 16px; }.hero-actions .button { padding: 10px 16px; }
     .section { padding-bottom: 24px; }.section-heading { display: block; }.section-heading > p { margin-top: 12px; }.section-heading h2 { font-size: 26px; }
-    .example-grid { grid-template-columns: 1fr; }.source-pane { border-right: 0; border-bottom: 1px solid var(--line); }.example-tabs button { padding: 14px; }.example-tabs button span { font-size: 13px; margin-left: 8px; }
+    .example-grid { grid-template-columns: 1fr; }.source-pane { border-right: 0; border-bottom: 1px solid var(--line); }.example-tabs { flex-wrap: wrap; }.example-tabs button { padding: 14px; }.example-tabs button span { font-size: 13px; margin-left: 8px; }
     pre { font-size: 11px; padding-right: 16px; padding-left: 16px; }.preview-stage { min-height: 270px; }.platform-tabs { flex-wrap: wrap; }.platform-tabs button { flex-basis: 50%; border-bottom: 1px solid var(--line); }.platform-tabs button[aria-selected="true"] { box-shadow: inset 0 -3px var(--accent); }.platform-tabs button:nth-child(2) { border-right: 0; }
     .platform-info { display: block; padding: 16px; }.platform-info a { display: inline-block; margin-top: 8px; }.mode-tabs { padding-left: 16px; }
     .theme-gallery { grid-template-columns: 108px minmax(0, 1fr); }.theme-tabs { padding: 8px 4px; }.theme-tabs button { font-size: 10px; gap: 6px; padding: 9px 6px; }.swatch { width: 7px; height: 7px; }

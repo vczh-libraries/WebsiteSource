@@ -4,6 +4,10 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
     ...eslintShared,
     {
+        // Displayed class excerpts omit imports and generated contract declarations.
+        ignores: ['assets/homeres/samples/*.ts'],
+    },
+    {
         languageOptions: {
             parserOptions: {
                 projectService: true,

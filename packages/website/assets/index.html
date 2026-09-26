@@ -37,9 +37,11 @@
                     <div class="tab-list example-tabs" role="tablist" aria-label="Code examples">
                         <button type="button" id="tab-hello" role="tab" aria-selected="true" aria-controls="example-hello" data-tab="hello">01 <span>Hello world</span></button>
                         <button type="button" id="tab-binding" role="tab" aria-selected="false" aria-controls="example-binding" tabindex="-1" data-tab="binding">02 <span>Data binding</span></button>
+                        <button type="button" id="tab-viewmodel" role="tab" aria-selected="false" aria-controls="example-viewmodel" tabindex="-1" data-tab="viewmodel">03 <span>View model</span></button>
                     </div>
                     <div id="example-hello" role="tabpanel" aria-labelledby="tab-hello"></div>
                     <div id="example-binding" role="tabpanel" aria-labelledby="tab-binding" hidden></div>
+                    <div id="example-viewmodel" role="tabpanel" aria-labelledby="tab-viewmodel" hidden></div>
                 </div>
             </section>
 
@@ -80,7 +82,7 @@
 
     <template id="example-template">
         <div class="example-grid">
-            <div class="source-pane"><div class="pane-label"><span data-field="sourceLabel"></span><span class="language">GacUI XML</span></div><pre tabindex="0"><code></code></pre><a class="source-link" data-field="docs"></a></div>
+            <div class="source-pane"><fieldset class="source-options pane-label"><legend class="sr-only">Source file</legend></fieldset><pre tabindex="0"><code></code></pre><a class="source-link" data-field="docs"></a></div>
             <div class="preview-pane"><div class="pane-label"><span data-field="resultLabel"></span></div><div class="preview-stage"></div></div>
         </div>
     </template>

@@ -27,7 +27,7 @@
     "hero-description": "Build interfaces with declarative layouts, rich controls, and reactive data binding. Gaclib brings your application to Windows, Linux, macOS with GPU accelerated rendering or TUI, and the browser.",
     "examples-eyebrow": "01 / A simple definition, a working interface",
     "examples-title": "Start with something small.",
-    "examples-description": "Describe a window in XML. Arrange its controls. Connect their properties with an expression.",
+    "examples-description": "Describe a window in XML. Arrange its controls. Bind properties to controls or a view model.",
     "platforms-eyebrow": "02 / Choose your canvas",
     "platforms-title": "From pixels to terminal cells.",
     "platforms-description": "Real screenshots from the platform repositories. Explore graphical and terminal renderers, then pick a color theme.",
@@ -55,34 +55,79 @@
   ],
   "examples": {
     "hello": {
-      "sourceLabel": "Source / Instance.xml",
       "resultLabel": "Result / Direct2D",
       "docs": {
         "label": "Explore Easy Layout →",
         "href": "/doc/current/gacui/components/compositions/eazylayout.html"
       },
-      "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::TestWindow\">\n  <Window ref.Name=\"self\" Text=\"Hello, world!\"\n          ClientSize=\"x:320 y:0\" SizeBox=\"false\"\n          MinimizedBox=\"false\" MaximizedBox=\"false\">\n    <ez:Layout Padding=\"5\">\n      <ez:Fill>\n        <Label Text=\"Welcome to Gaclib.\"/>\n      </ez:Fill>\n      <ez:Bottom>\n        <ez:Right>\n          <Button Text=\"OK\" ev.Clicked-eval=\"{ self.Close(); }\">\n            <att.BoundsComposition-set PreferredMinSize=\"x:72 y:26\"/>\n          </Button>\n        </ez:Right>\n      </ez:Bottom>\n    </ez:Layout>\n  </Window>\n</Instance>",
       "snapshot": {
-        "height": 102,
+        "height": 86,
         "alt": "The Hello world sample running with the GacUI Direct2D renderer.",
         "width": 320,
         "src": "/homeres/samples/hello.png"
-      }
+      },
+      "sources": [
+        {
+          "id": "instance",
+          "label": "Source / Instance.xml",
+          "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::TestWindow\">\n  <Window ref.Name=\"self\" Text=\"Hello, world!\"\n          ClientSize=\"x:320 y:0\" SizeBox=\"false\"\n          MinimizedBox=\"false\" MaximizedBox=\"false\">\n    <ez:Layout Padding=\"5\" Border=\"false\">\n      <ez:Fill>\n        <Label Text=\"Welcome to Gaclib.\"/>\n      </ez:Fill>\n      <ez:Bottom>\n        <ez:Right>\n          <Button Text=\"OK\" ev.Clicked-eval=\"{ self.Close(); }\">\n            <att.BoundsComposition-set PreferredMinSize=\"x:72\"/>\n          </Button>\n        </ez:Right>\n      </ez:Bottom>\n    </ez:Layout>\n  </Window>\n</Instance>"
+        }
+      ]
     },
     "binding": {
-      "sourceLabel": "Source / Instance.xml",
       "resultLabel": "Result / Direct2D",
       "docs": {
         "label": "Read about data binding →",
         "href": "/doc/current/gacui/advanced/bindings.html"
       },
-      "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::TestWindow\">\n  <Window Text=\"Say hello\"\n          ClientSize=\"x:360 y:0\" SizeBox=\"false\"\n          MinimizedBox=\"false\" MaximizedBox=\"false\">\n    <ez:Layout Padding=\"5\">\n      <ez:Top>\n        <Label Text=\"Your name\"/>\n      </ez:Top>\n      <ez:Top>\n        <SinglelineTextBox ref.Name=\"nameInput\"\n                           Text=\"world\">\n          <att.BoundsComposition-set PreferredMinSize=\"x:0 y:26\"/>\n        </SinglelineTextBox>\n      </ez:Top>\n      <ez:Top>\n        <Label\n          Text-format=\"Hello, $(nameInput.Text)!\"/>\n      </ez:Top>\n    </ez:Layout>\n  </Window>\n</Instance>",
       "snapshot": {
-        "height": 123,
+        "height": 109,
         "alt": "The data binding sample running with the GacUI Direct2D renderer, greeting GacUI.",
         "width": 360,
         "src": "/homeres/samples/binding.png"
-      }
+      },
+      "sources": [
+        {
+          "id": "instance",
+          "label": "Source / Instance.xml",
+          "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::TestWindow\">\n  <Window Text=\"Say hello\"\n          ClientSize=\"x:360 y:0\" SizeBox=\"false\"\n          MinimizedBox=\"false\" MaximizedBox=\"false\">\n    <ez:Layout Padding=\"5\" Border=\"false\">\n      <ez:Top>\n        <Label Text=\"Your name\"/>\n      </ez:Top>\n      <ez:Top>\n        <SinglelineTextBox ref.Name=\"nameInput\" Text=\"world\"/>\n      </ez:Top>\n      <ez:Top>\n        <Label Text-format=\"Hello, $(nameInput.Text)!\"/>\n      </ez:Top>\n    </ez:Layout>\n  </Window>\n</Instance>"
+        }
+      ]
+    },
+    "viewmodel": {
+      "resultLabel": "Result / Direct2D",
+      "docs": {
+        "label": "Read about view models →",
+        "href": "/doc/current/gacui/advanced/vm.html"
+      },
+      "snapshot": {
+        "height": 109,
+        "alt": "The C++ view model sample running with the GacUI Direct2D renderer, greeting GacUI.",
+        "width": 360,
+        "src": "/homeres/samples/viewmodel.png"
+      },
+      "sources": [
+        {
+          "id": "instance",
+          "label": "Source / Instance.xml",
+          "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::TestWindow\">\n  <ref.Parameter Name=\"ViewModel\" Class=\"IHelloViewModel\"/>\n  <Window Text=\"Say hello\"\n          ClientSize=\"x:360 y:0\" SizeBox=\"false\"\n          MinimizedBox=\"false\" MaximizedBox=\"false\">\n    <att.ViewModel-set Name-bind=\"nameInput.Text\"/>\n    <ez:Layout Padding=\"5\" Border=\"false\">\n      <ez:Top>\n        <Label Text=\"Your name\"/>\n      </ez:Top>\n      <ez:Top>\n        <SinglelineTextBox ref.Name=\"nameInput\" Text=\"world\"/>\n      </ez:Top>\n      <ez:Top>\n        <Label Text-bind=\"ViewModel.Welcome\"/>\n      </ez:Top>\n    </ez:Layout>\n  </Window>\n</Instance>"
+        },
+        {
+          "id": "cpp",
+          "label": "Source / ViewModel.cpp",
+          "code": "class HelloViewModel : public Object, public virtual IHelloViewModel\n{\nprivate:\n    WString name = L\"world\";\n    WString welcome = L\"Hello, world!\";\n\npublic:\n    WString GetName() override\n    {\n        return name;\n    }\n\n    void SetName(const WString& value) override\n    {\n        if (name != value)\n        {\n            name = value;\n            welcome = L\"Hello, \" + name + L\"!\";\n            NameChanged();\n            WelcomeChanged();\n        }\n    }\n\n    WString GetWelcome() override\n    {\n        return welcome;\n    }\n};"
+        },
+        {
+          "id": "workflow",
+          "label": "Source / ViewModel.workflow",
+          "code": "class HelloViewModel\n{\n    static func Create(): IHelloViewModel^\n    {\n        return new (IHelloViewModel^)\n        {\n            var name: string = \"world\";\n            var welcome: string = \"Hello, world!\";\n\n            override func GetName(): string\n            {\n                return name;\n            }\n\n            override func SetName(value: string): void\n            {\n                if (name != value)\n                {\n                    name = value;\n                    welcome = $\"Hello, $(name)!\";\n                    NameChanged();\n                    WelcomeChanged();\n                }\n            }\n\n            override func GetWelcome(): string\n            {\n                return welcome;\n            }\n        };\n    }\n}"
+        },
+        {
+          "id": "ts",
+          "label": "Source / ViewModel.ts",
+          "code": "class HelloViewModel implements IHelloViewModelLocal {\n    private name = 'world';\n    private welcome = 'Hello, world!';\n\n    readonly NameChanged = new RpcEvent<[]>();\n    readonly WelcomeChanged = new RpcEvent<[]>();\n\n    GetName(): string {\n        return this.name;\n    }\n\n    async SetName(value: string): Promise<void> {\n        if (this.name !== value) {\n            this.name = value;\n            this.welcome = `Hello, ${this.name}!`;\n            await this.NameChanged.emit();\n            await this.WelcomeChanged.emit();\n        }\n    }\n\n    GetWelcome(): string {\n        return this.welcome;\n    }\n}"
+        }
+      ]
     }
   },
   "galleryLabels": {
