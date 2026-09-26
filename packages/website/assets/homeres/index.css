@@ -32,7 +32,7 @@ button:focus-visible, a:focus-visible, pre:focus-visible, input:focus-visible { 
 .skip-link:focus { display: block; padding: 12px; background: var(--surface); }
 .site-header { max-width: 1200px; margin: auto; padding: 16px 32px; display: flex; align-items: center; gap: 32px; border-bottom: 1px solid var(--line); }
 .brand { display: flex; flex-shrink: 0; }
-.brand img { width: 160px; height: 64px; object-fit: contain; border-radius: 4px; }
+.brand img { width: 320px; height: 128px; object-fit: contain; border-radius: 4px; }
 .site-header nav { display: flex; gap: 26px; margin-left: auto; }
 .site-header nav a { color: var(--muted); font-size: 14px; text-decoration: none; font-weight: 600; }
 .site-header nav a:hover { color: var(--accent); }
@@ -66,7 +66,7 @@ h1 { max-width: 1060px; font-size: clamp(32px, 4.1vw, 52px); line-height: 1.16; 
 .example-grid { display: grid; grid-template-columns: 1.15fr 1fr; }
 .source-pane { min-width: 0; border-right: 1px solid var(--line); }
 .pane-label { display: flex; justify-content: space-between; gap: 12px; padding: 15px 22px; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-.source-options { justify-content: flex-start; flex-wrap: wrap; gap: 8px 20px; min-width: 0; margin: 0; border: 0; }
+.source-options { flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; margin: 0; border: 0; }
 .source-options label { position: relative; cursor: pointer; }
 .source-options span { display: inline-flex; align-items: center; gap: 8px; }
 .source-options span::before { content: "\25B6"; visibility: hidden; font-size: 9px; }
@@ -139,13 +139,13 @@ body:has(#style-tui:checked) .feature legend::after { content: " ]"; color: var(
 body:has(#style-tui:checked) .section-heading h2 { font-size: 24px; }
 
 @media (max-width: 950px) {
-    .hero { padding-top: 45px; }.site-header { gap: 20px; }.site-header nav { gap: 16px; }
+    .hero { padding-top: 45px; }.site-header { flex-wrap: wrap; gap: 20px; }.site-header nav { order: 3; width: 100%; flex-wrap: wrap; gap: 8px 16px; }.site-header nav a { white-space: nowrap; }.appearance { margin-left: auto; }
     .quick-links { grid-template-columns: repeat(2, 1fr); }.feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .platform-tabs button { padding: 16px; gap: 9px; }.platform-icon { font-size: 19px; }.preview-stage { padding: 20px; }
     .screenshot a, .screenshot img { height: 340px; }
 }
 @media (max-width: 650px) {
-    .site-header { flex-wrap: wrap; padding: 10px 20px 16px; gap: 10px; }.site-header nav { order: 3; width: 100%; flex-wrap: wrap; gap: 8px 16px; }.site-header nav a { white-space: nowrap; }.appearance { margin-left: auto; }
+    .site-header { padding: 10px 20px 16px; gap: 10px; }
     main { padding: 0 20px; }.hero { padding: 38px 0 32px; }
     h1 { font-size: 34px; }.intro { font-size: 16px; }.hero-actions .button { padding: 10px 16px; }
     .section { padding-bottom: 24px; }.section-heading { display: block; }.section-heading > p { margin-top: 12px; }.section-heading h2 { font-size: 26px; }
@@ -156,5 +156,8 @@ body:has(#style-tui:checked) .section-heading h2 { font-size: 24px; }
     .screenshot { padding: 10px; }.screenshot a, .screenshot img { height: 240px; }
     .quick-links, .feature-grid { grid-template-columns: 1fr; }.quick-links { gap: 10px; }.quick-link { padding: 16px 20px; }.feature-grid { gap: 20px; }
     .agent-guide { display: block; }.agent-guide .button { margin-top: 20px; }
+}
+@media (max-width: 359px) {
+    .site-header { padding-right: 0; padding-left: 0; }.site-header nav { padding: 0 20px; }.appearance { margin-right: 20px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -29,7 +29,7 @@
     "examples-title": "Start with something small.",
     "examples-description": "Describe a window in XML. Arrange its controls. Bind properties to controls or a view model.",
     "platforms-eyebrow": "02 / Choose your canvas",
-    "platforms-title": "From pixels to terminal cells.",
+    "platforms-title": "From GPU to Web",
     "platforms-description": "Real screenshots from the platform repositories. Explore graphical and terminal renderers, then pick a color theme.",
     "start-eyebrow": "03 / Make it yours",
     "start-title": "Your next step.",
@@ -39,7 +39,7 @@
     "features-description": "Use C++ directly, describe your UI in XML, and choose the parts of the library your application needs.",
     "back-to-top": "Back to top ↑",
     "agents-eyebrow": "04 / Build with an agent",
-    "agents-title": "Using Coding Agents",
+    "agents-title": "Using coding agents.",
     "agents-description": "The release includes instructions, documentation, and build and debugging scripts to help coding agents create GacUI applications on every platform. Describe your application in your own language, and give your agent the project guidance it needs to build it.",
     "agents-integration-description": "A coding agent can help you integrate any programming language with GacUI for view model implementation. GacJS provides a working TypeScript example, and the release includes instructions for creating and verifying support for your preferred language."
   },
@@ -137,7 +137,7 @@
     {
       "id": "windows",
       "label": "Windows",
-      "description": "Native desktop rendering with DirectX or GDI, and terminal rendering with TUI.",
+      "description": "Native desktop rendering with DirectX or GDI, terminal rendering with TUI, and remote rendering through the Remote Protocol.",
       "modes": [
         {
           "id": "gui",
@@ -262,7 +262,7 @@
     {
       "id": "linux",
       "label": "Linux",
-      "description": "Native Linux windows through Wayland, and terminal rendering with TUI.",
+      "description": "Native Linux windows through Wayland, terminal rendering with TUI, and remote rendering through the Remote Protocol.",
       "modes": [
         {
           "id": "gui",
@@ -387,7 +387,7 @@
     {
       "id": "macos",
       "label": "macOS",
-      "description": "Native macOS windows through Cocoa, and terminal rendering with TUI.",
+      "description": "Native macOS windows through Cocoa, terminal rendering with TUI, and remote rendering through the Remote Protocol.",
       "modes": [
         {
           "id": "gui",
@@ -512,7 +512,7 @@
     {
       "id": "html5",
       "label": "HTML5",
-      "description": "GacJS renders GacUI applications in the browser through the Remote Protocol, with the application core running on Windows, Linux, or macOS.",
+      "description": "GacJS renders GacUI applications as HTML through the Remote Protocol, with the application core running on Windows, Linux, or macOS. WebAssembly (planning) is also on the roadmap.",
       "modes": [
         {
           "id": "gui",
