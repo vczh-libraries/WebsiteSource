@@ -1,4 +1,4 @@
-import { html, TemplateResult } from 'lit-html';
+import { html, nothing, TemplateResult } from 'lit-html';
 import * as a from './interfaces.js';
 
 export interface RenderArticleOptions {
@@ -33,7 +33,7 @@ function rewriteLink(href: string, options: RenderArticleOptions): string {
 function renderLink(href: string, options: RenderArticleOptions, content: TemplateResult): TemplateResult {
     const targetAttr = href.startsWith('.') || href.startsWith('/') ? '_self' : '_blank';
     const hrefAttr = rewriteLink(href, options);
-    return html`<a href="${hrefAttr}" target="${targetAttr}">${content}</a>`;
+    return html`<a href="${hrefAttr}" target="${targetAttr}" rel="${targetAttr === '_blank' ? 'noopener' : nothing}">${content}</a>`;
 }
 
 function renderContent(content: a.Content[], options: RenderArticleOptions): TemplateResult {

@@ -136,8 +136,7 @@ $browserThemes = [System.Collections.Generic.List[object]]::new()
 $browserSources = @(
     @{ id = 'windows'; label = 'Windows host'; file = 'RPT_Windows.png'; alt = 'GacJS rendering a remote GacUI application hosted on Windows in a browser.' },
     @{ id = 'linux'; label = 'Linux host'; file = 'RPT_Ubuntu.png'; alt = 'GacJS rendering a remote GacUI application hosted on Ubuntu Linux in a browser.' },
-    @{ id = 'macos'; label = 'macOS host'; file = 'RPT_macOS.png'; alt = 'GacJS rendering a remote GacUI application hosted on macOS in a browser.' },
-    @{ id = 'snapshots'; label = 'Snapshot viewer'; file = 'SnapshotViewer.png'; alt = 'GacJS rendering captured GacUI unit test snapshots in its browser viewer.' }
+    @{ id = 'macos'; label = 'macOS host'; file = 'RPT_macOS.png'; alt = 'GacJS rendering a remote GacUI application hosted on macOS in a browser.' }
 )
 foreach ($source in $browserSources) {
     $browserThemes.Add((Add-Screenshot -Source (Join-Path $RepositoryRoot ('GacJS/' + $source.file)) -Repository 'GacJS' -Filename "html5-$($source.id).png" -Id $source.id -Label $source.label -Alt $source.alt))

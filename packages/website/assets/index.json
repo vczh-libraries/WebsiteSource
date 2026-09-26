@@ -1,5 +1,5 @@
 {
-  "title": "Gaclib — C++ interfaces, from desktop to terminal",
+  "title": "Gaclib -- Cross Platform UI Library Working with All Languages",
   "logo": {
     "src": "/logo.gif",
     "alt": "Gaclib"
@@ -23,27 +23,24 @@
     }
   ],
   "text": {
-    "hero-eyebrow": "A C++ user interface library",
-    "hero-title": "One C++ UI.\nMany ways to render.",
-    "hero-description": "Build interfaces with declarative layouts, rich controls, and reactive data binding. Gaclib brings your C++ application to desktop windows, terminal cells, and the browser.",
-    "hero-note-title": "Gaclib / at a glance",
-    "hero-note-heading": "Your application. Your presentation.",
-    "hero-platform-link": "Explore the platforms ↓",
-    "examples-eyebrow": "01 / A little code, a working interface",
+    "hero-title": "Gaclib -- Cross Platform UI Library\nWorking with All Languages",
+    "hero-description": "Build interfaces with declarative layouts, rich controls, and reactive data binding. Gaclib brings your application to Windows, Linux, macOS with GPU accelerated rendering or TUI, and the browser.",
+    "examples-eyebrow": "01 / A simple definition, a working interface",
     "examples-title": "Start with something small.",
     "examples-description": "Describe a window in XML. Arrange its controls. Connect their properties with an expression.",
-    "examples-note": "Interactive browser illustrations of the XML instances shown above. These previews reproduce the behavior in HTML; the linked guide explains how to build and run the C++ application.",
     "platforms-eyebrow": "02 / Choose your canvas",
     "platforms-title": "From pixels to terminal cells.",
     "platforms-description": "Real screenshots from the platform repositories. Explore graphical and terminal renderers, then pick a color theme.",
     "start-eyebrow": "03 / Make it yours",
     "start-title": "Your next step.",
     "start-description": "Build your first window, explore the manual, or start with an existing example.",
-    "features-eyebrow": "04 / More than a window",
+    "features-eyebrow": "05 / More than a window",
     "features-title": "The pieces for a complete application.",
     "features-description": "Use C++ directly, describe your UI in XML, and choose the parts of the library your application needs.",
-    "footer-text": "Gaclib · C++ libraries by vczh and contributors.",
-    "back-to-top": "Back to top ↑"
+    "back-to-top": "Back to top ↑",
+    "agents-eyebrow": "04 / Build with an agent",
+    "agents-title": "Using Coding Agents",
+    "agents-description": "The release includes instructions, documentation, and build and debugging scripts to help coding agents create GacUI applications on every platform. Describe your application in your own language, and give your agent the project guidance it needs to build it."
   },
   "actions": [
     {
@@ -55,56 +52,40 @@
       "href": "https://github.com/vczh-libraries/Release"
     }
   ],
-  "facts": [
-    "Windows, Linux, and macOS platform layers",
-    "Graphical interfaces and terminal applications",
-    "HTML5 rendering through GacJS and remote protocol",
-    "XML resources, Workflow scripts, and generated C++"
-  ],
   "examples": {
     "hello": {
       "sourceLabel": "Source / Instance.xml",
-      "resultLabel": "Result",
-      "liveLabel": "Try it",
-      "caption": "An Easy Layout window with an OK button. Click to close it.",
+      "resultLabel": "Result / Direct2D",
       "docs": {
         "label": "Explore Easy Layout →",
         "href": "/doc/current/gacui/components/compositions/eazylayout.html"
       },
-      "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::HelloWindow\">\n  <Window ref.Name=\"self\" Text=\"Hello, world!\"\n          ClientSize=\"x:320 y:160\">\n    <ez:Layout Padding=\"16\">\n      <ez:Fill>\n        <Label Text=\"Welcome to Gaclib.\"/>\n      </ez:Fill>\n      <ez:Bottom>\n        <ez:Right>\n          <Button Text=\"OK\"\n            ev.Clicked-eval=\"{ self.Close(); }\"/>\n        </ez:Right>\n      </ez:Bottom>\n    </ez:Layout>\n  </Window>\n</Instance>",
-      "preview": {
-        "windowTitle": "Hello, world!",
-        "heading": "Welcome to Gaclib.",
-        "message": "",
-        "buttonLabel": "OK",
-        "closedMessage": "Window closed. That's your first interaction.",
-        "reopenLabel": "Open again"
+      "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::TestWindow\">\n  <Window ref.Name=\"self\" Text=\"Hello, world!\"\n          ClientSize=\"x:320 y:0\" SizeBox=\"false\"\n          MinimizedBox=\"false\" MaximizedBox=\"false\">\n    <ez:Layout Padding=\"5\">\n      <ez:Fill>\n        <Label Text=\"Welcome to Gaclib.\"/>\n      </ez:Fill>\n      <ez:Bottom>\n        <ez:Right>\n          <Button Text=\"OK\" ev.Clicked-eval=\"{ self.Close(); }\">\n            <att.BoundsComposition-set PreferredMinSize=\"x:72 y:26\"/>\n          </Button>\n        </ez:Right>\n      </ez:Bottom>\n    </ez:Layout>\n  </Window>\n</Instance>",
+      "snapshot": {
+        "height": 102,
+        "alt": "The Hello world sample running with the GacUI Direct2D renderer.",
+        "width": 320,
+        "src": "/homeres/samples/hello.png"
       }
     },
     "binding": {
       "sourceLabel": "Source / Instance.xml",
-      "resultLabel": "Result",
-      "liveLabel": "Try it",
-      "caption": "Edit the name. The bound greeting updates with every keystroke.",
+      "resultLabel": "Result / Direct2D",
       "docs": {
         "label": "Read about data binding →",
         "href": "/doc/current/gacui/advanced/bindings.html"
       },
-      "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::GreetingWindow\">\n  <Window Text=\"Say hello\"\n          ClientSize=\"x:360 y:180\">\n    <ez:Layout Padding=\"16\">\n      <ez:Top>\n        <Label Text=\"Your name\"/>\n      </ez:Top>\n      <ez:Top>\n        <SinglelineTextBox ref.Name=\"nameInput\"\n                           Text=\"world\"/>\n      </ez:Top>\n      <ez:Top>\n        <Label\n          Text-format=\"Hello, $(nameInput.Text)!\"/>\n      </ez:Top>\n    </ez:Layout>\n  </Window>\n</Instance>",
-      "preview": {
-        "windowTitle": "Say hello",
-        "inputLabel": "Your name",
-        "initialName": "world",
-        "placeholder": "Type your name",
-        "greeting": "Hello, {name}!",
-        "status": "Text-format → nameInput.Text"
+      "code": "<Instance ref.CodeBehind=\"false\"\n          ref.Class=\"demo::TestWindow\">\n  <Window Text=\"Say hello\"\n          ClientSize=\"x:360 y:0\" SizeBox=\"false\"\n          MinimizedBox=\"false\" MaximizedBox=\"false\">\n    <ez:Layout Padding=\"5\">\n      <ez:Top>\n        <Label Text=\"Your name\"/>\n      </ez:Top>\n      <ez:Top>\n        <SinglelineTextBox ref.Name=\"nameInput\"\n                           Text=\"world\">\n          <att.BoundsComposition-set PreferredMinSize=\"x:0 y:26\"/>\n        </SinglelineTextBox>\n      </ez:Top>\n      <ez:Top>\n        <Label\n          Text-format=\"Hello, $(nameInput.Text)!\"/>\n      </ez:Top>\n    </ez:Layout>\n  </Window>\n</Instance>",
+      "snapshot": {
+        "height": 123,
+        "alt": "The data binding sample running with the GacUI Direct2D renderer, greeting GacUI.",
+        "width": 360,
+        "src": "/homeres/samples/binding.png"
       }
     }
   },
   "galleryLabels": {
-    "openImage": "Open full-size screenshot",
-    "openHint": "Select the image to view full size.",
-    "imageError": "This screenshot could not be loaded. Select the image to open its source."
+    "openImage": "Open full-size screenshot"
   },
   "platforms": [
     {
@@ -224,6 +205,12 @@
       "link": {
         "label": "GacUI source ↗",
         "href": "https://github.com/vczh-libraries/GacUI"
+      },
+      "icon": {
+        "height": 128,
+        "alt": "",
+        "width": 128,
+        "src": "/homeres/icons/windows.svg"
       }
     },
     {
@@ -343,6 +330,12 @@
       "link": {
         "label": "wGac source ↗",
         "href": "https://github.com/vczh-libraries/wGac"
+      },
+      "icon": {
+        "height": 128,
+        "alt": "",
+        "width": 128,
+        "src": "/homeres/icons/linux.svg"
       }
     },
     {
@@ -462,6 +455,12 @@
       "link": {
         "label": "iGac source ↗",
         "href": "https://github.com/vczh-libraries/iGac"
+      },
+      "icon": {
+        "height": 128,
+        "alt": "",
+        "width": 128,
+        "src": "/homeres/icons/macos.svg"
       }
     },
     {
@@ -496,14 +495,6 @@
               "alt": "GacJS rendering a remote GacUI application hosted on macOS in a browser.",
               "width": 1184,
               "height": 524
-            },
-            {
-              "id": "snapshots",
-              "label": "Snapshot viewer",
-              "src": "/homeres/GacJS/html5-snapshots.png",
-              "alt": "GacJS rendering captured GacUI unit test snapshots in its browser viewer.",
-              "width": 1418,
-              "height": 994
             }
           ]
         }
@@ -511,6 +502,12 @@
       "link": {
         "label": "GacJS source ↗",
         "href": "https://github.com/vczh-libraries/GacJS"
+      },
+      "icon": {
+        "height": 128,
+        "alt": "",
+        "width": 128,
+        "src": "/homeres/icons/html5.svg"
       }
     }
   ],
@@ -550,18 +547,6 @@
       "label": "XML resources",
       "description": "Describe layouts, styles, and behavior.",
       "href": "/doc/current/gacui/xmlres/home.html"
-    },
-    {
-      "icon": "◇",
-      "label": "Coding agents",
-      "description": "Use the project knowledge base.",
-      "href": "/doc/current/coding-agent/home.html"
-    },
-    {
-      "icon": "{}",
-      "label": "Source on GitHub",
-      "description": "Explore the libraries and contribute.",
-      "href": "https://github.com/vczh-libraries"
     }
   ],
   "features": [
@@ -648,5 +633,9 @@
       "label": "License",
       "href": "https://github.com/vczh-libraries/Release/blob/master/LICENSE.md"
     }
-  ]
+  ],
+  "agentsLink": {
+    "href": "/doc/current/coding-agent/home.html",
+    "label": "Set up your coding agent →"
+  }
 }

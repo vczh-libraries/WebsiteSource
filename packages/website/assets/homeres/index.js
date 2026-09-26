@@ -10,11 +10,39 @@ function element(tag, text, className) {
 
 function link(data, className) {
     const node = element('a', data.label, className);
-    node.href = data.href;
+    setLink(node, data.href);
     return node;
 }
 
-// Tabs keep their panels mounted, including input state and already-loaded images.
+function setLink(node, href) {
+    node.href = href;
+    if (node.hostname === 'github.com' || node.hostname.endsWith('.github.com')) {
+        node.target = '_blank';
+        node.rel = 'noopener';
+    }
+}
+
+function lazyImage(data, className) {
+    const img = element('img', undefined, className);
+    img.alt = data.alt;
+    img.width = data.width;
+    img.height = data.height;
+    img.decoding = 'async';
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+                img.src = data.src;
+                observer.disconnect();
+            }
+        });
+        observer.observe(img);
+    } else {
+        img.src = data.src;
+    }
+    return img;
+}
+
+// Tabs keep their panels and already-loaded images mounted.
 function tabs(list, select, initial, prefix) {
     const buttons = [...list.querySelectorAll(':scope > [role="tab"]')];
     const activate = (button, focus = false) => {
@@ -55,7 +83,7 @@ function fields(root, data) {
         if (typeof value === 'string') node.textContent = value;
         else if (value) {
             node.textContent = value.label;
-            node.href = value.href;
+            setLink(node, value.href);
         }
     }
 }
@@ -71,30 +99,7 @@ function renderExamples(data) {
         fields(panel, example);
         panel.querySelector('code').textContent = example.code;
         const stage = panel.querySelector('.preview-stage');
-        stage.append(clone(`${id}-template`));
-        fields(stage, example.preview);
-        if (id === 'hello') {
-            const window = stage.querySelector('.demo-window');
-            const closed = stage.querySelector('.demo-closed');
-            window.querySelector('button').addEventListener('click', () => {
-                window.hidden = true;
-                closed.hidden = false;
-                closed.querySelector('button').focus();
-            });
-            closed.querySelector('button').addEventListener('click', () => {
-                closed.hidden = true;
-                window.hidden = false;
-                window.querySelector('button').focus();
-            });
-        } else {
-            const input = stage.querySelector('input');
-            const output = stage.querySelector('output');
-            input.value = example.preview.initialName;
-            input.placeholder = example.preview.placeholder;
-            const update = () => { output.textContent = example.preview.greeting.replace('{name}', input.value); };
-            input.addEventListener('input', update);
-            update();
-        }
+        stage.append(lazyImage(example.snapshot, 'sample-snapshot'));
         built.add(id);
     }, 'hello');
 }
@@ -115,7 +120,7 @@ function renderPlatforms(platforms, labels) {
         panel.querySelector('.platform-info p').textContent = data.description;
         const source = panel.querySelector('.platform-info a');
         source.textContent = data.link.label;
-        source.href = data.link.href;
+        setLink(source, data.link.href);
         const modeList = panel.querySelector('.mode-tabs');
         const gallery = panel.querySelector('.gallery-body');
         const modes = new Map();
@@ -167,12 +172,10 @@ function renderPlatforms(platforms, labels) {
                 img.width = theme.width;
                 img.height = theme.height;
                 img.decoding = 'async';
-                const caption = element('figcaption', `${theme.alt} ${labels.openHint}`);
-                img.addEventListener('error', () => { caption.textContent = labels.imageError; });
                 // Assign src exactly once. Hidden tabs retain their image nodes for this page's lifetime.
                 img.src = theme.src;
                 fullSize.append(img);
-                picture.append(fullSize, caption);
+                picture.append(fullSize);
                 loaded.add(themeId);
             };
             modes.set(modeId, () => showTheme(selectedTheme));
@@ -213,7 +216,10 @@ function render(data) {
     for (const item of data.navigation) byId('navigation').append(link(item));
     for (const [key, value] of Object.entries(data.text)) byId(key).textContent = value;
     for (const [index, action] of data.actions.entries()) byId('hero-actions').append(link(action, index === 0 ? 'button primary' : 'button'));
-    for (const fact of data.facts) byId('hero-facts').append(element('li', fact));
+    for (const platform of data.platforms) {
+        byId(`tab-${platform.id}`).querySelector('.platform-graphic').append(lazyImage(platform.icon));
+    }
+    byId('agents-link').append(link(data.agentsLink, 'button'));
     for (const item of data.links) {
         const anchor = link({ href: item.href }, 'quick-link');
         const icon = element('span', item.icon, 'link-icon');

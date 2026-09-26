@@ -58,7 +58,7 @@ Rendering rewrites links with these rules:
 - Links beginning with `//` lose one leading slash and are treated as site-root links without `hrefPrefix`.
 - Links beginning with `/` receive `hrefPrefix` when one is supplied.
 - Links beginning with `.` or `/` open in the same page.
-- Other links open with `target="_blank"`.
+- Other links, including GitHub URLs, open with `target="_blank"` and `rel="noopener"`.
 
 ## Plugin Lifecycle
 

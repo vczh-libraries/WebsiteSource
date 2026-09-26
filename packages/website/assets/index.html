@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Gaclib: a C++ user interface library with declarative layouts, data binding, and renderers for desktop, terminal, and the web.">
-    <title>Gaclib — C++ interfaces, from desktop to terminal</title>
+    <meta name="description" content="Gaclib: a cross platform UI library working with all languages, with declarative layouts, data binding, and renderers for desktop, terminal, and the browser.">
+    <title>Gaclib -- Cross Platform UI Library Working with All Languages</title>
     <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="/homeres/index.css">
     <script type="module" src="/homeres/index.js"></script>
@@ -21,19 +21,14 @@
     </header>
     <main id="main">
         <p id="load-status" role="status">Loading Gaclib…</p>
-        <noscript><p>This introduction needs JavaScript to load its content. Read the <a href="/doc/current/home.html">Gaclib documentation</a> or <a href="https://github.com/vczh-libraries/Release">browse the source</a>.</p></noscript>
+        <noscript><p>This introduction needs JavaScript to load its content. Read the <a href="/doc/current/home.html">Gaclib documentation</a> or <a href="https://github.com/vczh-libraries/Release" target="_blank" rel="noopener">browse the source</a>.</p></noscript>
         <div id="home-content" hidden>
             <section class="hero" aria-labelledby="hero-title">
                 <div>
-                    <p class="eyebrow" id="hero-eyebrow"></p>
                     <h1 id="hero-title"></h1>
                     <p class="intro" id="hero-description"></p>
                     <div class="hero-actions" id="hero-actions"></div>
                 </div>
-                <aside class="hero-note" aria-labelledby="hero-note-title">
-                    <div class="window-bar"><span class="window-dot"></span><span id="hero-note-title"></span><span aria-hidden="true">─ □ ×</span></div>
-                    <div class="hero-note-content"><p id="hero-note-heading"></p><ul id="hero-facts"></ul><a href="#platforms" id="hero-platform-link"></a></div>
-                </aside>
             </section>
 
             <section id="examples" class="section" aria-labelledby="examples-title">
@@ -46,17 +41,16 @@
                     <div id="example-hello" role="tabpanel" aria-labelledby="tab-hello"></div>
                     <div id="example-binding" role="tabpanel" aria-labelledby="tab-binding" hidden></div>
                 </div>
-                <p class="section-note" id="examples-note"></p>
             </section>
 
             <section id="platforms" class="section" aria-labelledby="platforms-title">
                 <div class="section-heading"><div><p class="eyebrow" id="platforms-eyebrow"></p><h2 id="platforms-title"></h2></div><p id="platforms-description"></p></div>
                 <div class="platform-workbench">
                     <div class="tab-list platform-tabs" role="tablist" aria-label="Platforms">
-                        <button type="button" role="tab" id="tab-windows" data-tab="windows" aria-selected="true" aria-controls="platform-windows"><span class="platform-icon" aria-hidden="true">⊞</span><span>Windows<small>DirectX · GDI · TUI</small></span></button>
-                        <button type="button" role="tab" id="tab-linux" data-tab="linux" aria-selected="false" aria-controls="platform-linux" tabindex="-1"><span class="platform-icon" aria-hidden="true">&gt;_</span><span>Linux<small>Wayland · TUI</small></span></button>
-                        <button type="button" role="tab" id="tab-macos" data-tab="macos" aria-selected="false" aria-controls="platform-macos" tabindex="-1"><span class="platform-icon" aria-hidden="true">⌘</span><span>macOS<small>Cocoa · TUI</small></span></button>
-                        <button type="button" role="tab" id="tab-html5" data-tab="html5" aria-selected="false" aria-controls="platform-html5" tabindex="-1"><span class="platform-icon" aria-hidden="true">&lt;/&gt;</span><span>Web<small>HTML5</small></span></button>
+                        <button type="button" role="tab" id="tab-windows" data-tab="windows" aria-selected="true" aria-controls="platform-windows"><span class="platform-graphic" aria-hidden="true"></span><span class="platform-icon" aria-hidden="true">⊞</span><span>Windows<small>DirectX · GDI · TUI</small></span></button>
+                        <button type="button" role="tab" id="tab-linux" data-tab="linux" aria-selected="false" aria-controls="platform-linux" tabindex="-1"><span class="platform-graphic" aria-hidden="true"></span><span class="platform-icon" aria-hidden="true">&gt;_</span><span>Linux<small>Wayland · TUI</small></span></button>
+                        <button type="button" role="tab" id="tab-macos" data-tab="macos" aria-selected="false" aria-controls="platform-macos" tabindex="-1"><span class="platform-graphic" aria-hidden="true"></span><span class="platform-icon" aria-hidden="true">⌘</span><span>macOS<small>Cocoa · TUI</small></span></button>
+                        <button type="button" role="tab" id="tab-html5" data-tab="html5" aria-selected="false" aria-controls="platform-html5" tabindex="-1"><span class="platform-graphic" aria-hidden="true"></span><span class="platform-icon" aria-hidden="true">&lt;/&gt;</span><span>Web<small>HTML5</small></span></button>
                     </div>
                     <div id="platform-windows" role="tabpanel" aria-labelledby="tab-windows"></div>
                     <div id="platform-linux" role="tabpanel" aria-labelledby="tab-linux" hidden></div>
@@ -70,26 +64,24 @@
                 <div class="quick-links" id="quick-links"></div>
             </section>
 
+            <section class="section" id="coding-agents" aria-labelledby="agents-title">
+                <div class="section-heading"><div><p class="eyebrow" id="agents-eyebrow"></p><h2 id="agents-title"></h2></div></div>
+                <div class="agent-guide"><p id="agents-description"></p><div id="agents-link"></div></div>
+            </section>
+
             <section class="section" id="features" aria-labelledby="features-title">
                 <div class="section-heading"><div><p class="eyebrow" id="features-eyebrow"></p><h2 id="features-title"></h2></div><p id="features-description"></p></div>
                 <div class="feature-grid" id="feature-grid"></div>
             </section>
-            <footer><p id="footer-text"></p><div id="footer-links"></div><a href="#main" id="back-to-top"></a></footer>
+            <footer><div id="footer-links"></div><a href="#main" id="back-to-top"></a></footer>
         </div>
     </main>
 
     <template id="example-template">
         <div class="example-grid">
             <div class="source-pane"><div class="pane-label"><span data-field="sourceLabel"></span><span class="language">GacUI XML</span></div><pre tabindex="0"><code></code></pre><a class="source-link" data-field="docs"></a></div>
-            <div class="preview-pane"><div class="pane-label"><span data-field="resultLabel"></span><span class="live-indicator" data-field="liveLabel"></span></div><div class="preview-stage"></div><p class="preview-caption" data-field="caption"></p></div>
+            <div class="preview-pane"><div class="pane-label"><span data-field="resultLabel"></span></div><div class="preview-stage"></div></div>
         </div>
-    </template>
-    <template id="hello-template">
-        <div class="demo-window"><div class="window-bar"><span data-field="windowTitle"></span><span aria-hidden="true">×</span></div><div class="demo-body"><div><h3 data-field="heading"></h3><p data-field="message"></p></div></div><div class="demo-actions"><button type="button" class="primary" data-field="buttonLabel"></button></div></div>
-        <div class="demo-closed" hidden><p data-field="closedMessage" role="status"></p><button type="button" data-field="reopenLabel"></button></div>
-    </template>
-    <template id="binding-template">
-        <div class="demo-window"><div class="window-bar"><span data-field="windowTitle"></span><span aria-hidden="true">─ □ ×</span></div><div class="binding-body"><label for="demo-name" data-field="inputLabel"></label><input id="demo-name" type="text" autocomplete="off" maxlength="120"><div class="greeting"><span class="message-icon" aria-hidden="true">↳</span><output for="demo-name" aria-live="polite"></output></div></div><div class="binding-status" data-field="status"></div></div>
     </template>
     <template id="gallery-template">
         <div class="platform-info"><p></p><a></a></div>
@@ -124,7 +116,6 @@
             <button type="button" role="tab" data-tab="windows">Windows host</button>
             <button type="button" role="tab" data-tab="linux">Ubuntu host</button>
             <button type="button" role="tab" data-tab="macos">macOS host</button>
-            <button type="button" role="tab" data-tab="snapshots">Snapshot viewer</button>
         </div>
     </template>
 </body>
