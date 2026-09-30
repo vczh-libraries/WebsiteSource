@@ -30,11 +30,17 @@
             This part will be covered in <a href="/gacui/modes/remote_client.html">Remote Protocol Client Application</a>.
         </p>
         <p>
-            The <a href="https://github.com/vczh-libraries/GacJS">GacJS</a> also implements a GacUI renderer in a browser,
-            connecting to a GacUI application via HTTP protocol.
-            But the HTTP protocol implementation is not official,
-            it is for demo only,
-            no security guarantee is provided.
+            <a href="https://github.com/vczh-libraries/GacJS">GacJS</a>'s primary feature and purpose is running GacUI applications in the browser with <b>WebAssembly</b> and HTML5 rendering.
+            Working demos load the GacUI core from a <name>.wasm</name> file in a browser worker.
+            The HTML5 renderer connects through the remote protocol, and a TypeScript view model can connect through Workflow RPC;
+            both use exposed functions to carry their channel messages to and from the WebAssembly core.
+        </p>
+        <p>
+            WebAssembly and HTTP are alternative transports beneath those channels.
+            HTTP is used mainly to test HTML5 rendering against a native core on Windows, Linux or macOS without building WebAssembly.
+            The HTTP implementation is for demos and provides no security guarantee.
+            See <a href="https://github.com/vczh-libraries/GacJS/blob/master/doc/NetworkProtocol.md">GacJS Network Protocol</a>
+            for the WebAssembly bridge and the HTTP alternative.
         </p>
         <p>
             GacUI provides a JSON channel layer for the remote protocol,

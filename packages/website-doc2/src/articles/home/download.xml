@@ -7,7 +7,7 @@
                 <li><b>Windows</b>: <a href="https://github.com/vczh-libraries/Release">vczh-libraries/Release</a></li>
                 <li><b>Linux Wayland</b>: <a href="https://github.com/vczh-libraries/wGac">vczh-libraries/wGac</a></li>
                 <li><b>macOS</b>: <a href="https://github.com/vczh-libraries/iGac">vczh-libraries/iGac</a></li>
-                <li><b>Browser</b>: <a href="https://github.com/vczh-libraries/GacJS">vczh-libraries/GacJS</a></li>
+                <li><b>Browser with WebAssembly</b>: <a href="https://github.com/vczh-libraries/GacJS">vczh-libraries/GacJS</a>, primarily for loading the GacUI core as WebAssembly and connecting its HTML5 renderer and TypeScript view models through exposed functions. HTTP is an alternative transport for testing HTML5 rendering without WebAssembly.</li>
             </ul>
             If cross-platforms are needed,
             please check out the <a href="https://github.com/vczh-libraries/Release">Release repo</a>

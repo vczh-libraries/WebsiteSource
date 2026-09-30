@@ -120,9 +120,10 @@
             <topic>
                 <title>Remote Protocols (core and renderer)</title>
                 <p>
-                    It allows a GacUI application to run in two different binaries: core and renderer. You could run them in exe-dll, or in two different processes.
-                    In the near future, GacUI will release a renderer implementation in TypeScript, allow a GacUI application to be rendered in a browser.
-                    At that moment, the core could be a background process, or even a WASM binary also running in the browser.
+                    The remote protocol separates a GacUI application into a headless core and a renderer.
+                    Native renderers are available on Windows, Linux and macOS.
+                    <a href="https://github.com/vczh-libraries/GacJS">GacJS</a> supplies an HTML5 renderer;
+                    its primary feature is running the core in the browser as WebAssembly, with working demos available.
                 </p>
                 <p>
                     GacUI offers a JSON remote protocol channel on top of <b>vl::inter_process</b>.
@@ -168,14 +169,24 @@
                 <p><img src="/Platform_4.png"/></p>
             </topic>
             <topic>
-                <title>In the future ...</title>
+                <title>GacJS: WebAssembly and HTML5</title>
                 <p>
-                    In the future, more platforms will be included in GacUI like:
-                    <ul>
-                        <li>UWP</li>
-                        <li>WASM running on browsers</li>
-                        <li>etc ...</li>
-                    </ul>
+                    <b>WebAssembly</b> is the primary feature and purpose of <a href="https://github.com/vczh-libraries/GacJS">GacJS</a>.
+                    It builds on HTML5 rendering and the remote protocol: the browser loads the GacUI core from a <name>.wasm</name> file in a worker,
+                    then exposed functions and callbacks carry channel messages between JavaScript and the core.
+                    The HTML5 renderer uses the remote protocol channel, and a TypeScript view model can use Workflow RPC channels over the same WebAssembly transport.
+                </p>
+                <p>
+                    WebAssembly and HTTP are alternative transports, independent of HTML5 rendering and view-model implementation.
+                    The HTTP option connects to a native core on Windows, Linux or macOS and is used mainly to test HTML5 rendering without WebAssembly.
+                </p>
+                <p>
+                    Working demos in <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/Linux">GacUI's Test/Linux</a> are
+                    <name>WasmFCT</name> (FullControlTest), <name>WasmRPT</name> (RemoteProtocolTest) and <name>WasmRVMT</name> (RemoteViewModelTest).
+                    Their GacJS pages are <name>/wasm-fct/</name>, <name>/wasm-rpt/</name> and <name>/wasm-rvmt/</name>;
+                    the last runs its TypeScript view model in the page.
+                    See <a href="https://github.com/vczh-libraries/GacJS/blob/master/doc/NetworkProtocol.md">GacJS Network Protocol</a> for the transport contract
+                    and <a href="https://github.com/vczh-libraries/GacJS/blob/master/doc/Projects.md">GacJS Projects</a> for building and serving the demos.
                 </p>
             </topic>
         </topic>

@@ -143,8 +143,8 @@ foreach ($source in $browserSources) {
 }
 $platforms.Add([ordered]@{
     id = 'html5'
-    label = 'HTML5'
-    description = 'GacJS renders GacUI applications in the browser through the Remote Protocol, with the application core running on Windows, Linux, or macOS.'
+    label = 'WebAssembly and HTML5'
+    description = 'WebAssembly is GacJS''s primary feature: the HTML5 renderer and TypeScript view model connect to a GacUI core loaded from a .wasm file through exposed functions. These screenshots show the alternative HTTP transport used to test HTML5 rendering with native cores on Windows, Linux, and macOS.'
     modes = @([ordered]@{ id = 'gui'; label = 'HTML5'; themes = @($browserThemes.ToArray()) })
 })
 

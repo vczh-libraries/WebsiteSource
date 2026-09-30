@@ -6,6 +6,12 @@
             It can also build a code generator and runtime support for implementing a Workflow RPC view model in a language other than C++.
             Give the agent the maintained repository guides below instead of describing the protocols from memory.
         </p>
+        <p>
+            <a href="https://github.com/vczh-libraries/GacJS">GacJS</a>'s primary feature is running the GacUI core in the browser as WebAssembly.
+            Its working demos connect the HTML5 renderer and a TypeScript view model to that core through exposed functions, using the remote protocol and Workflow RPC channels.
+            HTTP is an alternative transport used mainly to test HTML5 rendering without WebAssembly.
+            See <a href="https://github.com/vczh-libraries/GacJS/blob/master/doc/NetworkProtocol.md">GacJS Network Protocol</a> for the WebAssembly bridge and the alternative transports.
+        </p>
         <topic>
             <title>Choose the Relevant Guides</title>
             <p>
