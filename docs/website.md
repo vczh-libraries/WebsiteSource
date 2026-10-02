@@ -19,6 +19,8 @@ This package contains the main website content for `gaclib.net` and `vczh-librar
 - `assets/index.html`: Manual home page shell and fixed tab headers.
 - `assets/index.json`: Home page text, examples, links, feature descriptions, and screenshot URLs.
 - `assets/homeres/`: Scripts, CSS, images, and other resources used only by the home page.
+- `assets/wasm-fct/`: Independently maintained FullControlTest demo page, startup script, styles, and service worker.
+- `scripts/Copy-WASM.sh`: Builds the sibling GacJS and GacUI WasmFCT projects and copies their runtime files into `lib/dist/wasm-fct`.
 
 ## Routes
 
@@ -82,3 +84,15 @@ Embedded resources include values such as `activeButton`, `activeCategory`, `art
 - `npm run download`: Starts the same server internally, downloads static and dynamic URLs to `packages/website/lib/website`, then exits.
 
 The static download includes `index.html`, `index.json`, and every file under `homeres`, so it can be served without the Node content renderer. Downloading is a local verification step; it does not publish the site.
+
+## WebAssembly Showcase
+
+The Web platform gallery has a `Start WASM Now!` link beside its three screenshot tabs. It opens `/wasm-fct/index.html`, which runs FullControlTest locally in the browser. The page has Exit and Force Exit buttons. Refreshing the page starts a fresh application after shutdown.
+
+After `yarn build`, run `packages/website/scripts/Copy-WASM.sh` before starting or downloading the website. It requires sibling `GacJS` and `GacUI` checkouts, runs the GacJS build, and invokes GacUI's supported build wrapper with `-bw` when all three WasmFCT artifacts exist or `-fbw` otherwise. It copies `gacui.js`, `wasm.js`, `http.js`, `rvm.js`, `wasm-worker.js`, their available source maps, and `app.wasm`, `app.mjs`, `app.worker.js` into the demo directory. It also writes `app-size.json` with the decoded Wasm byte length for download progress. Rebuilding the website clears these copied files; run the script again afterward.
+
+The HTML, startup script and CSS belong to WebsiteSource and are not overwritten by the copy script. The demo consumes GacJS's standalone ES modules without its test-page composition or RVM host. Do not copy GacJS's `wasm-page.js` or demo HTML over these files.
+
+The service worker is scoped to `/wasm-fct/`. It adds cross-origin isolation headers needed for WebAssembly threads on static hosting, streams the binary with progress notifications, and does not maintain an application cache. The first visit registers the worker and reloads once. HTTPS or localhost is required; the home page and other routes are outside its scope. The loading bar measures decoded download bytes, then stays complete while the module starts.
+
+Static download includes the prepared demo folder. Publishing normally preserves an existing deployed `wasm-fct` folder; replace it only when explicitly requested, as described in `job.publish.prompt.md`.
