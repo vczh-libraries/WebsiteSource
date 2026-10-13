@@ -41,6 +41,12 @@
                 Use nested description groups within one owning layout instead;
                 different groups can have different arrangements without an extra layout owner.
             </p>
+            <p>
+                Declare controls, compositions and layout descriptions as direct children.
+                The named <b>Composition</b> and <b>Layouts</b> properties are unsupported in resource XML,
+                including attributes, property elements and bindings.
+                Their C++ and Workflow APIs remain available for programmatic changes.
+            </p>
         </topic>
         <topic>
             <title>Spacing</title>
@@ -54,14 +60,25 @@
         <topic>
             <title>Updating the Layout</title>
             <p>
-                XML resources build the layout automatically, and normal resizing needs no extra work.
+                XML resources build the layout automatically after assignments, initial bindings and event handlers are ready.
+                Nested layouts build before their owners, and <b>ref.Ctor</b> observes the built layouts.
+                Normal resizing needs no extra work.
                 Call <b>BuildLayout()</b> after changing layout descriptions or their properties.
                 Rebuilding keeps existing controls, their state, bindings, and event handlers.
             </p>
             <p>
-                <b>Padding</b>, <b>Border</b>, <b>Direction</b>, and <b>CellSpan</b> support bindings;
-                later changes take effect when <b>BuildLayout()</b> is called.
-                <b>Percentage</b> and <b>CellOption</b> must be constants in XML.
+                <b>Padding</b>, <b>Border</b>, <b>Direction</b>, <b>CellSpan</b>, <b>Percentage</b>, and <b>CellOption</b>
+                support ordinary well-typed expressions and bindings.
+                <b>CellOption</b> uses the same struct expressions as table options,
+                including runtime field expressions and default values for omitted fields.
+                Initial bindings affect the automatic build; later changes take effect only when <b>BuildLayout()</b> is called.
+            </p>
+            <p>
+                Layout grammar, conflicting options and invalid numeric values fail during the automatic initialization build
+                or a later explicit <b>BuildLayout()</b>. Ownership checks can fail during assignment.
+                Multiple control/composition payloads in the same default content fail XML compilation.
+                Later programmatic content replacement remains supported, as do bindings on the configuration properties described above.
+                Ordinary XML syntax, type and binder restrictions are also checked at compilation.
             </p>
         </topic>
     </topic>

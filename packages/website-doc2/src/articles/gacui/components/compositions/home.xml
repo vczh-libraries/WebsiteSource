@@ -308,10 +308,10 @@
                     ordinary resizing is handled automatically.
                 </p>
                 <p>
-                    Bindings on <b>Padding</b>, <b>Border</b>, <b>Direction</b>, and <b>CellSpan</b>
+                    Bindings on <b>Padding</b>, <b>Border</b>, <b>Direction</b>, <b>CellSpan</b>, <b>Percentage</b>, and <b>CellOption</b>
                     can store changes to the arrangement.
+                    Initial bindings are ready for the automatic layout build.
                     Call <b>BuildLayout()</b> on the owning layout to apply later changes while keeping controls and their state.
-                    <b>Percentage</b> and <b>CellOption</b> must be constants in XML.
                 </p>
             </topic>
         </topic>
