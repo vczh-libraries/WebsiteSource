@@ -111,7 +111,7 @@
                 With virtualized lists, initialize newly realized responsive rows to their group's established level before attaching them.
                 Removing all rows temporarily leaves <b>LevelCount == 1</b> and <b>CurrentLevel == 0</b>, regardless of the array length.
                 Retain the intended level separately while reloading rows.
-                <b>ReloadVisibleStyles()</b> clears rows immediately and recreates them during later layout, so suppress nested reloads until replacement rows restore that level.
+                <b>ReloadVisibleStyles()</b> clears rows immediately; replacement rows can appear during the call or during later layout. Suppress nested reloads until replacement rows restore that level.
                 Restoring level zero may change the level count without raising <b>CurrentLevelChanged</b>.
                 Keep the arranger's row-height reset when switching between compact and detailed templates.
             </p>
