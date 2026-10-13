@@ -58,6 +58,17 @@
             </p>
         </topic>
         <topic>
+            <title>Responsive Layout Tutorial</title>
+            <p>
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Responsive3">Responsive3</a>
+                combines docking and grid descriptions with responsive account and movie lists.
+                The window uses <b>&lt;ez:Layout/&gt;</b> to arrange the lists and dialog buttons;
+                separate responsive views own their layouts and item templates.
+                See <a href="/gacui/components/compositions/responsive.html">Responsive Design Series</a>
+                for the view transitions and source files.
+            </p>
+        </topic>
+        <topic>
             <title>Updating the Layout</title>
             <p>
                 XML resources build the layout automatically after assignments, initial bindings and event handlers are ready.

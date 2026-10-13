@@ -24,6 +24,7 @@
                         <li><b>RichTextEmbedding</b> : Embed controls in a rich text document.</li>
                         <li><b>Responsive1</b> : Responsive layout by manually controlling, for understanding different types of responsive layout compositions.</li>
                         <li><b>Responsive2</b> : Responsive layout.</li>
+                        <li><b><a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Responsive3">Responsive3</a></b> : Easy Layout with responsive account and movie lists, compact item templates, and an account menu for narrow windows.</li>
                         <li><b>SharedSize</b> : Synchronizing sizes across different compositions.</li>
                     </ul>
                 </li>

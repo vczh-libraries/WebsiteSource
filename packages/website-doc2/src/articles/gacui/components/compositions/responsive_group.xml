@@ -124,6 +124,11 @@
                 to reset the arranger's row height when switching between compact and detailed templates.
                 Only configured levels are permanent; levels contributed solely by removed children disappear.
             </p>
+            <p>
+                The standalone
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Responsive3">Responsive3 tutorial</a>
+                demonstrates both <b>ViewSizes</b> forms, row initialization before attachment, and row-height refreshes.
+            </p>
         </topic>
         <topic>
             <title>Choosing a view</title>

@@ -57,6 +57,11 @@
             <p>
                 <sample url="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Layout/Responsive2/UI/Resource.xml" image="kb_compositions_responsive_2.gif"/>
             </p>
+            <p>
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Responsive3">Responsive3</a>
+                combines <a href="/gacui/components/compositions/eazylayout.html">Easy Layout</a> with responsive account and movie lists.
+                Resize the window to switch between detailed and compact rows and move account selection into a menu.
+            </p>
         </topic>
     </topic>
 </article>

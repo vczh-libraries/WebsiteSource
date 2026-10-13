@@ -212,5 +212,29 @@
                 to move all button inside a menu on the top.
             </p>
         </topic>
+        <topic>
+            <title>Easy Layout with responsive lists</title>
+            <p>
+                <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Layout/Responsive3">Responsive3</a>
+                is a standalone tutorial combining <a href="/gacui/components/compositions/eazylayout.html">Easy Layout</a>
+                with virtualized account and movie lists.
+                Its main window is in
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Layout/Responsive3/UI/EasyLayoutResponsiveWindow.xml">EasyLayoutResponsiveWindow.xml</a>,
+                and its item templates are in
+                <a href="https://github.com/vczh-libraries/Release/blob/master/Tutorial/GacUI_Layout/Responsive3/UI/EasyLayoutResponsiveTemplates.xml">EasyLayoutResponsiveTemplates.xml</a>.
+            </p>
+            <p>
+                As the window narrows, account rows hide their names, then account selection moves into a menu.
+                Movie rows independently switch between an image with title and author, and a compact title-only view.
+                <b>&lt;ResponsiveShared/&gt;</b> moves the existing movie list between layouts, preserving its state.
+            </p>
+            <p>
+                The account and movie groups use <a href="/gacui/components/compositions/responsive_group.html">ViewSizes</a>
+                to keep their levels available when virtualized rows are absent.
+                Newly created row templates adopt the group's current level before attachment.
+                The movie group's <b>CurrentLevelChanged</b> handler calls <b>ReloadVisibleStyles()</b>
+                so the list arranger updates row heights after a view change.
+            </p>
+        </topic>
     </topic>
 </article>
