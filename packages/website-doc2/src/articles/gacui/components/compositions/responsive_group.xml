@@ -23,7 +23,7 @@
             </p>
             <p>
                 <b>IMPORTANT</b>:
-                If a child <b>GuiResponsiveCompositionBase</b> has a different <b>Direction</b> than <b>&lt;ResponsiveGroup/&gt;</b>,
+                If a child <b>GuiResponsiveCompositionBase</b> shares no axis with the group's <b>Direction</b>,
                 it is not a managed <b>GuiResponsiveCompositionBase</b>.
             </p>
         </topic>
@@ -61,6 +61,59 @@
             <p>
                 The smallest view is 0,
                 the largest view is <b>LevelCount</b> - 1.
+            </p>
+        </topic>
+        <topic>
+            <title>&lt;ResponsiveGroup&gt;::ViewSizes</title>
+            <p>
+                <b>ViewSizes</b> is an optional integer array of preferred minimum sizes indexed by <b>CurrentLevel</b>.
+                Write entries from small to large: entry 0 belongs to level 0.
+                This order is the reverse of the largest-first <b>Views</b> collection of <b>&lt;ResponsiveView/&gt;</b>.
+            </p>
+            <p>
+                For an array with <b>N</b> entries and current level <b>L</b>, use <b>ViewSizes[L]</b> when <b>L &lt; N</b>.
+                Otherwise use <b>ViewSizes[N - 1] + (L - N + 1)</b>.
+                For example, <b>{64 230}</b> selects 64, 230 and 231 at levels 0, 1 and 2.
+                Entries beyond the child-derived <b>LevelCount</b> are stored but unused; they do not create levels.
+            </p>
+            <p>
+                <b>Horizontal</b> applies the selected value to <b>PreferredMinSize.x</b> and preserves its height.
+                <b>Vertical</b> applies it to <b>PreferredMinSize.y</b> and preserves its width.
+                <b>Both</b> applies the same value to both components.
+                The group reapplies the value on assignment, level or direction changes, and minimum-size measurement.
+                Manually setting an affected component of <b>PreferredMinSize</b> does not override <b>ViewSizes</b>.
+            </p>
+            <p>
+                The default empty array disables this behavior.
+                Clearing an assigned array stops further overrides and keeps the current stored <b>PreferredMinSize</b>;
+                it does not restore the value from before assignment.
+                Normal bounds measurement still applies, so children, elements and margins can require more space than the selected preference.
+                With zero margins, a nonzero level is retained at its effective minimum and lowered below that minimum;
+                growing to the next level's effective minimum admits that level.
+            </p>
+            <p>
+                Both literal XML forms below are supported without an eval binder. Child content is omitted here.
+                In C++, <b>SetViewSizes(const collections::Array&lt;vint&gt;&amp;)</b> copies the array;
+                <b>GetViewSizes()</b> returns a const reference containing only the configured entries, without extrapolated values.
+                Reflection exposes an assignable typed integer-array property.
+                <program language="XML"><code><![CDATA[
+                    <ResponsiveGroup Direction="Horizontal" ViewSizes="{64 230}">
+                        <!-- Account rows -->
+                    </ResponsiveGroup>
+
+                    <ResponsiveGroup Direction="Horizontal">
+                        <att.ViewSizes><_>120</_><_>334</_></att.ViewSizes>
+                        <!-- Movie rows -->
+                    </ResponsiveGroup>
+                ]]></code></program>
+            </p>
+            <p>
+                With virtualized lists, initialize newly realized responsive rows to their group's established level before attaching them.
+                Removing all rows temporarily leaves <b>LevelCount == 1</b> and <b>CurrentLevel == 0</b>, regardless of the array length.
+                Retain the intended level separately while reloading rows.
+                <b>ReloadVisibleStyles()</b> clears rows immediately and recreates them during later layout, so suppress nested reloads until replacement rows restore that level.
+                Restoring level zero may change the level count without raising <b>CurrentLevelChanged</b>.
+                Keep the arranger's row-height reset when switching between compact and detailed templates.
             </p>
         </topic>
         <topic>
