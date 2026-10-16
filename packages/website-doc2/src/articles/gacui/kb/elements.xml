@@ -54,6 +54,13 @@
             <sample name="kb_elements"/>
         </p>
         <p>
+            For owner drawing, use <a href="/gacui/components/elements/home.html#Raw"><name>&lt;Raw/&gt;</name></a>.
+            It is the standard approach for both native applications and remote protocol renderers.
+            The application supplies an <name>Id</name> and <name>Data</name>; the renderer implements drawing with
+            Direct2D, GDI, Cairo on Wayland, Core Graphics on macOS, or browser drawing APIs in GacJS.
+            TUI does not support this element.
+        </p>
+        <p>
             There is <b>DocumentElement</b>.
             This element offer full featured document rendering.
             But they are not designed to be used directly,

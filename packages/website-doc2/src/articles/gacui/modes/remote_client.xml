@@ -84,6 +84,13 @@ int StartNamedPipeRemoteRenderer()
             The renderer application shown by the linked test remains Win32 even though the VlppOS transport itself is available on Windows, Linux and macOS.
         </p>
         <p>
+            For application-defined drawing, use <a href="/gacui/components/elements/home.html#Raw"><name>&lt;Raw/&gt;</name></a>.
+            <name>GuiRemoteRendererSingle</name> creates the active platform's native raw element and exposes
+            <name>GetRawElements()</name>, <name>RawElementInstalled</name>, <name>RawElementUninstalled</name> and <name>RawElementChanged</name>
+            so renderer code can attach its drawing callbacks. The protocol carries application ID and data strings;
+            each renderer implements the drawing locally.
+        </p>
+        <p>
             Override GuiRemoteProtocolChannelClient::OnReadError, OnLocalError, or OnDisconnected
             when the renderer should show a fatal error dialog or call GuiRemoteRendererSingle::ForceExitByFatelError.
             See <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Rendering_Win32">RemotingTest_Rendering_Win32</a>

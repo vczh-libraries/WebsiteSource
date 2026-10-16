@@ -56,6 +56,12 @@
             Please be careful to load the correct one.
         </p>
         <p>
+            Use <a href="/gacui/components/elements/home.html#Raw"><name>&lt;Raw/&gt;</name> for owner drawing</a>
+            in an XML composition tree. The resource defines the drawing area and application state;
+            native C++ or browser renderer code supplies the drawing implementation.
+            The same element works with native applications and remote protocol renderers; TUI does not support it.
+        </p>
+        <p>
             If you want to keep your executable file stand-alone,
             there is an extra option to generate the resource binary into the C++ code.
             In this case,
