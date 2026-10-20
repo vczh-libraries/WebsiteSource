@@ -65,7 +65,8 @@
                     <li>
                         <b>object</b>: <b>system::Object</b>.
                         Nonvariant values can be implicitly converted to <b>object</b>.
-                        <a href="/workflow/lang/variant.html#Object-option-and-escape">Variants require an explicit conversion</a>, with exact-option precedence when <b>object</b> is an option.
+                        Use <a href="/workflow/lang/variant.html#Payload-extraction">variant in VALUE</a> to extract a variant's active payload as <b>object</b>.
+                        <b>cast object</b> accepts only a declared <b>object</b> option and never boxes a complete variant.
                         A value of <b>object</b> can be explicitly converted to a nonvariant type,
                         conversion failure results in throwing an exception.
                         Conversion to a variant requires an exact <b>object</b> option and selects that option.

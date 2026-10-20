@@ -93,23 +93,47 @@
                 Thus a default <b>variant&lt;int, string&gt;</b> contains integer zero; a default <b>variant&lt;int?, string&gt;</b> contains an empty optional tagged as <b>int?</b>.
             </p>
         </topic>
+        <topic anchor="Payload-extraction">
+            <title>Extracting the active payload as object</title>
+            <p>
+                <b>variant in VALUE</b> extracts the active payload and has static type <b>object</b>.
+                The compiler requires <b>VALUE</b> to have a variant type; an object containing a native-provided variant box is not accepted.
+                The operand is evaluated once. Null pointer, empty optional and null object payloads produce null.
+                <program><code><![CDATA[
+                    var number = 42 of variant<int, string>;
+                    var payload : object = variant in number;
+                    var result = cast int payload;
+                ]]></code></program>
+                <b>result</b> is 42. The ordinary cast operates on the extracted integer payload.
+            </p>
+            <p>
+                This operator has the same <a href="/workflow/lang/expr_precedences.html">precedence</a> as unary <b>+</b>, <b>-</b>, <b>not</b> and <b>cast</b>.
+                Unary operators group from right to left, so <b>cast int variant in number</b> first extracts the payload and then casts it.
+                Calls, indexing and member access bind more tightly: <b>variant in values[0].Get()</b> extracts the returned variant.
+                Use parentheses around a lower-precedence operand or around the extraction before a type test, such as <b>(variant in value) is null</b>.
+            </p>
+            <p>
+                Extraction removes exactly one variant layer.
+                If an <b>object</b> option contains a variant box supplied by native C++ code, the result is that inner box.
+                It is not recursively extracted, and its static type remains <b>object</b>.
+            </p>
+        </topic>
         <topic anchor="Object-option-and-escape">
-            <title>The object option and explicit escape</title>
+            <title>The object option</title>
             <p>
                 An explicit <b>object</b> option takes precedence.
                 Converting an object-typed value to such a variant selects that option without inspecting the payload.
                 Casting that variant to <b>object</b> extracts only an active <b>object</b> option; another active option causes a runtime failure.
             </p>
             <p>
-                If <b>object</b> is not an option, <b>cast object value</b> preserves the complete outer variant box.
-                A later ordinary cast does not extract its payload.
-                This function compiles but fails when called:
+                If <b>object</b> is not an option, <b>cast object value</b> is a compiler error, just like a cast to any other undeclared option.
+                Workflow has no conversion that boxes a complete variant as <b>object</b>.
+                Use <b>variant in value</b> to extract the active payload instead.
+                This function is rejected at compile time:
                 <program><code><![CDATA[
-                    func EscapedPayload():int
+                    func f(x:variant<int, string>):void
                     {
-                      var value = 1 of variant<int, string>;
-                      var escaped : object = cast object value;
-                      return cast int escaped;
+                      var y = cast object x;
                     }
                 ]]></code></program>
                 Casting an object-typed value back to a variant without an exact <b>object</b> option is rejected at compile time.
@@ -144,12 +168,13 @@
             <p>
                 A <a href="/workflow/lang/bind.html">binding</a> publishes through <b>ValueChanged(object)</b>.
                 A direct variant result is therefore rejected.
-                The authored expression must extract a payload or explicitly produce an allowed nonvariant result.
+                Use <b>bind(variant in source.Value)</b> to publish the active payload as <b>object</b>, or produce another allowed nonvariant result.
                 Observing and caching a variant while producing such a result is supported.
             </p>
             <p>
                 <a href="/workflow/rpc.html">RPC</a> does not support variants, including variants contained in collection arguments, optional wrappers or struct fields.
-                Escaping a variant to <b>object</b> does not make it JSON serializable.
+                An extracted payload can be serialized only if its value is supported by RPC.
+                A variant box supplied by native C++ code remains unsupported, including a box nested inside an extracted object payload.
             </p>
         </topic>
     </topic>

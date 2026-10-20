@@ -29,7 +29,7 @@
                 <li><b>func</b>: <a href="/workflow/lang/funcvar.html">Functions and Variables</a>, <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/expr.html">Expressions</a></li>
                 <li><b>goto</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
                 <li><b>interface</b>: <a href="/workflow/lang/interface.html">Interfaces</a>, <a href="/workflow/lang/type.html">Types</a></li>
-                <li><b>in</b>: <a href="/workflow/lang/type.html">Types</a></li>
+                <li><b>in</b>: <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/expr_unary.html">Unary Operators</a>, <a href="/workflow/lang/variant.html">Variants</a></li>
                 <li><b>int</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>is</b>: <a href="/workflow/lang/expr.html">Expressions</a></li>
                 <li><b>if</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
@@ -59,7 +59,7 @@
                 <li><b>uint</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>using</b>: <a href="/workflow/lang/module.html">Module</a>, <a href="/workflow/lang/interface_using.html">Generic (interface)</a></li>
                 <li><b>var</b>: <a href="/workflow/lang/funcvar.html">Functions and Variables</a></li>
-                <li><b>variant</b>: <a href="/workflow/lang/variant.html">Variants</a>, <a href="/workflow/lang/type.html">Types</a></li>
+                <li><b>variant</b>: <a href="/workflow/lang/variant.html">Variants</a>, <a href="/workflow/lang/type.html">Types</a>, <a href="/workflow/lang/expr_unary.html">Unary Operators</a></li>
                 <li><b>void</b>: <a href="/workflow/lang/type.html">Types</a></li>
                 <li><b>while</b>: <a href="/workflow/lang/stat.html">Statements</a></li>
                 <li><b>xor</b>: <a href="/workflow/lang/expr_binary.html">Binary Operators</a></li>

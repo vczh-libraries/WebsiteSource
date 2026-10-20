@@ -30,7 +30,10 @@
                     <li><b>-</b></li>
                     <li><b>not</b></li>
                     <li><b>cast</b></li>
+                    <li><b>variant in</b></li>
                 </ul>
+                These unary operators group from right to left.
+                For example, <b>cast int variant in value</b> means <b>cast int (variant in value)</b>.
             </p>
         </topic>
         <topic>

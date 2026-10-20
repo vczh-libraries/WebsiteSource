@@ -4,7 +4,8 @@
         <topic>
             <title>Type inferences</title>
             <p>
-                The type of <b>op VALUE</b> is exactly the same as <b>VALUE</b>.
+                For <b>+</b>, <b>-</b> and <b>not</b>, the result has the same type as <b>VALUE</b>.
+                <b>variant in VALUE</b> has type <b>object</b> and requires a statically variant operand.
             </p>
         </topic>
         <topic>
@@ -26,6 +27,16 @@
                         <li>For floating-point numbers, returns -1 * <b>VALUE</b>.</li>
                         <li>It is not allowed on other types.</li>
                     </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>variant in VALUE</title>
+                <p>
+                    Extracts the active payload from a <a href="/workflow/lang/variant.html">variant</a> as <b>object</b>, evaluating <b>VALUE</b> once.
+                    It shares the right-associative unary precedence of <b>+</b>, <b>-</b>, <b>not</b> and <b>cast</b>.
+                    For example, <b>cast int variant in value</b> extracts the payload and then performs an ordinary object-to-integer cast.
+                    Nonvariant operands are compiler errors, even when an object contains a variant box provided by native C++ code.
+                    Extraction removes one layer only; it preserves the value held by an active <b>object</b> option.
                 </p>
             </topic>
             <topic>

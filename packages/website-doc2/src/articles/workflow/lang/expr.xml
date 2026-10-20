@@ -5,7 +5,7 @@
             All supported expressions are listed below.
         </p>
         <p>
-            <a href="/workflow/lang/variant.html">Variants</a> have explicit rules for assignment, comparison, null testing, strong and weak casts, and <b>of</b> inference.
+            <a href="/workflow/lang/variant.html">Variants</a> have explicit rules for assignment, comparison, null testing, strong and weak casts, <b>of</b> inference, and <b>variant in</b> payload extraction.
             Ordinary numeric, pointer and object conversions do not select a variant option implicitly.
         </p>
         <topic>
@@ -74,6 +74,7 @@
             <title>Unary operator expression: op VALUE</title>
             <p>
                 See <a href="/workflow/lang/expr_unary.html">Unary Operators</a>.
+                <b>variant in VALUE</b> requires a variant operand and extracts its active payload as <b>object</b>.
             </p>
         </topic>
         <topic>
@@ -366,6 +367,7 @@
             <p>
                 When either side is a variant, use the <a href="/workflow/lang/variant.html#Construction-and-conversion">exact-option rules</a>.
                 A matching active option can contain null; a different active option throws even when its payload is null.
+                <b>cast object</b> requires an exact declared <b>object</b> option. It never boxes a complete variant; use <b>variant in</b> for general payload extraction.
             </p>
             <p>
                 For class types or interface types,
