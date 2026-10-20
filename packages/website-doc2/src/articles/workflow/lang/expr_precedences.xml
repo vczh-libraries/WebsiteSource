@@ -3,23 +3,35 @@
         <title>Precedences</title>
         <p>
             Precedences of all kinds of expressions are listed below in descending precedence.
+            Parentheses group an expression: <b>(EXPRESSION)</b> can be used wherever a precedence-1 expression is required.
+            For example, <b>(1 + 2) * 3</b> evaluates the addition first.
         </p>
         <topic>
             <title>1</title>
             <p>
                 <ul>
-                    <li>All expressions that does not starts with another expression as a prefix.</li>
+                    <li>Literals, names and other primitive expressions.</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>.observe ( ... )</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>.observe as NAME ( ... )</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>( ... )</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>.NAME</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>::NAME</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b>[ ... ]</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> in ...</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> not in ...</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> of TYPE</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> as TYPE</li>
+                    <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> as *</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is TYPE</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is not TYPE</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is null</li>
                     <li><b>&lt;EXPR-PRECEDENCE-1&gt;</b> is not null</li>
                 </ul>
+            </p>
+            <p>
+                The collection operand after <b>in</b> or <b>not in</b> is a full expression.
+                When combining a membership result with another operator, write <b>(value in values) and condition</b>
+                or <b>(value not in values) and condition</b> to keep that operator outside the collection operand.
             </p>
         </topic>
         <topic>

@@ -2,7 +2,7 @@
     <topic>
         <title>Module</title>
         <p>
-            Any Workflow script file should be a module, written as:
+            A Workflow script file begins with a module header:
             <program><code><![CDATA[
                 module NAME;
 
@@ -11,6 +11,10 @@
 
                 /* ... */
             ]]></code></program>
+        </p>
+        <p>
+            <b>unit NAME;</b> is also accepted as a header, followed by the same imports and declarations.
+            The current compiler handles its declarations in the same way as a <b>module</b>.
         </p>
         <p>
             The module name does not matter,

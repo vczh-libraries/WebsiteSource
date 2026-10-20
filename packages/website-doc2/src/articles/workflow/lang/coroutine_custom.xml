@@ -219,15 +219,21 @@
                 and the coroutine stops immediately.
             </p>
         </topic>
-        <topic>
-            <title>Define the $ expression</title>
+        <topic anchor="Context-members">
+            <title>Define the $.NAME expression</title>
             <p>
-                If you want to suppor the <b>$</b> expression,
-                you are required to add this method to your coroutine provider:
+                <b>$.NAME</b> accesses a member of the coroutine's context.
+                Add this static method to the coroutine provider:
                 <program><code><![CDATA[
-                    static QueryContext(internalState: InternalState*): Something { /* ... */ }
+                    static func QueryContext(internalState: InternalState*): Context^ { /* ... */ }
                 ]]></code></program>
-                and the return value from <b>$</b> becomes <b>Something</b>.
+                The compiler passes the current internal-state object to <b>QueryContext</b>,
+                then accesses <b>NAME</b> on its result. <b>$.Method(arguments)</b> calls a method on that context.
+            </p>
+            <p>
+                This expression is only available inside a coroutine function with a <b>${ ... }</b> or <b>$Provider { ... }</b> body.
+                It does not pause the coroutine. Bare <b>$</b> is not an expression.
+                For example, <b>$.IsCancelled()</b> queries the context of an <a href="/workflow/lang/coroutine_async.html">async coroutine</a>.
             </p>
         </topic>
         <topic>

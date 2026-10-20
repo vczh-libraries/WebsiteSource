@@ -5,6 +5,7 @@
             <title>Type inferences</title>
             <p>
                 For <b>+</b>, <b>-</b> and <b>not</b>, the result has the same type as <b>VALUE</b>.
+                <b>cast</b> returns the specified or inferred target type.
                 <b>variant in VALUE</b> has type <b>object</b> and requires a statically variant operand.
             </p>
         </topic>
@@ -27,6 +28,16 @@
                         <li>For floating-point numbers, returns -1 * <b>VALUE</b>.</li>
                         <li>It is not allowed on other types.</li>
                     </ul>
+                </p>
+            </topic>
+            <topic>
+                <title>cast TYPE VALUE, cast * VALUE</title>
+                <p>
+                    Explicitly convert <b>VALUE</b> to <b>TYPE</b>.
+                    In <b>cast * VALUE</b>, the target type comes from the place receiving the result.
+                    A conversion that is not allowed is a compiler error; an allowed conversion can still fail at runtime and throw an exception.
+                    See <a href="/workflow/lang/expr.html#Strong-casting-expression-cast-TYPE-OBJECT-cast-OBJECT">strong casting expressions</a>
+                    and <a href="/workflow/lang/variant.html#Construction-and-conversion">variant conversion rules</a>.
                 </p>
             </topic>
             <topic>

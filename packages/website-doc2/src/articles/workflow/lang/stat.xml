@@ -27,7 +27,7 @@
         <topic>
             <title>switch-case</title>
             <p>
-                For any statement like: <b>switch (expression) { case VALUE1: { S1 } case VALUE1: { S1 } ... default: { S } }</b>:
+                For any statement like: <b>switch (expression) { case VALUE1: { S1 } case VALUE2: { S2 } ... default: { S } }</b>:
             </p>
             <p>
                 When <b>expression == VALUE1</b> is <b>true</b>, it executes <b>S1</b>.
@@ -36,7 +36,7 @@
                 When <b>expression == VALUE2</b> is <b>true</b>, it executes <b>S2</b>.
             </p>
             <p>
-                When any values fail, it executes <b>S</b>.
+                When no case matches, it executes <b>S</b>.
             </p>
             <p>
                 There can be any number of <b>case</b> branches.
@@ -83,7 +83,7 @@
                 <b>break;</b> stops the most inner <b>for</b> or <b>while</b> statement.
             </p>
             <p>
-                <b>break;</b> stops the current iteration of the most inner <b>for</b> or <b>while</b> statement and starts a new iteration.
+                <b>continue;</b> stops the current iteration of the most inner <b>for</b> or <b>while</b> statement and starts a new iteration.
             </p>
             <p>
                 <b>return;</b> stops the current function.
@@ -103,10 +103,13 @@
         <topic>
             <title>raise</title>
             <p>
-                <b>raise OBJECT;</b> raises an expression.
+                <b>raise OBJECT;</b> raises an exception.
             </p>
             <p>
                 <b>OBJECT</b> must be <b>string</b> or <b>system::Exception^</b>.
+            </p>
+            <p>
+                Inside a <b>catch</b> block, <b>raise;</b> rethrows the caught exception.
             </p>
         </topic>
         <topic>

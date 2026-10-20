@@ -5,7 +5,7 @@
             All supported expressions are listed below.
         </p>
         <p>
-            <a href="/workflow/lang/variant.html">Variants</a> have explicit rules for assignment, comparison, null testing, strong and weak casts, <b>of</b> inference, and <b>variant in</b> payload extraction.
+            <a href="/workflow/lang/variant.html">Variants</a> have explicit rules for assignment, comparison, null testing, strong and weak casts, <b>of</b> inference, <b>variant in</b> payload extraction, and collection membership.
             Ordinary numeric, pointer and object conversions do not select a variant option implicitly.
         </p>
         <topic>
@@ -31,8 +31,8 @@
                 It is very easy to specify an expected integer type like: <b>0 of UInt64</b>.
             </p>
             <p>
-                For <b>/d+./d+</b>, if the place receiving an interger does not have an explicit type,
-                it is <b>double</b> when the Workflow compiler is running in a 64-bits process.
+                For <b>/d+./d+</b>, if the place receiving a floating-point number does not have an explicit type,
+                it is <b>double</b> on both 32-bit and 64-bit targets.
                 An error is generated if the number exceeds the range supported by the expected type.
             </p>
         </topic>
@@ -89,7 +89,7 @@
                 <b>C ? A : B</b> returns <b>A</b> when <b>C</b> is <b>true</b>.
             </p>
             <p>
-                <b>C ? A : B</b> returns <b>B</b> when <b>A</b> is <b>true</b>.
+                <b>C ? A : B</b> returns <b>B</b> when <b>C</b> is <b>false</b>.
             </p>
             <p>
                 Only one of <b>A</b> or <b>B</b> will be evaluated according to the value of <b>C</b>.
@@ -139,13 +139,13 @@
             <p>
                 For example:
                 <program><code><![CDATA[
-                    var f: func(string, string):string = [$`Hello, $($1) and $($2)!`];
+                    var f: func(string, string):string = [$"Hello, $($1) and $($2)!"];
                 ]]></code></program>
                 is exactly the same as
                 <program><code><![CDATA[
                     var f = func(a: string, b: string): string
                     {
-                        return `Hello, $(a) and $(b)!`;
+                        return $"Hello, $(a) and $(b)!";
                     }
                 ]]></code></program>
             </p>
@@ -230,7 +230,9 @@
         <topic>
             <title>Set testing expression: VALUE in OBJECT, VALUE not in OBJECT</title>
             <p>
-                See <b>Collection types</b> in <a href="/workflow/lang/type.html#Collection-types">Types</a>.
+                <b>VALUE in OBJECT</b> returns whether a collection contains an equal element.
+                <b>VALUE not in OBJECT</b> returns the opposite result.
+                See <a href="/workflow/lang/type.html#Collection-membership">Collection membership</a> for operand types, ranges, and examples.
             </p>
         </topic>
         <topic>
@@ -316,10 +318,22 @@
                 obviously uses the second <b>F</b>.
             </p>
         </topic>
-        <topic>
-            <title>Static member accessing: OBJECT::MEMBER, ::MEMBER</title>
+        <topic anchor="This">
+            <title>Current instance: this</title>
             <p>
-                See <a href="/workflow/lang/module.html">Module</a>.
+                <b>this</b> refers to the current instance in instance member code.
+                Use <b>this.MEMBER</b> to select an instance member when a local name would hide it.
+                It is unavailable in global functions and static methods.
+                See <a href="/workflow/lang/class.html">Classes</a> and <a href="/workflow/lang/interface_new.html">Implementing an interface</a>.
+            </p>
+        </topic>
+        <topic>
+            <title>Qualified member accessing: PARENT::MEMBER, ::MEMBER</title>
+            <p>
+                <b>PARENT::MEMBER</b> looks up a name inside a namespace or type, including static members.
+                <b>::MEMBER</b> starts lookup at the root scope, so a local name cannot hide that root name.
+                For example, <b>::system::DateTime</b> names the type in the root <b>system</b> namespace.
+                See <a href="/workflow/lang/module.html">Module</a> for namespaces and imports.
             </p>
         </topic>
         <topic>
@@ -381,7 +395,7 @@
                 if not, then the expression fails.
             </p>
             <p>
-                When <b>cast TYPE OBJECT</b> fails, it throws an expression.
+                When <b>cast TYPE OBJECT</b> fails, it throws an exception.
             </p>
             <p>
                 When <b>TYPE</b> is <b>*</b>,
@@ -434,6 +448,31 @@
             <p>
                 <b>null of int</b> generates such error,
                 because <b>null</b> can never be <b>int</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Type queries: typeof(TYPE), type(EXPRESSION)</title>
+            <p>
+                <b>typeof(TYPE)</b> returns the reflection type descriptor for a declared type.
+                <b>type(EXPRESSION)</b> evaluates the expression and returns its runtime type descriptor.
+                Both return <b>system::reflection::TypeDescriptor*</b>.
+                Variant types do not have a type descriptor and are rejected by these queries.
+            </p>
+            <p>
+                These expressions are supported by the Workflow virtual machine; C++ generation rejects them.
+                For example, both comparisons below return <b>true</b>:
+                <program><code><![CDATA[
+                    typeof(bool) == type(true)
+                    typeof(string) == type("text")
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic>
+            <title>Coroutine context member: $.NAME</title>
+            <p>
+                Inside a provider coroutine, <b>$.NAME</b> accesses a member of the context returned by the provider's <b>QueryContext</b> method.
+                It does not pause the coroutine.
+                See <a href="/workflow/lang/coroutine_custom.html#Context-members">Context members</a> for the provider contract.
             </p>
         </topic>
         <topic>

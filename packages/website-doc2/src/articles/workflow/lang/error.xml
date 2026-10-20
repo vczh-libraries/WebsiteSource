@@ -1,8 +1,3118 @@
-<article>
+<article index="true">
     <topic>
         <title>Index of Errors</title>
-        <p>
-            The page is under construction.
-        </p>
+        <p>This index lists every numbered Workflow compiler diagnostic, including RPC and C++ generation errors. A code can have several messages; all message templates are listed under that code. Words in braces, such as <name>{type}</name>, are filled in by the compiler. <name>{candidates}</name> can span several lines. Message spelling and punctuation follow the compiler.</p>
+        <p>Examples are intentionally invalid. Unless a context is stated, each code block is a complete module. An example may produce more than one diagnostic. Links beside examples lead to the corresponding compiler test or implementation. Runtime exceptions are separate from these compile-time diagnostics.</p>
+        <p>The numbered messages are defined in <a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Analyzer/WfAnalyzer_Errors.cpp">WfAnalyzer_Errors.cpp</a>. The compiler reports a source location together with each message.</p>
+        <topic anchor="Parser-errors">
+            <title>Parser errors without a code</title>
+            <p>Lexical and grammatical errors occur before semantic analysis and have no numbered Workflow code. The following messages come from the <a href="https://github.com/vczh-libraries/VlppParser2/blob/master/Source/SyntaxBase.cpp">shared parser</a>.</p>
+            <topic anchor="Unrecognized-token">
+                <title>Unrecognized token</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            Unrecognized token: "{token}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example: <name>#</name> outside a string or comment is not a Workflow token.</p>
+            </topic>
+            <topic anchor="Incorrect-input">
+                <title>Incorrect input</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            Parser stops at incorrect input: "{token}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            var value = ;
+                        ]]></code>
+                    </program>
+                </p>
+            </topic>
+            <topic anchor="Incomplete-input">
+                <title>Incomplete input</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            Input is incomplete.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            func main():void {
+                        ]]></code>
+                    </program>
+                </p>
+            </topic>
+            <topic anchor="Unexpected-AST">
+                <title>Unexpected AST type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            Unexpected type of the created AST.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example context: a C++ parser client requests a module AST type while selecting an expression grammar entry, then parses <name>1</name>. The produced expression AST does not match the requested type. The standard Workflow parsing helpers pair the grammar entry and AST type correctly.</p>
+            </topic>
+        </topic>
+        <topic anchor="A-errors">
+            <title>A: Expressions</title>
+            <topic anchor="A0">
+                <title>A0: Malformed format string</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A0: Wrong format string syntax.
+
+                            A0: Wrong format string syntax. (Does not find matched close bracket.)
+
+                            A0: Wrong format string syntax. ({parserMessage})
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Format-string errors append either the unmatched-parenthesis detail or the parser error for the embedded expression.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                raise $"$(1";
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A0_WrongFormatStringSyntax2.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A1">
+                <title>A1: Invalid observed property</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A1: Simple observe expression should observe a property under the observed object.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                bind(a.observe(b.c));
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A1_WrongSimpleObserveExpression.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A2">
+                <title>A2: Invalid or missing observed event</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A2: Simple observe expression should react to an event under the observed object.
+
+                            A2: Observe expression should react to at least one event.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                bind(a.observe(b on c.d));
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A2_WrongSimpleObserveEvent.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A3">
+                <title>A3: Observe outside bind</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A3: Observe expression should appear in a bind expression.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                a.observe(b);
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A3_ObserveNotInBind.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A4">
+                <title>A4: Invalid nesting inside bind</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A4: Observe expression should not appear in the event expression in another observe expression.
+
+                            A4: Bind expression should not appear in another bind expression.
+
+                            A4: Attach expression should not appear in another bind expression.
+
+                            A4: Detach expression should not appear in another bind expression.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                bind(a.observe as _a(bind(_a.b) on _a.bChanged));
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A4_BindInBind.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A5">
+                <title>A5: Mixed constructor entries</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A5: Key-value pairs are not allowed in list constructor expression.
+
+                            A5: Field-value pairs are expected in struct constructor expression.
+
+                            A5: The same field cannot be assigned more than once in struct constructor expression.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                var x = {1  2:3};
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A5_ConstructorMixMapAndList.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A6">
+                <title>A6: Mixed class and interface construction</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A6: Arguments are not allowed in new interface expression.
+
+                            A6: Members are not allowed in new class expression.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            interface I {}
+                            var value = new I^();
+                        ]]></code>
+                    </program>
+                </p>
+                <p>The target is an interface, but parentheses select class construction. An interface implementation uses new I^ { ... }.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A6_InterfaceWithClassConstruction.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A7">
+                <title>A7: Name or event used as a value</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A7: Symbol "{scope}" cannot be used as an expression.
+
+                            A7: Event "{event}" of type "{ownerType}" cannot be used as an expression.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            namespace ns
+                            {
+                                var x = ns;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A7_ScopeNameIsNotExpression.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A8">
+                <title>A8: Wrong reference kind</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A8: Expression does not reference to a declaration.
+
+                            A8: Expression does not reference to an event.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                var x : int = 0;
+                                var y = x::Child;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A8_ExpressionIsNotScopeName.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A9">
+                <title>A9: Unresolved expression type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A9: Expression referencing to symbol "{symbol}" failed to resolve its type.
+
+                            A9: Expression "null" failed to resolve its type.
+
+                            A9: Expression "{}" failed to resolve its type.
+
+                            A9: Ordered lambda expression failed to resolve its type.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                var x = {};
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A9_ConstructorCannotResolveType.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A10">
+                <title>A10: Invalid implicit conversion</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A10: Expression "null" cannot implicitly convert to "{toType}".
+
+                            A10: Expression "{}" cannot implicitly convert to "{toType}".
+
+                            A10: Ordered lambda expression cannot implicitly convert to "{toType}".
+
+                            A10: Expression of type "{fromType}" cannot implicitly convert to "{toType}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                var x : string = {};
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A10_ConstructorToStruct.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A11">
+                <title>A11: Invalid explicit conversion</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A11: Expression of type "{fromType}" cannot explicitly convert to "{toType}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            var x = 1 of variant<bool, string>;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A11_VariantInferMissing.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A12">
+                <title>A12: Invalid weak cast</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A12: Expression cannot weakly cast to "{toType}" because it cannot be "null".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            var x = 1 as variant<int, string>;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A12_VariantWeakTV.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A13">
+                <title>A13: Literal out of range</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A13: Integer literal "{literal}" out of range.
+
+                            A13: Floating literal "{literal}" out of range.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                var x = 18446744073709551615;
+                                var y = 18446744073709551616;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A13_IntegerLiteralOutOfRange.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A14">
+                <title>A14: Incompatible result types</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A14: Failed to merge type "{firstType}" with type "{secondType}" together to calculate the result type.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                {1 true "text"};
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A14_IncompatibleList.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A15">
+                <title>A15: Non-integer range</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A15: Elements in a range expression should be integer, not "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                range [true, false];
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A15_RangeOfBoolean.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A16">
+                <title>A16: Unsupported operand type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A16: Unary operator cannot apply on expression of type "{type}".
+
+                            A16: Binary operator cannot apply on expression of type "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func f(x:int):void { var y = variant in x; }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A16_VariantExtractScalar.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A17">
+                <title>A17: Unsupported index access</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A17: Container of type "{containerType}" cannot be accessed using index.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func f(x:variant<int[], string>):void { var y = x[0]; }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A17_VariantIndex.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A18">
+                <title>A18: Non-enumerable expression</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A18: Expression of type "{type}" is not an enumerable type.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func f(x:variant<int[], string>):void { for (y in x) {} }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A18_VariantEnumeration.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A19">
+                <title>A19: Non-callable expression</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A19: Expression of type "{type}" is not an invokable function type.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                var x : int = 0;
+                                x(0);
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A19_CallStruct.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A20">
+                <title>A20: Wrong argument count</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A20: Function {function}" is not allowed to call with {count} arguments.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            class A
+                            {
+                                new(x : int, y : string) {}
+                            }
+
+                            class B : A
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A20_CallWrongArgumentCount3.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A21">
+                <title>A21: Wrong argument type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A21: The {index}-th argument of function {function} cannot implicitly convert from "{fromType}" to "{toType}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func f(x:variant<int, string>):void { var y = bind(x); }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A21_VariantBindingResult.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A22">
+                <title>A22: Ambiguous overload</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A22: Cannot decide which function to call in multiple targets: {candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>This fixture uses the native test::ObservableValue class registered by the compiler test host. Its constructor overloads make the null argument ambiguous.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using test::*;
+
+                            func main():void
+                            {
+                                new ObservableValue^(0, null);
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A22_CannotPickOverloadedConstructor.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A23">
+                <title>A23: Missing constructor</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A23: Class "{type}" does not contain any constructor.
+
+                            A23: Interface "{type}" does not contain any constructor receiving an "{proxyType}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            var value = new variant<int, string>();
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A23_VariantNewClass.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A24">
+                <title>A24: Wrong constructor return type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A24: The return type of {function} cannot implicitly convert from "{fromType}" to "{toType}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>This fixture uses the native test::ObservableValue class registered by the compiler test host. The selected constructor returns a raw pointer, but the expression requests a shared pointer.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using test::*;
+
+                            func main():void
+                            {
+                                new ObservableValue^(0, null of bool?);
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A24_CallRawConstructorToShared.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A25">
+                <title>A25: Non-assignable expression</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A25: {expression} is not assignable.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                1=2;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A25_AssignToConstant.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A26">
+                <title>A26: Instance member used as static</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A26: {expression} cannot be called as a static member.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface IMyInterface
+                            {
+                                func GetName() : string;
+                                func SetName(value : string) : void;
+                                event NameChanged();
+                                prop Name : string {GetName, SetName : NameChanged}
+                            }
+
+                            func main():void
+                            {
+                                IMyInterface::Name;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A26_CallPropertyOutsideOfInterface.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A27">
+                <title>A27: Instance member in a static context</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A27: {expression} cannot be called in static functions of its class or interface.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                new(a : int){}
+                            }
+
+                            class B : A
+                            {
+                                var x : int = 0;
+
+                                new() :A(x) {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A27_CallPropertyInsideBaseConstructorCall.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A28">
+                <title>A28: Instance member in a field initializer</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A28: {expression} cannot be used to initialize other fields in the same type or new interface expression.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                var a : int = 10;
+                                var b : int = a;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A28_FieldsInitializeUsingEachOther3.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A29">
+                <title>A29: This outside an instance context</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A29: The "this" expression can only be used in class methods or functions in new interface expressions
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            var a = this;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A29_ThisInGlobalVariable.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A30">
+                <title>A30: Invalid flag or string operands</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A30: Expression of type "{type}" cannot be used in union (&) expression because it is not string or flag enum.
+
+                            A30: Expression of type "{type}" cannot be used in intersect (|) expression because it is not flag enum.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            var value = 1 | 2;
+                        ]]></code>
+                    </program>
+                </p>
+                <p>The | operator requires flag-enum operands. Integers use the separate bitwise operators.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A30_FlagOperatorOnInteger.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A31">
+                <title>A31: Non-constant expression</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A31: Expression is not constant. A constant expression consists of:
+                                constant primitive values
+                                enum items
+                                constant unary (+, -, not) expressions
+                                constant binary (|) expressions
+                                constant range expressions
+                                constant constructor expressions (to create values of structs, lists or dictionarys)
+                                type() or typeof() expressions.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>This fixture uses the native @test:Int attribute registered by the compiler test host. Its argument refers to a variable instead of a constant expression.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            var i = 100;
+                            var s = "Text";
+
+                            @test:Int(i)
+                            var x = 0;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A31_ExpressionNotConstant.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A32">
+                <title>A32: Invalid mixin cast</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A32: Mixin cast cannot implicitly convert from "{fromType}" to "{toType}". It is only for converting from an interface to a derived interface.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface IA{}
+                            interface IB{}
+
+                            var a = new IB^(using new IA^{});
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A32_MixinCastBetweenUnrelatedInterfaces.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="A33">
+                <title>A33: Missing expected type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            A33: Cannot resolve type "*". This expression should only appear on a place which has an explicit type, including variables and arguments.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            var x = 0 as *;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/A33_WeakExpectedTypeCastToImplicitType.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="B-errors">
+            <title>B: Types</title>
+            <topic anchor="B0">
+                <title>B0: Void value type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B0: Void is not a type for a value.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(args : void):void
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B0_VoidArgument.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="B1">
+                <title>B1: Interface value type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B1: Interface is not a type for a value.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(args : interface):void
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B1_InterfaceArgument.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="B2">
+                <title>B2: Invalid raw pointer</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B2: A raw pointer should point to a class or interface.
+
+                            B2: A raw pointer "{type}" should point to a class or interface.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(): ::system::String*
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B2_RawPointerToStruct.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="B3">
+                <title>B3: Invalid shared pointer</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B3: A shared pointer should point to a class or interface.
+
+                            B3: A shared pointer "{type}" should point to a class or interface.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(): ::system::String^
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B3_SharedPointerToStruct.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="B4">
+                <title>B4: Invalid nullable type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B4: A nullable value should point to a struct.
+
+                            B4: A nullable value "{type}" should point to a struct.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(): ::system::Function?
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B4_NullableToClass.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="B5">
+                <title>B5: Invalid child type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B5: Only a reference type have child types.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            func f(value:variant<int, string>::Child):void {}
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B5_VariantChild.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="B6">
+                <title>B6: Name is not a type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B6: "{scope}" is not a type.
+
+                            B6: "{symbol}" is not a type.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class MyClass
+                            {
+                                prop x : x = 0 {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B6_PropertyIsNotType.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="B7">
+                <title>B7: Reference type used as a value type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            B7: Type "{type}" is not a type for a value.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(): ::system::Function
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/B7_ClassNotForValue.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="C-errors">
+            <title>C: Statements and coroutines</title>
+            <topic anchor="C0">
+                <title>C0: Break outside a loop</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C0: Break statement should appear in a loop.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                break;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C0_BreakNotInLoop.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C1">
+                <title>C1: Continue outside a loop</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C1: Continue statement should appear in a loop.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                continue;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C1_ContinueNotInLoop.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C2">
+                <title>C2: Re-raise outside catch</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C2: Re-raise exception statement should appear in catch.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                raise;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C2_RethrowNotInCatch.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C3">
+                <title>C3: Incomplete try statement</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C3: Try statement should not appear without both catch and finally.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                try{}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C3_TryMissCatchAndFinally.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C4">
+                <title>C4: Missing return value</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C4: Return statement requires an expression of type "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():int
+                            {
+                                return;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C4_ReturnMissExpression.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C5">
+                <title>C5: Invalid delete operand</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C5: Delete statement cannot apply on an expression of type "{type}", which is expected to be a raw pointer.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                delete null of Function^;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C5_DeleteNonRawPointer.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C6">
+                <title>C6: Unexpected return value</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C6: Return statement cannot have a value inside void functions, constructors, destructors or $coroutine expressions.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            static
+                            {
+                                return 0;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C6_ReturnValueInStaticInit.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C7">
+                <title>C7: Invalid pause placement</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C7: $pause statement should appear inside a $coroutine expression, and it cannot be nested.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                $pause;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C7_CoPauseInFunction.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C8">
+                <title>C8: Coroutine operation outside a coroutine function</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C8: $Operator statement should appear inside a coroutine function (which has a functiona body like ${} or $Provider{}).
+
+                            C8: $.Operator expression should appear inside a coroutine function (which has a functiona body like ${} or $Provider{}).
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                $Await;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C8_CoOperatorInFunction.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C9">
+                <title>C9: Missing coroutine provider</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C9: Cannot find a coroutine provider based on the function return type, all of the following types do not exist: {candidates}.
+
+                            C9: Cannot find a coroutine provider based on the provider name "{provider}", all of the following types do not exist: {candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            $Delay{
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C9_CoProviderNotExists2.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C10">
+                <title>C10: Missing coroutine operation</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C10: Static function "ReturnAndExit" does not exist in coroutine provider "{type}".
+
+                            C10: Static functions "{operator}AndPause" and "{operator}AndRead" do not exist in coroutine provider "{type}".
+
+                            C10: Static function "{operator}AndRead" does not exist in coroutine provider "{type}".
+
+                            C10: Static function "QueryContext" does not exist in coroutine provider "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            class XCoroutine
+                            {
+                                static func CreateAndRun(creator : func(object) : (Coroutine^)) : void {}
+                            }
+
+                            func main():void
+                            $X{
+                                return;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C10_CoOperatorNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C11">
+                <title>C11: Unresolved coroutine result type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C11: Failed to resolve the result type of coroutine operator "{operator}", since there is no argument.
+
+                            C11: Failed to resolve the result type of coroutine operator "{operator}", no appropriate static function "CastResult" is found in the following types. It requires exactly one argument of type "object" with a return type which is not "void": {candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            class XCoroutine
+                            {
+                                static func AwaitAndRead(impl : object):void {}
+                                static func CreateAndRun(creator : func(object) : (Coroutine^)) : void {}
+                            }
+
+                            func main():void
+                            $X{
+                                var result = $Await;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C11_CoOperatorCannotResolveResultType.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C12">
+                <title>C12: Missing coroutine creator</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C12: The required static function "Create" does not exist in coroutine provider "{type}". It is required to have exactly one argument of a function type, which consumes a pointer type and returns system::Coroutine^
+
+                            C12: The required static function "CreateAndRun" does not exist in coroutine provider "{type}". It is required to have exactly one argument of a function type, which consumes a pointer type and returns system::Coroutine^
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            class XCoroutine
+                            {
+                            }
+
+                            func main():void
+                            $X{
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C12_CoProviderCreatorNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C13">
+                <title>C13: Missing goto target</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C13: Goto label "{label}" does not exists. A goto label can only jump to the end of any block statement that contains this goto statement in the current function.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                goto NotExists;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C13_GotoLabelNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C14">
+                <title>C14: Ambiguous goto target</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C14: Too many goto targets "{label}" found.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                {
+                                    goto Label;
+                                    Label:;
+                                }
+                                Label:;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C14_TooManyGotoTargets.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C15">
+                <title>C15: State switch outside a state</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C15: $switch statement should appear inside a $state declaration.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                $switch (){}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C15_StateSwitchNotInStateDecl.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C16">
+                <title>C16: State transition outside a state</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C16: $goto_state or $push_state statement should appear inside a $state declaration.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                $goto_state X();
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C16_GotoStateNotInStateDecl.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C17">
+                <title>C17: Missing state input</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C17: State input "{name}" does not exist.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            using system::*;
+
+                            class SM : StateMachine
+                            {
+                                $state_machine
+                                {
+                                    $state_input A(x: int, y: int);
+
+                                    $state default()
+                                    {
+                                        $switch ()
+                                        {
+                                            case B():
+                                            {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C17_StateInputNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C18">
+                <title>C18: Wrong state input argument count</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C18: The number of arguments doesn not match the declaration of state input "{name}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            using system::*;
+
+                            class SM : StateMachine
+                            {
+                                $state_machine
+                                {
+                                    $state_input A(x: int, y: int);
+
+                                    $state default()
+                                    {
+                                        $switch ()
+                                        {
+                                            case A(x):
+                                            {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C18_StateInputArgumentNotMatch.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C19">
+                <title>C19: Missing state</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C19: State "{name}" does not exist.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            using system::*;
+
+                            class SM : StateMachine
+                            {
+                                $state_machine
+                                {
+                                    $state default()
+                                    {
+                                        $goto_state A();
+                                    }
+                                }
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C19_StateNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="C20">
+                <title>C20: Wrong state argument count</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            C20: The number of arguments doesn not match the declaration of state "{name}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            using system::*;
+
+                            class SM : StateMachine
+                            {
+                                $state_machine
+                                {
+                                    $state A(x: int)
+                                    {
+                                    }
+
+                                    $state default()
+                                    {
+                                        $goto_state A();
+                                    }
+                                }
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/C20_StateArgumentNotMatch.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="D-errors">
+            <title>D: Declarations</title>
+            <topic anchor="D0">
+                <title>D0: Incomplete function declaration</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D0: Function should have a name.
+
+                            D0: Function should be implemented.
+
+                            D0: Interface method should not be implemented.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D0_FunctionNoBlock.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D1">
+                <title>D1: Conflicting declarations</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D1: Duplicated declaration "{name}", it has already beed defined as a {declarationKind}.
+
+                            D1: Duplicated $state_machine declaration.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            namespace system
+                            {
+                                class String
+                                {
+                                }
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D1_DuplicatedClass.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D2">
+                <title>D2: Duplicate symbol</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D2: Duplicated symbol "{symbol}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(args:int, args:string[]):void
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D2_DuplicatedFunctionArgument.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D3">
+                <title>D3: Unimplemented interface method</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D3: Interface method not implemented: {symbol}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                new Subscription^
+                                {
+                                    override func Open() : bool
+                                    {
+                                    }
+
+                                    override func Close() : bool
+                                    {
+                                    }
+                                };
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D3_ImplementMissFunction.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D4">
+                <title>D4: Unknown interface implementation</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D4: Interface "{interfaceType}" does not contain method "{name}" which is in type "{methodType}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                new Subscription^
+                                {
+                                    override func Open() : bool
+                                    {
+                                    }
+
+                                    override func UpdateNotExists() : bool
+                                    {
+                                    }
+
+                                    override func Update() : bool
+                                    {
+                                    }
+
+                                    override func Close() : bool
+                                    {
+                                    }
+                                };
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D4_ImplementUnexistsFunction.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D5">
+                <title>D5: Ambiguous interface implementation</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D5: Cannot decide which function to implement in multiple targets:{candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example context: native reflection exposes two distinct methods named Run with the same func():void signature on one interface. A new interface expression with override func Run():void {} cannot choose which reflected method to implement. This diagnostic is checked after matching both the name and the complete function type; ordinary Workflow duplicate declarations can be rejected earlier.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Analyzer/WfAnalyzer_ValidateSemantic_Expression.cpp">Compiler check</a>.</p>
+            </topic>
+            <topic anchor="D6">
+                <title>D6: Duplicate method implementation</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D6: There are some other methods named "{name}" whose types are also "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func main():void
+                            {
+                                new Subscription^
+                                {
+                                    override func Open() : bool
+                                    {
+                                    }
+
+                                    override func Update() : bool
+                                    {
+                                    }
+
+                                    override func Update() : bool
+                                    {
+                                    }
+
+                                    override func Close() : bool
+                                    {
+                                    }
+                                };
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D6_ImplementDuplicateFunction.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D7">
+                <title>D7: Declaration in the wrong scope</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D7: Event "{name}" cannot be defined outside of classes or interfaces.
+
+                            D7: Property "{name}" cannot be defined outside of classes or interfaces.
+
+                            D7: Constructor cannot be defined outside of classes.
+
+                            D7: Destructor cannot be defined outside of classes.
+
+                            D7: Auto-property cannot be defined outside of classes.
+
+                            D7: State machine cannot be defined outside of classes.
+
+                            D7: Static initialization declaration cannot be defined inside classes or interfaces.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            new(){}
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D7_ConstructorOutsideOfClasses.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D8">
+                <title>D8: Invalid anonymous interface member</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D8: "{name}" cannot be defined in an new interface expression, only functions, variables and auto-properties are allowed.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface IMyInterface
+                            {
+                            }
+
+                            func main() : void
+                            {
+                                new IMyInterface^
+                                {
+                                    class A{}
+                                };
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D8_ClassInNewInterface.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D9">
+                <title>D9: Invalid enum values</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D9: Item values in enum "{name}" should be consecutive and starts from zero, like 0, 1, 2, 3, 4, ...
+
+                            D9: Item values in flag enum "{name}" should be consecutive powers of 2 and starts from zero, like 0, 1, 2, 4, 8, ...
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            enum Seasons
+                            {
+                                Spring = 0,
+                                Summer = 1,
+                                Autumn = 2,
+                                Winter = 4,
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D9_EnumValue.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D10">
+                <title>D10: Missing flag item</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D10: Item "{name} does not exists in the current flag enum "{owner}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            flagenum Seasons
+                            {
+                                Spring = 0,
+                                Summer = 1,
+                                Autumn = 2,
+                                Winter = 4,
+
+                                Good = SUMMER | WINTER,
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D10_FlagValueNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D11">
+                <title>D11: Duplicate enum item</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D11: Item "{name} already exists in the current enum "{owner}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            flagenum Seasons
+                            {
+                                Spring = 0,
+                                Summer = 1,
+                                Autumn = 2,
+                                Winter = 4,
+                                Winter = 8,
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D11_DuplicatedEnumValue.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D12">
+                <title>D12: Invalid struct member type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D12: Type of member "{name}" of struct "{owner}" is not value type.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            struct Point
+                            {
+                                x : object;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D12_StructContainsObject.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D13">
+                <title>D13: Recursive struct values</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D13: Recursive references are found in these struct definitions:{candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            struct Recursive { data:variant<int, Recursive>; }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D13_VariantRecursiveStruct.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D14">
+                <title>D14: Duplicate struct member</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D14: Member "{name}" already exists in struct "{owner}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            struct Point
+                            {
+                                x : int;
+                                x : int;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D14_DuplicatedStructMember.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D15">
+                <title>D15: Invalid attribute</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D15: Attribute "{category}:{name}" does not exist.
+
+                            D15: Value of attribute "{category}:{name}" is missing.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            @cpp:NotExists
+                            var x = 0;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D15_AttributeNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D16">
+                <title>D16: Invalid state machine base</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D16: State machine class "{name}" should inherit from "system::StateMachine" directly.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class SM
+                            {
+                                $state_machine{}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D16_SmcNotInheritFromStateMachine.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="D17">
+                <title>D17: Missing default state</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            D17: Missing default state.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            using system::*;
+
+                            class SM : StateMachine
+                            {
+                                $state_machine{}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/D17_SmcMissingDefaultState.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="E-errors">
+            <title>E: Using paths</title>
+            <topic anchor="E0">
+                <title>E0: Invalid using wildcard</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            E0: Wild card "*" should only appear in the last item of the using path and should appear once.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            using system;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/E0_NoWildCard.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="F-errors">
+            <title>F: Name resolution</title>
+            <topic anchor="F0">
+                <title>F0: Unknown top-level name</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            F0: Top qualified symbol "{name}" does not exist.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(): ::not_exists
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/F0_TypeTopQualifiedSymbolNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="F1">
+                <title>F1: Unknown child name or member</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            F1: Symbol "{name}" does not exist in "{scope}".
+
+                            F1: Member "{name}" does not exist in "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main(): ::system::not_exists
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/F1_TypeChildSymbolNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="F2">
+                <title>F2: Unknown name or enum item</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            F2: Symbol "{name}" does not exist in the current scope.
+
+                            F2: Enum item "{name}" does not exist in enum type "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():not_exists
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/F2_TypeReferenceNotExists.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="F3">
+                <title>F3: Ambiguous name</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            F3: Symbol "{name}" references to too many targets: {candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            func main():void
+                            {
+                                var x : int = 0;
+                                {
+                                    var x : double = 1.0;
+                                    var y = x;
+                                }
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/F3_ExpressionReferenceToVariablesInNestedBlocks.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="G-errors">
+            <title>G: Classes and interfaces</title>
+            <topic anchor="G1">
+                <title>G1: Invalid member modifier</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G1: Class member "{name}" cannot be static or override because it is not a function or a auto-property.
+
+                            G1: Class member "{name}" cannot be static because it is in a new interface expression.
+
+                            G1: Auto property "{name}" cannot be normal outside of classes or interfaces.
+
+                            G1: Auto property "{name}" cannot be static  .
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                static prop P : string {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G1_StaticAutoPropertyInClass.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G2">
+                <title>G2: Namespace inside a class</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G2: Namespace "{name}" cannot be a class member.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                namespace b
+                                {
+                                }
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G2_NamespaceInClass.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G3">
+                <title>G3: Missing property accessor or event</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G3: Cannot find the getter "{getter}" of property "{name}" in type "{class}". A property getter should be a non-static method in the same type.
+
+                            G3: Cannot find the setter "{setter}" of property "{name}" in type "{class}". A property setter should be a non-static method in the same type.
+
+                            G3: Cannot find the event "{event}" of property "{name}" in type "{class}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface A
+                            {
+                                func GetY() : int;
+                                func SetX(value : int) : void;
+                                prop X : int {GetX, SetX}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G3_UnexistingPropertyGetter.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G4">
+                <title>G4: Ambiguous property accessor or event</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G4: Too many symbols found for the getter "{getter}" of property "{name}" in type "{class}".
+
+                            G4: Too many symbols found for the setter "{setter}" of property "{name}" in type "{class}".
+
+                            G4: Too many symbols found for the event "{event}" of property "{name}" in type "{class}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface A
+                            {
+                                func GetX() : int;
+                                func SetX() : void;
+                                func SetX(value : int) : void;
+                                prop X : int {GetX, SetX}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G4_TooManyPropertySetter.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G5">
+                <title>G5: Wrong property accessor signature</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G5: Cannot match the getter "{getter}" of property "{name}" in type "{class}". A property getter should have no argument, and its return type should be identical to the property type.
+
+                            G5: Cannot match the setter "{getter}" of property "{name}" in type "{class}". A property setter should have no return value and have only one argument, and the argument type should be identical to the property type.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface A
+                            {
+                                func GetX() : int;
+                                func SetX() : void;
+                                prop X : int {GetX, SetX}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G5_PropertySetterWrongArgumentType.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G6">
+                <title>G6: Invalid base type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G6: A base type of the type "{name}" should be another custom type, it cannot be any predefined type, pointer type, shared pointer type, nullable type, collection type, or function type
+
+                            G6: Base type "{type}" of class "{name}" is not a class, or it is a class but it is not aggregatable.
+
+                            G6: Base type "{type}" of interface "{name}" is not an interface.
+
+                            G6: Interface "{type}" should contain a constructor receiving an "{proxyType}" to be the base type of "{name}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                new() :B*() {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G6_WrongBaseConstructorType.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G7">
+                <title>G7: Interface constructor mode on a class</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G7: Cannot use interface constructor type on class "{name}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example context: a C++ compiler client constructs a WfClassDeclaration with kind = WfClassKind::Class and constructorType = WfConstructorType::SharedPtr. Structure validation rejects that AST. The text grammar sets a class declaration to Undefined automatically, so class C {} does not cause this error.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Analyzer/WfAnalyzer_ValidateStructure_Declaration.cpp">Compiler check</a>.</p>
+            </topic>
+            <topic anchor="G8">
+                <title>G8: Override without an interface method</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G8: Function "{name}" cannot be override because it doesn't implement any interface methods.
+
+                            G8: Auto-property "{name}" cannot be override because it doesn't implement any interface methods.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface A
+                            {
+                                override func B() : void;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G8_OverrideInInterface.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G9">
+                <title>G9: Missing field type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G9: Type of field "{name}" is missing.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                var x = 0;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G9_MissingFieldType.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G10">
+                <title>G10: Invalid inheritance graph</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G10: Class "{name}" inherits from another class "{type}" for multiple times.
+
+                            G10: Recursive inheriting are found in these class definitions:{candidates}.
+
+                            G10: Recursive inheriting are found in these interface definitions:{candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface A : A
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G10_DuplicatedBaseInterface1.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G11">
+                <title>G11: Initializer for a non-base type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G11: Type "{type}" is not a base type of this class.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                new() :B() {}
+                            }
+
+                            class B
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G11_WrongBaseConstructorTypes.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G12">
+                <title>G12: Duplicate base initializer</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G12: Base type "{type}" has already been initialized.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                            }
+
+                            class B : A
+                            {
+                                new() :A() ,A() {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G12_DuplicatedBaseConstructorTypes.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="G13">
+                <title>G13: Invalid destructor or auto-property initialization</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            G13: Class "{class}" has too many destructors.
+
+                            G13: New interface expression has too many destructors.
+
+                            G13: Auto property "{name}" should be initialized.
+
+                            G13: Auto property "{name}" cannot be initialized in interface "{class}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            class A
+                            {
+                                delete {}
+                                delete {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/G13_DuplicatedDestructor.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="H-errors">
+            <title>H: RPC definitions</title>
+            <topic anchor="H0">
+                <title>H0: RPC attribute on a non-interface</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H0: @rpc:Interface can only apply to an interface definition, but not "{fullName}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            @rpc:Interface
+                            class A
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H0_RpcInterface_NotOnInterface_Class.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H1">
+                <title>H1: Non-serializable RPC base</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H1: @rpc:Interface cannot be applied to interface "{interface}" because its base type "{base}" is not serializable.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface IBase
+                            {
+                            }
+
+                            @rpc:Interface
+                            interface IDerived : IBase
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H1_RpcInterface_BaseNotSerializable.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H2">
+                <title>H2: Non-serializable RPC member</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H2: @rpc:Interface cannot be applied to interface "{interface}" because its member "{member}" is not serializable.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            @rpc:Interface
+                            interface IMy
+                            {
+                            prop P : IMy* {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H2_RpcInterface_MemberNotSerializable_Property.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H3">
+                <title>H3: RPC constructor on a non-RPC interface</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H3: @rpc:Ctor can only apply to an interface definition with @rpc:Interface.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            @rpc:Ctor
+                            class A
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H3_RpcCtor_NotOnRpcInterface_Class.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H4">
+                <title>H4: Invalid RPC transfer attribute target</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H4: @rpc:{attribute} can only apply to a property, a method or a parameter.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface IMy
+                            {
+                            }
+
+                            @rpc:Byref
+                            var x = 0;
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H4_RpcByref_WrongTarget.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H5">
+                <title>H5: RPC attribute outside an RPC interface</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H5: @rpc:{attribute} can only be used inside an interface type with @rpc:Interface.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            interface IMy
+                            {
+                            @rpc:Byref
+                            func M() : int[];
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H5_RpcByref_NotInsideRpcInterface.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H6">
+                <title>H6: RPC transfer on a non-collection</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H6: @rpc:{attribute} cannot be used on member "{member}" because it does not have a strong typed collection types.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            @rpc:Interface
+                            interface IMy
+                            {
+                            @rpc:Byref
+                            prop P : int {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H6_RpcByref_NotStrongCollection_Property.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H7">
+                <title>H7: RPC property attribute on another declaration</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H7: @rpc:{attribute} can only apply to a property.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            @rpc:Cached
+                            func main() : void
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H7_RpcCached_WrongTarget.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H8">
+                <title>H8: Conflicting RPC attributes</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H8: @rpc:{attribute} cannot be used on member "{member}" because it already has @rpc:{otherAttribute}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+
+                            @rpc:Interface
+                            interface IMy
+                            {
+                            @rpc:Byval
+                            @rpc:Byref
+                            func M() : int[];
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H8_RpcByref_WithByval.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H9">
+                <title>H9: Duplicate generated RPC name</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H9: RPC generated {category} name "{generatedName}" is duplicated.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example context: generated RPC metadata attempts to insert two event entries with the same full name, such as Service.Changed. The second entry is rejected. The same check covers generated type and method names. This is a metadata-generation consistency check; ordinary source-level duplicates may be rejected before this stage.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Analyzer/Rpc/WfAnalyzer_ValidateRPC.cpp">Compiler check</a>.</p>
+            </topic>
+            <topic anchor="H10">
+                <title>H10: Reserved RPC return type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H10: @rpc:Interface cannot be applied to interface "{interface}" because its member "{member}" uses reserved RPC type "{type}" in a return value.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            @rpc:Interface
+                            interface IMy
+                            {
+                              func M() : system::RpcException;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H10_RpcReservedType_Return_RpcException.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H11">
+                <title>H11: Reserved RPC parameter type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H11: @rpc:Interface cannot be applied to interface "{interface}" because its function argument "{member}" uses reserved RPC type "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            @rpc:Interface
+                            interface IMy
+                            {
+                              func M(x : system::RpcException) : void;
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H11_RpcReservedType_FunctionArgument_RpcException.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="H12">
+                <title>H12: Reserved RPC event argument type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            H12: @rpc:Interface cannot be applied to interface "{interface}" because its event argument "{member}" uses reserved RPC type "{type}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            @rpc:Interface
+                            interface IMy
+                            {
+                              event E(system::RpcException);
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/H12_RpcReservedType_EventArgument_RpcException.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="I-errors">
+            <title>I: RPC wrapper generation</title>
+            <topic anchor="I0">
+                <title>I0: Missing RPC property mode</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            I0: RPC wrapper generation requires property "{member}" to have @rpc:Cached or @rpc:Dynamic.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example context: an RPC wrapper generator receives an interface property named Service.Count with neither @rpc:Cached nor @rpc:Dynamic in its metadata. Normal RPC analysis supplies a default property mode before wrapper generation; this error identifies incomplete generator input, rather than requiring every source property to write the default explicitly.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Analyzer/Rpc/WfAnalyzer_GenerateRpc.cpp">Compiler check</a>.</p>
+            </topic>
+            <topic anchor="I1">
+                <title>I1: Missing RPC return transfer mode</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            I1: RPC wrapper generation requires method "{member}" to have @rpc:Byval or @rpc:Byref on its collection return value.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example context: wrapper input contains func Read():int[] without either @rpc:Byval or @rpc:Byref on its return value. Normal RPC analysis adds the default transfer mode before this stage; manually supplied or modified metadata must preserve it.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Analyzer/Rpc/WfAnalyzer_GenerateRpc.cpp">Compiler check</a>.</p>
+            </topic>
+            <topic anchor="I2">
+                <title>I2: Missing RPC parameter transfer mode</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            I2: RPC wrapper generation requires parameter "{member}" to have @rpc:Byval or @rpc:Byref because it is a collection parameter.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>Example context: wrapper input contains func Write(values:int[]):void without either @rpc:Byval or @rpc:Byref on values. Normal RPC analysis adds the default transfer mode before this stage; manually supplied or modified metadata must preserve it.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Source/Analyzer/Rpc/WfAnalyzer_GenerateRpc.cpp">Compiler check</a>.</p>
+            </topic>
+            <topic anchor="I3">
+                <title>I3: Ambiguous generated RPC identifier</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            I3: RPC mangled name "{identifier}" is ambiguous between "{previousName}" and "{currentName}".
+                        ]]></code>
+                    </program>
+                </p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            namespace A
+                            {
+                              @rpc:Interface
+                              interface B {}
+                            }
+                            @rpc:Interface
+                            interface A__B {}
+                        ]]></code>
+                    </program>
+                </p>
+                <p>During RPC wrapper generation, the distinct full names A::B and A__B both become the identifier A__B. Avoid names that collide after :: becomes __ and punctuation in generated member names becomes _.</p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/I3_RpcMangledInterfaceNameConflict.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="J-errors">
+            <title>J: Variants</title>
+            <topic anchor="J0">
+                <title>J0: Invalid variant type</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            J0: Invalid variant type. {reason}
+                        ]]></code>
+                    </program>
+                </p>
+                <p>The reason gives the violated variant-type rule. This example has no options.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            func f(x:variant<>):void {}
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/J0_VariantNoOptions.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="J1">
+                <title>J1: Invalid variant expression</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            J1: Invalid variant expression. {reason}
+                        ]]></code>
+                    </program>
+                </p>
+                <p>The reason gives the violated variant-expression rule. Here the constructor has no exact option type; construct an int[] first and explicitly convert it to the variant.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            var x:variant<int[], string> = {};
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/J1_VariantConstructorSelection.txt">Example test</a>.</p>
+            </topic>
+        </topic>
+        <topic anchor="CPP-errors">
+            <title>CPP: C++ generation</title>
+            <topic anchor="CPP1">
+                <title>CPP1: Impossible C++ class order</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            CPP1: (C++ Code Generation) Cannot decide order of the following classes. It is probably caused by inheritance relationships of internal classes inside these classes:{candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>This error appears when generating C++, after ordinary Workflow analysis succeeds.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            class A
+                            {
+                                class Inside : B {}
+                            }
+
+                            class B
+                            {
+                                class Inside : A {}
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/CPP1_InternalClassCycleInheritance.txt">Example test</a>.</p>
+            </topic>
+            <topic anchor="CPP2">
+                <title>CPP2: Incompatible C++ file grouping</title>
+                <p>
+                    <program language="Text">
+                        <code><![CDATA[
+                            CPP2: (C++ Code Generation) @cpp:File atrribute values for these classes are invalid. Generating classes to source files specified by these attribute values will create source files which do not compile. It is probably caused by inheritance relationships of internal classes inside these classes:{candidates}.
+                        ]]></code>
+                    </program>
+                </p>
+                <p>This error appears when generating C++. The two declarations assigned to Custom cannot be emitted together around the intervening base class.</p>
+                <p>
+                    <program language="Workflow">
+                        <code><![CDATA[
+                            module test;
+                            using system::*;
+
+                            @cpp:File("Custom")
+                            class A
+                            {
+                            }
+
+                            class B : A
+                            {
+                            }
+
+                            @cpp:File("Custom")
+                            class C : B
+                            {
+                            }
+                        ]]></code>
+                    </program>
+                </p>
+                <p><a href="https://github.com/vczh-libraries/Workflow/blob/master/Test/Resources/AnalyzerError/CPP2_NonCustomFileClassForceIntoCustomFile.txt">Example test</a>.</p>
+            </topic>
+        </topic>
     </topic>
 </article>

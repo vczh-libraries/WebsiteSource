@@ -9,7 +9,10 @@
             <p>
                 <a href="/workflow/lang/variant.html#Comparison">Variant comparisons</a> are an exception to the common-type rules below.
                 They compare active payloads directly with a partial ordering, including mixed variant and nonvariant operands.
-                Arithmetic, logical and collection operations on a variant are rejected until an option is extracted.
+                Arithmetic and logical operations on a variant require extracting an option first.
+                <a href="/workflow/lang/variant.html">Variant collection membership</a> with <b>in</b> or <b>not in</b>
+                requires a typed enumerable, list or array whose element type is the exact same ordered variant type.
+                Dictionaries are unsupported.
             </p>
             <p>
                 When type of <b>A</b> can be implicitly converted to type of <b>B</b>,
@@ -172,6 +175,22 @@
                 </p>
             </topic>
             <topic>
+                <title>A shl B</title>
+                <p>
+                    Shift the bits of integer <b>A</b> left by <b>B</b> positions.
+                    For example, <b>3 shl 2</b> returns <b>12</b>.
+                    Both operands must be integers; the result type follows the integer conversion rules above.
+                </p>
+            </topic>
+            <topic>
+                <title>A shr B</title>
+                <p>
+                    Shift the bits of integer <b>A</b> right by <b>B</b> positions.
+                    For example, <b>12 shr 2</b> returns <b>3</b>.
+                    Both operands must be integers; the result type follows the integer conversion rules above.
+                </p>
+            </topic>
+            <topic>
                 <title>A (&lt;, &gt;, &lt;=, &gt;=, ==, !=) B</title>
                 <p>
                     <ul>
@@ -199,8 +218,8 @@
                 <p>
                     For any <b>A and B</b> that is performed on two <b>bool</b> expressions:
                     <ul>
-                        <li>When running Workflow script directly, B will be executed when A is <b>false</b>.</li>
-                        <li>When running generated C++ code, B not will be executed when A is <b>false</b>.</li>
+                        <li>When running Workflow script directly, B is evaluated even when A is <b>false</b>.</li>
+                        <li>When running generated C++ code, B is skipped when A is <b>false</b>.</li>
                     </ul>
                 </p>
             </topic>
@@ -215,8 +234,8 @@
                 <p>
                     For any <b>A or B</b> that is performed on two <b>bool</b> expressions:
                     <ul>
-                        <li>When running Workflow script directly, B will be executed when A is <b>true</b>.</li>
-                        <li>When running generated C++ code, B not will be executed when A is <b>true</b>.</li>
+                        <li>When running Workflow script directly, B is evaluated even when A is <b>true</b>.</li>
+                        <li>When running generated C++ code, B is skipped when A is <b>true</b>.</li>
                     </ul>
                 </p>
             </topic>

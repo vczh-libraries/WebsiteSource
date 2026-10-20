@@ -2,6 +2,32 @@
     <topic>
         <title>Breaking changes from 1.0</title>
         <topic>
+            <title>variant</title>
+            <p>
+                <a href="/workflow/lang/variant.html">variant&lt;A, B, ...&gt;</a> stores one declared option and its value.
+                Option order is part of the type. There are no implicit conversions to or from variants.
+            </p>
+            <p>
+                Supported operators are:
+                <ul>
+                    <li><b>=</b>: assign the same ordered variant type.</li>
+                    <li><b>cast</b>: construct a variant, extract a declared option, or convert to another variant with at least one shared option.</li>
+                    <li><b>of</b>: construct a variant or convert to another variant containing every source option.</li>
+                    <li><b>as</b>: extract a pointer or nullable option, returning null when another option is active.</li>
+                    <li><b>variant in VALUE</b>: extract the active payload as <b>object</b>.</li>
+                    <li><b>==</b>, <b>!=</b>, <b>&lt;</b>, <b>&gt;</b>, <b>&lt;=</b> and <b>&gt;=</b>: compare active payloads, including variants of different types and nonvariant values.</li>
+                    <li><b>is null</b> and <b>is not null</b>: test the active payload when the variant has a null-bearing option.</li>
+                    <li><b>in</b> and <b>not in</b>: test membership in a typed enumerable, list or array whose element type is the exact same variant. Dictionaries are unsupported.</li>
+                    <li><b>? :</b> and <b>??</b>: select between values of the same variant type.</li>
+                </ul>
+            </p>
+            <p>
+                Arithmetic, logical operations and member access require extracting an option first.
+                <b>cast object VALUE</b> only extracts a declared <b>object</b> option; it does not box a complete variant.
+                Use <b>variant in VALUE</b> to get any active payload as <b>object</b>.
+            </p>
+        </topic>
+        <topic>
             <title>struct</title>
             <p>
                 A struct is not allowed to have its nullable type as a direct or indirect field.

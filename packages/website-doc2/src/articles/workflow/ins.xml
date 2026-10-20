@@ -18,9 +18,10 @@
             Argument schema of each instructions are defined by static methods of <b>vl::workflow::runtime::WfInstruction</b>.
         </p>
         <p>
-            When an instruction is named after, for example, <b>ConvertToType(flag, type)</b>,
+            When an instruction is named after, for example, <b>ConvertToType(flag, typeDescriptor)</b>,
             it means the name of the instruction is <b>WfInsCode::ConvertToType</b>,
-            and embedded arguments are stored in field <b>flagParameter</b> and <b>typeParameter</b>.
+            and embedded arguments are stored in fields <b>flagParameter</b> and <b>typeDescriptorParameter</b>.
+            A <b>type</b> argument is a <b>WfInsType</b>; a <b>typeInfo</b> argument stores a complete <b>ITypeInfo</b>.
         </p>
         <topic>
             <title>Stack Operations</title>
@@ -114,7 +115,7 @@
                     Stack pattern after:
                     <program><code><![CDATA[
                         --> top
-                        (int) value of the variable
+                        value of the variable
                     ]]></code></program>
                 </p>
                 <p>
@@ -186,6 +187,7 @@
                     Stack pattern before:
                     <program><code><![CDATA[
                         --> top
+                        value of the object
                     ]]></code></program>
                 </p>
                 <p>
@@ -196,9 +198,8 @@
                     ]]></code></program>
                 </p>
                 <p>
-                    Push the closure of the <b>IMethodInfo*</b> object to the stack.
-                    It is created by calling <b>IMethodInfo::CreateFunctionProxy</b>,
-                    this function returns a function object that can be invoked.
+                    Pop the object and push a callable closure of the specified method bound to that object.
+                    The closure is created by <b>IMethodInfo::CreateFunctionProxy</b>.
                 </p>
             </topic>
             <topic>
@@ -218,7 +219,7 @@
                 </p>
                 <p>
                     Push the closure context of the current stack frame to the stack.
-                    Local variables are stored in the current stack frame.
+                    This context stores captured variables.
                 </p>
             </topic>
             <topic>
@@ -280,24 +281,27 @@
                 </p>
             </topic>
             <topic>
-                <title>Duplicate</title>
+                <title>Duplicate(count)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
                         --> top
-                        value
+                        ... count values
+                        value to copy
                     ]]></code></program>
                 </p>
                 <p>
                     Stack pattern after:
                     <program><code><![CDATA[
                         --> top
-                        value
-                        value
+                        copied value
+                        ... count values
+                        value to copy
                     ]]></code></program>
                 </p>
                 <p>
-                    Duplicate the top value in the stack.
+                    Push a copy of the value <b>count</b> positions below the top.
+                    <b>Duplicate(0)</b> duplicates the top value. Existing values remain on the stack.
                 </p>
             </topic>
             <topic>
@@ -430,7 +434,7 @@
             <topic>
                 <title>UninstallTry(count)</title>
                 <p>
-                    Pop a new trap frame.
+                    Pop the top trap frame.
                     Keep the specified number of stack values right after this trap frame.
                     This happens when no exception occurs while evaluating the left operand of the <b>??</b> operator,
                     the value of the left operand becomes the value of the whole expression,
@@ -440,7 +444,8 @@
             <topic>
                 <title>RaiseException</title>
                 <p>
-                    Raise an exception.
+                    Pop an exception value and raise it. The value can be a string,
+                    a <b>WfRuntimeExceptionInfo</b>, or an <b>IValueException</b>.
                 </p>
                 <p>
                     When an exception occurs,
@@ -454,7 +459,7 @@
         <topic>
             <title>Object Creating Operations</title>
             <topic>
-                <title>CreateArray(count)</title>
+                <title>NewArray(count)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -468,7 +473,7 @@
                     Stack pattern after:
                     <program><code><![CDATA[
                         --> top
-                        (Ptr<IValueList>) value of created array
+                        (Ptr<IValueArray>) value of created array
                     ]]></code></program>
                 </p>
                 <p>
@@ -477,7 +482,30 @@
                 </p>
             </topic>
             <topic>
-                <title>CreateObservableList(count)</title>
+                <title>NewList(count)</title>
+                <p>
+                    Stack pattern before:
+                    <program><code><![CDATA[
+                        --> top
+                        item-1
+                        ...
+                        item-n
+                    ]]></code></program>
+                </p>
+                <p>
+                    Stack pattern after:
+                    <program><code><![CDATA[
+                        --> top
+                        (Ptr<IValueList>) value of created list
+                    ]]></code></program>
+                </p>
+                <p>
+                    Pop the specified number of values from the stack,
+                    push the created list containing these values in popping order.
+                </p>
+            </topic>
+            <topic>
+                <title>NewObservableList(count)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -500,7 +528,7 @@
                 </p>
             </topic>
             <topic>
-                <title>CreateMap(count)</title>
+                <title>NewDictionary(count)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -516,14 +544,12 @@
                     Stack pattern after:
                     <program><code><![CDATA[
                         --> top
-                        (Ptr<IValueDictionary>) value of created map
+                        (Ptr<IValueDictionary>) value of created dictionary
                     ]]></code></program>
                 </p>
                 <p>
-                    Pop the specified number of value-key-pair from the stack,
-                    push the created observable map.
-                    A pair is two values on the stack instead of being a pair object.
-                    The order of keys in the map depends on value of keys.
+                    Pop <b>count</b> stack values as value-key pairs and push the created dictionary.
+                    Each pair occupies two stack values, so <b>count</b> is twice the number of entries.
                 </p>
             </topic>
             <topic>
@@ -594,19 +620,19 @@
                     ]]></code></program>
                 </p>
                 <p>
-                    Pop the specified number of function-method-pair from the stack.
+                    Pop <b>count</b> stack values as function-method pairs, then pop the closure context.
                     Push the created interface to the stack.
-                    A pair is two values on the stack instead of being a pair object,
-                    declaring that which method is implemented by which global function.
+                    Each pair occupies two stack values and identifies the global function implementing a method.
+                    A null method identifies the destructor function.
                 </p>
                 <p>
-                    The <b>methodParamter</b> of the instruction is the constructor of the interface.
+                    The <b>methodParameter</b> of the instruction is the constructor of the interface.
                     Such interface must be registered using one of the <b>BEGIN_INTERFACE_PROXY_*</b> macro.
-                    Please check out <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION.html">class Description</a> for more details.
+                    Please check out <a href="/vlppreflection/registration-macros.html#Registration-Workflow">Registration Workflow</a> for more details.
                 </p>
             </topic>
             <topic>
-                <title>CreateRange</title>
+                <title>CreateRange(type)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -626,12 +652,14 @@
                     Pop the value of ending and beginning in order,
                     push the created range,
                     which is a enumerable collection,
-                    including the value of beginning but excluding the value of ending.
+                    including both endpoints.
                     Each value is one greater than the previous one in this collection.
+                    <b>type</b> specifies the integer type of both endpoints.
+                    The compiler adjusts the endpoints for open ranges before executing this instruction.
                 </p>
             </topic>
             <topic>
-                <title>CreateStruct(flag, type)</title>
+                <title>CreateStruct(flag, typeDescriptor)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -669,14 +697,14 @@
                     Pop a value from the stack and delete it.
                     If the value is not a raw pointer,
                     then it is just popped but not deleted.
-                    Otherwise, <a href="/vlppreflection/ref/VL__REFLECTION__DESCRIPTION__VALUE__DELETERAWPTR@BOOL().html">Value::DeleteRawPtr</a> is called.
+                    Otherwise, <b>Value::DeleteRawPtr</b> is called.
                 </p>
             </topic>
         </topic>
         <topic>
             <title>Type Operations</title>
             <topic>
-                <title>ConvertToType(flag, type)</title>
+                <title>ConvertToType(flag, typeDescriptor)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -698,7 +726,7 @@
                 </p>
             </topic>
             <topic>
-                <title>TryConvertToType(flag, type)</title>
+                <title>TryConvertToType(flag, typeDescriptor)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -715,12 +743,12 @@
                 </p>
                 <p>
                     Pop a value from the stack and push the converted value to the stack.
-                    This instruction performs a <a href="/workflow/lang/expr.html#Strong-casting-expression-cast-TYPE-OBJECT-cast-OBJECT">strong casting</a> on a value.
+                    This instruction attempts the same conversion as <b>ConvertToType</b>.
                     <b>null</b> will be pushed to the stack if the conversion fails.
                 </p>
             </topic>
             <topic>
-                <title>TestType(flag, type)</title>
+                <title>TestType(flag, typeDescriptor)</title>
                 <p>
                     Stack pattern before:
                     <program><code><![CDATA[
@@ -760,6 +788,52 @@
                 <p>
                     Pop a value from the stack and get its type descriptor.
                     For <b>null</b>, its type descriptor is also <b>null</b>.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Variant Operations</title>
+            <p>
+                Each instruction pops one operand and pushes one result when it succeeds:
+                <program><code><![CDATA[
+                    before              after
+                    --> top             --> top
+                    operand             result
+                ]]></code></program>
+                A variant box stores the active option's declared <b>ITypeInfo</b> and its payload.
+                These instructions implement <a href="/workflow/lang/variant.html">variant conversions and extraction</a>.
+            </p>
+            <topic>
+                <title>VBox(typeInfo)</title>
+                <p>
+                    Wrap the operand in a variant box and push it.
+                    <b>typeInfo</b> is the declared active option type, not the complete variant type.
+                    The compiler has already checked that the operand matches this option.
+                </p>
+            </topic>
+            <topic>
+                <title>VUnbox</title>
+                <p>
+                    Pop a variant box and push its active payload without checking its option type.
+                    This implements <b>variant in VALUE</b>, whose result type is <b>object</b>.
+                    It removes exactly one box; a null payload remains null.
+                </p>
+            </topic>
+            <topic>
+                <title>VCast(typeInfo)</title>
+                <p>
+                    Pop a variant box and check its active option against the target <b>typeInfo</b>.
+                    If the target is a variant containing that exact option, push the existing box.
+                    Otherwise, if the target exactly matches the active option, push its payload.
+                    A mismatch raises an exception.
+                </p>
+            </topic>
+            <topic>
+                <title>VTryCast(typeInfo)</title>
+                <p>
+                    Apply the option check of <b>VCast</b>, but push null on a mismatch.
+                    A nullable target <b>T?</b> also accepts an active <b>T</b> option.
+                    The compiler uses this instruction for weak casts from variants to pointer or nullable option types.
                 </p>
             </topic>
         </topic>
@@ -814,8 +888,8 @@
                     Stack pattern before:
                     <program><code><![CDATA[
                         --> top
-                        value of the object
                         value of the property
+                        value of the object
                     ]]></code></program>
                 </p>
                 <p>
@@ -826,9 +900,7 @@
                     ]]></code></program>
                 </p>
                 <p>
-                    Pop a value from the stack as the object,
-                    pop a value as the new value of the property
-                    update the value of the specified property of this object.
+                    Pop the new property value, then pop the object and update its specified property.
                     Unlike <b>SetProperty(property)</b>,
                     the value of the object will be pushed back to the stack after executing this instruction.
                 </p>
@@ -1029,8 +1101,9 @@
                 </p>
                 <p>
                     Pop the set and the value from the stack,
-                    test if the element is in the set.
-                    <b>true</b> will be pushed to the stack if the testing succeeds.
+                    enumerate the set and compare each item with the element using <b>Value</b> equality.
+                    Push <b>true</b> if a matching item is found, otherwise <b>false</b>.
+                    <b>not in</b> negates this result with <b>OpNot(Bool)</b>.
                 </p>
             </topic>
         </topic>
@@ -1054,68 +1127,110 @@
             <topic>
                 <title>CompareLiteral(type)</title>
                 <p>
-                    Compare booleans, numbers or strings.
+                    Compare booleans, numbers or strings of the specified type. Null sorts before a nonnull value.
                 </p>
                 <p>
                     Push <b>-1</b> to the stack if the left operand is smaller.
                     Push <b>1</b> to the stack if the left operand is larger.
-                    Push <b>0</b> to the stack if operands are equal to each other.
+                    Otherwise push <b>0</b>, including when neither floating-point comparison succeeds because an operand is NaN.
                 </p>
             </topic>
             <topic>
                 <title>CompareReference</title>
                 <p>
-                    Compare two pointers.
+                    Compare pointer identity. Operands are raw pointers, shared pointers or null.
                 </p>
                 <p>
                     Push <b>true</b> to the stack if operands are equal to each other.
-                    Push <b>false</b> to the stack if operands are not equal to each other, or any of them is not a pointer.
+                    Otherwise push <b>false</b>. Two null values are equal.
                 </p>
             </topic>
             <topic>
                 <title>CompareValue</title>
                 <p>
-                    Compare two values.
+                    Compare two values using <b>Value</b> equality.
+                    For variant operands, the compiler emits <b>VUnbox</b> first to compare their active payloads.
                 </p>
                 <p>
                     Push <b>true</b> to the stack if operands are equal to each other.
-                    Push <b>true</b> to the stack if operands are not equal to each other.
+                    Push <b>false</b> to the stack if operands are not equal to each other or are unordered.
+                    <b>!=</b> negates this result with <b>OpNot(Bool)</b>.
                 </p>
             </topic>
             <topic>
+                <title>CompareValueLT</title>
+                <p>
+                    Pop the right and left values and push the result of <b>left &lt; right</b> using <b>Value</b> partial ordering.
+                    For variant operands, the compiler emits <b>VUnbox</b> first to compare their active payloads.
+                    Unordered values produce false.
+                </p>
+            </topic>
+            <topic>
+                <title>CompareValueGT</title>
+                <p>
+                    Like <b>CompareValueLT</b>, but push the result of <b>left &gt; right</b>.
+                    Unordered values produce false.
+                </p>
+            </topic>
+            <topic>
+                <title>CompareValueLE</title>
+                <p>
+                    Like <b>CompareValueLT</b>, but push the result of <b>left &lt;= right</b>.
+                    Unordered values produce false.
+                </p>
+            </topic>
+            <topic>
+                <title>CompareValueGE</title>
+                <p>
+                    Like <b>CompareValueLT</b>, but push the result of <b>left &gt;= right</b>.
+                    Unordered values produce false.
+                </p>
+            </topic>
+        </topic>
+        <topic>
+            <title>Comparison Result Tests</title>
+            <p>
+                These instructions consume one integer result from <b>CompareLiteral</b> and push a boolean:
+                <program><code><![CDATA[
+                    before              after
+                    --> top             --> top
+                    comparison-result   bool
+                ]]></code></program>
+            </p>
+            <topic>
                 <title>OpLT</title>
                 <p>
-                    This instruction executes <b>left &lt; right</b>.
+                    Push whether the comparison result is less than zero.
                 </p>
             </topic>
             <topic>
                 <title>OpGT</title>
                 <p>
-                    This instruction executes <b>left &gt; right</b>.
+                    Push whether the comparison result is greater than zero.
                 </p>
             </topic>
             <topic>
                 <title>OpLE</title>
                 <p>
-                    This instruction executes <b>left &lt;= right</b>.
+                    Push whether the comparison result is less than or equal to zero.
                 </p>
             </topic>
             <topic>
                 <title>OpGE</title>
                 <p>
-                    This instruction executes <b>left &gt;= right</b>.
+                    Push whether the comparison result is greater than or equal to zero.
                 </p>
             </topic>
             <topic>
                 <title>OpEQ</title>
                 <p>
-                    This instruction executes <b>left == right</b>.
+                    Push whether the comparison result is zero.
                 </p>
             </topic>
             <topic>
                 <title>OpNE</title>
                 <p>
-                    This instruction executes <b>left != right</b>.
+                    Push whether the comparison result is not zero.
                 </p>
             </topic>
         </topic>
