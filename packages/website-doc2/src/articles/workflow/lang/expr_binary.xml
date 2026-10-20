@@ -7,6 +7,11 @@
                 Here assume <b>A</b> is the left operand, and <b>B</b> is the right operand.
             </p>
             <p>
+                <a href="/workflow/lang/variant.html#Comparison">Variant comparisons</a> are an exception to the common-type rules below.
+                They compare active payloads directly with a partial ordering, including mixed variant and nonvariant operands.
+                Arithmetic, logical and collection operations on a variant are rejected until an option is extracted.
+            </p>
+            <p>
                 When type of <b>A</b> can be implicitly converted to type of <b>B</b>,
                 <b>A</b> will be cast to type of <b>B</b> before being applied to this operator.
             </p>

@@ -64,9 +64,11 @@
                     </li>
                     <li>
                         <b>object</b>: <b>system::Object</b>.
-                        Values of all types can be implicitly converted to <b>object</b>.
-                        A value of <b>object</b> can be explicitly converted to any type,
+                        Nonvariant values can be implicitly converted to <b>object</b>.
+                        <a href="/workflow/lang/variant.html#Object-option-and-escape">Variants require an explicit conversion</a>, with exact-option precedence when <b>object</b> is an option.
+                        A value of <b>object</b> can be explicitly converted to a nonvariant type,
                         conversion failure results in throwing an exception.
+                        Conversion to a variant requires an exact <b>object</b> option and selects that option.
                         <b>null</b> is also a valid value for <b>object</b>,
                         casting <b>null</b> to an optional type results in <b>null</b>,
                         casting <b>null</b> to any other type results in throwing an exception.
@@ -199,6 +201,14 @@
             <p>
                 An optional type <b>A?</b> can be implicitly or explicitly converted to <b>B?</b>,
                 when <b>A</b> can be implicitly or explicitly converted to <b>B</b>.
+            </p>
+        </topic>
+        <topic>
+            <title>Variant types</title>
+            <p>
+                <b>variant&lt;A, B, ...&gt;</b> stores one of at least two declared options.
+                Option order is part of the type, and conversions are explicit.
+                See <a href="/workflow/lang/variant.html">Variants</a> for valid options, exact casts, defaults, null handling and comparison.
             </p>
         </topic>
         <topic>

@@ -5,6 +5,12 @@
             A data binding expressions <b>bind(EXPR)</b> observes the changing of <b>EXPR</b>
             by attaching callbacks to all involved events that are associated with properties.
         </p>
+        <p>
+            A binding sends its result to <b>ValueChanged(object)</b>, so it cannot return a <a href="/workflow/lang/variant.html">variant</a> directly.
+            Extract a payload or explicitly produce an allowed nonvariant result in the authored expression.
+            Variant-valued properties can still be observed and cached while the expression returns a nonvariant value.
+            An explicit cast to <b>object</b> follows the variant's object-option precedence.
+        </p>
         <topic>
             <title>Defining a data binding</title>
             <p>

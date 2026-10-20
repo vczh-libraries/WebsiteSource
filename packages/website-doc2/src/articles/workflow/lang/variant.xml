@@ -1,0 +1,156 @@
+<article index="true">
+    <topic>
+        <title>Variants</title>
+        <p>
+            <b>variant&lt;A, B, ...&gt;</b> is a value type that stores one declared option and its value.
+            It maps to <b>vl::Variant</b> in generated C++.
+            The active option is preserved when the value is copied, passed through reflection, or stored in a typed collection.
+        </p>
+        <topic anchor="Type-identity">
+            <title>Type identity and valid options</title>
+            <p>
+                A variant requires at least two valid value types. Options are ordered:
+                <b>variant&lt;int, string&gt;</b> and <b>variant&lt;string, int&gt;</b> are different Workflow types.
+                Resolved aliases refer to the same option, so <b>string</b> and <b>system::String</b> cannot both appear.
+                The target architecture determines what <b>int</b> and <b>uint</b> mean.
+            </p>
+            <p>
+                An option cannot be <b>void</b> or itself be a variant.
+                A variant itself cannot have a pointer or optional decoration.
+                Collections of variant elements are supported.
+            </p>
+            <p>
+                Options must also produce distinct native C++ alternatives.
+                For example, <b>int[]</b> and <b>string[]</b> both map to <b>Ptr&lt;IValueList&gt;</b>, so they cannot be two options in one variant.
+                This restriction does not make those two list types equal elsewhere in Workflow.
+                Function signatures in <b>Func</b> and enumerable element types in <b>LazyList</b> remain distinct native types.
+            </p>
+            <p>
+                A native untyped collection option retains its declared metadata.
+                Reflection does not inspect a <b>Ptr&lt;IValueList&gt;</b> payload to turn it into an exact <b>int[]</b> option.
+            </p>
+        </topic>
+        <topic anchor="Construction-and-conversion">
+            <title>Construction, assignment and conversion</title>
+            <p>
+                Assignment, arguments and returns require the same ordered variant type.
+                There is no implicit conversion between a variant and its options, between different variants, or from a variant to <b>object</b>.
+                Use an explicit <b>cast</b> or <b>of</b> expression:
+                <program><code><![CDATA[
+                    var number = cast variant<int, string> 42;
+                    var text = "hello" of variant<int, string>;
+                    var reordered = cast variant<string, int> number;
+                    var widened = text of variant<double, string, int>;
+                ]]></code></program>
+                The active values are respectively <b>42</b>, <b>"hello"</b>, <b>42</b> and <b>"hello"</b>.
+            </p>
+            <p>
+                <ul>
+                    <li><b>cast VARIANT value</b> and <b>value of VARIANT</b> select the exact declared type of a nonvariant value. Numeric, inheritance, pointer-ownership and optional conversions do not make an option match.</li>
+                    <li><b>cast OPTION value</b> requires that exact option to be declared. It throws when a different option is active.</li>
+                    <li><b>cast TARGET_VARIANT value</b> requires a nonempty intersection of option types. It throws when the active option is outside that intersection.</li>
+                    <li><b>value of TARGET_VARIANT</b> requires every source option to occur in the target. It preserves the active option and permits reordering.</li>
+                </ul>
+            </p>
+            <p>
+                For the example above, <b>cast string number</b> is a runtime failure: <b>string</b> is declared, but <b>int</b> is active.
+                A cast to an option that is not declared is a compiler error.
+                Bare <b>null</b> and other expressions needing an expected type cannot choose an option implicitly; first give the payload an explicit type.
+            </p>
+            <p>
+                This declaration is rejected because a variant does not implicitly convert to <b>object</b>:
+                <program><code><![CDATA[
+                    func f(x:variant<int, string>):void { var y:object = x; }
+                ]]></code></program>
+            </p>
+        </topic>
+        <topic anchor="Weak-casts-and-null">
+            <title>Weak casts, null and defaults</title>
+            <p>
+                <b>value as T*</b> or <b>value as T^</b> requires that exact pointer option.
+                <b>value as T?</b> requires an option of <b>T</b> or <b>T?</b> and accepts either when active.
+                A different active option returns <b>null</b>.
+                Weak casts to a variant or to a nonnullable value type are unsupported.
+                <program><code><![CDATA[
+                    var plain = cast variant<int, int?, string> 7;
+                    var optional : int? = 8;
+                    var present = optional of variant<int, int?, string>;
+                    var empty : int? = null;
+                    var missing = cast variant<int, int?, string> empty;
+                ]]></code></program>
+                <b>plain as int?</b> returns 7, <b>present as int?</b> returns 8, and <b>missing as int?</b> returns null.
+                Strong extraction remains exact: <b>cast int? plain</b> throws.
+            </p>
+            <p>
+                Null does not erase the active option.
+                Strong extraction of a matching null pointer or empty optional succeeds; extraction of another declared option throws even when both payloads would be null.
+                Likewise, a base-pointer option containing a derived object remains the base-pointer option.
+            </p>
+            <p>
+                <b>is null</b> and <b>is not null</b> require at least one null-bearing option and inspect the active payload.
+                They do not test whether the outer variant box exists.
+                A compiler-generated default, including an unassigned struct field, selects the first declared option and uses that option's default value.
+                Thus a default <b>variant&lt;int, string&gt;</b> contains integer zero; a default <b>variant&lt;int?, string&gt;</b> contains an empty optional tagged as <b>int?</b>.
+            </p>
+        </topic>
+        <topic anchor="Object-option-and-escape">
+            <title>The object option and explicit escape</title>
+            <p>
+                An explicit <b>object</b> option takes precedence.
+                Converting an object-typed value to such a variant selects that option without inspecting the payload.
+                Casting that variant to <b>object</b> extracts only an active <b>object</b> option; another active option causes a runtime failure.
+            </p>
+            <p>
+                If <b>object</b> is not an option, <b>cast object value</b> preserves the complete outer variant box.
+                A later ordinary cast does not extract its payload.
+                This function compiles but fails when called:
+                <program><code><![CDATA[
+                    func EscapedPayload():int
+                    {
+                      var value = 1 of variant<int, string>;
+                      var escaped : object = cast object value;
+                      return cast int escaped;
+                    }
+                ]]></code></program>
+                Casting an object-typed value back to a variant without an exact <b>object</b> option is rejected at compile time.
+                There is no dynamic recovery cast.
+            </p>
+        </topic>
+        <topic anchor="Comparison">
+            <title>Comparison and other operations</title>
+            <p>
+                The six comparison operators compare active payloads, including a variant and a nonvariant operand or two different variant types.
+                They do not order by option position or require a common variant type.
+                <program><code><![CDATA[
+                    var a = 3 of variant<int, string>;
+                    var b = 3.0 of variant<double, bool>;
+                    var text = "three" of variant<int, string>;
+                ]]></code></program>
+                <b>a == b</b> and <b>a == 3.0</b> are true.
+                <b>a != text</b> is true, while all four relational comparisons between <b>a</b> and <b>text</b> are false.
+            </p>
+            <p>
+                Comparison is a partial ordering. Unordered payloads, including NaN, produce false for <b>==</b> and all relational operators, and true for <b>!=</b>.
+                Pointer payloads retain the existing pointer-identity semantics.
+            </p>
+            <p>
+                Extract an option before arithmetic, logical operations, indexing, invocation or member access.
+                Type tests with <b>is TYPE</b> or <b>is not TYPE</b>, and variant type queries, are unsupported.
+                Reading a variant-valued field or property is supported; extracting a value makes a copy, and writing back requires assigning a complete valid variant.
+            </p>
+        </topic>
+        <topic anchor="Bindings-and-RPC">
+            <title>Bindings and RPC</title>
+            <p>
+                A <a href="/workflow/lang/bind.html">binding</a> publishes through <b>ValueChanged(object)</b>.
+                A direct variant result is therefore rejected.
+                The authored expression must extract a payload or explicitly produce an allowed nonvariant result.
+                Observing and caching a variant while producing such a result is supported.
+            </p>
+            <p>
+                <a href="/workflow/rpc.html">RPC</a> does not support variants, including variants contained in collection arguments, optional wrappers or struct fields.
+                Escaping a variant to <b>object</b> does not make it JSON serializable.
+            </p>
+        </topic>
+    </topic>
+</article>

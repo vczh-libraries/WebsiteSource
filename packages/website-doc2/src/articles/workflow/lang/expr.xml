@@ -4,6 +4,10 @@
         <p>
             All supported expressions are listed below.
         </p>
+        <p>
+            <a href="/workflow/lang/variant.html">Variants</a> have explicit rules for assignment, comparison, null testing, strong and weak casts, and <b>of</b> inference.
+            Ordinary numeric, pointer and object conversions do not select a variant option implicitly.
+        </p>
         <topic>
             <title>null, true, false</title>
             <p>
@@ -341,7 +345,7 @@
                 </ul>
             </p>
             <p>
-                <b>T</b> can be any type.
+                Neither the source nor <b>T</b> can be a variant type.
                 If T is a class or an interface,
                 it tests if the variable <b>A</b> is holding an object of or inherits that type.
                 For example, <b>new C^() is C</b> returns <b>true</b>.
@@ -359,6 +363,10 @@
         </topic>
         <topic>
             <title>Strong casting expression: cast TYPE OBJECT, cast * OBJECT</title>
+            <p>
+                When either side is a variant, use the <a href="/workflow/lang/variant.html#Construction-and-conversion">exact-option rules</a>.
+                A matching active option can contain null; a different active option throws even when its payload is null.
+            </p>
             <p>
                 For class types or interface types,
                 <b>TYPE</b> must be a pointer type.
@@ -380,6 +388,11 @@
         </topic>
         <topic>
             <title>Weak casting expression: OBJECT as TYPE, OBJECT as *</title>
+            <p>
+                For a variant source, use the <a href="/workflow/lang/variant.html#Weak-casts-and-null">variant weak-cast rules</a>.
+                The target must be an exact pointer option, or <b>T?</b> with an option of <b>T</b> or <b>T?</b>.
+                A variant cannot be the target of a weak cast.
+            </p>
             <p>
                 For class types or interface types,
                 <b>TYPE</b> must be a pointer type.
@@ -405,6 +418,11 @@
         </topic>
         <topic>
             <title>Infer expression: OBJECT of TYPE</title>
+            <p>
+                With a variant target, a nonvariant source must exactly match one option.
+                A variant source must have a subset of the target's options.
+                This explicit expression preserves the active option; it does not enable an implicit conversion.
+            </p>
             <p>
                 This expression gives an explicit type <b>TYPE</b> to the expression <b>OBJECT</b>.
             </p>

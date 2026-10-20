@@ -2,6 +2,7 @@
     <article name="Module" file="module"/>
     <article name="Functions and Variables" file="funcvar"/>
     <article name="Types" file="type">
+        <article name="Variants" file="variant"/>
         <article name="Enums" file="enum"/>
         <article name="Structs" file="struct"/>
         <article name="Interfaces" file="interface">

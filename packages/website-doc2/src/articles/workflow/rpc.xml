@@ -69,6 +69,24 @@ namespace Chat
 			<p>
 				Reserved framework types such as object references and RPC exceptions are part of the transport protocol and are not valid as ordinary RPC member payloads.
 			</p>
+			<p>
+				<a href="/workflow/lang/variant.html">Variants</a> are not serializable by RPC.
+				The compiler rejects them in method parameters and returns, properties and event arguments, including occurrences inside collection type arguments, nullable wrappers and struct fields.
+				For example, this interface is rejected before RPC metadata or serializers are generated:
+				<program><code><![CDATA[
+module test;
+@rpc:Interface
+interface IVariantService
+{
+  func Send(value:variant<int, string>):void;
+}
+]]></code></program>
+			</p>
+			<p>
+				A variant explicitly escaped to <b>object</b> still contains the outer variant box.
+				The JSON serializer rejects it with <b>Unsupported RPC JSON serialization value.</b>, including when reached through an object list or dictionary.
+				It does not serialize the active payload and does not generate a variant schema.
+			</p>
 		</topic>
 
 		<topic>
