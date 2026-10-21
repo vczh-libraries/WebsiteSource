@@ -85,6 +85,8 @@
                     <ul>
                         <li><b><a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Windows/RawClock">RawClock</a></b> : Owner drawing with <a href="/doc/current/gacui/components/elements/home.html#Raw">&lt;Raw/&gt;</a> and native rendering APIs. The moving clock uses Direct2D by default; pass <name>/Gdi</name> to use GDI.</li>
                         <li><b><a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Windows/WindowIcon">WindowIcon</a></b> : Control window and application's icons.</li>
+                        <li><b><a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Windows/Touching">Touching</a></b> : Touch gestures on a custom-drawn rectangle: move with one finger, or move, rotate and zoom with two fingers. Uses Direct2D by default; pass <name>/Gdi</name> to use GDI.</li>
+                        <li><b><a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Windows/TouchingList">TouchingList</a></b> : Scroll a list with touch gestures, swipe an item fully left and release to delete it, or add and clear items.</li>
                     </ul>
                 </li>
                 <li>
