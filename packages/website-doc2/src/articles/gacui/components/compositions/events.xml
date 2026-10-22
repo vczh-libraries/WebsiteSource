@@ -218,6 +218,106 @@
                 </p>
             </topic>
         </topic>
+        <topic anchor="touch">
+            <title>Touch and Built-in Gestures</title>
+            <p>
+                Windows and the GacJS browser renderer support touch input.
+                The native wGac (Wayland) and iGac (macOS) providers do not support touch input.
+                This limitation does not apply to GacJS running in a browser on Linux or macOS, with either WebAssembly or HTTP transport.
+                Physical mouse and pen input continue through the mouse events.
+            </p>
+            <topic>
+                <title>Accepting a Touch Sequence</title>
+                <p>
+                    A sequence starts with the first contact and ends when all contacts lift or the sequence is canceled.
+                    <name>GuiGraphicsEventReceiver</name> exposes four point events:
+                    <ul>
+                        <li><name>pointSequenceStarted</name> queries the hit composition and its ancestors. Set <name>acceptedComposition</name> to a composition in the same graphics host to capture the sequence. The first non-null choice wins.</li>
+                        <li><name>pointAction</name> reports Down, Update, Up, Enter and Leave through <name>eventType</name>.</li>
+                        <li><name>pointGesture</name> offers a built-in scrolling or manipulation payload.</li>
+                        <li><name>pointSequenceEnded</name> reports successful completion or cancellation exactly once to the accepted composition.</li>
+                    </ul>
+                </p>
+                <p>
+                    Only the Started query traverses the parent chain. It continues even when <name>handled</name> is true,
+                    allowing an explicit handler to accept the sequence. Action, Gesture and End go only to the accepted composition and never bubble.
+                    Setting <name>GuiControl.AcceptPointEvents</name> to <name>true</name> enables default acceptance at its bounds when the Started query is unhandled and has no owner.
+                    This property defaults to <name>false</name>; <name>GuiScrollView</name> enables it by default.
+                    Setting it to <name>false</name> disables that control's default acceptance, but custom Started handlers or ancestors can still accept the sequence.
+                    <name>GuiControl.PointEventComposition</name> identifies capture within a control's bounds subtree, including during End, and becomes null after cleanup.
+                </p>
+                <p>
+                    Started, Action and End expose a borrowed <name>Points</name> list in the receiving composition's logical coordinates.
+                    Slots follow contact Down order; lifted slots are empty and are not reused within the sequence.
+                    Copy values needed after the callback. Queue control removal with <name>GetApplication()-&gt;InvokeInMainThread</name>,
+                    just as for mouse handlers; deleting the receiving composition synchronously is unsupported.
+                </p>
+            </topic>
+            <topic>
+                <title>Gesture Selection and Payloads</title>
+                <p>
+                    The graphics host has four built-in recognizers, in priority order:
+                    <ol>
+                        <li><b>Right click:</b> a successful single-contact sequence lasting at least 500 milliseconds, with no excursion beyond a radius of eight logical units from its initial position. Recognition occurs on successful release, not while holding.</li>
+                        <li><b>Left click:</b> the same single-contact movement limit without the duration minimum. Right click wins when its duration requirement is met.</li>
+                        <li><b>Scrolling:</b> movement beyond that radius locks to the axis with the larger absolute displacement; horizontal wins a tie. <name>GuiPointGesture_Scrolling</name> supplies <name>isVertical</name> and signed incremental <name>distance</name>, positive towards right or down. The first distance includes all movement from Down. A second contact permanently stops scrolling offers for this sequence.</li>
+                        <li><b>Dragging, rotation and scaling:</b> <name>GuiPointGesture_DraggingAndRotation</name> is offered with identity values at Started and must be selected immediately to continue. One contact translates; two translate, rotate and uniformly scale; more than two pause. Contact membership changes establish a new baseline without a jump.</li>
+                    </ol>
+                </p>
+                <p>
+                    For an unhandled <name>pointGesture</name> offer, set <name>selected</name> to <name>true</name> to choose that recognizer for the rest of the sequence,
+                    and set <name>handled</name> to <name>true</name> when consuming the payload.
+                    Selection is sticky and independent of <name>handled</name>. Raw Action and End events still arrive.
+                    A declined scrolling offer can be offered again; a declined initial manipulation offer cannot.
+                    These recognizers are fixed; applications cannot register additional recognizers or select an OS gesture implementation.
+                </p>
+                <p>
+                    <name>GuiPointGestureEventArgs.gesture</name> is a writable
+                    <name>Variant&lt;GuiPointGesture_Scrolling, GuiPointGesture_DraggingAndRotation&gt;</name> in C++,
+                    reflected as the corresponding <name>variant&lt;...&gt;</name> in Workflow.
+                    Read the lowercase <name>gesture</name> field; there is no <name>Gesture</name> property or <name>GetGesture()</name> method.
+                    A Workflow handler can extract the active alternative with a nullable weak cast:
+                    <program language="Workflow"><code><![CDATA[
+                        if (not arguments.handled)
+                        {
+                            if (var scrolling : GuiPointGesture_Scrolling? = arguments.gesture as GuiPointGesture_Scrolling?)
+                            {
+                                arguments.selected = true;
+                                arguments.handled = true;
+                                // Apply scrolling.distance along the scrolling.isVertical axis.
+                            }
+                        }
+                    ]]></code></program>
+                </p>
+                <p>
+                    Extracted payloads are copies. Apply manipulation in the order
+                    <name>p' = scale * R(rotation) * p + distance</name> in accepted-composition logical coordinates.
+                    Positive rotation is clockwise in radians. Payloads are incremental, including centroid-aware translation for two contacts.
+                </p>
+            </topic>
+            <topic>
+                <title>Clicks and Existing Controls</title>
+                <p>
+                    An accepted sequence with an eligible click and no selected scrolling or manipulation gesture automatically produces a deferred mouse click.
+                    It uses the original contact position with current layout after point cleanup.
+                    Cancellation, any additional contact, or movement outside the click radius prevents this fallback; returning inside the radius does not restore it.
+                    End <name>handled</name> does not veto the click.
+                </p>
+                <p>
+                    A rejected sequence uses mouse compatibility immediately, so ordinary controls and text selection can keep their existing mouse behavior.
+                    For remote input, only the original first contact drives that stream; later contacts never replace it.
+                    See <a href="/gacui/components/controls/container/scrollcontainer.html#touch">GuiScrollView touch behavior</a>
+                    for scrolling, nested controls, selectable text and gestures that scroll views do not consume.
+                </p>
+                <p>
+                    The <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Windows/Touching">Touching sample</a>
+                    applies manipulation to a custom-drawn rectangle.
+                    <a href="https://github.com/vczh-libraries/Release/tree/master/Tutorial/GacUI_Windows/TouchingList">TouchingList</a>
+                    adds application-specific horizontal swipe-to-delete behavior while retaining built-in vertical scrolling.
+                    Swipe-to-delete is not a default behavior of list controls.
+                </p>
+            </topic>
+        </topic>
         <topic>
             <title>Focus Events</title>
             <p>

@@ -118,7 +118,7 @@ This step requires these repos to exist as sibling folders:
 
 ### Step 1.
 
-Follow the prompt in `../Tools/Jobs/job.monorepo.copilotInitAll.prompt.md` first.
+Follow the prompt in `<Tools repo>/Jobs/job.Windows.copilotInitAll.prompt.md` first.
 
 ### Step 2.
 
@@ -128,7 +128,7 @@ Replace the whole `# Copy of Online Manual` section in `../Tools/Copilot/Knowled
 
 ### Step 3.
 
-Follow the prompt in `../Tools/Jobs/job.monorepo.copilotInitAll.prompt.md` again but skip learning.
+Follow the prompt in `<Tools repo>/Jobs/job.Windows.copilotInitAll.prompt.md` again but skip learning.
 
 ### Step 4.
 
