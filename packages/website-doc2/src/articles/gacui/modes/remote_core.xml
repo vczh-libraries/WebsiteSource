@@ -116,5 +116,16 @@ void StartNamedPipeRemoteCore()
             See <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Core">RemotingTest_Core</a>
             for the complete named-pipe (<b>/Pipe</b>), Windows HTTP.sys/WinHTTP (<b>/Http</b>) and portable Mini HTTP (<b>/MiniHttp</b>) implementations.
         </p>
+        <topic>
+            <title>Optional renderer services</title>
+            <p>Pass <name>GuiRemoteControllerConfig</name> to <name>SetupRemoteNativeController</name>. Its three independent flags default to <name>false</name>:</p>
+            <p><ul>
+                <li><name>injectDateTime</name> uses the renderer's local timezone conversions. UTC time, construction and arithmetic remain with the predecessor implementation.</li>
+                <li><name>injectLocale</name> uses renderer locale defaults, enumeration and names; formatting and comparisons remain local.</li>
+                <li><name>injectFileSystem</name> uses renderer filesystem operations. When enabled but unavailable, it exposes an empty root rather than the Core filesystem.</li>
+            </ul></p>
+            <p>Both Core and the renderer must enable the corresponding capability. DateTime and Locale fall back to predecessor implementations on missing support or disconnection. Capabilities are checked again when a renderer is replaced. See <a href="/gacui/modes/remote_client.html">renderer configuration</a>.</p>
+            <p>Core and native renderers can independently replace their underlying process services with <name>vl::InjectDateTimeImpl</name>, <name>vl::InjectLocaleImpl</name> and <name>vl::filesystem::InjectFileSystemImpl</name>. Installing an underlying implementation does not enable remote injection or advertise a capability.</p>
+        </topic>
     </topic>
 </article>

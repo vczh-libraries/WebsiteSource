@@ -44,7 +44,7 @@
             <p>
                 The default scroll view does not consume <name>GuiPointGesture_DraggingAndRotation</name>:
                 free two-dimensional translation, two-contact panning, pinch-to-zoom and rotation require a custom consumer.
-                It provides no inertia or overscroll effect. A second contact stops scrolling offers for the rest of the sequence,
+                Ordinary scroll views provide no inertia or overscroll effect. The optional <a href="/gacui/components/components/momentumscrolling.html"><name>MomentumScrolling</name> component</a> adds continuation after release. A second contact stops scrolling offers for the rest of the sequence,
                 even after that contact lifts. An unavailable axis does not switch to the other axis.
                 Neither an unavailable axis nor reaching the scroll limit transfers the sequence to a parent scroll view.
             </p>

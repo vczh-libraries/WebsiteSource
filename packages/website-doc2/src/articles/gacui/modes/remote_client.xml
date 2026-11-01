@@ -96,5 +96,11 @@ int StartNamedPipeRemoteRenderer()
             See <a href="https://github.com/vczh-libraries/GacUI/tree/master/Test/GacUISrc/RemotingTest_Rendering_Win32">RemotingTest_Rendering_Win32</a>
             for the complete named-pipe (<b>/Pipe</b>), Windows HTTP.sys/WinHTTP (<b>/Http</b>) and portable Mini HTTP (<b>/MiniHttp</b>) implementations.
         </p>
+        <topic>
+            <title>Advertised service capabilities</title>
+            <p><name>ControllerGlobalConfig::injectDateTime</name> advertises local timezone conversion; <name>ControllerGlobalConfig::injectLocale</name> advertises locale information; <name>ControllerGlobalConfig::injectFileSystem</name> advertises filesystem access. These capabilities are independent and require the matching <a href="/gacui/modes/remote_core.html">Core configuration</a> flag for remote use.</p>
+            <p>The native renderer's <name>GuiRemoteRendererSingle::GlobalConfig</name> initializes all three capabilities to <name>true</name>. The demo applications explicitly disable them unless the respective <name>/remoteDT</name>, <name>/remoteLocale</name> or <name>/remoteFS</name> option is supplied. A default protocol <name>ControllerGlobalConfig</name> record alone does not enable them.</p>
+            <p>When a capability is unavailable, Core DateTime and Locale use predecessor implementations. An enabled remote filesystem exposes an empty root. A native renderer can install its own underlying services with <name>vl::InjectDateTimeImpl</name>, <name>vl::InjectLocaleImpl</name> and <name>vl::filesystem::InjectFileSystemImpl</name>; this replacement is separate from capability advertisement.</p>
+        </topic>
     </topic>
 </article>

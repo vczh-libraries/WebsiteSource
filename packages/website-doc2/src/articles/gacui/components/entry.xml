@@ -111,6 +111,7 @@
     <article name="&lt;GridEditorTemplate&gt;" file="itemplates/grideditortemplate"/>
   </article>
   <article name="Components" file="components/home">
+    <article name="MomentumScrolling" file="components/momentumscrolling"/>
     <article name="&lt;MessageDialog&gt;" file="components/messagedialog"/>
     <article name="&lt;ColorDialog&gt;" file="components/colordialog"/>
     <article name="&lt;FontDialog&gt;" file="components/fontdialog"/>
