@@ -274,7 +274,7 @@ server->Start();
         <topic>
             <title>Portable Async-Socket Implementations</title>
             <p>
-                The types in <b>vl::inter_process::async_tcp_socket</b> form a portable, loopback-only stack for asynchronous TCP bytes, HTTP/1.1 requests and Mini HTTP services.
+                The types in <b>vl::inter_process::async_tcp_socket</b> form a portable IPv4/IPv6/DNS TCP stack for asynchronous TCP bytes, HTTP/1.1 requests and Mini HTTP services.
                 Platform-neutral factories select <b>windows_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b>, <b>linux_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b>, or <b>macos_socket::AsyncSocketServer</b> and <b>AsyncSocketClient</b> at the application composition boundary.
             </p>
             <topic>
@@ -294,7 +294,7 @@ server->Start();
                 <p>
                     <b>IAsyncSocketServer</b>, <b>IAsyncSocketClient</b>, <b>IAsyncSocketConnection</b> and <b>IAsyncSocketCallback</b> expose the underlying ordered full-duplex byte streams.
                     The interface-returning <b>CreateDefaultAsyncSocketServer(port)</b> and <b>CreateDefaultAsyncSocketClient(port)</b> factories are for code that consumes these socket interfaces, including the injected <b>SocketHttpServer</b> and <b>SocketHttpClient</b> dependencies below.
-                    Each socket exposes its immutable loopback port through <b>GetPort</b>, and <b>IAsyncSocketClient::CreateSameEndpointClient</b> creates a fresh client for another physical lane on the same endpoint.
+                    Each socket exposes its immutable port through <b>GetPort</b>, and <b>IAsyncSocketClient::CreateSameEndpointClient</b> creates a fresh client for another physical lane on the same endpoint.
                 </p>
             </topic>
             <topic>
@@ -321,7 +321,7 @@ SocketHttpClient(
                 <p>
                     The server adapter uses the injected listener and never creates another one.
                     The client uses the injected client for its first physical lane and calls <b>CreateSameEndpointClient</b> for the additional lanes required by full-duplex polling and recovery.
-                    The server name must select loopback, and the URL prefix is empty for the origin root or begins with <b>/</b>.
+                    Use <b>CreateDefaultAsyncSocketClient(host, port)</b> and pass the same host to the HTTP adapter; clones preserve host, port and backend even after Stop. The port-only overload defaults to localhost. The server listens on wildcard interfaces, and the URL prefix is empty for the origin root or begins with <b>/</b>.
                 </p>
                 <p>
                     The adapter uses the same <b>/VlppInterProcess/Connect</b>, <b>/VlppInterProcess/Request/{token}</b> and <b>/VlppInterProcess/Response/{token}</b> routes as <b>windows_http::HttpServer</b> and <b>windows_http::HttpClient</b>.
@@ -342,7 +342,7 @@ SocketHttpClient(
                 </p>
                 <p>
                     <b>SocketHttpClientApi</b> uses the <b>windows_http::HttpRequest</b>, <b>HttpResponse</b> and <b>HttpError</b> value types, but those types are platform-neutral and using them here does not invoke WinHTTP.
-                    The TCP, HTTP and Mini HTTP implementations in this section are local test, validation and demonstration infrastructure rather than a production web stack.
+                    The TCP, HTTP and Mini HTTP implementations in this section are test, validation and demonstration infrastructure rather than a production web stack.
                 </p>
             </topic>
         </topic>
