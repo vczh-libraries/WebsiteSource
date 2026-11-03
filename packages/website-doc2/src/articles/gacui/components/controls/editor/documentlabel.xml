@@ -38,5 +38,11 @@
             <b>&lt;DocumentLabel/&gt;</b> is expected to look like a <b>&lt;Label/&gt;</b>.
             <b>&lt;DocumentTextBox/&gt;</b> is expected to look like <b>&lt;SinglelineTextBox/&gt;</b>.
         </p>
+        <p>
+            This family, including <name>GuiSinglelineTextBox</name>, accepts touch and supports
+            <a href="/gacui/components/controls/editor/home.html#touch">short/long press selection</a> according to <name>EditMode</name>.
+            It has no scroll-view gesture consumer. Its existing internal offset still keeps the caret visible,
+            and press hit testing accounts for that offset.
+        </p>
     </topic>
 </article>

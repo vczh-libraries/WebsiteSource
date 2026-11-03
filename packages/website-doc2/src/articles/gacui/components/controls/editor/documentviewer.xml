@@ -29,5 +29,11 @@
             auto line-wrapping is automatically done so that the horizontal scroll bar is always not needed.
             But such default behavior can be changed.
         </p>
+        <p>
+            This family, including <name>GuiMultilineTextBox</name>, accepts touch by default.
+            <a href="/gacui/components/controls/editor/home.html#touch">Short/long presses select text</a> according to <name>EditMode</name>;
+            accepted drags scroll while preserving the range. The optional
+            <a href="/gacui/components/components/momentumscrolling.html">MomentumScrolling component</a> continues scrolling after release.
+        </p>
     </topic>
 </article>

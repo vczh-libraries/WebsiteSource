@@ -68,9 +68,12 @@
             <p>
                 Touch input is supported by Windows and GacJS. The native wGac (Wayland) and iGac (macOS) providers do not support touch input.
                 GacJS remains touch-capable in browsers on Linux and macOS, with both WebAssembly and HTTP transport.
-                GacUI includes tap, long-press right click, axis-locked scrolling, and dragging/rotation/scaling recognizers.
+                GacUI includes End-time short/long press offers, deferred left/right clicks, axis-locked scrolling, and dragging/rotation/scaling recognizers.
                 <a href="/gacui/components/controls/container/scrollcontainer.html#touch">GuiScrollView</a> handles single-contact scrolling by default;
                 zoom and rotation require a custom gesture consumer.
+                Scroll containers and list controls inherit scrolling.
+                <a href="/gacui/components/controls/editor/home.html#touch">DocumentViewer and MultilineTextBox</a> support press selection plus scrolling;
+                DocumentLabel, DocumentTextBox and SinglelineTextBox support press selection and caret-visibility offsets without gesture scrolling.
                 See <a href="/gacui/components/compositions/events.html#touch">Touch and Built-in Gestures</a> for the event contract and limitations.
             </p>
             <topic>

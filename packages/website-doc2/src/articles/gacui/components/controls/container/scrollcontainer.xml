@@ -50,15 +50,16 @@
             </p>
             <p>
                 The nearest accepting child owns the entire sequence; point gestures do not bubble.
-                Enabled selectable or editable document text marks the Started query handled without accepting it,
-                preventing default ancestor scroll-view acceptance and allowing immediate mouse-compatible text selection.
-                View-only text and scrollbar or surrounding control chrome retain scrolling behavior.
-                A custom Started handler can still explicitly accept a handled query.
+                Scrollable document content in ViewOnly, Selectable and Editable modes accepts at the document control's persistent bounds.
+                Dragging scrolls the viewport without changing the selected range; stationary presses follow the
+                <a href="/gacui/components/controls/editor/home.html#touch">document press-selection rules</a>.
+                Scrollbars, surrounding chrome and embedded controls keep their own input behavior.
+                The label document family supports press selection but has no scroll-view gesture consumer.
             </p>
             <p>
                 An accepted single-contact tap can still activate a control through the automatic click fallback;
-                an eligible stationary hold produces a right click on successful release.
-                A selected scrolling gesture does not click on release.
+                an eligible stationary hold offers a long press at successful End and produces a right click if declined with right-click generation enabled.
+                Selecting any gesture suppresses deferred clicks. Presses alone start no momentum; a fresh contact stops existing continuation before a selection action.
                 See <a href="/gacui/components/compositions/events.html#touch">Touch and Built-in Gestures</a>
                 for acceptance, capture, cancellation, gesture payloads and custom manipulation.
             </p>
