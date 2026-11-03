@@ -327,6 +327,42 @@
                 </p>
             </topic>
             <topic>
+                <title>ContextMenu and DisplayContextMenuOnRightClick</title>
+                <p>
+                    <b>ContextMenu</b> is a <b>GuiPopup*</b> property whose default is <b>null</b>.
+                    <b>DisplayContextMenuOnRightClick</b> defaults to <b>true</b>.
+                    Both properties are writable and have no change events.
+                    A <b>GuiToolstripMenu</b> or another <b>GuiPopup</b> can be used.
+                </p>
+                <p>
+                    The control borrows the popup. Replacing or clearing this property, or deleting the control,
+                    does not delete the popup. The caller owns its lifetime and must clear or replace the pointer
+                    before deleting the popup. Keep the popup's owner alive while the popup is shown.
+                    In an XML resource, a named <b>ToolstripMenu</b> directly under the root control is owned
+                    through <b>AddControlHostComponent</b>; assign it to a child with <b>ContextMenu-eval</b>.
+                </p>
+                <p>
+                    When automatic display is enabled and the menu is non-null, an unhandled right-button
+                    <b>mouseUp</b> on the persistent <b>BoundsComposition</b> opens the popup.
+                    The handler calls <b>ShowPopup(this, Point(arguments.x, arguments.y))</b>:
+                    these coordinates are already relative to this receiver, and the popup converts them
+                    to the native window and adjusts its placement at screen edges.
+                    Right-button down and other buttons do not open it.
+                </p>
+                <p>
+                    Opening the menu marks the event handled, so a child and ancestor do not both open menus.
+                    A null menu or disabled automatic display leaves the event unchanged and allows an ancestor
+                    to handle it. A descendant can suppress the menu by handling the event first.
+                    For custom handling on the same bounds, set <b>DisplayContextMenuOnRightClick</b> to
+                    <b>false</b>; a later handler cannot cancel a menu that has already opened.
+                </p>
+                <p>
+                    Both settings survive control-template replacement and theme refresh.
+                    Eligible long presses use the existing right-click fallback on release.
+                    Opening a context menu preserves the document's current caret and selection.
+                </p>
+            </topic>
+            <topic>
                 <title>TooltipControl</title>
                 <p>
                     The default value for this property is <b>null</b>.
