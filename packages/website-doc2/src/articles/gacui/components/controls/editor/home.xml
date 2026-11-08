@@ -122,10 +122,10 @@
                 Neither document family automatically consumes manipulation gestures.
             </p>
             <p>
-                Shared handlers stay on the persistent bounds composition across template refreshes.
-                Generated clicks are adapted to the current mouse area's coordinates and call the ordinary handlers once.
-                Selection applies only to document-content starts; scrollbars, surrounding chrome and embedded controls retain their own behavior.
-                Earlier child acceptance remains authoritative, and gestures do not bubble.
+                Shared point and gesture handlers stay on the persistent bounds composition across template refreshes.
+                Generated clicks follow ordinary mouse hit testing and bubbling to the current mouse area's handlers, using the same coordinate conversion as physical clicks.
+                Long-press selection applies only to document-content starts; scrollbars, surrounding chrome and embedded controls retain their normal mouse behavior.
+                Earlier child acceptance remains authoritative for point and gesture delivery, and gestures do not bubble.
                 Applications may suppress either deferred click through Started flags without suppressing press offers.
                 See <a href="/gacui/components/compositions/events.html#touch">Touch and Built-in Gestures</a> for typed payloads, selection and fallback rules.
             </p>
