@@ -34,6 +34,8 @@ Only when explicitly required, run `bash packages/website/scripts/Copy-WASM.sh` 
 
 Copy the prepared demo into the sibling publishing repository as part of this step. Step 2 always excludes this folder from its general copy, preserving either this prepared version or the existing deployment.
 
+`app.worker.js` is required only when `app.mjs` references it. Newer Emscripten builds start pthreads from `app.mjs` itself. Preserve the generated module unchanged and replace the entire demo folder so an obsolete worker is removed. When only the WASM demo is requested, publish this folder and skip the general website and Markdown publication steps.
+
 ```bash
 python3 - <<'PY'
 from pathlib import Path
@@ -45,9 +47,16 @@ source = repo_root / 'packages/website/lib/dist/wasm-fct'
 target = pages_repo / 'wasm-fct'
 
 for required in (pages_repo / '.git', source / 'index.html', source / 'app.wasm',
-                 source / 'app.mjs', source / 'app.worker.js', source / 'app-size.json'):
+                 source / 'app.mjs', source / 'app-size.json'):
     if not required.exists():
         raise SystemExit(f'Missing required path: {required}')
+
+artifacts = ['app.mjs', 'app.wasm']
+if 'app.worker.js' in (source / 'app.mjs').read_text():
+    artifacts.append('app.worker.js')
+for artifact in artifacts:
+    if not (source / artifact).is_file() or (source / artifact).stat().st_size == 0:
+        raise SystemExit(f'Missing or empty artifact: {source / artifact}')
 
 if target.exists():
     shutil.rmtree(target)
@@ -55,7 +64,9 @@ shutil.copytree(source, target)
 PY
 ```
 
-After Step 2 publishes this new or replaced demo, follow Web → Start WASM Now! and verify the download progress, rendered controls, input and Exit/Force Exit in a fresh browser context. The demo's scoped service worker supplies the isolation headers on static hosting; its initial automatic reload is expected. This verification is also skipped when preparation is skipped.
+For a WASM-only update, require all changed paths in the publishing repository to be under `wasm-fct/`, commit and push its `master` branch, and wait for GitHub Pages deployment. Skip Steps 2 and 3.
+
+After publishing this new or replaced demo, follow Web → Start WASM Now! and verify the download progress, rendered controls, input and Exit/Force Exit in a fresh browser context. The demo's scoped service worker supplies the isolation headers on static hosting; its initial automatic reload is expected. This verification is also skipped when preparation is skipped.
 
 ## 2. Publish Website
 

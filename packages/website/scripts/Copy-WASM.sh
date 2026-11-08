@@ -6,7 +6,8 @@ GACJS_ROOT="${WEBSITE_ROOT}/../GacJS"
 GACUI_ROOT="${WEBSITE_ROOT}/../GacUI"
 DIST_ROOT="${WEBSITE_ROOT}/packages/website/lib/dist/wasm-fct"
 WASM_ROOT="${GACUI_ROOT}/Test/Linux/WasmFCT"
-WASM_FILES=(app.wasm app.mjs app.worker.js)
+WASM_FILES=(app.wasm app.mjs)
+WASM_WORKER=app.worker.js
 BROWSER_FILES=(gacui.js wasm.js http.js rvm.js wasm-worker.js)
 RAW_HELPER=fullControlTestRaw.js
 
@@ -29,6 +30,11 @@ for WASM_FILE in "${WASM_FILES[@]}"; do
         WASM_BUILD=-fbw
     fi
 done
+if [ -s "${WASM_ROOT}/Bin/app.mjs" ] && \
+    grep -Fq "${WASM_WORKER}" "${WASM_ROOT}/Bin/app.mjs" && \
+    [ ! -s "${WASM_ROOT}/Bin/${WASM_WORKER}" ]; then
+    WASM_BUILD=-fbw
+fi
 # The supported wrapper prepares vmake, then calls vbuild with the selected flag.
 (cd "${WASM_ROOT}" && "${GACUI_ROOT}/.github/Ubuntu/build.sh" "${WASM_BUILD}" -o)
 
@@ -45,6 +51,11 @@ for WASM_FILE in "${WASM_FILES[@]}"; do
         exit 1
     fi
 done
+if grep -Fq "${WASM_WORKER}" "${WASM_ROOT}/Bin/app.mjs" && \
+    [ ! -s "${WASM_ROOT}/Bin/${WASM_WORKER}" ]; then
+    echo "Missing or empty referenced Wasm worker: ${WASM_WORKER}" >&2
+    exit 1
+fi
 
 for BROWSER_FILE in "${BROWSER_FILES[@]}"; do
     cp "${GACJS_ROOT}/Gaclib/website/entry/lib/dist/${BROWSER_FILE}" "${DIST_ROOT}/"
@@ -56,6 +67,11 @@ cp "${GACJS_ROOT}/Gaclib/website/entry/lib/dist/${RAW_HELPER}" "${DIST_ROOT}/"
 for WASM_FILE in "${WASM_FILES[@]}"; do
     cp "${WASM_ROOT}/Bin/${WASM_FILE}" "${DIST_ROOT}/"
 done
+if [ -s "${WASM_ROOT}/Bin/${WASM_WORKER}" ]; then
+    cp "${WASM_ROOT}/Bin/${WASM_WORKER}" "${DIST_ROOT}/"
+else
+    rm -f -- "${DIST_ROOT}/${WASM_WORKER}"
+fi
 # The decoded size keeps download progress accurate even on compressed HTTP responses.
 WASM_BYTES="$(wc -c < "${WASM_ROOT}/Bin/app.wasm" | tr -d '[:space:]')"
 printf '{"bytes":%s}\n' "${WASM_BYTES}" > "${DIST_ROOT}/app-size.json"
