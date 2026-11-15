@@ -16,7 +16,9 @@ WASM preparation can only be done on Linux. Unless explicit required, this step 
 - `<vczh-libraries.github.io repo>/wasm-fct/app.wasm`
 - `<vczh-libraries.github.io repo>/wasm-fct/app.mjs`
 - `<vczh-libraries.github.io repo>/wasm-fct/app.worker.js`
-- `<vczh-libraries.github.io repo>/wasm-fct/fullControlTestRaw.js`
+- `<vczh-libraries.github.io repo>/wasm-fct/rawCanvas.js`
+- `<vczh-libraries.github.io repo>/wasm-fct/rawClock.js`
+- `<vczh-libraries.github.io repo>/wasm-fct/rawTouching.js`
 - `<vczh-libraries.github.io repo>/wasm-fct/gacui.js`
 - `<vczh-libraries.github.io repo>/wasm-fct/gacui.js.map`
 - `<vczh-libraries.github.io repo>/wasm-fct/http.js`

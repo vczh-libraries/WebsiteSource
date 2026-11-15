@@ -9,7 +9,7 @@ WASM_ROOT="${GACUI_ROOT}/Test/Linux/WasmFCT"
 WASM_FILES=(app.wasm app.mjs)
 WASM_WORKER=app.worker.js
 BROWSER_FILES=(gacui.js wasm.js http.js rvm.js wasm-worker.js)
-RAW_HELPER=fullControlTestRaw.js
+RAW_HELPERS=(rawCanvas.js rawClock.js rawTouching.js)
 
 for REPO_ROOT in "${GACJS_ROOT}" "${GACUI_ROOT}"; do
     if [ ! -d "${REPO_ROOT}" ]; then
@@ -39,7 +39,7 @@ fi
 (cd "${WASM_ROOT}" && "${GACUI_ROOT}/.github/Ubuntu/build.sh" "${WASM_BUILD}" -o)
 
 # Validate the complete inventory before changing the prepared demo.
-for BROWSER_FILE in "${BROWSER_FILES[@]}" "${RAW_HELPER}"; do
+for BROWSER_FILE in "${BROWSER_FILES[@]}" "${RAW_HELPERS[@]}"; do
     if [ ! -s "${GACJS_ROOT}/Gaclib/website/entry/lib/dist/${BROWSER_FILE}" ]; then
         echo "Missing or empty browser asset: ${BROWSER_FILE}" >&2
         exit 1
@@ -63,7 +63,9 @@ for BROWSER_FILE in "${BROWSER_FILES[@]}"; do
         cp "${GACJS_ROOT}/Gaclib/website/entry/lib/dist/${BROWSER_FILE}.map" "${DIST_ROOT}/"
     fi
 done
-cp "${GACJS_ROOT}/Gaclib/website/entry/lib/dist/${RAW_HELPER}" "${DIST_ROOT}/"
+for RAW_HELPER in "${RAW_HELPERS[@]}"; do
+    cp "${GACJS_ROOT}/Gaclib/website/entry/lib/dist/${RAW_HELPER}" "${DIST_ROOT}/"
+done
 for WASM_FILE in "${WASM_FILES[@]}"; do
     cp "${WASM_ROOT}/Bin/${WASM_FILE}" "${DIST_ROOT}/"
 done
