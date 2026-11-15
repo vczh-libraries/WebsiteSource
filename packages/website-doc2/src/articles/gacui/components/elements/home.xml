@@ -241,12 +241,13 @@
                 and equal assignments do nothing. With the remote protocol, an ID-only change is sent on the next frame.
             </p>
             <p>
-                On Windows, an interpretor groups the drawing code for a raw element.
+                An interpretor groups the drawing code for a raw element.
                 Register its factory with the graphics resource manager using <name>RegisterRawInterpretorFactory</name> before creating the UI,
                 then set the element's <name>Interpretor</name> property to the registered name.
                 GacUI attaches the matching drawing behavior automatically.
-                For example, <name>FullControlTest</name> registers <name>FullControlTest::Clock</name>
-                and selects it with <name>&lt;Raw Interpretor="FullControlTest::Clock"/&gt;</name>.
+                Usually you need to implement rendering code per renderer/platform.
+                But when the job could be delegated, it is totally fine for an interpretor to use another interpretor internally.
+                In such cases internal interpretor methods need to be called manually.
                 Direct event handlers remain available without an interpretor.
             </p>
             <topic>
