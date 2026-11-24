@@ -1,6 +1,6 @@
 <article index="true">
     <topic>
-        <title>&lt;Tab&gt; and &lt;TabPage&gt;</title>
+        <title>&lt;Tab&gt;, &lt;VTab&gt; and &lt;TabPage&gt;</title>
         <p>
             <ul>
                 <li>
@@ -9,6 +9,14 @@
                         <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiTab*</li>
                         <li><b>Template Tag</b>: &lt;TabTemplate/&gt;</li>
                         <li><b>Template Name</b>: Tab</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>&lt;VTab/&gt;</b>
+                    <ul>
+                        <li><b>C++/Workflow</b>: (vl::)presentation::controls::GuiTab*</li>
+                        <li><b>Template Tag</b>: &lt;TabTemplate/&gt;</li>
+                        <li><b>Template Name</b>: VTab</li>
                     </ul>
                 </li>
             </ul>
@@ -26,7 +34,13 @@
             </ul>
         </p>
         <p>
-            When a <b>&lt;Tab/&gt;</b> is deleted,
+            <b>&lt;VTab/&gt;</b> creates a <b>GuiTab</b> with the <b>VTab</b> theme.
+            DarkSkin and TuiSkin stack its headers on the left and show the selected page on the right.
+            Click a header or focus the tab and use the Up and Down keys to select a page.
+            Both orientations share the same <b>Pages</b>, <b>SelectedPage</b> and <b>SelectedPageChanged</b>.
+        </p>
+        <p>
+            When a tab control is deleted,
             all <b>&lt;TabPage/&gt;</b> in its <b>Pages</b> will also be deleted.
         </p>
         <p>
@@ -53,6 +67,7 @@
                         </Tab>
                     ]]></code>
                 </program>
+                To use vertical headers, change the enclosing <b>&lt;Tab&gt;</b> and <b>&lt;/Tab&gt;</b> tags to <b>&lt;VTab&gt;</b> and <b>&lt;/VTab&gt;</b>.
                 If an <b>ALT</b> sequence is assigned to a tab page,
                 the page will be selected and shown to the user
                 when the <b>ALT</b> sequence is hit.
@@ -75,7 +90,7 @@
             </p>
         </topic>
         <topic>
-            <title>&lt;Tab&gt; Properties</title>
+            <title>&lt;Tab&gt; and &lt;VTab&gt; Properties</title>
             <topic>
                 <title>Pages</title>
                 <p>

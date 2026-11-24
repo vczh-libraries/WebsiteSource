@@ -43,7 +43,7 @@
     <article name="Container Controls" file="controls/container/home">
       <article name="&lt;GroupBox&gt;" file="controls/container/groupbox"/>
       <article name="GuiScrollView and &lt;ScrollContainer&gt;" file="controls/container/scrollcontainer"/>
-      <article name="&lt;Tab&gt; and &lt;TabPage&gt;" file="controls/container/tab"/>
+      <article name="&lt;Tab&gt;, &lt;VTab&gt; and &lt;TabPage&gt;" file="controls/container/tab"/>
     </article>
     <article name="Editor Controls" file="controls/editor/home">
       <article name="&lt;DocumentViewer&gt;" file="controls/editor/documentviewer"/>

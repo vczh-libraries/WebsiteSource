@@ -94,7 +94,12 @@
                                     <li><b>&lt;TabPage&gt;</b></li>
                                 </ul>
                             </li>
-                            <li><b>&lt;Tab&gt;</b></li>
+                            <li>
+                                <b>&lt;Tab&gt;</b>
+                                <ul>
+                                    <li><b>&lt;VTab&gt;</b> (virtual)</li>
+                                </ul>
+                            </li>
                             <li>
                                 GuiScrollView
                                 <ul>

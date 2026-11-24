@@ -1,13 +1,12 @@
 <control-template-document name="TabTemplate">
   <introduction>
     <p>
-      This control template is for <b>&lt;Tab/&gt;</b>.
+      Both <b>&lt;Tab/&gt;</b> and <b>&lt;VTab/&gt;</b> use this template contract.
+      Set <b>ContainerComposition</b> to the composition that hosts the selected page.
     </p>
     <p>
-      The <b>ContainerComposition</b> property must be set to contain objects,
-      which are typically below all tab headers.
-      If tab headers and the container is organized in other direction,
-      the <b>TabOrder</b> property must be properly set.
+      In the built-in skins, <b>Tab</b> places the page below the headers and sets <b>TabOrder</b> to <b>LeftToRight</b>.
+      <b>VTab</b> places the page to their right and sets <b>TabOrder</b> to <b>TopToBottom</b> for Up and Down navigation.
     </p>
   </introduction>
   <inputs>

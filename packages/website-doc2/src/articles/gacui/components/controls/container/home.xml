@@ -26,11 +26,9 @@
             when list items are not too many.
         </p>
         <p>
-            <b>&lt;Tab/&gt;</b> is a container of multiple <b>&lt;TabPage/&gt;</b>.
-            Differet controls can be organized in different <b>&lt;TabPage/&gt;</b> in one <b>&lt;Tab/&gt;</b>.
-            When a <b>&lt;TabPage/&gt;</b> is activated by the user,
-            only contents in this page are visible,
-            contents in other pages are hidden but still contribute to the minimum size of the <b>&lt;Tab/&gt;</b>.
+            <b>&lt;Tab/&gt;</b> and <b>&lt;VTab/&gt;</b> show one <b>&lt;TabPage/&gt;</b> at a time.
+            The built-in skins place the headers above the page for <b>&lt;Tab/&gt;</b> and to its left for <b>&lt;VTab/&gt;</b>.
+            Pages that have been shown contribute to the minimum size even while another page is selected.
         </p>
     </topic>
 </article>

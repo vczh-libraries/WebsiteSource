@@ -25,6 +25,10 @@
             Usually,
             a <b>&lt;RibbonTab/&gt;</b> is put on the top of a window.
         </p>
+        <p>
+            With DarkSkin, use <b>&lt;RibbonTab ControlThemeName="VTab"/&gt;</b> to stack headers on the left.
+            Add controls to <b>BeforeHeaders</b> or <b>AfterHeaders</b> to place them above or below that stack.
+        </p>
         <topic>
             <title>Sample</title>
             <p>

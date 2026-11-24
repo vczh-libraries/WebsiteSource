@@ -7,6 +7,7 @@
     "ScrollView": "ScrollViewTemplate",
     "GroupBox": "ControlTemplate",
     "Tab": "TabTemplate",
+    "VTab": "TabTemplate",
     "ComboBox": "ComboBoxTemplate",
     "MultilineTextBox": "DocumentViewerTemplate",
     "SinglelineTextBox": "DocumentLabelTemplate",

@@ -131,8 +131,8 @@
             <img src="/gacui/kb_ctemplates_button.gif"/>
         </p>
         <p>
-            With this new control template,
-            we can create a more complex control template for tab control.
+            DarkSkin and TuiSkin provide <b>&lt;VTab/&gt;</b> for vertical headers.
+            The example below builds a custom vertical template to show how a tab and its headers communicate.
         </p>
         <p>
             <b>Tab</b> needs <b>TabTemplate</b>,
