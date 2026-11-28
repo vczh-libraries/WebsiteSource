@@ -82,7 +82,17 @@ async function main() {
         stopRenderer();
         application.stop();
     }, { once: true });
+    const pageUrl = new URL(location.href);
+    const clipboardOption = document.getElementById("option-remoteClipboard");
+    clipboardOption.checked = pageUrl.searchParams.get("remoteClipboard")?.toLowerCase() !== "false";
+    clipboardOption.onchange = () => {
+        if (clipboardOption.checked) pageUrl.searchParams.delete("remoteClipboard");
+        else pageUrl.searchParams.set("remoteClipboard", "false");
+        location.assign(pageUrl.href);
+    };
+    const clipboardSharing = clipboardOption.checked && window.isSecureContext && typeof navigator.clipboard?.read === "function" && typeof navigator.clipboard?.write === "function" && typeof ClipboardItem === "function";
     renderer = createHtmlRenderer({
+        clipboardSharing,
         target: screen,
         isShortcutReservedForBrowser,
         suggestMinSize(x, y) {
@@ -96,7 +106,7 @@ async function main() {
     disposeTouching = installRawTouching(renderer);
     let client;
     try {
-        client = await connectWasmServer(application, renderer.requests);
+        client = await connectWasmServer(application, renderer.requests, clipboardSharing);
         renderer.start(client.responses, client.events);
         rendererStarted = true;
         loading.hidden = true;
